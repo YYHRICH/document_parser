@@ -1,5 +1,105 @@
 # Document Parser
 
+> 当前分支：`feature/router-model-selection`  
+> 负责人：张  
+> 核心目标：完成 Docling、MinerU、OCR 的能力注册、自动/手动路由和 JPG/JPEG/PNG
+> 能力测评，稳定输出 `RoutingDecision 1.0`。
+
+## 本分支工作卡：模型选型与路由
+
+### 开始开发前必须阅读
+
+1. `docs/开发分工.md` 中“张：模型选型与路由”和三次联调；
+2. `specs/001-document-parser-collaboration/spec.md` 中共享开发文件集、路由需求、
+   Gate B/C；
+3. `examples/contracts/README.md` 中 `RoutingDecision 1.0` 的字段和手动模式硬约束；
+4. `examples/contracts/routing_decision.json` 固定输出样例；
+5. `core/contracts.py` 中 `DocumentSignals`、`ParserCapability`、`RoutingDecision`、
+   `ReparseRecommendation`。
+
+### 你负责的输入和输出
+
+输入：
+
+- `ParseRequest` 中的文件信息、用户指定模型和 options；
+- `DocumentSignals`：扩展名、大小、页数、文本层、扫描比例和语言提示；
+- Docling、MinerU、OCR 的 `ParserCapability` 与当前可用状态；
+- `datasets/shared-dev-v1/manifest.jsonl` 中同一批 `sample_id`、标签和文件哈希；
+- 质量层可选的 `ReparseRecommendation`。
+
+唯一公共输出：
+
+```text
+RoutingDecision 1.0
+```
+
+必须填写自动/手动模式、建议模型、选择原因、参数、fallback 顺序、是否允许 fallback、
+不可用原因和创建时间。手动模式必须满足：
+
+```text
+requested_parser_id == selected_parser_id
+allow_automatic_fallback == false
+```
+
+### 本分支必须完成
+
+- 建立 Docling、MinerU、OCR 能力注册表，记录支持格式、版本、网络/GPU 前置条件和
+  不可用原因；
+- 实现自动路由，至少区分普通文本 PDF、复杂 PDF、扫描件、JPG/JPEG 和 PNG；
+- 实现用户指定模型及参数校验，指定模型不可用时明确失败，不静默换模型；
+- 实现显式 fallback 规则，并让朱能够记录每次失败；
+- 支持接收 `ReparseRecommendation` 并生成新决策或明确拒绝原因；
+- 使用共享 12 文件开发集完成 JPG/JPEG/PNG 能力调研和逐文件结果；
+- 为自动、手动、不支持格式、模型不可用、fallback 和重解析建议编写测试。
+
+建议代码位置：
+
+```text
+routing/
+benchmarks/model_selection/
+tests/routing/
+tests/fixtures/images/
+datasets/shared-dev-v1/annotations/routing.jsonl
+```
+
+### 和朱、叶的联调点
+
+- 给朱：稳定的 `RoutingDecision`，解析器 ID 必须与 Adapter 注册 ID 完全一致；
+- 向朱确认：每个候选模型是否已真实接入、支持哪些参数，禁止只路由到一个不存在的 ID；
+- 给叶：每个共享样例的建议模型、实际可用模型和图片测评证据；
+- 接收叶：`reparse_required` 中的建议解析器和参数；
+- 使用 `routing_decision.json` 先联调，不等待真实 Adapter 或 Web 完成。
+
+### 不属于本分支
+
+- 不把 Docling、MinerU、OCR 的原生结果转换成 `ParsedDocument`；
+- 不开发 Web 或后端任务编排；
+- 不决定质量状态，不生成表格绑定、标题树或引用关系；
+- 不用“返回非空”代替图片解析质量评价；
+- 不修改公共字段含义。确需变更时，必须同步契约代码、固定样例、测试和接口说明，
+  并由朱、叶共同确认。
+
+### 提交前验收清单
+
+- [ ] 自动和手动模式都覆盖 Docling、MinerU、OCR；
+- [ ] JPG/JPEG/PNG 都有真实测评记录；
+- [ ] 每次选择都有非空 reason；
+- [ ] 手动模式不会静默 fallback；
+- [ ] 所有 fallback 和不可用原因可追踪；
+- [ ] 固定 `RoutingDecision` 样例和公共契约测试通过；
+- [ ] 路由模块不依赖前端，也不直接产生质量结论；
+- [ ] 批量结果中的成功、失败、跳过和不可用数量与输入总数一致。
+
+当前公共契约回归命令：
+
+```powershell
+python -m pytest tests/test_contract_examples.py -q
+```
+
+---
+
+## 项目公共说明
+
 `document_parser` 是三人协作开发的统一文档解析模块。本仓库直接基于现有 Python
 代码扩展，不另起一套不兼容实现。
 
