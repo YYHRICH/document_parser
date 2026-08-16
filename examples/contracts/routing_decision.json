@@ -1,0 +1,28 @@
+{
+  "schema_name": "RoutingDecision",
+  "schema_version": "1.0",
+  "mode": "auto",
+  "requested_parser_id": null,
+  "selected_parser_id": "mineru",
+  "reason": "PDF 包含多栏、公式和复杂表格，优先使用 MinerU 保留版面结构。",
+  "signals": {
+    "extension": ".pdf",
+    "size_bytes": 245760,
+    "page_count": 10,
+    "has_text_layer": true,
+    "scanned_page_ratio": 0.15,
+    "language_hint": "zh"
+  },
+  "parser_options": {
+    "mode": "auto",
+    "formula": true,
+    "table": true
+  },
+  "fallback_parser_ids": [
+    "docling",
+    "ocr"
+  ],
+  "allow_automatic_fallback": true,
+  "unavailable_reasons": {},
+  "created_at": "2026-08-16T08:00:00Z"
+}
