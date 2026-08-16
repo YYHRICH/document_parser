@@ -1,7 +1,7 @@
 # Document Parser
 
-> 当前分支：`feature/router-model-selection`  
-> 负责人：张  
+> 当前分支：`feature/router-model-selection`
+> 负责人：张
 > 核心目标：完成 Docling、MinerU、OCR 的能力注册、自动/手动路由和 JPG/JPEG/PNG
 > 能力测评，稳定输出 `RoutingDecision 1.0`。
 
