@@ -1,9 +1,11 @@
 # 功能规格：多模型文档解析、统一输出与质量优化协作开发
 
-**规格编号**：`001-document-parser-collaboration`  
-**创建日期**：2026-08-16  
-**状态**：MVP Baseline（职责与三方接口已确认，技术选型项待评审）
-**现有基线**：当前工作区中的 Python `document_parser` 代码  
+**规格编号**：`001-document-parser-collaboration`
+**规格版本**：`1.1`
+**创建日期**：2026-08-16
+**最近更新**：2026-08-16
+**状态**：MVP Baseline（职责、分支和三方接口已冻结，技术选型项待评审）
+**现有基线**：当前 GitHub `main` 分支中的 Python `document_parser` 代码
 **执行分工**：`docs/开发分工.md`
 **联调协议**：`examples/contracts/README.md`
 
@@ -35,12 +37,29 @@
 | 现有文件/模块 | 当前职责 | 本任务中的处理原则 |
 |---|---|---|
 | `__init__.py` | 对外导出 `DocumentParserGateway` 和稳定协议 | 保留现有导入方式，新增公共类型时继续从顶层按需导出 |
-| `core/contracts.py` | 定义 `ParseRequest`、`ParsedDocument`、block、asset、confidence、provenance | 在现有 Pydantic 协议上兼容扩展；不另建一套含义重复的模型 |
+| `core/contracts.py` | 已定义 `RoutingDecision 1.0`、`ParsedDocument 2.2`、`QualityPackage 1.0` 及其子模型 | 作为公共协议唯一事实源；不另建一套含义重复的模型 |
 | `core/gateway.py` | 当前固定调用 MarkItDown，并编排旧 Office 转换 | 扩展为路由与 Adapter 编排入口；保留现有 `parse`、`parse_file` 等调用能力 |
 | `core/inspector.py` | 根据文件名和内容大小产生基础信号 | 扩展文档/图片路由信号；不得把具体模型选择硬编码在预检器中 |
 | `core/converter.py` | 将 `.doc/.ppt` 转为 `.docx/.pptx` | 继续复用；新增路由不能破坏旧 Office 转换和临时文件清理 |
 | `parsers/markitdown/markitdown.py` | 在受控子进程中调用 Microsoft MarkItDown | 作为第一个真实 Adapter 保留，并用于多 Adapter 协议回归 |
 | `parsers/markitdown/block_builder.py` | 将 Markdown 简单切成标题和段落 | 保持当前行为兼容；更丰富结构由统一归一化或质量层增量实现 |
+
+### 1.3 当前仓库状态
+
+截至本版 Spec，仓库已经完成：
+
+- 公共 Pydantic 契约 `RoutingDecision 1.0`、`ParsedDocument 2.2`、`QualityPackage 1.0`；
+- `routing_decision.json`、`parsed_document.json`、`quality_package.json` 三份固定联调样例；
+- 契约加载、跨阶段来源衔接、手动路由硬约束和重解析硬约束测试；
+- `main` 以及三条成员功能分支；
+- MarkItDown、旧 Office 转换和现有 Gateway 基线。
+
+当前尚未完成、不得在演示或验收中声称已完成：
+
+- Docling、MinerU、OCR 三条真实 Adapter；
+- 自动/手动模型路由和 JPG/JPEG/PNG 正式测评；
+- 表格字段绑定、标题树、引用绑定等质量算法；
+- 独立后端、Web 前端和真实端到端闭环。
 
 ### 1.2 增量扩展原则
 
@@ -193,9 +212,9 @@ Web/CLI 上传
 
 ## 4. 三人职责与代码所有权
 
-### 4.1 张云雅：模型能力、选型与路由负责人
+### 4.1 张：模型能力、选型与路由负责人
 
-张云雅负责回答“应该选择哪个模型”，主要交付：
+张负责回答“应该选择哪个模型”，主要交付：
 
 - 模型能力注册表；
 - 文档特征检测需求；
@@ -215,7 +234,7 @@ tests/routing/
 tests/fixtures/images/
 ```
 
-**职责边界**：张云雅不负责定义质量结论，也不负责将所有模型原生结果归一成最终 `ParsedDocument`。
+**职责边界**：张不负责定义质量结论，也不负责将所有模型原生结果归一成最终 `ParsedDocument`。
 
 ### 4.2 朱：统一接入、前后端分离与解耦负责人
 
@@ -223,7 +242,7 @@ tests/fixtures/images/
 
 - `ParseRequest`、`ParserCapability`、`ParserNativeResult`、`ParsedDocument` 等公共协议；
 - 解析器 Adapter 接口和模型调用实现；
-- 张云雅路由结果与解析器 Adapter 的连接；
+- 张的路由结果与解析器 Adapter 的连接；
 - 原生结果归一化；
 - 原生 JSON、Markdown、图片、表格和坐标证据的无损保存；
 - Gateway 编排；
@@ -244,11 +263,11 @@ tests/contracts/
 tests/api/
 ```
 
-**职责边界**：朱不独立决定模型优劣，也不替质量层猜测所需证据。公共输出必须同时根据张云雅的模型原生能力和质量层的输入需求设计。
+**职责边界**：朱不独立决定模型优劣，也不替叶猜测所需证据。公共输出必须同时根据张的模型原生能力和叶的输入需求设计。
 
-### 4.3 组长/质量层负责人：质量需求、优化与准入负责人
+### 4.3 叶：质量需求、优化与准入负责人
 
-质量层负责人负责回答“统一结果是否可信、需要怎样优化或重解析”，主要交付：
+叶负责回答“统一结果是否可信、需要怎样优化或重解析”，主要交付：
 
 - 质量层输入需求矩阵，明确每项检查需要朱提供的文件和字段；
 - Canonical 文档结构；
@@ -260,7 +279,7 @@ tests/api/
 - `quality_report.json`；
 - `package_manifest.json`；
 - 质量回归测试和最终质量验收；
-- 公共协议变更与跨模块集成的组长协调。
+- 公共协议变更、跨模块集成协调和最终 MVP 验收。
 
 建议代码所有权：
 
@@ -279,15 +298,26 @@ tests/fixtures/parsed_documents/
 
 责任规则如下：
 
-- 张云雅对路由结论和图片测评证据负责；
+- 张对路由结论和图片测评证据负责；
 - 朱对 Adapter 可执行性、统一输出真实性、前后端解耦和完整链路负责；
-- 质量负责人对质量规则、关系绑定、准入状态和最终 MVP 验收负责；
+- 叶对质量规则、关系绑定、准入状态和最终 MVP 验收负责；
 - 公共契约由三人共同负责，任一方不得在未通知消费者的情况下改变字段语义；
 - 上游未完成时，下游使用 `examples/contracts/` 固定样例并行开发，不以“等待联调”为由停工。
 
+对应 Git 分支固定为：
+
+| 负责人 | 功能分支 | 合并目标 |
+|---|---|---|
+| 张 | `feature/router-model-selection` | `main` |
+| 朱 | `feature/parser-integration-web` | `main` |
+| 叶 | `feature/quality-layer` | `main` |
+
+三条功能分支均从冻结接口所在的 `main` 创建。成员开发前先拉取自己的分支；公共契约
+变更必须单独提 PR，并由另外两位接口使用者共同确认。
+
 ## 5. 接口与交接契约
 
-### 5.1 张云雅 → 朱：`RoutingDecision`
+### 5.1 张 → 朱：`RoutingDecision 1.0`
 
 最小信息：
 
@@ -300,7 +330,7 @@ tests/fixtures/parsed_documents/
 - 是否允许自动 fallback；
 - 不支持或不可用原因。
 
-### 5.2 朱 → 质量层：`ParsedDocument`
+### 5.2 朱 → 叶：`ParsedDocument 2.2`
 
 最小信息：
 
@@ -317,7 +347,7 @@ tests/fixtures/parsed_documents/
 
 大体积原生 JSON 和二进制资源允许通过安全文件引用交付，不要求全部嵌入 API JSON，但必须可追溯、可校验。
 
-### 5.3 质量层 → 张云雅与朱：`QualityPackage`
+### 5.3 叶 → 朱与张：`QualityPackage 1.0`
 
 最小信息：
 
@@ -336,9 +366,9 @@ tests/fixtures/parsed_documents/
 
 - 三个公共契约的字段语义不得由任何单人直接改变；
 - 契约变更必须说明影响方、兼容策略和 Schema 版本；
-- 张云雅确认路由信息是否足够；
+- 张确认路由信息是否足够；
 - 朱确认能否从模型原生结果稳定生成；
-- 质量层负责人确认是否满足质量检查和回溯需求；
+- 叶确认是否满足质量检查和回溯需求；
 - 三人确认后才能合并公共契约变更。
 
 ### 5.5 已落地的联调基线
@@ -346,9 +376,9 @@ tests/fixtures/parsed_documents/
 三份公共接口已经以 Pydantic 代码落在 `core/contracts.py`，并由顶层包
 `document_parser` 统一导出：
 
-- `RoutingDecision`：张云雅输出、朱消费；
-- `ParsedDocument`：朱输出、质量层消费，当前 Schema 版本为 `2.2`；
-- `QualityPackage`：质量层输出、朱的 Web/API 层消费，同时可携带重新解析建议供张云雅处理。
+- `RoutingDecision 1.0`：张输出、朱消费；
+- `ParsedDocument 2.2`：朱输出、叶消费；
+- `QualityPackage 1.0`：叶输出、朱的 Web/API 层消费，同时可携带重新解析建议供张处理。
 
 固定样例位于 `examples/contracts/`：
 
@@ -504,30 +534,33 @@ Web 是主要展示和验收入口，但不是唯一交付物。算法库、纯�
 
 ## 11. 协作与验收规则
 
-- 张云雅验收路由策略、模型能力和图片测评；
+- 张验收路由策略、模型能力和图片测评；
 - 朱验收 Adapter、统一协议、前后端分离和独立运行；
-- 质量层负责人验收质量输入、质量规则、四件套和准入状态；
+- 叶验收质量输入、质量规则、四件套和准入状态；
 - 公共契约由三人共同评审；
 - 每个负责人提交可运行代码、测试和最小说明，不以报告代替实现；
 - 每个模块必须提供固定 fixture，使下游无需等待上游实际运行即可开发；
-- 最终由组长依据本 Spec 和端到端验收场景确认交付。
+- 最终由叶依据本 Spec 和端到端验收场景确认交付。
 
 ### 11.1 阶段门
 
 #### Gate A：契约冻结
 
 - 三份固定样例均能通过 Pydantic 校验；
-- 张云雅确认 `RoutingDecision`，朱确认 `ParsedDocument` 可实现，质量负责人确认质量证据足够；
+- 张确认 `RoutingDecision`，朱确认 `ParsedDocument` 可实现，叶确认质量证据足够；
 - 公共字段变更规则已写入联调协议。
 
-当前状态：已完成基础契约代码和固定样例；真实模型能力仍需开发验证。
+**当前状态：已完成。** 已提交基础契约代码、固定样例和自动测试；真实模型能力属于
+Gate B/C，不作为 Gate A 已完成的依据。
 
 #### Gate B：分层可运行
 
-- 张云雅的路由可以对固定 `DocumentSignals` 独立运行；
+- 张的路由可以对固定 `DocumentSignals` 独立运行；
 - 朱的每个 Adapter 和归一化器可以对 fixture 独立运行；
 - 质量层可以对固定 `ParsedDocument` 独立输出 `QualityPackage`；
 - 后端可以不启动前端完成同样调用。
+
+**当前状态：待开发。** 三个负责人可以基于固定样例并行推进。
 
 #### Gate C：真实联调
 
@@ -536,16 +569,20 @@ Web 是主要展示和验收入口，但不是唯一交付物。算法库、纯�
 - 表格字段、标题树、引用关系各有正例和安全降级反例；
 - fallback、人工审核和重新解析路径可以实际演示。
 
+**当前状态：待 Gate B 完成后联调。**
+
 #### Gate D：MVP 验收
 
 - Web/CLI 到下载或重新解析形成完整闭环；
 - 三种独立运行方式和全部关键回归测试通过；
 - 三位负责人按责任总表完成代码、测试、说明和互验；
-- 组长签字确认后才可标记 MVP 完成。
+- 叶签字确认后才可标记 MVP 完成。
+
+**当前状态：未开始。**
 
 ## 12. 假设
 
-- 当前工作区已经解压的 Python 代码是唯一开发基线；
+- GitHub `main` 是唯一共享开发基线，个人分支必须通过 PR 合并；
 - 本仓库只保存基础代码、公共协议和可复现开发材料；个人本地调研目录不属于代码交付；
 - 首期 Web 用于内部展示和测试，不包含账号、权限和互联网公开部署；
 - 模型运行环境可能分布在不同机器，统一接口必须允许本地进程或服务适配；
@@ -562,12 +599,23 @@ Web 是主要展示和验收入口，但不是唯一交付物。算法库、纯�
 
 ## 14. 待三人确认的问题
 
-1. JPG/PNG 测评数据量和是否需要人工 OCR/结构金标？
-2. Web 前端使用 Vue、React 还是其他技术栈？
-3. 后端是否确定使用 FastAPI，以及解析任务是否从第一版就采用异步任务模式？
-4. 原生解析产物和任务结果保留多久，是否允许覆盖？
-5. 模型运行在同一台机器还是需要通过内部 HTTP 服务接入？
-6. 第一阶段除 PDF、JPG/JPEG/PNG 外必须支持哪些 Office/文本格式？
-7. 表格、标题和引用三个 MVP 能力各自采用哪些 Golden 正例与反例作为最终验收集？
+| 决策编号 | 待确认问题 | 主确认人 | 最晚确认阶段 |
+|---|---|---|---|
+| D-001 | JPG/PNG 测评数据量，以及是否需要人工 OCR/结构金标 | 张、叶 | Gate B 结束前 |
+| D-002 | Web 前端使用 Vue、React 或其他技术栈 | 朱 | Web 开发开始前 |
+| D-003 | 后端是否采用 FastAPI，以及 MVP 是否使用异步任务 | 朱 | 后端开发开始前 |
+| D-004 | 原生产物和任务结果的保留时间、版本策略及覆盖规则 | 朱、叶 | Gate C 前 |
+| D-005 | 模型在同机进程运行还是通过内部 HTTP 服务接入 | 张、朱 | Adapter 实现前 |
+| D-006 | 除 PDF、JPG/JPEG/PNG 外，MVP 必须覆盖的 Office/文本格式 | 三人 | Gate B 结束前 |
+| D-007 | 表格、标题、引用的 Golden 正例和安全降级反例 | 叶 | Gate C 前 |
 
-上述问题确认后，本 Spec 从 `Draft` 更新为 `Approved`，再据此生成实施计划和个人任务清单。
+这些问题不阻止三人使用冻结样例开展不依赖该决策的 Gate B 工作。任何临时决定必须记录
+在 PR 或本表中，不得只在聊天中约定。D-001 至 D-007 全部关闭、Gate B/C 通过后，
+本 Spec 才能由叶更新为 `Approved for MVP Acceptance`。
+
+## 15. 修订记录
+
+| 版本 | 日期 | 变更 |
+|---|---|---|
+| 1.0 | 2026-08-16 | 确认三人职责、MVP 范围和三份公共接口 |
+| 1.1 | 2026-08-16 | 与最新分工和联调说明对齐；统一张、朱、叶称呼；加入功能分支、仓库真实状态、Gate 状态和待决策负责人 |
