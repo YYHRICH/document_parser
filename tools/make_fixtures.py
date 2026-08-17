@@ -30,7 +30,7 @@ from document_parser.core.contracts import ParsedDocument  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = REPO_ROOT / "datasets" / "shared-dev-v1" / "manifest.jsonl"
 FILES_DIR = REPO_ROOT / "datasets" / "shared-dev-v1" / "files"
-DEFAULT_OUT = REPO_ROOT / "tests" / "fixtures" / "parsed_documents"
+DEFAULT_OUT = REPO_ROOT / "tests" / "quality" / "fixtures" / "parsed_documents"
 
 
 def load_manifest() -> dict[str, dict]:
