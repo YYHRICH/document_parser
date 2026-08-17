@@ -1,0 +1,3064 @@
+{
+  "document_id": "b7ac4dbc-9eda-4dd2-8157-155a55e7eab9",
+  "filename": "table_cases_cross_page.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 92408,
+  "source_sha256": "146eadbf3193aecadf59c30e35a0a191374bbc8ffa56fab763a8c77e79692aff",
+  "routing_decision": null,
+  "markdown": "## 运营报表复杂表格案例集\n\n用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。\n\n## CASE-A ：库存月报（续表且重复表头）\n\n本案例的第二页明确写有'续表' ，并完整重复列头。行号连续，应该允许稳定绑定。\n\n|   行号 | 物料名称         |   期初 |   入库 |   期末 |\n|------|--------------|------|------|------|\n|  001 | 温控模块 AX-200  |  120 |   30 |  150 |\n|  002 | 冷却风扇 FAN-12V |   80 |   24 |  104 |\n|  003 | 连接线束 CB-04   |  250 |   60 |  310 |\n|  004 | 固定支架 BR-02   |   90 |   18 |  108 |\n\n## 库存月报（续表）\n\n## CASE-A / Page 2\n\n期望：识别为同一张表，保留页码和续表证据。\n\n|   行号 | 物料名称        |   期初 |   入库 |   期末 |\n|------|-------------|------|------|------|\n|  005 | 过滤网 FG-10   |   45 |   20 |   65 |\n|  006 | 传感器 TS-08   |   32 |   12 |   44 |\n|  007 | 备用电源 PSU-24 |   18 |    6 |   24 |\n|  008 | 防护罩 CV-01   |   27 |    9 |   36 |\n\n## CASE-B ：区域采购汇总（合并单元格）\n\n期望：区域和供应商等级的 rowspan/colpath 不被展开成虚假单元格。\n\n| 区域   | 供应商等级   | 物料      |   数量 |   含税金额 |\n|------|---------|---------|------|--------|\n| 华东   | A       | FAN-12V |   80 | 14,880 |\n| 华东   | B       | CB-04   |  120 |  9,600 |\n| 华南   | A       | AX-200  |   60 | 24,000 |\n| 华南   | B       | BR-02   |   75 |  6,750 |\n\n## CASE-C ：跨页采购订单\n\n订单 PO-2026-0817 的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有'续行'标记。\n\n|   行号 | 物料描述                                 |   数量 |     单价 |     小计 |\n|------|--------------------------------------|------|--------|--------|\n|  101 | 温控模块，含安装底座和校准服务                      |   12 |  4,200 | 50,400 |\n|  102 | 现场备用风扇，交付至二号车间                       |   24 |    186 |  4,464 |\n|  103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） |    1 | 18,000 |        |\n\n## CASE-C ：跨页采购订单（续行）\n\n| 标记   | 物料描述续行                                         |   数量 |    单价 |     小计 |\n|------|------------------------------------------------|------|-------|--------|\n| 续行   | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |      |       | 18,000 |\n| 104  | 包装及运输保险                                        |    1 | 1,200 |  1,200 |\n\n期望： 103 的小计可以关联，但'续行'不应被当作新的物料。 CASE-D ：续表列顺序漂移\n\n|   行号 | 项目   |   期末 |   变化 |   期初 |\n|------|------|------|------|------|\n|  201 | 东区备件 |  118 |   +8 |  110 |\n|  202 | 西区备件 |   94 |   -6 |  100 |\n\n期望：发现本页列顺序与前页不同，禁止按位置静默绑定。\n\n## CASE-E ：证据不足的表格\n\n以下截图式表格只有表级来源，解析器无法提供单元格 bbox ，也没有稳定行键。\n\n| 本月重点   | 负责人   | 备注   |\n|--------|-------|------|\n| 华东区域库存 | 陈琳    | 需复核  |\n| 现场安装排期 | 周海    | 见邮件  |\n\n期望：保留表级来源，生成 evidence issue ；不得伪造 cell bbox 或 verified binding 。\n\n## 验收要点\n\n- CASE-A ：续表和重复表头可合并；\n\n- CASE-B ： rowspan/colspan 必须保留完整 column path ；\n\n- CASE-C ：跨页续行需要关联证据；\n\n- CASE-D ：列顺序变化必须触发问题；\n\n- CASE-E ：证据不足时安全降级。",
+  "blocks": [
+    {
+      "id": "22e8b345-0a99-4db9-836f-c7ee9bcd0e13",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "运营报表复杂表格案例集",
+      "heading_level": 1,
+      "markdown": "# 运营报表复杂表格案例集",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          48.189,
+          47.496167300000025,
+          267.3673,
+          67.42146730000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f44da602-59a0-4492-8c5f-4d9de2f33332",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。",
+      "heading_level": null,
+      "markdown": "用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          48.189,
+          74.53386239999998,
+          317.18099999999987,
+          83.5002624
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4420a21c-8ab1-4c45-b7bc-35b78a75e49b",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-A ：库存月报（续表且重复表头）",
+      "heading_level": 1,
+      "markdown": "# CASE-A ：库存月报（续表且重复表头）",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          48.189,
+          100.92948320000005,
+          261.3918,
+          113.70959200000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "445d6271-6b7b-4701-8b3d-eb268a7e22a6",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本案例的第二页明确写有'续表' ，并完整重复列头。行号连续，应该允许稳定绑定。",
+      "heading_level": null,
+      "markdown": "本案例的第二页明确写有'续表' ，并完整重复列头。行号连续，应该允许稳定绑定。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          48.189,
+          123.10012659999995,
+          421.78650000000016,
+          133.06272660000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d524d814-d387-47d8-863a-777a3a278842",
+      "source_block_id": "docling-TableItem-4",
+      "order_index": 4,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块 AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇 FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束 CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架 BR-02 | 90 | 18 | 108 |",
+      "heading_level": null,
+      "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块 AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇 FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束 CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架 BR-02 | 90 | 18 | 108 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          47.33620966968103,
+          139.4737376299114,
+          286.5860781267035,
+          223.80006246328696
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "cf8b83df-3374-4df3-8ec8-a8a73d6f2a97",
+      "source_block_id": "docling-SectionHeaderItem-5",
+      "order_index": 5,
+      "kind": "heading",
+      "native_type": null,
+      "text": "库存月报（续表）",
+      "heading_level": 1,
+      "markdown": "# 库存月报（续表）",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          48.189,
+          47.56472480000002,
+          191.65140000000002,
+          65.49752479999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2359cc15-a974-4310-a151-bd7b75555768",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-A / Page 2",
+      "heading_level": 1,
+      "markdown": "# CASE-A / Page 2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          48.189,
+          70.89461440000002,
+          142.515528,
+          82.10859200000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "151eb2ba-d418-4f41-bdc5-fa7e0bbde6d9",
+      "source_block_id": "docling-TableItem-7",
+      "order_index": 7,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网 FG-10 | 45 | 20 | 65 |\n| 006 | 传感器 TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源 PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩 CV-01 | 27 | 9 | 36 |",
+      "heading_level": null,
+      "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网 FG-10 | 45 | 20 | 65 |\n| 006 | 传感器 TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源 PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩 CV-01 | 27 | 9 | 36 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          47.67154197593634,
+          99.14895046352694,
+          278.71024185903684,
+          177.0781999454323
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "04d1d92f-19ca-4866-a5e3-7fa9d820a465",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期望：识别为同一张表，保留页码和续表证据。",
+      "heading_level": null,
+      "markdown": "期望：识别为同一张表，保留页码和续表证据。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          48.189,
+          197.3168624,
+          236.48339999999993,
+          206.2832624
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0156c1a4-96ef-4a25-a0d9-9e6e1ca350e4",
+      "source_block_id": "docling-SectionHeaderItem-9",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-B ：区域采购汇总（合并单元格）",
+      "heading_level": 1,
+      "markdown": "# CASE-B ：区域采购汇总（合并单元格）",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          48.189,
+          252.58148319999998,
+          261.3918,
+          265.361592
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "80f7c8a5-4a34-487e-b63b-3f63c4fbdf88",
+      "source_block_id": "docling-TableItem-10",
+      "order_index": 10,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|   | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|   | B | BR-02 | 75 | 6,750 |",
+      "heading_level": null,
+      "markdown": "| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|   | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|   | B | BR-02 | 75 | 6,750 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          47.25781127858688,
+          278.16547292919995,
+          306.2758214555744,
+          355.5370483789903
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003"
+      }
+    },
+    {
+      "id": "3e3268be-a706-4e62-905a-1d40ef59ac1d",
+      "source_block_id": "docling-TextItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期望：区域和供应商等级的 rowspan/colpath 不被展开成虚假单元格。",
+      "heading_level": null,
+      "markdown": "期望：区域和供应商等级的 rowspan/colpath 不被展开成虚假单元格。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          48.189,
+          375.6718624,
+          324.6933999999999,
+          385.25694400000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6bd3acc6-fadb-43d9-9fb1-18843469ea42",
+      "source_block_id": "docling-SectionHeaderItem-12",
+      "order_index": 12,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-C ：跨页采购订单",
+      "heading_level": 1,
+      "markdown": "# CASE-C ：跨页采购订单",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          48.189,
+          47.63572480000005,
+          242.46359999999999,
+          66.80588799999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f7012cc7-5f3b-4a9e-9b1b-f3c30caa2439",
+      "source_block_id": "docling-TextItem-13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "订单 PO-2026-0817 的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有'续行'标记。",
+      "heading_level": null,
+      "markdown": "订单 PO-2026-0817 的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有'续行'标记。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          48.189,
+          74.79986240000005,
+          479.6136000000002,
+          84.38494400000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "14aff7ce-e778-4781-9806-3d4b0f908001",
+      "source_block_id": "docling-TableItem-14",
+      "order_index": 14,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） | 1 | 18,000 |   |",
+      "heading_level": null,
+      "markdown": "| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） | 1 | 18,000 |   |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          47.23230184201433,
+          90.36968662871288,
+          317.5145372832773,
+          162.91858126628574
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004"
+      }
+    },
+    {
+      "id": "c191e00a-2758-4158-a0c0-6fa1ce0cbaa5",
+      "source_block_id": "docling-SectionHeaderItem-15",
+      "order_index": 15,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-C ：跨页采购订单（续行）",
+      "heading_level": 1,
+      "markdown": "# CASE-C ：跨页采购订单（续行）",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          48.189,
+          47.63572480000005,
+          314.19479999999993,
+          66.80588799999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6f9aa5af-eadc-40b8-a39f-ae92ebff0923",
+      "source_block_id": "docling-TableItem-16",
+      "order_index": 16,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |   |   | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |",
+      "heading_level": null,
+      "markdown": "| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |   |   | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          47.47175622104409,
+          82.1148675245447,
+          312.9225028488691,
+          151.49867119719306
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-005"
+      }
+    },
+    {
+      "id": "75514641-2546-4c70-af79-a26e8979b8d2",
+      "source_block_id": "docling-TextItem-17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期望： 103 的小计可以关联，但'续行'不应被当作新的物料。 CASE-D ：续表列顺序漂移",
+      "heading_level": null,
+      "markdown": "期望： 103 的小计可以关联，但'续行'不应被当作新的物料。 CASE-D ：续表列顺序漂移",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          48.189,
+          174.39648320000003,
+          440.23759999999993,
+          187.17659200000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f4cb28cd-843b-48f0-b464-a60fa6c3ca91",
+      "source_block_id": "docling-TableItem-18",
+      "order_index": 18,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |",
+      "heading_level": null,
+      "markdown": "| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          47.59674635386142,
+          234.17311222494232,
+          270.13378914489465,
+          281.8030287211411
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-006"
+      }
+    },
+    {
+      "id": "7355ae03-1253-43a6-870b-e6bc77defc39",
+      "source_block_id": "docling-TextItem-19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期望：发现本页列顺序与前页不同，禁止按位置静默绑定。",
+      "heading_level": null,
+      "markdown": "期望：发现本页列顺序与前页不同，禁止按位置静默绑定。",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          48.189,
+          302.0648623999999,
+          281.3153999999999,
+          311.03126239999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4049a39e-f148-48fc-8446-fc10a885a049",
+      "source_block_id": "docling-SectionHeaderItem-20",
+      "order_index": 20,
+      "kind": "heading",
+      "native_type": null,
+      "text": "CASE-E ：证据不足的表格",
+      "heading_level": 1,
+      "markdown": "# CASE-E ：证据不足的表格",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          48.189,
+          47.354724799999985,
+          259.40739999999994,
+          66.52488800000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e4035f10-602c-4ca1-8d82-8960f96a8e49",
+      "source_block_id": "docling-TextItem-21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "以下截图式表格只有表级来源，解析器无法提供单元格 bbox ，也没有稳定行键。",
+      "heading_level": null,
+      "markdown": "以下截图式表格只有表级来源，解析器无法提供单元格 bbox ，也没有稳定行键。",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          48.189,
+          77.3548624,
+          366.01360000000005,
+          86.93994399999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "750876bd-b5d0-4f26-a9fb-33d38bb767c2",
+      "source_block_id": "docling-TableItem-22",
+      "order_index": 22,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
+      "heading_level": null,
+      "markdown": "| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          47.355765377789616,
+          92.70501386345143,
+          427.6292337354617,
+          139.48081678320875
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-007"
+      }
+    },
+    {
+      "id": "9d763e4e-bdaf-4b44-9998-c5f77c9d30bc",
+      "source_block_id": "docling-TextItem-23",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期望：保留表级来源，生成 evidence issue ；不得伪造 cell bbox 或 verified binding 。",
+      "heading_level": null,
+      "markdown": "期望：保留表级来源，生成 evidence issue ；不得伪造 cell bbox 或 verified binding 。",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          48.189,
+          162.66586240000004,
+          383.5304,
+          172.250944
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "57cb4c22-9a96-406d-977f-a0baa07ce387",
+      "source_block_id": "docling-SectionHeaderItem-24",
+      "order_index": 24,
+      "kind": "heading",
+      "native_type": null,
+      "text": "验收要点",
+      "heading_level": 1,
+      "markdown": "# 验收要点",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          48.188999999999965,
+          192.25061419999997,
+          105.57379999999996,
+          206.59681420000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1bb6674f-ab31-45aa-abec-acd9d81ac0fa",
+      "source_block_id": "docling-ListItem-25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "CASE-A ：续表和重复表头可合并；",
+      "heading_level": null,
+      "markdown": "CASE-A ：续表和重复表头可合并；",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          64.975,
+          218.52486239999996,
+          214.07579999999996,
+          228.10994400000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "59926a4f-0601-4059-8e22-f7f2c4aae65f",
+      "source_block_id": "docling-ListItem-26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "CASE-B ： rowspan/colspan 必须保留完整 column path ；",
+      "heading_level": null,
+      "markdown": "CASE-B ： rowspan/colspan 必须保留完整 column path ；",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          64.975,
+          233.46886239999992,
+          299.3254,
+          243.053944
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dc7bad54-e3c6-4133-a1c5-ee901c98daf0",
+      "source_block_id": "docling-ListItem-27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "CASE-C ：跨页续行需要关联证据；",
+      "heading_level": null,
+      "markdown": "CASE-C ：跨页续行需要关联证据；",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          64.975,
+          248.4128624,
+          214.56979999999996,
+          257.9979440000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42750843-b252-4498-bf92-5e305711a650",
+      "source_block_id": "docling-ListItem-28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "CASE-D ：列顺序变化必须触发问题；",
+      "heading_level": null,
+      "markdown": "CASE-D ：列顺序变化必须触发问题；",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          64.975,
+          263.35686240000007,
+          223.53619999999995,
+          272.94194400000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "19c9028a-150f-4db1-a1c5-933950e35f35",
+      "source_block_id": "docling-ListItem-29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "CASE-E ：证据不足时安全降级。",
+      "heading_level": null,
+      "markdown": "CASE-E ：证据不足时安全降级。",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          64.975,
+          278.3008624,
+          205.10939999999997,
+          287.885944
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "d524d814-d387-47d8-863a-777a3a278842",
+      "html": null,
+      "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块 AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇 FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束 CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架 BR-02 | 90 | 18 | 108 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        47.33620966968103,
+        139.4737376299114,
+        286.5860781267035,
+        223.80006246328696
+      ],
+      "num_rows": 5,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "行号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            698.6018880484374,
+            70.5052,
+            688.6392880484375
+          ]
+        },
+        {
+          "text": "物料名称",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            74.889,
+            698.6018880484374,
+            114.7394,
+            688.6392880484375
+          ]
+        },
+        {
+          "text": "期初",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            215.335,
+            698.6018880484374,
+            235.26020000000003,
+            688.6392880484375
+          ]
+        },
+        {
+          "text": "入库",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.644,
+            698.6018880484374,
+            259.5692,
+            688.6392880484375
+          ]
+        },
+        {
+          "text": "期末",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.953,
+            698.6018880484374,
+            283.8782,
+            688.6392880484375
+          ]
+        },
+        {
+          "text": "001",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.232,
+            680.7587874484375,
+            68.8496168,
+            671.4138686484375
+          ]
+        },
+        {
+          "text": "温控模块 AX-200",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            74.889,
+            682.0638880484375,
+            150.73227100000003,
+            671.4138686484375
+          ]
+        },
+        {
+          "text": "120",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            216.987,
+            680.7587874484375,
+            233.6046168,
+            671.4138686484375
+          ]
+        },
+        {
+          "text": "30",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            244.066,
+            680.7587874484375,
+            255.1444112,
+            671.4138686484375
+          ]
+        },
+        {
+          "text": "150",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            265.605,
+            680.7587874484375,
+            282.22261679999997,
+            671.4138686484375
+          ]
+        },
+        {
+          "text": "002",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.232,
+            664.2207874484375,
+            68.8496168,
+            654.8758686484375
+          ]
+        },
+        {
+          "text": "冷却风扇 FAN-12V",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            74.889,
+            665.5258880484375,
+            157.9252682,
+            654.8758686484375
+          ]
+        },
+        {
+          "text": "80",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.757,
+            664.2207874484375,
+            230.8354112,
+            654.8758686484375
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            244.066,
+            664.2207874484375,
+            255.1444112,
+            654.8758686484375
+          ]
+        },
+        {
+          "text": "104",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            265.605,
+            664.2207874484375,
+            282.22261679999997,
+            654.8758686484375
+          ]
+        },
+        {
+          "text": "003",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.232,
+            647.6827874484375,
+            68.8496168,
+            638.3378686484375
+          ]
+        },
+        {
+          "text": "连接线束 CB-04",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            74.889,
+            648.9878880484375,
+            145.7410084,
+            638.3378686484375
+          ]
+        },
+        {
+          "text": "250",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            216.987,
+            647.6827874484375,
+            233.6046168,
+            638.3378686484375
+          ]
+        },
+        {
+          "text": "60",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            244.066,
+            647.6827874484375,
+            255.1444112,
+            638.3378686484375
+          ]
+        },
+        {
+          "text": "310",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            265.605,
+            647.6827874484375,
+            282.22261679999997,
+            638.3378686484375
+          ]
+        },
+        {
+          "text": "004",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.232,
+            631.1447874484376,
+            68.8496168,
+            621.7998686484375
+          ]
+        },
+        {
+          "text": "固定支架 BR-02",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            74.889,
+            632.4498880484375,
+            145.7410084,
+            621.7998686484375
+          ]
+        },
+        {
+          "text": "90",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.757,
+            631.1447874484376,
+            230.8354112,
+            621.7998686484375
+          ]
+        },
+        {
+          "text": "18",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            244.066,
+            631.1447874484376,
+            255.1444112,
+            621.7998686484375
+          ]
+        },
+        {
+          "text": "108",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            265.605,
+            631.1447874484376,
+            282.22261679999997,
+            621.7998686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "151eb2ba-d418-4f41-bdc5-fa7e0bbde6d9",
+      "html": null,
+      "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网 FG-10 | 45 | 20 | 65 |\n| 006 | 传感器 TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源 PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩 CV-01 | 27 | 9 | 36 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        47.67154197593634,
+        99.14895046352694,
+        278.71024185903684,
+        177.0781999454323
+      ],
+      "num_rows": 5,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "行号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            738.4111522484375,
+            68.5128,
+            729.4447522484375
+          ]
+        },
+        {
+          "text": "物料名称",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            738.4111522484375,
+            108.7616,
+            729.4447522484375
+          ]
+        },
+        {
+          "text": "期初",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            213.343,
+            738.4111522484375,
+            231.27579999999998,
+            729.4447522484375
+          ]
+        },
+        {
+          "text": "入库",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            235.659,
+            738.4111522484375,
+            253.59179999999998,
+            729.4447522484375
+          ]
+        },
+        {
+          "text": "期末",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            257.975,
+            738.4111522484375,
+            275.90779999999995,
+            729.4447522484375
+          ]
+        },
+        {
+          "text": "005",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            722.0435538484375,
+            67.02195520000001,
+            713.6330706484375
+          ]
+        },
+        {
+          "text": "过滤网 FG-10",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            723.2181522484375,
+            127.6977776,
+            713.6330706484375
+          ]
+        },
+        {
+          "text": "45",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            217.323,
+            722.0435538484375,
+            227.29363680000003,
+            713.6330706484375
+          ]
+        },
+        {
+          "text": "20",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.639,
+            722.0435538484375,
+            249.60963680000003,
+            713.6330706484375
+          ]
+        },
+        {
+          "text": "65",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            261.95500000000004,
+            722.0435538484375,
+            271.9256368,
+            713.6330706484375
+          ]
+        },
+        {
+          "text": "006",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            706.8505538484375,
+            67.02195520000001,
+            698.4400706484375
+          ]
+        },
+        {
+          "text": "传感器 TS-08",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            708.0251522484375,
+            126.7025072,
+            698.4400706484375
+          ]
+        },
+        {
+          "text": "32",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            217.323,
+            706.8505538484375,
+            227.29363680000003,
+            698.4400706484375
+          ]
+        },
+        {
+          "text": "12",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.639,
+            706.8505538484375,
+            249.60963680000003,
+            698.4400706484375
+          ]
+        },
+        {
+          "text": "44",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            261.95500000000004,
+            706.8505538484375,
+            271.9256368,
+            698.4400706484375
+          ]
+        },
+        {
+          "text": "007",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            691.6575538484375,
+            67.02195520000001,
+            683.2470706484374
+          ]
+        },
+        {
+          "text": "备用电源 PSU-24",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            692.8321522484375,
+            142.6443664,
+            683.2470706484374
+          ]
+        },
+        {
+          "text": "18",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            217.323,
+            691.6575538484375,
+            227.29363680000003,
+            683.2470706484374
+          ]
+        },
+        {
+          "text": "6",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            242.132,
+            691.6575538484375,
+            247.11731840000002,
+            683.2470706484374
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            261.95500000000004,
+            691.6575538484375,
+            271.9256368,
+            683.2470706484374
+          ]
+        },
+        {
+          "text": "008",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            676.4645538484375,
+            67.02195520000001,
+            668.0540706484375
+          ]
+        },
+        {
+          "text": "防护罩 CV-01",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            677.6391522484375,
+            127.2046256,
+            668.0540706484375
+          ]
+        },
+        {
+          "text": "27",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            217.323,
+            676.4645538484375,
+            227.29363680000003,
+            668.0540706484375
+          ]
+        },
+        {
+          "text": "9",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            242.132,
+            676.4645538484375,
+            247.11731840000002,
+            668.0540706484375
+          ]
+        },
+        {
+          "text": "36",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            261.95500000000004,
+            676.4645538484375,
+            271.9256368,
+            668.0540706484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "80f7c8a5-4a34-487e-b63b-3f63c4fbdf88",
+      "html": null,
+      "markdown": "| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|   | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|   | B | BR-02 | 75 | 6,750 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        47.25781127858688,
+        278.16547292919995,
+        306.2758214555744,
+        355.5370483789903
+      ],
+      "num_rows": 5,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "区域",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            559.2951522484375,
+            68.5128,
+            550.3287522484375
+          ]
+        },
+        {
+          "text": "供应商等级",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            559.2951522484375,
+            117.72800000000001,
+            550.3287522484375
+          ]
+        },
+        {
+          "text": "物料",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            122.112,
+            559.2951522484375,
+            140.0448,
+            550.3287522484375
+          ]
+        },
+        {
+          "text": "数量",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            245.55,
+            559.2951522484375,
+            263.4828,
+            550.3287522484375
+          ]
+        },
+        {
+          "text": "含税金额",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            267.86699999999996,
+            559.2951522484375,
+            303.73259999999993,
+            550.3287522484375
+          ]
+        },
+        {
+          "text": "华东",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            537.4711522484375,
+            68.5128,
+            528.5047522484375
+          ]
+        },
+        {
+          "text": "A",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            92.322,
+            542.9275538484375,
+            98.3025888,
+            534.5170706484374
+          ]
+        },
+        {
+          "text": "FAN-12V",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            122.112,
+            542.9275538484375,
+            158.4886848,
+            534.5170706484374
+          ]
+        },
+        {
+          "text": "80",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            249.53,
+            542.9275538484375,
+            259.50063680000005,
+            534.5170706484374
+          ]
+        },
+        {
+          "text": "14,880",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            272.087,
+            542.9275538484375,
+            299.50625120000007,
+            534.5170706484374
+          ]
+        },
+        {
+          "text": "华东",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            537.4711522484375,
+            68.5128,
+            528.5047522484375
+          ]
+        },
+        {
+          "text": "B",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            92.322,
+            528.1325538484375,
+            98.3025888,
+            519.7220706484375
+          ]
+        },
+        {
+          "text": "CB-04",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            122.112,
+            528.1325538484375,
+            147.52277759999998,
+            519.7220706484375
+          ]
+        },
+        {
+          "text": "120",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            247.037,
+            528.1325538484375,
+            261.99295520000004,
+            519.7220706484375
+          ]
+        },
+        {
+          "text": "9,600",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            274.581,
+            528.1325538484375,
+            297.0149328,
+            519.7220706484375
+          ]
+        },
+        {
+          "text": "华南",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            507.4841522484375,
+            68.5128,
+            498.5177522484375
+          ]
+        },
+        {
+          "text": "A",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            92.322,
+            512.9395538484374,
+            98.3025888,
+            504.5290706484375
+          ]
+        },
+        {
+          "text": "AX-200",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            122.112,
+            512.9395538484374,
+            152.01494399999999,
+            504.5290706484375
+          ]
+        },
+        {
+          "text": "60",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            249.53,
+            512.9395538484374,
+            259.50063680000005,
+            504.5290706484375
+          ]
+        },
+        {
+          "text": "24,000",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            272.087,
+            512.9395538484374,
+            299.50625120000007,
+            504.5290706484375
+          ]
+        },
+        {
+          "text": "华南",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            507.4841522484375,
+            68.5128,
+            498.5177522484375
+          ]
+        },
+        {
+          "text": "B",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            92.322,
+            498.14455384843745,
+            98.3025888,
+            489.73407064843747
+          ]
+        },
+        {
+          "text": "BR-02",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            122.112,
+            498.14455384843745,
+            147.52277759999998,
+            489.73407064843747
+          ]
+        },
+        {
+          "text": "75",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            249.53,
+            498.14455384843745,
+            259.50063680000005,
+            489.73407064843747
+          ]
+        },
+        {
+          "text": "6,750",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            274.581,
+            498.14455384843745,
+            297.0149328,
+            489.73407064843747
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "14aff7ce-e778-4781-9806-3d4b0f908001",
+      "html": null,
+      "markdown": "| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） | 1 | 18,000 |   |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        47.23230184201433,
+        90.36968662871288,
+        317.5145372832773,
+        162.91858126628574
+      ],
+      "num_rows": 4,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "行号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            747.9951522484375,
+            68.5128,
+            739.0287522484375
+          ]
+        },
+        {
+          "text": "物料描述",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            747.9951522484375,
+            108.7616,
+            739.0287522484375
+          ]
+        },
+        {
+          "text": "数量",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            233.185,
+            747.9951522484375,
+            251.1178,
+            739.0287522484375
+          ]
+        },
+        {
+          "text": "单价",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            260.248,
+            747.9951522484375,
+            278.1808,
+            739.0287522484375
+          ]
+        },
+        {
+          "text": "小计",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            292.05600000000004,
+            747.9951522484375,
+            309.98879999999997,
+            739.0287522484375
+          ]
+        },
+        {
+          "text": "101",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            731.6275538484375,
+            67.02195520000001,
+            723.2170706484375
+          ]
+        },
+        {
+          "text": "温控模块，含安装底座和校准服务",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            732.8021522484376,
+            207.39199999999997,
+            723.8357522484375
+          ]
+        },
+        {
+          "text": "12",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            237.165,
+            731.6275538484375,
+            247.13563680000001,
+            723.2170706484375
+          ]
+        },
+        {
+          "text": "4,200",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            257.995,
+            731.6275538484375,
+            280.42893280000004,
+            723.2170706484375
+          ]
+        },
+        {
+          "text": "50,400",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            287.31,
+            731.6275538484375,
+            314.7292512,
+            723.2170706484375
+          ]
+        },
+        {
+          "text": "102",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            716.4345538484375,
+            67.02195520000001,
+            708.0240706484375
+          ]
+        },
+        {
+          "text": "现场备用风扇，交付至二号车间",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            717.6091522484375,
+            198.42559999999997,
+            708.6427522484375
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            237.165,
+            716.4345538484375,
+            247.13563680000001,
+            708.0240706484375
+          ]
+        },
+        {
+          "text": "186",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            261.73400000000004,
+            716.4345538484375,
+            276.68995520000004,
+            708.0240706484375
+          ]
+        },
+        {
+          "text": "4,464",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            289.803,
+            716.4345538484375,
+            312.23693280000003,
+            708.0240706484375
+          ]
+        },
+        {
+          "text": "103",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            701.2415538484375,
+            67.02195520000001,
+            692.8310706484375
+          ]
+        },
+        {
+          "text": "长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件）",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            702.4161522484375,
+            234.29119999999995,
+            682.4907522484375
+          ]
+        },
+        {
+          "text": "1",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.658,
+            701.2415538484375,
+            244.6433184,
+            692.8310706484375
+          ]
+        },
+        {
+          "text": "18,000",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            255.502,
+            701.2415538484375,
+            282.92125120000003,
+            692.8310706484375
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-005",
+      "block_id": "6f9aa5af-eadc-40b8-a39f-ae92ebff0923",
+      "html": null,
+      "markdown": "| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |   |   | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 4,
+      "bbox": [
+        47.47175622104409,
+        82.1148675245447,
+        312.9225028488691,
+        151.49867119719306
+      ],
+      "num_rows": 3,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            755.5941522484375,
+            68.5128,
+            746.6277522484374
+          ]
+        },
+        {
+          "text": "物料描述续行",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            755.5941522484375,
+            126.6944,
+            746.6277522484374
+          ]
+        },
+        {
+          "text": "数量",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            233.185,
+            755.5941522484375,
+            251.1178,
+            746.6277522484374
+          ]
+        },
+        {
+          "text": "单价",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            257.754,
+            755.5941522484375,
+            275.68679999999995,
+            746.6277522484374
+          ]
+        },
+        {
+          "text": "小计",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            287.06899999999996,
+            755.5941522484375,
+            305.0018,
+            746.6277522484374
+          ]
+        },
+        {
+          "text": "续行",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            740.4011522484375,
+            68.5128,
+            731.4347522484375
+          ]
+        },
+        {
+          "text": "现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            740.4011522484375,
+            228.80376319999996,
+            709.5167522484375
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "18,000",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            282.323,
+            739.2265538484374,
+            309.74225120000006,
+            730.8160706484375
+          ]
+        },
+        {
+          "text": "104",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            702.1155538484375,
+            67.02195520000001,
+            693.7050706484375
+          ]
+        },
+        {
+          "text": "包装及运输保险",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            703.2901522484375,
+            135.6608,
+            694.3237522484375
+          ]
+        },
+        {
+          "text": "1",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.658,
+            702.1155538484375,
+            244.6433184,
+            693.7050706484375
+          ]
+        },
+        {
+          "text": "1,200",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            255.502,
+            702.1155538484375,
+            277.93593280000005,
+            693.7050706484375
+          ]
+        },
+        {
+          "text": "1,200",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            284.81600000000003,
+            702.1155538484375,
+            307.2499328,
+            693.7050706484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-006",
+      "block_id": "f4cb28cd-843b-48f0-b464-a60fa6c3ca91",
+      "html": null,
+      "markdown": "| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 4,
+      "bbox": [
+        47.59674635386142,
+        234.17311222494232,
+        270.13378914489465,
+        281.8030287211411
+      ],
+      "num_rows": 3,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "行号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            603.3121522484374,
+            68.5128,
+            594.3457522484375
+          ]
+        },
+        {
+          "text": "项目",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            603.3121522484374,
+            90.8288,
+            594.3457522484375
+          ]
+        },
+        {
+          "text": "期末",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            204.839,
+            603.3121522484374,
+            222.77179999999998,
+            594.3457522484375
+          ]
+        },
+        {
+          "text": "变化",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.155,
+            603.3121522484374,
+            245.0878,
+            594.3457522484375
+          ]
+        },
+        {
+          "text": "期初",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            249.472,
+            603.3121522484374,
+            267.4048,
+            594.3457522484375
+          ]
+        },
+        {
+          "text": "201",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            586.9445538484375,
+            67.02195520000001,
+            578.5340706484375
+          ]
+        },
+        {
+          "text": "东区备件",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            588.1191522484374,
+            108.7616,
+            579.1527522484374
+          ]
+        },
+        {
+          "text": "118",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            206.658,
+            586.9445538484375,
+            220.95044160000003,
+            578.5340706484375
+          ]
+        },
+        {
+          "text": "+8",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            231.01,
+            586.9445538484375,
+            241.231696,
+            578.5340706484375
+          ]
+        },
+        {
+          "text": "110",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            251.291,
+            586.9445538484375,
+            265.5834416,
+            578.5340706484375
+          ]
+        },
+        {
+          "text": "202",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            52.066,
+            571.7515538484375,
+            67.02195520000001,
+            563.3410706484375
+          ]
+        },
+        {
+          "text": "西区备件",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            72.896,
+            572.9261522484375,
+            108.7616,
+            563.9597522484374
+          ]
+        },
+        {
+          "text": "94",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            208.819,
+            571.7515538484375,
+            218.7896368,
+            563.3410706484375
+          ]
+        },
+        {
+          "text": "-6",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            232.135,
+            571.7515538484375,
+            240.1061296,
+            563.3410706484375
+          ]
+        },
+        {
+          "text": "100",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            250.958,
+            571.7515538484375,
+            265.91395520000003,
+            563.3410706484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-007",
+      "block_id": "750876bd-b5d0-4f26-a9fb-33d38bb767c2",
+      "html": null,
+      "markdown": "| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 5,
+      "bbox": [
+        47.355765377789616,
+        92.70501386345143,
+        427.6292337354617,
+        139.48081678320875
+      ],
+      "num_rows": 3,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "本月重点",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            745.4411522484374,
+            86.4456,
+            736.4747522484375
+          ]
+        },
+        {
+          "text": "负责人",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            745.4411522484374,
+            203.7522,
+            736.4747522484375
+          ]
+        },
+        {
+          "text": "备注",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            303.127,
+            745.4411522484374,
+            321.0598,
+            736.4747522484375
+          ]
+        },
+        {
+          "text": "华东区域库存",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            730.2481522484375,
+            104.3784,
+            721.2817522484376
+          ]
+        },
+        {
+          "text": "陈琳",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            730.2481522484375,
+            194.7858,
+            721.2817522484376
+          ]
+        },
+        {
+          "text": "需复核",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            303.127,
+            730.2481522484375,
+            330.0262,
+            721.2817522484376
+          ]
+        },
+        {
+          "text": "现场安装排期",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            50.58,
+            715.0551522484375,
+            104.3784,
+            706.0887522484375
+          ]
+        },
+        {
+          "text": "周海",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            715.0551522484375,
+            194.7858,
+            706.0887522484375
+          ]
+        },
+        {
+          "text": "见邮件",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            303.127,
+            715.0551522484375,
+            330.0262,
+            706.0887522484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:19:40.724963Z"
+}

@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import sys
 from pathlib import Path
@@ -54,11 +55,24 @@ def resolve_source(sample_id: str, manifest: dict[str, dict]) -> Path:
     return source
 
 
+def _check_docling_env() -> None:
+    """docling 必须在英文路径解释器 + TORCH_COMPILE_DISABLE=1 下运行。"""
+    import sys
+
+    if any(ord(ch) > 127 for ch in sys.prefix):
+        raise SystemExit(
+            "docling 解析需要在英文路径解释器下运行（C++ 层限制）。\n"
+            "请改用: TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixtures --parser docling ..."
+        )
+    if not os.environ.get("TORCH_COMPILE_DISABLE"):
+        raise SystemExit("docling 解析需要设置 TORCH_COMPILE_DISABLE=1（本机无 MSVC 编译器）。")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="生成 ParsedDocument fixtures")
     parser.add_argument(
         "--parser",
-        choices=["fallback", "mineru"],
+        choices=["fallback", "mineru", "docling"],
         default="fallback",
         help="解析器（默认 fallback 本地兜底）",
     )
@@ -85,6 +99,11 @@ def main() -> None:
             from tools.mineru_cloud import parse_pdf as mineru_parse
 
             parsed = mineru_parse(source)
+        elif args.parser == "docling":
+            _check_docling_env()
+            from tools.docling_parser import parse_pdf as docling_parse
+
+            parsed = docling_parse(source)
         else:
             from tools.fallback_parser import parse_pdf as fallback_parse
 
