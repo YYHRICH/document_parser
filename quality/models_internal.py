@@ -55,11 +55,13 @@ class IssueDraft:
 
 @dataclass(frozen=True)
 class RelationCandidate:
-    """标题/引用关系候选（status 由 Gate/后续规则决定，规则本身不定）。"""
+    """标题/引用关系候选（状态由产生它的规则根据证据强度给出，
+    最终 status 由关系构建层映射；规则不得自行决定最终 Gate）。"""
 
     relation_type: str
     from_id: str
     to_id: str
+    state: QualityCapabilityState = QualityCapabilityState.INFERRED
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
 
 

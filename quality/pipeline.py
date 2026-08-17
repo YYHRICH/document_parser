@@ -39,15 +39,23 @@ from quality.rules.completeness import (
     QL_CONT_002_OrderIndex,
     QL_CONT_003_KindContent,
 )
+from quality.rules.headings import (
+    QL_HDG_001_HeadingFields,
+    QL_HDG_004_BuildTree,
+)
 from quality.rules.provenance import (
     QL_PROV_001_SourceTraceable,
     QL_PROV_002_AnchorValid,
     QL_PROV_003_ArtifactsValid,
     QL_PROV_004_CapabilityReasons,
 )
+from quality.rules.references import (
+    QL_REF_001_ReferenceIndex,
+    QL_REF_004_BindCitations,
+)
 
-# M1 注册的规则集合
-M1_RULES: tuple[type[QualityRule], ...] = (
+# 注册的规则集合（M1 完整性/来源 + M2 标题树/数字引用）
+QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_CONT_001_BlocksExist,
     QL_CONT_002_OrderIndex,
     QL_CONT_003_KindContent,
@@ -55,6 +63,10 @@ M1_RULES: tuple[type[QualityRule], ...] = (
     QL_PROV_002_AnchorValid,
     QL_PROV_003_ArtifactsValid,
     QL_PROV_004_CapabilityReasons,
+    QL_HDG_001_HeadingFields,
+    QL_HDG_004_BuildTree,
+    QL_REF_001_ReferenceIndex,
+    QL_REF_004_BindCitations,
 )
 
 
@@ -66,7 +78,7 @@ def run_pipeline(
     parsed_document: ParsedDocument,
     *,
     config: QualityConfig | None = None,
-    rules: tuple[type[QualityRule], ...] = M1_RULES,
+    rules: tuple[type[QualityRule], ...] = QUALITY_RULES,
 ) -> QualityPackage:
     """执行质量流水线，返回完整 QualityPackage（含内存哈希绑定）。"""
     config = config or QualityConfig()
@@ -76,18 +88,23 @@ def run_pipeline(
     # 1. 执行规则（证据不足时规则自行降级或跳过）
     issue_drafts: list[IssueDraft] = []
     observations = []
+    relation_candidates = []
     for rule_type in rules:
         rule = rule_type()
         result: RuleResult = rule.execute(context)
         issue_drafts.extend(result.issues)
         observations.extend(result.capability_observations)
+        relation_candidates.extend(result.relation_candidates)
 
     # 2. 能力矩阵
     matrix_builder = CapabilityMatrixBuilder(config)
     verdicts = matrix_builder.build(observations, context)
 
-    # 3. canonical document
-    canonical = build_canonical_document(context)
+    # 3. canonical document（含关系）
+    canonical = build_canonical_document(
+        context,
+        relation_candidates=tuple(relation_candidates),
+    )
 
     # 4. Gate 决策（M1 无 reparse 来源，无 recommendation）
     # 契约要求 reparse_required 必须带 recommendation；无合法建议时
@@ -141,6 +158,7 @@ def run_pipeline(
             "source_block_count": len(parsed_document.blocks),
             "canonical_block_count": len(canonical.blocks),
             "table_count": len(parsed_document.tables),
+            "relation_count": len(canonical.relations),
             "issue_count": len(issues),
         },
         reparse_recommendation=None,
