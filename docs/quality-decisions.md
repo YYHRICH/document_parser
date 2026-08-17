@@ -28,3 +28,4 @@
 | D-13 | TableCell 是否增加 cell_id 字段 | 朱 | 用 D-09 临时方案，不阻塞 |
 | D-14 | parser catalog 与 reparse options 映射 | 张 | 无合法 ID 时不出 reparse_required |
 | D-15 | info 是否阻塞（产品展示约定） | 三人 | 按 D-08 执行，变更需评审 |
+| D-16 | golden 标注漂移：M0 一致性测试发现 **4 个 golden 样本两份标注均未同步**（sdp-004 column_path；sdp-005 must_produce+expected_state；sdp-006 must_produce 多 heading_level；sdp-007 must_produce+forbidden） | 数据负责人（团队） | 已登记 KNOWN_CONFLICTS，CI xfail 显式可见；annotations 为事实源，expected 需由其重新生成 |
