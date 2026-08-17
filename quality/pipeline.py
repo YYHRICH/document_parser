@@ -57,6 +57,7 @@ from quality.rules.tables import (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
 )
+from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation
 
 # 注册的规则集合（M1 完整性/来源 + M2 标题/引用 + M3 表格）
 QUALITY_RULES: tuple[type[QualityRule], ...] = (
@@ -73,6 +74,7 @@ QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_REF_004_BindCitations,
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
+    QL_TBL_007_CrossPageContinuation,
 )
 
 

@@ -66,6 +66,19 @@ def test_sdp005_no_false_verified_across_pages():
         assert b.source_locator.bbox_granularity == "table"
 
 
+def test_sdp005_cross_page_continuation_detected():
+    """sdp-005 跨页续表：表头一致 → verified；续行弱候选 → manual。"""
+    pkg = run_quality(_load("sdp-005-mineru"))
+    conts = [
+        r for r in pkg.canonical_document.relations
+        if r.relation_type == "table_continuation"
+    ]
+    assert conts, "应识别出跨页续表"
+    assert any(r.status == QualityCapabilityState.VERIFIED for r in conts)
+    # 页内确定 binding 保留（不因跨页歧义全部丢失）
+    assert pkg.canonical_document.table_bindings
+
+
 def test_binding_ids_stable_and_distinct():
     """binding ID 稳定、互不冲突、可复算。"""
     pkg1 = run_quality(_load("sdp-004-docling"))
