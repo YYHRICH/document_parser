@@ -1,0 +1,93 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=17mm]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{fancy}\fancyhf{}\lhead{Operations Report}\rhead{TABLE-CASES-2026}\cfoot{\thepage}
+\setlength{\parindent}{0pt}\setlength{\tabcolsep}{2pt}\setlength{\emergencystretch}{2em}\sloppy
+\begin{document}
+{\fontsize{20}{24}\selectfont\bfseries 运营报表复杂表格案例集}\par\vspace{2mm}
+{\color{gray}\small 用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。}\par\vspace{6mm}
+{\color{blue}\large\bfseries CASE-A：库存月报（续表且重复表头）}\par\vspace{3mm}
+本案例的第二页明确写有“续表”，并完整重复列头。行号连续，应该允许稳定绑定。
+\renewcommand{\arraystretch}{1.35}
+\par\medskip\noindent\begin{tabular}{|c|p{48mm}|c|c|c|}\hline
+\rowcolor{blue!12} 行号 & 物料名称 & 期初 & 入库 & 期末\\\hline
+001 & 温控模块 AX-200 & 120 & 30 & 150\\\hline
+002 & 冷却风扇 FAN-12V & 80 & 24 & 104\\\hline
+003 & 连接线束 CB-04 & 250 & 60 & 310\\\hline
+004 & 固定支架 BR-02 & 90 & 18 & 108\\\hline
+\end{tabular}
+\vfill\small\color{gray}报告编号 INV-2026-08；金额和数量均为合成数据。
+\newpage
+{\fontsize{18}{22}\selectfont\bfseries 库存月报（续表）}\par\vspace{2mm}
+{\color{blue}\large\bfseries CASE-A / Page 2}\par\vspace{4mm}
+\par\medskip\noindent\begin{tabular}{|c|p{48mm}|c|c|c|}\hline
+\rowcolor{blue!12} 行号 & 物料名称 & 期初 & 入库 & 期末\\\hline
+005 & 过滤网 FG-10 & 45 & 20 & 65\\\hline
+006 & 传感器 TS-08 & 32 & 12 & 44\\\hline
+007 & 备用电源 PSU-24 & 18 & 6 & 24\\\hline
+008 & 防护罩 CV-01 & 27 & 9 & 36\\\hline
+\end{tabular}
+\vspace{7mm}\par\color{green!50!black}\small 期望：识别为同一张表，保留页码和续表证据。
+\vspace{14mm}
+\par\medskip\noindent{\color{blue}\large\bfseries CASE-B：区域采购汇总（合并单元格）}\par\vspace{3mm}
+\par\medskip\noindent\begin{tabular}{|c|c|p{42mm}|c|c|}\hline
+\rowcolor{blue!12} 区域 & 供应商等级 & 物料 & 数量 & 含税金额\\\hline
+\multirow{2}{*}{华东} & A & FAN-12V & 80 & 14,880\\\cline{2-5}
+& B & CB-04 & 120 & 9,600\\\hline
+\multirow{2}{*}{华南} & A & AX-200 & 60 & 24,000\\\cline{2-5}
+& B & BR-02 & 75 & 6,750\\\hline
+\end{tabular}
+\vspace{7mm}\par\color{green!50!black}\small 期望：区域和供应商等级的 rowspan/colpath 不被展开成虚假单元格。
+\newpage
+{\fontsize{18}{22}\selectfont\bfseries CASE-C：跨页采购订单}\par\vspace{3mm}
+订单 PO-2026-0817 的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有“续行”标记。
+\par\medskip\noindent\begin{tabular}{|c|p{55mm}|c|c|c|}\hline
+\rowcolor{orange!18} 行号 & 物料描述 & 数量 & 单价 & 小计\\\hline
+101 & 温控模块，含安装底座和校准服务 & 12 & 4,200 & 50,400\\\hline
+102 & 现场备用风扇，交付至二号车间 & 24 & 186 & 4,464\\\hline
+103 & 长期质保服务（含季度巡检、远程诊断、\newline 备件优先发货和年度报告，详见附件） & 1 & 18,000 & \\\hline
+\end{tabular}
+\vfill\color{orange!70!black}\small 页面末尾没有 103 行的完整小计，下一页的续行需要证据绑定。
+\newpage
+{\fontsize{18}{22}\selectfont\bfseries CASE-C：跨页采购订单（续行）}\par\vspace{4mm}
+\par\medskip\noindent\begin{tabular}{|c|p{55mm}|c|c|c|}\hline
+\rowcolor{orange!18} 标记 & 物料描述续行 & 数量 & 单价 & 小计\\\hline
+续行 & 现场服务范围：每季度检查温度曲线、风扇转速和电气接点，发现异常时在两个工作日内提交报告。 &  &  & 18,000\\\hline
+104 & 包装及运输保险 & 1 & 1,200 & 1,200\\\hline
+\end{tabular}
+\vspace{8mm}\par\color{orange!70!black}\small 期望：103 的小计可以关联，但“续行”不应被当作新的物料。
+\vspace{12mm}
+{\color{blue}\large\bfseries CASE-D：续表列顺序漂移}\par\vspace{3mm}
+\par\medskip\noindent\begin{tabular}{|c|p{45mm}|c|c|c|}\hline
+\rowcolor{red!18} 行号 & 项目 & 期末 & 变化 & 期初\\\hline
+201 & 东区备件 & 118 & +8 & 110\\\hline
+202 & 西区备件 & 94 & -6 & 100\\\hline
+\end{tabular}
+\vspace{7mm}\par\color{red!70!black}\small 期望：发现本页列顺序与前页不同，禁止按位置静默绑定。
+\newpage
+{\fontsize{18}{22}\selectfont\bfseries CASE-E：证据不足的表格}\par\vspace{4mm}
+以下截图式表格只有表级来源，解析器无法提供单元格 bbox，也没有稳定行键。
+\par\medskip\noindent\begin{tabular}{|p{43mm}|p{43mm}|p{43mm}|}\hline
+\rowcolor{gray!18} 本月重点 & 负责人 & 备注\\\hline
+华东区域库存 & 陈琳 & 需复核\\\hline
+现场安装排期 & 周海 & 见邮件\\\hline
+\end{tabular}
+\vspace{8mm}\par\color{red!70!black}\small 期望：保留表级来源，生成 evidence issue；不得伪造 cell bbox 或 verified binding。
+\section*{验收要点}
+\begin{itemize}
+\item CASE-A：续表和重复表头可合并；
+\item CASE-B：rowspan/colspan 必须保留完整 column path；
+\item CASE-C：跨页续行需要关联证据；
+\item CASE-D：列顺序变化必须触发问题；
+\item CASE-E：证据不足时安全降级。
+\end{itemize}
+\vfill\scriptsize Synthetic operations report; all names, identifiers and amounts are fictional.
+\end{document}

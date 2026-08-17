@@ -132,17 +132,37 @@ MVP 第一批共享开发文件缩减为至少 12 个唯一文件。优先选择
 
 | 类别 | 最低数量 | 必须覆盖的特征 |
 |---|---:|---|
-| 普通文本型 PDF | 1 | 中英文内容和可复制文本层可以在同一文件中覆盖 |
-| 复杂或扫描 PDF | 2 | 多栏/公式/图文混排文件 1 个，纯扫描文件 1 个 |
-| 表格重点 PDF | 2 | 其中 1 个覆盖合并或多级表头，另 1 个覆盖跨页或结构不确定反例 |
+| 普通文本型/论文 PDF | 2 | 可复制文本层、章节结构、摘要或参考文献 |
+| 复杂或扫描 PDF | 2 | 多栏/公式/图文混排文件 1 个，纯扫描工单 1 个 |
+| 表格重点 PDF | 2 | 其中 1 个覆盖合并/多级表头，另 1 个覆盖跨页、续表或结构不确定反例 |
 | 标题与引用重点 PDF | 2 | 其中 1 个为明确正例，另 1 个包含标题或引用歧义反例 |
-| JPG/JPEG | 2 | 拍照或旋转/模糊文件 1 个，表格截图 1 个 |
-| PNG | 2 | 透明背景或长截图 1 个，无文字图片 1 个 |
-| Office/文本回归文件 | 1 | 从当前最需要保证不回退的 DOC/DOCX/PPT/PPTX/XLSX/MD/TXT 中选择 |
+| JPG/JPEG | 2 | 旋转票据 1 个，表格/仪表盘截图 1 个 |
+| PNG | 1 | 长知识库页面截图，包含标题、代码块和多段表格 |
+| Office/文本回归文件 | 1 | 当前最需要保证不回退的 DOCX 回归样例 |
 
-同一文件可以同时带多个能力标签，但不得用同一个物理文件重复计数。文件应优先选择
-可公开、已授权或团队自行合成的材料，禁止把客户敏感文件、个人信息或无权再分发的文档
-提交到公共 GitHub 仓库。
+同一文件可以同时带多个能力标签，但不得用同一个物理文件重复计数。上表数量是能力
+覆盖下限，不要求各行相加等于 12。文件应优先选择可公开、已授权或团队自行合成的材料，
+禁止把客户敏感文件、个人信息或无权再分发的文档提交到公共 GitHub 仓库。
+
+#### shared-dev-v1 冻结清单
+
+当前提交的 12 个唯一样例及其用途如下；文件身份、哈希和 split 以
+`datasets/shared-dev-v1/manifest.jsonl` 为唯一事实源。
+
+| sample_id | 文件 | 主要用途 | split |
+|---|---|---|---|
+| sdp-001 | `knowledge_base_article.pdf` | 普通文本、标题层级、流程图 | development, smoke |
+| sdp-002 | `incident_postmortem.pdf` | 复杂 PDF、多栏、公式、时间线 | development |
+| sdp-003 | `equipment_work_order_scan.pdf` | 纯扫描工单、OCR、表单签字 | development |
+| sdp-004 | `procurement_table_positive.pdf` | 合并表头、多级表头正例 | development, smoke, golden |
+| sdp-005 | `table_cases_cross_page.pdf` | 跨页、续表、合并单元格和安全降级 | development, golden |
+| sdp-006 | `technical_report_references_positive.pdf` | 标题树、编号引用、正例绑定 | development, golden |
+| sdp-007 | `technical_report_references_ambiguous.pdf` | 标题/引用歧义、安全降级 | development, smoke, golden |
+| sdp-008 | `expense_receipt_photo.jpg` | 旋转票据、OCR、票据表格 | development, smoke |
+| sdp-009 | `usage_dashboard_screenshot.jpeg` | 仪表盘截图、数字和表格 OCR | development |
+| sdp-010 | `knowledge_page_long_screenshot.png` | 长截图、代码块、阅读顺序 | development |
+| sdp-011 | `literary_intertextuality_paper.pdf` | 论文结构、摘要、参考文献 | development |
+| sdp-012 | `product_change_request.docx` | Office 回归、元数据表、编号列表 | development |
 
 #### 分层使用
 
@@ -185,6 +205,7 @@ datasets/shared-dev-v1/
 ├─ README.md
 ├─ manifest.jsonl
 ├─ files/                  # 小型、可公开或团队合成的样例
+├─ sources/                # 可复现源（tex/markdown/openxml）
 ├─ annotations/
 │  ├─ routing.jsonl
 │  ├─ ocr/

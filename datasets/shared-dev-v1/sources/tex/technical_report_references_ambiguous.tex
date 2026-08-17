@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec,xeCJK}
+\setmainfont{Arial}\setCJKmainfont{SimSun}\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage{array,longtable,booktabs,xcolor,fancyhdr,hyperref}
+\pagestyle{fancy}\fancyhf{}\lhead{研发效能组}\rhead{评估报告草案}\cfoot{\thepage}\setlength{\headheight}{14pt}\setlength{\tabcolsep}{2pt}
+\setlength{\parindent}{2em}\setlength{\parskip}{4pt}
+\begin{document}
+\begin{center}{\LARGE\bfseries 文档解析服务的版面恢复评估报告}\par\small 评估对象：parser-gateway 2.4.0　日期：2026 年 7 月 28 日\end{center}
+\rule{\linewidth}{0.5pt}
+\section*{摘要}
+本报告总结 parser-gateway 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自 1,200 份脱敏业务文档，覆盖 6 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语义线索 [2]；本次结果也支持这一判断。
+\section*{背景}
+知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 480 份、设备台账 360 份、技术说明书 360 份；扫描件占比分别为 18\%、42\%、9\%。
+\begin{table}[h]\centering\small\begin{tabular}{p{0.28\linewidth}rrr}\toprule 文档族&样本数&平均页数&扫描占比\\\midrule 采购合同&480&7.2&18\%\\设备台账&360&3.8&42\%\\技术说明书&360&11.6&9\%\\\bottomrule\end{tabular}\caption{评估样本构成}\end{table}
+\section*{Observations}
+\subsection*{区域检测}
+区域检测器宏平均 F1 为 0.93。页眉中出现项目编号时，约 4.1\% 的样本被误判为正文首句；Zhang et al., 2024 的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是期刊扩展版。
+\subsection*{阅读顺序}
+双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 2024 提出的图模型可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。
+\subsection*{表格与脚注}
+表格字段 F1 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份高度相似，当前界面未提供消歧提示。
+\section*{重要结论}
+\begin{enumerate}\item 版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。\item 续页应显式继承表头并保留“续表”标记。\item 引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。\end{enumerate}
+\newpage
+\section*{错误样例与复核记录}
+\begin{longtable}{p{0.12\linewidth}p{0.27\linewidth}p{0.27\linewidth}p{0.20\linewidth}}\toprule 编号&原文片段&系统输出&复核意见\\\midrule\endfirsthead\toprule 编号&原文片段&系统输出&复核意见\\\midrule\endhead R-01&“表 3（续）”位于页首，列名缺失&新建表 3，首行作为表头&应继承上一页列名\\ R-02&“见 Zhang et al., 2024”&绑定 Zhang 2024a&正文没有 a/b 后缀，存在两条候选\\ R-03&页脚“资料来源：项目组整理”&识别为参考文献&属于来源说明\\ R-04&右栏脚注编号 7&绑定左栏正文&先恢复栏内阅读顺序\\ R-05&图注跨页&图注截断&保留图注并建立图-注关系\\\bottomrule\end{longtable}
+\section*{Implementation notes}
+线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线聚类；引用则增加候选集合字段并把 unresolved 状态传给质量层。王、陈的版面恢复研究也建议在低置信度时保留多候选 [1]，但未覆盖跨语言文献。
+\section*{待办事项}
+\begin{tabular}{p{0.12\linewidth}p{0.43\linewidth}p{0.20\linewidth}p{0.15\linewidth}}\toprule 优先级&工作项&负责人&截止日期\\\midrule P0&保存引用原文和候选集合&解析服务&2026-08-21\\P1&增加续表表头继承规则&版面算法&2026-08-28\\P1&双栏脚注加入栏级排序特征&OCR 平台&2026-09-04\\P2&标注界面增加作者年消歧提示&数据工具&2026-09-11\\\bottomrule\end{tabular}
+\newpage
+\section*{附录：评估口径}
+页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 F1 以单元格边界和文本归属同时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manual review。\par
+\begin{enumerate}\item 标题是否由编号、字体、前后空白和语义共同支持？\item 表格是否跨页，下一页是否有“续表”或重复列名？\item 引用字符串是否含页码、版本或 a/b 后缀？\item 多候选均合理时是否保留 unresolved？\end{enumerate}
+\section*{References}
+{\small\sloppy\begin{enumerate}\setlength{\itemsep}{2pt}\item 王伟, 陈晨. 面向复杂版面的文档结构恢复[J]. 中文信息学报, 2023, 37(6):45--58. DOI:10.1000/cip.2023.3706.\item Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents[J]. Information Processing Letters, 2024, 189:106--118. DOI:10.1000/ipl.2024.189106.\item Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evaluation[R]. arXiv:2407.01921, 2024.（与文献 [2] 作者年相同，正文未区分 a/b）\item 赵敏, 周海. 表格字段绑定的来源约束与安全降级[J]. 软件学报, 2025, 36(8):1771--1787. DOI:10.1000/js.2025.3608.\item 赵敏, 周海. 脚注锚点驱动的跨页表格解析[J]. 软件学报, 2024, 35(12):2890--2904. DOI:10.1000/js.2024.3512.\item Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng. 2024:88--97. DOI:10.1000/doceng.2024.88.\end{enumerate}}
+\end{document}
