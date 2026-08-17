@@ -92,7 +92,7 @@ def _markdown_table(rows: list[list[str]]) -> str:
     return "\n".join(lines)
 
 
-def parse_pdf(source: Path) -> ParsedDocument:
+def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocument:
     """pdfplumber 解析 PDF → ParsedDocument（尽力而为）。"""
     source = Path(source)
     blocks: list[DocumentBlock] = []
@@ -227,7 +227,7 @@ def parse_pdf(source: Path) -> ParsedDocument:
     return ParsedDocument(
         document_id=uuid4(),
         filename=source.name,
-        file_type="application/pdf",
+        file_type=file_type,
         source_size_bytes=len(source_bytes),
         source_sha256=_sha256(source_bytes),
         markdown="\n\n".join(markdown_parts),

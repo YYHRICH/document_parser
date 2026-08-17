@@ -1,5 +1,5 @@
 {
-  "document_id": "8dc08245-fc3e-4733-9455-5b621a558609",
+  "document_id": "45c88666-1620-49c6-a6fc-be4690462c64",
   "filename": "technical_report_references_positive.pdf",
   "file_type": "application/pdf",
   "source_size_bytes": 102325,
@@ -8,7 +8,7 @@
   "markdown": "## 面向企业知识库的证据保留式文档解析研究\n\nEvidence-preserving Document Parsing for Enterprise Knowledge Bases\n\n作者\n\n陈琳，周海，王倩\n\n文档类型\n\n技术研究报告\n\n版本\n\n1.2\n\n发布日期\n\n2026-08-17\n\n数据集\n\nShared Dev v1\n\n状态\n\nReviewed\n\n## 摘要\n\n企业知识库中的 PDF 、扫描件和 Office 文档同时包含正文、表格、图注和引用。只抽取纯文本会损失阅读顺序和 来源证据。本文提出一套保留页面、边界框、表格网格和引用关系的解析流程，并在合成但业务真实的文档集上 进行评估。结果表明，结构证据能够减少表格字段错绑和引用目标误判。\n\n关键词：文档解析；证据保留；表格绑定；标题树；引用关系；质量门\n\n## 1 引言\n\n## 1.1\n\n## 背景\n\n企业文档通常由多个团队维护，标题、版本和附件并不统一。检索系统如果只保存 Markdown ，会难以回答'这个 数字来自哪一页'或'该结论引用了哪篇文献' 。已有研究指出，布局与语义结构对文档问答同样重要 [1-2] 。\n\n## 1.2 问题定义\n\n给定一个包含文本块、表格、图片和引用的文档，系统需要输出统一的 ParsedDocument ，并保留可回溯的 source locator 。质量层还要区分 verified 、 inferred 和 manual review required ，而不是把所有推断都当成事实 [3] 。\n\n## 1.3 贡献\n\n1. 定义包含页码、 bbox 、表格 cell/span 和原生产物引用的证据模型；\n2. 提出针对多级表头和跨页表格的安全绑定规则；\n3. 建立标题树和正文引用到参考文献的可验证关系；\n4. 使用固定样例和质量门报告评估安全降级行为。\n\n## 2 方法\n\n## 2.1 输入预检\n\n预检器记录文件类型、页数、文本层、扫描页比例和语言提示。路由器根据能力声明选择解析器，解析器实际执 行来源写入 provenance [4] 。\n\n## 2.2 统一结构\n\n每个文本块有稳定 block id 、阅读顺序和 source anchor 。表格 cell 保留 start row 、 start col 、 row span 、 col span ； 合并表头生成完整 column path ，例如'训练集 / 准确率' 。\n\n## 2.3 质量门\n\n质量门按照以下规则决定状态：证据充分且关系唯一时为 verified ；只有顺序和语义支持时为 inferred ；目标不唯 一时进入 manual review ；关键事实缺失且其他模型可补足时进入 reparse required [5] 。\n\n## 3 实验设置\n\n## 3.1 样例与指标\n\n| 能力        |   正例数 |   反例数 | 主要指标                      |\n|-----------|-------|-------|---------------------------|\n| 普通正文与阅读顺序 |     2 |     1 | 文本完整度、 block 顺序           |\n| 多级表头与字段绑定 |     2 |     2 | column path 、 row key 、来源 |\n| 标题层级恢复    |     2 |     1 | parent_child 唯一性          |\n| 编号引用绑定    |     2 |     2 | reference_of 目标唯一性        |\n| OCR 图片质量  |     2 |     2 | token 可读性、低质量拦截           |\n\n## 3.2 评估流程\n\n每个样例都使用相同的输入摘要和 manifest commit 。 运行记录包含路由决定、 实际解析器、 耗时、 ParsedDocument schema 、质量状态、问题数量和产物位置。失败和不可用结果不会从批量报告中删除。\n\n## 3.3 表格结果\n\n| 样例                        | 网格恢复                      | 表头路径         | 字段绑定                                      | 最终状态                                                |\n|---------------------------|---------------------------|--------------|-------------------------------------------|-----------------------------------------------------|\n| 采购比价正例 跨页续表正例 列漂移反例 无稳定行键 | pass pass partial partial | 完整 完整 不确定 表级 | verified verified unavailable unavailable | pass pass with warnings manual review manual review |\n\n## 4 讨论\n\n## 4.1 安全降级\n\n在表格结构不唯一时，减少绑定数量比输出错误关系更安全。质量报告必须同时记录缺失证据、受影响 block 和 重新解析建议 [6] 。\n\n## 4.2 局限性\n\n合成样例不能覆盖所有扫描噪声和供应商格式。后续 Acceptance 子集应加入未参与规则调试的公开文档，并由人 工标注确认。\n\n## 5 结论\n\n本文展示了从预检、解析、统一输出到质量门的完整证据链。实验说明，多级标题、表格网格和引用关系需要共 同的来源模型，不能由质量层凭空补造。对于无法唯一判断的结构，系统应明确交给人工复核或重新解析。\n\n## 参考文献\n\n1. Li, M.; Zhang, Y. Document layout analysis for retrieval-augmented generation[J]. Journal of Information Processing, 2024, 32(4): 201-218. DOI:10.1000/jip.2024.03204.\n2. 王伟 , 陈晨 . 面向复杂版面的文档结构恢复 [J]. 中文信息学报 , 2023, 37(6): 45-58. DOI:10.1000/cip.2023.3706.\n3. Pujara, J.; Singh, H. Evidence graphs for trustworthy document QA[C]. Proceedings of DocEng, 2024: 5563. DOI:10.1000/doceng.2024.006.\n4. Liu, Q.; Chen, R. OCR confidence calibration in enterprise archives[J]. Pattern Recognition Letters, 2022, 158: 12-20. DOI:10.1000/prl.2022.15802.\n5. 赵敏 , 周海 . 表格字段绑定的来源约束与安全降级 [J]. 软件学报 , 2025, 36(8): 1771-1787. DOI:10.1000/js.2025.3608.\n6. Smith, A.; Patel, R. Human review gates for semantic extraction[C]. Proceedings of ICDAR, 2023: 410-419. DOI:10.1000/icdar.2023.041.\n\n引用规则：正文中的 [1-2] 指向参考文献 1 和 2 ； [3] 、 [4] 、 [5] 、 [6] 分别指向对应编号。",
   "blocks": [
     {
-      "id": "3fa08210-e177-4483-8145-8aee0d2c70d7",
+      "id": "dce31d8a-b0db-4a4e-9a6c-119984e3d7ff",
       "source_block_id": "docling-SectionHeaderItem-0",
       "order_index": 0,
       "kind": "heading",
@@ -36,7 +36,7 @@
       "metadata": {}
     },
     {
-      "id": "5d7dad9f-ff80-4009-a78b-1e8088a96147",
+      "id": "8a1adddc-a658-45c1-ae0c-ef11f1f3b126",
       "source_block_id": "docling-TextItem-1",
       "order_index": 1,
       "kind": "paragraph",
@@ -64,7 +64,7 @@
       "metadata": {}
     },
     {
-      "id": "01d8e251-19b1-4d91-ada1-500a409b5f16",
+      "id": "44f4fa92-1fe5-4b9d-b822-4c239bfd064a",
       "source_block_id": "docling-TextItem-2",
       "order_index": 2,
       "kind": "paragraph",
@@ -92,7 +92,7 @@
       "metadata": {}
     },
     {
-      "id": "59a39d31-467f-490a-9653-b7448fd5e8fe",
+      "id": "1040d805-489e-41bc-b544-976d30b2ddf5",
       "source_block_id": "docling-TextItem-3",
       "order_index": 3,
       "kind": "paragraph",
@@ -120,7 +120,7 @@
       "metadata": {}
     },
     {
-      "id": "21ea1c84-22a6-4478-bf0e-44017ec2e901",
+      "id": "9de4ce3d-56da-4177-ab98-49f6caa2508b",
       "source_block_id": "docling-TextItem-4",
       "order_index": 4,
       "kind": "paragraph",
@@ -148,7 +148,7 @@
       "metadata": {}
     },
     {
-      "id": "6ba65559-e4ea-458d-bdd8-4bc1488b9c25",
+      "id": "4dae3771-267e-470f-81e1-676f0462143e",
       "source_block_id": "docling-TextItem-5",
       "order_index": 5,
       "kind": "paragraph",
@@ -176,7 +176,7 @@
       "metadata": {}
     },
     {
-      "id": "c4d8ead1-359a-4c5f-ba65-2715672e1054",
+      "id": "bbe54993-92d6-4351-871d-8a3249fde4bc",
       "source_block_id": "docling-TextItem-6",
       "order_index": 6,
       "kind": "paragraph",
@@ -204,7 +204,7 @@
       "metadata": {}
     },
     {
-      "id": "404a7f19-dcc6-43cb-bc52-b64ccc521dbb",
+      "id": "ef7d2452-534b-4c52-82ff-ec20bde16df3",
       "source_block_id": "docling-TextItem-7",
       "order_index": 7,
       "kind": "paragraph",
@@ -232,7 +232,7 @@
       "metadata": {}
     },
     {
-      "id": "e144a42f-bf25-4768-9d3c-194726f951e9",
+      "id": "f7d468cc-0dab-42a8-80e5-398660bda3ce",
       "source_block_id": "docling-TextItem-8",
       "order_index": 8,
       "kind": "paragraph",
@@ -260,7 +260,7 @@
       "metadata": {}
     },
     {
-      "id": "e35f51cd-90ab-45b9-b733-b1a404921b76",
+      "id": "a22b3b8d-a888-479e-bc44-291d498134e3",
       "source_block_id": "docling-TextItem-9",
       "order_index": 9,
       "kind": "paragraph",
@@ -288,7 +288,7 @@
       "metadata": {}
     },
     {
-      "id": "09463846-a5e5-4e4c-aa5b-52c7990bee8f",
+      "id": "a4f4a605-262c-493a-a8b6-b9e0e6070656",
       "source_block_id": "docling-TextItem-10",
       "order_index": 10,
       "kind": "paragraph",
@@ -316,7 +316,7 @@
       "metadata": {}
     },
     {
-      "id": "177bb227-cd29-4669-905c-6c7f5d0a4696",
+      "id": "4b02c2e8-ae06-43b2-a9d3-8640b4fd4479",
       "source_block_id": "docling-TextItem-11",
       "order_index": 11,
       "kind": "paragraph",
@@ -344,7 +344,7 @@
       "metadata": {}
     },
     {
-      "id": "e0133d67-b9f7-41ad-b501-31a130af90da",
+      "id": "bfac1968-21a4-4beb-90e2-f44873334686",
       "source_block_id": "docling-TextItem-12",
       "order_index": 12,
       "kind": "paragraph",
@@ -372,7 +372,7 @@
       "metadata": {}
     },
     {
-      "id": "a4dcc33d-3dff-4afa-b8b2-eaf250e383b6",
+      "id": "fc0b59ee-55ca-4a36-aaab-4b05feb5d4c9",
       "source_block_id": "docling-TextItem-13",
       "order_index": 13,
       "kind": "paragraph",
@@ -400,7 +400,7 @@
       "metadata": {}
     },
     {
-      "id": "f692a632-b7f7-4fb4-a074-3641645decd3",
+      "id": "27054d78-4886-47ed-9fd3-553159d3726e",
       "source_block_id": "docling-SectionHeaderItem-14",
       "order_index": 14,
       "kind": "heading",
@@ -428,7 +428,7 @@
       "metadata": {}
     },
     {
-      "id": "6621b76b-d6f5-4bec-9abe-fcb000d6a980",
+      "id": "916e5b4b-c24f-4968-86d8-a74db54442b1",
       "source_block_id": "docling-TextItem-15",
       "order_index": 15,
       "kind": "paragraph",
@@ -456,7 +456,7 @@
       "metadata": {}
     },
     {
-      "id": "ce752680-078e-4367-801e-2ea94cbe27ae",
+      "id": "05ce8022-6b0d-47e6-8eed-4581be734745",
       "source_block_id": "docling-TextItem-16",
       "order_index": 16,
       "kind": "paragraph",
@@ -484,7 +484,7 @@
       "metadata": {}
     },
     {
-      "id": "05c7b2d2-cced-4d50-9b1e-edf32d021fc1",
+      "id": "25d1db21-d3f9-42a5-8626-3578f80380cf",
       "source_block_id": "docling-SectionHeaderItem-17",
       "order_index": 17,
       "kind": "heading",
@@ -512,7 +512,7 @@
       "metadata": {}
     },
     {
-      "id": "064854ee-5e66-44a8-9765-d19b64376ed0",
+      "id": "d431853c-d7e1-472b-b849-e6248f3f7218",
       "source_block_id": "docling-SectionHeaderItem-18",
       "order_index": 18,
       "kind": "heading",
@@ -540,7 +540,7 @@
       "metadata": {}
     },
     {
-      "id": "6af0d37b-5987-4186-b77e-6eead40636de",
+      "id": "f3223da0-d143-4640-83f1-02f0fc586e06",
       "source_block_id": "docling-SectionHeaderItem-19",
       "order_index": 19,
       "kind": "heading",
@@ -568,7 +568,7 @@
       "metadata": {}
     },
     {
-      "id": "20896e4f-ad28-4218-9bc7-95f42e6cbe3f",
+      "id": "378b32b8-6551-4c4b-89c5-17618a682521",
       "source_block_id": "docling-TextItem-20",
       "order_index": 20,
       "kind": "paragraph",
@@ -596,7 +596,7 @@
       "metadata": {}
     },
     {
-      "id": "15dedd3e-d233-4e3f-952b-def570f2d43e",
+      "id": "863ff707-d414-40f3-a94e-175ecf8991c4",
       "source_block_id": "docling-SectionHeaderItem-21",
       "order_index": 21,
       "kind": "heading",
@@ -624,7 +624,7 @@
       "metadata": {}
     },
     {
-      "id": "85d652ce-5751-44d5-8671-e3dd57b565c4",
+      "id": "5335302d-68d2-4756-a633-a8baa294f429",
       "source_block_id": "docling-TextItem-22",
       "order_index": 22,
       "kind": "paragraph",
@@ -652,7 +652,7 @@
       "metadata": {}
     },
     {
-      "id": "106bf325-f323-4ec3-8430-f0964c08ba47",
+      "id": "d0a51073-ef6c-4480-989a-b456616581f1",
       "source_block_id": "docling-SectionHeaderItem-23",
       "order_index": 23,
       "kind": "heading",
@@ -680,7 +680,7 @@
       "metadata": {}
     },
     {
-      "id": "91a815a7-82b3-4d0a-8791-894dbc80e738",
+      "id": "c27fed19-5f70-42ab-af60-91512fca47c8",
       "source_block_id": "docling-ListItem-24",
       "order_index": 24,
       "kind": "paragraph",
@@ -708,7 +708,7 @@
       "metadata": {}
     },
     {
-      "id": "e9fc97fa-e340-4e8f-a0b7-0261ca591e75",
+      "id": "585fdd97-30a3-4d04-85dd-9a78e3a43690",
       "source_block_id": "docling-ListItem-25",
       "order_index": 25,
       "kind": "paragraph",
@@ -736,7 +736,7 @@
       "metadata": {}
     },
     {
-      "id": "e6ee3986-d4d7-4118-b6d6-3b25c23e0d44",
+      "id": "c5ab6f82-8c7f-414b-9455-2a85c0e2f517",
       "source_block_id": "docling-ListItem-26",
       "order_index": 26,
       "kind": "paragraph",
@@ -764,7 +764,7 @@
       "metadata": {}
     },
     {
-      "id": "108229b7-300e-4fac-9799-cc377c7f6fac",
+      "id": "492e8e23-5867-47a0-8887-836af8e03822",
       "source_block_id": "docling-ListItem-27",
       "order_index": 27,
       "kind": "paragraph",
@@ -792,7 +792,7 @@
       "metadata": {}
     },
     {
-      "id": "ea04f2a6-1ea4-4d99-abe5-2c563978441c",
+      "id": "9c4904ae-935c-4be5-8492-e02399bea2f1",
       "source_block_id": "docling-SectionHeaderItem-28",
       "order_index": 28,
       "kind": "heading",
@@ -820,7 +820,7 @@
       "metadata": {}
     },
     {
-      "id": "90c0967f-81e8-446a-8b5c-cd1609bae541",
+      "id": "2a6b3289-ccf1-494e-8ec3-ffc64cccda65",
       "source_block_id": "docling-SectionHeaderItem-29",
       "order_index": 29,
       "kind": "heading",
@@ -848,7 +848,7 @@
       "metadata": {}
     },
     {
-      "id": "5670db06-387d-48a7-b7b1-91f8faa3f4ac",
+      "id": "f68f57c6-9894-4e82-95b4-016521f975f5",
       "source_block_id": "docling-TextItem-30",
       "order_index": 30,
       "kind": "paragraph",
@@ -876,7 +876,7 @@
       "metadata": {}
     },
     {
-      "id": "bddcff80-baeb-42c7-86d1-a40ca13c38e9",
+      "id": "daa80286-1c2b-4061-805d-bc8432627e8b",
       "source_block_id": "docling-SectionHeaderItem-31",
       "order_index": 31,
       "kind": "heading",
@@ -904,7 +904,7 @@
       "metadata": {}
     },
     {
-      "id": "eb7473a5-6fb8-4397-a26a-3a9dcc5490c4",
+      "id": "bcf787aa-2f99-426a-a8d9-c666d181c495",
       "source_block_id": "docling-TextItem-32",
       "order_index": 32,
       "kind": "paragraph",
@@ -932,7 +932,7 @@
       "metadata": {}
     },
     {
-      "id": "911ea519-89b7-4268-b6f6-fb82861c380e",
+      "id": "e45c6971-f14a-47b8-b989-ac71564c7387",
       "source_block_id": "docling-SectionHeaderItem-33",
       "order_index": 33,
       "kind": "heading",
@@ -960,7 +960,7 @@
       "metadata": {}
     },
     {
-      "id": "daaad705-3964-403e-9267-a99f653e2160",
+      "id": "79fddb35-140c-4f5f-8dc7-93930c5a1f61",
       "source_block_id": "docling-TextItem-34",
       "order_index": 34,
       "kind": "paragraph",
@@ -988,7 +988,7 @@
       "metadata": {}
     },
     {
-      "id": "902f5ce7-a571-4600-a4fa-3a00f2eb2487",
+      "id": "0e1bbce0-dcbe-4afd-825a-0871c45fdcfa",
       "source_block_id": "docling-SectionHeaderItem-35",
       "order_index": 35,
       "kind": "heading",
@@ -1016,7 +1016,7 @@
       "metadata": {}
     },
     {
-      "id": "cb12aad6-2e1d-413f-ab6e-d84566f94855",
+      "id": "cf86ae3b-34f7-4ead-8f76-bfc3e3092333",
       "source_block_id": "docling-SectionHeaderItem-36",
       "order_index": 36,
       "kind": "heading",
@@ -1044,7 +1044,7 @@
       "metadata": {}
     },
     {
-      "id": "37ece8b2-0f70-4f12-8634-ebf089150d05",
+      "id": "06810a61-2151-43dd-8a52-f8d63b28d994",
       "source_block_id": "docling-TableItem-37",
       "order_index": 37,
       "kind": "table",
@@ -1074,7 +1074,7 @@
       }
     },
     {
-      "id": "9aadac28-1f0b-4e4c-92ec-3d38f8d16729",
+      "id": "49b2d7d6-99c4-4add-b6a6-d6a3240db772",
       "source_block_id": "docling-SectionHeaderItem-38",
       "order_index": 38,
       "kind": "heading",
@@ -1102,7 +1102,7 @@
       "metadata": {}
     },
     {
-      "id": "6bac1701-b5af-4309-8930-459549de8a3e",
+      "id": "6c2bd691-23bd-4c4e-b9f8-a11ed1ec4226",
       "source_block_id": "docling-TextItem-39",
       "order_index": 39,
       "kind": "paragraph",
@@ -1130,7 +1130,7 @@
       "metadata": {}
     },
     {
-      "id": "ed24ca3c-f209-41c4-9975-b84c2f572e2e",
+      "id": "4758e95f-57ae-4580-9372-8be501582d80",
       "source_block_id": "docling-SectionHeaderItem-40",
       "order_index": 40,
       "kind": "heading",
@@ -1158,7 +1158,7 @@
       "metadata": {}
     },
     {
-      "id": "30ec8772-8509-4068-a143-7ad84ff200d3",
+      "id": "fd8a0f53-7430-4713-81bd-bfa80e7f7ada",
       "source_block_id": "docling-TableItem-41",
       "order_index": 41,
       "kind": "table",
@@ -1188,7 +1188,7 @@
       }
     },
     {
-      "id": "174bc7e6-4b88-44d2-9d56-069297893180",
+      "id": "0caba0e4-83a5-4313-8400-e184f03cac42",
       "source_block_id": "docling-SectionHeaderItem-42",
       "order_index": 42,
       "kind": "heading",
@@ -1216,7 +1216,7 @@
       "metadata": {}
     },
     {
-      "id": "6ee17155-df1d-4801-b7cc-258f8e07e276",
+      "id": "eaa55ca1-188f-4850-8c44-d959bdb42e01",
       "source_block_id": "docling-SectionHeaderItem-43",
       "order_index": 43,
       "kind": "heading",
@@ -1244,7 +1244,7 @@
       "metadata": {}
     },
     {
-      "id": "2c73d0d3-f031-479f-b302-6afa334fb62a",
+      "id": "255932df-e7fc-4c95-9256-f87809324f9a",
       "source_block_id": "docling-TextItem-44",
       "order_index": 44,
       "kind": "paragraph",
@@ -1272,7 +1272,7 @@
       "metadata": {}
     },
     {
-      "id": "24ebf01d-e2e1-4ce6-9c8a-4ae12f478c56",
+      "id": "0155c2e6-8565-4b0d-8b49-1b000b0f22d1",
       "source_block_id": "docling-SectionHeaderItem-45",
       "order_index": 45,
       "kind": "heading",
@@ -1300,7 +1300,7 @@
       "metadata": {}
     },
     {
-      "id": "25abb9cd-06e2-4bbb-abb2-6b8aa13c38a0",
+      "id": "976aeaee-be77-4f43-881c-14a640a201d6",
       "source_block_id": "docling-TextItem-46",
       "order_index": 46,
       "kind": "paragraph",
@@ -1328,7 +1328,7 @@
       "metadata": {}
     },
     {
-      "id": "7d3d707d-2f72-4b89-890d-d80045894d2b",
+      "id": "6ff41f89-c2bc-4713-afdb-30e384f277e5",
       "source_block_id": "docling-SectionHeaderItem-47",
       "order_index": 47,
       "kind": "heading",
@@ -1356,7 +1356,7 @@
       "metadata": {}
     },
     {
-      "id": "199d390e-ad29-482d-9369-1b84c9500784",
+      "id": "d8c91f9f-f5ab-4dbb-bfe6-2a29a1ab8662",
       "source_block_id": "docling-TextItem-48",
       "order_index": 48,
       "kind": "paragraph",
@@ -1384,7 +1384,7 @@
       "metadata": {}
     },
     {
-      "id": "35c88ad2-fe7d-4f73-bad4-4fc326447500",
+      "id": "651240db-9309-428f-963b-f175e9cfdba5",
       "source_block_id": "docling-SectionHeaderItem-49",
       "order_index": 49,
       "kind": "heading",
@@ -1412,7 +1412,7 @@
       "metadata": {}
     },
     {
-      "id": "d8e97673-cf48-4f84-bcbe-a53b3068e7d2",
+      "id": "e513316b-6aef-48b1-900a-71e0c8031a90",
       "source_block_id": "docling-ListItem-50",
       "order_index": 50,
       "kind": "paragraph",
@@ -1440,7 +1440,7 @@
       "metadata": {}
     },
     {
-      "id": "23588f5f-4dc9-4f87-a501-e5308fd7ea6f",
+      "id": "87bd1179-9b97-4096-91b1-998f12c87060",
       "source_block_id": "docling-ListItem-51",
       "order_index": 51,
       "kind": "paragraph",
@@ -1468,7 +1468,7 @@
       "metadata": {}
     },
     {
-      "id": "79d53b9b-0fda-41de-8ac9-d6023840d407",
+      "id": "337e4684-2611-486a-b747-1c392aaf28ed",
       "source_block_id": "docling-ListItem-52",
       "order_index": 52,
       "kind": "paragraph",
@@ -1496,7 +1496,7 @@
       "metadata": {}
     },
     {
-      "id": "92b4375a-4b0a-437e-8015-7a5fcf13cc24",
+      "id": "6d35884f-20ad-47a5-9219-a3850ef10b88",
       "source_block_id": "docling-ListItem-53",
       "order_index": 53,
       "kind": "paragraph",
@@ -1524,7 +1524,7 @@
       "metadata": {}
     },
     {
-      "id": "54ce80ae-c6c8-4ec3-b766-17f272f32910",
+      "id": "0ea7f51d-78ff-4724-818a-24119cd3a88e",
       "source_block_id": "docling-ListItem-54",
       "order_index": 54,
       "kind": "paragraph",
@@ -1552,7 +1552,7 @@
       "metadata": {}
     },
     {
-      "id": "b1742a2b-ffc3-4601-8a61-13dd88e11069",
+      "id": "c56e3a66-04aa-497c-9eb1-e5a679b09ae7",
       "source_block_id": "docling-ListItem-55",
       "order_index": 55,
       "kind": "paragraph",
@@ -1580,7 +1580,7 @@
       "metadata": {}
     },
     {
-      "id": "4c3dde95-2c71-44ed-a56a-60a480661139",
+      "id": "b80d6760-ac7f-4b86-8e58-516642ff4f5e",
       "source_block_id": "docling-TextItem-56",
       "order_index": 56,
       "kind": "paragraph",
@@ -1612,7 +1612,7 @@
   "tables": [
     {
       "table_id": "table-001",
-      "block_id": "37ece8b2-0f70-4f12-8634-ebf089150d05",
+      "block_id": "06810a61-2151-43dd-8a52-f8d63b28d994",
       "html": null,
       "markdown": "| 能力 | 正例数 | 反例数 | 主要指标 |\n| --- | --- | --- | --- |\n| 普通正文与阅读顺序 | 2 | 1 | 文本完整度、 block 顺序 |\n| 多级表头与字段绑定 | 2 | 2 | column path 、 row key 、来源 |\n| 标题层级恢复 | 2 | 1 | parent_child 唯一性 |\n| 编号引用绑定 | 2 | 2 | reference_of 目标唯一性 |\n| OCR 图片质量 | 2 | 2 | token 可读性、低质量拦截 |",
       "caption": null,
@@ -1994,7 +1994,7 @@
     },
     {
       "table_id": "table-002",
-      "block_id": "30ec8772-8509-4068-a143-7ad84ff200d3",
+      "block_id": "fd8a0f53-7430-4713-81bd-bfa80e7f7ada",
       "html": null,
       "markdown": "| 样例 | 网格恢复 | 表头路径 | 字段绑定 | 最终状态 |\n| --- | --- | --- | --- | --- |\n| 采购比价正例 跨页续表正例 列漂移反例 无稳定行键 | pass pass partial partial | 完整 完整 不确定 表级 | verified verified unavailable unavailable | pass pass with warnings manual review manual review |",
       "caption": null,
@@ -2211,5 +2211,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T16:19:51.040838Z"
+  "created_at": "2026-08-17T16:23:17.826451Z"
 }

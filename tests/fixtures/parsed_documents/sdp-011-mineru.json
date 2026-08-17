@@ -1,0 +1,1530 @@
+{
+  "document_id": "ef255859-7f0f-4dae-9f00-b7a64fc7e594",
+  "filename": "literary_intertextuality_paper.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 80024,
+  "source_sha256": "d758ac9d426fa775fde7c96c5e56b32b1e00c8f6cdb8abfac6ed1a46faab0b64",
+  "routing_decision": null,
+  "markdown": "# Latent Structures of Intertextuality in French Fiction\n\nA computational literary studies case report\n\nJean Barré\n\nCentre for Digital Humanities arXiv:2410.17759 23 October 2024\n\nAbstract. This paper presents a reproducible way to study intertextuality in a large Frenchfiction corpus. We compare contextual representations of novels from the eighteenth to the early twentieth century, then examine how genre and canonical status shape the resulting similarity network. The report is written as a document-processing fixture: all counts below are an explicit, self-contained reconstruction for testing extraction of headings, tables, citations, and references.\n\nKeywords: intertextuality; French fiction; literary canon; computational literary studies; text embeddings\n\n## 1 Introduction\n\nIntertextuality treats literary works as participants in a changing network rather than as isolated objects. Computational methods make it possible to compare thousands of works while retaining interpretable metadata about period, genre, and circulation. The present sample follows the research question and bibliographic identity of Barré’s arXiv paper, but uses compact illustrative values so that the file can be redistributed as a development fixture.\n\n## 2 Corpus and operationalization\n\nThe corpus is organized by publication period and broad genre. A work is represented by a normalized embedding computed from its text; similarity is measured with cosine distance. Canonical status is an auxiliary label derived from a curated reading list, never a claim about literary value.\n\nTable 1: Illustrative corpus inventory\n<table><tr><td>Period</td><td></td><td>Works Median words Notes</td><td></td></tr><tr><td>18th century</td><td>2,940</td><td></td><td>58,100 smaller genre coverage</td></tr><tr><td>19th century</td><td>6,870</td><td></td><td>71,400strongest network density</td></tr><tr><td>1900-1930</td><td>2,460</td><td></td><td>64,900 transitional publication formats</td></tr></table>\n\n## 3 Method\n\nWe first remove paratextual boilerplate and preserve chapter boundaries. We then encode each novel with a contextual language model and construct a k-nearest-neighbor graph. Community detection is run separately within each period, followed by a regression in which edge strength is predicted by genre agreement, period distance, and canonical-status agreement. The workflow stores the original filename, model version, and evidence location for every derived relation.\n\n## 4 Findings\n\nThe illustrative network has three stable observations:\n\n1. genre agreement is associated with denser local neighborhoods than raw publication proximity;\n\n2. canonical works occupy bridges between otherwise distinct genre communities;\n\n3. the strength of both effects changes across periods, so a single global threshold is misleading.\n\nThese findings should be read as a description of the sample’s analytical design, not as a substitute for the full empirical estimates in the linked preprint.\n\n## 5 Error analysis and reproducibility\n\nA literary similarity edge is not self-authenticating. OCR noise, alternate editions, and quoted passages can create false neighbors. We therefore retain a confidence field, the source page or chapter span, and a review status for every edge.\n\nTable 2: Quality controls for derived intertextual links\n<table><tr><td>Failure mode</td><td>Evidence retained</td><td>Action</td></tr><tr><td>Multiple editions</td><td>edition identifier and page span</td><td>manual review</td></tr><tr><td>Quoted passage</td><td>matched span and surrounding context</td><td>keep with</td></tr><tr><td>OCR uncertainty</td><td>token confidence and image crop</td><td>warning re-OCR</td></tr><tr><td>Genre ambiguity</td><td></td><td>unresolved</td></tr><tr><td></td><td>label provenance and alternatives</td><td></td></tr></table>\n\n## 6 Limitations\n\nEmbedding similarity is a measurement choice, not a direct observation of influence. The corpus boundary, genre taxonomy, and canonical list all affect the network. Future work should compare several encoders, report sensitivity to segmentation, and pair quantitative evidence with close reading.\n\n## 7 Conclusion\n\nA useful computational-literary document keeps its interpretive claims connected to stable evidence. For document parsing, this paper also provides realistic scholarly structure: a title page, abstract, numbered sections, tables, inline mathematics, hyperlinks, and a reference list.\n\n## References\n\n1. Barré, J. (2024). Latent Structures of Intertextuality in French Fiction. arXiv preprint arXiv:2410.17759. https://arxiv.org/abs/2410.17759.\n\n2. Moretti, F. (2005). Graphs, Maps, Trees: Abstract Models for Literary History. Verso.\n\n3. Jockers, M. L. (2013). Macroanalysis: Digital Methods and Literary History. University of Illinois Press.",
+  "blocks": [
+    {
+      "id": "ab8b54f4-197f-4786-a1c2-79d901f37576",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "Latent Structures of Intertextuality in French Fiction",
+      "heading_level": 1,
+      "markdown": "Latent Structures of Intertextuality in French Fiction",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          104.0,
+          70.0,
+          894.0,
+          93.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "32496457-37fc-4c8d-8c60-5ebe6c8fe64c",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "A computational literary studies case report",
+      "heading_level": null,
+      "markdown": "A computational literary studies case report",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          300.0,
+          103.0,
+          697.0,
+          121.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1834764b-a4c6-416b-9a27-ed295351ce17",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Jean Barré",
+      "heading_level": null,
+      "markdown": "Jean Barré",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          450.0,
+          134.0,
+          547.0,
+          149.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a03d1114-a59b-4225-b96b-21def3456bb4",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Centre for Digital Humanities arXiv:2410.17759 23 October 2024",
+      "heading_level": null,
+      "markdown": "Centre for Digital Humanities arXiv:2410.17759 23 October 2024",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          243.0,
+          154.0,
+          754.0,
+          170.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9219ed27-f1e2-4675-99ed-da56073b7a9c",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Abstract. This paper presents a reproducible way to study intertextuality in a large Frenchfiction corpus. We compare contextual representations of novels from the eighteenth to the early twentieth century, then examine how genre and canonical status shape the resulting similarity network. The report is written as a document-processing fixture: all counts below are an explicit, self-contained reconstruction for testing extraction of headings, tables, citations, and references.",
+      "heading_level": null,
+      "markdown": "Abstract. This paper presents a reproducible way to study intertextuality in a large Frenchfiction corpus. We compare contextual representations of novels from the eighteenth to the early twentieth century, then examine how genre and canonical status shape the resulting similarity network. The report is written as a document-processing fixture: all counts below are an explicit, self-contained reconstruction for testing extraction of headings, tables, citations, and references.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          144.0,
+          210.0,
+          852.0,
+          284.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cbbcc827-a824-4311-ade0-34bbdd96409e",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Keywords: intertextuality; French fiction; literary canon; computational literary studies; text embeddings",
+      "heading_level": null,
+      "markdown": "Keywords: intertextuality; French fiction; literary canon; computational literary studies; text embeddings",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          300.0,
+          897.0,
+          334.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "57ff8339-003c-4d11-be97-adb5ebd69c00",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 Introduction",
+      "heading_level": 2,
+      "markdown": "1 Introduction",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          362.0,
+          284.0,
+          381.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "00f84b1b-efd3-4cc0-9744-692a4bfe5a00",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Intertextuality treats literary works as participants in a changing network rather than as isolated objects. Computational methods make it possible to compare thousands of works while retaining interpretable metadata about period, genre, and circulation. The present sample follows the research question and bibliographic identity of Barré’s arXiv paper, but uses compact illustrative values so that the file can be redistributed as a development fixture.",
+      "heading_level": null,
+      "markdown": "Intertextuality treats literary works as participants in a changing network rather than as isolated objects. Computational methods make it possible to compare thousands of works while retaining interpretable metadata about period, genre, and circulation. The present sample follows the research question and bibliographic identity of Barré’s arXiv paper, but uses compact illustrative values so that the file can be redistributed as a development fixture.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          97.0,
+          400.0,
+          899.0,
+          482.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "db9f09d7-6c5c-41dc-bc1c-ebd88c6893b8",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 Corpus and operationalization",
+      "heading_level": 2,
+      "markdown": "2 Corpus and operationalization",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          510.0,
+          490.0,
+          530.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d8048199-423c-4742-a162-3ac0d7b546c2",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "The corpus is organized by publication period and broad genre. A work is represented by a normalized embedding computed from its text; similarity is measured with cosine distance. Canonical status is an auxiliary label derived from a curated reading list, never a claim about literary value.",
+      "heading_level": null,
+      "markdown": "The corpus is organized by publication period and broad genre. A work is represented by a normalized embedding computed from its text; similarity is measured with cosine distance. Canonical status is an auxiliary label derived from a curated reading list, never a claim about literary value.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          97.0,
+          548.0,
+          899.0,
+          598.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bac9a15a-27d6-4a9e-93e4-a40458d6c529",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "table",
+      "native_type": null,
+      "text": "| Period |   | Works Median words Notes |   |\n| --- | --- | --- | --- |\n| 18th century | 2,940 |   | 58,100 smaller genre coverage |\n| 19th century | 6,870 |   | 71,400strongest network density |\n| 1900-1930 | 2,460 |   | 64,900 transitional publication formats |",
+      "heading_level": null,
+      "markdown": "| Period |   | Works Median words Notes |   |\n| --- | --- | --- | --- |\n| 18th century | 2,940 |   | 58,100 smaller genre coverage |\n| 19th century | 6,870 |   | 71,400strongest network density |\n| 1900-1930 | 2,460 |   | 64,900 transitional publication formats |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          134.0,
+          633.0,
+          863.0,
+          713.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [
+          "Table 1: Illustrative corpus inventory"
+        ],
+        "footnote": [],
+        "img_path": "images/8c318beac7ffdd55a73a555018f5ae5ab6b2556d61a96380b83d385d4dd01fb0.jpg"
+      }
+    },
+    {
+      "id": "4495398b-f5e0-4b21-9fac-faa46b0ca334",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 Method",
+      "heading_level": 2,
+      "markdown": "3 Method",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          758.0,
+          230.0,
+          777.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8b4097c8-0f60-496e-8ff7-5b705522821d",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We first remove paratextual boilerplate and preserve chapter boundaries. We then encode each novel with a contextual language model and construct a k-nearest-neighbor graph. Community detection is run separately within each period, followed by a regression in which edge strength is predicted by genre agreement, period distance, and canonical-status agreement. The workflow stores the original filename, model version, and evidence location for every derived relation.",
+      "heading_level": null,
+      "markdown": "We first remove paratextual boilerplate and preserve chapter boundaries. We then encode each novel with a contextual language model and construct a k-nearest-neighbor graph. Community detection is run separately within each period, followed by a regression in which edge strength is predicted by genre agreement, period distance, and canonical-status agreement. The workflow stores the original filename, model version, and evidence location for every derived relation.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          97.0,
+          797.0,
+          899.0,
+          878.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "22a02a22-9308-4c18-9c29-921fae51a027",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Computational Literary Studies",
+      "heading_level": null,
+      "markdown": "Computational Literary Studies",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          27.0,
+          357.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "21a1bc09-1112-4877-a5b7-4a7bef5f8a5e",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "arXiv:2410.17759",
+      "heading_level": null,
+      "markdown": "arXiv:2410.17759",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          747.0,
+          27.0,
+          897.0,
+          41.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "df3dd053-cf56-4b67-a64d-1c4b76049032",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          494.0,
+          951.0,
+          504.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c8230f2f-9c9f-499f-8e30-a2604f593b94",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "heading",
+      "native_type": null,
+      "text": "4 Findings",
+      "heading_level": 2,
+      "markdown": "4 Findings",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          71.0,
+          243.0,
+          91.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c467a5cb-1e45-446a-999b-5edfe57d5053",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "The illustrative network has three stable observations:",
+      "heading_level": null,
+      "markdown": "The illustrative network has three stable observations:",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          109.0,
+          544.0,
+          126.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c6767859-5312-403d-934f-b0f32ba540a3",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. genre agreement is associated with denser local neighborhoods than raw publication proximity;",
+      "heading_level": null,
+      "markdown": "1. genre agreement is associated with denser local neighborhoods than raw publication proximity;",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          121.0,
+          140.0,
+          897.0,
+          172.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f6a5dba4-dac7-4f25-a9f9-3831daf40437",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. canonical works occupy bridges between otherwise distinct genre communities;",
+      "heading_level": null,
+      "markdown": "2. canonical works occupy bridges between otherwise distinct genre communities;",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          119.0,
+          183.0,
+          798.0,
+          199.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c9671cfc-f7ef-409e-96f1-369eee4ded3e",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. the strength of both effects changes across periods, so a single global threshold is misleading.",
+      "heading_level": null,
+      "markdown": "3. the strength of both effects changes across periods, so a single global threshold is misleading.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          121.0,
+          209.0,
+          895.0,
+          227.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ee8fe6c4-a279-4a2b-8924-d2770afd0759",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "These findings should be read as a description of the sample’s analytical design, not as a substitute for the full empirical estimates in the linked preprint.",
+      "heading_level": null,
+      "markdown": "These findings should be read as a description of the sample’s analytical design, not as a substitute for the full empirical estimates in the linked preprint.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          239.0,
+          897.0,
+          273.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b2e3769b-eb63-493a-8c16-d7800238d92d",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Computational Literary Studies",
+      "heading_level": null,
+      "markdown": "Computational Literary Studies",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          27.0,
+          357.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a8c8fc56-68bd-4fdd-90b7-44c41e3e970e",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "arXiv:2410.17759",
+      "heading_level": null,
+      "markdown": "arXiv:2410.17759",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          749.0,
+          27.0,
+          897.0,
+          41.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "808ba66f-7c62-4730-82ff-9c609bc40546",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          950.0,
+          505.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "921dcef2-aa4b-4e3a-8053-7e2d1362c503",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "heading",
+      "native_type": null,
+      "text": "5 Error analysis and reproducibility",
+      "heading_level": 2,
+      "markdown": "5 Error analysis and reproducibility",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          71.0,
+          527.0,
+          91.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ee7bf0a-27d3-4efd-865f-02f1cf47d3d5",
+      "source_block_id": "mineru-content-0027",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "A literary similarity edge is not self-authenticating. OCR noise, alternate editions, and quoted passages can create false neighbors. We therefore retain a confidence field, the source page or chapter span, and a review status for every edge.",
+      "heading_level": null,
+      "markdown": "A literary similarity edge is not self-authenticating. OCR noise, alternate editions, and quoted passages can create false neighbors. We therefore retain a confidence field, the source page or chapter span, and a review status for every edge.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          97.0,
+          109.0,
+          897.0,
+          158.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "565c6a2b-b61d-4cb6-9d45-6ff510facc62",
+      "source_block_id": "mineru-content-0028",
+      "order_index": 27,
+      "kind": "table",
+      "native_type": null,
+      "text": "| Failure mode | Evidence retained | Action |\n| --- | --- | --- |\n| Multiple editions | edition identifier and page span | manual review |\n| Quoted passage | matched span and surrounding context | keep with |\n| OCR uncertainty | token confidence and image crop | warning re-OCR |\n| Genre ambiguity |   | unresolved |\n|   | label provenance and alternatives |   |",
+      "heading_level": null,
+      "markdown": "| Failure mode | Evidence retained | Action |\n| --- | --- | --- |\n| Multiple editions | edition identifier and page span | manual review |\n| Quoted passage | matched span and surrounding context | keep with |\n| OCR uncertainty | token confidence and image crop | warning re-OCR |\n| Genre ambiguity |   | unresolved |\n|   | label provenance and alternatives |   |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          117.0,
+          195.0,
+          880.0,
+          305.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [
+          "Table 2: Quality controls for derived intertextual links"
+        ],
+        "footnote": [],
+        "img_path": "images/036d15011c7f182115c83a938b3b88f9f27e3f7bc10b2c46351c8c0f39104154.jpg"
+      }
+    },
+    {
+      "id": "532ea456-efbe-49d7-81fb-dde2c546fefd",
+      "source_block_id": "mineru-content-0029",
+      "order_index": 28,
+      "kind": "heading",
+      "native_type": null,
+      "text": "6 Limitations",
+      "heading_level": 2,
+      "markdown": "6 Limitations",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          351.0,
+          272.0,
+          370.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f9de15a3-9d5f-45f1-91d1-734e7c02a41e",
+      "source_block_id": "mineru-content-0030",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Embedding similarity is a measurement choice, not a direct observation of influence. The corpus boundary, genre taxonomy, and canonical list all affect the network. Future work should compare several encoders, report sensitivity to segmentation, and pair quantitative evidence with close reading.",
+      "heading_level": null,
+      "markdown": "Embedding similarity is a measurement choice, not a direct observation of influence. The corpus boundary, genre taxonomy, and canonical list all affect the network. Future work should compare several encoders, report sensitivity to segmentation, and pair quantitative evidence with close reading.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          97.0,
+          390.0,
+          897.0,
+          455.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "901ef2ac-74ca-46fa-b954-c5f1201c5e39",
+      "source_block_id": "mineru-content-0031",
+      "order_index": 30,
+      "kind": "heading",
+      "native_type": null,
+      "text": "7 Conclusion",
+      "heading_level": 2,
+      "markdown": "7 Conclusion",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          483.0,
+          275.0,
+          501.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0136005b-9050-4c78-8349-34431230f38c",
+      "source_block_id": "mineru-content-0032",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "A useful computational-literary document keeps its interpretive claims connected to stable evidence. For document parsing, this paper also provides realistic scholarly structure: a title page, abstract, numbered sections, tables, inline mathematics, hyperlinks, and a reference list.",
+      "heading_level": null,
+      "markdown": "A useful computational-literary document keeps its interpretive claims connected to stable evidence. For document parsing, this paper also provides realistic scholarly structure: a title page, abstract, numbered sections, tables, inline mathematics, hyperlinks, and a reference list.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          97.0,
+          521.0,
+          897.0,
+          570.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f854e0a4-53a5-405c-b0ca-1a7e1fc816bb",
+      "source_block_id": "mineru-content-0033",
+      "order_index": 32,
+      "kind": "heading",
+      "native_type": null,
+      "text": "References",
+      "heading_level": 2,
+      "markdown": "References",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          599.0,
+          236.0,
+          618.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2cad8567-f9c4-47c0-99a9-42710710d1e6",
+      "source_block_id": "mineru-content-0034",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          122.0,
+          637.0,
+          897.0,
+          669.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "237a2510-992f-436a-bf79-c1584904aafc",
+      "source_block_id": "mineru-content-0035",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Computational Literary Studies",
+      "heading_level": null,
+      "markdown": "Computational Literary Studies",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          27.0,
+          357.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "de0b52f5-d1de-4a1b-9fcd-b2d2a9075458",
+      "source_block_id": "mineru-content-0036",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "arXiv:2410.17759",
+      "heading_level": null,
+      "markdown": "arXiv:2410.17759",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          747.0,
+          27.0,
+          897.0,
+          41.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b45f82d6-c819-46ca-bf2f-da4ac0c5d8bb",
+      "source_block_id": "mineru-content-0037",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Document-processing fixture. Analytical values are illustrative; bibliographic metadata points to the public arXiv record.",
+      "heading_level": null,
+      "markdown": "Document-processing fixture. Analytical values are illustrative; bibliographic metadata points to the public arXiv record.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          898.0,
+          895.0,
+          928.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ece6fd68-3ff5-4c17-9b47-bbcc5d685915",
+      "source_block_id": "mineru-content-0038",
+      "order_index": 37,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          492.0,
+          951.0,
+          505.0,
+          964.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "bac9a15a-27d6-4a9e-93e4-a40458d6c529",
+      "html": "<table><tr><td>Period</td><td></td><td>Works Median words Notes</td><td></td></tr><tr><td>18th century</td><td>2,940</td><td></td><td>58,100 smaller genre coverage</td></tr><tr><td>19th century</td><td>6,870</td><td></td><td>71,400strongest network density</td></tr><tr><td>1900-1930</td><td>2,460</td><td></td><td>64,900 transitional publication formats</td></tr></table>",
+      "markdown": "| Period |   | Works Median words Notes |   |\n| --- | --- | --- | --- |\n| 18th century | 2,940 |   | 58,100 smaller genre coverage |\n| 19th century | 6,870 |   | 71,400strongest network density |\n| 1900-1930 | 2,460 |   | 64,900 transitional publication formats |",
+      "caption": "Table 1: Illustrative corpus inventory",
+      "image_path": "images/8c318beac7ffdd55a73a555018f5ae5ab6b2556d61a96380b83d385d4dd01fb0.jpg",
+      "page_number": 1,
+      "bbox": [
+        134.0,
+        633.0,
+        863.0,
+        713.0
+      ],
+      "num_rows": 4,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "Period",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Works Median words Notes",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "18th century",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2,940",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "58,100 smaller genre coverage",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "19th century",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "6,870",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "71,400strongest network density",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1900-1930",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2,460",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "64,900 transitional publication formats",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "565c6a2b-b61d-4cb6-9d45-6ff510facc62",
+      "html": "<table><tr><td>Failure mode</td><td>Evidence retained</td><td>Action</td></tr><tr><td>Multiple editions</td><td>edition identifier and page span</td><td>manual review</td></tr><tr><td>Quoted passage</td><td>matched span and surrounding context</td><td>keep with</td></tr><tr><td>OCR uncertainty</td><td>token confidence and image crop</td><td>warning re-OCR</td></tr><tr><td>Genre ambiguity</td><td></td><td>unresolved</td></tr><tr><td></td><td>label provenance and alternatives</td><td></td></tr></table>",
+      "markdown": "| Failure mode | Evidence retained | Action |\n| --- | --- | --- |\n| Multiple editions | edition identifier and page span | manual review |\n| Quoted passage | matched span and surrounding context | keep with |\n| OCR uncertainty | token confidence and image crop | warning re-OCR |\n| Genre ambiguity |   | unresolved |\n|   | label provenance and alternatives |   |",
+      "caption": "Table 2: Quality controls for derived intertextual links",
+      "image_path": "images/036d15011c7f182115c83a938b3b88f9f27e3f7bc10b2c46351c8c0f39104154.jpg",
+      "page_number": 3,
+      "bbox": [
+        117.0,
+        195.0,
+        880.0,
+        305.0
+      ],
+      "num_rows": 6,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "Failure mode",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Evidence retained",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Action",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Multiple editions",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "edition identifier and page span",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "manual review",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Quoted passage",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "matched span and surrounding context",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "keep with",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "OCR uncertainty",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "token confidence and image crop",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "warning re-OCR",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Genre ambiguity",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "unresolved",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "label provenance and alternatives",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:23:38.892550Z"
+}

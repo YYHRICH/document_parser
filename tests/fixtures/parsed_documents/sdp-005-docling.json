@@ -1,5 +1,5 @@
 {
-  "document_id": "b7ac4dbc-9eda-4dd2-8157-155a55e7eab9",
+  "document_id": "e1c1ce9a-7811-48cc-8e09-4bc74b20517b",
   "filename": "table_cases_cross_page.pdf",
   "file_type": "application/pdf",
   "source_size_bytes": 92408,
@@ -8,7 +8,7 @@
   "markdown": "## 运营报表复杂表格案例集\n\n用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。\n\n## CASE-A ：库存月报（续表且重复表头）\n\n本案例的第二页明确写有'续表' ，并完整重复列头。行号连续，应该允许稳定绑定。\n\n|   行号 | 物料名称         |   期初 |   入库 |   期末 |\n|------|--------------|------|------|------|\n|  001 | 温控模块 AX-200  |  120 |   30 |  150 |\n|  002 | 冷却风扇 FAN-12V |   80 |   24 |  104 |\n|  003 | 连接线束 CB-04   |  250 |   60 |  310 |\n|  004 | 固定支架 BR-02   |   90 |   18 |  108 |\n\n## 库存月报（续表）\n\n## CASE-A / Page 2\n\n期望：识别为同一张表，保留页码和续表证据。\n\n|   行号 | 物料名称        |   期初 |   入库 |   期末 |\n|------|-------------|------|------|------|\n|  005 | 过滤网 FG-10   |   45 |   20 |   65 |\n|  006 | 传感器 TS-08   |   32 |   12 |   44 |\n|  007 | 备用电源 PSU-24 |   18 |    6 |   24 |\n|  008 | 防护罩 CV-01   |   27 |    9 |   36 |\n\n## CASE-B ：区域采购汇总（合并单元格）\n\n期望：区域和供应商等级的 rowspan/colpath 不被展开成虚假单元格。\n\n| 区域   | 供应商等级   | 物料      |   数量 |   含税金额 |\n|------|---------|---------|------|--------|\n| 华东   | A       | FAN-12V |   80 | 14,880 |\n| 华东   | B       | CB-04   |  120 |  9,600 |\n| 华南   | A       | AX-200  |   60 | 24,000 |\n| 华南   | B       | BR-02   |   75 |  6,750 |\n\n## CASE-C ：跨页采购订单\n\n订单 PO-2026-0817 的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有'续行'标记。\n\n|   行号 | 物料描述                                 |   数量 |     单价 |     小计 |\n|------|--------------------------------------|------|--------|--------|\n|  101 | 温控模块，含安装底座和校准服务                      |   12 |  4,200 | 50,400 |\n|  102 | 现场备用风扇，交付至二号车间                       |   24 |    186 |  4,464 |\n|  103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） |    1 | 18,000 |        |\n\n## CASE-C ：跨页采购订单（续行）\n\n| 标记   | 物料描述续行                                         |   数量 |    单价 |     小计 |\n|------|------------------------------------------------|------|-------|--------|\n| 续行   | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |      |       | 18,000 |\n| 104  | 包装及运输保险                                        |    1 | 1,200 |  1,200 |\n\n期望： 103 的小计可以关联，但'续行'不应被当作新的物料。 CASE-D ：续表列顺序漂移\n\n|   行号 | 项目   |   期末 |   变化 |   期初 |\n|------|------|------|------|------|\n|  201 | 东区备件 |  118 |   +8 |  110 |\n|  202 | 西区备件 |   94 |   -6 |  100 |\n\n期望：发现本页列顺序与前页不同，禁止按位置静默绑定。\n\n## CASE-E ：证据不足的表格\n\n以下截图式表格只有表级来源，解析器无法提供单元格 bbox ，也没有稳定行键。\n\n| 本月重点   | 负责人   | 备注   |\n|--------|-------|------|\n| 华东区域库存 | 陈琳    | 需复核  |\n| 现场安装排期 | 周海    | 见邮件  |\n\n期望：保留表级来源，生成 evidence issue ；不得伪造 cell bbox 或 verified binding 。\n\n## 验收要点\n\n- CASE-A ：续表和重复表头可合并；\n\n- CASE-B ： rowspan/colspan 必须保留完整 column path ；\n\n- CASE-C ：跨页续行需要关联证据；\n\n- CASE-D ：列顺序变化必须触发问题；\n\n- CASE-E ：证据不足时安全降级。",
   "blocks": [
     {
-      "id": "22e8b345-0a99-4db9-836f-c7ee9bcd0e13",
+      "id": "cad9e67f-1204-4b44-afcd-b6f333431543",
       "source_block_id": "docling-SectionHeaderItem-0",
       "order_index": 0,
       "kind": "heading",
@@ -36,7 +36,7 @@
       "metadata": {}
     },
     {
-      "id": "f44da602-59a0-4492-8c5f-4d9de2f33332",
+      "id": "5d89207b-11bf-47ec-aa80-e12fe81bc0c1",
       "source_block_id": "docling-TextItem-1",
       "order_index": 1,
       "kind": "paragraph",
@@ -64,7 +64,7 @@
       "metadata": {}
     },
     {
-      "id": "4420a21c-8ab1-4c45-b7bc-35b78a75e49b",
+      "id": "394cc396-5972-4486-96c3-25f5148d90be",
       "source_block_id": "docling-SectionHeaderItem-2",
       "order_index": 2,
       "kind": "heading",
@@ -92,7 +92,7 @@
       "metadata": {}
     },
     {
-      "id": "445d6271-6b7b-4701-8b3d-eb268a7e22a6",
+      "id": "76634688-4b6d-413c-a2c8-a83af146ba2b",
       "source_block_id": "docling-TextItem-3",
       "order_index": 3,
       "kind": "paragraph",
@@ -120,7 +120,7 @@
       "metadata": {}
     },
     {
-      "id": "d524d814-d387-47d8-863a-777a3a278842",
+      "id": "6e638618-95bd-4814-be16-0e1c409a4c7f",
       "source_block_id": "docling-TableItem-4",
       "order_index": 4,
       "kind": "table",
@@ -150,7 +150,7 @@
       }
     },
     {
-      "id": "cf8b83df-3374-4df3-8ec8-a8a73d6f2a97",
+      "id": "e7016601-29fe-4248-aca4-b1c07e7801c3",
       "source_block_id": "docling-SectionHeaderItem-5",
       "order_index": 5,
       "kind": "heading",
@@ -178,7 +178,7 @@
       "metadata": {}
     },
     {
-      "id": "2359cc15-a974-4310-a151-bd7b75555768",
+      "id": "618cc610-bc0f-4011-ac78-a270011f238a",
       "source_block_id": "docling-SectionHeaderItem-6",
       "order_index": 6,
       "kind": "heading",
@@ -206,7 +206,7 @@
       "metadata": {}
     },
     {
-      "id": "151eb2ba-d418-4f41-bdc5-fa7e0bbde6d9",
+      "id": "93fbe7e7-1129-43f2-96b4-e92ccde61274",
       "source_block_id": "docling-TableItem-7",
       "order_index": 7,
       "kind": "table",
@@ -236,7 +236,7 @@
       }
     },
     {
-      "id": "04d1d92f-19ca-4866-a5e3-7fa9d820a465",
+      "id": "69bdd548-8388-4274-97e4-0b30dfc70f51",
       "source_block_id": "docling-TextItem-8",
       "order_index": 8,
       "kind": "paragraph",
@@ -264,7 +264,7 @@
       "metadata": {}
     },
     {
-      "id": "0156c1a4-96ef-4a25-a0d9-9e6e1ca350e4",
+      "id": "b5b73f27-2d48-469a-a0d2-25f5376c427e",
       "source_block_id": "docling-SectionHeaderItem-9",
       "order_index": 9,
       "kind": "heading",
@@ -292,7 +292,7 @@
       "metadata": {}
     },
     {
-      "id": "80f7c8a5-4a34-487e-b63b-3f63c4fbdf88",
+      "id": "d5ee82a7-ab4d-4882-944c-719ecea52f65",
       "source_block_id": "docling-TableItem-10",
       "order_index": 10,
       "kind": "table",
@@ -322,7 +322,7 @@
       }
     },
     {
-      "id": "3e3268be-a706-4e62-905a-1d40ef59ac1d",
+      "id": "b5c98abc-ab29-4aca-b93c-6885a1b62f6d",
       "source_block_id": "docling-TextItem-11",
       "order_index": 11,
       "kind": "paragraph",
@@ -350,7 +350,7 @@
       "metadata": {}
     },
     {
-      "id": "6bd3acc6-fadb-43d9-9fb1-18843469ea42",
+      "id": "6346ce0b-8a7d-401e-87cb-09f0abdac672",
       "source_block_id": "docling-SectionHeaderItem-12",
       "order_index": 12,
       "kind": "heading",
@@ -378,7 +378,7 @@
       "metadata": {}
     },
     {
-      "id": "f7012cc7-5f3b-4a9e-9b1b-f3c30caa2439",
+      "id": "87a45847-9510-48eb-9801-9c3f420c594d",
       "source_block_id": "docling-TextItem-13",
       "order_index": 13,
       "kind": "paragraph",
@@ -406,7 +406,7 @@
       "metadata": {}
     },
     {
-      "id": "14aff7ce-e778-4781-9806-3d4b0f908001",
+      "id": "fbbeb085-f845-4029-82bf-e1c58f9de293",
       "source_block_id": "docling-TableItem-14",
       "order_index": 14,
       "kind": "table",
@@ -436,7 +436,7 @@
       }
     },
     {
-      "id": "c191e00a-2758-4158-a0c0-6fa1ce0cbaa5",
+      "id": "37fc3ca8-4f11-42fe-a01f-9622d1995b85",
       "source_block_id": "docling-SectionHeaderItem-15",
       "order_index": 15,
       "kind": "heading",
@@ -464,7 +464,7 @@
       "metadata": {}
     },
     {
-      "id": "6f9aa5af-eadc-40b8-a39f-ae92ebff0923",
+      "id": "2760acd1-e8a1-4bd6-b34d-fce1ea18be93",
       "source_block_id": "docling-TableItem-16",
       "order_index": 16,
       "kind": "table",
@@ -494,7 +494,7 @@
       }
     },
     {
-      "id": "75514641-2546-4c70-af79-a26e8979b8d2",
+      "id": "37f84eca-37ac-411e-8eb7-99cac5e5cb74",
       "source_block_id": "docling-TextItem-17",
       "order_index": 17,
       "kind": "paragraph",
@@ -522,7 +522,7 @@
       "metadata": {}
     },
     {
-      "id": "f4cb28cd-843b-48f0-b464-a60fa6c3ca91",
+      "id": "5fb306af-81f9-49e3-a42f-4712c302db38",
       "source_block_id": "docling-TableItem-18",
       "order_index": 18,
       "kind": "table",
@@ -552,7 +552,7 @@
       }
     },
     {
-      "id": "7355ae03-1253-43a6-870b-e6bc77defc39",
+      "id": "1a9f9d19-4a63-4dec-877b-6d5835988f1a",
       "source_block_id": "docling-TextItem-19",
       "order_index": 19,
       "kind": "paragraph",
@@ -580,7 +580,7 @@
       "metadata": {}
     },
     {
-      "id": "4049a39e-f148-48fc-8446-fc10a885a049",
+      "id": "b0592fec-8a04-48bd-bda5-462c3c1a2511",
       "source_block_id": "docling-SectionHeaderItem-20",
       "order_index": 20,
       "kind": "heading",
@@ -608,7 +608,7 @@
       "metadata": {}
     },
     {
-      "id": "e4035f10-602c-4ca1-8d82-8960f96a8e49",
+      "id": "c1e9aced-5310-41bc-836f-b13d980358cf",
       "source_block_id": "docling-TextItem-21",
       "order_index": 21,
       "kind": "paragraph",
@@ -636,7 +636,7 @@
       "metadata": {}
     },
     {
-      "id": "750876bd-b5d0-4f26-a9fb-33d38bb767c2",
+      "id": "8b8dabdd-ac82-43b0-aa4f-43f36995fc32",
       "source_block_id": "docling-TableItem-22",
       "order_index": 22,
       "kind": "table",
@@ -666,7 +666,7 @@
       }
     },
     {
-      "id": "9d763e4e-bdaf-4b44-9998-c5f77c9d30bc",
+      "id": "eb395189-d711-49d3-a680-1ff75093a1b1",
       "source_block_id": "docling-TextItem-23",
       "order_index": 23,
       "kind": "paragraph",
@@ -694,7 +694,7 @@
       "metadata": {}
     },
     {
-      "id": "57cb4c22-9a96-406d-977f-a0baa07ce387",
+      "id": "893b5b0f-92c1-4b23-a8fd-4351a72e9d1b",
       "source_block_id": "docling-SectionHeaderItem-24",
       "order_index": 24,
       "kind": "heading",
@@ -722,7 +722,7 @@
       "metadata": {}
     },
     {
-      "id": "1bb6674f-ab31-45aa-abec-acd9d81ac0fa",
+      "id": "295c0a1c-ed8a-4831-82d9-be12cdf6eb4e",
       "source_block_id": "docling-ListItem-25",
       "order_index": 25,
       "kind": "paragraph",
@@ -750,7 +750,7 @@
       "metadata": {}
     },
     {
-      "id": "59926a4f-0601-4059-8e22-f7f2c4aae65f",
+      "id": "c0b8ea0f-4cf2-4514-b972-9dc341111e6c",
       "source_block_id": "docling-ListItem-26",
       "order_index": 26,
       "kind": "paragraph",
@@ -778,7 +778,7 @@
       "metadata": {}
     },
     {
-      "id": "dc7bad54-e3c6-4133-a1c5-ee901c98daf0",
+      "id": "36f05000-d927-4394-9b57-942bf528964f",
       "source_block_id": "docling-ListItem-27",
       "order_index": 27,
       "kind": "paragraph",
@@ -806,7 +806,7 @@
       "metadata": {}
     },
     {
-      "id": "42750843-b252-4498-bf92-5e305711a650",
+      "id": "89f125f1-1ab3-4214-a907-a3e8a004ef1a",
       "source_block_id": "docling-ListItem-28",
       "order_index": 28,
       "kind": "paragraph",
@@ -834,7 +834,7 @@
       "metadata": {}
     },
     {
-      "id": "19c9028a-150f-4db1-a1c5-933950e35f35",
+      "id": "0625c2f3-c800-435d-9aa2-5144f8783be2",
       "source_block_id": "docling-ListItem-29",
       "order_index": 29,
       "kind": "paragraph",
@@ -866,7 +866,7 @@
   "tables": [
     {
       "table_id": "table-001",
-      "block_id": "d524d814-d387-47d8-863a-777a3a278842",
+      "block_id": "6e638618-95bd-4814-be16-0e1c409a4c7f",
       "html": null,
       "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块 AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇 FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束 CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架 BR-02 | 90 | 18 | 108 |",
       "caption": null,
@@ -1263,7 +1263,7 @@
     },
     {
       "table_id": "table-002",
-      "block_id": "151eb2ba-d418-4f41-bdc5-fa7e0bbde6d9",
+      "block_id": "93fbe7e7-1129-43f2-96b4-e92ccde61274",
       "html": null,
       "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网 FG-10 | 45 | 20 | 65 |\n| 006 | 传感器 TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源 PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩 CV-01 | 27 | 9 | 36 |",
       "caption": null,
@@ -1660,7 +1660,7 @@
     },
     {
       "table_id": "table-003",
-      "block_id": "80f7c8a5-4a34-487e-b63b-3f63c4fbdf88",
+      "block_id": "d5ee82a7-ab4d-4882-944c-719ecea52f65",
       "html": null,
       "markdown": "| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|   | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|   | B | BR-02 | 75 | 6,750 |",
       "caption": null,
@@ -2057,7 +2057,7 @@
     },
     {
       "table_id": "table-004",
-      "block_id": "14aff7ce-e778-4781-9806-3d4b0f908001",
+      "block_id": "fbbeb085-f845-4029-82bf-e1c58f9de293",
       "html": null,
       "markdown": "| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、 备件优先发货和年度报告，详见附件） | 1 | 18,000 |   |",
       "caption": null,
@@ -2374,7 +2374,7 @@
     },
     {
       "table_id": "table-005",
-      "block_id": "6f9aa5af-eadc-40b8-a39f-ae92ebff0923",
+      "block_id": "2760acd1-e8a1-4bd6-b34d-fce1ea18be93",
       "html": null,
       "markdown": "| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风 扇转速和电气接点，发现异常时在两个 工作日内提交报告。 |   |   | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |",
       "caption": null,
@@ -2611,7 +2611,7 @@
     },
     {
       "table_id": "table-006",
-      "block_id": "f4cb28cd-843b-48f0-b464-a60fa6c3ca91",
+      "block_id": "5fb306af-81f9-49e3-a42f-4712c302db38",
       "html": null,
       "markdown": "| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |",
       "caption": null,
@@ -2858,7 +2858,7 @@
     },
     {
       "table_id": "table-007",
-      "block_id": "750876bd-b5d0-4f26-a9fb-33d38bb767c2",
+      "block_id": "8b8dabdd-ac82-43b0-aa4f-43f36995fc32",
       "html": null,
       "markdown": "| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
       "caption": null,
@@ -3060,5 +3060,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T16:19:40.724963Z"
+  "created_at": "2026-08-17T16:23:07.482186Z"
 }

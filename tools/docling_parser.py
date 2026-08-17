@@ -74,8 +74,8 @@ def _bbox_to_top_left(bbox, page_height: float) -> tuple[float, float, float, fl
         return None
 
 
-def parse_pdf(source: Path) -> ParsedDocument:
-    """docling 解析 PDF → ParsedDocument（需要运行环境见文件头部说明）。"""
+def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocument:
+    """docling 解析文件 → ParsedDocument（需要运行环境见文件头部说明）。"""
     source = Path(source)
     conv = DocumentConverter()
     doc = conv.convert(str(source)).document
@@ -194,7 +194,7 @@ def parse_pdf(source: Path) -> ParsedDocument:
     return ParsedDocument(
         document_id=uuid4(),
         filename=source.name,
-        file_type="application/pdf",
+        file_type=file_type,
         source_size_bytes=len(source_bytes),
         source_sha256=hashlib.sha256(source_bytes).hexdigest(),
         markdown=doc.export_to_markdown(),

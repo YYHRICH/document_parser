@@ -1,0 +1,2276 @@
+{
+  "document_id": "947810df-6497-4317-815c-6bbbb473d182",
+  "filename": "equipment_work_order_scan.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 79579,
+  "source_sha256": "01087a2d9cb160abd86ec4aa73313e19985823beccdd3fd487bcc99e044db5d5",
+  "routing_decision": null,
+  "markdown": "## 设备维修工单\n\n华东制造中心/资产维护系统\n\n<table><tr><td rowspan=1 colspan=1>字段</td><td rowspan=1 colspan=1>内容</td><td rowspan=1 colspan=1>字段</td><td rowspan=1 colspan=1>内容</td></tr><tr><td rowspan=1 colspan=1>工单编号</td><td rowspan=1 colspan=1>WO-2026-0817-042</td><td rowspan=1 colspan=1>工单状态</td><td rowspan=1 colspan=1>已完成</td></tr><tr><td rowspan=1 colspan=1>资产编号</td><td rowspan=1 colspan=1>SYNTH-042</td><td rowspan=1 colspan=1>设备型号</td><td rowspan=1 colspan=1>AX-200 温控模块</td></tr><tr><td rowspan=1 colspan=1>所属区域</td><td rowspan=1 colspan=1>二号车间/B-12</td><td rowspan=1 colspan=1>报修时间</td><td rowspan=1 colspan=1>2026-08-17 08:35</td></tr><tr><td rowspan=1 colspan=1>报修人</td><td rowspan=1 colspan=1>李明</td><td rowspan=1 colspan=1>维修负责人</td><td rowspan=1 colspan=1>周海</td></tr></table>\n\n## 一、故障描述\n\n设备在夜班运行期间出现间歇性过热告警，控制面板在04:10 和04:26两次进入保护模式。  \n现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。\n\n## 二、现场初检\n\n<table><tr><td rowspan=1 colspan=1>检查项目</td><td rowspan=1 colspan=1>读数</td><td rowspan=1 colspan=1>标准范围</td><td rowspan=1 colspan=1>结论</td></tr><tr><td rowspan=1 colspan=1>环境温度</td><td rowspan=1 colspan=1>28.4 C</td><td rowspan=1 colspan=1>15-35 C</td><td rowspan=1 colspan=1>正常</td></tr><tr><td rowspan=1 colspan=1>输入电压</td><td rowspan=1 colspan=1>23.8 V</td><td rowspan=1 colspan=1>22-26 V</td><td rowspan=1 colspan=1>正常</td></tr><tr><td rowspan=1 colspan=1>模块温度</td><td rowspan=1 colspan=1>76.2 C</td><td rowspan=1 colspan=1>&lt; 70 C</td><td rowspan=1 colspan=1>异常</td></tr><tr><td rowspan=1 colspan=1>风扇转速</td><td rowspan=1 colspan=1>1,120 rpm</td><td rowspan=1 colspan=1>&gt; 1,500 rpm</td><td rowspan=1 colspan=1>异常</td></tr><tr><td rowspan=1 colspan=1>报警代码</td><td rowspan=1 colspan=1>THR-07</td><td rowspan=1 colspan=1>无</td><td rowspan=1 colspan=1>已记录</td></tr></table>\n\n## 设备维修工单/检查记录\n\n## 三、诊断过程\n\n1. 断开主电源并等待 90 秒，确认直流母线电压降至 0 V；\n\n2. 拆下右侧风扇护罩，检查叶片、轴承和排风通道；\n\n3. 使用FLUKE-87V测量输入端、控制端和热敏电阻阻值；\n\n4. 读取控制器日志，确认 THR-07 与风扇低速状态同时出现；\n\n5. 将备用风扇接入测试端口，观察温度曲线15 分钟。\n\n## 四、测量记录\n\n<table><tr><td rowspan=1 colspan=1>时间</td><td rowspan=1 colspan=1>模块温度</td><td rowspan=1 colspan=1>风扇转速</td><td rowspan=1 colspan=1>备注</td></tr><tr><td rowspan=1 colspan=1>09:02</td><td rowspan=1 colspan=1>75.8 C</td><td rowspan=1 colspan=1>1,105 rpm</td><td rowspan=1 colspan=1>原风扇，持续报警</td></tr><tr><td rowspan=1 colspan=1>09:08</td><td rowspan=1 colspan=1>54.1 C</td><td rowspan=1 colspan=1>1,860 rpm</td><td rowspan=1 colspan=1>接入备用风扇</td></tr><tr><td rowspan=1 colspan=1>09:16</td><td rowspan=1 colspan=1>55.0 C</td><td rowspan=1 colspan=1>1,842 rpm</td><td rowspan=1 colspan=1>负载 60%</td></tr><tr><td rowspan=1 colspan=1>09:24</td><td rowspan=1 colspan=1>61.7 C</td><td rowspan=1 colspan=1>1,805 rpm</td><td rowspan=1 colspan=1>负载 85%</td></tr><tr><td rowspan=1 colspan=1>09:31</td><td rowspan=1 colspan=1>63.2 C</td><td rowspan=1 colspan=1>1,792 rpm</td><td rowspan=1 colspan=1>无报警</td></tr></table>\n\n## 五、处理措施\n\n原风扇型号FAN-AX200-12V的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘后重新固定护罩，恢复控制器参数并执行满载测试。\n\n## 设备维修工单/验收与签字\n\n## 六、更换零件\n\n<table><tr><td rowspan=1 colspan=1>零件名称</td><td rowspan=1 colspan=1>规格/型号</td><td rowspan=1 colspan=1>数量</td><td rowspan=1 colspan=1>追踪编号</td></tr><tr><td rowspan=1 colspan=1>冷却风扇</td><td rowspan=1 colspan=1>FAN-AX200-12V</td><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>SP-2026-0817-11</td></tr><tr><td rowspan=1 colspan=1>固定螺钉</td><td rowspan=1 colspan=1>M4 x 12 不锈钢</td><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>SP-2026-0817-12</td></tr></table>\n\n## 七、验收结果\n\n<table><tr><td rowspan=1 colspan=1>验收项目</td><td rowspan=1 colspan=1>结果</td><td rowspan=1 colspan=1>状态</td></tr><tr><td rowspan=1 colspan=1>空载运行 10 分钟</td><td rowspan=1 colspan=1>温度 49.6 C，无报警</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>额定负载运行 30 分钟</td><td rowspan=1 colspan=1>温度 63.2 C，转速 1,792 rpm</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>断电恢复测试</td><td rowspan=1 colspan=1>参数保持，日志无新增错误</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>外观与防护</td><td rowspan=1 colspan=1>护罩闭合，接地线牢固</td><td rowspan=1 colspan=1>通过</td></tr></table>\n\n## 八、结论\n\n故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在2026-09-01前将同批次模块纳入预防性巡检。\n\n维修负责人：周海\n\n生产确认：李明\n\n复核：王倩\n\n日期：2026-08-17\n\n日期：2026-08-17\n\n日期：2026-08-17",
+  "blocks": [
+    {
+      "id": "c07210c6-7289-48b2-aa89-5488ff249feb",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "设备维修工单",
+      "heading_level": 2,
+      "markdown": "设备维修工单",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          64.0,
+          317.0,
+          92.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "39bee9c5-c58b-484e-a542-aeb3a3548df6",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "华东制造中心/资产维护系统",
+      "heading_level": null,
+      "markdown": "华东制造中心/资产维护系统",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          102.0,
+          332.0,
+          120.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42767896-2dfc-4bf2-b7a2-6a2b7e342ecc",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间/B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "heading_level": null,
+      "markdown": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间/B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          92.0,
+          147.0,
+          868.0,
+          239.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/6cae5df62ba22c3ed99e53d29ea10c5a2c3f439c2c4e2acdd37101557cd11bcd.jpg"
+      }
+    },
+    {
+      "id": "e93596d4-cba5-449a-9158-04d62ea90904",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "一、故障描述",
+      "heading_level": 2,
+      "markdown": "一、故障描述",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          311.0,
+          270.0,
+          335.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15e50d6c-79a8-48e5-acc1-757a08716058",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备在夜班运行期间出现间歇性过热告警，控制面板在04:10 和04:26两次进入保护模式。  \n现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。",
+      "heading_level": null,
+      "markdown": "设备在夜班运行期间出现间歇性过热告警，控制面板在04:10 和04:26两次进入保护模式。  \n现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          89.0,
+          350.0,
+          909.0,
+          386.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bff3754d-2715-4715-b10a-b3f9f37cbf40",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "heading",
+      "native_type": null,
+      "text": "二、现场初检",
+      "heading_level": 2,
+      "markdown": "二、现场初检",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          413.0,
+          270.0,
+          438.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b738aea9-8099-400c-895e-ebb1001e7525",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15-35 C | 正常 |\n| 输入电压 | 23.8 V | 22-26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "heading_level": null,
+      "markdown": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15-35 C | 正常 |\n| 输入电压 | 23.8 V | 22-26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          92.0,
+          451.0,
+          830.0,
+          560.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/d492a5dbd33aeb4f3ad1b44924392330dfb27985a4245ebae948ba642221b725.jpg"
+      }
+    },
+    {
+      "id": "691ee1d4-25d4-4354-9d3d-1e3380445550",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单",
+      "heading_level": null,
+      "markdown": "维修工单",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          92.0,
+          21.0,
+          176.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5363ed41-36e6-4da0-9dda-782978e5893f",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维护中心",
+      "heading_level": null,
+      "markdown": "设备维护中心",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          781.0,
+          21.0,
+          907.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6bb22822-96d0-4417-bfdf-e6a18feb65ae",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          492.0,
+          956.0,
+          505.0,
+          971.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ab4c8ba6-ceea-42ee-86ab-695958a41d00",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "heading",
+      "native_type": null,
+      "text": "设备维修工单/检查记录",
+      "heading_level": 2,
+      "markdown": "设备维修工单/检查记录",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          90.0,
+          64.0,
+          425.0,
+          89.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "581b3803-0dfb-4515-b012-de4bf79c3cf0",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "三、诊断过程",
+      "heading_level": 2,
+      "markdown": "三、诊断过程",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          90.0,
+          142.0,
+          272.0,
+          167.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "93a78e27-fa1f-422e-ac6c-22c0bf770384",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 断开主电源并等待 90 秒，确认直流母线电压降至 0 V；",
+      "heading_level": null,
+      "markdown": "1. 断开主电源并等待 90 秒，确认直流母线电压降至 0 V；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          112.0,
+          183.0,
+          628.0,
+          200.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ccde9b0e-6d65-43cd-800d-60acc19dae6d",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 拆下右侧风扇护罩，检查叶片、轴承和排风通道；",
+      "heading_level": null,
+      "markdown": "2. 拆下右侧风扇护罩，检查叶片、轴承和排风通道；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          110.0,
+          212.0,
+          579.0,
+          230.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0aec6fe4-4c32-4bb7-96b9-613dbb56dc18",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 使用FLUKE-87V测量输入端、控制端和热敏电阻阻值；",
+      "heading_level": null,
+      "markdown": "3. 使用FLUKE-87V测量输入端、控制端和热敏电阻阻值；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          110.0,
+          241.0,
+          636.0,
+          259.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "36a12e83-38bf-4953-9061-9c34bf23c22d",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4. 读取控制器日志，确认 THR-07 与风扇低速状态同时出现；",
+      "heading_level": null,
+      "markdown": "4. 读取控制器日志，确认 THR-07 与风扇低速状态同时出现；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          110.0,
+          269.0,
+          660.0,
+          288.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6b938baf-9a29-4f7f-9b65-19348d041b92",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "5. 将备用风扇接入测试端口，观察温度曲线15 分钟。",
+      "heading_level": null,
+      "markdown": "5. 将备用风扇接入测试端口，观察温度曲线15 分钟。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          110.0,
+          299.0,
+          591.0,
+          317.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ee52397b-d138-49f4-b8df-dc99a7435b49",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "heading",
+      "native_type": null,
+      "text": "四、测量记录",
+      "heading_level": 2,
+      "markdown": "四、测量记录",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          90.0,
+          346.0,
+          272.0,
+          369.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "694e7926-8dc0-47fa-af57-ea9d6ad2326c",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "heading_level": null,
+      "markdown": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          92.0,
+          382.0,
+          825.0,
+          492.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/c8bf7e4244fdce7b0e3994491d09ee08e454d5c81347377b8593a9d417222bf6.jpg"
+      }
+    },
+    {
+      "id": "c11f77cc-1e1a-49a3-912f-91fef6fa147f",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "heading",
+      "native_type": null,
+      "text": "五、处理措施",
+      "heading_level": 2,
+      "markdown": "五、处理措施",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          90.0,
+          517.0,
+          270.0,
+          541.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ccb7533e-1600-4128-adfb-f7c627c95a20",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "原风扇型号FAN-AX200-12V的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘后重新固定护罩，恢复控制器参数并执行满载测试。",
+      "heading_level": null,
+      "markdown": "原风扇型号FAN-AX200-12V的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘后重新固定护罩，恢复控制器参数并执行满载测试。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          89.0,
+          556.0,
+          907.0,
+          592.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "012bd493-4b71-45fc-842e-bc441993ac94",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单",
+      "heading_level": null,
+      "markdown": "维修工单",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          92.0,
+          21.0,
+          176.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "37746737-f7c0-4f57-881f-57c7e1a7d4fc",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维护中心",
+      "heading_level": null,
+      "markdown": "设备维护中心",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          781.0,
+          21.0,
+          907.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "500a53f0-3ba5-478a-b314-a62dc64573a6",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          490.0,
+          956.0,
+          507.0,
+          971.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5625c487-4c7c-4ffc-907e-670748da5a68",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "heading",
+      "native_type": null,
+      "text": "设备维修工单/验收与签字",
+      "heading_level": 2,
+      "markdown": "设备维修工单/验收与签字",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          90.0,
+          64.0,
+          453.0,
+          89.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "eecc19a7-c1bb-46b7-8d97-5773dbe1ad4a",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "heading",
+      "native_type": null,
+      "text": "六、更换零件",
+      "heading_level": 2,
+      "markdown": "六、更换零件",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          90.0,
+          145.0,
+          270.0,
+          167.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f7b66115-863c-413c-a743-ebf91694f2a0",
+      "source_block_id": "mineru-content-0027",
+      "order_index": 26,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "heading_level": null,
+      "markdown": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          92.0,
+          180.0,
+          811.0,
+          236.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/36963066b91573cdcc05928263a662038c1cdd85c26852d478b273430bec3c5d.jpg"
+      }
+    },
+    {
+      "id": "3fbed1a8-7a6e-4a1e-b8d2-e7650c7b5715",
+      "source_block_id": "mineru-content-0028",
+      "order_index": 27,
+      "kind": "heading",
+      "native_type": null,
+      "text": "七、验收结果",
+      "heading_level": 2,
+      "markdown": "七、验收结果",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          90.0,
+          261.0,
+          270.0,
+          285.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e559e786-6a45-4a70-99a2-ac9f6e9df7ef",
+      "source_block_id": "mineru-content-0029",
+      "order_index": 28,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "heading_level": null,
+      "markdown": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          92.0,
+          299.0,
+          794.0,
+          388.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-005",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/4ffe44b65eba2596c94195832ad98540ca3071a251924de9fa98b4064aa993de.jpg"
+      }
+    },
+    {
+      "id": "5d152a15-5a49-44e3-b118-45d466dc51c1",
+      "source_block_id": "mineru-content-0030",
+      "order_index": 29,
+      "kind": "heading",
+      "native_type": null,
+      "text": "八、结论",
+      "heading_level": 2,
+      "markdown": "八、结论",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          90.0,
+          414.0,
+          213.0,
+          438.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5046425c-2f7d-43e8-af80-ba00e7b07835",
+      "source_block_id": "mineru-content-0031",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在2026-09-01前将同批次模块纳入预防性巡检。",
+      "heading_level": null,
+      "markdown": "故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在2026-09-01前将同批次模块纳入预防性巡检。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.0,
+          453.0,
+          905.0,
+          489.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d7e180f1-96bb-408c-bcff-7b95cc01df8f",
+      "source_block_id": "mineru-content-0032",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修负责人：周海",
+      "heading_level": null,
+      "markdown": "维修负责人：周海",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          94.0,
+          512.0,
+          262.0,
+          531.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "297cccac-cabb-4bea-b2fc-d916a902eb3b",
+      "source_block_id": "mineru-content-0033",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "生产确认：李明",
+      "heading_level": null,
+      "markdown": "生产确认：李明",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          339.0,
+          512.0,
+          485.0,
+          531.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d508555e-fd83-432b-bcd7-05487b98ed2e",
+      "source_block_id": "mineru-content-0034",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "复核：王倩",
+      "heading_level": null,
+      "markdown": "复核：王倩",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          584.0,
+          511.0,
+          692.0,
+          531.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2b0ebeed-6cfa-40bc-b70f-55be8a0e0563",
+      "source_block_id": "mineru-content-0035",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "日期：2026-08-17",
+      "heading_level": null,
+      "markdown": "日期：2026-08-17",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          95.0,
+          569.0,
+          265.0,
+          588.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "abec36da-47c7-4855-812d-9c4ab7262c6b",
+      "source_block_id": "mineru-content-0036",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "日期：2026-08-17",
+      "heading_level": null,
+      "markdown": "日期：2026-08-17",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          341.0,
+          569.0,
+          509.0,
+          589.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4736776b-34c8-40a7-b2e3-f4d7eaf84511",
+      "source_block_id": "mineru-content-0037",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "日期：2026-08-17",
+      "heading_level": null,
+      "markdown": "日期：2026-08-17",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          584.0,
+          569.0,
+          754.0,
+          588.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "332b4a10-a675-4de3-9c9a-64e528d988c1",
+      "source_block_id": "mineru-content-0038",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单",
+      "heading_level": null,
+      "markdown": "维修工单",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          92.0,
+          21.0,
+          176.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d628565f-9396-4cc3-8078-7a0696c4595c",
+      "source_block_id": "mineru-content-0039",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维护中心",
+      "heading_level": null,
+      "markdown": "设备维护中心",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          781.0,
+          21.0,
+          907.0,
+          38.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b2cae484-c3d1-40a9-b7f7-1afb51a2923e",
+      "source_block_id": "mineru-content-0040",
+      "order_index": 39,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          492.0,
+          956.0,
+          507.0,
+          971.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "42767896-2dfc-4bf2-b7a2-6a2b7e342ecc",
+      "html": "<table><tr><td rowspan=1 colspan=1>字段</td><td rowspan=1 colspan=1>内容</td><td rowspan=1 colspan=1>字段</td><td rowspan=1 colspan=1>内容</td></tr><tr><td rowspan=1 colspan=1>工单编号</td><td rowspan=1 colspan=1>WO-2026-0817-042</td><td rowspan=1 colspan=1>工单状态</td><td rowspan=1 colspan=1>已完成</td></tr><tr><td rowspan=1 colspan=1>资产编号</td><td rowspan=1 colspan=1>SYNTH-042</td><td rowspan=1 colspan=1>设备型号</td><td rowspan=1 colspan=1>AX-200 温控模块</td></tr><tr><td rowspan=1 colspan=1>所属区域</td><td rowspan=1 colspan=1>二号车间/B-12</td><td rowspan=1 colspan=1>报修时间</td><td rowspan=1 colspan=1>2026-08-17 08:35</td></tr><tr><td rowspan=1 colspan=1>报修人</td><td rowspan=1 colspan=1>李明</td><td rowspan=1 colspan=1>维修负责人</td><td rowspan=1 colspan=1>周海</td></tr></table>",
+      "markdown": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间/B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "caption": null,
+      "image_path": "images/6cae5df62ba22c3ed99e53d29ea10c5a2c3f439c2c4e2acdd37101557cd11bcd.jpg",
+      "page_number": 1,
+      "bbox": [
+        92.0,
+        147.0,
+        868.0,
+        239.0
+      ],
+      "num_rows": 5,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "字段",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "内容",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "字段",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "内容",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "工单编号",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "WO-2026-0817-042",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "工单状态",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "已完成",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "资产编号",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SYNTH-042",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "设备型号",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "AX-200 温控模块",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "所属区域",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "二号车间/B-12",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报修时间",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-17 08:35",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报修人",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "李明",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "维修负责人",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "周海",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "b738aea9-8099-400c-895e-ebb1001e7525",
+      "html": "<table><tr><td rowspan=1 colspan=1>检查项目</td><td rowspan=1 colspan=1>读数</td><td rowspan=1 colspan=1>标准范围</td><td rowspan=1 colspan=1>结论</td></tr><tr><td rowspan=1 colspan=1>环境温度</td><td rowspan=1 colspan=1>28.4 C</td><td rowspan=1 colspan=1>15-35 C</td><td rowspan=1 colspan=1>正常</td></tr><tr><td rowspan=1 colspan=1>输入电压</td><td rowspan=1 colspan=1>23.8 V</td><td rowspan=1 colspan=1>22-26 V</td><td rowspan=1 colspan=1>正常</td></tr><tr><td rowspan=1 colspan=1>模块温度</td><td rowspan=1 colspan=1>76.2 C</td><td rowspan=1 colspan=1>&lt; 70 C</td><td rowspan=1 colspan=1>异常</td></tr><tr><td rowspan=1 colspan=1>风扇转速</td><td rowspan=1 colspan=1>1,120 rpm</td><td rowspan=1 colspan=1>&gt; 1,500 rpm</td><td rowspan=1 colspan=1>异常</td></tr><tr><td rowspan=1 colspan=1>报警代码</td><td rowspan=1 colspan=1>THR-07</td><td rowspan=1 colspan=1>无</td><td rowspan=1 colspan=1>已记录</td></tr></table>",
+      "markdown": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15-35 C | 正常 |\n| 输入电压 | 23.8 V | 22-26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "caption": null,
+      "image_path": "images/d492a5dbd33aeb4f3ad1b44924392330dfb27985a4245ebae948ba642221b725.jpg",
+      "page_number": 1,
+      "bbox": [
+        92.0,
+        451.0,
+        830.0,
+        560.0
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "检查项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "读数",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "标准范围",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "结论",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "环境温度",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "28.4 C",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "15-35 C",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正常",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "输入电压",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "23.8 V",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "22-26 V",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正常",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "模块温度",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "76.2 C",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "< 70 C",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "异常",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "风扇转速",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,120 rpm",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "> 1,500 rpm",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "异常",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报警代码",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "THR-07",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "无",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "已记录",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "694e7926-8dc0-47fa-af57-ea9d6ad2326c",
+      "html": "<table><tr><td rowspan=1 colspan=1>时间</td><td rowspan=1 colspan=1>模块温度</td><td rowspan=1 colspan=1>风扇转速</td><td rowspan=1 colspan=1>备注</td></tr><tr><td rowspan=1 colspan=1>09:02</td><td rowspan=1 colspan=1>75.8 C</td><td rowspan=1 colspan=1>1,105 rpm</td><td rowspan=1 colspan=1>原风扇，持续报警</td></tr><tr><td rowspan=1 colspan=1>09:08</td><td rowspan=1 colspan=1>54.1 C</td><td rowspan=1 colspan=1>1,860 rpm</td><td rowspan=1 colspan=1>接入备用风扇</td></tr><tr><td rowspan=1 colspan=1>09:16</td><td rowspan=1 colspan=1>55.0 C</td><td rowspan=1 colspan=1>1,842 rpm</td><td rowspan=1 colspan=1>负载 60%</td></tr><tr><td rowspan=1 colspan=1>09:24</td><td rowspan=1 colspan=1>61.7 C</td><td rowspan=1 colspan=1>1,805 rpm</td><td rowspan=1 colspan=1>负载 85%</td></tr><tr><td rowspan=1 colspan=1>09:31</td><td rowspan=1 colspan=1>63.2 C</td><td rowspan=1 colspan=1>1,792 rpm</td><td rowspan=1 colspan=1>无报警</td></tr></table>",
+      "markdown": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "caption": null,
+      "image_path": "images/c8bf7e4244fdce7b0e3994491d09ee08e454d5c81347377b8593a9d417222bf6.jpg",
+      "page_number": 2,
+      "bbox": [
+        92.0,
+        382.0,
+        825.0,
+        492.0
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "时间",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "模块温度",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "风扇转速",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "备注",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:02",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "75.8 C",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,105 rpm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "原风扇，持续报警",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:08",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "54.1 C",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,860 rpm",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "接入备用风扇",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:16",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "55.0 C",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,842 rpm",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负载 60%",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:24",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "61.7 C",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,805 rpm",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负载 85%",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:31",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "63.2 C",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,792 rpm",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "无报警",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "f7b66115-863c-413c-a743-ebf91694f2a0",
+      "html": "<table><tr><td rowspan=1 colspan=1>零件名称</td><td rowspan=1 colspan=1>规格/型号</td><td rowspan=1 colspan=1>数量</td><td rowspan=1 colspan=1>追踪编号</td></tr><tr><td rowspan=1 colspan=1>冷却风扇</td><td rowspan=1 colspan=1>FAN-AX200-12V</td><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>SP-2026-0817-11</td></tr><tr><td rowspan=1 colspan=1>固定螺钉</td><td rowspan=1 colspan=1>M4 x 12 不锈钢</td><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>SP-2026-0817-12</td></tr></table>",
+      "markdown": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "caption": null,
+      "image_path": "images/36963066b91573cdcc05928263a662038c1cdd85c26852d478b273430bec3c5d.jpg",
+      "page_number": 3,
+      "bbox": [
+        92.0,
+        180.0,
+        811.0,
+        236.0
+      ],
+      "num_rows": 3,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "零件名称",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "规格/型号",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "数量",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "追踪编号",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "冷却风扇",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "FAN-AX200-12V",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SP-2026-0817-11",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "固定螺钉",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "M4 x 12 不锈钢",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "4",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SP-2026-0817-12",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-005",
+      "block_id": "e559e786-6a45-4a70-99a2-ac9f6e9df7ef",
+      "html": "<table><tr><td rowspan=1 colspan=1>验收项目</td><td rowspan=1 colspan=1>结果</td><td rowspan=1 colspan=1>状态</td></tr><tr><td rowspan=1 colspan=1>空载运行 10 分钟</td><td rowspan=1 colspan=1>温度 49.6 C，无报警</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>额定负载运行 30 分钟</td><td rowspan=1 colspan=1>温度 63.2 C，转速 1,792 rpm</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>断电恢复测试</td><td rowspan=1 colspan=1>参数保持，日志无新增错误</td><td rowspan=1 colspan=1>通过</td></tr><tr><td rowspan=1 colspan=1>外观与防护</td><td rowspan=1 colspan=1>护罩闭合，接地线牢固</td><td rowspan=1 colspan=1>通过</td></tr></table>",
+      "markdown": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "caption": null,
+      "image_path": "images/4ffe44b65eba2596c94195832ad98540ca3071a251924de9fa98b4064aa993de.jpg",
+      "page_number": 3,
+      "bbox": [
+        92.0,
+        299.0,
+        794.0,
+        388.0
+      ],
+      "num_rows": 5,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "验收项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "结果",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "状态",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "空载运行 10 分钟",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度 49.6 C，无报警",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "额定负载运行 30 分钟",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度 63.2 C，转速 1,792 rpm",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "断电恢复测试",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "参数保持，日志无新增错误",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "外观与防护",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "护罩闭合，接地线牢固",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": true,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "available",
+      "granularity": null,
+      "reason": null,
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:22:33.853247Z"
+}

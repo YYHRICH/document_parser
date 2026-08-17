@@ -1,0 +1,2264 @@
+{
+  "document_id": "5be9e432-188b-4a65-b025-72d8f0d29dbf",
+  "filename": "knowledge_base_article.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 108841,
+  "source_sha256": "7e18d821dc80d1b98d1037b1347a45536f47614f26765efcb4eeb3e557d52528",
+  "routing_decision": null,
+  "markdown": "## 企业知识库迁移指南\n\nKnowledge Base Migration Guide\n\n文档编号\n\nKB-MIG-2026\n\n负责人 生效日期\n\nKnowledge Platform Team 2026-08-17\n\n版本\n\n2.3\n\n适用范围\n\n内部产品、运维与支持团队\n\n状态\n\nApproved\n\n## 摘要 / Executive summary\n\n本文说明如何把产品手册、故障复盘、 FAQ 和服务公告迁移到统一的 LLMwiki 知识库。迁移不只是复制文件，还 需要保留标题层级、表格字段、引用来源、版本号和原文定位。\n\nThis guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service notices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval answers remain auditable.\n\n## 1. 迁移范围与成功标准\n\n- 只接收经过授权的产品、运维和公开技术材料；\n- 每个文档必须保留原始文件名、版本、发布日期和责任团队；\n- 表格中的金额、阈值、单位和枚举值不得被改写；\n- 低置信度的扫描页、复杂表格和不确定引用进入人工复核；\n- 迁移后用户可以通过章节、版本和产品名称检索到原文。\n\n## 2. 文档生命周期\n\n## 3. 角色与责任\n\n| 角色              | 输入                               | 责任                                              |\n|-----------------|----------------------------------|-------------------------------------------------|\n| 内容负责人 解析负责人 审核人 | 原始文档、版本说明 文件与解析结果 QualityPackage | 确认内容合法、更新日期和废弃版本 检查正文、表格、标题和来源定位 确认问题、修复记录和发布状态 |\n\n<!-- image -->\n\n## 4. 标准操作流程\n\n|   序号 | 阶段   | 操作 输出                                   |\n|------|------|-----------------------------------------|\n|    1 | 登记   | 记录 sample_id 、文件摘要、来源许可 和版本 manifest 记录 |\n|    2 | 预检   | 判断文件类型、是否扫描、是否包含 表格和图片 RoutingDecision  |\n|    3 | 解析   | 运行候选解析器并保存原生结果 ParsedDocument           |\n|    4 | 质量处理 | 恢复标题、表格字段和引用关系 QualityPackage           |\n|    5 | 发布   | 由内容负责人确认后建立版本索引 可检索页面                   |\n|    6 | 复盘   | 记录失败原因、人工修改和重新解析 建议 运行报告                |\n\n## 5. 推荐命名和元数据\n\n文件名使用稳定的业务名称，不使用本机临时路径：\n\nproduct-area\\_document-topic\\_version\\_date.ext payments\\_api-rate-limit\\_v2.3\\_2026-08-17.pdf\n\n必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生 新记录，不能静默覆盖旧文件。\n\n## 6. 命令行示例\n\n- # inspect one uploaded document\n\nllmwiki parse upload/payments\\_api-rate-limit\\_v2.3.pdf \\\n\n- --mode auto --quality strict --output task-result/\n- # publish only after the quality gate passes\n\nllmwiki publish task-result/ --visibility internal\n\n## 7. 双语检索说明 / Retrieval notes\n\n中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如'限流 / rate limit ' 、 '服 务等级协议 / SLA ' 。数字、单位、版本号和代码标识符必须按原样保存。\n\n## 8. 常见问题与处理策略\n\n| 问题                    | 处理策略 状态                                                     |\n|-----------------------|-------------------------------------------------------------|\n| 扫描页只有图片               | 使用 OCR ，保留页码和置信度；低置信度进 入人工复核 review                         |\n| 表格跨页且没有重复表头 文档出现旧版本链接 | 尝试恢复续接键；无法唯一判断时不绑定字段 review 保留链接并标记目标版本，不自动替换为当前 版本 warning |\n| 正文引用目标不唯一             | 生成 reference_of 候选关系，状态设为 man- ual_review_required review   |\n| 同一文件多次上传              | 通过版本和文件摘要区分，禁止覆盖既有结果 pass                                   |\n\n## 9. 发布前检查清单\n\n- 正文和标题顺序与原文件一致；\n- 表格列名、单位、合并表头和数值均可回溯；\n- 引用关系有明确目标和来源证据；\n- 质量报告、修复记录和重新解析建议齐全；\n- 页面展示不暴露本机路径、临时文件或敏感信息。\n\n## 10. 变更记录\n\n|   版本 | 日期         | 修改人 说明                               |\n|------|------------|--------------------------------------|\n|  2.1 | 2026-06-03 | Platform Team 初始迁移流程                 |\n|  2.2 | 2026-07-11 | Search Team 增加引用和版本字段                |\n|  2.3 | 2026-08-17 | Knowledge Platform Team 增加质量门和人工复核策略 |",
+  "blocks": [
+    {
+      "id": "0a70e67b-9d0c-4838-993d-ae048ba5a20d",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "企业知识库迁移指南",
+      "heading_level": 1,
+      "markdown": "# 企业知识库迁移指南",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          50.261609799999974,
+          248.2842,
+          72.17940980000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e8884273-3dfa-4880-8d67-d60d6c491e81",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Knowledge Base Migration Guide",
+      "heading_level": null,
+      "markdown": "Knowledge Base Migration Guide",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          75.60038080000004,
+          243.20982459999996,
+          87.74879399999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0fb1a06f-9d56-413a-bb06-7934c1770b30",
+      "source_block_id": "docling-TextItem-2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档编号",
+      "heading_level": null,
+      "markdown": "文档编号",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.016,
+          128.43812660000003,
+          92.8664,
+          138.40072659999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1f848e98-737d-4905-8a2a-701a12b58c00",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "KB-MIG-2026",
+      "heading_level": null,
+      "markdown": "KB-MIG-2026",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          136.371,
+          129.74322719999998,
+          197.27237380000003,
+          139.08814599999994
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b8f9c830-a121-4576-8d13-2654ee214e40",
+      "source_block_id": "docling-TextItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "负责人 生效日期",
+      "heading_level": null,
+      "markdown": "负责人 生效日期",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          296.262,
+          128.43812660000003,
+          336.11240000000004,
+          150.35572660000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "05287ffc-2ab2-4a08-98b8-1510364281eb",
+      "source_block_id": "docling-TextItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Knowledge Platform Team 2026-08-17",
+      "heading_level": null,
+      "markdown": "Knowledge Platform Team 2026-08-17",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          379.617,
+          129.74322719999998,
+          495.8905045999999,
+          151.04314599999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9bd12c05-77e0-4d3e-b137-a6e1dd7d34c1",
+      "source_block_id": "docling-TextItem-6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "版本",
+      "heading_level": null,
+      "markdown": "版本",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01600000000002,
+          140.39312659999996,
+          72.94120000000002,
+          150.35572660000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7e5d77c7-1163-4cb7-b0d9-6a48e44d1f8f",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2.3",
+      "heading_level": null,
+      "markdown": "2.3",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          136.37100000000004,
+          141.69822720000002,
+          150.21901400000002,
+          151.04314599999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "de16bdbe-6cac-4d42-b9b9-8e30be8a1ce8",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "适用范围",
+      "heading_level": null,
+      "markdown": "适用范围",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01600000000002,
+          152.34912659999998,
+          92.86640000000003,
+          162.31172660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e6506cf1-7784-479e-956a-bc0617acbeb9",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "内部产品、运维与支持团队",
+      "heading_level": null,
+      "markdown": "内部产品、运维与支持团队",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          136.37100000000004,
+          152.34912659999998,
+          255.92220000000003,
+          162.31172660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d0e645c3-637a-437b-889f-cd242bc32ec8",
+      "source_block_id": "docling-TextItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "状态",
+      "heading_level": null,
+      "markdown": "状态",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          296.262,
+          152.34912659999998,
+          316.1872,
+          162.31172660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ff326821-7d36-4f99-a572-df57aeadb3e9",
+      "source_block_id": "docling-TextItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Approved",
+      "heading_level": null,
+      "markdown": "Approved",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          379.617,
+          153.65422720000004,
+          422.256928,
+          162.999146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7fc19718-ce57-46e5-bdbf-25c0a59f049e",
+      "source_block_id": "docling-SectionHeaderItem-12",
+      "order_index": 12,
+      "kind": "heading",
+      "native_type": null,
+      "text": "摘要 / Executive summary",
+      "heading_level": 1,
+      "markdown": "# 摘要 / Executive summary",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          206.7876142,
+          226.4179976,
+          222.12370199999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95163285-25e7-40d6-9e6c-5097d33dc87b",
+      "source_block_id": "docling-TextItem-13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本文说明如何把产品手册、故障复盘、 FAQ 和服务公告迁移到统一的 LLMwiki 知识库。迁移不只是复制文件，还 需要保留标题层级、表格字段、引用来源、版本号和原文定位。",
+      "heading_level": null,
+      "markdown": "本文说明如何把产品手册、故障复盘、 FAQ 和服务公告迁移到统一的 LLMwiki 知识库。迁移不只是复制文件，还 需要保留标题层级、表格字段、引用来源、版本号和原文定位。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          238.37512660000004,
+          544.2473268000001,
+          260.29272660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a4183007-7be2-4042-a07a-ed0524b1ac75",
+      "source_block_id": "docling-TextItem-14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service notices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval answers remain auditable.",
+      "heading_level": null,
+      "markdown": "This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service notices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval answers remain auditable.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          267.57622720000006,
+          544.1926251999998,
+          300.8311460000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f8726f2b-3c4b-42a8-bb46-e8db47b34d47",
+      "source_block_id": "docling-SectionHeaderItem-15",
+      "order_index": 15,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1. 迁移范围与成功标准",
+      "heading_level": 1,
+      "markdown": "# 1. 迁移范围与成功标准",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          326.41461419999996,
+          197.41879999999998,
+          341.750702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f0d8caaf-64c7-43a2-9190-cf8005ef7cdf",
+      "source_block_id": "docling-ListItem-16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "只接收经过授权的产品、运维和公开技术材料；",
+      "heading_level": null,
+      "markdown": "只接收经过授权的产品、运维和公开技术材料；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          358.0031266,
+          285.1446000000001,
+          368.653146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ec94db7-14d7-415f-aa12-d40730a54423",
+      "source_block_id": "docling-ListItem-17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "每个文档必须保留原始文件名、版本、发布日期和责任团队；",
+      "heading_level": null,
+      "markdown": "每个文档必须保留原始文件名、版本、发布日期和责任团队；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          377.9281266,
+          344.9202000000001,
+          388.578146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "97cebc40-ea6a-4b03-833b-7cf1186e23d9",
+      "source_block_id": "docling-ListItem-18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格中的金额、阈值、单位和枚举值不得被改写；",
+      "heading_level": null,
+      "markdown": "表格中的金额、阈值、单位和枚举值不得被改写；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          397.8531266,
+          295.10720000000003,
+          408.503146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "167407a9-d85c-4f69-9f8a-8cb32966e811",
+      "source_block_id": "docling-ListItem-19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "低置信度的扫描页、复杂表格和不确定引用进入人工复核；",
+      "heading_level": null,
+      "markdown": "低置信度的扫描页、复杂表格和不确定引用进入人工复核；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          417.7791266,
+          334.95760000000007,
+          428.429146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6c7cf60f-56d1-41ec-971b-09d4c1bbaadb",
+      "source_block_id": "docling-ListItem-20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "迁移后用户可以通过章节、版本和产品名称检索到原文。",
+      "heading_level": null,
+      "markdown": "迁移后用户可以通过章节、版本和产品名称检索到原文。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          437.7041266,
+          324.9950000000001,
+          448.354146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2230904f-4b57-4e68-b064-2e14cf9cfc72",
+      "source_block_id": "docling-SectionHeaderItem-21",
+      "order_index": 21,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2. 文档生命周期",
+      "heading_level": 1,
+      "markdown": "# 2. 文档生命周期",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          473.93761420000004,
+          154.3802,
+          489.273702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4b9f2491-9545-471f-abfb-482a787244df",
+      "source_block_id": "docling-SectionHeaderItem-22",
+      "order_index": 22,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3. 角色与责任",
+      "heading_level": 1,
+      "markdown": "# 3. 角色与责任",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          688.6176142,
+          140.034,
+          703.953702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f6cdb44b-f4cc-4735-aa82-ca8e677ef722",
+      "source_block_id": "docling-TableItem-23",
+      "order_index": 23,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 角色 | 输入 | 责任 |\n| --- | --- | --- |\n| 内容负责人 解析负责人 审核人 | 原始文档、版本说明 文件与解析结果 QualityPackage | 确认内容合法、更新日期和废弃版本 检查正文、表格、标题和来源定位 确认问题、修复记录和发布状态 |",
+      "heading_level": null,
+      "markdown": "| 角色 | 输入 | 责任 |\n| --- | --- | --- |\n| 内容负责人 解析负责人 审核人 | 原始文档、版本说明 文件与解析结果 QualityPackage | 确认内容合法、更新日期和废弃版本 检查正文、表格、标题和来源定位 确认问题、修复记录和发布状态 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          49.83121881131552,
+          718.7574191729487,
+          460.1475521155015,
+          777.7732688537722
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "79806824-939f-49b1-b7c3-af7a8ca5a83e",
+      "source_block_id": "docling-PictureItem-24",
+      "order_index": 24,
+      "kind": "image",
+      "native_type": null,
+      "text": null,
+      "heading_level": null,
+      "markdown": "![<bound method FloatingItem.caption_text of PictureItem(self_ref='#/pictures/0', parent=RefItem(cref='#/body'), children=[RefItem(cref='#/texts/25'), RefItem(cref='#/texts/26'), RefItem(cref='#/texts/27'), RefItem(cref='#/texts/28'), RefItem(cref='#/texts/29'), RefItem(cref='#/texts/30'), RefItem(cref='#/texts/31'), RefItem(cref='#/texts/32')], content_layer=<ContentLayer.BODY: 'body'>, meta=None, label=<DocItemLabel.PICTURE: 'picture'>, prov=[ProvenanceItem(page_no=1, bbox=BoundingBox(l=233.40601681515327, t=338.1669116251286, r=361.22085793728337, b=180.8427685632364, coord_origin=<CoordOrigin.BOTTOMLEFT: 'BOTTOMLEFT'>), charspan=(0, 0))], source=[], comments=[], captions=[], references=[], footnotes=[], image=None, annotations=[])>]()",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          233.40601681515327,
+          503.7231030233089,
+          361.22085793728337,
+          661.0472460852011
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0191f20a-f662-4579-ae38-e0744d469e77",
+      "source_block_id": "docling-SectionHeaderItem-25",
+      "order_index": 25,
+      "kind": "heading",
+      "native_type": null,
+      "text": "4. 标准操作流程",
+      "heading_level": 1,
+      "markdown": "# 4. 标准操作流程",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          50.580614200000014,
+          154.3802,
+          65.91670199999999
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c80732dd-de83-40b3-b320-14d9aa48696f",
+      "source_block_id": "docling-TableItem-26",
+      "order_index": 26,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 序号 | 阶段 | 操作 输出 |\n| --- | --- | --- |\n| 1 | 登记 | 记录 sample_id 、文件摘要、来源许可 和版本 manifest 记录 |\n| 2 | 预检 | 判断文件类型、是否扫描、是否包含 表格和图片 RoutingDecision |\n| 3 | 解析 | 运行候选解析器并保存原生结果 ParsedDocument |\n| 4 | 质量处理 | 恢复标题、表格字段和引用关系 QualityPackage |\n| 5 | 发布 | 由内容负责人确认后建立版本索引 可检索页面 |\n| 6 | 复盘 | 记录失败原因、人工修改和重新解析 建议 运行报告 |",
+      "heading_level": null,
+      "markdown": "| 序号 | 阶段 | 操作 输出 |\n| --- | --- | --- |\n| 1 | 登记 | 记录 sample_id 、文件摘要、来源许可 和版本 manifest 记录 |\n| 2 | 预检 | 判断文件类型、是否扫描、是否包含 表格和图片 RoutingDecision |\n| 3 | 解析 | 运行候选解析器并保存原生结果 ParsedDocument |\n| 4 | 质量处理 | 恢复标题、表格字段和引用关系 QualityPackage |\n| 5 | 发布 | 由内容负责人确认后建立版本索引 可检索页面 |\n| 6 | 复盘 | 记录失败原因、人工修改和重新解析 建议 运行报告 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          88.68412108537467,
+          87.55866775462505,
+          505.818175715446,
+          219.2671921175779
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "00c372a8-1d6b-4a43-9d0b-81c2e7a88e15",
+      "source_block_id": "docling-SectionHeaderItem-27",
+      "order_index": 27,
+      "kind": "heading",
+      "native_type": null,
+      "text": "5. 推荐命名和元数据",
+      "heading_level": 1,
+      "markdown": "# 5. 推荐命名和元数据",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          245.07861419999995,
+          183.07259999999997,
+          260.4147019999999
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "27ec8dba-3a08-462e-bfb9-36bdf591bdec",
+      "source_block_id": "docling-TextItem-28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文件名使用稳定的业务名称，不使用本机临时路径：",
+      "heading_level": null,
+      "markdown": "文件名使用稳定的业务名称，不使用本机临时路径：",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          276.6661266,
+          280.16380000000004,
+          286.62872660000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7bab273f-d87f-44c7-9b4b-de3f30e999d2",
+      "source_block_id": "docling-TextItem-29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "product-area_document-topic_version_date.ext payments_api-rate-limit_v2.3_2026-08-17.pdf",
+      "heading_level": null,
+      "markdown": "product-area_document-topic_version_date.ext payments_api-rate-limit_v2.3_2026-08-17.pdf",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          301.3840971999999,
+          281.16006000000016,
+          323.30169720000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c67f6cf9-7ae0-4302-a0de-9fd75697de16",
+      "source_block_id": "docling-TextItem-30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生 新记录，不能静默覆盖旧文件。",
+      "heading_level": null,
+      "markdown": "必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生 新记录，不能静默覆盖旧文件。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          336.4421266,
+          544.2524008000003,
+          358.3597266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3d4bcc96-1016-4c8f-910e-8d5e62b3c84f",
+      "source_block_id": "docling-SectionHeaderItem-31",
+      "order_index": 31,
+      "kind": "heading",
+      "native_type": null,
+      "text": "6. 命令行示例",
+      "heading_level": 1,
+      "markdown": "# 6. 命令行示例",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          384.6316142,
+          140.034,
+          399.967702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0038516-c10a-4877-b44a-318c04990e98",
+      "source_block_id": "docling-ListItem-32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "# inspect one uploaded document",
+      "heading_level": null,
+      "markdown": "# inspect one uploaded document",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          417.0260972,
+          213.15535240000008,
+          426.9886972
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "db1b085c-c452-4ba5-ac0e-b5bc71d5bd4a",
+      "source_block_id": "docling-TextItem-33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\",
+      "heading_level": null,
+      "markdown": "llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          428.98109719999997,
+          338.68411240000023,
+          438.9436972
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7be2f05f-57b1-404c-975c-228d9a1de764",
+      "source_block_id": "docling-ListItem-34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "--mode auto --quality strict --output task-result/",
+      "heading_level": null,
+      "markdown": "--mode auto --quality strict --output task-result/",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          61.484,
+          440.93609719999995,
+          323.00225000000023,
+          450.89869719999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "eea24081-3717-44a1-8297-4a4bb3084c33",
+      "source_block_id": "docling-ListItem-35",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "# publish only after the quality gate passes",
+      "heading_level": null,
+      "markdown": "# publish only after the quality gate passes",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          464.84709719999995,
+          281.15009740000016,
+          474.80969719999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "980e6b0a-213b-49e7-bd07-f3e748dc34f9",
+      "source_block_id": "docling-TextItem-36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "llmwiki publish task-result/ --visibility internal",
+      "heading_level": null,
+      "markdown": "llmwiki publish task-result/ --visibility internal",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          476.80209719999993,
+          312.5322874000002,
+          486.76469719999994
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a4b70cda-ed41-439b-99e5-5d6fcef70273",
+      "source_block_id": "docling-SectionHeaderItem-37",
+      "order_index": 37,
+      "kind": "heading",
+      "native_type": null,
+      "text": "7. 双语检索说明 / Retrieval notes",
+      "heading_level": 1,
+      "markdown": "# 7. 双语检索说明 / Retrieval notes",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          512.2286142,
+          269.17604880000005,
+          527.564702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0a7e9725-7368-4ca8-9110-6be2e1dc222b",
+      "source_block_id": "docling-TextItem-38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如'限流 / rate limit ' 、 '服 务等级协议 / SLA ' 。数字、单位、版本号和代码标识符必须按原样保存。",
+      "heading_level": null,
+      "markdown": "中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如'限流 / rate limit ' 、 '服 务等级协议 / SLA ' 。数字、单位、版本号和代码标识符必须按原样保存。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          543.8171265999999,
+          544.2537724,
+          566.422146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "21deb145-fa30-4b1b-a26b-dff95ecfeeac",
+      "source_block_id": "docling-SectionHeaderItem-39",
+      "order_index": 39,
+      "kind": "heading",
+      "native_type": null,
+      "text": "8. 常见问题与处理策略",
+      "heading_level": 1,
+      "markdown": "# 8. 常见问题与处理策略",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          50.580614200000014,
+          197.41879999999998,
+          65.91670199999999
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "27360916-8139-4924-92d6-1554d6b81c3e",
+      "source_block_id": "docling-TableItem-40",
+      "order_index": 40,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 问题 | 处理策略 状态 |\n| --- | --- |\n| 扫描页只有图片 | 使用 OCR ，保留页码和置信度；低置信度进 入人工复核 review |\n| 表格跨页且没有重复表头 文档出现旧版本链接 | 尝试恢复续接键；无法唯一判断时不绑定字段 review 保留链接并标记目标版本，不自动替换为当前 版本 warning |\n| 正文引用目标不唯一 | 生成 reference_of 候选关系，状态设为 man- ual_review_required review |\n| 同一文件多次上传 | 通过版本和文件摘要区分，禁止覆盖既有结果 pass |",
+      "heading_level": null,
+      "markdown": "| 问题 | 处理策略 状态 |\n| --- | --- |\n| 扫描页只有图片 | 使用 OCR ，保留页码和置信度；低置信度进 入人工复核 review |\n| 表格跨页且没有重复表头 文档出现旧版本链接 | 尝试恢复续接键；无法唯一判断时不绑定字段 review 保留链接并标记目标版本，不自动替换为当前 版本 warning |\n| 正文引用目标不唯一 | 生成 reference_of 候选关系，状态设为 man- ual_review_required review |\n| 同一文件多次上传 | 通过版本和文件摘要区分，禁止覆盖既有结果 pass |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          84.82276179319983,
+          87.22439135646778,
+          509.7519109733841,
+          206.96156401933786
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003"
+      }
+    },
+    {
+      "id": "09213f19-6871-4f5e-a407-e4f8047247b2",
+      "source_block_id": "docling-SectionHeaderItem-41",
+      "order_index": 41,
+      "kind": "heading",
+      "native_type": null,
+      "text": "9. 发布前检查清单",
+      "heading_level": 1,
+      "markdown": "# 9. 发布前检查清单",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          233.12361420000002,
+          168.72639999999998,
+          248.459702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "de79e90e-3cbe-4501-803d-154376e611b8",
+      "source_block_id": "docling-ListItem-42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "正文和标题顺序与原文件一致；",
+      "heading_level": null,
+      "markdown": "正文和标题顺序与原文件一致；",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          264.71112660000006,
+          215.4064,
+          275.3611460000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "32f26d31-ba85-4d53-9ba3-3b5f732656ae",
+      "source_block_id": "docling-ListItem-43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格列名、单位、合并表头和数值均可回溯；",
+      "heading_level": null,
+      "markdown": "表格列名、单位、合并表头和数值均可回溯；",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          284.6361266,
+          275.182,
+          295.28614600000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "58d6f82e-a9e6-4a3c-a871-5cb5a4124402",
+      "source_block_id": "docling-ListItem-44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "引用关系有明确目标和来源证据；",
+      "heading_level": null,
+      "markdown": "引用关系有明确目标和来源证据；",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          304.56212659999994,
+          225.369,
+          315.21214599999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6628db8f-ca26-49bf-8d89-224ae4282512",
+      "source_block_id": "docling-ListItem-45",
+      "order_index": 45,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "质量报告、修复记录和重新解析建议齐全；",
+      "heading_level": null,
+      "markdown": "质量报告、修复记录和重新解析建议齐全；",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          324.4871266,
+          265.21940000000006,
+          335.13714600000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "68a1c912-9adf-4bb1-b211-c1c3509d5b52",
+      "source_block_id": "docling-ListItem-46",
+      "order_index": 46,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "页面展示不暴露本机路径、临时文件或敏感信息。",
+      "heading_level": null,
+      "markdown": "页面展示不暴露本机路径、临时文件或敏感信息。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          344.4121266,
+          295.10720000000003,
+          355.06214600000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "487eb253-e501-429e-a298-bfb8f9184951",
+      "source_block_id": "docling-SectionHeaderItem-47",
+      "order_index": 47,
+      "kind": "heading",
+      "native_type": null,
+      "text": "10. 变更记录",
+      "heading_level": 1,
+      "markdown": "# 10. 变更记录",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          380.64661420000004,
+          133.6658,
+          395.982702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bf226ef1-4587-4391-82b9-1bc5832dec39",
+      "source_block_id": "docling-TableItem-48",
+      "order_index": 48,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 版本 | 日期 | 修改人 说明 |\n| --- | --- | --- |\n| 2.1 | 2026-06-03 | Platform Team 初始迁移流程 |\n| 2.2 | 2026-07-11 | Search Team 增加引用和版本字段 |\n| 2.3 | 2026-08-17 | Knowledge Platform Team 增加质量门和人工复核策略 |",
+      "heading_level": null,
+      "markdown": "| 版本 | 日期 | 修改人 说明 |\n| --- | --- | --- |\n| 2.1 | 2026-06-03 | Platform Team 初始迁移流程 |\n| 2.2 | 2026-07-11 | Search Team 增加引用和版本字段 |\n| 2.3 | 2026-08-17 | Knowledge Platform Team 增加质量门和人工复核策略 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          49.98219162578843,
+          410.38309368612397,
+          495.49178481200914,
+          482.28959330395213
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004"
+      }
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "f6cdb44b-f4cc-4735-aa82-ca8e677ef722",
+      "html": null,
+      "markdown": "| 角色 | 输入 | 责任 |\n| --- | --- | --- |\n| 内容负责人 解析负责人 审核人 | 原始文档、版本说明 文件与解析结果 QualityPackage | 确认内容合法、更新日期和废弃版本 检查正文、表格、标题和来源定位 确认问题、修复记录和发布状态 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        49.83121881131552,
+        718.7574191729487,
+        460.1475521155015,
+        777.7732688537722
+      ],
+      "num_rows": 2,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "角色",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.016,
+            119.11688804843743,
+            72.9412,
+            109.15428804843748
+          ]
+        },
+        {
+          "text": "输入",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            144.875,
+            119.11688804843743,
+            164.8002,
+            109.15428804843748
+          ]
+        },
+        {
+          "text": "责任",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            282.089,
+            119.11688804843743,
+            302.0142,
+            109.15428804843748
+          ]
+        },
+        {
+          "text": "内容负责人 解析负责人 审核人",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.01599999999999,
+            102.15488804843744,
+            102.82900000000001,
+            68.28228804843741
+          ]
+        },
+        {
+          "text": "原始文档、版本说明 文件与解析结果 QualityPackage",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            144.875,
+            102.15488804843744,
+            234.5384,
+            67.59486864843745
+          ]
+        },
+        {
+          "text": "确认内容合法、更新日期和废弃版本 检查正文、表格、标题和来源定位 确认问题、修复记录和发布状态",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            282.089,
+            102.15488804843744,
+            441.49060000000014,
+            68.28228804843741
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "c80732dd-de83-40b3-b320-14d9aa48696f",
+      "html": null,
+      "markdown": "| 序号 | 阶段 | 操作 输出 |\n| --- | --- | --- |\n| 1 | 登记 | 记录 sample_id 、文件摘要、来源许可 和版本 manifest 记录 |\n| 2 | 预检 | 判断文件类型、是否扫描、是否包含 表格和图片 RoutingDecision |\n| 3 | 解析 | 运行候选解析器并保存原生结果 ParsedDocument |\n| 4 | 质量处理 | 恢复标题、表格字段和引用关系 QualityPackage |\n| 5 | 发布 | 由内容负责人确认后建立版本索引 可检索页面 |\n| 6 | 复盘 | 记录失败原因、人工修改和重新解析 建议 运行报告 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        88.68412108537467,
+        87.55866775462505,
+        505.818175715446,
+        219.2671921175779
+      ],
+      "num_rows": 7,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "序号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            91.818,
+            750.1808880484375,
+            111.7432,
+            740.2182880484376
+          ]
+        },
+        {
+          "text": "阶段",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            124.146637,
+            750.1808880484375,
+            144.07183700000002,
+            740.2182880484376
+          ]
+        },
+        {
+          "text": "操作 输出",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            227.347,
+            750.1808880484375,
+            415.6662,
+            740.2182880484376
+          ]
+        },
+        {
+          "text": "1",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.818,
+            731.9137874484375,
+            97.3572056,
+            722.5688686484375
+          ]
+        },
+        {
+          "text": "登记",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.149,
+            733.2188880484375,
+            144.07420000000002,
+            723.2562880484375
+          ]
+        },
+        {
+          "text": "记录 sample_id 、文件摘要、来源许可 和版本 manifest 记录",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            733.2188880484375,
+            456.0862,
+            711.3012880484375
+          ]
+        },
+        {
+          "text": "2",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.81799999999998,
+            708.0037874484375,
+            97.35720559999999,
+            698.6588686484375
+          ]
+        },
+        {
+          "text": "预检",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.14899999999999,
+            709.3088880484376,
+            144.0742,
+            699.3462880484375
+          ]
+        },
+        {
+          "text": "判断文件类型、是否扫描、是否包含 表格和图片 RoutingDecision",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            709.3088880484376,
+            468.2687279999999,
+            687.3902880484375
+          ]
+        },
+        {
+          "text": "3",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.81799999999998,
+            684.0927874484375,
+            97.35720559999999,
+            674.7478686484375
+          ]
+        },
+        {
+          "text": "解析",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.14899999999999,
+            685.3978880484375,
+            144.0742,
+            675.4352880484375
+          ]
+        },
+        {
+          "text": "运行候选解析器并保存原生结果 ParsedDocument",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            685.3978880484375,
+            472.7020849999999,
+            674.7478686484375
+          ]
+        },
+        {
+          "text": "4",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.81799999999998,
+            672.1377874484375,
+            97.35720559999999,
+            662.7928686484375
+          ]
+        },
+        {
+          "text": "质量处理",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.14899999999999,
+            673.4428880484376,
+            163.99939999999998,
+            663.4802880484375
+          ]
+        },
+        {
+          "text": "恢复标题、表格字段和引用关系 QualityPackage",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            673.4428880484376,
+            465.5090877999999,
+            662.7928686484375
+          ]
+        },
+        {
+          "text": "5",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.81799999999998,
+            660.1827874484375,
+            97.35720559999999,
+            650.8378686484375
+          ]
+        },
+        {
+          "text": "发布",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.14899999999999,
+            661.4878880484375,
+            144.0742,
+            651.5252880484375
+          ]
+        },
+        {
+          "text": "由内容负责人确认后建立版本索引 可检索页面",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            661.4878880484375,
+            445.54786520000016,
+            651.5252880484375
+          ]
+        },
+        {
+          "text": "6",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            91.81799999999998,
+            648.2277874484375,
+            97.35720559999999,
+            638.8828686484375
+          ]
+        },
+        {
+          "text": "复盘",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            124.14899999999999,
+            649.5328880484375,
+            144.0742,
+            639.5702880484375
+          ]
+        },
+        {
+          "text": "记录失败原因、人工修改和重新解析 建议 运行报告",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            227.34699999999998,
+            649.5328880484375,
+            435.5914,
+            627.6152880484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "27360916-8139-4924-92d6-1554d6b81c3e",
+      "html": null,
+      "markdown": "| 问题 | 处理策略 状态 |\n| --- | --- |\n| 扫描页只有图片 | 使用 OCR ，保留页码和置信度；低置信度进 入人工复核 review |\n| 表格跨页且没有重复表头 文档出现旧版本链接 | 尝试恢复续接键；无法唯一判断时不绑定字段 review 保留链接并标记目标版本，不自动替换为当前 版本 warning |\n| 正文引用目标不唯一 | 生成 reference_of 候选关系，状态设为 man- ual_review_required review |\n| 同一文件多次上传 | 通过版本和文件摘要区分，禁止覆盖既有结果 pass |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        84.82276179319983,
+        87.22439135646778,
+        509.7519109733841,
+        206.96156401933786
+      ],
+      "num_rows": 5,
+      "num_cols": 2,
+      "cells": [
+        {
+          "text": "问题",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            88.14099999999999,
+            750.1808880484375,
+            108.06620000000001,
+            740.2182880484376
+          ]
+        },
+        {
+          "text": "处理策略 状态",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            219.685,
+            750.1808880484375,
+            442.02020000000005,
+            740.2182880484376
+          ]
+        },
+        {
+          "text": "扫描页只有图片",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            88.14099999999999,
+            733.2188880484375,
+            157.8792,
+            723.2562880484375
+          ]
+        },
+        {
+          "text": "使用 OCR ，保留页码和置信度；低置信度进 入人工复核 review",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.685,
+            733.2188880484375,
+            450.8769514,
+            711.3012880484375
+          ]
+        },
+        {
+          "text": "表格跨页且没有重复表头 文档出现旧版本链接",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            88.14100000000002,
+            709.3088880484376,
+            197.7296,
+            687.3902880484375
+          ]
+        },
+        {
+          "text": "尝试恢复续接键；无法唯一判断时不绑定字段 review 保留链接并标记目标版本，不自动替换为当前 版本 warning",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.6772078,
+            709.3088880484376,
+            456.9740626,
+            675.4352880484375
+          ]
+        },
+        {
+          "text": "正文引用目标不唯一",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            88.14100000000002,
+            673.4428880484376,
+            177.8044,
+            663.4802880484375
+          ]
+        },
+        {
+          "text": "生成 reference_of 候选关系，状态设为 man- ual_review_required review",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.68500000000003,
+            673.4428880484376,
+            450.8769514,
+            650.8378686484375
+          ]
+        },
+        {
+          "text": "同一文件多次上传",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            88.14100000000002,
+            649.5328880484375,
+            167.8418,
+            639.5702880484375
+          ]
+        },
+        {
+          "text": "通过版本和文件摘要区分，禁止覆盖既有结果 pass",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            219.68500000000003,
+            649.5328880484375,
+            443.1360112,
+            638.8828686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "bf226ef1-4587-4391-82b9-1bc5832dec39",
+      "html": null,
+      "markdown": "| 版本 | 日期 | 修改人 说明 |\n| --- | --- | --- |\n| 2.1 | 2026-06-03 | Platform Team 初始迁移流程 |\n| 2.2 | 2026-07-11 | Search Team 增加引用和版本字段 |\n| 2.3 | 2026-08-17 | Knowledge Platform Team 增加质量门和人工复核策略 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        49.98219162578843,
+        410.38309368612397,
+        495.49178481200914,
+        482.28959330395213
+      ],
+      "num_rows": 4,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "版本",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.016,
+            427.1448880484375,
+            72.9412,
+            417.1822880484375
+          ]
+        },
+        {
+          "text": "日期",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            125.03299999999999,
+            427.1448880484375,
+            144.95819999999998,
+            417.1822880484375
+          ]
+        },
+        {
+          "text": "修改人 说明",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            197.049,
+            427.1448880484375,
+            328.6762,
+            417.1822880484375
+          ]
+        },
+        {
+          "text": "2.1",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.016,
+            408.8777874484375,
+            66.864014,
+            399.5328686484375
+          ]
+        },
+        {
+          "text": "2026-06-03",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            125.03299999999999,
+            408.8777874484375,
+            175.98173640000002,
+            399.5328686484375
+          ]
+        },
+        {
+          "text": "Platform Team 初始迁移流程",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            197.03271020000003,
+            410.1828880484375,
+            368.52660000000003,
+            399.5328686484375
+          ]
+        },
+        {
+          "text": "2.2",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.01599999999996,
+            396.92278744843753,
+            66.86401399999997,
+            387.5778686484375
+          ]
+        },
+        {
+          "text": "2026-07-11",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            125.03299999999996,
+            396.92278744843753,
+            175.244504,
+            387.5778686484375
+          ]
+        },
+        {
+          "text": "Search Team 增加引用和版本字段",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            197.0327102,
+            398.22788804843753,
+            398.4144,
+            387.5778686484375
+          ]
+        },
+        {
+          "text": "2.3",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.015999999999934,
+            384.96778744843755,
+            66.86401399999994,
+            375.62286864843753
+          ]
+        },
+        {
+          "text": "2026-08-17",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            125.03299999999993,
+            384.96778744843755,
+            175.98173639999996,
+            375.62286864843753
+          ]
+        },
+        {
+          "text": "Knowledge Platform Team 增加质量门和人工复核策略",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            197.03271019999997,
+            386.27288804843755,
+            428.3022,
+            363.66786864843755
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:22:16.270396Z"
+}

@@ -1,5 +1,5 @@
 {
-  "document_id": "6c748f82-4ec7-44fa-9605-2bc139ef864b",
+  "document_id": "d67d0f7b-34fc-4886-b39e-338bf4bcd0a8",
   "filename": "procurement_table_positive.pdf",
   "file_type": "application/pdf",
   "source_size_bytes": 70349,
@@ -8,7 +8,7 @@
   "markdown": "生产线温控模块采购比价报告\n\n项目编号：PROC-2026-0817 采购部门：设备工程部 评估日期：2026-08-17\n\n一、采购需求\n\n本次采购用于替换二号车间 温控模块的冷却组件。需求数量为 套，要求额定电压 V、工作温度 AX-200 120 12\n\n-20至70C，并提供至少12个月质保。报价有效期为30日。\n\n二、供应商报价与技术符合性\n\n三、交付与服务比较\n\n1\n\n| 供应商 | 型号 | 技术参数 |  | 商务条款 |  |\n| --- | --- | --- | --- | --- | --- |\n|  |  | 额定电压 | 温度范围 | 含税单价（元） | 质保（月） |\n| 华东精工 | FAN-AX200-A | 12V | -20–70C | 186.00 | 18 |\n| 北辰机电 | FAN-AX200-B | 12V | -10–65C | 172.00 | 12 |\n| 远景自动化 | FAN-AX200-C | 24V | -20–70C | 165.00 | 24 |\n\n| 项目 | 华东精工 | 北辰机电 | 远景自动化 |\n| --- | --- | --- | --- |\n| 交付周期 | 14个工作日 | 10个工作日 | 21个工作日 |\n| 现场安装 | 含首次安装 | 不含 | 含远程指导 |\n| 质保响应 | 24小时内 | 48小时内 | 24小时内 |\n| 备件库存 | 上海仓80套 | 南京仓40套 | 深圳仓120套 |\n\n采购比价报告 评审结论 /\n\n四、综合评分\n\n五、评审意见\n\n华东精工的FAN-AX200-A满足电压、温度范围、交付和质保要求，综合风险最低。北辰机电单价较低但温度上限和售后响应\n\n不满足关键要求。远景自动化的额定电压不符合设备输入规格，不能直接替换。\n\n六、推荐采购方案\n\n七、审批记录\n\n采购申请：陈琳 技术复核：周海 部门批准：王倩\n\n日期：2026-08-17 日期：2026-08-17 日期：2026-08-17\n\nSyntheticprocurementreport;suppliernamesandamountsarefictional.\n\n2\n\n| 供应商 | 技术符合\n(30) | 价格\n(25) | 交付\n(20) | 服务\n(15) | 总分\n(90) |\n| --- | --- | --- | --- | --- | --- |\n| 华东精工 | 30 | 20 | 16 | 14 | 80 |\n| 北辰机电 | 24 | 25 | 18 | 10 | 77 |\n| 远景自动化 | 20 | 24 | 12 | 14 | 70 |\n\n| 项目 | 推荐值 | 证据来源 |\n| --- | --- | --- |\n| 推荐供应商 | 华东精工 | 技术报价单HS-0817-A |\n| 推荐型号 | FAN-AX200-A | 规格书第2页 |\n| 采购数量 | 120套 | 设备工程部需求单REQ-0817 |\n| 预计含税金额 | 22,320.00元 | 单价186.00x120 |\n| 质保要求 | 18个月 | 供应商承诺函 |",
   "blocks": [
     {
-      "id": "74f7abab-893c-4aa2-8c77-4f505d9d4bd2",
+      "id": "caf759b9-1658-47d1-b894-b386d4b06fa2",
       "source_block_id": "pdfplumber-p1-l0",
       "order_index": 0,
       "kind": "paragraph",
@@ -36,7 +36,7 @@
       "metadata": {}
     },
     {
-      "id": "51fe02d6-3f82-4f4c-99f2-8aa21badddca",
+      "id": "57630d0d-9cda-4f67-90e7-ca1dc8394519",
       "source_block_id": "pdfplumber-p1-l1",
       "order_index": 1,
       "kind": "paragraph",
@@ -64,7 +64,7 @@
       "metadata": {}
     },
     {
-      "id": "28020523-94a9-4fdb-8599-29f4f8764231",
+      "id": "054621b0-702e-4d94-bfe5-fc3316ead108",
       "source_block_id": "pdfplumber-p1-l2",
       "order_index": 2,
       "kind": "paragraph",
@@ -92,7 +92,7 @@
       "metadata": {}
     },
     {
-      "id": "ba308ba8-bba9-40d1-818d-f048488fe695",
+      "id": "57e5e532-7555-40ff-a81e-835569250af2",
       "source_block_id": "pdfplumber-p1-l3",
       "order_index": 3,
       "kind": "paragraph",
@@ -120,7 +120,7 @@
       "metadata": {}
     },
     {
-      "id": "fe48a990-c20d-4986-aad4-3ada10b6b5a2",
+      "id": "aebd03c1-1c2b-443f-a5ae-aedfc97db473",
       "source_block_id": "pdfplumber-p1-l4",
       "order_index": 4,
       "kind": "paragraph",
@@ -148,7 +148,7 @@
       "metadata": {}
     },
     {
-      "id": "4a975320-0f1f-4baf-906d-b6c847322f59",
+      "id": "d7da060a-648c-4a6d-8b10-d7db82bff5c1",
       "source_block_id": "pdfplumber-p1-l5",
       "order_index": 5,
       "kind": "paragraph",
@@ -176,7 +176,7 @@
       "metadata": {}
     },
     {
-      "id": "c31fec9e-a4ec-40d8-9bdf-71cba4fdf3c0",
+      "id": "7013b713-f0ed-483b-895a-5e7dba9c230e",
       "source_block_id": "pdfplumber-p1-l6",
       "order_index": 6,
       "kind": "paragraph",
@@ -204,7 +204,7 @@
       "metadata": {}
     },
     {
-      "id": "c4a0959a-c586-492a-a448-340478b8e660",
+      "id": "3ae39b21-0d7e-4a58-aa24-a14af492b32f",
       "source_block_id": "pdfplumber-p1-l7",
       "order_index": 7,
       "kind": "paragraph",
@@ -232,7 +232,7 @@
       "metadata": {}
     },
     {
-      "id": "e606a32e-6fac-43eb-a812-9b054ef0e84b",
+      "id": "b34556cc-19a3-467c-90be-adbe2d72a3f6",
       "source_block_id": "pdfplumber-p1-t1",
       "order_index": 8,
       "kind": "table",
@@ -262,7 +262,7 @@
       }
     },
     {
-      "id": "5a036934-ca00-47a6-ba90-6dc37fd0589f",
+      "id": "1366f066-80fa-43cf-8828-f95254fd838a",
       "source_block_id": "pdfplumber-p1-t2",
       "order_index": 9,
       "kind": "table",
@@ -292,7 +292,7 @@
       }
     },
     {
-      "id": "8351031b-57d8-4c9e-8fe7-8f4910eef811",
+      "id": "92eb63e4-6340-4d15-9b4e-28883c3d86ea",
       "source_block_id": "pdfplumber-p2-l10",
       "order_index": 10,
       "kind": "paragraph",
@@ -320,7 +320,7 @@
       "metadata": {}
     },
     {
-      "id": "0c9862d3-6d3b-4aed-b62b-416de3f4e894",
+      "id": "2c3f8e12-e9f2-4737-b3e3-029d9fb2ead9",
       "source_block_id": "pdfplumber-p2-l11",
       "order_index": 11,
       "kind": "paragraph",
@@ -348,7 +348,7 @@
       "metadata": {}
     },
     {
-      "id": "96d5ac5e-7de3-4f9f-a6e0-5d26587a64a8",
+      "id": "cdeaa42d-24c9-445e-be0c-9cbb7edc4301",
       "source_block_id": "pdfplumber-p2-l12",
       "order_index": 12,
       "kind": "paragraph",
@@ -376,7 +376,7 @@
       "metadata": {}
     },
     {
-      "id": "ee61d593-cd84-4bed-b256-b3183134e5cd",
+      "id": "daeb63f9-e570-4eda-9085-9c7f59063e1d",
       "source_block_id": "pdfplumber-p2-l13",
       "order_index": 13,
       "kind": "paragraph",
@@ -404,7 +404,7 @@
       "metadata": {}
     },
     {
-      "id": "abdad6ab-9b61-4a16-bf5e-d54cb8a86010",
+      "id": "6ec4218d-cd8b-45cc-90f2-f89bb223d518",
       "source_block_id": "pdfplumber-p2-l14",
       "order_index": 14,
       "kind": "paragraph",
@@ -432,7 +432,7 @@
       "metadata": {}
     },
     {
-      "id": "6267ab47-ad9e-4864-8563-03c4c950b6aa",
+      "id": "c5cc2e46-ea94-4633-8df3-d17477ffc197",
       "source_block_id": "pdfplumber-p2-l15",
       "order_index": 15,
       "kind": "paragraph",
@@ -460,7 +460,7 @@
       "metadata": {}
     },
     {
-      "id": "40b65e7f-f6fe-41ff-aa46-3051f4aa3847",
+      "id": "b17fb976-87c9-46b4-b71d-3c328767750e",
       "source_block_id": "pdfplumber-p2-l16",
       "order_index": 16,
       "kind": "paragraph",
@@ -488,7 +488,7 @@
       "metadata": {}
     },
     {
-      "id": "bf7af982-1798-4ad6-b6b3-46a71ecc1237",
+      "id": "c372c1cf-d11f-40ad-9966-9fcb7d1a6a74",
       "source_block_id": "pdfplumber-p2-l17",
       "order_index": 17,
       "kind": "paragraph",
@@ -516,7 +516,7 @@
       "metadata": {}
     },
     {
-      "id": "601961c9-a93c-4ad8-8164-9b25210070ee",
+      "id": "10370bdf-290c-4fde-8df8-a2439ff19674",
       "source_block_id": "pdfplumber-p2-l18",
       "order_index": 18,
       "kind": "paragraph",
@@ -544,7 +544,7 @@
       "metadata": {}
     },
     {
-      "id": "23c5bb52-afa4-4dea-bfb6-9cf4e6864c67",
+      "id": "6710a298-5962-4144-9964-087f40960214",
       "source_block_id": "pdfplumber-p2-l19",
       "order_index": 19,
       "kind": "paragraph",
@@ -572,7 +572,7 @@
       "metadata": {}
     },
     {
-      "id": "7ad1594c-0215-46a3-85c4-74d6f065587e",
+      "id": "55988b7c-cf64-4504-b5b7-e603b2a6ed65",
       "source_block_id": "pdfplumber-p2-l20",
       "order_index": 20,
       "kind": "paragraph",
@@ -600,7 +600,7 @@
       "metadata": {}
     },
     {
-      "id": "d6767604-cbb1-4f0c-881c-c4419df485df",
+      "id": "b879c93d-a0dc-4355-b4d7-97c35b9837ca",
       "source_block_id": "pdfplumber-p2-t3",
       "order_index": 21,
       "kind": "table",
@@ -630,7 +630,7 @@
       }
     },
     {
-      "id": "ce8deb73-0119-4db7-807b-a7975a0cf613",
+      "id": "ee863aa7-1440-41b1-85fe-c935c31d7be9",
       "source_block_id": "pdfplumber-p2-t4",
       "order_index": 22,
       "kind": "table",
@@ -664,7 +664,7 @@
   "tables": [
     {
       "table_id": "table-001",
-      "block_id": "e606a32e-6fac-43eb-a812-9b054ef0e84b",
+      "block_id": "b34556cc-19a3-467c-90be-adbe2d72a3f6",
       "html": null,
       "markdown": "| 供应商 | 型号 | 技术参数 |  | 商务条款 |  |\n| --- | --- | --- | --- | --- | --- |\n|  |  | 额定电压 | 温度范围 | 含税单价（元） | 质保（月） |\n| 华东精工 | FAN-AX200-A | 12V | -20–70C | 186.00 | 18 |\n| 北辰机电 | FAN-AX200-B | 12V | -10–65C | 172.00 | 12 |\n| 远景自动化 | FAN-AX200-C | 24V | -20–70C | 165.00 | 24 |",
       "caption": null,
@@ -986,7 +986,7 @@
     },
     {
       "table_id": "table-002",
-      "block_id": "5a036934-ca00-47a6-ba90-6dc37fd0589f",
+      "block_id": "1366f066-80fa-43cf-8828-f95254fd838a",
       "html": null,
       "markdown": "| 项目 | 华东精工 | 北辰机电 | 远景自动化 |\n| --- | --- | --- | --- |\n| 交付周期 | 14个工作日 | 10个工作日 | 21个工作日 |\n| 现场安装 | 含首次安装 | 不含 | 含远程指导 |\n| 质保响应 | 24小时内 | 48小时内 | 24小时内 |\n| 备件库存 | 上海仓80套 | 南京仓40套 | 深圳仓120套 |",
       "caption": null,
@@ -1208,7 +1208,7 @@
     },
     {
       "table_id": "table-003",
-      "block_id": "d6767604-cbb1-4f0c-881c-c4419df485df",
+      "block_id": "b879c93d-a0dc-4355-b4d7-97c35b9837ca",
       "html": null,
       "markdown": "| 供应商 | 技术符合\n(30) | 价格\n(25) | 交付\n(20) | 服务\n(15) | 总分\n(90) |\n| --- | --- | --- | --- | --- | --- |\n| 华东精工 | 30 | 20 | 16 | 14 | 80 |\n| 北辰机电 | 24 | 25 | 18 | 10 | 77 |\n| 远景自动化 | 20 | 24 | 12 | 14 | 70 |",
       "caption": null,
@@ -1470,7 +1470,7 @@
     },
     {
       "table_id": "table-004",
-      "block_id": "ce8deb73-0119-4db7-807b-a7975a0cf613",
+      "block_id": "ee863aa7-1440-41b1-85fe-c935c31d7be9",
       "html": null,
       "markdown": "| 项目 | 推荐值 | 证据来源 |\n| --- | --- | --- |\n| 推荐供应商 | 华东精工 | 技术报价单HS-0817-A |\n| 推荐型号 | FAN-AX200-A | 规格书第2页 |\n| 采购数量 | 120套 | 设备工程部需求单REQ-0817 |\n| 预计含税金额 | 22,320.00元 | 单价186.00x120 |\n| 质保要求 | 18个月 | 供应商承诺函 |",
       "caption": null,
@@ -1719,5 +1719,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T15:54:40.483304Z"
+  "created_at": "2026-08-17T16:21:54.360948Z"
 }

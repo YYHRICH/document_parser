@@ -1,5 +1,5 @@
 {
-  "document_id": "4b1a6b4b-50fd-4d6f-b859-8aab48dfb698",
+  "document_id": "e385199d-53ff-4485-a89b-c8fc9f1c7af2",
   "filename": "table_cases_cross_page.pdf",
   "file_type": "application/pdf",
   "source_size_bytes": 92408,
@@ -8,7 +8,7 @@
   "markdown": "OperationsReport TABLE-CASES-2026\n\n运营报表复杂表格案例集\n\n用于验证跨页续表、合并单元格、行续接和列漂移的统一解析能力。\n\nCASE-A：库存月报（续表且重复表头）\n\n本案例的第二页明确写有“续表”，并完整重复列头。行号连续，应该允许稳定绑定。\n\n报告编号INV-2026-08；金额和数量均为合成数据。\n\n1\n\n| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架BR-02 | 90 | 18 | 108 |\n\nOperationsReport TABLE-CASES-2026\n\n库存月报（续表）\n\nCASE-A / Page 2\n\n期望：识别为同一张表，保留页码和续表证据。\n\nCASE-B：区域采购汇总（合并单元格）\n\n期望：区域和供应商等级的rowspan/colpath不被展开成虚假单元格。\n\n2\n\n| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网FG-10 | 45 | 20 | 65 |\n| 006 | 传感器TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩CV-01 | 27 | 9 | 36 |\n\n| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|  | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|  | B | BR-02 | 75 | 6,750 |\n\nOperationsReport TABLE-CASES-2026\n\nCASE-C：跨页采购订单\n\n订单PO-2026-0817的一条明细在页面底部开始，在下一页继续。第二页没有重复行号，只有“续行”标记。\n\n页面末尾没有103行的完整小计，下一页的续行需要证据绑定。\n\n3\n\n| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、\n备件优先发货和年度报告，详见附件） | 1 | 18,000 |  |\n\nOperationsReport TABLE-CASES-2026\n\nCASE-C：跨页采购订单（续行）\n\n期望：103的小计可以关联，但“续行”不应被当作新的物料。CASE-D：续表列顺序漂移\n\n期望：发现本页列顺序与前页不同，禁止按位置静默绑定。\n\n4\n\n| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风\n扇转速和电气接点，发现异常时在两个\n工作日内提交报告。 |  |  | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |\n\n| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |\n\nOperationsReport TABLE-CASES-2026\n\nCASE-E：证据不足的表格\n\n以下截图式表格只有表级来源，解析器无法提供单元格bbox，也没有稳定行键。\n\n期望：保留表级来源，生成evidenceissue；不得伪造cellbbox或verifiedbinding。\n\n验收要点\n\nCASE-A：续表和重复表头可合并； •\n\nCASE-B：rowspan/colspan必须保留完整columnpath； •\n\nCASE-C：跨页续行需要关联证据； •\n\nCASE-D：列顺序变化必须触发问题； •\n\nCASE-E：证据不足时安全降级。 •\n\nSyntheticoperationsreport;allnames,identifiersandamountsarefictional.\n\n5\n\n| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
   "blocks": [
     {
-      "id": "ca4a99df-90a4-4111-bb3d-6313adb52d57",
+      "id": "e968bd44-c066-456f-a49e-d26fb19e3c34",
       "source_block_id": "pdfplumber-p1-l0",
       "order_index": 0,
       "kind": "paragraph",
@@ -36,7 +36,7 @@
       "metadata": {}
     },
     {
-      "id": "c25d8045-dc4c-45a6-b9b1-2a0f888b2305",
+      "id": "5ccea792-c246-4957-b1c9-bcec280112da",
       "source_block_id": "pdfplumber-p1-l1",
       "order_index": 1,
       "kind": "paragraph",
@@ -64,7 +64,7 @@
       "metadata": {}
     },
     {
-      "id": "f0b50244-efc4-4e4c-9cad-8420453ae7a6",
+      "id": "28f81a9a-4b62-48f1-b892-ecaa9b159aed",
       "source_block_id": "pdfplumber-p1-l2",
       "order_index": 2,
       "kind": "paragraph",
@@ -92,7 +92,7 @@
       "metadata": {}
     },
     {
-      "id": "52fcbd85-da01-4b6d-be40-a16bffc68504",
+      "id": "ddda5615-480f-4101-a678-91535339e2bc",
       "source_block_id": "pdfplumber-p1-l3",
       "order_index": 3,
       "kind": "paragraph",
@@ -120,7 +120,7 @@
       "metadata": {}
     },
     {
-      "id": "8b58bec3-2cb0-443d-b5fe-ad889aa03564",
+      "id": "30b6ea9d-115b-4e73-84fa-bcf847d1a001",
       "source_block_id": "pdfplumber-p1-l4",
       "order_index": 4,
       "kind": "paragraph",
@@ -148,7 +148,7 @@
       "metadata": {}
     },
     {
-      "id": "b2b80bff-6d34-40bf-b472-6713a4ad9a41",
+      "id": "fd68eb84-2654-447e-8c58-751c5ba8daea",
       "source_block_id": "pdfplumber-p1-l5",
       "order_index": 5,
       "kind": "paragraph",
@@ -176,7 +176,7 @@
       "metadata": {}
     },
     {
-      "id": "53b2144b-1f72-46e1-9f8e-d71b7dc17e15",
+      "id": "66cb6053-5662-46d1-bc9a-c6151849e5db",
       "source_block_id": "pdfplumber-p1-l6",
       "order_index": 6,
       "kind": "paragraph",
@@ -204,7 +204,7 @@
       "metadata": {}
     },
     {
-      "id": "67254239-e636-4901-a2fa-768c265a2977",
+      "id": "987ee601-93b3-47b5-a671-1e086e1ec0eb",
       "source_block_id": "pdfplumber-p1-t1",
       "order_index": 7,
       "kind": "table",
@@ -234,7 +234,7 @@
       }
     },
     {
-      "id": "4d3f3151-f0c7-452b-86d8-1eb9a8471c51",
+      "id": "c70826a0-1f84-4ae9-960e-5bfdb49bec9c",
       "source_block_id": "pdfplumber-p2-l8",
       "order_index": 8,
       "kind": "paragraph",
@@ -262,7 +262,7 @@
       "metadata": {}
     },
     {
-      "id": "d9ca7aa1-6839-4c01-8246-e77875d0c22d",
+      "id": "5d5ab2f2-5d85-40d4-9763-c28fc352023d",
       "source_block_id": "pdfplumber-p2-l9",
       "order_index": 9,
       "kind": "paragraph",
@@ -290,7 +290,7 @@
       "metadata": {}
     },
     {
-      "id": "3ea2bd80-7273-45c7-97f5-0a28378c6ef0",
+      "id": "2ee7edf2-5735-4b48-9e9b-f674b57d35c9",
       "source_block_id": "pdfplumber-p2-l10",
       "order_index": 10,
       "kind": "paragraph",
@@ -318,7 +318,7 @@
       "metadata": {}
     },
     {
-      "id": "d645baef-8f47-439d-aec7-a5512049264a",
+      "id": "fa4d655f-16e5-4ed6-86a9-3e5f4cbd8a55",
       "source_block_id": "pdfplumber-p2-l11",
       "order_index": 11,
       "kind": "paragraph",
@@ -346,7 +346,7 @@
       "metadata": {}
     },
     {
-      "id": "cdcbb66c-41be-4634-9113-4989151d052d",
+      "id": "f830aa65-3881-484c-b69c-228c37881d8e",
       "source_block_id": "pdfplumber-p2-l12",
       "order_index": 12,
       "kind": "paragraph",
@@ -374,7 +374,7 @@
       "metadata": {}
     },
     {
-      "id": "ee16acef-e881-4196-b80a-744874bf867b",
+      "id": "431f926f-d1df-4272-8a1e-330f010d585b",
       "source_block_id": "pdfplumber-p2-l13",
       "order_index": 13,
       "kind": "paragraph",
@@ -402,7 +402,7 @@
       "metadata": {}
     },
     {
-      "id": "bf6a11be-a4ea-4de4-ac67-e5722f0c45f5",
+      "id": "971398ca-dc1d-4664-9bd8-d7a093e2ba60",
       "source_block_id": "pdfplumber-p2-l14",
       "order_index": 14,
       "kind": "paragraph",
@@ -430,7 +430,7 @@
       "metadata": {}
     },
     {
-      "id": "bead2b54-131b-472f-bea0-4d3128d570dc",
+      "id": "ae5748bc-9e4c-49b9-a70c-36a6ace0ad5a",
       "source_block_id": "pdfplumber-p2-t2",
       "order_index": 15,
       "kind": "table",
@@ -460,7 +460,7 @@
       }
     },
     {
-      "id": "ff807634-50ea-406c-a5de-dbf0b6bfb751",
+      "id": "1905a446-b323-4183-92b5-c1f540bf492c",
       "source_block_id": "pdfplumber-p2-t3",
       "order_index": 16,
       "kind": "table",
@@ -490,7 +490,7 @@
       }
     },
     {
-      "id": "e56ff6d9-a1b2-41be-bb76-d8a6518cdea3",
+      "id": "cf51c24a-f1c1-4b4b-9f70-01461cdf095b",
       "source_block_id": "pdfplumber-p3-l17",
       "order_index": 17,
       "kind": "paragraph",
@@ -518,7 +518,7 @@
       "metadata": {}
     },
     {
-      "id": "eaa49184-33ef-4f61-9e28-7a281810e21c",
+      "id": "0abd6c05-8c13-43ce-992a-87d55ecc06b4",
       "source_block_id": "pdfplumber-p3-l18",
       "order_index": 18,
       "kind": "paragraph",
@@ -546,7 +546,7 @@
       "metadata": {}
     },
     {
-      "id": "26ef1aae-cc82-4fe9-aa17-e24f26b2f4cd",
+      "id": "9335a519-adbb-427c-8726-0551dc159c56",
       "source_block_id": "pdfplumber-p3-l19",
       "order_index": 19,
       "kind": "paragraph",
@@ -574,7 +574,7 @@
       "metadata": {}
     },
     {
-      "id": "d62426b2-dbdb-43ea-b63e-04e3f6cc6421",
+      "id": "8deb332e-ea8f-4885-a1a0-53785e234855",
       "source_block_id": "pdfplumber-p3-l20",
       "order_index": 20,
       "kind": "paragraph",
@@ -602,7 +602,7 @@
       "metadata": {}
     },
     {
-      "id": "22ac2ed7-b1d7-4ac7-98f8-76bc48270186",
+      "id": "b4257c02-4a44-4dfb-a38a-a0721e02f38a",
       "source_block_id": "pdfplumber-p3-l21",
       "order_index": 21,
       "kind": "paragraph",
@@ -630,7 +630,7 @@
       "metadata": {}
     },
     {
-      "id": "99c84ca5-a774-45f9-9d63-338864d0fb0c",
+      "id": "85cf8062-0542-48e7-a105-ad4e7760b45a",
       "source_block_id": "pdfplumber-p3-t4",
       "order_index": 22,
       "kind": "table",
@@ -660,7 +660,7 @@
       }
     },
     {
-      "id": "3c1e70a0-ce12-489e-91bc-b8f24f163e80",
+      "id": "42647ba7-5712-4773-85df-e8609e02a981",
       "source_block_id": "pdfplumber-p4-l23",
       "order_index": 23,
       "kind": "paragraph",
@@ -688,7 +688,7 @@
       "metadata": {}
     },
     {
-      "id": "1aca4a62-ab48-478b-b69c-e104f321cde3",
+      "id": "bc850a35-c705-4ed4-8231-25698a68d377",
       "source_block_id": "pdfplumber-p4-l24",
       "order_index": 24,
       "kind": "paragraph",
@@ -716,7 +716,7 @@
       "metadata": {}
     },
     {
-      "id": "4d5d1e7f-b0ca-4053-bb2e-085eb30e2c3a",
+      "id": "29a48a2a-4b8e-487b-bd0e-72f201aec4cc",
       "source_block_id": "pdfplumber-p4-l25",
       "order_index": 25,
       "kind": "paragraph",
@@ -744,7 +744,7 @@
       "metadata": {}
     },
     {
-      "id": "e1a172bd-ff28-4c37-ac71-6f339d415c59",
+      "id": "9f777eb8-5ef1-4a2b-beb3-7c168d57b789",
       "source_block_id": "pdfplumber-p4-l26",
       "order_index": 26,
       "kind": "paragraph",
@@ -772,7 +772,7 @@
       "metadata": {}
     },
     {
-      "id": "b7ec1d75-d56b-419d-8d96-aeb4a0402545",
+      "id": "4f8d5f30-4acb-4325-883f-9c2a11a9a71a",
       "source_block_id": "pdfplumber-p4-l27",
       "order_index": 27,
       "kind": "paragraph",
@@ -800,7 +800,7 @@
       "metadata": {}
     },
     {
-      "id": "0af5d409-dfde-43e5-9009-6bac34fc15f0",
+      "id": "0754a90c-62ee-48c6-8e18-4e34c3665f70",
       "source_block_id": "pdfplumber-p4-t5",
       "order_index": 28,
       "kind": "table",
@@ -830,7 +830,7 @@
       }
     },
     {
-      "id": "96369d60-4325-49e7-a928-4d7943c074c5",
+      "id": "455715db-77bd-42f8-bea3-68c4b02bc5de",
       "source_block_id": "pdfplumber-p4-t6",
       "order_index": 29,
       "kind": "table",
@@ -860,7 +860,7 @@
       }
     },
     {
-      "id": "31b3d863-e9db-4a3e-a28f-2c95a45a76a0",
+      "id": "188064c5-f5d8-4640-9d39-dcc1eaab6300",
       "source_block_id": "pdfplumber-p5-l30",
       "order_index": 30,
       "kind": "paragraph",
@@ -888,7 +888,7 @@
       "metadata": {}
     },
     {
-      "id": "a275f89c-ec50-4caa-b6c5-bf04714f8f42",
+      "id": "460e6a82-a3ac-4c08-bc54-ac199674ebf8",
       "source_block_id": "pdfplumber-p5-l31",
       "order_index": 31,
       "kind": "paragraph",
@@ -916,7 +916,7 @@
       "metadata": {}
     },
     {
-      "id": "5d5d9b5d-45e5-47aa-a0e4-84b650d6c7b5",
+      "id": "3e766a69-4c05-4d77-a6f0-9dbb6a52f242",
       "source_block_id": "pdfplumber-p5-l32",
       "order_index": 32,
       "kind": "paragraph",
@@ -944,7 +944,7 @@
       "metadata": {}
     },
     {
-      "id": "8367005a-0c06-487d-b333-624e30639f2c",
+      "id": "f0ea60ee-21a2-4441-8fe3-a8d1432dc422",
       "source_block_id": "pdfplumber-p5-l33",
       "order_index": 33,
       "kind": "paragraph",
@@ -972,7 +972,7 @@
       "metadata": {}
     },
     {
-      "id": "d038cb6b-2b8a-4b59-89d1-c95e966a747a",
+      "id": "647f908a-b4f7-4eb4-861f-ea010796024f",
       "source_block_id": "pdfplumber-p5-l34",
       "order_index": 34,
       "kind": "paragraph",
@@ -1000,7 +1000,7 @@
       "metadata": {}
     },
     {
-      "id": "d86bb3f9-707c-4cb7-b61f-1fae03d7ef2e",
+      "id": "1c56069c-b2a1-4239-815c-9d4ddd0fb050",
       "source_block_id": "pdfplumber-p5-l35",
       "order_index": 35,
       "kind": "paragraph",
@@ -1028,7 +1028,7 @@
       "metadata": {}
     },
     {
-      "id": "686c937f-be5e-42a5-bd7f-9d54f464a57d",
+      "id": "9ec078c7-e8b8-46c3-bbf7-c7107573f91c",
       "source_block_id": "pdfplumber-p5-l36",
       "order_index": 36,
       "kind": "paragraph",
@@ -1056,7 +1056,7 @@
       "metadata": {}
     },
     {
-      "id": "ea09eba7-5649-4baa-9035-ca764029e83f",
+      "id": "d033d2f4-eb87-4be8-bd5a-fcd3bbe557b3",
       "source_block_id": "pdfplumber-p5-l37",
       "order_index": 37,
       "kind": "paragraph",
@@ -1084,7 +1084,7 @@
       "metadata": {}
     },
     {
-      "id": "861d195e-b62a-4299-81ff-7e6cf3b97fe2",
+      "id": "66f7d319-a6bb-45b3-ad36-60d899502edd",
       "source_block_id": "pdfplumber-p5-l38",
       "order_index": 38,
       "kind": "paragraph",
@@ -1112,7 +1112,7 @@
       "metadata": {}
     },
     {
-      "id": "f78ecb2b-ccbb-4a5c-8a91-e1f9d43755d8",
+      "id": "3011a672-3b82-45e9-8c43-fa6a2125eada",
       "source_block_id": "pdfplumber-p5-l39",
       "order_index": 39,
       "kind": "paragraph",
@@ -1140,7 +1140,7 @@
       "metadata": {}
     },
     {
-      "id": "9e9f30d1-d7c8-4d05-9cf9-0898bd8f341e",
+      "id": "0c197fda-7be5-4225-88db-3d4be445c1dc",
       "source_block_id": "pdfplumber-p5-l40",
       "order_index": 40,
       "kind": "paragraph",
@@ -1168,7 +1168,7 @@
       "metadata": {}
     },
     {
-      "id": "3b6e6a55-0a0b-4fbd-a731-6c30991d0d80",
+      "id": "1b784948-8be5-4e71-bac0-ca3a51b4053f",
       "source_block_id": "pdfplumber-p5-l41",
       "order_index": 41,
       "kind": "paragraph",
@@ -1196,7 +1196,7 @@
       "metadata": {}
     },
     {
-      "id": "67ee922c-a681-428b-8194-d0697cd74665",
+      "id": "5a764cb8-2d8d-4e0f-8781-48f4333bdf65",
       "source_block_id": "pdfplumber-p5-t7",
       "order_index": 42,
       "kind": "table",
@@ -1230,7 +1230,7 @@
   "tables": [
     {
       "table_id": "table-001",
-      "block_id": "67254239-e636-4901-a2fa-768c265a2977",
+      "block_id": "987ee601-93b3-47b5-a671-1e086e1ec0eb",
       "html": null,
       "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 001 | 温控模块AX-200 | 120 | 30 | 150 |\n| 002 | 冷却风扇FAN-12V | 80 | 24 | 104 |\n| 003 | 连接线束CB-04 | 250 | 60 | 310 |\n| 004 | 固定支架BR-02 | 90 | 18 | 108 |",
       "caption": null,
@@ -1502,7 +1502,7 @@
     },
     {
       "table_id": "table-002",
-      "block_id": "bead2b54-131b-472f-bea0-4d3128d570dc",
+      "block_id": "ae5748bc-9e4c-49b9-a70c-36a6ace0ad5a",
       "html": null,
       "markdown": "| 行号 | 物料名称 | 期初 | 入库 | 期末 |\n| --- | --- | --- | --- | --- |\n| 005 | 过滤网FG-10 | 45 | 20 | 65 |\n| 006 | 传感器TS-08 | 32 | 12 | 44 |\n| 007 | 备用电源PSU-24 | 18 | 6 | 24 |\n| 008 | 防护罩CV-01 | 27 | 9 | 36 |",
       "caption": null,
@@ -1774,7 +1774,7 @@
     },
     {
       "table_id": "table-003",
-      "block_id": "ff807634-50ea-406c-a5de-dbf0b6bfb751",
+      "block_id": "1905a446-b323-4183-92b5-c1f540bf492c",
       "html": null,
       "markdown": "| 区域 | 供应商等级 | 物料 | 数量 | 含税金额 |\n| --- | --- | --- | --- | --- |\n| 华东 | A | FAN-12V | 80 | 14,880 |\n|  | B | CB-04 | 120 | 9,600 |\n| 华南 | A | AX-200 | 60 | 24,000 |\n|  | B | BR-02 | 75 | 6,750 |",
       "caption": null,
@@ -2046,7 +2046,7 @@
     },
     {
       "table_id": "table-004",
-      "block_id": "99c84ca5-a774-45f9-9d63-338864d0fb0c",
+      "block_id": "85cf8062-0542-48e7-a105-ad4e7760b45a",
       "html": null,
       "markdown": "| 行号 | 物料描述 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 101 | 温控模块，含安装底座和校准服务 | 12 | 4,200 | 50,400 |\n| 102 | 现场备用风扇，交付至二号车间 | 24 | 186 | 4,464 |\n| 103 | 长期质保服务（含季度巡检、远程诊断、\n备件优先发货和年度报告，详见附件） | 1 | 18,000 |  |",
       "caption": null,
@@ -2268,7 +2268,7 @@
     },
     {
       "table_id": "table-005",
-      "block_id": "0af5d409-dfde-43e5-9009-6bac34fc15f0",
+      "block_id": "0754a90c-62ee-48c6-8e18-4e34c3665f70",
       "html": null,
       "markdown": "| 标记 | 物料描述续行 | 数量 | 单价 | 小计 |\n| --- | --- | --- | --- | --- |\n| 续行 | 现场服务范围：每季度检查温度曲线、风\n扇转速和电气接点，发现异常时在两个\n工作日内提交报告。 |  |  | 18,000 |\n| 104 | 包装及运输保险 | 1 | 1,200 | 1,200 |",
       "caption": null,
@@ -2440,7 +2440,7 @@
     },
     {
       "table_id": "table-006",
-      "block_id": "96369d60-4325-49e7-a928-4d7943c074c5",
+      "block_id": "455715db-77bd-42f8-bea3-68c4b02bc5de",
       "html": null,
       "markdown": "| 行号 | 项目 | 期末 | 变化 | 期初 |\n| --- | --- | --- | --- | --- |\n| 201 | 东区备件 | 118 | +8 | 110 |\n| 202 | 西区备件 | 94 | -6 | 100 |",
       "caption": null,
@@ -2612,7 +2612,7 @@
     },
     {
       "table_id": "table-007",
-      "block_id": "67ee922c-a681-428b-8194-d0697cd74665",
+      "block_id": "5a764cb8-2d8d-4e0f-8781-48f4333bdf65",
       "html": null,
       "markdown": "| 本月重点 | 负责人 | 备注 |\n| --- | --- | --- |\n| 华东区域库存 | 陈琳 | 需复核 |\n| 现场安装排期 | 周海 | 见邮件 |",
       "caption": null,
@@ -2771,5 +2771,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T15:54:40.611216Z"
+  "created_at": "2026-08-17T16:21:54.488700Z"
 }

@@ -1,27 +1,27 @@
 {
-  "document_id": "d7fe8d9e-fb2c-4480-821d-fff0139cfa96",
-  "filename": "technical_report_references_positive.pdf",
+  "document_id": "008921ec-cdd4-4a6c-9dd1-a285071f942c",
+  "filename": "incident_postmortem.pdf",
   "file_type": "application/pdf",
-  "source_size_bytes": 102325,
-  "source_sha256": "1c396688ed9ea79b33301d228d6a3f29288181a10fdbc5a7e7c87c5afd36a6d6",
+  "source_size_bytes": 108153,
+  "source_sha256": "057b36d0aa14f158aa9083925695ab7870b6b9c5f58359c6590a63a17c4f5735",
   "routing_decision": null,
-  "markdown": "# 面向企业知识库的证据保留式文档解析研究\n\n# Evidence-preserving Document Parsing for Enterprise Knowledge Bases\n\n<table><tr><td>作者</td><td>陈琳，周海，王倩</td><td>文档类型</td><td>技术研究报告</td></tr><tr><td>版本</td><td>1.2</td><td>发布日期</td><td>2026-08-17</td></tr><tr><td>数据集</td><td>Shared Dev v1</td><td>状态</td><td>Reviewed</td></tr></table>\n\n## 摘要\n\n企业知识库中的 PDF、扫描件和 Office 文档同时包含正文、表格、图注和引用。只抽取纯文本会损失阅读顺序和来源证据。本文提出一套保留页面、边界框、表格网格和引用关系的解析流程，并在合成但业务真实的文档集上进行评估。结果表明，结构证据能够减少表格字段错绑和引用目标误判。\n\n关键词：文档解析；证据保留；表格绑定；标题树；引用关系；质量门\n\n## 1 引言\n\n## 1.1 背景\n\n企业文档通常由多个团队维护，标题、版本和附件并不统一。检索系统如果只保存 Markdown，会难以回答“这个数字来自哪一页”或“该结论引用了哪篇文献”。已有研究指出，布局与语义结构对文档问答同样重要 [1-2]。\n\n## 1.2 问题定义\n\n给定一个包含文本块、表格、图片和引用的文档，系统需要输出统一的ParsedDocument，并保留可回溯的sourcelocator。质量层还要区分 verified、inferred 和 manual review required，而不是把所有推断都当成事实 [3]。\n\n## 1.3 贡献\n\n1. 定义包含页码、bbox、表格 cell/span 和原生产物引用的证据模型；\n\n2. 提出针对多级表头和跨页表格的安全绑定规则；\n\n3. 建立标题树和正文引用到参考文献的可验证关系；\n\n4. 使用固定样例和质量门报告评估安全降级行为。\n\n## 2 方法\n\n## 2.1 输入预检\n\n预检器记录文件类型、页数、文本层、扫描页比例和语言提示。路由器根据能力声明选择解析器，解析器实际执行来源写入 provenance [4]。\n\n## 2.2 统一结构\n\n每个文本块有稳定 block id、阅读顺序和 source anchor。表格 cell 保留 start row、start col、row span、col span；  \n合并表头生成完整 column path，例如“训练集 / 准确率”。\n\n## 2.3 质量门\n\n质量门按照以下规则决定状态：证据充分且关系唯一时为 verified；只有顺序和语义支持时为 inferred；目标不唯一时进入 manual review；关键事实缺失且其他模型可补足时进入 reparse required [5]。\n\n## 3 实验设置\n\n## 3.1 样例与指标\n\n<table><tr><td>能力</td><td>正例数</td><td>反例数</td><td>主要指标</td></tr><tr><td>普通正文与阅读顺序</td><td>2</td><td>1</td><td>文本完整度、block顺序</td></tr><tr><td>多级表头与字段绑定</td><td>2</td><td>2</td><td>column path、row key、来源</td></tr><tr><td>标题层级恢复</td><td>2</td><td>1</td><td>parent_child 唯一性</td></tr><tr><td>编号引用绑定</td><td>2</td><td>2</td><td>reference_of 目标唯一性</td></tr><tr><td>OCR 图片质量</td><td>2</td><td>2</td><td>token 可读性、低质量拦截</td></tr></table>\n\n## 3.2 评估流程\n\n每个样例都使用相同的输入摘要和manifestcommit。运行记录包含路由决定、实际解析器、耗时、ParsedDocumentschema、质量状态、问题数量和产物位置。失败和不可用结果不会从批量报告中删除。\n\n## 3.3 表格结果\n\n<table><tr><td>样例</td><td>网格恢复</td><td>表头路径</td><td>字段绑定</td><td>最终状态</td></tr><tr><td>采购比价正例</td><td>pass</td><td>完整</td><td>verified</td><td>pass</td></tr><tr><td>跨页续表正例</td><td>pass</td><td>完整</td><td>verified</td><td>pass with warnings</td></tr><tr><td>列漂移反例</td><td>partial</td><td>不确定</td><td>unavailable</td><td>manual review</td></tr><tr><td>无稳定行键</td><td>partial</td><td>表级</td><td>unavailable</td><td>manual review</td></tr></table>\n\n## 4 讨论\n\n## 4.1 安全降级\n\n在表格结构不唯一时，减少绑定数量比输出错误关系更安全。质量报告必须同时记录缺失证据、受影响 block 和重新解析建议 [6]。\n\n## 4.2 局限性\n\n合成样例不能覆盖所有扫描噪声和供应商格式。后续 Acceptance 子集应加入未参与规则调试的公开文档，并由人工标注确认。\n\n## 5 结论\n\n本文展示了从预检、解析、统一输出到质量门的完整证据链。实验说明，多级标题、表格网格和引用关系需要共同的来源模型，不能由质量层凭空补造。对于无法唯一判断的结构，系统应明确交给人工复核或重新解析。\n\n## 参考文献\n\n1. Li, M.; Zhang, Y. Document layout analysis for retrieval-augmented generation[J]. Journal of Information Processing, 2024, 32(4): 201-218. DOI:10.1000/jip.2024.03204.\n\n2. 王伟, 陈晨. 面向复杂版面的文档结构恢复 [J]. 中文信息学报, 2023, 37(6): 45-58. DOI:10.1000/cip.2023.3706.\n\n3. Pujara, J.; Singh, H. Evidence graphs for trustworthy document QA[C]. Proceedings of DocEng, 2024: 55- 63. DOI:10.1000/doceng.2024.006.\n\n4. Liu, Q.; Chen, R. OCR confidence calibration in enterprise archives[J]. Pattern Recognition Letters, 2022, 158: 12-20. DOI:10.1000/prl.2022.15802.\n\n5. 赵敏, 周海. 表格字段绑定的来源约束与安全降级 [J]. 软件学报, 2025, 36(8): 1771-1787. DOI:10.1000/js.2025.3608.\n\n6. Smith, A.; Patel, R. Human review gates for semantic extraction[C]. Proceedings of ICDAR, 2023: 410-419. DOI:10.1000/icdar.2023.041.\n\n引用规则：正文中的 [1-2] 指向参考文献 1 和 2；[3]、[4]、[5]、[6] 分别指向对应编号。",
+  "markdown": "## API 网关延迟事故复盘\n\nAPI Gateway Latency Incident Review\n\n<table><tr><td>事故编号</td><td>INC-2026-0714</td><td>影响服务</td><td>payments-api</td></tr><tr><td>发生时间</td><td>2026-07-14 09:12-10:03</td><td>严重级别</td><td>SEV-2</td></tr><tr><td>负责人</td><td>Reliability Engineering</td><td>当前状态</td><td>Closed with follow-up</td></tr></table>\n\n## 摘要 / Executive summary\n\n2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502。根因是限流配置发布后，边缘缓存键包含了高基数字段，导致缓存命中率从 91% 降到 38%，同时连接池被慢请求耗尽。回滚配置后，延迟在 11分钟内恢复。\n\nOn 14 July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.\n\n## 1. 影响范围\n\n• 09:12–10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；\n\n• 约 1.2% 请求返回 502，重试请求未产生重复扣款；\n\n• 订单写入和对账任务没有数据丢失；\n\n• 受影响客户主要集中在东亚区域的高峰流量租户。\n\n## 2. 关键时间线\n\n<table><tr><td>时间</td><td>事件</td><td>证据与决定</td></tr><tr><td>08:45</td><td>配置变更提交</td><td>将 tenant_id 加入边缘缓存键；评审通过</td></tr><tr><td>09:12</td><td>P95 超过 1.8 s</td><td>latency_p95 告警触发</td></tr><tr><td>09:18</td><td>502 开始上升</td><td>值班工程师建立事故频道</td></tr><tr><td>09:31</td><td>发现缓存命中率下降</td><td>对比变更前后的 cache_hit_ratio</td></tr><tr><td>09:42</td><td>回滚配置</td><td>限流规则恢复到 2026-07-13 版本</td></tr><tr><td>10:03</td><td>服务恢复</td><td>P95 回到 420 ms，进入观察期</td></tr></table>\n\n## 3. 技术背景\n\n请求经过 CDN、边缘限流器、API 网关和 payments-api。原有缓存键只包含路径和请求方法；变更后加入 tenant\\_id，导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：\n\n$$\nC _ { e f f e c t i v e } = \\mathsf { m i n } ( C _ { p o o l } , ~ R _ { i n f l i g h t } \\times L _ { p 9 5 } )\n$$\n\n在事故期间， $R _ { i n f l i g h t } = 1 8 5 \\mathsf { r e q } / \\mathsf { s }$ $L _ { p 9 5 } = 2 . 4 \\ : \\mathsf { s }$ ，所需并发约为 444，超过连接池上限 320。\n\n## 4. 根因分析\n\n## 直接原因\n\n高基数tenant\\_id被加入缓存键，缓存复用率下降；慢请求占用连接，触发排队和超时。\n\n## 促成因素\n\n配置评审只检查了限流语义，没有检查缓存键基数。压测样本使用了 5 个租户，未覆盖生产环境的 38,000 个租户。\n\n## 未触发的保护\n\n缓存命中率有监控但没有发布门禁；连接池告警阈值设置为 90%，无法提前发现趋势。为什么没有在发布前发\n\n## 5. 缓解措施\n\n1. 回滚缓存键变更并清理高基数缓存项；\n\n2. 临时将连接池上限从 320 调整到 480，并限制重试次数；\n\n3. 为受影响租户打开降级响应，返回可重试的错误码；\n\n4. 在发布频道固定附带命中率、P95 和连接池利用率。\n\n## 现？\n\n1. 变更模板把缓存键当作普通字符串；\n\n2. 评审清单没有“基数”和“复用率”字段；\n\n3. 预发布流量没有模拟长尾租户；\n\n4. 回滚需要人工执行，没有自动策略。\n\n## 结论\n\n代码本身没有错误，系统性风险来自配置、压测和门禁之间的缺口。\n\n## 6. 监控和证据\n\n<table><tr><td>指标</td><td>事故前</td><td>峰值</td><td>恢复目标</td></tr><tr><td>P95 latency</td><td>420 ms</td><td>2,400 ms</td><td>&lt; 500 ms</td></tr><tr><td>Cache hit ratio</td><td>91%</td><td>38%</td><td>&gt; 85%</td></tr><tr><td>Connection pool</td><td>62%</td><td>99%</td><td>&lt; 75%</td></tr><tr><td>HTTP 502 ratio</td><td>0.08%</td><td>1.20%</td><td>&lt; 0.10%</td></tr></table>\n\n## 7. 后续行动项\n\n<table><tr><td>ID</td><td>行动</td><td>负责人</td><td>截止日期</td></tr><tr><td>A1</td><td>为缓存键增加基数估算和命中率预估</td><td>Edge Team</td><td>2026-07-28</td></tr><tr><td>A2</td><td>压测加入长尾租户和真实比例</td><td>Performance</td><td>2026-08-04</td></tr><tr><td>A3</td><td>将 cache_hit_ratio 纳入发布门禁</td><td>Release Eng</td><td>2026-08-11</td></tr><tr><td>A4</td><td>实现连接池趋势告警和自动回滚</td><td>Reliability</td><td>2026-08-18</td></tr><tr><td>A5</td><td>更新配置评审模板与培训材料</td><td>Platform Team</td><td>2026-08-21</td></tr></table>\n\n## 8. 复盘结论\n\n本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
   "blocks": [
     {
-      "id": "17e086b2-95d6-42da-bf70-4d45131e498f",
+      "id": "e2f0dd98-7e71-4bea-a195-7943bb8a4073",
       "source_block_id": "mineru-content-0001",
       "order_index": 0,
       "kind": "heading",
       "native_type": null,
-      "text": "面向企业知识库的证据保留式文档解析研究",
-      "heading_level": 1,
-      "markdown": "面向企业知识库的证据保留式文档解析研究",
+      "text": "API 网关延迟事故复盘",
+      "heading_level": 2,
+      "markdown": "API 网关延迟事故复盘",
       "anchor": {
         "page_number": 1,
         "bbox": [
-          82.0,
-          57.0,
-          756.0,
+          78.0,
+          58.0,
+          453.0,
           85.0
         ],
         "page_width": null,
@@ -36,20 +36,20 @@
       "metadata": {}
     },
     {
-      "id": "fe987912-560b-46d1-b52e-63ce93266d07",
+      "id": "fe972e08-9f2d-471a-9117-95bcb62dc1dd",
       "source_block_id": "mineru-content-0002",
       "order_index": 1,
-      "kind": "heading",
+      "kind": "paragraph",
       "native_type": null,
-      "text": "Evidence-preserving Document Parsing for Enterprise Knowledge Bases",
-      "heading_level": 1,
-      "markdown": "Evidence-preserving Document Parsing for Enterprise Knowledge Bases",
+      "text": "API Gateway Latency Incident Review",
+      "heading_level": null,
+      "markdown": "API Gateway Latency Incident Review",
       "anchor": {
         "page_number": 1,
         "bbox": [
-          80.0,
+          78.0,
           86.0,
-          736.0,
+          457.0,
           104.0
         ],
         "page_width": null,
@@ -64,21 +64,21 @@
       "metadata": {}
     },
     {
-      "id": "a605d9ce-fc04-4bd5-880d-fe354f55df7b",
+      "id": "17e5f52c-8976-4142-9c1f-ef6f9a93beeb",
       "source_block_id": "mineru-content-0003",
       "order_index": 2,
       "kind": "table",
       "native_type": null,
-      "text": "| 作者 | 陈琳，周海，王倩 | 文档类型 | 技术研究报告 |\n| --- | --- | --- | --- |\n| 版本 | 1.2 | 发布日期 | 2026-08-17 |\n| 数据集 | Shared Dev v1 | 状态 | Reviewed |",
+      "text": "| 事故编号 | INC-2026-0714 | 影响服务 | payments-api |\n| --- | --- | --- | --- |\n| 发生时间 | 2026-07-14 09:12-10:03 | 严重级别 | SEV-2 |\n| 负责人 | Reliability Engineering | 当前状态 | Closed with follow-up |",
       "heading_level": null,
-      "markdown": "| 作者 | 陈琳，周海，王倩 | 文档类型 | 技术研究报告 |\n| --- | --- | --- | --- |\n| 版本 | 1.2 | 发布日期 | 2026-08-17 |\n| 数据集 | Shared Dev v1 | 状态 | Reviewed |",
+      "markdown": "| 事故编号 | INC-2026-0714 | 影响服务 | payments-api |\n| --- | --- | --- | --- |\n| 发生时间 | 2026-07-14 09:12-10:03 | 严重级别 | SEV-2 |\n| 负责人 | Reliability Engineering | 当前状态 | Closed with follow-up |",
       "anchor": {
         "page_number": 1,
         "bbox": [
           87.0,
-          147.0,
-          816.0,
-          195.0
+          140.0,
+          813.0,
+          192.0
         ],
         "page_width": null,
         "page_height": null,
@@ -93,25 +93,25 @@
         "table_id": "table-001",
         "caption": [],
         "footnote": [],
-        "img_path": "images/03b20d5f75653b2fb8f9dddce890364fed2f3c8ef9c5b75b90e54affc07562da.jpg"
+        "img_path": "images/c413dae9ba36a003309f98e409c77b514ba3092938f1194ccd4aa4b4eee51fbf.jpg"
       }
     },
     {
-      "id": "160b4c54-d31e-49aa-b806-76acaac54059",
+      "id": "fc120394-0467-4c56-b0d8-abc05aadb5b7",
       "source_block_id": "mineru-content-0004",
       "order_index": 3,
       "kind": "heading",
       "native_type": null,
-      "text": "摘要",
+      "text": "摘要 / Executive summary",
       "heading_level": 2,
-      "markdown": "摘要",
+      "markdown": "摘要 / Executive summary",
       "anchor": {
         "page_number": 1,
         "bbox": [
           80.0,
-          218.0,
-          137.0,
-          240.0
+          217.0,
+          383.0,
+          237.0
         ],
         "page_width": null,
         "page_height": null,
@@ -125,21 +125,21 @@
       "metadata": {}
     },
     {
-      "id": "8e2c901c-6547-463a-bc7a-273059231cc0",
+      "id": "d434a0e2-de06-456f-aae5-d224dc474899",
       "source_block_id": "mineru-content-0005",
       "order_index": 4,
       "kind": "paragraph",
       "native_type": null,
-      "text": "企业知识库中的 PDF、扫描件和 Office 文档同时包含正文、表格、图注和引用。只抽取纯文本会损失阅读顺序和来源证据。本文提出一套保留页面、边界框、表格网格和引用关系的解析流程，并在合成但业务真实的文档集上进行评估。结果表明，结构证据能够减少表格字段错绑和引用目标误判。",
+      "text": "2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502。根因是限流配置发布后，边缘缓存键包含了高基数字段，导致缓存命中率从 91% 降到 38%，同时连接池被慢请求耗尽。回滚配置后，延迟在 11分钟内恢复。",
       "heading_level": null,
-      "markdown": "企业知识库中的 PDF、扫描件和 Office 文档同时包含正文、表格、图注和引用。只抽取纯文本会损失阅读顺序和来源证据。本文提出一套保留页面、边界框、表格网格和引用关系的解析流程，并在合成但业务真实的文档集上进行评估。结果表明，结构证据能够减少表格字段错绑和引用目标误判。",
+      "markdown": "2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502。根因是限流配置发布后，边缘缓存键包含了高基数字段，导致缓存命中率从 91% 降到 38%，同时连接池被慢请求耗尽。回滚配置后，延迟在 11分钟内恢复。",
       "anchor": {
         "page_number": 1,
         "bbox": [
           78.0,
-          255.0,
+          253.0,
           917.0,
-          302.0
+          298.0
         ],
         "page_width": null,
         "page_height": null,
@@ -153,21 +153,21 @@
       "metadata": {}
     },
     {
-      "id": "f80d8b82-8ebb-417e-b5f6-7f21f95c2c2f",
+      "id": "5ea9c681-58ab-4dfb-a306-8dca66a42828",
       "source_block_id": "mineru-content-0006",
       "order_index": 5,
       "kind": "paragraph",
       "native_type": null,
-      "text": "关键词：文档解析；证据保留；表格绑定；标题树；引用关系；质量门",
+      "text": "On 14 July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.",
       "heading_level": null,
-      "markdown": "关键词：文档解析；证据保留；表格绑定；标题树；引用关系；质量门",
+      "markdown": "On 14 July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.",
       "anchor": {
         "page_number": 1,
         "bbox": [
-          80.0,
-          303.0,
-          610.0,
-          321.0
+          78.0,
+          302.0,
+          919.0,
+          346.0
         ],
         "page_width": null,
         "page_height": null,
@@ -181,20 +181,221 @@
       "metadata": {}
     },
     {
-      "id": "dfa6daec-dee2-4d30-a47e-12dc4e146903",
+      "id": "820827bf-8452-402b-b2df-4aac63b0db21",
       "source_block_id": "mineru-content-0007",
       "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1. 影响范围",
+      "heading_level": 2,
+      "markdown": "1. 影响范围",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          80.0,
+          373.0,
+          213.0,
+          393.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "09a700a4-d5c0-49cb-b6af-ddeb81ae7f7f",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
       "kind": "paragraph",
       "native_type": null,
-      "text": "Evidence-aware Retrieval Study",
+      "text": "• 09:12–10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；",
       "heading_level": null,
-      "markdown": "Evidence-aware Retrieval Study",
+      "markdown": "• 09:12–10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          107.0,
+          410.0,
+          552.0,
+          425.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bc676e9b-9c36-4dbf-b19b-656ca8ddd967",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "• 约 1.2% 请求返回 502，重试请求未产生重复扣款；",
+      "heading_level": null,
+      "markdown": "• 约 1.2% 请求返回 502，重试请求未产生重复扣款；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          107.0,
+          434.0,
+          502.0,
+          449.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5e43cf52-5af1-4bdd-bc46-de54e3ebf070",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "• 订单写入和对账任务没有数据丢失；",
+      "heading_level": null,
+      "markdown": "• 订单写入和对账任务没有数据丢失；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          107.0,
+          457.0,
+          388.0,
+          473.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "999c1204-fd2d-4e6b-9e74-3d333708ab9e",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "• 受影响客户主要集中在东亚区域的高峰流量租户。",
+      "heading_level": null,
+      "markdown": "• 受影响客户主要集中在东亚区域的高峰流量租户。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          107.0,
+          481.0,
+          489.0,
+          497.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "923011ff-aa31-4ae5-9491-eb3e144cb6b3",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2. 关键时间线",
+      "heading_level": 2,
+      "markdown": "2. 关键时间线",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          80.0,
+          525.0,
+          236.0,
+          545.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "51afc367-fed3-4a8c-943e-4a96a7eddf02",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms，进入观察期 |",
+      "heading_level": null,
+      "markdown": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms，进入观察期 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          97.0,
+          569.0,
+          899.0,
+          683.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/b91264450bc9af533f81eb379ba622acda508b955d4400f4b1888c470991bc69.jpg"
+      }
+    },
+    {
+      "id": "40b2eb25-71e3-4808-bd12-73aa3a90b796",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Reliability Engineering",
+      "heading_level": null,
+      "markdown": "Reliability Engineering",
       "anchor": {
         "page_number": 1,
         "bbox": [
           80.0,
           15.0,
-          326.0,
+          252.0,
           29.0
         ],
         "page_width": null,
@@ -209,18 +410,18 @@
       "metadata": {}
     },
     {
-      "id": "69e26763-761a-4d85-92d5-dcd0d84930d6",
-      "source_block_id": "mineru-content-0008",
-      "order_index": 7,
+      "id": "6f7fdb18-1adf-4eef-bbe2-8c8c5794ad53",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
       "kind": "paragraph",
       "native_type": null,
-      "text": "TR-2026-08",
+      "text": "INC-2026-0714",
       "heading_level": null,
-      "markdown": "TR-2026-08",
+      "markdown": "INC-2026-0714",
       "anchor": {
         "page_number": 1,
         "bbox": [
-          821.0,
+          796.0,
           15.0,
           915.0,
           28.0
@@ -237,9 +438,9 @@
       "metadata": {}
     },
     {
-      "id": "94392a6e-17e7-4190-8eca-9b67d732e8ec",
-      "source_block_id": "mineru-content-0009",
-      "order_index": 8,
+      "id": "970edc86-57d9-4004-9571-1195fef96daf",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
       "kind": "page_number",
       "native_type": null,
       "text": "1",
@@ -248,8 +449,8 @@
       "anchor": {
         "page_number": 1,
         "bbox": [
-          492.0,
-          964.0,
+          494.0,
+          965.0,
           504.0,
           977.0
         ],
@@ -265,21 +466,21 @@
       "metadata": {}
     },
     {
-      "id": "9ba9b0b7-1c24-477d-bf13-5ed8cb6e38b2",
-      "source_block_id": "mineru-content-0010",
-      "order_index": 9,
+      "id": "338fa2cf-5e68-412f-914f-3967814af8b9",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
       "kind": "heading",
       "native_type": null,
-      "text": "1 引言",
+      "text": "3. 技术背景",
       "heading_level": 2,
-      "markdown": "1 引言",
+      "markdown": "3. 技术背景",
       "anchor": {
         "page_number": 2,
         "bbox": [
           80.0,
           57.0,
-          173.0,
-          78.0
+          213.0,
+          77.0
         ],
         "page_width": null,
         "page_height": null,
@@ -293,217 +494,21 @@
       "metadata": {}
     },
     {
-      "id": "b1f17523-d0f5-4475-8a69-6494c4431ed9",
-      "source_block_id": "mineru-content-0011",
-      "order_index": 10,
-      "kind": "heading",
-      "native_type": null,
-      "text": "1.1 背景",
-      "heading_level": 2,
-      "markdown": "1.1 背景",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          80.0,
-          96.0,
-          176.0,
-          112.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "095be7c2-6d8c-4e82-a52f-52dc13a6c98b",
-      "source_block_id": "mineru-content-0012",
-      "order_index": 11,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "企业文档通常由多个团队维护，标题、版本和附件并不统一。检索系统如果只保存 Markdown，会难以回答“这个数字来自哪一页”或“该结论引用了哪篇文献”。已有研究指出，布局与语义结构对文档问答同样重要 [1-2]。",
-      "heading_level": null,
-      "markdown": "企业文档通常由多个团队维护，标题、版本和附件并不统一。检索系统如果只保存 Markdown，会难以回答“这个数字来自哪一页”或“该结论引用了哪篇文献”。已有研究指出，布局与语义结构对文档问答同样重要 [1-2]。",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          78.0,
-          126.0,
-          917.0,
-          155.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "453f4011-2fef-4089-a966-838cb68c2158",
-      "source_block_id": "mineru-content-0013",
-      "order_index": 12,
-      "kind": "heading",
-      "native_type": null,
-      "text": "1.2 问题定义",
-      "heading_level": 2,
-      "markdown": "1.2 问题定义",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          80.0,
-          179.0,
-          215.0,
-          197.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "3d3e85bd-f50f-4d48-be86-4d84493faadf",
-      "source_block_id": "mineru-content-0014",
-      "order_index": 13,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "给定一个包含文本块、表格、图片和引用的文档，系统需要输出统一的ParsedDocument，并保留可回溯的sourcelocator。质量层还要区分 verified、inferred 和 manual review required，而不是把所有推断都当成事实 [3]。",
-      "heading_level": null,
-      "markdown": "给定一个包含文本块、表格、图片和引用的文档，系统需要输出统一的ParsedDocument，并保留可回溯的sourcelocator。质量层还要区分 verified、inferred 和 manual review required，而不是把所有推断都当成事实 [3]。",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          78.0,
-          209.0,
-          917.0,
-          240.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "a6847a77-3450-472b-933e-2a9e37236adb",
-      "source_block_id": "mineru-content-0015",
-      "order_index": 14,
-      "kind": "heading",
-      "native_type": null,
-      "text": "1.3 贡献",
-      "heading_level": 2,
-      "markdown": "1.3 贡献",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          80.0,
-          262.0,
-          176.0,
-          280.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "e04def8d-4b38-451c-ac1b-c6ef46b4187a",
-      "source_block_id": "mineru-content-0016",
-      "order_index": 15,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "1. 定义包含页码、bbox、表格 cell/span 和原生产物引用的证据模型；",
-      "heading_level": null,
-      "markdown": "1. 定义包含页码、bbox、表格 cell/span 和原生产物引用的证据模型；",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          99.0,
-          292.0,
-          616.0,
-          309.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "11b65e3a-1c90-46d6-9992-03db6cca9a29",
-      "source_block_id": "mineru-content-0017",
-      "order_index": 16,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "2. 提出针对多级表头和跨页表格的安全绑定规则；",
-      "heading_level": null,
-      "markdown": "2. 提出针对多级表头和跨页表格的安全绑定规则；",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          99.0,
-          316.0,
-          473.0,
-          332.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "6c8132a2-6e63-40c2-b0ac-2efe5e63a667",
+      "id": "b959a2f3-e51a-48bf-adca-be1e77079015",
       "source_block_id": "mineru-content-0018",
       "order_index": 17,
       "kind": "paragraph",
       "native_type": null,
-      "text": "3. 建立标题树和正文引用到参考文献的可验证关系；",
+      "text": "请求经过 CDN、边缘限流器、API 网关和 payments-api。原有缓存键只包含路径和请求方法；变更后加入 tenant\\_id，导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
       "heading_level": null,
-      "markdown": "3. 建立标题树和正文引用到参考文献的可验证关系；",
+      "markdown": "请求经过 CDN、边缘限流器、API 网关和 payments-api。原有缓存键只包含路径和请求方法；变更后加入 tenant\\_id，导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          99.0,
-          340.0,
-          489.0,
-          355.0
+          78.0,
+          95.0,
+          919.0,
+          124.0
         ],
         "page_width": null,
         "page_height": null,
@@ -517,21 +522,21 @@
       "metadata": {}
     },
     {
-      "id": "dcf70b8f-a28a-4f90-8623-deefafc5c099",
+      "id": "9972ca87-4d20-4ed7-9740-5dffa8f7615d",
       "source_block_id": "mineru-content-0019",
       "order_index": 18,
       "kind": "paragraph",
       "native_type": null,
-      "text": "4. 使用固定样例和质量门报告评估安全降级行为。",
+      "text": "$$\nC _ { e f f e c t i v e } = \\mathsf { m i n } ( C _ { p o o l } , ~ R _ { i n f l i g h t } \\times L _ { p 9 5 } )\n$$",
       "heading_level": null,
-      "markdown": "4. 使用固定样例和质量门报告评估安全降级行为。",
+      "markdown": "$$\nC _ { e f f e c t i v e } = \\mathsf { m i n } ( C _ { p o o l } , ~ R _ { i n f l i g h t } \\times L _ { p 9 5 } )\n$$",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          99.0,
-          363.0,
-          472.0,
-          380.0
+          344.0,
+          135.0,
+          652.0,
+          152.0
         ],
         "page_width": null,
         "page_height": null,
@@ -545,21 +550,217 @@
       "metadata": {}
     },
     {
-      "id": "79d3029b-bf84-432a-8311-057c69f7f1c6",
+      "id": "e5a8a664-1df7-4a08-b103-188266541163",
       "source_block_id": "mineru-content-0020",
       "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "在事故期间， $R _ { i n f l i g h t } = 1 8 5 \\mathsf { r e q } / \\mathsf { s }$ $L _ { p 9 5 } = 2 . 4 \\ : \\mathsf { s }$ ，所需并发约为 444，超过连接池上限 320。",
+      "heading_level": null,
+      "markdown": "在事故期间， $R _ { i n f l i g h t } = 1 8 5 \\mathsf { r e q } / \\mathsf { s }$ $L _ { p 9 5 } = 2 . 4 \\ : \\mathsf { s }$ ，所需并发约为 444，超过连接池上限 320。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          78.0,
+          161.0,
+          771.0,
+          178.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a4a237c6-79ca-495b-8a7a-a0fca913ccec",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
       "kind": "heading",
       "native_type": null,
-      "text": "2 方法",
+      "text": "4. 根因分析",
       "heading_level": 2,
-      "markdown": "2 方法",
+      "markdown": "4. 根因分析",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          80.0,
+          204.0,
+          213.0,
+          224.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c7ea63a2-ac48-4532-bae7-4693194f3318",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "heading",
+      "native_type": null,
+      "text": "直接原因",
+      "heading_level": 2,
+      "markdown": "直接原因",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          80.0,
+          236.0,
+          154.0,
+          252.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ac3d2036-3a7a-4b6a-a8ef-eb47692f769a",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "高基数tenant\\_id被加入缓存键，缓存复用率下降；慢请求占用连接，触发排队和超时。",
+      "heading_level": null,
+      "markdown": "高基数tenant\\_id被加入缓存键，缓存复用率下降；慢请求占用连接，触发排队和超时。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          78.0,
+          255.0,
+          494.0,
+          286.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0a87ee6-4954-420c-b3d8-4f7651de7acb",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "heading",
+      "native_type": null,
+      "text": "促成因素",
+      "heading_level": 2,
+      "markdown": "促成因素",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          80.0,
+          305.0,
+          154.0,
+          322.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "61a7f1fe-3c90-40d5-bf98-71c8d756f7ca",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "配置评审只检查了限流语义，没有检查缓存键基数。压测样本使用了 5 个租户，未覆盖生产环境的 38,000 个租户。",
+      "heading_level": null,
+      "markdown": "配置评审只检查了限流语义，没有检查缓存键基数。压测样本使用了 5 个租户，未覆盖生产环境的 38,000 个租户。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          78.0,
+          324.0,
+          494.0,
+          369.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7b8adaa2-65f9-455d-998d-ae93e32f4d22",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "heading",
+      "native_type": null,
+      "text": "未触发的保护",
+      "heading_level": 2,
+      "markdown": "未触发的保护",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          80.0,
+          388.0,
+          189.0,
+          404.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "515c34e8-0ad1-4a17-92e0-f625c2e3be23",
+      "source_block_id": "mineru-content-0027",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "缓存命中率有监控但没有发布门禁；连接池告警阈值设置为 90%，无法提前发现趋势。为什么没有在发布前发",
+      "heading_level": null,
+      "markdown": "缓存命中率有监控但没有发布门禁；连接池告警阈值设置为 90%，无法提前发现趋势。为什么没有在发布前发",
       "anchor": {
         "page_number": 2,
         "bbox": [
           80.0,
           407.0,
-          173.0,
-          428.0
+          494.0,
+          438.0
         ],
         "page_width": null,
         "page_height": null,
@@ -573,21 +774,21 @@
       "metadata": {}
     },
     {
-      "id": "a32f139a-cf4e-4de6-8126-75c2deef26c2",
-      "source_block_id": "mineru-content-0021",
-      "order_index": 20,
+      "id": "059a9660-1fe1-4f9d-9f63-118272d16e56",
+      "source_block_id": "mineru-content-0028",
+      "order_index": 27,
       "kind": "heading",
       "native_type": null,
-      "text": "2.1 输入预检",
+      "text": "5. 缓解措施",
       "heading_level": 2,
-      "markdown": "2.1 输入预检",
+      "markdown": "5. 缓解措施",
       "anchor": {
         "page_number": 2,
         "bbox": [
           80.0,
-          444.0,
-          216.0,
-          462.0
+          466.0,
+          213.0,
+          486.0
         ],
         "page_width": null,
         "page_height": null,
@@ -601,21 +802,21 @@
       "metadata": {}
     },
     {
-      "id": "9943edb1-bc28-4be7-9e02-20072895b8f5",
-      "source_block_id": "mineru-content-0022",
-      "order_index": 21,
+      "id": "bb8919ae-34a9-485c-a5f8-3fd794ec7321",
+      "source_block_id": "mineru-content-0029",
+      "order_index": 28,
       "kind": "paragraph",
       "native_type": null,
-      "text": "预检器记录文件类型、页数、文本层、扫描页比例和语言提示。路由器根据能力声明选择解析器，解析器实际执行来源写入 provenance [4]。",
+      "text": "1. 回滚缓存键变更并清理高基数缓存项；",
       "heading_level": null,
-      "markdown": "预检器记录文件类型、页数、文本层、扫描页比例和语言提示。路由器根据能力声明选择解析器，解析器实际执行来源写入 provenance [4]。",
+      "markdown": "1. 回滚缓存键变更并清理高基数缓存项；",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          78.0,
-          474.0,
-          917.0,
-          505.0
+          99.0,
+          502.0,
+          405.0,
+          518.0
         ],
         "page_width": null,
         "page_height": null,
@@ -629,48 +830,76 @@
       "metadata": {}
     },
     {
-      "id": "18a21bac-6e5c-410f-a0e9-2de693a146b4",
-      "source_block_id": "mineru-content-0023",
-      "order_index": 22,
-      "kind": "heading",
-      "native_type": null,
-      "text": "2.2 统一结构",
-      "heading_level": 2,
-      "markdown": "2.2 统一结构",
-      "anchor": {
-        "page_number": 2,
-        "bbox": [
-          80.0,
-          529.0,
-          216.0,
-          545.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "6bef43e9-2eac-4c39-b2e9-3f14c27ee09d",
-      "source_block_id": "mineru-content-0024",
-      "order_index": 23,
+      "id": "4333ac45-de54-4d97-94d7-7a0f91425abc",
+      "source_block_id": "mineru-content-0030",
+      "order_index": 29,
       "kind": "paragraph",
       "native_type": null,
-      "text": "每个文本块有稳定 block id、阅读顺序和 source anchor。表格 cell 保留 start row、start col、row span、col span；  \n合并表头生成完整 column path，例如“训练集 / 准确率”。",
+      "text": "2. 临时将连接池上限从 320 调整到 480，并限制重试次数；",
       "heading_level": null,
-      "markdown": "每个文本块有稳定 block id、阅读顺序和 source anchor。表格 cell 保留 start row、start col、row span、col span；  \n合并表头生成完整 column path，例如“训练集 / 准确率”。",
+      "markdown": "2. 临时将连接池上限从 320 调整到 480，并限制重试次数；",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          78.0,
-          558.0,
-          919.0,
+          99.0,
+          526.0,
+          541.0,
+          542.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "81f01b08-daff-421f-9153-455dc55456b7",
+      "source_block_id": "mineru-content-0031",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 为受影响租户打开降级响应，返回可重试的错误码；",
+      "heading_level": null,
+      "markdown": "3. 为受影响租户打开降级响应，返回可重试的错误码；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          550.0,
+          505.0,
+          567.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "90a7fcdf-70cf-498f-8bf3-387e64930475",
+      "source_block_id": "mineru-content-0032",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4. 在发布频道固定附带命中率、P95 和连接池利用率。",
+      "heading_level": null,
+      "markdown": "4. 在发布频道固定附带命中率、P95 和连接池利用率。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          574.0,
+          505.0,
           589.0
         ],
         "page_width": null,
@@ -685,21 +914,21 @@
       "metadata": {}
     },
     {
-      "id": "935ed179-49f8-4d64-b50c-cc9bcb75fd16",
-      "source_block_id": "mineru-content-0025",
-      "order_index": 24,
+      "id": "72c75bdb-723e-4506-b150-d10cd4716ec0",
+      "source_block_id": "mineru-content-0033",
+      "order_index": 32,
       "kind": "heading",
       "native_type": null,
-      "text": "2.3 质量门",
+      "text": "现？",
       "heading_level": 2,
-      "markdown": "2.3 质量门",
+      "markdown": "现？",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          80.0,
-          612.0,
-          196.0,
-          630.0
+          504.0,
+          237.0,
+          536.0,
+          252.0
         ],
         "page_width": null,
         "page_height": null,
@@ -713,21 +942,161 @@
       "metadata": {}
     },
     {
-      "id": "b7c98535-3cae-4907-b756-11df9d6b3ba3",
-      "source_block_id": "mineru-content-0026",
-      "order_index": 25,
+      "id": "ee201793-41f0-4eb5-ba88-c4e078247c84",
+      "source_block_id": "mineru-content-0034",
+      "order_index": 33,
       "kind": "paragraph",
       "native_type": null,
-      "text": "质量门按照以下规则决定状态：证据充分且关系唯一时为 verified；只有顺序和语义支持时为 inferred；目标不唯一时进入 manual review；关键事实缺失且其他模型可补足时进入 reparse required [5]。",
+      "text": "1. 变更模板把缓存键当作普通字符串；",
       "heading_level": null,
-      "markdown": "质量门按照以下规则决定状态：证据充分且关系唯一时为 verified；只有顺序和语义支持时为 inferred；目标不唯一时进入 manual review；关键事实缺失且其他模型可补足时进入 reparse required [5]。",
+      "markdown": "1. 变更模板把缓存键当作普通字符串；",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          78.0,
-          642.0,
+          504.0,
+          255.0,
+          791.0,
+          272.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3464964d-5764-4b4a-958e-4254a8107bd6",
+      "source_block_id": "mineru-content-0035",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 评审清单没有“基数”和“复用率”字段；",
+      "heading_level": null,
+      "markdown": "2. 评审清单没有“基数”和“复用率”字段；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          502.0,
+          274.0,
+          840.0,
+          290.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dd423236-8d9a-4bf9-a0b9-598f38c4ae61",
+      "source_block_id": "mineru-content-0036",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 预发布流量没有模拟长尾租户；",
+      "heading_level": null,
+      "markdown": "3. 预发布流量没有模拟长尾租户；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          502.0,
+          294.0,
+          756.0,
+          310.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "febc0853-d92c-4f51-80d0-3e43b72a0f72",
+      "source_block_id": "mineru-content-0037",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4. 回滚需要人工执行，没有自动策略。",
+      "heading_level": null,
+      "markdown": "4. 回滚需要人工执行，没有自动策略。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          502.0,
+          312.0,
+          789.0,
+          329.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f96fcb96-22b9-492c-a1be-e48d703e56ab",
+      "source_block_id": "mineru-content-0038",
+      "order_index": 37,
+      "kind": "heading",
+      "native_type": null,
+      "text": "结论",
+      "heading_level": 2,
+      "markdown": "结论",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          504.0,
+          351.0,
+          544.0,
+          367.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2c357d71-212e-4671-9de6-8a57ce471525",
+      "source_block_id": "mineru-content-0039",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "代码本身没有错误，系统性风险来自配置、压测和门禁之间的缺口。",
+      "heading_level": null,
+      "markdown": "代码本身没有错误，系统性风险来自配置、压测和门禁之间的缺口。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          502.0,
+          370.0,
           917.0,
-          674.0
+          400.0
         ],
         "page_width": null,
         "page_height": null,
@@ -741,20 +1110,20 @@
       "metadata": {}
     },
     {
-      "id": "866604bc-3b31-4990-beb8-19b0fc4c4655",
-      "source_block_id": "mineru-content-0027",
-      "order_index": 26,
+      "id": "17b470cc-1c7f-41e7-8fc9-887c66511df1",
+      "source_block_id": "mineru-content-0040",
+      "order_index": 39,
       "kind": "paragraph",
       "native_type": null,
-      "text": "Evidence-aware Retrieval Study",
+      "text": "Reliability Engineering",
       "heading_level": null,
-      "markdown": "Evidence-aware Retrieval Study",
+      "markdown": "Reliability Engineering",
       "anchor": {
         "page_number": 2,
         "bbox": [
           80.0,
           15.0,
-          326.0,
+          253.0,
           29.0
         ],
         "page_width": null,
@@ -769,18 +1138,18 @@
       "metadata": {}
     },
     {
-      "id": "4867da56-3301-4dce-ba16-f317bc6b65f4",
-      "source_block_id": "mineru-content-0028",
-      "order_index": 27,
+      "id": "77c9f9c9-e979-4769-bb2f-6d2dd402e499",
+      "source_block_id": "mineru-content-0041",
+      "order_index": 40,
       "kind": "paragraph",
       "native_type": null,
-      "text": "TR-2026-08",
+      "text": "INC-2026-0714",
       "heading_level": null,
-      "markdown": "TR-2026-08",
+      "markdown": "INC-2026-0714",
       "anchor": {
         "page_number": 2,
         "bbox": [
-          821.0,
+          796.0,
           15.0,
           915.0,
           28.0
@@ -797,9 +1166,9 @@
       "metadata": {}
     },
     {
-      "id": "0de823f3-a1e5-43a1-85a5-7b2f7580175b",
-      "source_block_id": "mineru-content-0029",
-      "order_index": 28,
+      "id": "77ce4669-561e-4e1b-a322-685f3a6cb727",
+      "source_block_id": "mineru-content-0042",
+      "order_index": 41,
       "kind": "page_number",
       "native_type": null,
       "text": "2",
@@ -825,20 +1194,20 @@
       "metadata": {}
     },
     {
-      "id": "2166b7cb-3beb-4b99-bdd8-5ef0f9bcffe9",
-      "source_block_id": "mineru-content-0030",
-      "order_index": 29,
+      "id": "d179ddb3-898d-4499-ba77-1257d5948e12",
+      "source_block_id": "mineru-content-0043",
+      "order_index": 42,
       "kind": "heading",
       "native_type": null,
-      "text": "3 实验设置",
+      "text": "6. 监控和证据",
       "heading_level": 2,
-      "markdown": "3 实验设置",
+      "markdown": "6. 监控和证据",
       "anchor": {
         "page_number": 3,
         "bbox": [
           80.0,
           57.0,
-          221.0,
+          236.0,
           77.0
         ],
         "page_width": null,
@@ -853,166 +1222,21 @@
       "metadata": {}
     },
     {
-      "id": "a2e494c8-c358-48e6-81ff-3677d5439903",
-      "source_block_id": "mineru-content-0031",
-      "order_index": 30,
-      "kind": "heading",
-      "native_type": null,
-      "text": "3.1 样例与指标",
-      "heading_level": 2,
-      "markdown": "3.1 样例与指标",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          80.0,
-          95.0,
-          236.0,
-          112.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "d1735987-07a5-4de2-bec5-e2e6fd9bf8a9",
-      "source_block_id": "mineru-content-0032",
-      "order_index": 31,
+      "id": "b446d54c-c999-424b-a3fb-4d3454d46166",
+      "source_block_id": "mineru-content-0044",
+      "order_index": 43,
       "kind": "table",
       "native_type": null,
-      "text": "| 能力 | 正例数 | 反例数 | 主要指标 |\n| --- | --- | --- | --- |\n| 普通正文与阅读顺序 | 2 | 1 | 文本完整度、block顺序 |\n| 多级表头与字段绑定 | 2 | 2 | column path、row key、来源 |\n| 标题层级恢复 | 2 | 1 | parent_child 唯一性 |\n| 编号引用绑定 | 2 | 2 | reference_of 目标唯一性 |\n| OCR 图片质量 | 2 | 2 | token 可读性、低质量拦截 |",
+      "text": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
       "heading_level": null,
-      "markdown": "| 能力 | 正例数 | 反例数 | 主要指标 |\n| --- | --- | --- | --- |\n| 普通正文与阅读顺序 | 2 | 1 | 文本完整度、block顺序 |\n| 多级表头与字段绑定 | 2 | 2 | column path、row key、来源 |\n| 标题层级恢复 | 2 | 1 | parent_child 唯一性 |\n| 编号引用绑定 | 2 | 2 | reference_of 目标唯一性 |\n| OCR 图片质量 | 2 | 2 | token 可读性、低质量拦截 |",
+      "markdown": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
       "anchor": {
         "page_number": 3,
         "bbox": [
           84.0,
-          123.0,
-          776.0,
-          223.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {
-        "table_id": "table-002",
-        "caption": [],
-        "footnote": [],
-        "img_path": "images/d9e5448fc1dbf20fbfda4fa573a3e2dad28ff0df1d162f6f7a03fb02b4e05507.jpg"
-      }
-    },
-    {
-      "id": "44096f16-3a8e-4df2-8818-f1f91dca39a6",
-      "source_block_id": "mineru-content-0033",
-      "order_index": 32,
-      "kind": "heading",
-      "native_type": null,
-      "text": "3.2 评估流程",
-      "heading_level": 2,
-      "markdown": "3.2 评估流程",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          80.0,
-          248.0,
-          216.0,
-          266.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "e35686fc-adb5-43dc-a158-3533bc09363f",
-      "source_block_id": "mineru-content-0034",
-      "order_index": 33,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "每个样例都使用相同的输入摘要和manifestcommit。运行记录包含路由决定、实际解析器、耗时、ParsedDocumentschema、质量状态、问题数量和产物位置。失败和不可用结果不会从批量报告中删除。",
-      "heading_level": null,
-      "markdown": "每个样例都使用相同的输入摘要和manifestcommit。运行记录包含路由决定、实际解析器、耗时、ParsedDocumentschema、质量状态、问题数量和产物位置。失败和不可用结果不会从批量报告中删除。",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          78.0,
-          278.0,
-          917.0,
-          309.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "b2c9de8c-141b-46b0-b650-be950096c90b",
-      "source_block_id": "mineru-content-0035",
-      "order_index": 34,
-      "kind": "heading",
-      "native_type": null,
-      "text": "3.3 表格结果",
-      "heading_level": 2,
-      "markdown": "3.3 表格结果",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          80.0,
-          331.0,
-          216.0,
-          349.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "7ba87f8d-f1fd-499a-a8be-58177317ac0c",
-      "source_block_id": "mineru-content-0036",
-      "order_index": 35,
-      "kind": "table",
-      "native_type": null,
-      "text": "| 样例 | 网格恢复 | 表头路径 | 字段绑定 | 最终状态 |\n| --- | --- | --- | --- | --- |\n| 采购比价正例 | pass | 完整 | verified | pass |\n| 跨页续表正例 | pass | 完整 | verified | pass with warnings |\n| 列漂移反例 | partial | 不确定 | unavailable | manual review |\n| 无稳定行键 | partial | 表级 | unavailable | manual review |",
-      "heading_level": null,
-      "markdown": "| 样例 | 网格恢复 | 表头路径 | 字段绑定 | 最终状态 |\n| --- | --- | --- | --- | --- |\n| 采购比价正例 | pass | 完整 | verified | pass |\n| 跨页续表正例 | pass | 完整 | verified | pass with warnings |\n| 列漂移反例 | partial | 不确定 | unavailable | manual review |\n| 无稳定行键 | partial | 表级 | unavailable | manual review |",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          82.0,
-          360.0,
-          736.0,
-          445.0
+          93.0,
+          875.0,
+          178.0
         ],
         "page_width": null,
         "page_height": null,
@@ -1027,25 +1251,25 @@
         "table_id": "table-003",
         "caption": [],
         "footnote": [],
-        "img_path": "images/7a15c124f8d259042340aeaa25031cfdc205fa6ddfe62f2f595194934661c36f.jpg"
+        "img_path": "images/5b43cec534e80d45a8e18930f0fd120b7ec336dbcc0cb2fdccb648d1e6293eea.jpg"
       }
     },
     {
-      "id": "06ee7fbc-3f11-441a-8576-7df181736557",
-      "source_block_id": "mineru-content-0037",
-      "order_index": 36,
+      "id": "e05897d0-7c6c-4504-ad58-fb63794df048",
+      "source_block_id": "mineru-content-0045",
+      "order_index": 44,
       "kind": "heading",
       "native_type": null,
-      "text": "4 讨论",
+      "text": "7. 后续行动项",
       "heading_level": 2,
-      "markdown": "4 讨论",
+      "markdown": "7. 后续行动项",
       "anchor": {
         "page_number": 3,
         "bbox": [
           80.0,
-          472.0,
-          173.0,
-          492.0
+          205.0,
+          236.0,
+          225.0
         ],
         "page_width": null,
         "page_height": null,
@@ -1059,21 +1283,54 @@
       "metadata": {}
     },
     {
-      "id": "9c3b4580-8f42-4a62-88bd-b9db539ffdf7",
-      "source_block_id": "mineru-content-0038",
-      "order_index": 37,
+      "id": "3715ee8e-005a-4dae-b194-e2ee35f056eb",
+      "source_block_id": "mineru-content-0046",
+      "order_index": 45,
+      "kind": "table",
+      "native_type": null,
+      "text": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "heading_level": null,
+      "markdown": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          104.0,
+          249.0,
+          892.0,
+          349.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/2a007d22fafac68b2127ebfbe4ec854cabaa119407b986b6aaf990056d4fa13e.jpg"
+      }
+    },
+    {
+      "id": "dd510511-70c2-469e-901b-8e887efb80c1",
+      "source_block_id": "mineru-content-0047",
+      "order_index": 46,
       "kind": "heading",
       "native_type": null,
-      "text": "4.1 安全降级",
+      "text": "8. 复盘结论",
       "heading_level": 2,
-      "markdown": "4.1 安全降级",
+      "markdown": "8. 复盘结论",
       "anchor": {
         "page_number": 3,
         "bbox": [
           80.0,
-          510.0,
-          216.0,
-          527.0
+          380.0,
+          213.0,
+          399.0
         ],
         "page_width": null,
         "page_height": null,
@@ -1087,21 +1344,21 @@
       "metadata": {}
     },
     {
-      "id": "18b7db15-62ac-4f17-92be-9848089cec1c",
-      "source_block_id": "mineru-content-0039",
-      "order_index": 38,
+      "id": "3bcdbb4f-28c3-4fa6-8aca-c4d8dd4ad2dc",
+      "source_block_id": "mineru-content-0048",
+      "order_index": 47,
       "kind": "paragraph",
       "native_type": null,
-      "text": "在表格结构不唯一时，减少绑定数量比输出错误关系更安全。质量报告必须同时记录缺失证据、受影响 block 和重新解析建议 [6]。",
+      "text": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
       "heading_level": null,
-      "markdown": "在表格结构不唯一时，减少绑定数量比输出错误关系更安全。质量报告必须同时记录缺失证据、受影响 block 和重新解析建议 [6]。",
+      "markdown": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
       "anchor": {
         "page_number": 3,
         "bbox": [
           78.0,
-          539.0,
+          417.0,
           917.0,
-          570.0
+          447.0
         ],
         "page_width": null,
         "page_height": null,
@@ -1115,77 +1372,21 @@
       "metadata": {}
     },
     {
-      "id": "f559b93e-7e27-4eaf-9425-64c82aaa1ee5",
-      "source_block_id": "mineru-content-0040",
-      "order_index": 39,
-      "kind": "heading",
-      "native_type": null,
-      "text": "4.2 局限性",
-      "heading_level": 2,
-      "markdown": "4.2 局限性",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          80.0,
-          593.0,
-          196.0,
-          611.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "2da7f6ab-f92e-4820-ad52-53489953b27d",
-      "source_block_id": "mineru-content-0041",
-      "order_index": 40,
+      "id": "887ce43a-30cd-47d9-b938-e43b98afd705",
+      "source_block_id": "mineru-content-0049",
+      "order_index": 48,
       "kind": "paragraph",
       "native_type": null,
-      "text": "合成样例不能覆盖所有扫描噪声和供应商格式。后续 Acceptance 子集应加入未参与规则调试的公开文档，并由人工标注确认。",
+      "text": "Reliability Engineering",
       "heading_level": null,
-      "markdown": "合成样例不能覆盖所有扫描噪声和供应商格式。后续 Acceptance 子集应加入未参与规则调试的公开文档，并由人工标注确认。",
-      "anchor": {
-        "page_number": 3,
-        "bbox": [
-          78.0,
-          623.0,
-          917.0,
-          652.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "14fb142e-55d4-459b-878c-48c3587fd8b6",
-      "source_block_id": "mineru-content-0042",
-      "order_index": 41,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "Evidence-aware Retrieval Study",
-      "heading_level": null,
-      "markdown": "Evidence-aware Retrieval Study",
+      "markdown": "Reliability Engineering",
       "anchor": {
         "page_number": 3,
         "bbox": [
           80.0,
           15.0,
-          326.0,
-          29.0
+          252.0,
+          30.0
         ],
         "page_width": null,
         "page_height": null,
@@ -1199,18 +1400,18 @@
       "metadata": {}
     },
     {
-      "id": "4cf7d0c8-dd05-4652-a521-7e170a6d3903",
-      "source_block_id": "mineru-content-0043",
-      "order_index": 42,
+      "id": "7ecfba77-27ee-4128-b187-34476ee8c23a",
+      "source_block_id": "mineru-content-0050",
+      "order_index": 49,
       "kind": "paragraph",
       "native_type": null,
-      "text": "TR-2026-08",
+      "text": "INC-2026-0714",
       "heading_level": null,
-      "markdown": "TR-2026-08",
+      "markdown": "INC-2026-0714",
       "anchor": {
         "page_number": 3,
         "bbox": [
-          821.0,
+          796.0,
           15.0,
           915.0,
           28.0
@@ -1227,9 +1428,37 @@
       "metadata": {}
     },
     {
-      "id": "37945524-ad73-464d-b6e7-e310cee5ae0a",
-      "source_block_id": "mineru-content-0044",
-      "order_index": 43,
+      "id": "930aaf0e-9a99-4f78-ba6f-e00241d4c24d",
+      "source_block_id": "mineru-content-0051",
+      "order_index": 50,
+      "kind": "footer",
+      "native_type": null,
+      "text": "Synthetic incident report. Names, identifiers and measurements are fictional.",
+      "heading_level": null,
+      "markdown": "Synthetic incident report. Names, identifiers and measurements are fictional.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          80.0,
+          928.0,
+          596.0,
+          942.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a870c44c-fac6-462a-ad4b-ae9325ca90bb",
+      "source_block_id": "mineru-content-0052",
+      "order_index": 51,
       "kind": "page_number",
       "native_type": null,
       "text": "3",
@@ -1253,281 +1482,29 @@
         "original_text": null
       },
       "metadata": {}
-    },
-    {
-      "id": "c6b14e06-4656-44e1-8d8a-3e22fe269454",
-      "source_block_id": "mineru-content-0045",
-      "order_index": 44,
-      "kind": "heading",
-      "native_type": null,
-      "text": "5 结论",
-      "heading_level": 2,
-      "markdown": "5 结论",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          80.0,
-          58.0,
-          171.0,
-          77.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "7a00465e-16c5-4455-92af-fd02f9a4a934",
-      "source_block_id": "mineru-content-0046",
-      "order_index": 45,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "本文展示了从预检、解析、统一输出到质量门的完整证据链。实验说明，多级标题、表格网格和引用关系需要共同的来源模型，不能由质量层凭空补造。对于无法唯一判断的结构，系统应明确交给人工复核或重新解析。",
-      "heading_level": null,
-      "markdown": "本文展示了从预检、解析、统一输出到质量门的完整证据链。实验说明，多级标题、表格网格和引用关系需要共同的来源模型，不能由质量层凭空补造。对于无法唯一判断的结构，系统应明确交给人工复核或重新解析。",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          78.0,
-          95.0,
-          915.0,
-          126.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "61c49568-fd57-4864-abd0-2fcf4a6ce857",
-      "source_block_id": "mineru-content-0047",
-      "order_index": 46,
-      "kind": "heading",
-      "native_type": null,
-      "text": "参考文献",
-      "heading_level": 2,
-      "markdown": "参考文献",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          80.0,
-          152.0,
-          184.0,
-          173.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "b4f3284d-911e-415e-bc3d-8b34f19aaa1f",
-      "source_block_id": "mineru-content-0048",
-      "order_index": 47,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "",
-      "heading_level": null,
-      "markdown": "",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          102.0,
-          190.0,
-          915.0,
-          219.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "dea7e155-fdbc-419e-b2e4-e2e10a172a34",
-      "source_block_id": "mineru-content-0049",
-      "order_index": 48,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "引用规则：正文中的 [1-2] 指向参考文献 1 和 2；[3]、[4]、[5]、[6] 分别指向对应编号。",
-      "heading_level": null,
-      "markdown": "引用规则：正文中的 [1-2] 指向参考文献 1 和 2；[3]、[4]、[5]、[6] 分别指向对应编号。",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          82.0,
-          416.0,
-          717.0,
-          432.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "156094ac-72af-47c1-8730-eaa6a1b3167e",
-      "source_block_id": "mineru-content-0050",
-      "order_index": 49,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "Evidence-aware Retrieval Study",
-      "heading_level": null,
-      "markdown": "Evidence-aware Retrieval Study",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          80.0,
-          15.0,
-          326.0,
-          29.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "ccd7ea0a-3ed6-4cde-84b7-0ffe7b93e30c",
-      "source_block_id": "mineru-content-0051",
-      "order_index": 50,
-      "kind": "paragraph",
-      "native_type": null,
-      "text": "TR-2026-08",
-      "heading_level": null,
-      "markdown": "TR-2026-08",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          821.0,
-          15.0,
-          915.0,
-          28.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "ecbc9fb0-66e0-4470-9c42-8f5dec4487c5",
-      "source_block_id": "mineru-content-0052",
-      "order_index": 51,
-      "kind": "footer",
-      "native_type": null,
-      "text": "Synthetic technical report; authors, measurements and DOI values are fictional but internally consistent.",
-      "heading_level": null,
-      "markdown": "Synthetic technical report; authors, measurements and DOI values are fictional but internally consistent.",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          80.0,
-          928.0,
-          776.0,
-          942.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
-    },
-    {
-      "id": "4e2c5471-24cd-4e30-a0b2-801c27aff2af",
-      "source_block_id": "mineru-content-0053",
-      "order_index": 52,
-      "kind": "page_number",
-      "native_type": null,
-      "text": "4",
-      "heading_level": null,
-      "markdown": "4",
-      "anchor": {
-        "page_number": 4,
-        "bbox": [
-          492.0,
-          965.0,
-          505.0,
-          976.0
-        ],
-        "page_width": null,
-        "page_height": null,
-        "coordinate_system": null,
-        "bbox_granularity": "block",
-        "provenance_status": null,
-        "section_path": [],
-        "table_cell": null,
-        "original_text": null
-      },
-      "metadata": {}
     }
   ],
   "assets": [],
   "tables": [
     {
       "table_id": "table-001",
-      "block_id": "a605d9ce-fc04-4bd5-880d-fe354f55df7b",
-      "html": "<table><tr><td>作者</td><td>陈琳，周海，王倩</td><td>文档类型</td><td>技术研究报告</td></tr><tr><td>版本</td><td>1.2</td><td>发布日期</td><td>2026-08-17</td></tr><tr><td>数据集</td><td>Shared Dev v1</td><td>状态</td><td>Reviewed</td></tr></table>",
-      "markdown": "| 作者 | 陈琳，周海，王倩 | 文档类型 | 技术研究报告 |\n| --- | --- | --- | --- |\n| 版本 | 1.2 | 发布日期 | 2026-08-17 |\n| 数据集 | Shared Dev v1 | 状态 | Reviewed |",
+      "block_id": "17e5f52c-8976-4142-9c1f-ef6f9a93beeb",
+      "html": "<table><tr><td>事故编号</td><td>INC-2026-0714</td><td>影响服务</td><td>payments-api</td></tr><tr><td>发生时间</td><td>2026-07-14 09:12-10:03</td><td>严重级别</td><td>SEV-2</td></tr><tr><td>负责人</td><td>Reliability Engineering</td><td>当前状态</td><td>Closed with follow-up</td></tr></table>",
+      "markdown": "| 事故编号 | INC-2026-0714 | 影响服务 | payments-api |\n| --- | --- | --- | --- |\n| 发生时间 | 2026-07-14 09:12-10:03 | 严重级别 | SEV-2 |\n| 负责人 | Reliability Engineering | 当前状态 | Closed with follow-up |",
       "caption": null,
-      "image_path": "images/03b20d5f75653b2fb8f9dddce890364fed2f3c8ef9c5b75b90e54affc07562da.jpg",
+      "image_path": "images/c413dae9ba36a003309f98e409c77b514ba3092938f1194ccd4aa4b4eee51fbf.jpg",
       "page_number": 1,
       "bbox": [
         87.0,
-        147.0,
-        816.0,
-        195.0
+        140.0,
+        813.0,
+        192.0
       ],
       "num_rows": 3,
       "num_cols": 4,
       "cells": [
         {
-          "text": "作者",
+          "text": "事故编号",
           "start_row": 0,
           "start_col": 0,
           "row_span": 1,
@@ -1537,7 +1514,7 @@
           "bbox": null
         },
         {
-          "text": "陈琳，周海，王倩",
+          "text": "INC-2026-0714",
           "start_row": 0,
           "start_col": 1,
           "row_span": 1,
@@ -1547,7 +1524,7 @@
           "bbox": null
         },
         {
-          "text": "文档类型",
+          "text": "影响服务",
           "start_row": 0,
           "start_col": 2,
           "row_span": 1,
@@ -1557,7 +1534,7 @@
           "bbox": null
         },
         {
-          "text": "技术研究报告",
+          "text": "payments-api",
           "start_row": 0,
           "start_col": 3,
           "row_span": 1,
@@ -1567,7 +1544,7 @@
           "bbox": null
         },
         {
-          "text": "版本",
+          "text": "发生时间",
           "start_row": 1,
           "start_col": 0,
           "row_span": 1,
@@ -1577,7 +1554,7 @@
           "bbox": null
         },
         {
-          "text": "1.2",
+          "text": "2026-07-14 09:12-10:03",
           "start_row": 1,
           "start_col": 1,
           "row_span": 1,
@@ -1587,7 +1564,7 @@
           "bbox": null
         },
         {
-          "text": "发布日期",
+          "text": "严重级别",
           "start_row": 1,
           "start_col": 2,
           "row_span": 1,
@@ -1597,7 +1574,7 @@
           "bbox": null
         },
         {
-          "text": "2026-08-17",
+          "text": "SEV-2",
           "start_row": 1,
           "start_col": 3,
           "row_span": 1,
@@ -1607,7 +1584,7 @@
           "bbox": null
         },
         {
-          "text": "数据集",
+          "text": "负责人",
           "start_row": 2,
           "start_col": 0,
           "row_span": 1,
@@ -1617,7 +1594,7 @@
           "bbox": null
         },
         {
-          "text": "Shared Dev v1",
+          "text": "Reliability Engineering",
           "start_row": 2,
           "start_col": 1,
           "row_span": 1,
@@ -1627,7 +1604,7 @@
           "bbox": null
         },
         {
-          "text": "状态",
+          "text": "当前状态",
           "start_row": 2,
           "start_col": 2,
           "row_span": 1,
@@ -1637,7 +1614,7 @@
           "bbox": null
         },
         {
-          "text": "Reviewed",
+          "text": "Closed with follow-up",
           "start_row": 2,
           "start_col": 3,
           "row_span": 1,
@@ -1654,23 +1631,23 @@
     },
     {
       "table_id": "table-002",
-      "block_id": "d1735987-07a5-4de2-bec5-e2e6fd9bf8a9",
-      "html": "<table><tr><td>能力</td><td>正例数</td><td>反例数</td><td>主要指标</td></tr><tr><td>普通正文与阅读顺序</td><td>2</td><td>1</td><td>文本完整度、block顺序</td></tr><tr><td>多级表头与字段绑定</td><td>2</td><td>2</td><td>column path、row key、来源</td></tr><tr><td>标题层级恢复</td><td>2</td><td>1</td><td>parent_child 唯一性</td></tr><tr><td>编号引用绑定</td><td>2</td><td>2</td><td>reference_of 目标唯一性</td></tr><tr><td>OCR 图片质量</td><td>2</td><td>2</td><td>token 可读性、低质量拦截</td></tr></table>",
-      "markdown": "| 能力 | 正例数 | 反例数 | 主要指标 |\n| --- | --- | --- | --- |\n| 普通正文与阅读顺序 | 2 | 1 | 文本完整度、block顺序 |\n| 多级表头与字段绑定 | 2 | 2 | column path、row key、来源 |\n| 标题层级恢复 | 2 | 1 | parent_child 唯一性 |\n| 编号引用绑定 | 2 | 2 | reference_of 目标唯一性 |\n| OCR 图片质量 | 2 | 2 | token 可读性、低质量拦截 |",
+      "block_id": "51afc367-fed3-4a8c-943e-4a96a7eddf02",
+      "html": "<table><tr><td>时间</td><td>事件</td><td>证据与决定</td></tr><tr><td>08:45</td><td>配置变更提交</td><td>将 tenant_id 加入边缘缓存键；评审通过</td></tr><tr><td>09:12</td><td>P95 超过 1.8 s</td><td>latency_p95 告警触发</td></tr><tr><td>09:18</td><td>502 开始上升</td><td>值班工程师建立事故频道</td></tr><tr><td>09:31</td><td>发现缓存命中率下降</td><td>对比变更前后的 cache_hit_ratio</td></tr><tr><td>09:42</td><td>回滚配置</td><td>限流规则恢复到 2026-07-13 版本</td></tr><tr><td>10:03</td><td>服务恢复</td><td>P95 回到 420 ms，进入观察期</td></tr></table>",
+      "markdown": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms，进入观察期 |",
       "caption": null,
-      "image_path": "images/d9e5448fc1dbf20fbfda4fa573a3e2dad28ff0df1d162f6f7a03fb02b4e05507.jpg",
-      "page_number": 3,
+      "image_path": "images/b91264450bc9af533f81eb379ba622acda508b955d4400f4b1888c470991bc69.jpg",
+      "page_number": 1,
       "bbox": [
-        84.0,
-        123.0,
-        776.0,
-        223.0
+        97.0,
+        569.0,
+        899.0,
+        683.0
       ],
-      "num_rows": 6,
-      "num_cols": 4,
+      "num_rows": 7,
+      "num_cols": 3,
       "cells": [
         {
-          "text": "能力",
+          "text": "时间",
           "start_row": 0,
           "start_col": 0,
           "row_span": 1,
@@ -1680,7 +1657,7 @@
           "bbox": null
         },
         {
-          "text": "正例数",
+          "text": "事件",
           "start_row": 0,
           "start_col": 1,
           "row_span": 1,
@@ -1690,7 +1667,7 @@
           "bbox": null
         },
         {
-          "text": "反例数",
+          "text": "证据与决定",
           "start_row": 0,
           "start_col": 2,
           "row_span": 1,
@@ -1700,17 +1677,7 @@
           "bbox": null
         },
         {
-          "text": "主要指标",
-          "start_row": 0,
-          "start_col": 3,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": true,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "普通正文与阅读顺序",
+          "text": "08:45",
           "start_row": 1,
           "start_col": 0,
           "row_span": 1,
@@ -1720,7 +1687,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "配置变更提交",
           "start_row": 1,
           "start_col": 1,
           "row_span": 1,
@@ -1730,7 +1697,7 @@
           "bbox": null
         },
         {
-          "text": "1",
+          "text": "将 tenant_id 加入边缘缓存键；评审通过",
           "start_row": 1,
           "start_col": 2,
           "row_span": 1,
@@ -1740,17 +1707,7 @@
           "bbox": null
         },
         {
-          "text": "文本完整度、block顺序",
-          "start_row": 1,
-          "start_col": 3,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "多级表头与字段绑定",
+          "text": "09:12",
           "start_row": 2,
           "start_col": 0,
           "row_span": 1,
@@ -1760,7 +1717,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "P95 超过 1.8 s",
           "start_row": 2,
           "start_col": 1,
           "row_span": 1,
@@ -1770,7 +1727,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "latency_p95 告警触发",
           "start_row": 2,
           "start_col": 2,
           "row_span": 1,
@@ -1780,17 +1737,7 @@
           "bbox": null
         },
         {
-          "text": "column path、row key、来源",
-          "start_row": 2,
-          "start_col": 3,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "标题层级恢复",
+          "text": "09:18",
           "start_row": 3,
           "start_col": 0,
           "row_span": 1,
@@ -1800,7 +1747,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "502 开始上升",
           "start_row": 3,
           "start_col": 1,
           "row_span": 1,
@@ -1810,7 +1757,7 @@
           "bbox": null
         },
         {
-          "text": "1",
+          "text": "值班工程师建立事故频道",
           "start_row": 3,
           "start_col": 2,
           "row_span": 1,
@@ -1820,17 +1767,7 @@
           "bbox": null
         },
         {
-          "text": "parent_child 唯一性",
-          "start_row": 3,
-          "start_col": 3,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "编号引用绑定",
+          "text": "09:31",
           "start_row": 4,
           "start_col": 0,
           "row_span": 1,
@@ -1840,7 +1777,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "发现缓存命中率下降",
           "start_row": 4,
           "start_col": 1,
           "row_span": 1,
@@ -1850,7 +1787,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "对比变更前后的 cache_hit_ratio",
           "start_row": 4,
           "start_col": 2,
           "row_span": 1,
@@ -1860,17 +1797,7 @@
           "bbox": null
         },
         {
-          "text": "reference_of 目标唯一性",
-          "start_row": 4,
-          "start_col": 3,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "OCR 图片质量",
+          "text": "09:42",
           "start_row": 5,
           "start_col": 0,
           "row_span": 1,
@@ -1880,7 +1807,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "回滚配置",
           "start_row": 5,
           "start_col": 1,
           "row_span": 1,
@@ -1890,7 +1817,7 @@
           "bbox": null
         },
         {
-          "text": "2",
+          "text": "限流规则恢复到 2026-07-13 版本",
           "start_row": 5,
           "start_col": 2,
           "row_span": 1,
@@ -1900,9 +1827,29 @@
           "bbox": null
         },
         {
-          "text": "token 可读性、低质量拦截",
-          "start_row": 5,
-          "start_col": 3,
+          "text": "10:03",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "服务恢复",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P95 回到 420 ms，进入观察期",
+          "start_row": 6,
+          "start_col": 2,
           "row_span": 1,
           "col_span": 1,
           "column_header": false,
@@ -1917,23 +1864,23 @@
     },
     {
       "table_id": "table-003",
-      "block_id": "7ba87f8d-f1fd-499a-a8be-58177317ac0c",
-      "html": "<table><tr><td>样例</td><td>网格恢复</td><td>表头路径</td><td>字段绑定</td><td>最终状态</td></tr><tr><td>采购比价正例</td><td>pass</td><td>完整</td><td>verified</td><td>pass</td></tr><tr><td>跨页续表正例</td><td>pass</td><td>完整</td><td>verified</td><td>pass with warnings</td></tr><tr><td>列漂移反例</td><td>partial</td><td>不确定</td><td>unavailable</td><td>manual review</td></tr><tr><td>无稳定行键</td><td>partial</td><td>表级</td><td>unavailable</td><td>manual review</td></tr></table>",
-      "markdown": "| 样例 | 网格恢复 | 表头路径 | 字段绑定 | 最终状态 |\n| --- | --- | --- | --- | --- |\n| 采购比价正例 | pass | 完整 | verified | pass |\n| 跨页续表正例 | pass | 完整 | verified | pass with warnings |\n| 列漂移反例 | partial | 不确定 | unavailable | manual review |\n| 无稳定行键 | partial | 表级 | unavailable | manual review |",
+      "block_id": "b446d54c-c999-424b-a3fb-4d3454d46166",
+      "html": "<table><tr><td>指标</td><td>事故前</td><td>峰值</td><td>恢复目标</td></tr><tr><td>P95 latency</td><td>420 ms</td><td>2,400 ms</td><td>&lt; 500 ms</td></tr><tr><td>Cache hit ratio</td><td>91%</td><td>38%</td><td>&gt; 85%</td></tr><tr><td>Connection pool</td><td>62%</td><td>99%</td><td>&lt; 75%</td></tr><tr><td>HTTP 502 ratio</td><td>0.08%</td><td>1.20%</td><td>&lt; 0.10%</td></tr></table>",
+      "markdown": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
       "caption": null,
-      "image_path": "images/7a15c124f8d259042340aeaa25031cfdc205fa6ddfe62f2f595194934661c36f.jpg",
+      "image_path": "images/5b43cec534e80d45a8e18930f0fd120b7ec336dbcc0cb2fdccb648d1e6293eea.jpg",
       "page_number": 3,
       "bbox": [
-        82.0,
-        360.0,
-        736.0,
-        445.0
+        84.0,
+        93.0,
+        875.0,
+        178.0
       ],
       "num_rows": 5,
-      "num_cols": 5,
+      "num_cols": 4,
       "cells": [
         {
-          "text": "样例",
+          "text": "指标",
           "start_row": 0,
           "start_col": 0,
           "row_span": 1,
@@ -1943,7 +1890,7 @@
           "bbox": null
         },
         {
-          "text": "网格恢复",
+          "text": "事故前",
           "start_row": 0,
           "start_col": 1,
           "row_span": 1,
@@ -1953,7 +1900,7 @@
           "bbox": null
         },
         {
-          "text": "表头路径",
+          "text": "峰值",
           "start_row": 0,
           "start_col": 2,
           "row_span": 1,
@@ -1963,7 +1910,7 @@
           "bbox": null
         },
         {
-          "text": "字段绑定",
+          "text": "恢复目标",
           "start_row": 0,
           "start_col": 3,
           "row_span": 1,
@@ -1973,9 +1920,192 @@
           "bbox": null
         },
         {
-          "text": "最终状态",
+          "text": "P95 latency",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "420 ms",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2,400 ms",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "< 500 ms",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Cache hit ratio",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "91%",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "38%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "> 85%",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Connection pool",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "62%",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "99%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "< 75%",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "HTTP 502 ratio",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0.08%",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1.20%",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "< 0.10%",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "3715ee8e-005a-4dae-b194-e2ee35f056eb",
+      "html": "<table><tr><td>ID</td><td>行动</td><td>负责人</td><td>截止日期</td></tr><tr><td>A1</td><td>为缓存键增加基数估算和命中率预估</td><td>Edge Team</td><td>2026-07-28</td></tr><tr><td>A2</td><td>压测加入长尾租户和真实比例</td><td>Performance</td><td>2026-08-04</td></tr><tr><td>A3</td><td>将 cache_hit_ratio 纳入发布门禁</td><td>Release Eng</td><td>2026-08-11</td></tr><tr><td>A4</td><td>实现连接池趋势告警和自动回滚</td><td>Reliability</td><td>2026-08-18</td></tr><tr><td>A5</td><td>更新配置评审模板与培训材料</td><td>Platform Team</td><td>2026-08-21</td></tr></table>",
+      "markdown": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "caption": null,
+      "image_path": "images/2a007d22fafac68b2127ebfbe4ec854cabaa119407b986b6aaf990056d4fa13e.jpg",
+      "page_number": 3,
+      "bbox": [
+        104.0,
+        249.0,
+        892.0,
+        349.0
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "ID",
           "start_row": 0,
-          "start_col": 4,
+          "start_col": 0,
           "row_span": 1,
           "col_span": 1,
           "column_header": true,
@@ -1983,7 +2113,37 @@
           "bbox": null
         },
         {
-          "text": "采购比价正例",
+          "text": "行动",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负责人",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "截止日期",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "A1",
           "start_row": 1,
           "start_col": 0,
           "row_span": 1,
@@ -1993,7 +2153,7 @@
           "bbox": null
         },
         {
-          "text": "pass",
+          "text": "为缓存键增加基数估算和命中率预估",
           "start_row": 1,
           "start_col": 1,
           "row_span": 1,
@@ -2003,7 +2163,7 @@
           "bbox": null
         },
         {
-          "text": "完整",
+          "text": "Edge Team",
           "start_row": 1,
           "start_col": 2,
           "row_span": 1,
@@ -2013,7 +2173,7 @@
           "bbox": null
         },
         {
-          "text": "verified",
+          "text": "2026-07-28",
           "start_row": 1,
           "start_col": 3,
           "row_span": 1,
@@ -2023,17 +2183,7 @@
           "bbox": null
         },
         {
-          "text": "pass",
-          "start_row": 1,
-          "start_col": 4,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "跨页续表正例",
+          "text": "A2",
           "start_row": 2,
           "start_col": 0,
           "row_span": 1,
@@ -2043,7 +2193,7 @@
           "bbox": null
         },
         {
-          "text": "pass",
+          "text": "压测加入长尾租户和真实比例",
           "start_row": 2,
           "start_col": 1,
           "row_span": 1,
@@ -2053,7 +2203,7 @@
           "bbox": null
         },
         {
-          "text": "完整",
+          "text": "Performance",
           "start_row": 2,
           "start_col": 2,
           "row_span": 1,
@@ -2063,7 +2213,7 @@
           "bbox": null
         },
         {
-          "text": "verified",
+          "text": "2026-08-04",
           "start_row": 2,
           "start_col": 3,
           "row_span": 1,
@@ -2073,17 +2223,7 @@
           "bbox": null
         },
         {
-          "text": "pass with warnings",
-          "start_row": 2,
-          "start_col": 4,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "列漂移反例",
+          "text": "A3",
           "start_row": 3,
           "start_col": 0,
           "row_span": 1,
@@ -2093,7 +2233,7 @@
           "bbox": null
         },
         {
-          "text": "partial",
+          "text": "将 cache_hit_ratio 纳入发布门禁",
           "start_row": 3,
           "start_col": 1,
           "row_span": 1,
@@ -2103,7 +2243,7 @@
           "bbox": null
         },
         {
-          "text": "不确定",
+          "text": "Release Eng",
           "start_row": 3,
           "start_col": 2,
           "row_span": 1,
@@ -2113,7 +2253,7 @@
           "bbox": null
         },
         {
-          "text": "unavailable",
+          "text": "2026-08-11",
           "start_row": 3,
           "start_col": 3,
           "row_span": 1,
@@ -2123,17 +2263,7 @@
           "bbox": null
         },
         {
-          "text": "manual review",
-          "start_row": 3,
-          "start_col": 4,
-          "row_span": 1,
-          "col_span": 1,
-          "column_header": false,
-          "row_header": false,
-          "bbox": null
-        },
-        {
-          "text": "无稳定行键",
+          "text": "A4",
           "start_row": 4,
           "start_col": 0,
           "row_span": 1,
@@ -2143,7 +2273,7 @@
           "bbox": null
         },
         {
-          "text": "partial",
+          "text": "实现连接池趋势告警和自动回滚",
           "start_row": 4,
           "start_col": 1,
           "row_span": 1,
@@ -2153,7 +2283,7 @@
           "bbox": null
         },
         {
-          "text": "表级",
+          "text": "Reliability",
           "start_row": 4,
           "start_col": 2,
           "row_span": 1,
@@ -2163,7 +2293,7 @@
           "bbox": null
         },
         {
-          "text": "unavailable",
+          "text": "2026-08-18",
           "start_row": 4,
           "start_col": 3,
           "row_span": 1,
@@ -2173,9 +2303,39 @@
           "bbox": null
         },
         {
-          "text": "manual review",
-          "start_row": 4,
-          "start_col": 4,
+          "text": "A5",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "更新配置评审模板与培训材料",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Platform Team",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 5,
+          "start_col": 3,
           "row_span": 1,
           "col_span": 1,
           "column_header": false,
@@ -2240,5 +2400,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T16:22:50.889429Z"
+  "created_at": "2026-08-17T16:22:21.101575Z"
 }

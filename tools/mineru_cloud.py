@@ -573,6 +573,7 @@ def parse_pdf(
     *,
     api_key: str | None = None,
     is_ocr: bool = False,
+    file_type: str = "application/pdf",
     model_version: str = "pipeline",
     enable_formula: bool = True,
     enable_table: bool = True,
@@ -653,7 +654,7 @@ def parse_pdf(
     return ParsedDocument(
         document_id=uuid4(),
         filename=source.name,
-        file_type="application/pdf",
+        file_type=file_type,
         source_size_bytes=len(source_bytes),
         source_sha256=_sha256(source_bytes),
         markdown=markdown,

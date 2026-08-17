@@ -1,0 +1,600 @@
+{
+  "document_id": "6c5e3cf0-e3bd-461a-a762-ec84e508b109",
+  "filename": "usage_dashboard_screenshot.jpeg",
+  "file_type": "image/jpeg",
+  "source_size_bytes": 100190,
+  "source_sha256": "244e3efa9e1eb365fb7bd46814f2efb73bcedfd633fb009d32103dfda19700e5",
+  "routing_decision": null,
+  "markdown": "总请求数48,216▲ 12.8%较上周期\n\nToken 消耗1.84B▲ 8.4%较上周期\n\n预估费用（含税)  \n¥12,684.32  \n预算使用率 63.4%\n\n## 按模型统计\n\n<table><tr><td>模型</td><td colspan=\"3\">请求数 输入 Token 输出 Token</td><td>费用</td></tr><tr><td>GPT-4.1-mini</td><td>18,420</td><td>286.4M</td><td>91.7M</td><td>¥3,182.40</td></tr><tr><td>GPT-4.1</td><td>8,316</td><td>402.1M</td><td>188.6M</td><td>¥6,944.20</td></tr><tr><td>Qwen2.5-72B-Instruct</td><td>15,990</td><td>311.8M</td><td>206.4M</td><td>¥1,728.62</td></tr><tr><td>bge-m3(向量化)</td><td>5,490</td><td>347.0M</td><td></td><td>¥829.10</td></tr><tr><td></td><td></td><td></td><td>合计¥12,684.32</td><td></td></tr></table>\n\n统计口径:重试请求计入请求数；缓存命中仅计入实际计费Token;金额为账单API返回值的近似值。截图为合成业务数据。\n\n费用单位：人民币",
+  "blocks": [
+    {
+      "id": "8010b62f-9d65-4aa0-9f5f-5a4bcf229805",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "总请求数48,216▲ 12.8%较上周期",
+      "heading_level": null,
+      "markdown": "总请求数48,216▲ 12.8%较上周期",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          124.0,
+          154.0,
+          226.0,
+          262.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "599737a1-3917-4b25-a0bc-78f7de92c132",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Token 消耗1.84B▲ 8.4%较上周期",
+      "heading_level": null,
+      "markdown": "Token 消耗1.84B▲ 8.4%较上周期",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          404.0,
+          156.0,
+          497.0,
+          262.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0e91057-65ff-42fd-863b-d9dbfa958fc6",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "预估费用（含税)  \n¥12,684.32  \n预算使用率 63.4%",
+      "heading_level": null,
+      "markdown": "预估费用（含税)  \n¥12,684.32  \n预算使用率 63.4%",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          658.0,
+          154.0,
+          822.0,
+          264.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cdf2925d-e2d0-4c43-812c-4506240ae60a",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "按模型统计",
+      "heading_level": 2,
+      "markdown": "按模型统计",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          59.0,
+          355.0,
+          141.0,
+          389.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d892971c-dbbd-440f-957f-bf518d34cbed",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 模型 | 请求数 输入 Token 输出 Token |   |   | 费用 |\n| --- | --- | --- | --- | --- |\n| GPT-4.1-mini | 18,420 | 286.4M | 91.7M | ¥3,182.40 |\n| GPT-4.1 | 8,316 | 402.1M | 188.6M | ¥6,944.20 |\n| Qwen2.5-72B-Instruct | 15,990 | 311.8M | 206.4M | ¥1,728.62 |\n| bge-m3(向量化) | 5,490 | 347.0M |   | ¥829.10 |\n|   |   |   | 合计¥12,684.32 |   |",
+      "heading_level": null,
+      "markdown": "| 模型 | 请求数 输入 Token 输出 Token |   |   | 费用 |\n| --- | --- | --- | --- | --- |\n| GPT-4.1-mini | 18,420 | 286.4M | 91.7M | ¥3,182.40 |\n| GPT-4.1 | 8,316 | 402.1M | 188.6M | ¥6,944.20 |\n| Qwen2.5-72B-Instruct | 15,990 | 311.8M | 206.4M | ¥1,728.62 |\n| bge-m3(向量化) | 5,490 | 347.0M |   | ¥829.10 |\n|   |   |   | 合计¥12,684.32 |   |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          300.0,
+          399.0,
+          703.0,
+          607.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [],
+        "footnote": [
+          "统计口径:重试请求计入请求数；缓存命中仅计入实际计费Token;金额为账单API返回值的近似值。截图为合成业务数据。"
+        ],
+        "img_path": "images/4c96598eadff872829d7141b6cd8128636c62928d8ca94bce6fae3b1317a96ae.jpg"
+      }
+    },
+    {
+      "id": "e43d36c6-645f-4cb2-bdd7-c6a1fb9c4502",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "费用单位：人民币",
+      "heading_level": null,
+      "markdown": "费用单位：人民币",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          866.0,
+          360.0,
+          960.0,
+          387.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "376af0ae-2a2d-4afa-841c-4aca00d8732e",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "LLMwiki •Usage & Cost组织：华东智研/工作区：quality-layer",
+      "heading_level": null,
+      "markdown": "LLMwiki •Usage & Cost组织：华东智研/工作区：quality-layer",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.0,
+          0.0,
+          269.0,
+          56.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c5dc4456-2a35-4083-b55e-7c6e14979e39",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2026-08-01至2026-08-17数据每15分钟刷新",
+      "heading_level": null,
+      "markdown": "2026-08-01至2026-08-17数据每15分钟刷新",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          779.0,
+          34.0,
+          988.0,
+          53.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "d892971c-dbbd-440f-957f-bf518d34cbed",
+      "html": "<table><tr><td>模型</td><td colspan=\"3\">请求数 输入 Token 输出 Token</td><td>费用</td></tr><tr><td>GPT-4.1-mini</td><td>18,420</td><td>286.4M</td><td>91.7M</td><td>¥3,182.40</td></tr><tr><td>GPT-4.1</td><td>8,316</td><td>402.1M</td><td>188.6M</td><td>¥6,944.20</td></tr><tr><td>Qwen2.5-72B-Instruct</td><td>15,990</td><td>311.8M</td><td>206.4M</td><td>¥1,728.62</td></tr><tr><td>bge-m3(向量化)</td><td>5,490</td><td>347.0M</td><td></td><td>¥829.10</td></tr><tr><td></td><td></td><td></td><td>合计¥12,684.32</td><td></td></tr></table>",
+      "markdown": "| 模型 | 请求数 输入 Token 输出 Token |   |   | 费用 |\n| --- | --- | --- | --- | --- |\n| GPT-4.1-mini | 18,420 | 286.4M | 91.7M | ¥3,182.40 |\n| GPT-4.1 | 8,316 | 402.1M | 188.6M | ¥6,944.20 |\n| Qwen2.5-72B-Instruct | 15,990 | 311.8M | 206.4M | ¥1,728.62 |\n| bge-m3(向量化) | 5,490 | 347.0M |   | ¥829.10 |\n|   |   |   | 合计¥12,684.32 |   |",
+      "caption": null,
+      "image_path": "images/4c96598eadff872829d7141b6cd8128636c62928d8ca94bce6fae3b1317a96ae.jpg",
+      "page_number": 1,
+      "bbox": [
+        300.0,
+        399.0,
+        703.0,
+        607.0
+      ],
+      "num_rows": 6,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "模型",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "请求数 输入 Token 输出 Token",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 3,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "费用",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "GPT-4.1-mini",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "18,420",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "286.4M",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "91.7M",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥3,182.40",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "GPT-4.1",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "8,316",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "402.1M",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "188.6M",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥6,944.20",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "Qwen2.5-72B-Instruct",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "15,990",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "311.8M",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "206.4M",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥1,728.62",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "bge-m3(向量化)",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "5,490",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "347.0M",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥829.10",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "合计¥12,684.32",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": true,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "available",
+      "granularity": null,
+      "reason": null,
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:23:18.287625Z"
+}

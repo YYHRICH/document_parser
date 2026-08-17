@@ -55,6 +55,28 @@ def resolve_source(sample_id: str, manifest: dict[str, dict]) -> Path:
     return source
 
 
+# 需要 OCR 的类别（扫描件/图片）
+_OCR_CATEGORIES = {"scanned_pdf", "jpg_image", "jpeg_image", "png_image"}
+
+# 扩展名 -> MIME（与 manifest 一致）
+_MIME_BY_SUFFIX = {
+    ".pdf": "application/pdf",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+}
+
+
+def needs_ocr(entry: dict) -> bool:
+    """按 manifest 类别判断该样例是否走 OCR 路径。"""
+    return bool(set(entry.get("categories") or []) & _OCR_CATEGORIES)
+
+
+def mime_type(source: Path) -> str:
+    return _MIME_BY_SUFFIX.get(source.suffix.lower(), "application/octet-stream")
+
+
 def _check_docling_env() -> None:
     """docling 必须在英文路径解释器 + TORCH_COMPILE_DISABLE=1 下运行。"""
     import sys
@@ -79,7 +101,7 @@ def main() -> None:
     parser.add_argument(
         "--samples",
         required=True,
-        help="逗号分隔的 sample_id，如 sdp-004,sdp-006",
+        help="逗号分隔的 sample_id，如 sdp-004,sdp-006；或 all 解析全部 12 个",
     )
     parser.add_argument(
         "--out",
@@ -90,24 +112,35 @@ def main() -> None:
     args = parser.parse_args()
 
     manifest = load_manifest()
-    sample_ids = [s.strip() for s in args.samples.split(",") if s.strip()]
+    if args.samples.strip().lower() == "all":
+        sample_ids = sorted(manifest.keys())
+    else:
+        sample_ids = [s.strip() for s in args.samples.split(",") if s.strip()]
     args.out.mkdir(parents=True, exist_ok=True)
 
     for sample_id in sample_ids:
+        entry = manifest[sample_id]
         source = resolve_source(sample_id, manifest)
         if args.parser == "mineru":
             from tools.mineru_cloud import parse_pdf as mineru_parse
 
-            parsed = mineru_parse(source)
+            parsed = mineru_parse(
+                source,
+                is_ocr=needs_ocr(entry),
+                file_type=mime_type(source),
+            )
         elif args.parser == "docling":
             _check_docling_env()
             from tools.docling_parser import parse_pdf as docling_parse
 
-            parsed = docling_parse(source)
+            parsed = docling_parse(source, file_type=mime_type(source))
         else:
+            if source.suffix.lower() != ".pdf":
+                print(f"[SKIP] {sample_id} ({source.suffix}) fallback 仅支持 PDF，跳过")
+                continue
             from tools.fallback_parser import parse_pdf as fallback_parse
 
-            parsed = fallback_parse(source)
+            parsed = fallback_parse(source, file_type=mime_type(source))
 
         out_path = args.out / f"{sample_id}-{args.parser}.json"
         payload = parsed.model_dump_json(indent=2)

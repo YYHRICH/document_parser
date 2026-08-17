@@ -1,5 +1,5 @@
 {
-  "document_id": "32ed43da-348b-4000-873d-a52923f51c73",
+  "document_id": "68bb2b00-8608-44ae-8b01-81aea83a7251",
   "filename": "technical_report_references_positive.pdf",
   "file_type": "application/pdf",
   "source_size_bytes": 102325,
@@ -8,7 +8,7 @@
   "markdown": "Evidence-awareRetrievalStudy TR-2026-08\n\n面向企业知识库的证据保留式文档解析研究\n\nEvidence-preserving Document Parsing for Enterprise Knowledge Bases\n\n作者 陈琳，周海，王倩 文档类型 技术研究报告\n\n版本 发布日期 1.2 2026-08-17\n\n数据集 状态 SharedDevv1 Reviewed\n\n摘要\n\n企业知识库中的PDF、扫描件和Office文档同时包含正文、表格、图注和引用。只抽取纯文本会损失阅读顺序和\n\n来源证据。本文提出一套保留页面、边界框、表格网格和引用关系的解析流程，并在合成但业务真实的文档集上\n\n进行评估。结果表明，结构证据能够减少表格字段错绑和引用目标误判。\n\n关键词：文档解析；证据保留；表格绑定；标题树；引用关系；质量门\n\n1\n\nEvidence-awareRetrievalStudy TR-2026-08\n\n引言 1\n\n背景 1.1\n\n企业文档通常由多个团队维护，标题、版本和附件并不统一。检索系统如果只保存Markdown，会难以回答“这个\n\n数字来自哪一页”或“该结论引用了哪篇文献”。已有研究指出，布局与语义结构对文档问答同样重要[1-2]。\n\n问题定义 1.2\n\n给定一个包含文本块、表格、图片和引用的文档，系统需要输出统一的ParsedDocument，并保留可回溯的source\n\nlocator。质量层还要区分verified、inferred和manualreviewrequired，而不是把所有推断都当成事实[3]。\n\n贡献 1.3\n\n定义包含页码、bbox、表格cell/span和原生产物引用的证据模型； 1.\n\n提出针对多级表头和跨页表格的安全绑定规则； 2.\n\n建立标题树和正文引用到参考文献的可验证关系； 3.\n\n使用固定样例和质量门报告评估安全降级行为。 4.\n\n方法 2\n\n输入预检 2.1\n\n预检器记录文件类型、页数、文本层、扫描页比例和语言提示。路由器根据能力声明选择解析器，解析器实际执\n\n行来源写入provenance[4]。\n\n统一结构 2.2\n\n每个文本块有稳定blockid、阅读顺序和sourceanchor。表格cell保留startrow、startcol、rowspan、colspan；\n\n合并表头生成完整columnpath，例如“训练集/准确率”。\n\n质量门 2.3\n\n质量门按照以下规则决定状态：证据充分且关系唯一时为verified；只有顺序和语义支持时为inferred；目标不唯\n\n一时进入manualreview；关键事实缺失且其他模型可补足时进入reparserequired[5]。\n\n2\n\nEvidence-awareRetrievalStudy TR-2026-08\n\n实验设置 3\n\n样例与指标 3.1\n\n能力 正例数 反例数 主要指标\n\n普通正文与阅读顺序 文本完整度、block顺序 2 1\n\n多级表头与字段绑定 columnpath、rowkey、来源 2 2\n\n标题层级恢复 parent_child唯一性 2 1\n\n编号引用绑定 reference_of目标唯一性 2 2\n\nOCR图片质量 token可读性、低质量拦截 2 2\n\n评估流程 3.2\n\n每个样例都使用相同的输入摘要和manifestcommit。运行记录包含路由决定、实际解析器、耗时、ParsedDocument\n\nschema、质量状态、问题数量和产物位置。失败和不可用结果不会从批量报告中删除。\n\n表格结果 3.3\n\n样例 网格恢复 表头路径 字段绑定 最终状态\n\n采购比价正例 完整 pass verified pass\n\n跨页续表正例 完整 pass verified passwithwarnings\n\n列漂移反例 不确定 partial unavailable manualreview\n\n无稳定行键 表级 partial unavailable manualreview\n\n讨论 4\n\n安全降级 4.1\n\n在表格结构不唯一时，减少绑定数量比输出错误关系更安全。质量报告必须同时记录缺失证据、受影响block和\n\n重新解析建议[6]。\n\n局限性 4.2\n\n合成样例不能覆盖所有扫描噪声和供应商格式。后续Acceptance子集应加入未参与规则调试的公开文档，并由人\n\n工标注确认。\n\n3\n\nEvidence-awareRetrievalStudy TR-2026-08\n\n结论 5\n\n本文展示了从预检、解析、统一输出到质量门的完整证据链。实验说明，多级标题、表格网格和引用关系需要共\n\n同的来源模型，不能由质量层凭空补造。对于无法唯一判断的结构，系统应明确交给人工复核或重新解析。\n\n参考文献\n\n1. Li, M.; Zhang, Y. Document layout analysis for retrieval-augmented generation[J]. Journal of Information\n\nProcessing,2024,32(4): 201-218. DOI:10.1000/jip.2024.03204.\n\n王伟,陈晨. 面向复杂版面的文档结构恢复[J].中文信息学报,2023,37(6): 2. 45-58. DOI:10.1000/cip.2023.3706.\n\n3. Pujara,J.;Singh,H.EvidencegraphsfortrustworthydocumentQA[C].ProceedingsofDocEng,2024: 55-\n\n63. DOI:10.1000/doceng.2024.006.\n\n4. Liu, Q.; Chen, R. OCR confidence calibration in enterprise archives[J]. Pattern Recognition Letters, 2022,\n\n158: 12-20. DOI:10.1000/prl.2022.15802.\n\n赵敏,周海. 表格字段绑定的来源约束与安全降级[J].软件学报,2025,36(8): 5. 1771-1787. DOI:10.1000/js.2025.3608.\n\n6. Smith,A.;Patel,R.Humanreviewgatesforsemanticextraction[C].ProceedingsofICDAR,2023: 410-419.\n\nDOI:10.1000/icdar.2023.041.\n\n引用规则：正文中的[1-2]指向参考文献1和2；[3]、[4]、[5]、[6]分别指向对应编号。\n\nSynthetictechnicalreport;authors,measurementsandDOIvaluesarefictionalbutinternallyconsistent.\n\n4",
   "blocks": [
     {
-      "id": "19429608-41ca-4422-b1f6-164815d67bb4",
+      "id": "fe54a812-1cc9-4b9a-af4e-aa5863eba9dc",
       "source_block_id": "pdfplumber-p1-l0",
       "order_index": 0,
       "kind": "paragraph",
@@ -36,7 +36,7 @@
       "metadata": {}
     },
     {
-      "id": "b4525e55-114d-40de-8db7-be53d848f197",
+      "id": "91cbfc0c-99f3-4762-a995-5cf54e31cc75",
       "source_block_id": "pdfplumber-p1-l1",
       "order_index": 1,
       "kind": "paragraph",
@@ -64,7 +64,7 @@
       "metadata": {}
     },
     {
-      "id": "618986c7-97a5-437b-9e95-c94b2a9f74f0",
+      "id": "dcc236d7-f8c4-4b53-b917-34853be04225",
       "source_block_id": "pdfplumber-p1-l2",
       "order_index": 2,
       "kind": "paragraph",
@@ -92,7 +92,7 @@
       "metadata": {}
     },
     {
-      "id": "c82c3c8c-c6a5-4a26-be6c-d04224e1545d",
+      "id": "b7f41e7e-b2ff-4e2e-bc02-2d9dcb8667ec",
       "source_block_id": "pdfplumber-p1-l3",
       "order_index": 3,
       "kind": "paragraph",
@@ -120,7 +120,7 @@
       "metadata": {}
     },
     {
-      "id": "1bc3e0cf-e7a3-4368-85fc-7d8b9da68688",
+      "id": "6911bda0-dfe1-4fcf-977d-3148d10e2201",
       "source_block_id": "pdfplumber-p1-l4",
       "order_index": 4,
       "kind": "paragraph",
@@ -148,7 +148,7 @@
       "metadata": {}
     },
     {
-      "id": "a4ff8d52-794b-4a61-b733-628ab67584f6",
+      "id": "f149ca20-3b4a-4b47-b251-640f44dfcd3d",
       "source_block_id": "pdfplumber-p1-l5",
       "order_index": 5,
       "kind": "paragraph",
@@ -176,7 +176,7 @@
       "metadata": {}
     },
     {
-      "id": "443613cb-eb9d-4190-9e72-1bcaff6bb185",
+      "id": "53b0ba65-333d-4c92-9878-d40139d23544",
       "source_block_id": "pdfplumber-p1-l6",
       "order_index": 6,
       "kind": "paragraph",
@@ -204,7 +204,7 @@
       "metadata": {}
     },
     {
-      "id": "326cd528-fa9c-450e-8dba-553d95c7aae5",
+      "id": "7cbd6c2a-5252-483f-9744-80166454e368",
       "source_block_id": "pdfplumber-p1-l7",
       "order_index": 7,
       "kind": "paragraph",
@@ -232,7 +232,7 @@
       "metadata": {}
     },
     {
-      "id": "e2805658-327f-4f4b-842a-8d8cd0d2fb4e",
+      "id": "cb5b7b13-4771-431e-a0dd-95db0f7fe605",
       "source_block_id": "pdfplumber-p1-l8",
       "order_index": 8,
       "kind": "paragraph",
@@ -260,7 +260,7 @@
       "metadata": {}
     },
     {
-      "id": "5a13e13f-32a3-4dd8-ae2d-cd29463432ac",
+      "id": "c82c22f3-75c1-48eb-86d6-26857d5629d5",
       "source_block_id": "pdfplumber-p1-l9",
       "order_index": 9,
       "kind": "paragraph",
@@ -288,7 +288,7 @@
       "metadata": {}
     },
     {
-      "id": "142988ae-3f9d-4150-915c-404a6192fd66",
+      "id": "8f0a6889-aa09-4469-8a0c-629c3b04c055",
       "source_block_id": "pdfplumber-p1-l10",
       "order_index": 10,
       "kind": "paragraph",
@@ -316,7 +316,7 @@
       "metadata": {}
     },
     {
-      "id": "01744654-ef00-40a4-8512-68511b019172",
+      "id": "bbdf1107-c2ae-4878-83d3-e29d63e6d0ae",
       "source_block_id": "pdfplumber-p1-l11",
       "order_index": 11,
       "kind": "paragraph",
@@ -344,7 +344,7 @@
       "metadata": {}
     },
     {
-      "id": "0eb1460f-c8ac-4646-89f5-1216f70c61b4",
+      "id": "27ab909d-0349-4153-bb4c-e84711d4174e",
       "source_block_id": "pdfplumber-p2-l12",
       "order_index": 12,
       "kind": "paragraph",
@@ -372,7 +372,7 @@
       "metadata": {}
     },
     {
-      "id": "bd084f8b-4001-4758-b5e2-4d0255f1f2ba",
+      "id": "9903face-ed18-4aec-9640-2cc283190011",
       "source_block_id": "pdfplumber-p2-l13",
       "order_index": 13,
       "kind": "paragraph",
@@ -400,7 +400,7 @@
       "metadata": {}
     },
     {
-      "id": "ebe75d45-318d-451c-8272-cf9307fd7e22",
+      "id": "f7d32e5f-ea16-4b9a-85fa-9320e9ee8686",
       "source_block_id": "pdfplumber-p2-l14",
       "order_index": 14,
       "kind": "paragraph",
@@ -428,7 +428,7 @@
       "metadata": {}
     },
     {
-      "id": "6215477a-8fcb-4a3f-bc61-ac6348543650",
+      "id": "f94b6446-fd8b-49bf-a9de-140c3e97eae4",
       "source_block_id": "pdfplumber-p2-l15",
       "order_index": 15,
       "kind": "paragraph",
@@ -456,7 +456,7 @@
       "metadata": {}
     },
     {
-      "id": "4d5d18e8-b53d-49c3-a27c-00b386d3a4ca",
+      "id": "ddd1e24e-b51a-4ab0-93cf-02f437812d88",
       "source_block_id": "pdfplumber-p2-l16",
       "order_index": 16,
       "kind": "paragraph",
@@ -484,7 +484,7 @@
       "metadata": {}
     },
     {
-      "id": "5e61f5ad-1ee8-49ef-ad63-80ca96f5917d",
+      "id": "8db01538-7333-4e23-81e5-d091e74bf346",
       "source_block_id": "pdfplumber-p2-l17",
       "order_index": 17,
       "kind": "paragraph",
@@ -512,7 +512,7 @@
       "metadata": {}
     },
     {
-      "id": "6cfeede8-96c8-4492-bab7-cd71c8266ec2",
+      "id": "ffc0e38b-86bc-4c15-8591-0cea09d6666b",
       "source_block_id": "pdfplumber-p2-l18",
       "order_index": 18,
       "kind": "paragraph",
@@ -540,7 +540,7 @@
       "metadata": {}
     },
     {
-      "id": "e654e808-6e75-4a1b-949d-4afb3083fa10",
+      "id": "30dd729e-e3b4-49e4-8666-2870b470493e",
       "source_block_id": "pdfplumber-p2-l19",
       "order_index": 19,
       "kind": "paragraph",
@@ -568,7 +568,7 @@
       "metadata": {}
     },
     {
-      "id": "fdf4718b-ddb3-4b7b-8897-115d309ef93a",
+      "id": "9132d3c3-c309-4be7-a489-a49e8b88e4af",
       "source_block_id": "pdfplumber-p2-l20",
       "order_index": 20,
       "kind": "paragraph",
@@ -596,7 +596,7 @@
       "metadata": {}
     },
     {
-      "id": "6f94432d-bced-4c49-bcd5-5456a6aa8900",
+      "id": "edb1a4a5-0bae-46ed-ad84-f2e513aa4a70",
       "source_block_id": "pdfplumber-p2-l21",
       "order_index": 21,
       "kind": "paragraph",
@@ -624,7 +624,7 @@
       "metadata": {}
     },
     {
-      "id": "cca37810-a3c9-46a8-80f8-41edf9d6afc2",
+      "id": "9775ded4-13b9-4422-9e23-55d56981afeb",
       "source_block_id": "pdfplumber-p2-l22",
       "order_index": 22,
       "kind": "paragraph",
@@ -652,7 +652,7 @@
       "metadata": {}
     },
     {
-      "id": "1ec89a1e-4e86-4bf4-9017-340f6e4494df",
+      "id": "4bc77b05-2242-4e70-96d2-cb47310623d9",
       "source_block_id": "pdfplumber-p2-l23",
       "order_index": 23,
       "kind": "paragraph",
@@ -680,7 +680,7 @@
       "metadata": {}
     },
     {
-      "id": "be007544-96d5-495b-a1de-def90c81fb89",
+      "id": "3fa3f6ad-0c99-48d9-9630-c21ee440e2f1",
       "source_block_id": "pdfplumber-p2-l24",
       "order_index": 24,
       "kind": "paragraph",
@@ -708,7 +708,7 @@
       "metadata": {}
     },
     {
-      "id": "881cd107-b396-4080-8e0a-80e331dbf417",
+      "id": "f6b1f4b6-b1c0-4256-a46d-39a4d917cc5f",
       "source_block_id": "pdfplumber-p2-l25",
       "order_index": 25,
       "kind": "paragraph",
@@ -736,7 +736,7 @@
       "metadata": {}
     },
     {
-      "id": "15f0dc89-c5d7-4b13-ac0e-6d5ea82e65ef",
+      "id": "d859bedb-3916-4efb-8e4a-2a0a035386dd",
       "source_block_id": "pdfplumber-p2-l26",
       "order_index": 26,
       "kind": "paragraph",
@@ -764,7 +764,7 @@
       "metadata": {}
     },
     {
-      "id": "2d6e5145-7648-40be-b0f7-76f15be5f1af",
+      "id": "a5dd9806-ea17-40cc-95d7-ce03b617d4a9",
       "source_block_id": "pdfplumber-p2-l27",
       "order_index": 27,
       "kind": "paragraph",
@@ -792,7 +792,7 @@
       "metadata": {}
     },
     {
-      "id": "1b0771de-d7f4-4414-b62b-05ca9f9c3437",
+      "id": "6dfd6ab2-abc9-4288-9ae1-523dfb06d062",
       "source_block_id": "pdfplumber-p2-l28",
       "order_index": 28,
       "kind": "paragraph",
@@ -820,7 +820,7 @@
       "metadata": {}
     },
     {
-      "id": "9042ff55-8582-4510-9da2-679dc26e682f",
+      "id": "99ce111a-1b52-405f-b627-d1e00617fb90",
       "source_block_id": "pdfplumber-p2-l29",
       "order_index": 29,
       "kind": "paragraph",
@@ -848,7 +848,7 @@
       "metadata": {}
     },
     {
-      "id": "12594b18-c4bc-4689-a538-3fe0b6c84707",
+      "id": "ea10d40e-5256-473d-b2f0-41da5d2ed984",
       "source_block_id": "pdfplumber-p2-l30",
       "order_index": 30,
       "kind": "paragraph",
@@ -876,7 +876,7 @@
       "metadata": {}
     },
     {
-      "id": "1c35b7a7-d409-4f82-94a8-b6b253c60cd1",
+      "id": "df0020ad-7d04-408e-ae1e-0fcf5587dab5",
       "source_block_id": "pdfplumber-p2-l31",
       "order_index": 31,
       "kind": "paragraph",
@@ -904,7 +904,7 @@
       "metadata": {}
     },
     {
-      "id": "40261c2b-cda7-4f79-ad9d-7cf9222c174e",
+      "id": "69d1beaa-a56e-4540-8172-7115eb47c5bf",
       "source_block_id": "pdfplumber-p2-l32",
       "order_index": 32,
       "kind": "paragraph",
@@ -932,7 +932,7 @@
       "metadata": {}
     },
     {
-      "id": "a1b1eb73-194a-46b3-afc2-df0ab1afb760",
+      "id": "5ba4729b-76df-437a-b3e0-570dd5d86c83",
       "source_block_id": "pdfplumber-p2-l33",
       "order_index": 33,
       "kind": "paragraph",
@@ -960,7 +960,7 @@
       "metadata": {}
     },
     {
-      "id": "08bc7835-4429-4e74-a3f2-20a6251f9d85",
+      "id": "842940e2-99f3-46ed-9353-d2b05ee06854",
       "source_block_id": "pdfplumber-p2-l34",
       "order_index": 34,
       "kind": "paragraph",
@@ -988,7 +988,7 @@
       "metadata": {}
     },
     {
-      "id": "c04abc54-6a5c-43b0-95b7-6c891424aec6",
+      "id": "9795d5d8-7ab6-46b8-8b20-9d83e0b4fe74",
       "source_block_id": "pdfplumber-p2-l35",
       "order_index": 35,
       "kind": "paragraph",
@@ -1016,7 +1016,7 @@
       "metadata": {}
     },
     {
-      "id": "0a272f17-dbb7-44e9-bcab-083c406a068c",
+      "id": "969b8168-a3b4-4ad9-a847-af5a74630226",
       "source_block_id": "pdfplumber-p3-l36",
       "order_index": 36,
       "kind": "paragraph",
@@ -1044,7 +1044,7 @@
       "metadata": {}
     },
     {
-      "id": "efd6a82e-fe0a-4509-ac8f-b219e62ca143",
+      "id": "178af808-1706-400f-ae91-8aee2fee2faf",
       "source_block_id": "pdfplumber-p3-l37",
       "order_index": 37,
       "kind": "paragraph",
@@ -1072,7 +1072,7 @@
       "metadata": {}
     },
     {
-      "id": "1e3bd537-687e-4add-bd95-12d3628a57f0",
+      "id": "fb40f014-cee8-45ca-b825-c060f3fc9b83",
       "source_block_id": "pdfplumber-p3-l38",
       "order_index": 38,
       "kind": "paragraph",
@@ -1100,7 +1100,7 @@
       "metadata": {}
     },
     {
-      "id": "f7c6f62a-0089-4773-9f6b-de90ff1a3984",
+      "id": "66c57161-fe82-4f4a-b355-4595e37caded",
       "source_block_id": "pdfplumber-p3-l39",
       "order_index": 39,
       "kind": "paragraph",
@@ -1128,7 +1128,7 @@
       "metadata": {}
     },
     {
-      "id": "d94773cc-454d-4a92-a185-be357e48a468",
+      "id": "dfd50dfe-4d7b-4dd2-a6c9-fe9fcfa42c65",
       "source_block_id": "pdfplumber-p3-l40",
       "order_index": 40,
       "kind": "paragraph",
@@ -1156,7 +1156,7 @@
       "metadata": {}
     },
     {
-      "id": "35933ad7-52f8-4dc2-8d52-2111c6dab643",
+      "id": "4661ce34-9faa-4d7a-a13c-fbcb6467137e",
       "source_block_id": "pdfplumber-p3-l41",
       "order_index": 41,
       "kind": "paragraph",
@@ -1184,7 +1184,7 @@
       "metadata": {}
     },
     {
-      "id": "ea72d624-9490-413f-a8b8-486ba06fbcda",
+      "id": "414dcd41-cde9-4051-811b-946458435ee5",
       "source_block_id": "pdfplumber-p3-l42",
       "order_index": 42,
       "kind": "paragraph",
@@ -1212,7 +1212,7 @@
       "metadata": {}
     },
     {
-      "id": "ad07c017-2697-4d61-86d2-0cce61daaf5c",
+      "id": "94188ad2-cd2a-4572-81df-a5d342e9d19f",
       "source_block_id": "pdfplumber-p3-l43",
       "order_index": 43,
       "kind": "paragraph",
@@ -1240,7 +1240,7 @@
       "metadata": {}
     },
     {
-      "id": "bdecdb5b-e662-4f8a-b723-e7145363ad0e",
+      "id": "aee96237-095e-47d7-9538-2dfdc6d219b1",
       "source_block_id": "pdfplumber-p3-l44",
       "order_index": 44,
       "kind": "paragraph",
@@ -1268,7 +1268,7 @@
       "metadata": {}
     },
     {
-      "id": "56b12d1e-12eb-4773-9747-4c4d601d3e44",
+      "id": "be3f7426-f9ef-4587-8eb0-110006028d37",
       "source_block_id": "pdfplumber-p3-l45",
       "order_index": 45,
       "kind": "paragraph",
@@ -1296,7 +1296,7 @@
       "metadata": {}
     },
     {
-      "id": "3f10d8bc-3fc7-4bdb-8772-f272aa9dac45",
+      "id": "b81c2048-b918-4b59-908e-ac0d4e865174",
       "source_block_id": "pdfplumber-p3-l46",
       "order_index": 46,
       "kind": "paragraph",
@@ -1324,7 +1324,7 @@
       "metadata": {}
     },
     {
-      "id": "aa498b3a-41f8-46ca-ac1a-3f404c5c1524",
+      "id": "5b04636e-9b2b-49a4-9a1a-6e7b71d90599",
       "source_block_id": "pdfplumber-p3-l47",
       "order_index": 47,
       "kind": "paragraph",
@@ -1352,7 +1352,7 @@
       "metadata": {}
     },
     {
-      "id": "5c43f68b-9d6a-467c-9152-e4f0129f33cd",
+      "id": "344453b9-b33e-4ae3-927a-db097fa8a2e4",
       "source_block_id": "pdfplumber-p3-l48",
       "order_index": 48,
       "kind": "paragraph",
@@ -1380,7 +1380,7 @@
       "metadata": {}
     },
     {
-      "id": "563d9be2-9463-42c2-be81-b1bbe546b93e",
+      "id": "561ef8ff-6738-4793-a70e-b7a0d3ed30e8",
       "source_block_id": "pdfplumber-p3-l49",
       "order_index": 49,
       "kind": "paragraph",
@@ -1408,7 +1408,7 @@
       "metadata": {}
     },
     {
-      "id": "86401513-64f5-44b5-a37a-8903a22fabd2",
+      "id": "8bbeaf0c-edba-47c8-bce0-354e28648df7",
       "source_block_id": "pdfplumber-p3-l50",
       "order_index": 50,
       "kind": "paragraph",
@@ -1436,7 +1436,7 @@
       "metadata": {}
     },
     {
-      "id": "9dc0123f-4472-4328-94b7-bca4a22240b7",
+      "id": "89dfa459-cbec-4566-bf93-831aa361490a",
       "source_block_id": "pdfplumber-p3-l51",
       "order_index": 51,
       "kind": "paragraph",
@@ -1464,7 +1464,7 @@
       "metadata": {}
     },
     {
-      "id": "78e371fc-5556-42ac-9815-f27e7055ec88",
+      "id": "95903d32-94cf-4d18-bbfe-78a3f44ac59d",
       "source_block_id": "pdfplumber-p3-l52",
       "order_index": 52,
       "kind": "paragraph",
@@ -1492,7 +1492,7 @@
       "metadata": {}
     },
     {
-      "id": "82425699-a320-4962-88c9-c349b72f3cde",
+      "id": "6bbcef34-4bd6-4d06-9355-f6c1070a498c",
       "source_block_id": "pdfplumber-p3-l53",
       "order_index": 53,
       "kind": "paragraph",
@@ -1520,7 +1520,7 @@
       "metadata": {}
     },
     {
-      "id": "154425c7-aacf-4115-b2ab-f11e2c13ea68",
+      "id": "0fdf281e-d620-49b7-9144-87383e9d9dc7",
       "source_block_id": "pdfplumber-p3-l54",
       "order_index": 54,
       "kind": "paragraph",
@@ -1548,7 +1548,7 @@
       "metadata": {}
     },
     {
-      "id": "69775aad-2245-4f0f-ba49-f627be21cb15",
+      "id": "fa987887-5d8b-4074-b389-3c7d6762c7f7",
       "source_block_id": "pdfplumber-p3-l55",
       "order_index": 55,
       "kind": "paragraph",
@@ -1576,7 +1576,7 @@
       "metadata": {}
     },
     {
-      "id": "0f98f646-4088-48f3-a5e6-d075627eee01",
+      "id": "67503b43-f8b3-45ae-ad49-7ab8b7aaa7c6",
       "source_block_id": "pdfplumber-p3-l56",
       "order_index": 56,
       "kind": "paragraph",
@@ -1604,7 +1604,7 @@
       "metadata": {}
     },
     {
-      "id": "f23bba28-b00e-4efa-ab87-327e3e38470a",
+      "id": "ff50d599-eb29-446a-a967-02645f88537f",
       "source_block_id": "pdfplumber-p3-l57",
       "order_index": 57,
       "kind": "paragraph",
@@ -1632,7 +1632,7 @@
       "metadata": {}
     },
     {
-      "id": "5e7f7a29-ef78-49a2-b18c-d585f5bfb724",
+      "id": "682b3e7d-1e1c-4d99-9733-933adf31a5b2",
       "source_block_id": "pdfplumber-p3-l58",
       "order_index": 58,
       "kind": "paragraph",
@@ -1660,7 +1660,7 @@
       "metadata": {}
     },
     {
-      "id": "cdaf20f6-9b77-4cf6-a24b-7099fe124cf8",
+      "id": "97cec29b-767e-44fa-97aa-262e337a1dd4",
       "source_block_id": "pdfplumber-p3-l59",
       "order_index": 59,
       "kind": "paragraph",
@@ -1688,7 +1688,7 @@
       "metadata": {}
     },
     {
-      "id": "959d7cd9-7d9f-4498-9e72-56e64d842f76",
+      "id": "c6f8eefa-fcab-422e-9bba-40e2aa4c72c2",
       "source_block_id": "pdfplumber-p3-l60",
       "order_index": 60,
       "kind": "paragraph",
@@ -1716,7 +1716,7 @@
       "metadata": {}
     },
     {
-      "id": "8427c276-2a06-4a41-8667-f8c8062f4aa2",
+      "id": "cb1849fd-3629-4146-93c6-cc97eda047f5",
       "source_block_id": "pdfplumber-p3-l61",
       "order_index": 61,
       "kind": "paragraph",
@@ -1744,7 +1744,7 @@
       "metadata": {}
     },
     {
-      "id": "97f678cb-0e20-4df2-b6bc-9d30bccd0d17",
+      "id": "9459cc3e-9bc8-4011-b5eb-99019153d5ef",
       "source_block_id": "pdfplumber-p4-l62",
       "order_index": 62,
       "kind": "paragraph",
@@ -1772,7 +1772,7 @@
       "metadata": {}
     },
     {
-      "id": "efccbc97-a5bf-4641-83e0-c5e9c101b9dc",
+      "id": "769f2d7a-fb5d-48eb-b416-8c2387e09887",
       "source_block_id": "pdfplumber-p4-l63",
       "order_index": 63,
       "kind": "paragraph",
@@ -1800,7 +1800,7 @@
       "metadata": {}
     },
     {
-      "id": "044af1d7-9597-41e2-8fe5-ae7f674af733",
+      "id": "aeb7431e-1b67-4dad-969a-f0759156a031",
       "source_block_id": "pdfplumber-p4-l64",
       "order_index": 64,
       "kind": "paragraph",
@@ -1828,7 +1828,7 @@
       "metadata": {}
     },
     {
-      "id": "f4d3acac-966d-4df3-93d8-f0a5fc2a720f",
+      "id": "cd6c2ac5-fdf2-4773-9027-32cb472bdcb1",
       "source_block_id": "pdfplumber-p4-l65",
       "order_index": 65,
       "kind": "paragraph",
@@ -1856,7 +1856,7 @@
       "metadata": {}
     },
     {
-      "id": "54d79e23-9efd-4333-b4c4-83088c6de329",
+      "id": "d8407520-7ff5-44d1-9811-0b2c1394e3b4",
       "source_block_id": "pdfplumber-p4-l66",
       "order_index": 66,
       "kind": "paragraph",
@@ -1884,7 +1884,7 @@
       "metadata": {}
     },
     {
-      "id": "67870085-1859-4d20-8a1f-725b8c9371f3",
+      "id": "9b9577e2-60d0-4e74-b2df-091529bbab99",
       "source_block_id": "pdfplumber-p4-l67",
       "order_index": 67,
       "kind": "paragraph",
@@ -1912,7 +1912,7 @@
       "metadata": {}
     },
     {
-      "id": "12596ffc-c68f-4b12-9433-df80efa65f8d",
+      "id": "161e188f-963e-46b6-a03f-a1ea0def4ee4",
       "source_block_id": "pdfplumber-p4-l68",
       "order_index": 68,
       "kind": "paragraph",
@@ -1940,7 +1940,7 @@
       "metadata": {}
     },
     {
-      "id": "04e2d2a8-02cf-430b-a108-011d73274afa",
+      "id": "8e60d949-1afd-4314-bcaa-d65579a58521",
       "source_block_id": "pdfplumber-p4-l69",
       "order_index": 69,
       "kind": "paragraph",
@@ -1968,7 +1968,7 @@
       "metadata": {}
     },
     {
-      "id": "2a7deed6-705d-436d-88f8-237ffb810dd5",
+      "id": "d2a89ab3-4c41-4e1e-bd6e-a26f1503c6a9",
       "source_block_id": "pdfplumber-p4-l70",
       "order_index": 70,
       "kind": "paragraph",
@@ -1996,7 +1996,7 @@
       "metadata": {}
     },
     {
-      "id": "c07e7c88-0700-4034-a1f3-7e8273dcd231",
+      "id": "116e7401-ad0c-4e5d-b851-6caacf63108a",
       "source_block_id": "pdfplumber-p4-l71",
       "order_index": 71,
       "kind": "paragraph",
@@ -2024,7 +2024,7 @@
       "metadata": {}
     },
     {
-      "id": "d00524c6-f0a6-40e4-a267-e9b504c3b7b6",
+      "id": "6ddf289e-f40a-4380-a044-aecdd88cec70",
       "source_block_id": "pdfplumber-p4-l72",
       "order_index": 72,
       "kind": "paragraph",
@@ -2052,7 +2052,7 @@
       "metadata": {}
     },
     {
-      "id": "ef844dd1-1ab7-4b6f-8353-001312d02b55",
+      "id": "8d57de48-aa29-4493-8848-222da04c290a",
       "source_block_id": "pdfplumber-p4-l73",
       "order_index": 73,
       "kind": "paragraph",
@@ -2080,7 +2080,7 @@
       "metadata": {}
     },
     {
-      "id": "65de4bdd-af71-4468-9d3d-fbf724f4c05c",
+      "id": "e9af17af-4eab-4a5a-9bc0-7c302bc6a483",
       "source_block_id": "pdfplumber-p4-l74",
       "order_index": 74,
       "kind": "paragraph",
@@ -2108,7 +2108,7 @@
       "metadata": {}
     },
     {
-      "id": "ecaae5a0-1aed-405f-95d2-6f999bdc8a9c",
+      "id": "210ef13f-44d7-4e2a-8db7-493c1230fda3",
       "source_block_id": "pdfplumber-p4-l75",
       "order_index": 75,
       "kind": "paragraph",
@@ -2136,7 +2136,7 @@
       "metadata": {}
     },
     {
-      "id": "243aa74f-7e9f-4ffd-a5a8-7138cebc65c4",
+      "id": "ffd63c68-e5a2-4ae4-802c-c122ad167e8c",
       "source_block_id": "pdfplumber-p4-l76",
       "order_index": 76,
       "kind": "paragraph",
@@ -2164,7 +2164,7 @@
       "metadata": {}
     },
     {
-      "id": "60d8a3fd-885c-4edf-a29a-2378ceebc750",
+      "id": "d7252f2d-8909-4861-8fab-c938838f6f44",
       "source_block_id": "pdfplumber-p4-l77",
       "order_index": 77,
       "kind": "paragraph",
@@ -2192,7 +2192,7 @@
       "metadata": {}
     },
     {
-      "id": "721f0aa9-0eba-4d7a-94a8-3e3ab1379652",
+      "id": "45c4cce4-15c3-4b10-869f-d428942c0a56",
       "source_block_id": "pdfplumber-p4-l78",
       "order_index": 78,
       "kind": "paragraph",
@@ -2220,7 +2220,7 @@
       "metadata": {}
     },
     {
-      "id": "6de877cb-e681-4c49-998c-08d9636cc9c5",
+      "id": "76165a8c-dae5-4a07-b97e-13eb0d137cf2",
       "source_block_id": "pdfplumber-p4-l79",
       "order_index": 79,
       "kind": "paragraph",
@@ -2298,5 +2298,5 @@
   "alternatives": [],
   "schema_name": "ParsedDocument",
   "schema_version": "2.2",
-  "created_at": "2026-08-17T15:54:40.731923Z"
+  "created_at": "2026-08-17T16:21:54.635463Z"
 }
