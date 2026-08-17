@@ -94,6 +94,17 @@ class EvidenceContext:
         return self._duplicate_block_ids
 
     @property
+    def duplicate_source_block_ids(self) -> tuple[str, ...]:
+        """被多个 block 引用的 source_block_id（回溯模糊）。"""
+        return tuple(
+            sorted(
+                src
+                for src, blocks in self._blocks_by_source.items()
+                if len(blocks) > 1
+            )
+        )
+
+    @property
     def unanchored_blocks(self) -> list[DocumentBlock]:
         """没有 page_number 的块（来源定位缺失）。"""
         return [b for b in self.parsed.blocks if b.anchor.page_number is None]
