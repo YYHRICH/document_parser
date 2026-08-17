@@ -1,0 +1,104 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=18mm,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\definecolor{navy}{HTML}{102A43}\definecolor{red}{HTML}{C92A2A}\definecolor{orange}{HTML}{E67700}\definecolor{muted}{HTML}{52606D}\pagestyle{fancy}\fancyhf{}\lhead{Reliability Engineering}\rhead{INC-2026-0714}\cfoot{\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\begin{document}
+{\color{navy}\fontsize{22}{26}\selectfont\bfseries API 网关延迟事故复盘}\par
+{\color{muted}\fontsize{13}{16}\selectfont API Gateway Latency Incident Review}\par\vspace{3mm}{\color{red}\rule{\textwidth}{2pt}}\par\vspace{4mm}
+\begin{tabular}{>{\bfseries}p{28mm}p{48mm}>{\bfseries}p{28mm}p{48mm}}
+事故编号 & INC-2026-0714 & 影响服务 & payments-api\\
+发生时间 & 2026-07-14 09:12--10:03 & 严重级别 & SEV-2\\
+负责人 & Reliability Engineering & 当前状态 & Closed with follow-up\\
+\end{tabular}
+\section*{摘要 / Executive summary}
+2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502。根因是限流配置发布后，边缘缓存键包含了高基数字段，导致缓存命中率从 91\% 降到 38\%，同时连接池被慢请求耗尽。回滚配置后，延迟在 11 分钟内恢复。
+
+On 14 July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91\% to 38\% and exhausting the connection pool under peak traffic.
+\section*{1. 影响范围}
+\begin{itemize}
+\item 09:12--10:03 期间，约 8.7\% 的支付预检查请求超过 2 秒；
+\item 约 1.2\% 请求返回 502，重试请求未产生重复扣款；
+\item 订单写入和对账任务没有数据丢失；
+\item 受影响客户主要集中在东亚区域的高峰流量租户。
+\end{itemize}
+\section*{2. 关键时间线}
+\begin{longtable}{p{27mm}p{45mm}p{83mm}}
+\toprule 时间 & 事件 & 证据与决定\\\midrule
+08:45 & 配置变更提交 & 将 tenant\_id 加入边缘缓存键；评审通过\\
+09:12 & P95 超过 1.8 s & latency\_p95 告警触发\\
+09:18 & 502 开始上升 & 值班工程师建立事故频道\\
+09:31 & 发现缓存命中率下降 & 对比变更前后的 cache\_hit\_ratio\\
+09:42 & 回滚配置 & 限流规则恢复到 2026-07-13 版本\\
+10:03 & 服务恢复 & P95 回到 420 ms，进入观察期\\
+\bottomrule
+\end{longtable}
+\newpage
+\section*{3. 技术背景}
+请求经过 CDN、边缘限流器、API 网关和 payments-api。原有缓存键只包含路径和请求方法；变更后加入 tenant\_id，导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：
+\[
+C_{effective}=\min(C_{pool},\; R_{inflight}\times L_{p95})
+\]
+在事故期间，$R_{inflight}=185$ req/s，$L_{p95}=2.4$ s，所需并发约为 444，超过连接池上限 320。
+\section*{4. 根因分析}
+\begin{multicols}{2}
+{\bfseries 直接原因}\par
+高基数 tenant\_id 被加入缓存键，缓存复用率下降；慢请求占用连接，触发排队和超时。
+\par\vspace{5mm}
+{\bfseries 促成因素}\par
+配置评审只检查了限流语义，没有检查缓存键基数。压测样本使用了 5 个租户，未覆盖生产环境的 38,000 个租户。
+\par\vspace{5mm}
+{\bfseries 未触发的保护}\par
+缓存命中率有监控但没有发布门禁；连接池告警阈值设置为 90\%，无法提前发现趋势。
+\columnbreak
+{\bfseries 为什么没有在发布前发现？}\par
+1. 变更模板把缓存键当作普通字符串；\par
+2. 评审清单没有“基数”和“复用率”字段；\par
+3. 预发布流量没有模拟长尾租户；\par
+4. 回滚需要人工执行，没有自动策略。
+\par\vspace{6mm}
+{\bfseries 结论}\par
+代码本身没有错误，系统性风险来自配置、压测和门禁之间的缺口。
+\end{multicols}
+\section*{5. 缓解措施}
+\begin{enumerate}
+\item 回滚缓存键变更并清理高基数缓存项；
+\item 临时将连接池上限从 320 调整到 480，并限制重试次数；
+\item 为受影响租户打开降级响应，返回可重试的错误码；
+\item 在发布频道固定附带命中率、P95 和连接池利用率。
+\end{enumerate}
+\newpage
+\section*{6. 监控和证据}
+\begin{tabular}{p{45mm}p{34mm}p{32mm}p{38mm}}
+\toprule
+指标 & 事故前 & 峰值 & 恢复目标\\\midrule
+P95 latency & 420 ms & 2,400 ms & < 500 ms\\
+Cache hit ratio & 91\% & 38\% & > 85\%\\
+Connection pool & 62\% & 99\% & < 75\%\\
+HTTP 502 ratio & 0.08\% & 1.20\% & < 0.10\%\\
+\bottomrule
+\end{tabular}
+\section*{7. 后续行动项}
+\begin{longtable}{p{10mm}p{78mm}p{35mm}p{25mm}}
+\toprule ID & 行动 & 负责人 & 截止日期\\\midrule
+A1 & 为缓存键增加基数估算和命中率预估 & Edge Team & 2026-07-28\\
+A2 & 压测加入长尾租户和真实比例 & Performance & 2026-08-04\\
+A3 & 将 cache\_hit\_ratio 纳入发布门禁 & Release Eng & 2026-08-11\\
+A4 & 实现连接池趋势告警和自动回滚 & Reliability & 2026-08-18\\
+A5 & 更新配置评审模板与培训材料 & Platform Team & 2026-08-21\\
+\bottomrule
+\end{longtable}
+\section*{8. 复盘结论}
+本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。
+\vfill\color{muted}\small Synthetic incident report. Names, identifiers and measurements are fictional.
+\end{document}

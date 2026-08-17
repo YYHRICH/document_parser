@@ -1,0 +1,34 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=20mm]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{colortbl}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{plain}
+\begin{document}
+{\fontsize{19}{23}\selectfont\bfseries Quarterly Inventory Reconciliation}\par\vspace{2mm}
+{\color{gray}\small Part A - continued on next page}\par\vspace{7mm}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|m{60mm}|c|c|c|}\hline
+\rowcolor{gray!15} Row & Item & Opening & Change & Closing\\\hline
+001 & Sensor module & 120 & +8 & 128\\\hline
+002 & Cable kit & 250 & -12 & 238\\\hline
+003 & Mounting bracket & 80 & + & \\\hline
+\end{tabular}
+\vspace{8mm}\par\color{orange!70!black}\small Row 003 continues, but the continuation key is omitted.
+\newpage
+{\fontsize{19}{23}\selectfont\bfseries Quarterly Inventory Reconciliation}\par\vspace{2mm}
+{\color{gray}\small Part B - continuation}\par\vspace{7mm}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|m{60mm}|c|c|c|}\hline
+\rowcolor{gray!15} Row & Item & Opening & Change & Closing\\\hline
+ & replacement batch &  & 5 & 85\\\hline
+004 & Power adapter & 64 & +0 & 64\\\hline
+005 & Protective case & 42 & +3 & 45\\\hline
+\end{tabular}
+\vspace{8mm}\par\color{orange!70!black}\small First line may be row 003 or a new unnumbered row.
+\vfill\scriptsize Synthetic fixture - ambiguous cross-page table\hfill Page 2 of 2
+\end{document}
