@@ -1,0 +1,5 @@
+{"sample_id":"sdp-003","required_tokens":["WO-2026-0817-042","SYNTH-042","液压压力","23.5","PASS"],"expected_text_layer":false,"form_fields_expected":true}
+{"sample_id":"sdp-008","required_tokens":["INV-2026-0817-009","华东办公服务有限公司","¥1,286.00","会议室投影灯泡"],"rotation_expected":true,"receipt_table_expected":true}
+{"sample_id":"sdp-009","required_tokens":["LLMwiki","48,216","1.84B","¥12,684.32","GPT-4.1"],"table_expected":true}
+{"sample_id":"sdp-010","required_tokens":["文档解析任务失败排查指南","P-1001","manual_review_required","parser-gateway"],"long_image_expected":true}
+{"sample_id":"sdp-011","required_tokens":["Latent Structures","Intertextuality","French Fiction","arXiv:2410.17759"],"expected_text_layer":true,"paper_expected":true,"references_expected":true}

@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{fontspec,xeCJK,xcolor,array,booktabs,enumitem}
+\setmainfont{Arial}\setCJKmainfont{Microsoft YaHei}
+\usepackage[paperwidth=110mm,paperheight=350mm,margin=0mm]{geometry}\pagestyle{empty}\setlength{\parindent}{0pt}\setlength{\parskip}{2.5mm}\setlength{\emergencystretch}{2em}\sloppy
+\definecolor{navy}{RGB}{31,54,85}\definecolor{accent}{RGB}{44,125,153}\definecolor{pale}{RGB}{245,248,250}\definecolor{warn}{RGB}{255,246,220}
+\begin{document}\pagecolor{white}
+\colorbox{navy}{\parbox[c][17mm][c]{104mm}{\centering\color{white}\fontsize{13}{16}\selectfont\bfseries LLMwiki\hspace{10mm}\scriptsize 内部知识库}}
+\vspace{4mm}
+\noindent\hspace*{7mm}{\color{gray}\scriptsize 首页 / 平台运维 / 解析服务 / 故障排查}\par
+\vspace{1mm}
+\noindent\hspace*{7mm}\parbox[t]{96mm}{\raggedright\color{navy}\fontsize{14}{18}\selectfont\bfseries 文档解析任务失败排查指南}\par
+\vspace{1mm}
+\noindent\hspace*{7mm}{\color{gray}\scriptsize 最后更新：2026-08-12　维护人：文档智能平台组　\fcolorbox{accent}{white}{已发布}}\par\vspace{4mm}
+\colorbox{pale}{\parbox{96mm}{\vspace{3mm}\hspace{3mm}\textbf{适用范围}\par\hspace{3mm}\small 本页用于处理上传后状态停留在“解析中”、表格列错位或 OCR 置信度过低的问题。生产环境变更前请先确认工单和回滚窗口。\vspace{3mm}}}\par
+\vspace{4mm}\noindent{\color{navy}\large\bfseries 1. 先看任务状态}\par
+\begin{enumerate}[leftmargin=7mm,itemsep=1mm]\item 在任务详情中记录任务 ID、文件名和创建时间。\item 查看 `parser-gateway` 与 `ocr-worker` 的相关日志。\item 若队列深度超过 500，先确认是否为批量导入窗口。\end{enumerate}
+\colorbox{warn}{\parbox{96mm}{\vspace{3mm}\hspace{3mm}{\color{orange!80!black}\bfseries 注意}\par\hspace{3mm}\small 不要直接删除失败任务。质量层需要保留原始文件、解析版本和错误码，便于回放。\vspace{3mm}}}\par
+\vspace{4mm}\noindent{\color{navy}\large\bfseries 2. 常见错误码}\par
+\begin{tabular}{p{19mm}p{33mm}p{39mm}}\toprule 错误码&状态&处理建议\\\midrule P-1001&文件无法读取&确认扩展名和对象存储权限\\P-2014&扫描件 OCR 置信度低&检查页面旋转，必要时人工复核\\T-3021&跨页表格断裂&重新运行表格结构恢复\\R-4102&引用目标不唯一&保留 unresolved，提交质量队列\\\bottomrule\end{tabular}\par
+\vspace{4mm}\noindent{\color{navy}\large\bfseries 3. 生产复现命令}\par
+\colorbox{black!92}{\parbox{96mm}{\vspace{3mm}\hspace{3mm}\color{white}\ttfamily\scriptsize\obeyspaces curl -X POST https://parser-gateway/v2/replay \\\hspace*{3mm} -H 'X-Request-ID: req\_20260812\_7f3a' \\\hspace*{3mm} -d '{"task":"tsk\_91a2","mode":"safe"}'\vspace{3mm}}}\par
+\vspace{4mm}\noindent{\color{navy}\large\bfseries 4. 质量层判定}\par
+\small 解析结果同时包含 `status`、`confidence` 和 `evidence`。当表头继承失败或引用无法唯一定位时，状态应为 `manual\_review\_required`，而不是 `verified`。\par
+\begin{tabular}{p{38mm}p{51mm}}\toprule 状态&进入条件\\\midrule verified&结构和来源证据完整\\needs\_reparse&可通过参数或版本修复\\manual\_review\_required&存在多个合理解释\\rejected&文件损坏或不在支持范围\\\bottomrule\end{tabular}\par
+\vspace{4mm}\noindent{\color{navy}\large\bfseries 5. 升级路径}\par
+\begin{enumerate}[leftmargin=7mm,itemsep=1mm]\item L1 值班同学：收集任务 ID、错误码和页面截图。\item L2 解析服务：检查版本、队列和对象存储。\item L3 算法同学：复核版面、表格和引用证据。\item 需要数据修复时，创建质量队列条目并关联原任务。\end{enumerate}
+\vspace{3mm}\colorbox{pale}{\parbox{96mm}{\vspace{3mm}\hspace{3mm}\textbf{相关页面}\par\hspace{3mm}\small 解析服务发布流程　·　质量层字段字典　·　扫描件人工复核 SOP　·　表格回放工具\vspace{3mm}}}\par
+\vspace{5mm}
+\noindent\hspace*{7mm}\parbox[t]{96mm}{\raggedright\color{gray}\scriptsize 页面截图为合成内部资料；示例任务 ID 和域名均不可用于生产。}\par
+\vspace{4mm}
+\end{document}

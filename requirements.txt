@@ -1,0 +1,7 @@
+# Runtime dependencies
+pydantic>=2.7,<3
+markitdown[all]>=0.1.0,<1
+pywin32>=306; platform_system == "Windows"
+
+# Test dependencies
+pytest>=8,<9

@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{fontspec,xeCJK,xcolor,array,booktabs,tikz}
+\setmainfont{Arial}\setCJKmainfont{Microsoft YaHei}
+\usepackage[paperwidth=280mm,paperheight=180mm,margin=0mm]{geometry}\pagestyle{empty}\setlength{\tabcolsep}{2pt}\setlength{\emergencystretch}{2em}\sloppy
+\definecolor{navy}{RGB}{22,42,74}\definecolor{blue}{RGB}{52,111,213}\definecolor{pale}{RGB}{244,247,251}\definecolor{green}{RGB}{36,145,93}
+\begin{document}\pagecolor{pale}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[navy] (current page.north west) rectangle ([yshift=-22mm]current page.north east);
+\fill[white,rounded corners=1mm] (12mm,128mm) rectangle (87mm,166mm);
+\fill[white,rounded corners=1mm] (94mm,128mm) rectangle (169mm,166mm);
+\fill[white,rounded corners=1mm] (176mm,128mm) rectangle (268mm,166mm);
+\end{tikzpicture}
+\vspace*{5mm}\noindent\hspace*{10mm}\begin{minipage}{260mm}\color{white}\fontsize{15}{18}\selectfont\bfseries LLMwiki · Usage \& Cost\par\vspace{1mm}\small 组织：华东智研 / 工作区：quality-layer\hfill\scriptsize 2026-08-01 至 2026-08-17　·　数据每 15 分钟刷新\end{minipage}\par
+\vspace{14mm}\noindent\hspace*{17mm}\begin{minipage}{65mm}\centering\color{gray!60}\small 总请求数\par\vspace{2mm}{\color{navy}\fontsize{25}{30}\selectfont\bfseries 48,216}\par\vspace{1mm}{\color{green}\small ▲ 12.8\% 较上周期}
+\end{minipage}\hspace{12mm}\begin{minipage}{65mm}\centering\color{gray!60}\small Token 消耗\par\vspace{2mm}{\color{navy}\fontsize{25}{30}\selectfont\bfseries 1.84B}\par\vspace{1mm}{\color{green}\small ▲ 8.4\% 较上周期}
+\end{minipage}\hspace{12mm}\begin{minipage}{74mm}\centering\color{gray!60}\small 预估费用（含税）\par\vspace{2mm}{\color{navy}\fontsize{25}{30}\selectfont\bfseries ¥12,684.32}\par\vspace{1mm}{\color{blue}\small 预算使用率 63.4\%}
+\end{minipage}\par
+\vspace{13mm}\noindent\hspace*{12mm}\colorbox{white}{\begin{minipage}{256mm}\vspace{4mm}\hspace{5mm}{\color{navy}\large\bfseries 按模型统计}\hfill{\color{gray}\small 费用单位：人民币}\par\vspace{3mm}\centering\small\renewcommand{\arraystretch}{1.35}\begin{tabular}{p{48mm}r r r r}\toprule 模型 & 请求数 & 输入 Token & 输出 Token & 费用\\\midrule GPT-4.1-mini & 18,420 & 286.4M & 91.7M & ¥3,182.40\\ GPT-4.1 & 8,316 & 402.1M & 188.6M & ¥6,944.20\\ Qwen2.5-72B-Instruct & 15,990 & 311.8M & 206.4M & ¥1,728.62\\ bge-m3（向量化） & 5,490 & 347.0M & -- & ¥829.10\\\midrule \multicolumn{4}{r}{合计} & {\bfseries ¥12,684.32}\\\bottomrule\end{tabular}\vspace{5mm}\end{minipage}}
+\vspace{8mm}\hspace*{12mm}{\color{gray!70}\scriptsize 统计口径：重试请求计入请求数；缓存命中仅计入实际计费 Token；金额为账单 API 返回值的近似值。截图为合成业务数据。}
+\end{document}
