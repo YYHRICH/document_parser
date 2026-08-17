@@ -1,0 +1,29 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=20mm]{geometry}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{colortbl}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{empty}
+\begin{document}
+{\fontsize{20}{24}\selectfont\bfseries 模型评测结果表}\par\vspace{2mm}
+{\color{gray}\small 合成数据；两级列头和跨行表头均为确定结构。}\par\vspace{8mm}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{|>{\centering\arraybackslash}m{28mm}|*{4}{>{\centering\arraybackslash}m{26mm}|}}
+\hline
+\rowcolor{blue!12}
+\multirow{2}{*}{模型} & \multicolumn{2}{c|}{训练集} & \multicolumn{2}{c|}{测试集}\\\cline{2-5}
+\rowcolor{blue!6}
+& 准确率 & 召回率 & 准确率 & 召回率\\\hline
+Alpha & 0.92 & 0.88 & 0.90 & 0.86\\\hline
+Beta & 0.95 & 0.91 & 0.93 & 0.89\\\hline
+Gamma & 0.90 & 0.87 & 0.88 & 0.84\\\hline
+\end{tabular}
+\vspace{8mm}\par
+\color{gray}\small 期望：列路径必须包含“训练集/测试集”与指标名称；不能把多级表头压平。
+\vfill\scriptsize Synthetic fixture - table positive example\hfill Page 1 of 1
+\end{document}

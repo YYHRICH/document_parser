@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[paperwidth=100mm,paperheight=240mm,margin=0mm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{empty}
+\setlength{\topskip}{0pt}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\fill[white] (0,0) rectangle (100,240);
+\fill[teal!80!black] (0,225) rectangle (100,240);
+\node[anchor=west,text=white,font=\fontsize{15}{17}\selectfont\bfseries] at (8,232) {长截图：发布检查清单};
+\foreach \n in {1,...,16}{
+  \pgfmathsetmacro{\y}{215-(\n-1)*13.2}
+  \fill[\ifodd\n teal!5\else gray!5\fi] (7,\y-9) rectangle (93,\y+2);
+  \fill[teal] (11,\y-5) circle (2);
+  \node[anchor=west,font=\fontsize{9}{10}\selectfont] at (18,\y-2) {检查项 \n};
+  \node[anchor=west,text=gray,font=\fontsize{7}{8}\selectfont] at (18,\y-7) {STATUS-\n: PASS};
+}
+\end{tikzpicture}
+\end{document}

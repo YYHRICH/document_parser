@@ -1,0 +1,67 @@
+\documentclass[10.5pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=18mm]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{booktabs}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{plain}
+\setlength{\parindent}{0pt}\setlength{\tabcolsep}{2pt}
+\begin{document}
+{\fontsize{21}{25}\selectfont\bfseries 生产线温控模块采购比价报告}\par\vspace{2mm}
+{\color{gray}\small 项目编号：PROC-2026-0817\quad 采购部门：设备工程部\quad 评估日期：2026-08-17}\par\vspace{6mm}
+\section*{一、采购需求}
+本次采购用于替换二号车间 AX-200 温控模块的冷却组件。需求数量为 120 套，要求额定电压 12 V、工作温度 -20 至 70 C，并提供至少 12 个月质保。报价有效期为 30 日。
+\section*{二、供应商报价与技术符合性}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|>{\centering\arraybackslash}m{26mm}|>{\centering\arraybackslash}m{29mm}|*{4}{>{\centering\arraybackslash}m{22mm}|}}
+\hline
+\rowcolor{blue!15}
+\textbf{供应商} & \textbf{型号} & \multicolumn{2}{c|}{\textbf{技术参数}} & \multicolumn{2}{c|}{\textbf{商务条款}}\\\cline{3-6}
+\rowcolor{blue!7}
+& & \textbf{额定电压} & \textbf{温度范围} & \textbf{含税单价（元）} & \textbf{质保（月）}\\\hline
+华东精工 & FAN-AX200-A & 12 V & -20--70 C & 186.00 & 18\\\hline
+北辰机电 & FAN-AX200-B & 12 V & -10--65 C & 172.00 & 12\\\hline
+远景自动化 & FAN-AX200-C & 24 V & -20--70 C & 165.00 & 24\\\hline
+\end{tabular}
+\vspace{6mm}
+\section*{三、交付与服务比较}
+\begin{tabular}{|>{\bfseries}m{32mm}|m{39mm}|m{39mm}|m{39mm}|}\hline
+\rowcolor{gray!15} 项目 & 华东精工 & 北辰机电 & 远景自动化\\\hline
+交付周期 & 14 个工作日 & 10 个工作日 & 21 个工作日\\\hline
+现场安装 & 含首次安装 & 不含 & 含远程指导\\\hline
+质保响应 & 24 小时内 & 48 小时内 & 24 小时内\\\hline
+备件库存 & 上海仓 80 套 & 南京仓 40 套 & 深圳仓 120 套\\\hline
+\end{tabular}
+\newpage
+{\fontsize{18}{22}\selectfont\bfseries 采购比价报告 / 评审结论}\par\vspace{5mm}
+\section*{四、综合评分}
+\small\begin{tabular}{|p{28mm}|c|c|c|c|c|}\hline
+\rowcolor{blue!12} 供应商 & \shortstack{技术符合\\(30)} & \shortstack{价格\\(25)} & \shortstack{交付\\(20)} & \shortstack{服务\\(15)} & \shortstack{总分\\(90)}\\\hline
+华东精工 & 30 & 20 & 16 & 14 & 80\\\hline
+北辰机电 & 24 & 25 & 18 & 10 & 77\\\hline
+远景自动化 & 20 & 24 & 12 & 14 & 70\\\hline
+\end{tabular}
+\section*{五、评审意见}
+华东精工的 FAN-AX200-A 满足电压、温度范围、交付和质保要求，综合风险最低。北辰机电单价较低但温度上限和售后响应不满足关键要求。远景自动化的额定电压不符合设备输入规格，不能直接替换。
+\section*{六、推荐采购方案}
+\begin{tabular}{|p{42mm}|p{46mm}|p{50mm}|}\hline
+\rowcolor{gray!15} 项目 & 推荐值 & 证据来源\\\hline
+推荐供应商 & 华东精工 & 技术报价单 HS-0817-A\\\hline
+推荐型号 & FAN-AX200-A & 规格书第 2 页\\\hline
+采购数量 & 120 套 & 设备工程部需求单 REQ-0817\\\hline
+预计含税金额 & 22,320.00 元 & 单价 186.00 x 120\\\hline
+质保要求 & 18 个月 & 供应商承诺函\\\hline
+\end{tabular}
+\section*{七、审批记录}
+\begin{tabular}{p{52mm}p{52mm}p{52mm}}
+采购申请：陈琳 & 技术复核：周海 & 部门批准：王倩\\[15mm]
+日期：2026-08-17 & 日期：2026-08-17 & 日期：2026-08-17
+\end{tabular}
+\vfill\color{gray}\small Synthetic procurement report; supplier names and amounts are fictional.
+\end{document}

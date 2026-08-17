@@ -1,0 +1,127 @@
+\documentclass[10.5pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=18mm,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\definecolor{navy}{HTML}{0B1F3A}
+\definecolor{blue}{HTML}{155EEF}
+\definecolor{muted}{HTML}{52606D}
+\definecolor{pale}{HTML}{F3F6FA}
+\definecolor{green}{HTML}{087F5B}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue}
+\pagestyle{fancy}\fancyhf{}\lhead{Knowledge Base Operations}\rhead{KB-MIG-2026}\cfoot{\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}\setlength{\tabcolsep}{2pt}
+\begin{document}
+{\color{navy}\fontsize{22}{27}\selectfont\bfseries 企业知识库迁移指南}\par
+{\color{muted}\fontsize{13}{16}\selectfont Knowledge Base Migration Guide}\par\vspace{3mm}
+{\color{blue}\rule{\textwidth}{2pt}}\par\vspace{5mm}
+\begin{tabular}{>{\bfseries}p{28mm} p{55mm} >{\bfseries}p{28mm} p{55mm}}
+文档编号 & KB-MIG-2026 & 负责人 & Knowledge Platform Team\\
+版本 & 2.3 & 生效日期 & 2026-08-17\\
+适用范围 & 内部产品、运维与支持团队 & 状态 & Approved\\
+\end{tabular}
+\vspace{7mm}
+\section*{摘要 / Executive summary}
+本文说明如何把产品手册、故障复盘、FAQ 和服务公告迁移到统一的 LLMwiki 知识库。迁移不只是复制文件，还需要保留标题层级、表格字段、引用来源、版本号和原文定位。
+
+This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service notices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval answers remain auditable.
+
+\section*{1. 迁移范围与成功标准}
+\begin{itemize}
+\item 只接收经过授权的产品、运维和公开技术材料；
+\item 每个文档必须保留原始文件名、版本、发布日期和责任团队；
+\item 表格中的金额、阈值、单位和枚举值不得被改写；
+\item 低置信度的扫描页、复杂表格和不确定引用进入人工复核；
+\item 迁移后用户可以通过章节、版本和产品名称检索到原文。
+\end{itemize}
+\section*{2. 文档生命周期}
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\scriptsize\sffamily}]
+\node[draw=blue!70,fill=blue!8,rounded corners,minimum width=44mm,minimum height=10mm] (a) at (0,0) {收集\ Collect};
+\node[draw=blue!70,fill=blue!8,rounded corners,minimum width=44mm,minimum height=10mm] (b) at (0,-15mm) {解析\ Parse};
+\node[draw=green!70,fill=green!8,rounded corners,minimum width=44mm,minimum height=10mm] (c) at (0,-30mm) {复核\ Review};
+\node[draw=green!70,fill=green!8,rounded corners,minimum width=44mm,minimum height=10mm] (d) at (0,-45mm) {发布\ Publish};
+\draw[->,thick] (a.south)--(b.north);
+\draw[->,thick] (b.south)--(c.north);
+\draw[->,thick] (c.south)--(d.north);
+\end{tikzpicture}
+\end{center}
+\section*{3. 角色与责任}
+\begin{tabular}{p{31mm}p{47mm}p{62mm}}
+\toprule
+角色 & 输入 & 责任\\\midrule
+内容负责人 & 原始文档、版本说明 & 确认内容合法、更新日期和废弃版本\\
+解析负责人 & 文件与解析结果 & 检查正文、表格、标题和来源定位\\
+审核人 & QualityPackage & 确认问题、修复记录和发布状态\\
+\bottomrule
+\end{tabular}
+\newpage
+\section*{4. 标准操作流程}
+\begin{longtable}{p{10mm}p{35mm}p{58mm}p{38mm}}
+\toprule
+序号 & 阶段 & 操作 & 输出\\\midrule
+1 & 登记 & 记录 sample\_id、文件摘要、来源许可和版本 & manifest 记录\\
+2 & 预检 & 判断文件类型、是否扫描、是否包含表格和图片 & RoutingDecision\\
+3 & 解析 & 运行候选解析器并保存原生结果 & ParsedDocument\\
+4 & 质量处理 & 恢复标题、表格字段和引用关系 & QualityPackage\\
+5 & 发布 & 由内容负责人确认后建立版本索引 & 可检索页面\\
+6 & 复盘 & 记录失败原因、人工修改和重新解析建议 & 运行报告\\
+\bottomrule
+\end{longtable}
+\section*{5. 推荐命名和元数据}
+文件名使用稳定的业务名称，不使用本机临时路径：
+\begin{verbatim}
+product-area_document-topic_version_date.ext
+payments_api-rate-limit_v2.3_2026-08-17.pdf
+\end{verbatim}
+必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生新记录，不能静默覆盖旧文件。
+\section*{6. 命令行示例}
+\begin{verbatim}
+# inspect one uploaded document
+llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \
+  --mode auto --quality strict --output task-result/
+
+# publish only after the quality gate passes
+llmwiki publish task-result/ --visibility internal
+\end{verbatim}
+\section*{7. 双语检索说明 / Retrieval notes}
+中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如“限流 / rate limit”、“服务等级协议 / SLA”。数字、单位、版本号和代码标识符必须按原样保存。
+\newpage
+\section*{8. 常见问题与处理策略}
+\begin{longtable}{p{45mm}p{70mm}p{30mm}}
+\toprule
+问题 & 处理策略 & 状态\\\midrule
+扫描页只有图片 & 使用 OCR，保留页码和置信度；低置信度进入人工复核 & review\\
+表格跨页且没有重复表头 & 尝试恢复续接键；无法唯一判断时不绑定字段 & review\\
+文档出现旧版本链接 & 保留链接并标记目标版本，不自动替换为当前版本 & warning\\
+正文引用目标不唯一 & 生成 reference\_of 候选关系，状态设为 manual\_review\_required & review\\
+同一文件多次上传 & 通过版本和文件摘要区分，禁止覆盖既有结果 & pass\\
+\bottomrule
+\end{longtable}
+\section*{9. 发布前检查清单}
+\begin{itemize}
+\item 正文和标题顺序与原文件一致；
+\item 表格列名、单位、合并表头和数值均可回溯；
+\item 引用关系有明确目标和来源证据；
+\item 质量报告、修复记录和重新解析建议齐全；
+\item 页面展示不暴露本机路径、临时文件或敏感信息。
+\end{itemize}
+\section*{10. 变更记录}
+\begin{tabular}{p{24mm}p{24mm}p{38mm}p{65mm}}
+\toprule
+版本 & 日期 & 修改人 & 说明\\\midrule
+2.1 & 2026-06-03 & Platform Team & 初始迁移流程\\
+2.2 & 2026-07-11 & Search Team & 增加引用和版本字段\\
+2.3 & 2026-08-17 & Knowledge Platform Team & 增加质量门和人工复核策略\\
+\bottomrule
+\end{tabular}
+\vfill\color{muted}\small Source: internal synthetic fixture; all names and values are fictional.
+\end{document}
