@@ -13,10 +13,11 @@ from document_parser.core.contracts import (
     CanonicalRelation,
     CanonicalSourceLocator,
     QualityCapabilityState,
+    TableFieldBinding,
 )
 
 from quality.evidence.context import EvidenceContext
-from quality.ids import block_id, relation_id
+from quality.ids import binding_id, block_id, relation_id
 
 QUALITY_PIPELINE_VERSION = "quality-mvp-0.1.0"
 
@@ -29,8 +30,9 @@ def _document_key(parsed) -> str:
 def build_canonical_document(
     context: EvidenceContext,
     relation_candidates: tuple | None = None,
+    binding_candidates: tuple | None = None,
 ) -> CanonicalDocument:
-    """从 EvidenceContext 构建 CanonicalDocument（blocks 投影 + relations）。"""
+    """从 EvidenceContext 构建 CanonicalDocument（blocks + relations + bindings）。"""
     doc_key = _document_key(context.parsed)
     blocks: list[CanonicalBlock] = []
     for block in context.ordered_blocks():
@@ -94,10 +96,45 @@ def build_canonical_document(
                 },
             )
         )
+    # 表格字段绑定
+    block_map = _id_map(context)
+    table_bindings: list[TableFieldBinding] = []
+    for candidate in binding_candidates or ():
+        canonical_block_id = block_map.get(candidate.block_id)
+        if canonical_block_id is None:
+            continue
+        table_bindings.append(
+            TableFieldBinding(
+                binding_id=binding_id(
+                    doc_key,
+                    candidate.table_id,
+                    candidate.cell_key or "cell",
+                    candidate.row_key,
+                    candidate.column_path,
+                ),
+                table_id=candidate.table_id,
+                block_id=canonical_block_id,
+                row_key=candidate.row_key,
+                column_path=list(candidate.column_path),
+                value=candidate.value,
+                source_locator=candidate.source_locator,
+                status=candidate.source_locator.provenance_status,
+                evidence={
+                    "refs": [
+                        {
+                            "object_type": ref.object_type,
+                            "object_id": ref.object_id,
+                            "field_path": ref.field_path,
+                        }
+                        for ref in candidate.evidence_refs
+                    ]
+                },
+            )
+        )
     return CanonicalDocument(
         document_id=context.parsed.document_id,
         blocks=blocks,
-        table_bindings=[],
+        table_bindings=table_bindings,
         relations=relations,
         metadata={"quality_pipeline_version": QUALITY_PIPELINE_VERSION},
     )

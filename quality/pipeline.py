@@ -53,8 +53,12 @@ from quality.rules.references import (
     QL_REF_001_ReferenceIndex,
     QL_REF_004_BindCitations,
 )
+from quality.rules.tables import (
+    QL_TBL_004_ColumnPath,
+    QL_TBL_006_BuildBindings,
+)
 
-# 注册的规则集合（M1 完整性/来源 + M2 标题树/数字引用）
+# 注册的规则集合（M1 完整性/来源 + M2 标题/引用 + M3 表格）
 QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_CONT_001_BlocksExist,
     QL_CONT_002_OrderIndex,
@@ -67,6 +71,8 @@ QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_HDG_004_BuildTree,
     QL_REF_001_ReferenceIndex,
     QL_REF_004_BindCitations,
+    QL_TBL_004_ColumnPath,
+    QL_TBL_006_BuildBindings,
 )
 
 
@@ -89,21 +95,24 @@ def run_pipeline(
     issue_drafts: list[IssueDraft] = []
     observations = []
     relation_candidates = []
+    binding_candidates = []
     for rule_type in rules:
         rule = rule_type()
         result: RuleResult = rule.execute(context)
         issue_drafts.extend(result.issues)
         observations.extend(result.capability_observations)
         relation_candidates.extend(result.relation_candidates)
+        binding_candidates.extend(result.binding_candidates)
 
     # 2. 能力矩阵
     matrix_builder = CapabilityMatrixBuilder(config)
     verdicts = matrix_builder.build(observations, context)
 
-    # 3. canonical document（含关系）
+    # 3. canonical document（含关系与表格绑定）
     canonical = build_canonical_document(
         context,
         relation_candidates=tuple(relation_candidates),
+        binding_candidates=tuple(binding_candidates),
     )
 
     # 4. Gate 决策（M1 无 reparse 来源，无 recommendation）
@@ -158,6 +167,7 @@ def run_pipeline(
             "source_block_count": len(parsed_document.blocks),
             "canonical_block_count": len(canonical.blocks),
             "table_count": len(parsed_document.tables),
+            "binding_count": len(canonical.table_bindings),
             "relation_count": len(canonical.relations),
             "issue_count": len(issues),
         },

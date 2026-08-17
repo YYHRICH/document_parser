@@ -119,6 +119,8 @@ def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocu
             table_seq += 1
             table_id = f"table-{table_seq:03d}"
             grid = item.data.grid or []
+            # docling grid 会把 span 单元格复制到展开后的每个槽位；
+            # 只取起点槽位（start_row/start_col 等于槽位坐标）的 cell，避免重复
             cells = [
                 TableCell(
                     text=cell.text,
@@ -130,8 +132,10 @@ def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocu
                     row_header=cell.row_header,
                     bbox=_bbox_to_top_left(cell.bbox, page_height),
                 )
-                for row in grid
-                for cell in row
+                for row_idx, row in enumerate(grid)
+                for col_idx, cell in enumerate(row)
+                if cell.start_row_offset_idx == row_idx
+                and cell.start_col_offset_idx == col_idx
             ]
             table_md = _grid_to_markdown(grid)
             block = DocumentBlock(

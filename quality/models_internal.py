@@ -75,6 +75,8 @@ class BindingCandidate:
     column_path: list[str]
     value: str
     source_locator: CanonicalSourceLocator
+    # D-09：单元格身份 = "r{row}c{col}" 坐标组合（朱提供 cell_id 后替换）
+    cell_key: str = ""
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
 
 
