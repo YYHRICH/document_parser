@@ -82,10 +82,18 @@ def test_run_quality_is_deterministic():
     )
 
 
-def test_clean_document_passes():
+def test_mineru_flat_heading_levels_degrade():
+    """MinerU 把文档标题与章节全标为 level2 → 树能力降级，状态不可能是 pass。
+
+    这是真实数据驱动的行为：层级粒度证据不可靠时绝不 verified 放行。
+    """
     doc = _load("sdp-004-mineru")
     package = run_quality(doc)
-    assert package.quality_report.state == QualityState.PASS
+    assert package.quality_report.state != QualityState.PASS
+    assert package.quality_report.state in (
+        QualityState.PASS_WITH_WARNINGS,
+        QualityState.MANUAL_REVIEW_REQUIRED,
+    )
 
 
 def test_fallback_document_state_is_legal():
