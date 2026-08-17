@@ -1,11 +1,12 @@
 # Document Parser
 
-> 当前分支：`feature/quality-layer`
-> 负责人：叶
-> 核心目标：仅基于 `ParsedDocument 2.2` 的真实证据完成表格字段绑定、标题树、引用关系、
-> 质量准入和四件套，稳定输出 `QualityPackage 1.0`。
+> 当前主线：main
+> 质量层工作分支：feature/quality-layer
+> 共享开发基线：datasets/shared-dev-v1
+> 核心目标：仅基于 ParsedDocument 2.2 的真实证据完成表格字段绑定、标题树、引用关系、
+> 质量准入和四件套，稳定输出 QualityPackage 1.0。
 
-## 本分支工作卡：质量优化与准入
+## 质量层工作卡（feature/quality-layer）
 
 ### 开始开发前必须阅读
 
@@ -157,6 +158,16 @@ python -m pytest tests/test_contract_examples.py -q
 `document_parser` 是三人协作开发的统一文档解析模块。本仓库直接基于现有 Python
 代码扩展，不另起一套不兼容实现。
 
+## 共享开发文件集
+
+datasets/shared-dev-v1 是三人共同使用的 12 文件开发基线，已合并到 main。
+
+- manifest.jsonl 是文件身份、SHA-256、split 和解析目标的唯一事实源；
+- Smoke：sdp-001、sdp-004、sdp-007、sdp-008；
+- Golden：sdp-004、sdp-005、sdp-006、sdp-007；
+- PDF/图片源文件位于 datasets/shared-dev-v1/sources/tex/，DOCX 回归样例由确定性 Open XML 构建；
+- 新增、删除或替换样例必须同步更新 manifest、标注、Spec，并通过 PR。
+
 ## 当前状态
 
 已经具备：
@@ -166,7 +177,8 @@ python -m pytest tests/test_contract_examples.py -q
 - `DocumentParserGateway` 统一入口；
 - `RoutingDecision 1.0`、`ParsedDocument 2.2`、`QualityPackage 1.0` 公共契约；
 - 三份可直接用于联调和 Mock 的固定 JSON 样例；
-- 契约、跨阶段衔接和错误约束测试。
+- 契约、跨阶段衔接和错误约束测试；
+- shared-dev-v1 12 文件数据集、manifest、标注和可复现源。
 
 MVP 尚需三人分别完成：
 
@@ -214,7 +226,9 @@ document_parser/
 ├─ docs/
 │  └─ 开发分工.md
 ├─ examples/contracts/   # 三方固定接口样例
+├─ datasets/shared-dev-v1/ # 共享开发文件集、manifest 和标注
 ├─ specs/                # 完整产品和工程规格
+├─ requirements.txt      # 项目运行与测试依赖
 └─ tests/                # 当前契约测试
 ```
 
