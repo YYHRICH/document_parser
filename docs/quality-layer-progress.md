@@ -12,7 +12,7 @@
 | 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
 | 确定性格式修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
 | 质量产物四件套落盘 | ✅ 完成 | 确定性序列化、manifest 校验、原子化写入和篡改检测 |
-| 单文档质量修复 Agent | 🚧 进行中 | Agno 主 Agent、既有确定性质量能力工具化、候选校验和 revision 闭环第一切片 |
+| 单文档质量修复 Agent | ✅ 第一阶段完成 | Agno Agent、Skills、Tools、页面索引、结构化 Patch、关系/资源 Patch、候选校验、revision 闭环和进度编排 |
 | 上游统一文档包联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
 
 测试状态：**225 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）

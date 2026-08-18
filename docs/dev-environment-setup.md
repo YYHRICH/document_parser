@@ -77,7 +77,7 @@ New-Item -ItemType Junction -Path C:\dp_venv_link -Target <项目根>\.venv
 
 ```bash
 .venv/Scripts/python.exe -m pytest tests/ -q
-# 期望：167 passed, 1 xfailed（xfailed 为 golden 标注冲突显式登记，正常）
+# 期望：225 passed, 1 xfailed（xfailed 为 golden 标注冲突显式登记，正常）
 ```
 
 ## 6. 常用命令
@@ -105,12 +105,12 @@ python -c "from document_parser.core.contracts import ParsedDocument; from quali
 | 虚拟环境 .venv | ❌ 不入库 | 按第 2 节重建 |
 | API 密钥 .env | ❌ 不入库 | 按第 3 节配置（key 需要自己带上/重新申请） |
 | docling 特殊环境 | ❌ 不入库 | 需要时按第 4 节配置（可跳过） |
-| 测试结果基线 | ✅ 代码内 | 第 5 节验证（167 passed） |
+| 测试结果基线 | ✅ 代码内 | 第 5 节验证（225 passed） |
 
 ## 8. 开发协议速查
 
 - 分支：只改 `feature/quality-layer`；公共契约（core/contracts.py）变更需三人评审
-- 提交：小步勤提交、`feat(quality):` 风格、**默认不 push**
+- 提交：小步勤提交、使用清晰的 `feat(quality):` 风格；是否 push 按负责人协作安排执行
 - 红线：不伪造证据、no-op 合法、verified 必须有证据、LLM 建议最高 inferred
 - 决策记录：docs/quality-decisions.md（D-01~D-16）
 - 进展报告：docs/quality-layer-progress.md
