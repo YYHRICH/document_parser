@@ -11,8 +11,8 @@ pdfplumber>=0.11
 pytest>=8,<9
 
 # Optional: local docling parser (tools/docling_parser.py)
-# 需要额外的本机环境（英文路径解释器 + torch==2.7.1 + TORCH_COMPILE_DISABLE=1），
-# 详见 docs/dev-environment-setup.md；不需要时可跳过，MinerU 云 API + pdfplumber 已够用。
+# Requires a separate local environment (English path interpreter + torch==2.7.1 + TORCH_COMPILE_DISABLE=1).
+# See docs/dev-environment-setup.md; skip it when MinerU cloud API + pdfplumber is sufficient.
 # docling>=2.120
 # torch==2.7.1
 # torchvision==0.22.0
