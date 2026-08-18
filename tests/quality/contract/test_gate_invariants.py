@@ -1,4 +1,4 @@
-"""Gate 不变量测试（M0）：公共契约层的硬约束验证。
+"""Gate 不变量测试（契约与测试基础）：公共契约层的硬约束验证。
 
 对应 spec §8.3 Gate 不变量与验收清单「契约」部分：
 - reparse_required 必须带合法 recommendation；

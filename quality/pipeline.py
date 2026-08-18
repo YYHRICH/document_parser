@@ -1,12 +1,13 @@
-"""质量流水线：EvidenceContext → 规则 → 能力矩阵 → Gate → QualityPackage。
+"""质量流水线：证据上下文 → 质量规则 → 能力矩阵 → 质量门 → QualityPackage。
 
-M1 覆盖：完整性规则 + 来源规则 + 能力矩阵 + Gate + 最小 canonical。
-表格/标题/引用能力在本里程碑如实标注"规则未实现"且不阻塞（对应能力
-在 M2/M3 落地后接入）。
+当前规则集合覆盖完整性、来源、标题、引用和表格结构；能力矩阵会根据文档证据区分
+已验证、不适用、需要人工复核和证据不足等状态。
 """
 
 from __future__ import annotations
 
+from collections.abc import Mapping
+from typing import Any
 from uuid import uuid4
 
 from document_parser.core.contracts import (
@@ -16,6 +17,7 @@ from document_parser.core.contracts import (
     PackageManifest,
     ParsedDocument,
     QualityIssue,
+    QualityCapabilityState,
     QualityPackage,
     QualityReport,
     QualityState,
@@ -27,7 +29,7 @@ from quality.evidence.context import EvidenceContext
 from quality.gates.capabilities import CapabilityMatrixBuilder
 from quality.gates.evaluator import GateEvaluator
 from quality.ids import issue_id
-from quality.models_internal import EvidenceRef, IssueDraft, RuleResult
+from quality.models_internal import EvidenceRef, IssueDraft, RelationCandidate, RuleResult
 from quality.packaging.hashing import (
     markdown_bytes,
     sha256_bytes,
@@ -61,7 +63,7 @@ from quality.rules.tables import (
 )
 from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
 
-# 注册的规则集合（M1 完整性/来源 + M2 标题/引用 + M3 表格）
+# 注册的规则集合（证据、完整性与质量门 完整性/来源 + 标题层级与引用绑定 标题/引用 + 表格网格与字段绑定 表格）
 QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_CONT_001_BlocksExist,
     QL_CONT_002_OrderIndex,
@@ -151,11 +153,44 @@ def _apply_repairs_to_blocks(parsed_document: ParsedDocument) -> list:
     return repaired
 
 
+def _apply_relation_overrides(candidates: list, overrides: tuple[Any, ...]) -> list:
+    """把已验证的 Agent 关系 Patch 覆盖到规则关系候选上。"""
+
+    result = list(candidates)
+    for patch in overrides:
+        key = (patch.relation_type, patch.from_id, patch.to_id, patch.marker_key)
+        result = [
+            candidate
+            for candidate in result
+            if (
+                candidate.relation_type,
+                candidate.from_id,
+                candidate.to_id,
+                candidate.marker_key,
+            )
+            != key
+        ]
+        if patch.action == "upsert":
+            result.append(
+                RelationCandidate(
+                    relation_type=patch.relation_type,
+                    from_id=patch.from_id,
+                    to_id=patch.to_id,
+                    state=QualityCapabilityState.INFERRED,
+                    marker_key=patch.marker_key,
+                    evidence={"source": "agent_relation_patch"},
+                )
+            )
+    return result
+
+
 def run_pipeline(
     parsed_document: ParsedDocument,
     *,
     config: QualityConfig | None = None,
     rules: tuple[type[QualityRule], ...] = QUALITY_RULES,
+    additional_metrics: Mapping[str, Any] | None = None,
+    relation_overrides: tuple[Any, ...] | None = None,
 ) -> QualityPackage:
     """执行质量流水线，返回完整 QualityPackage（含内存哈希绑定）。"""
     config = config or QualityConfig()
@@ -184,13 +219,16 @@ def run_pipeline(
     verdicts = matrix_builder.build(observations, context)
 
     # 3. canonical document（含关系与表格绑定）
+    relation_candidates = _apply_relation_overrides(
+        relation_candidates, relation_overrides or ()
+    )
     canonical = build_canonical_document(
         context,
         relation_candidates=tuple(relation_candidates),
         binding_candidates=tuple(binding_candidates),
     )
 
-    # 4. Gate 决策（M1 无 reparse 来源，无 recommendation）
+    # 4. Gate 决策（证据、完整性与质量门 无 reparse 来源，无 recommendation）
     # 契约要求 reparse_required 必须带 recommendation；无合法建议时
     # evaluator 将 reparse 降级为 manual_review_required。
     evaluator = GateEvaluator(config.gate)
@@ -254,6 +292,7 @@ def run_pipeline(
             "relation_count": len(canonical.relations),
             "repair_count": len(repair_result.applied),
             "issue_count": len(issues),
+            **dict(additional_metrics or {}),
         },
         reparse_recommendation=None,
     )

@@ -1,6 +1,6 @@
 # 质量层输入需求矩阵（初稿）
 
-> 状态：M0 初稿（基于 tests/quality/fixtures/parsed_documents/ 真实数据字段核对）
+> 状态：初稿（基于 tests/quality/fixtures/parsed_documents/ 真实数据字段核对）
 > 用途：与朱（统一接入层）联调时的主要反馈载体，避免质量层直接读取 Adapter 私有结构。
 > 规则：证据缺失时通过 `capabilities` 声明；非 available 必须给出 reason。
 

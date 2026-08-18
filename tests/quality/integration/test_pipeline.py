@@ -1,4 +1,4 @@
-"""M1 集成测试：run_quality 在真实 fixtures 上产出合法 QualityPackage。
+"""证据、完整性与质量门 集成测试：run_quality 在真实 fixtures 上产出合法 QualityPackage。
 
 覆盖：
 - 真实样例（三路解析器）跑通完整流水线；
@@ -54,7 +54,7 @@ def test_run_quality_on_real_fixtures(sample):
     assert package.document_id == doc.document_id
     assert package.canonical_document.document_id == doc.document_id
     assert package.quality_report.document_id == doc.document_id
-    # M4：白名单修复后 markdown 无行尾空白；无修复时 no-op（D-07）
+    # 确定性格式修复：白名单修复后 markdown 无行尾空白；无修复时 no-op（D-07）
     assert all(
         line == line.rstrip()
         for line in package.optimized_markdown.splitlines()
@@ -101,10 +101,10 @@ def test_mineru_flat_heading_levels_degrade():
 
 
 def test_fallback_document_state_is_legal():
-    """fallback 文档在 M1 规则集内可能 PASS（无标题块、无违反规则证据）。
+    """fallback 文档在 基础质量规则集内可能 PASS（无标题块、无违反规则证据）。
 
-    缺标题层级的检测属于 M2 标题树规则的职责（heading_level_missing）；
-    M1 只验证状态合法且报告完整。
+    缺标题层级的检测属于 标题树规则的职责（heading_level_missing）；
+    基础质量流水线只验证状态合法且报告完整。
     """
     doc = _load("sdp-006-fallback")
     package = run_quality(doc)
@@ -157,7 +157,7 @@ def test_no_verified_content_without_evidence():
 
 
 def test_reparse_scenario_via_verdict_injection():
-    """reparse 场景：M1 规则无 reparse 观测，通过配置注入验证契约约束。"""
+    """reparse 场景：证据、完整性与质量门 规则无 reparse 观测，通过配置注入验证契约约束。"""
     doc = _load("sdp-004-mineru")
     # 直接构造带 reparse 能力的报告路径：使用 pipeline 级 API 无法注入，
     # 契约层约束已由 test_gate_evaluator 覆盖；此处验证契约不接受无建议的 reparse。

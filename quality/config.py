@@ -30,7 +30,6 @@ class QualityConfig:
     """质量层整体配置。"""
 
     gate: GateConfig = field(default_factory=GateConfig)
-    # LLM 顾问开关（MVP-B；默认关闭，见 spec §9.1）
-    llm_enabled: bool = False
+    # Agent-first：确定性路径由 run_quality 显式调用，不再设置旧的 llm_enabled 开关。
     # 稳定 ID 命名空间校验开关
     enforce_stable_ids: bool = True

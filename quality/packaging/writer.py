@@ -1,4 +1,4 @@
-"""M5 四件套安全写入与目录校验。"""
+"""质量产物四件套安全写入与目录校验。"""
 
 from __future__ import annotations
 

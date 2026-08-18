@@ -1,10 +1,10 @@
 # 基于 Agno 的单文档质量修复 Agent 设计 Spec
 
-> 状态：Draft v0.1
+> 状态：单文档质量修复 Agent 第一阶段实现基线（持续演进）
 > 适用分支：`feature/quality-layer`
 > 设计对象：单文档质量修复 Agent
 > 选定框架：Agno
-> 当前阶段：只定义设计，不搭建实现
+> 当前阶段：Agno 主 Agent 与 既有确定性质量能力 工具闭环已落地，继续联调
 
 ## 1. 设计目标
 
@@ -47,19 +47,19 @@ Agno 的 `Agent.run()` 能够完成模型请求、工具调用和工具结果回
 - [Agno State Management](https://docs.agno.com/state/overview)：session state 与数据库持久化；
 - [Agno MCP](https://docs.agno.com/demo-os/mcp)：将 MCP server 工具包装为 Agent 工具。
 
-Agno 只负责 Agent 运行时，不负责判断文档修复是否正确。质量层自己的验证器、revision、回滚、canonical 构建和打包逻辑拥有最终权威。
+Agno 是质量层的正式主运行时，负责 Agent 的观察、工具调用、候选生成和反馈循环。质量层把 既有确定性质量能力重构成 Agno 可调用的工具和安全服务；验证、revision、commit、canonical 构建和打包仍是工具内部的确定性边界。
 
 ### 2.1 选型边界
 
-| 能力 | Agno 负责 | 质量层负责 |
+| 能力 | Agno Agent 主体 | 质量层工具/服务 |
 | --- | --- | --- |
 | LLM 请求与响应 | ✅ |  |
-| 类型化工具调用 | ✅ |  |
-| `RepairedDocumentCandidate` 输出 | ✅ 协助生成 | ✅ 最终校验 |
-| 文档内容与 revision |  | ✅ |
-| 内容不变量和来源校验 |  | ✅ |
-| 规则、Gate 和审核状态 |  | ✅ |
-| commit / rollback |  | ✅ |
+| 工具选择与调用循环 | ✅ |  |
+| `RepairedDocumentCandidate` 输出 | ✅ structured output | ✅ Schema 和事实校验 |
+| 观察与结构证据能力 观察、摘要、区域读取 | 调用工具并决定读取范围 | ✅ 只读工具实现 |
+| 候选验证与质量门能力 候选验证、规则和 Gate | 根据反馈决定是否重修 | ✅ 验证工具实现 |
+| revision、commit、rollback | 调用事务工具 | ✅ 原子状态和权限边界 |
+| 质量产物 canonical、review、manifest | 调用最终化工具 | ✅ 确定性构建和落盘 |
 | 多文档并行 |  | 上游负责 |
 | MCP 连接 | 可选 | 工具协议由质量层定义 |
 
@@ -70,15 +70,15 @@ Agno 只负责 Agent 运行时，不负责判断文档修复是否正确。质�
   → 临时/正式 DocumentPackageAdapter
   → DocumentPackageView
   → QualityRepairSession
-       ├── Agno Agent
-       │    ├── document context tools
-       │    ├── validation feedback
-       │    └── structured candidate output
-       ├── DocumentRevisionStore
-       ├── Deterministic Validators
-       ├── Existing Quality Rules / Gate
-       ├── Canonical + Review Builders
-       └── M5 Packaging
+       ├── Agno QualityRepairAgent（唯一正式主循环）
+       │    ├── 观察与结构证据能力 read/inspect tools
+       │    ├── structured candidate output
+       │    ├── 候选验证与质量门能力 validate/retry tools
+       │    └── commit/manual-review decisions
+       └── Quality tool services
+            ├── RevisionStore / Validator / Gate
+            ├── Canonical + Review Builders
+            └── 质量产物 Packaging
   → 三个业务文件 + package_manifest.json
 ```
 
@@ -111,7 +111,7 @@ Agent、工具和验证器不得读取解析器私有对象。正式统一层完
 - 阅读摘要、目录和局部上下文；
 - 决定下一步读取什么；
 - 主动识别规则未覆盖的格式问题；
-- 生成整篇或局部 `RepairedDocumentCandidate`；
+- 生成整篇或局部 `RepairedDocumentCandidate`，优先使用通用 operations；
 - 根据验证反馈继续修复或主动放弃。
 
 #### 读取工具
@@ -137,7 +137,7 @@ Agent、工具和验证器不得读取解析器私有对象。正式统一层完
 #### Builder / Packaging
 
 - 从被接受的工作文档确定性构建 Markdown、canonical 和 review report；
-- 使用 M5 的稳定序列化、manifest 和原子落盘。
+- 使用 质量产物与原子落盘 的稳定序列化、manifest 和原子落盘。
 
 ## 4. Agno 运行模型
 
@@ -158,8 +158,9 @@ session_id = quality:{document_id}:{input_sha256}
 ```text
 Agent
 ├── model: 由环境配置决定
-├── tools: 质量层读取/验证工具
-├── output_schema: RepairedDocumentCandidate
+├── tools: quality/agent/tools 下的读取/验证工具
+├── skills: quality/agent/skills 下的业务修复 playbook
+├── output_schema: RepairedDocumentCandidate（结构化 operations）
 ├── db: 开发期 SQLite，生产期可替换存储
 ├── session_id: 当前文档会话
 └── instructions: 角色、边界、工具使用和结束条件
@@ -175,36 +176,22 @@ Agno 的 session state 只保存：
 
 完整文档、候选内容和 revision 快照存放在 `DocumentRevisionStore`，不直接存入 session state。
 
-### 4.3 外层修复循环
+### 4.3 Agno 主循环和事务边界
 
-Agno 负责一次 Agent run 内的工具调用；质量层负责跨轮次的修复循环：
+Agno 拥有模型—工具—反馈循环。质量层宿主只负责创建 session、注入工具权限、设置预算和处理工具终态；不会复制 Agent 的工具选择循环，只在验证失败时做受预算约束的安全重试：
 
 ```python
-revision = store.open(input_document)
-feedback = None
-
-for attempt in range(config.max_rounds):
-    context = context_builder.build(revision, feedback)
-    result = agno_agent.run(context, session_id=session_id)
-    candidate = result.content
-
-    validation = validator.validate(revision, candidate)
-    store.record_attempt(revision, candidate, validation)
-
-    if validation.acceptable:
-        revision = store.commit(candidate)
-        break
-
-    if validation.no_progress or budget.exhausted:
-        store.rollback(revision)
-        return manual_review(revision, validation)
-
-    feedback = validation.feedback
-else:
-    return manual_review(revision, feedback)
+session = session_store.open(document)
+agent = build_quality_repair_agent(
+    session=session,
+    tools=quality_tools(session),
+    output_schema=RepairedDocumentCandidate,
+)
+result = agent.run(initial_context, session_id=session.id)
+package = finalize_after_terminal_tool(result, session)
 ```
 
-Agno 不拥有最终的 `for` 循环结束权。超时、无改善、内容变化和预算耗尽由质量层强制结束。
+Agent 只拥有读取、页面/跨页上下文、差异和验证工具；业务判断由 quality/agent/skills 下的 playbook 约束。通过验证的候选由宿主 runtime 在本地调用 `commit_revision`；超时、工具错误、预算耗尽和无改善也由宿主调用 `rollback_revision`/`request_manual_review`。这样模型不能绕过事务边界，但仍自行决定修复内容。
 
 ## 5. Agent 状态机
 
@@ -291,34 +278,36 @@ unresolved_regions
 `RepairedDocumentCandidate` 是内部 Pydantic 模型，至少包含：
 
 ```text
-schema_version
+schema_version = "2.0"
 base_revision
-scope
-repaired_document 或 repaired_region
+scope = document | page | region
+scope_pages
+repaired_markdown（整篇候选可选）
+block_markdown（兼容字段）
+operations
 affected_ids
 lineage
 reasoning
 evidence_refs
 ```
 
-`scope` 允许：
+`operations` 是最小结构化 Patch，当前支持：
 
 ```text
-document
-section
-page_range
-block_set
-table
-relation_set
+update_block_markdown
+move_block
+update_heading_level
+remove_block（仅允许删除可证明的重复 block）
+replace_table_cells
+upsert_relation / remove_relation
+update_asset_references
 ```
 
 ### 7.2 整篇和局部候选
 
-- 小文档或全局结构问题：允许返回整篇候选；
-- 大文档或局部问题：优先返回 region candidate；
-- region candidate 必须声明边界、受影响 ID 和合并关系；
-- 质量层负责把 region candidate 合并到当前 revision；
-- 合并冲突、缺少 lineage 或影响边界不明确时拒绝候选。
+整篇模式可以提交 `repaired_markdown`；页面/区域模式必须声明 `scope_pages`，并优先提交只引用现有稳定 ID 的 `operations`。宿主在当前 revision 上物化 Patch，再由验证器检查事实词元、来源定位、页码、bbox 和 provenance 是否保持不变。
+
+跨页表格属于页面任务中的显式跨页证据场景：Agent 通过邻页和表格上下文工具读取证据，但仍以最小 Patch 提交。合并冲突、缺少 lineage 或影响边界不明确时拒绝候选并转人工复核。
 
 ### 7.3 LLM 不负责生成最终三件套
 
@@ -392,7 +381,7 @@ MCP 只能改变传输方式，不能改变：
 - `source_content_fingerprint`：按稳定 block/cell ID 记录可见文本和事实 token；
 - `structure_fingerprint`：记录顺序、kind、heading、span、relation、locator 等结构。
 
-格式修复允许 structure fingerprint 改变，但 source content fingerprint 只能在显式人工批准的未来能力中改变。M6 自动模式不允许改变 source content fingerprint。
+格式修复允许 structure fingerprint 改变，但 source content fingerprint 只能在显式人工批准的未来能力中改变。单文档质量修复 Agent 自动模式不允许改变 source content fingerprint。
 
 ### 9.3 审核结果
 
@@ -503,7 +492,7 @@ candidate_schema_version
 - 外部 MCP server 的工具清单必须显式配置，默认拒绝未知工具；
 - 日志保存 model、prompt/schema version、tool calls、revision 和验证摘要，不默认保存完整敏感文档；
 - 审核文件可记录简短 reasoning，但不把隐藏思维链写入公共产物；
-- 所有最终产物由 M5 原子写入器提交。
+- 所有最终产物由 质量产物原子写入器提交。
 
 ## 14. 测试计划
 
@@ -533,7 +522,7 @@ candidate_schema_version
 ### 14.3 集成测试
 
 - 当前 MinerU/Docling/fallback fixtures 通过各自 Adapter 后运行同一 Agent；
-- LLM 关闭时确定性路径结果稳定；
+- 显式维护模式下确定性路径结果稳定；
 - Agent 修复后规则和 Gate 重新执行；
 - manual review 区域和 auto usable 区域都能在 report 中定位；
 - packaging manifest 能复算三个业务文件哈希；
@@ -541,7 +530,7 @@ candidate_schema_version
 
 ### 14.4 验收标准
 
-M6 设计实现完成必须满足：
+单文档质量修复 Agent 设计实现完成必须满足：
 
 - 单文档 Agent 能运行完整的 inspect → candidate → validate → retry/commit loop；
 - LLM 能处理规则未穷举的格式问题；
@@ -550,18 +539,18 @@ M6 设计实现完成必须满足：
 - 无改善和超预算能确定性停止；
 - 人工复核区域有明确对象、原因和证据；
 - 输出三件业务文件和 manifest，来自同一 accepted revision；
-- LLM 关闭、超时、非法返回和 MCP 失败不会产生错误放行；
-- 既有 M1-M5 回归测试不被破坏。
+- Agent 未配置、超时、非法返回和 MCP 失败不会产生错误放行；
+- 既有 既有确定性质量能力 回归测试不被破坏。
 
-## 15. 实现顺序（仅设计，不代表当前已搭建）
+## 15. 后续演进顺序
 
 1. 固定 `DocumentPackageView`、Adapter 和 revision store 接口；
 2. 定义 Pydantic candidate、validation feedback 和 review report 模型；
-3. 先用 Fake Agent 跑通外层状态机；
-4. 接入 Agno 单 Agent、结构化输出和本地 Python 工具；
-5. 接入内容/结构指纹、canonical、review 和 M5 packaging；
+3. 用 Fake Agno model 跑通 Agent 工具调用闭环；
+4. 接入正式 Agno Agent、结构化输出和本地 Python 工具；
+5. 接入内容/结构指纹、canonical、review 和 质量产物 packaging；
 6. 加入长文档上下文、预算、缓存和 no-progress；
 7. 最后提供 MCP wrapper 和上游统一层 Adapter；
 8. 用真实解析器 fixtures 和 Golden 做回归。
 
-在第 3 步完成前，不接真实 LLM；在第 5 步完成前，不允许 Agent 自动提交最终文件。
+当前第一阶段已经完成 Fake Agent、Agno 适配、结构化候选、验证反馈、revision 闭环和 DeepSeek 配置；后续重点是 region candidate、长文档上下文、缓存/预算、MCP wrapper 和上游统一层 Adapter。

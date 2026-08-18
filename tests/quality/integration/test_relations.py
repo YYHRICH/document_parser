@@ -1,4 +1,4 @@
-"""M2 关系集成测试：真实 fixtures 上的标题树与引用绑定。"""
+"""标题层级与引用绑定 关系集成测试：真实 fixtures 上的标题树与引用绑定。"""
 
 from __future__ import annotations
 

@@ -25,7 +25,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.txt
 ```
 
-requirements.txt 已包含：pydantic / markitdown / pywin32 / requests / pdfplumber / pytest。
+requirements.txt 已包含：pydantic / agno / openai / markitdown / pywin32 / requests / pdfplumber / pytest。
 （`pdfplumber`、`requests` 为 tools/ 解析工具链依赖；docling 为可选，见第 4 节。）
 
 将仓库安装为可编辑包，确保无论 checkout 目录叫什么都可以使用 `document_parser` 导入：
@@ -40,12 +40,15 @@ requirements.txt 已包含：pydantic / markitdown / pywin32 / requests / pdfplu
 
 ```
 MINERU_API_KEY=<你的 MinerU 云 API token>
-LLM_API_KEY=<预留>
-LLM_API_BASE=<预留>
-LLM_MODEL=<预留>
+# DeepSeek 的 OpenAI-compatible API
+LLM_API_KEY=<你的 DeepSeek API token>
+LLM_API_BASE=https://api.deepseek.com
+LLM_MODEL=deepseek-v4-flash
 ```
 
 MinerU token 申请：https://mineru.net/apiManage/token
+
+DeepSeek 配置由 `quality.agent.deepseek.load_deepseek_config()` 读取，密钥不会写入日志；`build_deepseek_model()` 会设置 DeepSeek 所需的消息角色映射和 `json_object` 输出格式。 同时关闭 V4 thinking，以兼容当前 Agno 的工具多轮协议，并设置 60 秒请求超时。
 
 ## 4. 可选：本地 docling 解析器
 

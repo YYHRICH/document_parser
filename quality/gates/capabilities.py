@@ -142,12 +142,12 @@ class CapabilityMatrixBuilder:
                     evidence={"applicability": "not_applicable", "reason": "document contains no tables"},
                 )
             else:
-                # 规则未实现（M1 尚无表格/标题/引用规则）：不阻塞，如实标注
+                # 当前文档没有产生该能力的规则观测：保守标注，不阻塞基础产物生成
                 verdicts[name] = CapabilityVerdict(
                     name=name,
                     state=QualityCapabilityState.UNAVAILABLE,
                     blocking=False,
-                    evidence={"reason": "rule not implemented in this milestone"},
+                    evidence={"reason": "no rule observation for this document"},
                 )
 
         # 2. 非标准能力（如 reading_order_reliable、kind_content_consistent）

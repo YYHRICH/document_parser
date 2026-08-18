@@ -13,11 +13,11 @@
 | D-03 | 能力不适用（如无表格文档）的表达 | **内部处理，不改契约**：内部计算 applicability，不适用能力输出 `unavailable` + evidence 说明 not applicable，**不阻塞准入** | 公共契约暂不加 `not_applicable` 枚举 |
 | D-04 | `quality_report.artifacts` 是否含自身哈希 | **不含**：artifacts 只放其他产物哈希（input/optimized.md/canonical）；自身哈希只进 manifest；禁止递归自哈希 | 哈希顺序见 SPEC §10.3 |
 | D-05 | LLM 调用统计是否进公共报告 | **不进公共报告**：suggestion 计数只进内部日志和测试结果 | 将来需要展示再走三人评审加字段 |
-| D-06 | `reparse_recommendation.parser_id` 合法值 | 开发期**用真实可用的 parser ID（docling/mineru，自跑验证可用性）**；无合法 ID 时不构造伪推荐，保持人工复核并记录配置缺口 | 正式 parser catalog 以张提供为准（M7 联调） |
+| D-06 | `reparse_recommendation.parser_id` 合法值 | 开发期**用真实可用的 parser ID（docling/mineru，自跑验证可用性）**；无合法 ID 时不构造伪推荐，保持人工复核并记录配置缺口 | 正式 parser catalog 以张提供为准（上游统一文档包联调） |
 | D-07 | canonical block content 策略 | **默认保留输入 markdown 原文**，只有白名单修复才产生变化 | 未确认的格式优化全部 no-op |
 | D-08 | 未修复 info issue 与 Gate | **info 不阻塞**：仅 warning 及以上未修复才触发 pass_with_warnings | 产品展示约定变化时调整，需 Gate 配置显式固定 |
 | D-09 | TableCell 无唯一 ID | **坐标组合身份**：`(table_id, start_row, start_col)` 为临时稳定身份，列入向朱确认清单 | 朱提供 cell_id 后直接替换，不改外部逻辑 |
-| D-10 | LLM 辅助开发阶段 | **MVP-A 纯规则先行，MVP-B 加可关闭 LLM advisor** | LLM 不作为 golden 正例通过的必要条件 |
+| D-10 | LLM 辅助开发阶段 | **Agno 单文档质量修复 Agent 为正式生产路径，确定性检查仅作为显式维护路径** | LLM 不作为 golden 正例通过的必要条件 |
 | D-11 | 实现规格文档去向 | **提交进仓库**：`QUALITY_LAYER_IMPLEMENTATION_SPEC.md` 移至 `specs/` 下提交 | 作为实施规格供团队评审 |
 | D-12 | 开发 fixtures 来源 | **真实解析 + 合成**：MinerU/Docling 真实解析 sdp-004~007 生成 ParsedDocument fixtures 为主，合成 fixtures 补异常场景（no-op/reparse/rejected） | 不干等朱；真实 fixtures 到位后替换数据层 |
 
@@ -28,4 +28,4 @@
 | D-13 | TableCell 是否增加 cell_id 字段 | 朱 | 用 D-09 临时方案，不阻塞 |
 | D-14 | parser catalog 与 reparse options 映射 | 张 | 无合法 ID 时不出 reparse_required |
 | D-15 | info 是否阻塞（产品展示约定） | 三人 | 按 D-08 执行，变更需评审 |
-| D-16 | golden 标注漂移：M0 一致性测试发现 **4 个 golden 样本两份标注均未同步**（sdp-004 column_path；sdp-005 must_produce+expected_state；sdp-006 must_produce 多 heading_level；sdp-007 must_produce+forbidden） | 数据负责人（团队） | 已登记 KNOWN_CONFLICTS，CI xfail 显式可见；annotations 为事实源，expected 需由其重新生成 |
+| D-16 | golden 标注漂移：契约与测试基础 一致性测试发现 **4 个 golden 样本两份标注均未同步**（sdp-004 column_path；sdp-005 must_produce+expected_state；sdp-006 must_produce 多 heading_level；sdp-007 must_produce+forbidden） | 数据负责人（团队） | 已登记 KNOWN_CONFLICTS，CI xfail 显式可见；annotations 为事实源，expected 需由其重新生成 |

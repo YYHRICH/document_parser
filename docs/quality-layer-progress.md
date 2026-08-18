@@ -4,18 +4,18 @@
 
 ## 一、总体状态
 
-| 里程碑 | 状态 | 内容 |
+| 能力模块 | 状态 | 内容 |
 | --- | --- | --- |
-| M0 契约冻结与骨架 | ✅ 完成 | D-01~D-16 决策、quality/ 包骨架、内部模型、稳定 ID、Gate 不变量测试 |
-| M1 完整流水线 | ✅ 完成 | EvidenceContext、QL-CONT/PROV 规则、能力矩阵、Gate 五态、run_quality 打通 |
-| M2 标题树与数字引用 | ✅ 完成 | QL-HDG 树算法 + 层级粒度检测、QL-REF 参考索引 + 唯一性绑定 |
-| M3 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
-| M4 白名单修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
-| M5 四件套落盘 | ✅ 完成 | 确定性序列化、manifest 校验、原子化写入和篡改检测 |
-| M6 单文档质量修复 Agent | ⬜ 待办 | Agno 运行时、Adapter、修复循环和审核输出 |
-| M7 联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
+| 契约与测试基础 | ✅ 完成 | D-01~D-16 决策、quality/ 包骨架、内部模型、稳定 ID、Gate 不变量测试 |
+| 证据、完整性与质量门 | ✅ 完成 | EvidenceContext、QL-CONT/PROV 规则、能力矩阵、Gate 五态、run_quality 打通 |
+| 标题层级与引用绑定 | ✅ 完成 | QL-HDG 树算法 + 层级粒度检测、QL-REF 参考索引 + 唯一性绑定 |
+| 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
+| 确定性格式修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
+| 质量产物四件套落盘 | ✅ 完成 | 确定性序列化、manifest 校验、原子化写入和篡改检测 |
+| 单文档质量修复 Agent | 🚧 进行中 | Agno 主 Agent、既有确定性质量能力工具化、候选校验和 revision 闭环第一切片 |
+| 上游统一文档包联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
 
-测试状态：**199 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）
+测试状态：**225 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）
 
 ## 二、已实现能力
 
@@ -57,7 +57,7 @@ ParsedDocument 2.2
 
 - 不伪造证据：数字/公式/表头/标题/bbox/来源一律来自 ParsedDocument
 - no-op 合法：无修复时不改原文，不产生虚假 applied_repairs
-- `verified` 必须有证据；LLM 建议最高 `inferred`（M6）
+- `verified` 必须有证据；Agent 候选必须经过确定性验证，不能用 confidence 单独放行
 - 粒度可疑（解析器标题全平）→ 编号重建 → 降级，绝不假装 verified
 
 ## 三、真实数据表现（MinerU 云 API / docling）
@@ -100,7 +100,7 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 - D-07：canonical content 默认保留输入，白名单修复才变
 - D-08：info 不阻塞 pass
 - D-09：cell 身份 = (table_id, 行, 列) 临时方案，等朱 cell_id
-- D-10：确定性规则作为基础和降级路径，M6 接入可关闭的单文档质量修复 Agent
+- D-10：Agno Agent 是生产主入口，确定性规则只作为工具和显式维护路径
 - D-12：fixtures 用真实解析 + 合成
 - D-16：4 个 golden 样本两份标注均漂移，已登记 KNOWN_CONFLICTS 待数据负责人
 
@@ -115,5 +115,5 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 
 ## 七、下一步
 
-1. **M6**：Agno 单文档质量修复 Agent（Fake Agent、候选验证、revision 和审核输出）
-2. **M7**：接入朱真实 ParsedDocument、与张确认 reparse catalog、golden 验收
+1. **单文档质量修复 Agent**：继续完善真实模型调用、审核区域输出和上游统一文档包适配
+2. **上游统一文档包联调与交付**：接入朱真实 ParsedDocument、与张确认 reparse catalog、golden 验收

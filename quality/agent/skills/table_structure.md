@@ -1,0 +1,62 @@
+---
+skill_id: table_structure
+purpose: 恢复表格网格、表头、合并单元格和列顺序
+applies_to: 表头错位、合并单元格错误、列漂移、表格 Markdown 结构异常
+priority: specialist
+---
+
+# Table Structure Skill
+
+## 1. 目标与边界
+
+根据解析器提供的 cells、span、bbox 和页面关系，恢复表格的结构表达。可以调整网格、行列位置、表头/行头角色和 Markdown 展示；不能新增、删除或改写单元格事实文本。
+
+## 2. 必读证据
+
+- 完整 `table_id`、所有 cell ID、cell 文本和原始顺序；
+- `start_row`、`start_col`、`row_span`、`col_span`、header 标记；
+- 表格 bbox、页面编号、caption 和相邻 block；
+- `get_cross_page_table_context()` 返回的所有续表页；
+- 同一表格是否存在重复表头、续表标记或页间列宽变化。
+
+只读取局部 cell 不足以决定列顺序时，必须读取完整表格。
+
+## 3. 重建流程
+
+### 3.1 先确定网格
+
+1. 根据已有行列坐标建立最大网格；
+2. 检查 span 是否覆盖冲突位置；
+3. 用 bbox 的横向位置和同列上下文判断列映射；
+4. 识别表头、行头和数据区，但不因语义猜测而改变文本。
+
+### 3.2 合并单元格
+
+- 只有存在明确 span 或视觉覆盖证据时才保留合并；
+- 不要把空白 cell 自动合并成上方或左侧 cell；
+- 不能通过复制文本填充被合并区域；
+- 合并变化只应影响 grid/span/header role，事实词元必须保持。
+
+### 3.3 跨页续表
+
+读取全部相关页后，先对齐列数、重复表头和列 bbox，再判断续行。无法确认上一页末行与下一页首行属于同一记录时，保留原结构并人工复核。
+
+## 4. 允许的 Patch
+
+- `replace_table_cells`：提交完整、无冲突的 cell 网格和 span；
+- `update_block_markdown`：只修复表格 Markdown 分隔线或表格前后的换行；
+- 跨页任务使用包含所有相关页的 `scope_pages`。
+
+`TableCellPatch.text` 必须保留输入中的事实词元；不要提交只包含部分 cell 的猜测性网格。
+
+## 5. 人工复核条件
+
+- 列数、合并范围或跨页列映射存在多个合理答案；
+- cell 文本本身疑似 OCR 错误；
+- 表格缺页、截断或 bbox 坐标不可用；
+- 需要新增行、列、数字或单位；
+- 表格 caption 与实际网格的归属不确定。
+
+## 6. 输出检查
+
+检查每个 cell 的事实词元多重集、span 合法性、行列索引、header 角色和表格页码；确认 Markdown 渲染有表头分隔线，且表格前后有明确换行。

@@ -1,4 +1,4 @@
-"""M5 四件套的确定性序列化、哈希和 manifest 校验。"""
+"""质量产物四件套的确定性序列化、哈希和 manifest 校验。"""
 
 from __future__ import annotations
 

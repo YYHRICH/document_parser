@@ -8,7 +8,7 @@
 
 质量层不是只列问题的规则检查器，而是一个受约束的单文档质量修复 Agent：LLM 主动理解文档并修复格式/结构，确定性工具负责验证内容、来源和结构不变量，最终输出可直接使用区域和人工复核区域。
 
-M6 选用 **Agno** 作为 Agent 运行时；核心 revision、验证、回滚和产物逻辑仍由本项目维护。
+单文档质量修复 Agent 以 **Agno** 作为正式 Agent 主运行时；既有确定性质量能力的规则、Gate、revision、canonical 和 packaging 都作为 Agent 工具与安全服务使用。
 
 ## 质量修复 Agent 的边界
 
@@ -114,7 +114,7 @@ rejected
 
 ## 现有确定性基础
 
-M1-M5 已经提供 Agent 所需的基础设施：
+既有确定性质量能力 已经提供 Agent 所需的基础设施：
 
 - EvidenceContext 和公共证据访问；
 - 完整性、来源、标题、引用和表格规则；
@@ -127,14 +127,14 @@ M1-M5 已经提供 Agent 所需的基础设施：
 
 ## 当前进展
 
-| 里程碑 | 状态 | 内容 |
+| 能力模块 | 状态 | 内容 |
 | --- | --- | --- |
-| M0-M4 | 已完成 | 契约、规则、Gate、canonical、确定性修复 |
-| M5 | 已完成 | 三个业务文件、manifest、原子写入和篡改检测 |
-| M6 | 设计调整中 | 单文档质量修复 Agent、Adapter、修复循环和审核输出 |
-| M7 | 待办 | 接入上游正式统一文档包和多文档联调 |
+| 基础质量能力 | 已完成 | 契约、规则、Gate、canonical、确定性修复 |
+| 质量产物与原子落盘 | 已完成 | 三个业务文件、manifest、原子写入和篡改检测 |
+| 单文档质量修复 Agent | 开发中 | Agno 主 Agent、既有确定性质量能力工具化、候选验证、revision 修复循环和审核输出 |
+| 上游统一文档包联调与交付 | 待办 | 接入上游正式统一文档包和多文档联调 |
 
-当前测试基线：`199 passed, 1 xfailed`。
+当前测试基线：`225 passed, 1 xfailed`。
 
 ## 代码入口
 
@@ -145,17 +145,52 @@ from quality import run_quality
 package = run_quality(parsed_document)
 ```
 
-M6 将增加单文档 Agent 入口，概念上为：
+单文档 Agent 入口为：
 
 ```python
 from quality import run_quality_repair
+from quality.agent import build_deepseek_model, build_quality_repair_agent
 
-package = run_quality_repair(document_package, config=config, llm_client=client)
+# 入口层创建唯一 toolbox，并把它交给同一份 Agent session
+model = build_deepseek_model()
+package = run_quality_repair(
+    document_package,
+    config=config,
+    agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
+)
 ```
+
+超大文档可显式启用页面模式；runtime 会先构建全篇索引，再逐页发出进度事件：
+
+```python
+from quality.agent import RepairAgentConfig
+
+paged_config = RepairAgentConfig(
+    mode="paged",
+    progress_callback=lambda event: print(
+        event.completed_pages, "/", event.total_pages, event.status
+    ),
+)
+package = run_quality_repair(
+    document_package,
+    config=config,
+    agent_config=paged_config,
+    agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
+)
+```
+
 
 MCP 可以作为工具传输层，但核心 Agent、验证器和事务逻辑不依赖 MCP 运行时。多文档并行由上游分别调用这个单文档入口。
 
 ## 开发命令
+
+首次准备环境时先安装当前仓库为可编辑包：
+
+```powershell
+.venv\Scripts\python.exe -m pip install --editable . --no-deps --no-build-isolation
+```
+
+测试命令：
 
 ```powershell
 python -m pytest tests/test_contract_examples.py -q
@@ -169,9 +204,9 @@ python -m pytest tests/quality/golden -q
 
 ```text
 quality/
-├─ adapters/       # 当前解析器输出到统一质量视图的临时适配
-├─ agent/          # 单文档 Agent、状态机、上下文和 fake client
-├─ tools/          # 读取、候选提交、验证、事务和回滚
+├─ agent/          # 单文档 Agent、上下文、DeepSeek 配置和 fake client
+│  ├─ skills/      # 业务质量修复 playbook
+│  └─ tools/       # 读取、页面上下文、验证和质量工具
 ├─ rules/          # 已知不变量与确定性检查
 ├─ repairs/        # 可回放的确定性修复能力
 ├─ gates/          # capability 和最终 Gate
@@ -192,6 +227,7 @@ quality/
 
 - [质量修复 Agent Spec](specs/001-quality-layer-implementation/spec.md)
 - [Agno Agent 详细设计](specs/001-quality-layer-implementation/agno-agent-design.md)
+- [当前质量优化 Agent 设计](docs/quality-agent-design.md)
 - [质量层进展](docs/quality-layer-progress.md)
 - [质量输入需求](docs/quality_input_requirements.md)
 - [质量契约决策](docs/quality-decisions.md)

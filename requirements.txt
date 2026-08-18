@@ -1,5 +1,7 @@
 # Runtime dependencies
 pydantic>=2.7,<3
+agno>=2.9,<3
+openai>=1.40,<2
 markitdown[all]>=0.1.0,<1
 pywin32>=306; platform_system == "Windows"
 

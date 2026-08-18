@@ -39,7 +39,7 @@ def test_merge_same_capability_takes_worst():
 
 
 def test_unimplemented_capabilities_not_blocking():
-    """M1：标题/表格/引用规则未实现 → unavailable 且不阻塞。"""
+    """证据、完整性与质量门：标题/表格/引用规则未实现 → unavailable 且不阻塞。"""
     builder = CapabilityMatrixBuilder()
     context = EvidenceContext(_load("sdp-004-mineru"))
     verdicts = builder.build([], context)
@@ -51,7 +51,7 @@ def test_unimplemented_capabilities_not_blocking():
     ):
         v = verdicts[name]
         assert v.state == QualityCapabilityState.UNAVAILABLE, name
-        assert v.blocking is False, f"{name} 不应阻塞（M1 未实现）"
+        assert v.blocking is False, f"{name} 不应阻塞（证据、完整性与质量门 未实现）"
 
 
 def test_table_capabilities_not_applicable_without_tables():

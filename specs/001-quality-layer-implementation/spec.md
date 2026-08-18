@@ -1,7 +1,7 @@
 # 单文档质量修复 Agent 实现规格与开发计划
 
 > 分支：`feature/quality-layer`
-> 状态：Draft v0.2
+> 状态：单文档质量修复 Agent 第一阶段实现基线（持续演进）
 > 当前输入：解析器输出经 Adapter 转换后的统一质量文档视图
 > 适用输出：`optimized.md`、`canonical_document.json`、`quality_report.json` 和 `package_manifest.json`
 > 目标：让 LLM 主动检查并修复单个文档包的格式/结构问题，由确定性验证器定义合格状态、反馈修复结果并最终生成可审计产物。
@@ -23,7 +23,7 @@
 - `quality_report.json` 能逐对象标记 `auto_usable`、`manual_review_required` 或 `rejected`；
 - 通过确定性验证和规则重跑后才接受修复，LLM 不能自行宣布通过；
 - 修复失败、无改善、超预算或内容不变量破坏时，保留原版本并回滚或转人工复核；
-- LLM 关闭、超时、非法输出或不可用时，确定性检查和三件套生成仍可运行；
+- Agent 未配置、超时、非法输出或不可用时，生产入口不得静默放行；确定性检查只能通过显式维护入口运行；
 - 相同输入、相同配置和相同缓存结果重复运行时，最终业务产物和 manifest 哈希稳定；
 - 既有契约、Golden、no-op、拒绝和原子落盘测试持续通过。
 
@@ -53,13 +53,13 @@
 | D-06 | `reparse_recommendation.parser_id` 的允许值 | 由路由分支提供 parser catalog 和静态建议映射 | 无合法 parser_id 时不能构造伪推荐；保持人工复核并报告配置缺口 |
 | D-07 | canonical block content 的规范化规则 | 默认保留输入 `markdown`，只允许白名单修复产生变化 | 未确认的格式优化全部 no-op |
 | D-08 | 只有未修复 info issue 时应为 pass 还是 pass_with_warnings | 建议 info 不阻塞 pass，warning 才触发 pass_with_warnings；以产品展示约定为准 | 在 Gate 配置中显式固定，禁止不同规则自行解释 |
-| D-10 | LLM 在质量层中的角色 | 单文档正式修复 Agent：LLM 主动检查、输出修复候选并根据验证反馈继续修复；默认可关闭 | 关闭时运行确定性检查/审核路径，不假装完成 LLM 修复 |
+| D-10 | LLM 在质量层中的角色 | Agno 单文档正式修复 Agent：LLM 主动检查、输出修复候选并根据验证反馈继续修复；生产入口必须启用 | Agent 不可用时只能显式进入测试/维护模式，不得静默把确定性结果当作修复成功 |
 | D-17 | 临时输入与上游统一层 | 当前以各解析器 Adapter 映射到 `DocumentPackageView`；上游统一层完成后接入新 Adapter | Agent、工具和验证器只依赖内部视图 |
 | D-18 | LLM 修复输出形态 | LLM 返回结构化修复后的文档或局部区域；系统确定性生成 Markdown、canonical JSON 和审核文件 | 非结构化自由文本只作为失败输入，不直接提交 |
 | D-19 | 修复接受条件 | 由 Schema、内容不变量、来源约束和规则重跑共同决定；LLM 可以改善状态，但不能自行解除 blocker | 验证失败则反馈给 LLM、回滚或转人工 |
 | D-20 | 审核粒度 | `quality_report.json` 同时提供文档级状态和 block/table/asset/reference 级可用性结论 | 无法定位时至少给出页码、block 或 issue 范围 |
 | D-21 | 工具传输 | 核心先定义 Python 工具协议；MCP 作为可选外部传输层，不让核心逻辑依赖 MCP 运行时 | 离线测试使用 fake tool/agent |
-| D-22 | Agent 框架选择 | 使用 Agno 负责单 Agent 运行、工具循环、结构化输出和 session；revision、验证、回滚和产物仍由质量层负责 | 不使用 Team/多 Agent；没有 Agno 时运行确定性路径 |
+| D-22 | Agent 框架选择 | Agno 是单文档质量修复 Agent 的正式主运行时；既有确定性质量能力重构为 Agent 可调用的工具和安全服务 | 不使用 Team/多 Agent；没有 Agno 只允许显式测试/维护模式，不得静默放行 |
 
 ### 2.1 Golden 单一事实源建议
 
@@ -77,15 +77,15 @@
 
 ### 3.1 公共入口
 
-质量层保留确定性入口，同时增加单文档 Agent 入口：
+单文档 Agent 是正式公共入口；入口层创建文档专属 toolbox，并通过 `agent_factory(toolbox)` 构造同一 session 的 Agno 实例，调用方不再自己编排候选循环：
 
 ```python
+def run_quality_repair(document, *, config=None, agent=None, agent_factory=None, agent_config=None) -> QualityPackage:
+    """由 Agno Agent 主动检查、修复、验证并生成最终 QualityPackage。"""
+
+
 def run_quality(document, *, config=None) -> QualityPackage:
-    """确定性检查、canonical 构建和审核输出；不调用 LLM。"""
-
-
-def run_quality_repair(document, *, config=None, llm_client=None) -> QualityPackage:
-    """单文档质量修复 Agent；内部迭代后输出最终 QualityPackage。"""
+    """仅用于显式确定性测试/维护模式，不代表正式 Agent 路径。"""
 ```
 
 `document` 当前由各解析器 Adapter 转为内部 `DocumentPackageView`；在上游统一层完成前，可直接由 `ParsedDocument 2.2` 适配。多文档并行由调用方负责。
@@ -94,19 +94,17 @@ def run_quality_repair(document, *, config=None, llm_client=None) -> QualityPack
 
 ```text
 输入文档包 / Adapter
-  → 建立稳定 revision 和文档索引
-  → 生成摘要、问题提示和可分页上下文
-  → LLM 主动检查文档区域并输出修复候选
-  → Schema / 内容不变量 / 来源约束校验
-  → 重新构建 canonical 与审核结果
-  → 确定性规则和 Gate 重跑
-  → 通过：提交当前 revision
-  → 未通过：反馈验证结果并继续下一轮
-  → 无改善、超预算或不可安全解释：回滚并人工复核
-  → 三件套 + manifest 原子落盘
+  → Agno QualityRepairAgent 建立 session
+  → 调用 观察与结构证据能力 读取/观察工具
+  → Agent 理解问题并返回结构化候选
+  → 调用 候选验证与质量门能力 候选验证工具
+  → 失败：Agno 将验证反馈带入下一轮
+  → 通过：调用 revision commit 工具
+  → 调用 质量产物 canonical/review/packaging 工具
+  → 无改善、超预算或不可安全解释：调用人工复核/回滚工具
 ```
 
-规则不负责发现所有异常；Agent 可以通过只读工具主动检查未被规则覆盖的结构问题。规则和验证器负责定义“好的文档”必须满足的可枚举条件。
+规则不负责穷举所有异常；Agent 可以通过只读工具主动检查未被规则覆盖的结构问题。既有确定性质量能力的确定性实现负责工具内部的证据、内容不变量、Gate 和产物安全，不再绕过 Agent 形成另一条默认主流程。
 
 ### 3.3 内部模块建议
 
@@ -114,7 +112,8 @@ def run_quality_repair(document, *, config=None, llm_client=None) -> QualityPack
 quality/
 ├── adapters/                    # 不同输入到统一视图
 ├── agent/                       # 单文档状态机、上下文、LLM loop
-├── tools/                       # 读取、候选提交、验证、事务和回滚
+│   ├── skills/                   # 业务修复 Skill/playbook
+│   └── tools/                    # 读取、页面上下文和质量工具
 ├── rules/                       # 已知不变量与确定性检查
 ├── repairs/                     # 可回放的确定性修复能力
 ├── builders/                    # Markdown/canonical/review 构建
@@ -415,6 +414,7 @@ evidence 保存 marker 原文、字符偏移、归一化 label 和全部候选 I
 LLM 不直接写最终文件，而是返回符合 Schema 的 `RepairedDocumentCandidate`，可以覆盖整篇文档或一个有明确边界的区域。候选必须携带：
 
 - `base_revision`；
+- `scope/scope_pages` 和通用结构 `operations`；
 - 受影响 block/table/asset/reference ID；
 - 修复后的结构内容；
 - 简短修复原因；
@@ -565,7 +565,7 @@ def decide_gate(issues, capabilities, recommendation):
 
 ### 9.1 角色
 
-M6 不再是只给候选的 LLM 顾问层。LLM 是单文档的正式格式/结构修复执行者：
+单文档质量修复 Agent 不再是只给候选的 LLM 顾问层。LLM 是单文档的正式格式/结构修复执行者：
 
 - 主动阅读统一文档包，而不是只处理规则已列出的候选；
 - 识别规则无法穷举的版式和结构异常；
@@ -589,41 +589,82 @@ LLM 不修改事实内容，也不直接调用解析器、Shell 或文件系统�
 
 ### 9.3 工具协议
 
-第一版工具分为：
+第一版工具按 既有确定性质量能力的能力分层：
 
 ```text
-get_document_outline
+# 观察与结构证据工具：只读观察
 get_document_summary
+get_document_index
+get_document_outline
+get_page_context
+get_neighbor_page_context
+get_cross_page_table_context
 get_region_context
 get_table_context
+get_asset_context
+get_revision_digest
+
+# 候选验证与质量门工具：候选和安全验证
 submit_repaired_candidate
 validate_candidate
 rerun_quality_checks
+get_repair_diff
+
+# 事务和质量产物
 commit_revision
 rollback_revision
+build_quality_package
+write_quality_package
+request_manual_review
 ```
 
-`submit_repaired_candidate` 接收结构化文档或区域，不接收任意脚本。MCP 只作为工具协议的可选传输，不改变核心验证逻辑。
+前一组观察、候选和验证工具由 Agno Agent 按需调用；工具本身不能执行任意脚本、网络请求或路径写入。事务和质量产物操作只由宿主 runtime 在本地执行：候选必须先通过 `validate_candidate` 与规则/Gate 重跑，之后才允许 `commit_revision`；失败、超时或需要人工判断时由宿主回滚并生成审核结果。MCP 只作为这些工具的可选传输，不改变核心验证逻辑。
 
 ### 9.4 修复候选 Schema
 
 ```json
 {
-  "schema_version": "1.0",
-  "base_revision": 3,
-  "scope": {
-    "type": "region",
-    "ids": ["table-03", "block-117"]
-  },
-  "repaired_document": { "...": "统一文档结构" },
-  "reasoning": "简短原因，不作为事实证据",
+  "schema_name": "RepairedDocumentCandidate",
+  "schema_version": "2.0",
+  "base_revision": "<revision-id>",
+  "scope": "page",
+  "scope_pages": [3],
+  "operations": [
+    {
+      "operation": "move_block",
+      "block_id": "block-117",
+      "before_block_id": "block-118"
+    },
+    {
+      "operation": "replace_table_cells",
+      "table_id": "table-03",
+      "cells": [
+        {"text": "金额", "start_row": 0, "start_col": 2,
+         "row_span": 1, "col_span": 1, "column_header": true}
+      ]
+    },
+    {
+      "operation": "upsert_relation",
+      "relation": {
+        "action": "upsert",
+        "relation_type": "reference_of",
+        "from_id": "block-citation",
+        "to_id": "block-reference-03",
+        "marker_key": "[3]"
+      }
+    }
+  ],
+  "affected_ids": ["table-03", "block-117", "block-118"],
+  "affected_relation_keys": ["reference_of|block-citation|block-reference-03|[3]"],
+  "lineage": ["<revision-id>"],
+  "reasoning": "依据本页与相邻页的结构证据恢复阅读顺序",
   "evidence_refs": [
     {"object_type": "table", "object_id": "table-03", "field_path": "cells"}
   ]
 }
 ```
 
-LLM 可以返回整篇文档或局部修复区域；系统负责合并、计算差异并生成三份最终产物。LLM 返回的 `reasoning` 不能替代 evidence，也不能直接决定审核状态。
+整篇候选可以额外提供 `repaired_markdown`；页面/区域候选不应携带整篇 Markdown。系统负责在当前 revision 上物化 operations、计算差异并生成三份最终产物。LLM 返回的 `reasoning` 不能替代 evidence，也不能直接决定审核状态。
 
 ### 9.5 验证顺序
 
@@ -656,8 +697,8 @@ rejected
 - 单文档最大轮数、总耗时、输入/输出 token 和局部重试次数可配置；
 - 相同 `document_id + revision + context_hash + prompt_version + schema_version + model_id` 可缓存；
 - 缓存命中仍要重新执行内容和来源哈希校验；
-- client 未配置、超时、非法 Schema、内容变化、工具失败或无改善时，保留原 revision；
-- LLM 不可用不能把文档错误降级，也不能伪造修复成功；最终审核文件应明确剩余问题。
+- Agno/模型超时、非法 Schema、内容变化、工具失败或无改善时，保留原 revision；
+- 正式生产入口不把 Agent 缺失静默降级为成功；维护/测试模式可以显式运行确定性路径，最终审核文件必须明确模式和剩余问题。
 
 ### 9.8 结束条件
 
@@ -793,9 +834,9 @@ Fake Agent 至少覆盖：
 
 ---
 
-## 13. 开发里程碑
+## 13. 能力演进计划
 
-### M0：契约冻结和测试骨架
+### 契约与测试基础：契约冻结和测试骨架
 
 交付：
 
@@ -807,7 +848,7 @@ Fake Agent 至少覆盖：
 
 完成定义：核心模型可 import，原有 7 个契约回归测试仍通过。
 
-### M1：EvidenceContext、完整性、来源与 Gate
+### 证据、完整性与质量门：EvidenceContext、完整性、来源与 Gate
 
 交付：
 
@@ -819,7 +860,7 @@ Fake Agent 至少覆盖：
 
 完成定义：不依赖三大关系能力，也能对基础 ParsedDocument 生成合法 QualityPackage。
 
-### M2：标题树和数字引用
+### 标题层级与引用绑定：标题树和数字引用
 
 交付：
 
@@ -831,7 +872,7 @@ Fake Agent 至少覆盖：
 
 完成定义：正例 verified，歧义反例绝不误绑。
 
-### M3：表格网格和字段绑定
+### 表格网格与字段绑定：表格网格和字段绑定
 
 交付：
 
@@ -843,7 +884,7 @@ Fake Agent 至少覆盖：
 
 完成定义：合并表头正例通过；反例保留确定部分并阻止错误跨页绑定。
 
-### M4：白名单修复和 canonical builder
+### 确定性格式修复：白名单修复和 canonical builder
 
 交付：
 
@@ -855,7 +896,7 @@ Fake Agent 至少覆盖：
 
 完成定义：所有 applied repair 可回放、有证据、重复运行不再次应用。
 
-### M5：Packaging
+### 质量产物与原子落盘：Packaging
 
 交付：
 
@@ -866,12 +907,12 @@ Fake Agent 至少覆盖：
 
 完成定义：相同输入重复打包，产物 bytes 和 hashes 一致。
 
-### M6：单文档质量修复 Agent
+### 单文档质量修复 Agent：单文档质量修复 Agent
 
 交付：
 
 - `DocumentPackageAdapter` 和统一质量文档视图；
-- 单文档 Agent 状态机、revision、预算和结束条件；
+- 以 Agno 为中心的单文档 Agent、session、revision、预算和结束条件；
 - 摘要、分页、区域和表格上下文读取工具；
 - 结构化 `RepairedDocumentCandidate` Schema；
 - LLM 主动检查、修复、验证反馈和回滚循环；
@@ -882,7 +923,7 @@ Fake Agent 至少覆盖：
 
 完成定义：在单文档范围内，LLM 能发现并修复规则未穷举的格式问题；修复不会改变事实内容；验证失败会继续修复或安全转人工；关闭或破坏 LLM 不会产生错误放行，三件套和 manifest 始终一致。
 
-### M7：联调和交付
+### 上游统一文档包联调与交付：联调和交付
 
 交付：
 
@@ -1009,7 +1050,7 @@ Fake Agent 至少覆盖：
 ### 单文档 Agent
 
 - [ ] Adapter 能把当前解析器输出映射到统一质量视图；
-- [ ] LLM 默认可关闭，关闭后确定性审核仍可运行；
+- [ ] 生产入口默认启用 Agno Agent；确定性审核只通过显式维护模式运行；
 - [ ] Agent 能主动检查规则未列举的格式问题；
 - [ ] 修复候选通过 Schema、内容、来源和 revision 校验；
 - [ ] 修复失败、无改善、超时和非法返回会回滚或转人工；
@@ -1023,6 +1064,6 @@ Fake Agent 至少覆盖：
 
 ## 18. 推荐的实际开工顺序
 
-先保持 M1-M5 的确定性规则、canonical、Gate 和 packaging 稳定；然后实现临时 Adapter 和单文档 Agent 的读/修/验循环；再接入真实 LLM、长文档上下文、缓存和预算；最后接入上游正式统一文档包。
+先固定 Agno 单文档 Agent、session、工具权限和终态契约；再把 既有确定性质量能力的规则、Gate、canonical 和 packaging 接入 Agent 工具；随后接入真实模型、长文档上下文、缓存和预算；最后接入上游正式统一文档包。确定性路径只作为显式测试/维护模式保留。
 
 关键顺序是：先定义“什么是合格文档”和“什么绝对不能改”，再让 LLM 在这些边界内主动发现和修复未知问题。这样规则不需要穷举所有坏情况，Agent 也不能用自由改写绕过验收。

@@ -1,6 +1,6 @@
-"""Canonical Document 构建（M1 blocks 投影 + M2 relations）。
+"""Canonical Document 构建：blocks、relations 和 table bindings 的确定性投影。
 
-M4 将扩展 table_bindings；D-07：content 默认保留输入 markdown。
+D-07：content 默认保留输入 markdown；只有通过验证的格式修复才允许变化。
 """
 
 from __future__ import annotations
@@ -152,7 +152,7 @@ def build_canonical_document(
 def _id_map(context: EvidenceContext) -> dict:
     """parsed block UUID -> canonical block_id（relation 端点映射用）。"""
     doc_key = _document_key(context.parsed)
-    return {
+    result = {
         str(b.id): block_id(
             doc_key,
             b.source_block_id or str(b.id),
@@ -161,3 +161,5 @@ def _id_map(context: EvidenceContext) -> dict:
         )
         for b in context.parsed.blocks
     }
+    result.update({asset.path: f"asset:{asset.path}" for asset in context.parsed.assets})
+    return result

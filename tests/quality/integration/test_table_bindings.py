@@ -1,4 +1,4 @@
-"""M3 表格绑定集成测试：真实 fixtures 上的网格与字段绑定。"""
+"""表格网格与字段绑定 表格绑定集成测试：真实 fixtures 上的网格与字段绑定。"""
 
 from __future__ import annotations
 

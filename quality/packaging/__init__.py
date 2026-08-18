@@ -1,4 +1,4 @@
-"""M5 packaging primitives."""
+"""质量产物 packaging primitives."""
 
 from quality.packaging.writer import verify_package_directory, write_package_directory
 from quality.packaging.artifacts import (
