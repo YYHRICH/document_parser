@@ -3,5 +3,16 @@ pydantic>=2.7,<3
 markitdown[all]>=0.1.0,<1
 pywin32>=306; platform_system == "Windows"
 
+# Dev tooling (tools/: MinerU cloud client, pdfplumber fallback)
+requests>=2.31
+pdfplumber>=0.11
+
 # Test dependencies
 pytest>=8,<9
+
+# Optional: local docling parser (tools/docling_parser.py)
+# 需要额外的本机环境（英文路径解释器 + torch==2.7.1 + TORCH_COMPILE_DISABLE=1），
+# 详见 docs/dev-environment-setup.md；不需要时可跳过，MinerU 云 API + pdfplumber 已够用。
+# docling>=2.120
+# torch==2.7.1
+# torchvision==0.22.0
