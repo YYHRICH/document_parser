@@ -54,10 +54,14 @@ def test_run_quality_on_real_fixtures(sample):
     assert package.document_id == doc.document_id
     assert package.canonical_document.document_id == doc.document_id
     assert package.quality_report.document_id == doc.document_id
-    assert package.optimized_markdown == doc.markdown  # M1 no-op（D-07）
+    # M4：白名单修复后 markdown 无行尾空白；无修复时 no-op（D-07）
+    assert all(
+        line == line.rstrip()
+        for line in package.optimized_markdown.splitlines()
+    )
     assert package.canonical_document.blocks
     # 哈希可复算
-    assert package.package_manifest.artifacts["optimized.md"] == sha256_text(doc.markdown)
+    assert package.package_manifest.artifacts["optimized.md"] == sha256_text(package.optimized_markdown)
     assert (
         package.package_manifest.artifacts["canonical_document.json"]
         == sha256_bytes(stable_json_bytes(package.canonical_document))

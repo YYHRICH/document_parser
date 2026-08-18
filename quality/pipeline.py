@@ -33,6 +33,7 @@ from quality.packaging.hashing import (
     sha256_text,
     stable_json_bytes,
 )
+from quality.repairs.registry import apply_repairs
 from quality.rules.base import QualityRule
 from quality.rules.completeness import (
     QL_CONT_001_BlocksExist,
@@ -145,8 +146,9 @@ def run_pipeline(
         for draft in issue_drafts
     ]
 
-    # 6. 哈希绑定（顺序：optimized → canonical → report → manifest）
-    optimized_markdown = parsed_document.markdown  # M1 无修复，no-op 合法（D-07）
+    # 6. 白名单修复（M4）：只做低风险等价变换；无修复时 no-op 合法（D-07）
+    repair_result = apply_repairs(parsed_document.markdown, document_key=doc_key)
+    optimized_markdown = repair_result.markdown
     optimized_sha = sha256_text(optimized_markdown)
     canonical_sha = sha256_bytes(stable_json_bytes(canonical))
 
@@ -161,7 +163,7 @@ def run_pipeline(
             "canonical_document.json": canonical_sha,
         },
         issues=issues,
-        applied_repairs=[],
+        applied_repairs=list(repair_result.applied),
         capability_matrix=matrix_builder.to_public_assessments(verdicts),
         gate_summary=decision.summary,
         metrics={
@@ -171,6 +173,7 @@ def run_pipeline(
             "table_count": len(parsed_document.tables),
             "binding_count": len(canonical.table_bindings),
             "relation_count": len(canonical.relations),
+            "repair_count": len(repair_result.applied),
             "issue_count": len(issues),
         },
         reparse_recommendation=None,
