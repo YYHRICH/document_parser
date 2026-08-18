@@ -195,6 +195,9 @@ MarkItDown 是需要保留的现有基线，不等于 Docling、MinerU、OCR 已
 - [三方联调接口](examples/contracts/README.md)
 - [契约模型代码](core/contracts.py)
 - [固定样例测试](tests/test_contract_examples.py)
+- [质量层开发进展](docs/quality-layer-progress.md)（M0~M4 已完成，当前 167 测试通过）
+- [质量层实现规格](specs/001-quality-layer-implementation/spec.md)
+- [质量层契约决策记录](docs/quality-decisions.md)
 
 ## MVP 链路
 
