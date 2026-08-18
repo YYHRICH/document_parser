@@ -2,6 +2,7 @@
 
 > 状态：初稿（基于 tests/quality/fixtures/parsed_documents/ 真实数据字段核对）
 > 用途：与朱（统一接入层）联调时的主要反馈载体，避免质量层直接读取 Adapter 私有结构。
+> 详细交接版：见 [统一文档输入输出层需求](unified-document-package-requirements.md)，其中包含完整字段契约、JSON 示例和验收清单。
 > 规则：证据缺失时通过 `capabilities` 声明；非 available 必须给出 reason。
 
 ## 需求矩阵
