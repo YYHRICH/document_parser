@@ -1,140 +1,173 @@
-# 统一文档输入输出层需求：质量优化 Agent 文档包
+# 中间统一层实施指南：把不同解析器结果输出为统一文档包
 
-> 文档用途：提供给中间统一输入输出层开发同事，作为解析器结果归一化到质量层的交接契约。  
-> 当前契约基线：`ParsedDocument 2.2`  
-> 适用范围：一次只处理一个文档；多文档并行、队列和重试由上游负责。
+> 本文是写给中间统一输入输出层开发者的实施需求，不是质量层的抽象字段清单。<br>
+> 你的输入：Docling、MinerU、Fallback/OCR 等不同解析器的原始结果。<br>
+> 你的输出：质量优化 Agent 可以直接消费的一份统一文档包。<br>
+> 当前统一协议：`ParsedDocument 2.2`。
 
-## 1. 先说结论
+## 1. 你要解决的问题
 
-质量优化 Agent **不能只接收一个 Markdown 文件**。Markdown 只能作为展示和检索文本，无法支撑阅读顺序、标题树、表格合并单元格、引用绑定、图片归属和来源追溯。
+不同解析器返回的结构不同：
 
-统一层至少要输出：
+- 有的主要返回 Markdown；
+- 有的返回 blocks、page、bbox 和表格网格；
+- 有的返回 HTML 表格和原生 JSON；
+- 有的只有 pdfplumber 文本、词坐标或 OCR 结果；
+- 同一个概念在不同解析器里可能叫不同名字，甚至完全缺失。
 
-1. 一份可校验的结构化 `parsed_document.json`；
-2. Markdown 中引用的真实图片/附件资源；
-3. 每个结构对象的稳定 ID、顺序和来源定位；
-4. 解析器能力和证据缺失声明。
+质量 Agent 不应该为每个解析器写一套逻辑。中间统一层必须把这些结果转换成同一种结构，并把“解析器没有提供的证据”明确标出来。
 
-质量层会根据这些数据主动判断和修复格式/结构，但不会补造解析器没有提供的事实。
+目标链路是：
 
-## 2. 统一层的职责边界
+```text
+用户文件
+  → 上游选择一个解析器
+  → 解析器原始结果
+  → 对应 Parser Adapter
+  → 统一字段/ID/坐标/资源归一化
+  → 统一文档包
+  → 质量优化 Agent
+```
 
-### 2.1 统一层负责
+质量层只接收最后的统一文档包，不比较多个解析器，也不读取 Docling/MinerU 的私有对象。
 
-- 接收上游选择的单个解析器结果；
-- 将 MinerU、Docling、Fallback 等私有结果转换为同一份 `ParsedDocument 2.2`；
-- 保留解析器真实产生的文本、结构、页码、bbox、资源和 provenance；
-- 对缺失或不可靠的证据设置 `capabilities` 状态和 `reason`；
-- 保证稳定 ID、字段类型和相对路径安全；
-- 在质量层不需要解析器私有对象的前提下，提供可回溯的原生 artifact 引用。
+## 2. 最终应该输出哪些文件
 
-### 2.2 统一层不负责
-
-- 比较多个解析器结果，质量层只处理最终选定的一份统一文档；
-- 预先替质量 Agent 决定所有质量问题；
-- 修改原文事实、数字、公式、参考文献或图片内容；
-- 生成最终的 `optimized.md`、`canonical_document.json`、`quality_report.json`；
-- 负责多文档并行、任务队列、跨文档关系和 Agent 调度。
-
-## 3. 推荐的文档包目录
+每次只针对一个文档输出一个目录：
 
 ```text
 document_package/
-├─ parsed_document.json       # 必须：ParsedDocument 2.2
-├─ assets/                    # 有资源引用时必须提供
+├─ parsed_document.json       # 必须，质量层唯一主输入
+├─ assets/                    # 有图片/附件引用时必须
 │  ├─ images/figure-1.png
 │  └─ attachments/appendix.xlsx
-├─ source/                    # 强烈建议：原始上传文件
+├─ source/                    # 强烈建议，原始上传文件
 │  └─ original.pdf
-└─ native/                    # 可选：解析器原生结构/页面证据
+└─ native/                    # 可选，解析器原生结果/页面证据
    ├─ docling_document.json
+   ├─ mineru_result.json
    └─ page-001.png
 ```
 
-### 3.1 资源传输的两种形式
+### 2.1 必须交付
 
-- **内嵌模式**：`DocumentAsset.content` 直接进入 JSON（JSON 序列化为 base64）。适合小图片和小附件。
-- **边车模式**：JSON 只记录安全相对路径、类型、大小和摘要，实际 bytes 放在 `assets/`。统一层 Adapter 在交给质量层前，必须把边车文件加载为 `DocumentAsset.content`，从而构造合法的 `ParsedDocument`。
+#### `parsed_document.json`
 
-不要把大文档的所有图片无条件 base64 塞进一个巨型 JSON；推荐使用边车模式，但不能让质量层拿到一个无法解析资源的半成品对象。
-
-## 4. `parsed_document.json` 根对象
-
-根对象必须可以通过项目当前模型校验：
+这是质量层唯一必须读取的主文件，必须可以通过：
 
 ```python
 from document_parser.core.contracts import ParsedDocument
 
 parsed = ParsedDocument.model_validate_json(
-    Path("parsed_document.json").read_text(encoding="utf-8")
+    open("parsed_document.json", encoding="utf-8").read()
 )
 ```
 
-### 4.1 根字段要求
+它必须是 `ParsedDocument 2.2`，不能是某个解析器的原始 JSON，也不能只是 Markdown。
 
-| 字段 | 必须 | 要求 |
-| --- | --- | --- |
-| `schema_name` | 是 | 固定为 `ParsedDocument` |
-| `schema_version` | 是 | 当前为 `2.2`；不兼容变更必须升级版本 |
-| `document_id` | 是 | 文档级稳定 ID；同一输入重复归一化不能随机变化 |
-| `filename` | 是 | 原始文件名，不用于推断结构事实 |
-| `file_type` | 是 | MIME 类型或统一文件类型 |
-| `markdown` | 是 | 完整 Markdown；保持解析器实际输出，不要用质量规则预修复 |
-| `blocks` | 是 | 所有可定位的文本/结构块，至少为空数组 |
-| `tables` | 是 | 所有结构化表格，至少为空数组 |
-| `assets` | 是 | 所有图片/附件资源，至少为空数组 |
-| `ocr_spans` | 是 | OCR 有结果时提供；无 OCR 时为空数组并声明能力状态 |
-| `confidence` | 是 | text/layout/reading_order/table/overall，范围 0–1 |
-| `provenance` | 是 | 实际解析器、版本、参数和耗时 |
-| `capabilities` | 是 | 证据可用性；缺失或失败必须有 reason |
-| `source_size_bytes` | 否 | 原始文件大小 |
-| `source_sha256` | 否 | 原始文件摘要；如提供必须是合法 SHA-256 |
-| `routing_decision` | 否 | 上游路由信息；不能替代 `provenance` |
-| `warnings` | 否 | 解析器警告，不能只写在日志里 |
-| `native_artifacts` | 否 | 原生文件的安全相对路径和摘要 |
-| `alternatives` | 否 | 仅用于记录候选结果，不作为质量层默认输入 |
+#### `assets/` 中被引用的资源
 
-即使没有表格、图片或 OCR，也建议显式输出空数组，而不是根据解析器不同而省略字段。
+如果 `parsed_document.json` 或其中的 Markdown 引用了图片、公式截图或附件，统一包必须提供真实资源。
 
-## 5. blocks：质量 Agent 的主要结构输入
+不能出现：
 
-每个 `DocumentBlock` 必须包含：
+```markdown
+![流程图](images/figure-1.png)
+```
+
+但包里没有 `images/figure-1.png`。
+
+资源可以采用两种传输形式：
+
+- 小资源直接在 JSON 的 `DocumentAsset.content` 中内嵌；
+- 推荐大资源放在 `assets/`，由 Adapter 在交给质量层前加载为 `DocumentAsset.content`。
+
+### 2.2 强烈建议交付
+
+- `source/original.*`：便于人工复核、重新解析和定位原始页面；
+- `native/`：保存解析器原生 JSON、HTML、页面截图、OCR 结果等证据；
+- 原生文件的安全相对路径、类型、大小和 SHA-256，写入 `native_artifacts`。
+
+原始文件和原生结果不是质量层的主输入，但没有它们时，复杂问题的人工复核和后续 reparse 会受限。
+
+### 2.3 不要交付为质量层主输入
+
+不要让质量层直接依赖：
+
+- `docling.Document`、MinerU 私有对象等 Python 对象；
+- 每个解析器各自不同的 Markdown/JSON 结构；
+- 只有页图、没有结构 JSON 的目录；
+- 质量层最终生成的 `optimized.md`、`canonical_document.json`、`quality_report.json`。
+
+这三个质量产物由质量层在 Agent 修复完成后生成，不由统一层预先生成。
+
+## 3. Adapter 必须如何实现
+
+每个解析器都实现一个 Adapter，但所有 Adapter 的输出必须相同：
+
+```text
+Docling 原始结果  ─┐
+MinerU 原始结果   ─┼─> Parser Adapter ─> ParsedDocument 2.2
+Fallback 原始结果 ─┘
+```
+
+推荐每个 Adapter 都按以下六步执行。
+
+### 第一步：保留原始结果
+
+先把解析器原始结果保存到 `native/`，不要一开始只保留 Markdown。
+
+原始结果至少记录：
+
+```text
+parser_id
+parser_version
+parser_parameters
+原始结果路径
+文件类型
+文件大小
+```
+
+如果原始结果中包含质量层未来可能需要的 page、bbox、table cell、OCR 或关系证据，就通过 `native_artifacts` 暴露安全路径，而不是把私有对象泄漏给质量层代码。
+
+### 第二步：建立统一根对象
+
+Adapter 负责填充：
+
+```text
+schema_name = ParsedDocument
+schema_version = 2.2
+document_id
+filename
+file_type
+markdown
+blocks
+assets
+tables
+ocr_spans
+confidence
+provenance
+capabilities
+```
+
+即使没有表格、图片或 OCR，也要输出空数组：
 
 ```json
 {
-  "id": "稳定 UUID",
-  "source_block_id": "parser-native-id",
-  "order_index": 12,
-  "kind": "paragraph",
-  "native_type": "text",
-  "text": "原始文本（如果解析器能提供）",
-  "heading_level": null,
-  "markdown": "这一块对应的 Markdown",
-  "anchor": {
-    "page_number": 2,
-    "bbox": [72.0, 144.0, 510.0, 168.0],
-    "page_width": 595.0,
-    "page_height": 842.0,
-    "coordinate_system": "top-left",
-    "bbox_granularity": "block",
-    "provenance_status": "available",
-    "section_path": ["第二章", "方法"],
-    "table_cell": null,
-    "original_text": "原始定位文本"
-  },
-  "metadata": {}
+  "blocks": [],
+  "tables": [],
+  "assets": [],
+  "ocr_spans": []
 }
 ```
 
-### 5.1 `id` 和顺序
+不要因为某个解析器没有该能力就改变 JSON 结构。
 
-- `id` 在同一文档中必须唯一；质量修复前后不能变化；
-- 同一输入重复运行时，ID 应保持稳定，不能使用每次随机生成的 UUID；
-- `source_block_id` 用于回溯解析器原生对象，能提供就必须提供；
-- `order_index` 是解析器实际给出的阅读顺序，不要为了“看起来合理”提前重排；
-- 质量层允许通过 Patch 调整顺序，但不会修改原始来源 ID。
+### 第三步：把解析器对象映射成统一 blocks
 
-### 5.2 `kind` 必须使用统一枚举
+每个能定位的解析器对象都转换为 `DocumentBlock`。不要把所有内容拼成一个大 paragraph。
+
+至少区分：
 
 ```text
 heading
@@ -151,244 +184,192 @@ footnote
 reference
 ```
 
-不要把所有对象都归为 `paragraph`。至少要正确区分 `heading`、`table`、`image`、`formula` 和 `reference`，否则对应 Skill 无法安全工作。
+每个 block 至少保留：
 
-### 5.3 标题
+```text
+id
+source_block_id
+order_index
+kind
+native_type
+text
+heading_level
+markdown
+anchor
+metadata
+```
 
-标题 block 应提供：
+### 第四步：把表格映射为物理网格
 
-- `kind="heading"`；
-- 解析器实际识别到的 `heading_level`，不能凭编号猜完后覆盖原值；
-- 原始标题文本和 Markdown；
-- `anchor.section_path`（如果解析器有）；
-- 编号、标题文字和专有名词不能在统一层被改写。
+如果原始解析结果存在表格结构，必须填充 `tables[].cells`，不能只把表格转成 Markdown。
 
-### 5.4 引用和参考文献
+保留：
 
-正文引用必须作为原始 block 文本保留。参考文献 block 使用 `kind="reference"`，并在 `metadata` 中保留稳定的：
+```text
+table_id
+block_id
+page_number
+bbox
+num_rows
+num_cols
+caption
+cells[].text
+cells[].start_row
+cells[].start_col
+cells[].row_span
+cells[].col_span
+cells[].column_header
+cells[].row_header
+cells[].bbox（有则提供）
+```
+
+### 第五步：把图片、公式和 OCR 变成可追溯资源
+
+- 将图片/附件复制或链接到 `assets/`；
+- `DocumentAsset.path` 使用安全 POSIX 相对路径；
+- Markdown 中的资源路径必须和 `assets[].path` 一致；
+- 保留 asset 的 page/bbox、尺寸和引用 block；
+- OCR 结果写入 `ocr_spans`，不要只把 OCR 文本塞入 Markdown；
+- 公式如果只有图片，保留 formula block + asset，不要擅自转写公式。
+
+### 第六步：声明能力和缺失证据
+
+Adapter 不得用默认值掩盖解析器能力缺失。每个能力必须写入 `capabilities`：
 
 ```json
 {
-  "reference_label": "3",
-  "citation_style": "numeric"
+  "state": "available | partial | unavailable | failed",
+  "granularity": "page/block/table/cell",
+  "reason": "非 available 时必填",
+  "evidence": {}
 }
 ```
 
-如果解析器只能确认它是参考文献区域、不能确认编号，保留原文并在 `capabilities.reference_labels` 中声明 `partial` 或 `unavailable`，不要猜编号。
-
-## 6. 页面和定位证据
-
-质量 Agent 需要按页建立索引。对于有分页的 PDF、扫描件、长截图和 Office 转换结果：
-
-- 每个可定位 block 尽量提供 `anchor.page_number`；
-- bbox 必须使用真实坐标，不能把像素坐标冒充 PDF 坐标；
-- 同一文档的坐标原点、页面宽高和单位必须一致；
-- `bbox_granularity` 必须说明是 `page`、`block`、`table`、`cell` 还是其他粒度；
-- 没有 bbox 时置空并声明能力缺失，不要填 `[0, 0, 0, 0]` 伪造定位；
-- 页眉、页脚、页码如果输出为 block，必须保留原始 kind 和页码，质量 Skill 再判断是否属于重复结构。
-
-没有页面证据的无分页纯文本可以正常进入质量层，但页面模式、跨页表格和视觉顺序修复会降级。
-
-## 7. tables：必须保留物理网格
-
-每个 `ParsedTable` 必须包含：
+例如 MinerU 没有 cell bbox：
 
 ```json
 {
-  "table_id": "table-001",
-  "block_id": "对应 table block 的 UUID",
-  "html": "可选原始 HTML",
-  "markdown": "可选原始表格 Markdown",
-  "caption": "表 1",
-  "image_path": null,
-  "page_number": 3,
-  "bbox": [72.0, 200.0, 520.0, 600.0],
-  "num_rows": 5,
-  "num_cols": 4,
-  "cells": [],
-  "metadata": {}
+  "table_cells": {
+    "state": "partial",
+    "granularity": "table",
+    "reason": "解析器只提供表级 bbox，未提供 cell 级 bbox",
+    "evidence": {}
+  }
 }
 ```
 
-每个 cell 至少保留：
+正确做法是降级，不是估算一个 bbox 再标记 `available`。
 
-```json
-{
-  "text": "额定电压",
-  "start_row": 0,
-  "start_col": 1,
-  "row_span": 1,
-  "col_span": 2,
-  "column_header": true,
-  "row_header": false,
-  "bbox": [180.0, 220.0, 300.0, 250.0]
-}
-```
+## 4. 不同解析器如何归一化
 
-### 7.1 表格硬约束
+下面是实现方向，不要求质量层知道这些解析器的私有类名。
 
-- 不能只输出拍平后的 Markdown 表格；
-- `row_span`/`col_span` 必须是真实合并信息；
-- 不要复制文本填充合并单元格占用的槽位；
-- `num_rows`/`num_cols` 应覆盖所有 cell 的实际占用范围；
-- `table.block_id` 必须能在 `blocks` 中找到对应 table block；
-- 表格事实文本、数字、金额、单位和符号必须保持原样；
-- 没有 cell bbox 时提供表级 bbox，并将 `capabilities.table_cells` 或 `page_bbox` 声明为 `partial`，不要伪造 cell bbox。
+### 4.1 Docling Adapter
 
-### 7.2 稳定 cell 身份
+通常可以保留较丰富的结构证据：
 
-当前 `ParsedDocument 2.2` 的 `TableCell` 没有强制 `cell_id` 字段，质量层临时使用：
+- 文本/标题/表格/图片对象 → `blocks`；
+- 原生 page/provenance/bbox → `anchor`；
+- 表格网格和 span → `tables[].cells`；
+- 原生 Docling JSON → `native/`；
+- 如果图片 bytes 可导出，写入 `assets/`；
+- 不要把 Docling 的对象 repr、调试字符串或 Python method repr 写入 Markdown。
+
+如果 Docling 没有提供某个字段，按真实缺失状态声明 capability。
+
+### 4.2 MinerU Adapter
+
+MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
+
+- Markdown 作为根 `markdown` 和 block markdown 的候选来源；
+- HTML/结构 JSON 中的表格网格优先转换到 `tables[].cells`；
+- 页面和 bbox 有则保留；
+- 云端结果中的原始 JSON、HTML、图片路径保存到 `native/`/`assets/`；
+- 没有 cell bbox 时保留表级证据并标记 `partial`；
+- 不要把 Markdown 表格当成完整的合并单元格证据。
+
+### 4.3 Fallback/pdfplumber/OCR Adapter
+
+兜底解析器的能力可能较少：
+
+- 文本行/词块按真实坐标转换为 blocks；
+- 没有可靠标题层级时保留 `kind=heading` 的原始判断，但 `heading_level` 可以为空；
+- 没有表格网格时不要从纯文本猜造 cells；
+- 扫描件提供 OCR spans 和 confidence；
+- 对缺少 page/bbox/source 的字段声明 capability；
+- Fallback 结果允许进入质量层，但质量 Agent 必须据证据降级，而不是假装和 Docling/MinerU 一样完整。
+
+### 4.4 新解析器 Adapter
+
+新增解析器不需要修改质量 Agent。只需：
+
+1. 实现同样的 Adapter 接口；
+2. 输出同一版本的 `ParsedDocument`；
+3. 增加至少一个固定 fixture；
+4. 通过统一契约校验和质量层回归；
+5. 在 `provenance.parser_id/version` 中标明实际来源。
+
+## 5. 统一字段的具体要求
+
+### 5.1 稳定 ID
+
+- `document_id`：文档级稳定 ID；
+- `blocks[].id`：文档内唯一，质量修复前后不变；
+- `blocks[].source_block_id`：解析器原生对象 ID，有则保留；
+- `tables[].table_id`：文档内唯一；
+- `tables[].block_id`：必须指向一个 `kind=table` 的 block；
+- `assets[].referenced_by_block_ids`：只能引用已有 block ID。
+
+同一输入重复归一化时不要使用随机 UUID。推荐根据原文件身份、解析器 ID、解析器版本和原生对象身份生成确定性 ID；如果解析器原生 ID 已稳定，直接保留即可。
+
+当前 `TableCell` 没有强制 `cell_id`，质量层暂时使用：
 
 ```text
 (table_id, start_row, start_col)
 ```
 
-统一层如果可以提供稳定 `cell_id`，建议作为后续兼容字段提交，但需要团队评审公共契约变更。无论是否有 `cell_id`，坐标和 span 都不能丢失。
+如果统一层可以补充稳定 `cell_id`，请先做公共契约评审，不要只在某一个 Adapter 私自增加并让其他 Adapter 缺失。
 
-### 7.3 跨页表格
+### 5.2 页面和 bbox
 
-跨页续表至少要保留：
+- `anchor.page_number` 从 1 开始；
+- bbox 必须是真实坐标，不能用数组下标、像素值或默认四个 0 伪造；
+- `coordinate_system`、页面宽高和单位必须一致；
+- `bbox_granularity` 写明是 page/block/table/cell；
+- 无分页格式可以没有 page_number，但要通过 capability/warning 说明；
+- 有页的文档尽量让所有 block/table/asset 可定位到 page。
 
-- 每个表格片段的真实 `page_number` 和 bbox；
-- 页内 block/order_index；
-- 重复表头或 continuation 标记（如果解析器有）；
-- 同一表格的稳定 `table_id`，或可以由 metadata 明确表达 continuation；
-- 不同页列数、列顺序和合并信息。
+### 5.3 标题、引用和关系证据
 
-不确定是否续表时保留两个结构并声明不确定，不要强行合并。
+统一层不需要提前生成质量层最终 `CanonicalRelation`，但必须保留质量层判断关系所需的原始证据：
 
-## 8. assets：图片、公式截图和附件
+- 标题 block 的 kind、level、编号、section_path；
+- 正文 citation marker 的原始文本；
+- `kind=reference` 的参考文献 block；
+- `metadata.reference_label`、citation style 和原始顺序；
+- 图片 block、caption block、asset path、page/bbox；
+- 如果解析器已经提供关系候选，可以放入 metadata/native artifact，但不能丢掉端点证据。
 
-`assets` 描述的是实际存在的资源，不是资源说明文字。每个资源必须：
+关系目标不唯一时，统一层不应替质量 Agent 选择第一个候选。
 
-- 使用安全的 POSIX 相对路径，例如 `images/figure-1.png`；
-- 能在文档包中找到真实 bytes，或能被 Adapter 可靠加载；
-- 保留 `kind`、`file_type`、尺寸、anchor 和 provenance；
-- `referenced_by_block_ids` 只填写输入中已有的 block ID；
-- 资源缺失时不要生成占位图片，应该在 `capabilities.assets` 或相关 warning 中说明。
+## 6. 必须遵守的“不造证据”规则
 
-图片/公式与图注之间如果存在结构关系，统一层至少要保留：
-
-- 图片/公式 block；
-- caption block；
-- 资源路径；
-- page/bbox；
-- 已有 `referenced_by_block_ids` 或 metadata 关系证据。
-
-质量层可以通过 `move_block`、`update_asset_references` 和关系 Patch 调整已有关系，但不会凭空创建图片或公式。
-
-## 9. OCR 证据
-
-扫描件、照片和图片型 PDF 如果提供 OCR，`ocr_spans` 至少保留：
-
-```json
-{
-  "level": "word",
-  "text": "收款金额",
-  "bbox": [100.0, 80.0, 180.0, 100.0],
-  "confidence": 0.93,
-  "page_number": 1,
-  "rotation_angle": 0.0
-}
-```
-
-要求：
-
-- OCR 文本不能被误标为人工确认事实；
-- confidence 只能表示解析器/OCR 置信度，不是质量层放行结论；
-- bbox 和 page_number 必须使用真实坐标；
-- 没有 OCR 或 OCR 失败时，`ocr_spans=[]`，同时声明 `ocr_confidence` 的状态和原因。
-
-## 10. provenance 和 capabilities
-
-### 10.1 provenance
-
-至少保留：
-
-```json
-{
-  "parser_id": "docling",
-  "requested_parser_id": "docling",
-  "routing_mode": "manual",
-  "model": "版本或模型名",
-  "version": "实际版本",
-  "parameters": {},
-  "parse_duration_ms": 1234,
-  "peak_memory_mb": 512,
-  "fallback_history": []
-}
-```
-
-`parser_id`、`version` 和实际参数不能只写在日志；它们是质量结果回溯和换解析器后的对照依据。
-
-### 10.2 capabilities
-
-当前质量层直接使用或映射的能力名包括：
-
-```text
-page_bbox       # block/page/table 的页码和 bbox 证据
-block_order     # 如果单独声明顺序能力，可使用该名称
-heading_level   # 标题层级能力
-table_cells     # 表格 cell/span/header 结构
-ocr_confidence  # OCR span 和置信度
-assets          # 资源是否完整可访问
-native_artifacts# 原生证据是否可访问
-reference_labels# 参考文献 label 是否可靠（建议）
-cross_page      # 跨页关系证据（建议）
-```
-
-每个 capability 使用：
-
-```json
-{
-  "state": "available | partial | unavailable | failed",
-  "granularity": "block/table/cell/page",
-  "reason": "非 available 时必须填写",
-  "evidence": {}
-}
-```
-
-特别注意：
-
-- 没有表格时，表格证据属于“不适用”，不是解析失败；
-- 有表格但没有 cell 结构，应为 `partial`/`unavailable` 并说明原因；
-- 非 `available` 状态必须有 `reason`；
-- 不要为了让质量门通过而把不确定证据标成 `available`。
-
-## 11. 稳定 ID 和引用完整性
-
-统一层交付前必须检查：
-
-- `document_id` 在文档包内唯一且稳定；
-- 所有 `blocks[].id` 唯一；
-- `tables[].table_id` 唯一；
-- `tables[].block_id` 存在于 blocks；
-- `assets[].referenced_by_block_ids` 都存在于 blocks；
-- 所有 `source_block_id` 能回溯到解析器原始对象，或明确为空并由 provenance/capability 解释；
-- 关系 metadata 中的 from/to 对象都存在；
-- 同一资源路径只对应一个资源对象；
-- 不使用数组下标作为跨运行公共 ID；
-- 质量层修复后，原始 ID、页码、bbox 和 provenance 仍可追溯。
-
-## 12. 缺失证据的处理原则
-
-统一层的原则是“诚实声明，不要伪造”。
-
-| 情况 | 正确做法 | 错误做法 |
+| 解析器实际情况 | 统一层正确输出 | 禁止输出 |
 | --- | --- | --- |
-| 没有 cell bbox | 保留表级 bbox，能力标 `partial` | 填一个估算的 cell bbox |
-| 没有标题层级 | 保留原始 heading/文本，能力降级 | 根据编号直接覆盖 heading_level |
-| OCR 失败 | 空 `ocr_spans` + reason | 复制 Markdown 当 OCR 证据 |
-| 图片文件缺失 | 保留资源 metadata + warning/manual | 生成空白占位图 |
-| 引用目标不唯一 | 保留 marker 和候选证据 | 任意绑定第一个参考文献 |
-| 页码不明 | `page_number=null` + reason | 用 block 顺序推算页码后伪造 |
-| 表格是否续表不明 | 分开保留并声明不确定 | 强行合并两张表 |
+| 没有 cell bbox | 表级 bbox + `table_cells=partial` | 估算 cell bbox 并标 available |
+| 没有标题层级 | 保留原始 heading/text + level 缺失声明 | 根据编号覆盖解析器原值 |
+| OCR 失败 | `ocr_spans=[]` + reason | 把普通 Markdown 当 OCR 证据 |
+| 图片文件缺失 | asset metadata + warning/manual | 生成空白或假图片 |
+| 引用目标有多个 | marker、参考文献 block 和候选证据 | 自动绑定第一个目标 |
+| 页码未知 | `page_number=null` + reason | 按 block 顺序猜页码 |
+| 表格是否续页不明 | 分页保留、声明不确定 | 强行合并表格 |
+| 解析器字段冲突 | 保留冲突信息并降级 | 静默选一个不说明 |
 
-质量 Agent 会根据证据状态限制自动修复范围，最终状态可能是 `inferred`、`manual_review_required` 或 `reparse_required`，这是预期行为。
+质量 Agent 的自动修复能力依赖证据真实性。缺失证据会导致 manual/reparse，这是正常的安全结果，不是统一层失败。
 
-## 13. 推荐的最小 JSON 示例
+## 7. 推荐的主 JSON 形状
 
-下面示例展示字段关系，不代表完整文档内容：
+下面只是最小结构示例；实际字段必须由 `ParsedDocument 2.2` 校验：
 
 ```json
 {
@@ -401,7 +382,7 @@ cross_page      # 跨页关系证据（建议）
   "blocks": [
     {
       "id": "22222222-2222-4222-8222-222222222222",
-      "source_block_id": "parser-text-001",
+      "source_block_id": "docling-text-001",
       "order_index": 0,
       "kind": "heading",
       "native_type": "heading",
@@ -471,49 +452,48 @@ cross_page      # 跨页关系证据（建议）
 }
 ```
 
-## 14. 统一层交付前验收清单
+## 8. 统一层交付前必须自动校验
 
-### 14.1 结构校验
+### 8.1 JSON 和引用完整性
 
-- [ ] `ParsedDocument.model_validate_json()` 可以通过；
-- [ ] 根字段和空数组完整；
-- [ ] 所有 block/table/asset ID 唯一；
-- [ ] table block、table ID、asset 引用关系不悬空；
-- [ ] 所有相对路径安全，不包含绝对路径或 `..`；
-- [ ] `schema_version` 与实际字段一致。
+- [ ] `ParsedDocument.model_validate_json()` 通过；
+- [ ] `schema_name/schema_version` 正确；
+- [ ] blocks/tables/assets/ocr_spans 字段存在，缺失能力使用空数组；
+- [ ] 所有 block ID 唯一；
+- [ ] 所有 table ID 唯一；
+- [ ] `tables[].block_id` 能找到 table block；
+- [ ] `assets[].referenced_by_block_ids` 都能找到 block；
+- [ ] 所有资源路径是安全相对路径；
+- [ ] sidecar 资源都实际存在且 file_type 一致。
 
-### 14.2 内容和来源校验
+### 8.2 证据和内容完整性
 
-- [ ] `markdown` 与 blocks 的原始内容可以互相定位；
+- [ ] Markdown、blocks 和 tables 之间可以互相定位；
 - [ ] 数字、公式、URL、引用文本没有在归一化时被改写；
 - [ ] page/bbox 坐标系和粒度真实；
-- [ ] `source_block_id`、parser/version/parameters 可回溯；
+- [ ] parser/version/parameters 可回溯；
 - [ ] 非 available capability 都有 reason；
-- [ ] 解析器没有提供的证据没有被填充为默认“可信”。
+- [ ] 原始解析器没有提供的证据没有被默认值伪造。
 
-### 14.3 场景回归
+### 8.3 代表性契约 fixture
 
-统一层至少应使用以下类型 fixture 做契约回归：
+统一层至少要为以下文档各保留一份固定输出：
 
 - 普通多段落正文；
 - 双栏或复杂阅读顺序；
-- 标题层级和编号；
-- 合并单元格、多级表头；
+- 标题编号和层级；
+- 多级表头、合并单元格；
 - 跨页续表；
 - 数字引用和参考文献；
 - 扫描/OCR 文档；
 - 图片、图注和公式；
-- 长文档分页。
+- 百页级或长文档分页。
 
-## 15. 交付给质量层的接口
+同一 fixture 应记录 parser_id/version，便于不同 Adapter 回归。
 
-统一层交付的唯一主对象是：
+## 9. 交给质量 Agent 后会发生什么
 
-```python
-ParsedDocument
-```
-
-质量层入口：
+质量层调用：
 
 ```python
 from quality import run_quality_repair
@@ -524,26 +504,43 @@ package = run_quality_repair(
 )
 ```
 
-质量层会生成：
+质量 Agent 会：
 
-```text
-optimized.md
-canonical_document.json
-quality_report.json
-package_manifest.json
-```
+1. 读取全文 `DocumentIndex`；
+2. 按需读取页面、邻页、表格、资源和引用证据；
+3. 输出最小结构化 Patch；
+4. 验证事实词元、ID、页码、bbox、provenance 和 scope；
+5. 通过后提交 revision，失败则保留原 revision 并转人工；
+6. 生成 `optimized.md`、`canonical_document.json`、`quality_report.json` 和 `package_manifest.json`。
 
-这四个质量产物不是统一层输入要求，不需要统一层预先生成。统一层只需保证结构化文档、真实资源和来源能力证据完整可靠。
+统一层不需要预先生成这四个质量产物。
 
-## 16. 变更流程
+## 10. 版本和变更流程
 
-以下变化必须先和质量层确认：
+以下变更必须先和质量层确认：
 
-- 修改 `ParsedDocument` 公共字段或枚举；
+- 修改 `ParsedDocument` 公共字段、枚举或字段含义；
 - 修改 `schema_version`；
-- 修改 block/table/asset ID 生成规则；
-- 删除 `anchor`、`provenance`、`capabilities` 或 table cells；
-- 将真实缺失证据改成默认值；
-- 改变相对资源路径或 asset 引用语义。
+- 修改 document/block/table/asset ID 规则；
+- 删除 blocks、tables、assets、anchor、provenance 或 capabilities；
+- 改变资源路径或 asset 引用语义；
+- 把真实缺失证据改成默认 available；
+- 把多个解析器结果合并成一个没有来源区分的对象。
 
-建议统一层先提交一个固定 JSON fixture 和契约测试，再接入真实解析器。质量层会使用该 fixture 验证页面索引、表格 Patch、关系 Patch、审核状态和质量产物一致性。
+推荐提交顺序：
+
+1. 先提交统一层 Adapter 的固定 JSON fixture；
+2. 通过 `ParsedDocument` 契约测试；
+3. 再跑质量层测试和代表性文档；
+4. 说明哪些字段来自原始解析器，哪些字段是统一层规范化产生的；
+5. 任何无法保真的字段都在 capability/warning 中登记。
+
+## 11. 给实施同事的最终判断标准
+
+如果只记住五句话：
+
+1. **不同解析器可以有不同 Adapter，但交给质量层的只能是同一种 `ParsedDocument 2.2`。**
+2. **不能只输出 Markdown；blocks、tables、assets、anchors 和 provenance 都是质量修复证据。**
+3. **解析器没有提供的证据必须声明缺失，不能用默认值或模型常识补齐。**
+4. **所有资源路径、对象 ID 和关系端点必须可回溯、可校验、不能悬空。**
+5. **统一层交付结构化文档包，质量层再负责 Agent 修复和最终质量产物。**
