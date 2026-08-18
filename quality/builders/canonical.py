@@ -44,7 +44,7 @@ def build_canonical_document(
             bbox_granularity=anchor.bbox_granularity,
             provenance_status=(
                 QualityCapabilityState.VERIFIED
-                if block.source_block_id
+                if block.source_block_id and (anchor.page_number is not None or anchor.bbox is not None)
                 else QualityCapabilityState.INFERRED
             ),
         )
@@ -55,7 +55,12 @@ def build_canonical_document(
             metadata["table_id"] = block.metadata["table_id"]
         blocks.append(
             CanonicalBlock(
-                block_id=block_id(doc_key, block.source_block_id or str(block.id), block.order_index or 0),
+                block_id=block_id(
+                    doc_key,
+                    block.source_block_id or str(block.id),
+                    block.order_index or 0,
+                    block_uuid=str(block.id),
+                ),
                 kind=block.kind.value,
                 order_index=block.order_index if block.order_index is not None else 0,
                 content=block.markdown,  # D-07：默认保留输入 markdown
@@ -78,21 +83,23 @@ def build_canonical_document(
                     candidate.relation_type,
                     from_id,
                     to_id,
-                    "",
+                    candidate.marker_key,
                 ),
                 relation_type=candidate.relation_type,
                 from_id=from_id,
                 to_id=to_id,
                 status=candidate.state,
                 evidence={
+                    **candidate.evidence,
                     "refs": [
                         {
                             "object_type": ref.object_type,
                             "object_id": ref.object_id,
                             "field_path": ref.field_path,
+                            **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                         }
                         for ref in candidate.evidence_refs
-                    ]
+                    ],
                 },
             )
         )
@@ -120,14 +127,16 @@ def build_canonical_document(
                 source_locator=candidate.source_locator,
                 status=candidate.source_locator.provenance_status,
                 evidence={
+                    **candidate.evidence,
                     "refs": [
                         {
                             "object_type": ref.object_type,
                             "object_id": ref.object_id,
                             "field_path": ref.field_path,
+                            **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                         }
                         for ref in candidate.evidence_refs
-                    ]
+                    ],
                 },
             )
         )
@@ -148,6 +157,7 @@ def _id_map(context: EvidenceContext) -> dict:
             doc_key,
             b.source_block_id or str(b.id),
             b.order_index or 0,
+            block_uuid=str(b.id),
         )
         for b in context.parsed.blocks
     }

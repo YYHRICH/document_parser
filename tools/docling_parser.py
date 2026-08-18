@@ -6,7 +6,7 @@
        C:/dp_venv_link/Scripts/python.exe
 2. 必须设置 TORCH_COMPILE_DISABLE=1（本机无 MSVC 编译器，禁用 JIT）：
        TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe ...
-3. torch==2.7.1 + torchvision==0.22.0（2.13.0 的 c10.dll 加载失败）
+3. torch==2.7.1 + torchvision==0.22.1（2.13.0 的 c10.dll 加载失败）
 
 能力边界：
 - 标题层级来自 SectionHeaderItem.level（真实模型输出）；

@@ -26,6 +26,7 @@ class RepairOutcome:
     description: str
     affected_block_ids: list[str] = field(default_factory=list)
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
+    parameters: dict = field(default_factory=dict)
 
     @property
     def applied(self) -> bool:
@@ -47,9 +48,12 @@ class RepairOutcome:
                         "object_type": ref.object_type,
                         "object_id": ref.object_id,
                         "field_path": ref.field_path,
+                        **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                     }
                     for ref in self.evidence_refs
                 ],
+                "parameters": dict(self.parameters),
+                "rollback": {"before": self.before, "after": self.after},
             },
         )
 
@@ -63,3 +67,13 @@ class RepairRule(ABC):
     def apply(self, markdown: str) -> RepairOutcome:
         """对 markdown 应用修复；无变化时返回 before==after 的 outcome。"""
         raise NotImplementedError
+
+    def replay(self, markdown: str, parameters: dict | None = None) -> RepairOutcome:
+        """按记录的参数重放；MVP 白名单规则均为参数确定性变换。"""
+        return self.apply(markdown)
+
+    def rollback(self, markdown: str, *, before: str, after: str) -> str:
+        """安全回滚：只接受当前内容等于 repair after 的情况。"""
+        if markdown != after:
+            raise ValueError("rollback source does not match recorded repair after")
+        return before

@@ -133,12 +133,12 @@ def test_orphan_heading_without_parent_manual():
     assert any(i.category == "heading_parent_missing" for i in result.issues)
 
 
-def test_first_heading_acts_as_document_root():
-    """文档第一个标题即使 level>1 也作为树根（文档标题语义）。"""
+def test_first_heading_without_h1_requires_manual_review():
+    """开头直接 H2/H3 不得伪装成根节点。"""
     doc = _doc(_h("2 孤章节", 2, 0), _h("3 内容", 3, 1))
     result = QL_HDG_004_BuildTree().execute(EvidenceContext(doc))
-    assert not any(i.category == "heading_parent_missing" for i in result.issues)
-    assert len(result.relation_candidates) == 1
+    assert any(i.category == "heading_parent_missing" for i in result.issues)
+    assert result.relation_candidates[0].state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
 
 
 def test_undeterminable_heading_no_relation():
@@ -152,3 +152,23 @@ def test_undeterminable_heading_no_relation():
 def test_rule_ids_are_stable():
     assert QL_HDG_001_HeadingFields.rule_id == "QL-HDG-001"
     assert QL_HDG_004_BuildTree.rule_id == "QL-HDG-004"
+
+
+def test_markdown_only_numbered_headings_restore_levels():
+    doc = _doc(
+        DocumentBlock(id=uuid4(), source_block_id="m-0", order_index=0, kind=BlockKind.HEADING,
+                      text=None, markdown="# 1 引言", heading_level=None, anchor=SourceAnchor()),
+        DocumentBlock(id=uuid4(), source_block_id="m-1", order_index=1, kind=BlockKind.HEADING,
+                      text=None, markdown="## 1.1 背景", heading_level=None, anchor=SourceAnchor()),
+    )
+    result = QL_HDG_004_BuildTree().execute(EvidenceContext(doc))
+    assert len(result.relation_candidates) == 1
+    assert result.relation_candidates[0].state == QualityCapabilityState.INFERRED
+
+
+def test_duplicate_order_never_verified():
+    doc = _doc(_h("文档", 1, 0), _h("1 引言", 2, 1), _p("正文", 1))
+    result = QL_HDG_004_BuildTree().execute(EvidenceContext(doc))
+    assert result.relation_candidates
+    assert all(r.state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED for r in result.relation_candidates)
+    assert any(i.category == "reading_order_conflict" for i in result.issues)

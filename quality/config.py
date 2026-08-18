@@ -22,7 +22,7 @@ class GateConfig:
     # 未解决 warning issue 是否触发 pass_with_warnings
     warnings_trigger_pass_with_warnings: bool = True
     # 未解决 critical issue 的最低状态（manual/reparse/rejected 之一）
-    critical_issue_min_state: str = "manual_review_required"
+    critical_issue_min_state: str = "rejected"
 
 
 @dataclass(frozen=True)

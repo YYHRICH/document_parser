@@ -13,6 +13,7 @@ from pathlib import Path
 from document_parser.core.contracts import ParsedDocument, QualityPackage
 
 from quality.config import QualityConfig
+from quality.packaging.writer import write_package_directory
 from quality.pipeline import run_pipeline
 
 
@@ -35,6 +36,12 @@ def run_quality(
 def write_quality_package(
     package: QualityPackage,
     output_dir: Path,
-) -> None:
-    """将 QualityPackage 四件套落盘到 output_dir（M5 实现原子化写入）。"""
-    raise QualityPipelineNotImplemented("四件套落盘将在 M5 实现。")
+    *,
+    replace_existing: bool = False,
+) -> Path:
+    """将 QualityPackage 四件套原子落盘并返回最终目录。"""
+    return write_package_directory(
+        package,
+        Path(output_dir),
+        replace_existing=replace_existing,
+    )

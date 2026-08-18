@@ -61,6 +61,13 @@ def block_id(
     document_key: str,
     source_block_id: str,
     order_index: int,
+    *,
+    block_uuid: str | None = None,
 ) -> str:
-    """canonical block 的稳定 ID（由来源 block 与顺序推导）。"""
-    return stable_id(f"block|{document_key}|{source_block_id}|{order_index}")
+    """生成 canonical block 的稳定 ID。
+
+    ``block_uuid`` 是 ParsedDocument 中 block 的对象身份；未提供时保留
+    旧的 source_block_id 方案，兼容外部直接调用。
+    """
+    identity = block_uuid or source_block_id
+    return stable_id(f"block|{document_key}|{identity}|{order_index}")

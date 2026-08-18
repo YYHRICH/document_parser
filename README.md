@@ -1,322 +1,199 @@
 # Document Parser
 
-> 当前主线：main
-> 质量层工作分支：feature/quality-layer
-> 共享开发基线：datasets/shared-dev-v1
-> 核心目标：仅基于 ParsedDocument 2.2 的真实证据完成表格字段绑定、标题树、引用关系、
-> 质量准入和四件套，稳定输出 QualityPackage 1.0。
+> 当前主线：`main`
+> 质量修复工作分支：`feature/quality-layer`
+> 当前方向：单文档质量修复 Agent
 
-## 质量层工作卡（feature/quality-layer）
+本仓库负责把上游解析结果转换成可审计、可复核、可供 LLMwiki 使用的文档产物。
 
-### 开始开发前必须阅读
+质量层不是只列问题的规则检查器，而是一个受约束的单文档质量修复 Agent：LLM 主动理解文档并修复格式/结构，确定性工具负责验证内容、来源和结构不变量，最终输出可直接使用区域和人工复核区域。
 
-1. `docs/开发分工.md` 中“叶：质量优化与准入”和三次联调；
-2. `specs/001-document-parser-collaboration/spec.md` 中质量能力下限、共享开发文件集、
-   质量需求、Gate B/C/D；
-3. `examples/contracts/README.md` 中 `ParsedDocument 2.2`、`QualityPackage 1.0`、关系状态和
-   四件套约定；
-4. `examples/contracts/parsed_document.json` 和 `quality_package.json`；
-5. `core/contracts.py` 中 `ParsedTable`、`TableCell`、`CanonicalDocument`、
-   `TableFieldBinding`、`CanonicalRelation`、`QualityReport` 和 `QualityPackage`。
+M6 选用 **Agno** 作为 Agent 运行时；核心 revision、验证、回滚和产物逻辑仍由本项目维护。
 
-### 你的输入和输出
+## 质量修复 Agent 的边界
 
-唯一公共输入：
+上游负责：
+
+- 选择 Docling、MinerU、OCR 或其他解析器；
+- 将解析器结果统一成文档包；
+- 多文档并行、队列、重试和任务编排。
+
+本分支负责：
+
+- 接收一个文档包；
+- 主动检查未知的格式和结构问题；
+- 通过 LLM 迭代生成修复后的文档；
+- 验证修复没有改变事实内容；
+- 生成 canonical 结构和审核结果。
 
 ```text
-ParsedDocument 2.2
+单个解析器输出
+  → Adapter（当前临时，未来接上游统一层）
+  → Quality Repair Agent
+  → optimized.md
+  → canonical_document.json
+  → quality_report.json
+  → package_manifest.json
 ```
 
-质量代码不得直接依赖 Docling、MinerU、OCR 或 MarkItDown 的私有对象。需要补充证据时，
-通过公共契约需求反馈给朱。
+质量 Agent 不负责比较多个解析器，也不负责再次调用解析器。
 
-公共输出：
+## 输入与适配
+
+正式输入将是上游统一文档包。统一层尚未完成时，开发期通过 Adapter 接收当前不同解析器的输出：
 
 ```text
-QualityPackage 1.0
-├─ optimized_markdown
-├─ canonical_document
-│  ├─ blocks
-│  ├─ table_bindings
-│  └─ relations
-├─ quality_report
-└─ package_manifest
+MinerU JSON ─┐
+Docling JSON ├→ DocumentPackageView → Quality Repair Agent
+fallback JSON┘
 ```
 
-需要落盘的四件套：
+Agent 只依赖统一质量视图，不依赖解析器私有对象。视图至少包含：
+
+- blocks、顺序、类型、文本和 Markdown；
+- headings、tables、cells、span 和关系；
+- assets、page、bbox 和 source locator；
+- 稳定 ID、parser provenance 和能力信息；
+- 原始/当前 revision 和质量问题上下文。
+
+上游统一输出完成后，只替换 Adapter，Agent 和验证器不需要重写。
+
+## Agent 工作循环
 
 ```text
-optimized.md
-canonical_document.json
-quality_report.json
-package_manifest.json
+加载单个文档包
+  → 读取摘要、目录和局部上下文
+  → LLM 主动发现格式/结构问题
+  → 输出结构化修复候选
+  → Schema、内容和来源校验
+  → 重建 canonical 和审核结果
+  → 规则/Gate 复检
+  → 通过则提交
+  → 不通过则反馈给 LLM 继续修复
+  → 无改善、超预算或无法安全解释则人工复核
 ```
 
-### 本分支必须完成
+坏情况不要求提前穷举；合格状态必须能够验证。LLM 可以改变格式和结构，但不能修改正文事实、数字、单位、公式、代码、URL、页码、bbox 或来源 ID。
 
-- 建立质量输入需求矩阵：每条规则需要哪些 block、page、bbox、table、OCR、asset 或
-  native artifact；
-- 恢复有证据的表格网格、row/col span 和多级表头；
-- 为证据充分的表格生成 `TableFieldBinding`，包含稳定 binding ID、row key、完整
-  column path、原始 value、source locator、状态和证据；
-- 根据 heading level、order 和来源恢复可确认的标题父子关系，输出
-  `relation_type = "parent_child"`；
-- 根据明确编号或标识绑定正文引用与参考文献，输出
-  `relation_type = "reference_of"`；
-- 实现 issue、白名单 repair log、capability matrix、gate summary 和五种质量状态；
-- 需要更换模型时输出 `ReparseRecommendation`，但不自行调用模型；
-- 输出带 SHA-256 绑定的四件套；
-- 从共享 12 文件开发集中选择至少 4 个 Golden 样例，维护人工期望和安全降级反例；
-- 为确定正例、歧义反例、no-op、人工复核、重解析和拒绝场景编写测试。
+## 三个业务输出
 
-建议代码位置：
+### `optimized.md`
 
-```text
-quality/
-quality/rules/
-quality/repairs/
-quality/gates/
-tests/quality/
-tests/fixtures/parsed_documents/
-datasets/shared-dev-v1/annotations/quality/
-datasets/shared-dev-v1/expected/golden/
-```
+修复后的 Markdown，供 LLMwiki 检索、展示和后续开发使用。
 
-### MVP 三项核心质量能力
+### `canonical_document.json`
 
-#### 1. 表格字段绑定
+带结构绑定的 JSON，包括：
 
-至少有一个确定样例生成正确 binding，并有一个结构不唯一样例进入安全降级。来源只有
-表级 bbox 时保留表级来源，禁止伪造 cell bbox；合并表头必须保留完整 `column_path`。
+- 稳定 block；
+- 标题父子关系；
+- 表格网格、合并单元格、column path 和 row key；
+- 跨页续表关系；
+- 引用、图片、图注和脚注关系；
+- 页码、bbox、来源定位和 provenance。
 
-#### 2. 标题树恢复
+### `quality_report.json`
 
-使用稳定 block ID 建立 `parent_child`。只有层级、顺序和来源证据一致时才能标记
-`verified`；不确定标题进入 `inferred`、人工复核或重新解析，不能强行升级。
-
-#### 3. 引用绑定
-
-正文编号与参考文献标识明确对应时建立 `reference_of`。目标不唯一、编号缺失或只有语义
-猜测时不得标记 `verified`。
-
-### 质量状态和安全门
-
-允许状态：
+审核文件，逐文档、逐 block/table/reference/asset 给出：
 
 ```text
-pass
-pass_with_warnings
+auto_usable
 manual_review_required
-reparse_required
 rejected
 ```
 
-- `reparse_required` 必须包含建议解析器、原因和建议参数；
-- `critical_false_pass = true` 时禁止 `pass` 或 `pass_with_warnings`；
-- 安全 no-op 是合法结果，不能为了显示“有优化”而修改原文；
-- 不允许凭空创建数字、公式、表头、标题、bbox、图片描述或来源关系。
+它会说明：
 
-### 和张、朱的联调点
+- 哪些区域可以直接使用；
+- 哪些区域必须人工复核；
+- 哪些修复已经执行；
+- 哪些验证通过或失败；
+- 还剩哪些风险及其证据。
 
-- 向朱提交明确的输入需求矩阵和缺失证据 issue，不直接读取解析器私有文件结构；
-- 使用固定 `parsed_document.json` 先开发，不等待三类真实 Adapter；
-- 给朱稳定的 `QualityPackage`，便于后端/Web 提前展示和下载；
-- 将 `ReparseRecommendation` 交给张，由张决定新的可执行路由；
-- 和张共同确认图片/OCR Golden 的质量标签与低质量判定；
-- 所有结果使用共享 manifest 的 `sample_id` 和输入 SHA-256 对齐。
+`package_manifest.json` 记录前三个核心文件的 SHA-256，主要用于完整性校验。
 
-### 不属于本分支
+## 现有确定性基础
 
-- 不执行自动/手动模型路由；
-- 不直接调用 Docling、MinerU 或 OCR；
-- 不开发 Adapter、后端或 Web；
-- 不用 LLM 无证据自由改写解析事实；
-- 不单独修改公共契约字段语义。
+M1-M5 已经提供 Agent 所需的基础设施：
 
-### 提交前验收清单
+- EvidenceContext 和公共证据访问；
+- 完整性、来源、标题、引用和表格规则；
+- capability matrix 和 Gate 五态；
+- 可回放的确定性修复；
+- canonical document builder；
+- 稳定序列化、manifest、原子写入和篡改检测。
 
-- [ ] 表格正例能够产生可回溯字段绑定，反例不会错误绑定；
-- [ ] 标题正例能够建立父子关系，不确定标题安全降级；
-- [ ] 编号引用正例能够建立 `reference_of`，歧义引用不假装确定；
-- [ ] 五种质量状态都有测试；
-- [ ] 所有 repair 都有规则 ID、影响 block 和可回放证据；
-- [ ] 四件套齐全且 manifest 哈希合法；
-- [ ] `reparse_required` 一定带建议，严重错误不会误放行；
-- [ ] Golden 子集至少 4 个，并同时包含确定正例和降级反例；
-- [ ] 质量层仅依赖公共 `ParsedDocument`。
+这些规则不需要列举所有文档坏情况，主要负责定义合格状态、保护事实内容和验收 Agent 的修复结果。
 
-当前公共契约回归命令：
+## 当前进展
+
+| 里程碑 | 状态 | 内容 |
+| --- | --- | --- |
+| M0-M4 | 已完成 | 契约、规则、Gate、canonical、确定性修复 |
+| M5 | 已完成 | 三个业务文件、manifest、原子写入和篡改检测 |
+| M6 | 设计调整中 | 单文档质量修复 Agent、Adapter、修复循环和审核输出 |
+| M7 | 待办 | 接入上游正式统一文档包和多文档联调 |
+
+当前测试基线：`199 passed, 1 xfailed`。
+
+## 代码入口
+
+```python
+from quality import run_quality
+
+# 确定性检查路径：不调用 LLM
+package = run_quality(parsed_document)
+```
+
+M6 将增加单文档 Agent 入口，概念上为：
+
+```python
+from quality import run_quality_repair
+
+package = run_quality_repair(document_package, config=config, llm_client=client)
+```
+
+MCP 可以作为工具传输层，但核心 Agent、验证器和事务逻辑不依赖 MCP 运行时。多文档并行由上游分别调用这个单文档入口。
+
+## 开发命令
 
 ```powershell
 python -m pytest tests/test_contract_examples.py -q
+python -m pytest tests/quality/unit -q
+python -m pytest tests/quality/contract -q
+python -m pytest tests/quality/integration -q
+python -m pytest tests/quality/golden -q
 ```
 
----
-
-## 项目公共说明
-
-`document_parser` 是三人协作开发的统一文档解析模块。本仓库直接基于现有 Python
-代码扩展，不另起一套不兼容实现。
-
-## 共享开发文件集
-
-datasets/shared-dev-v1 是三人共同使用的 12 文件开发基线，已合并到 main。
-
-- manifest.jsonl 是文件身份、SHA-256、split 和解析目标的唯一事实源；
-- Smoke：sdp-001、sdp-004、sdp-007、sdp-008；
-- Golden：sdp-004、sdp-005、sdp-006、sdp-007；
-- PDF/图片源文件位于 datasets/shared-dev-v1/sources/tex/，DOCX 回归样例由确定性 Open XML 构建；
-- 新增、删除或替换样例必须同步更新 manifest、标注、Spec，并通过 PR。
-
-## 当前状态
-
-已经具备：
-
-- MarkItDown 解析基线；
-- `.doc -> .docx`、`.ppt -> .pptx` 旧 Office 转换；
-- `DocumentParserGateway` 统一入口；
-- `RoutingDecision 1.0`、`ParsedDocument 2.2`、`QualityPackage 1.0` 公共契约；
-- 三份可直接用于联调和 Mock 的固定 JSON 样例；
-- 契约、跨阶段衔接和错误约束测试；
-- shared-dev-v1 12 文件数据集、manifest、标注和可复现源。
-
-MVP 尚需三人分别完成：
-
-- 张云雅：Docling、MinerU、OCR 自动/手动路由和 JPG/JPEG/PNG 测评；
-- 朱：三类 Adapter、统一输出、后端、Web 和端到端串联；
-- 质量负责人：表格字段绑定、标题树恢复、引用绑定、质量门和四件套。
-
-MarkItDown 是需要保留的现有基线，不等于 Docling、MinerU、OCR 已经接入。
-
-## 协作文档
-
-- [三人开发分工](docs/开发分工.md)
-- [完整开发 Spec](specs/001-document-parser-collaboration/spec.md)
-- [三方联调接口](examples/contracts/README.md)
-- [契约模型代码](core/contracts.py)
-- [固定样例测试](tests/test_contract_examples.py)
-- [质量层开发进展](docs/quality-layer-progress.md)（M0~M4 已完成，当前 167 测试通过）
-- [质量层实现规格](specs/001-quality-layer-implementation/spec.md)
-- [质量层契约决策记录](docs/quality-decisions.md)
-
-## MVP 链路
+## 目录约定
 
 ```text
-Web/CLI
-  -> ParseRequest
-  -> RoutingDecision
-  -> Docling / MinerU / OCR Adapter
-  -> ParsedDocument
-  -> 表格、标题、引用质量处理
-  -> QualityPackage
-  -> Web 展示、下载或重新解析
-```
-
-Web 是主要演示入口，但路由、单个 Adapter、质量层和纯后端必须能够独立运行和测试。
-
-## 当前目录
-
-```text
-document_parser/
-├─ __init__.py
-├─ core/
-│  ├─ contracts.py       # 公共 Pydantic 契约，唯一事实源
-│  ├─ converter.py       # 旧 Office 格式转换
-│  ├─ gateway.py         # 当前统一编排入口
-│  └─ inspector.py       # 文件基础特征检查
-├─ parsers/
-│  └─ markitdown/        # 当前可运行解析基线
-├─ docs/
-│  └─ 开发分工.md
-├─ examples/contracts/   # 三方固定接口样例
-├─ datasets/shared-dev-v1/ # 共享开发文件集、manifest 和标注
-├─ specs/                # 完整产品和工程规格
-├─ requirements.txt      # 项目运行与测试依赖
-└─ tests/                # 当前契约测试
-```
-
-后续按 Spec 增加：
-
-```text
-routing/
-normalizers/
 quality/
-backend/
-frontend/
-benchmarks/
-tests/routing/
-tests/quality/
-tests/api/
-tests/e2e/
+├─ adapters/       # 当前解析器输出到统一质量视图的临时适配
+├─ agent/          # 单文档 Agent、状态机、上下文和 fake client
+├─ tools/          # 读取、候选提交、验证、事务和回滚
+├─ rules/          # 已知不变量与确定性检查
+├─ repairs/        # 可回放的确定性修复能力
+├─ gates/          # capability 和最终 Gate
+├─ builders/       # Markdown/canonical/review 构建
+└─ packaging/      # 序列化、manifest 和原子落盘
 ```
 
-## 公共接口
+## 安全边界
 
-业务模块只从顶层包导入稳定类型：
+- LLM 不能调用任意 Python、Shell 或文件系统写入；
+- 修复前后必须保持事实内容和来源定位；
+- 验证失败时保留原 revision 并回滚；
+- `auto_usable` 必须有验证证据，不能只相信 LLM 的 confidence；
+- 无法安全判断的区域必须进入人工复核；
+- 规则、LLM 和上游解析器的职责不能混在一起。
 
-```python
-from document_parser import (
-    DocumentParserGateway,
-    ParsedDocument,
-    QualityPackage,
-    RoutingDecision,
-)
-```
+详细约定见：
 
-三人联调链固定为：
-
-```text
-ParseRequest -> RoutingDecision -> ParsedDocument -> QualityPackage
-```
-
-禁止下游模块直接依赖 Docling、MinerU、OCR 或 MarkItDown 的私有返回对象。
-
-## 当前 Gateway 调用
-
-```python
-import mimetypes
-from pathlib import Path
-
-from document_parser import DocumentParserGateway
-
-source = Path("document.pdf")
-gateway = DocumentParserGateway.from_environment()
-try:
-    result = gateway.parse_file(
-        source,
-        file_type=mimetypes.guess_type(source.name)[0]
-        or "application/octet-stream",
-    )
-finally:
-    gateway.close()
-
-print(result.markdown)
-print(result.provenance.parser_id)
-```
-
-现阶段该入口使用 MarkItDown；路由和三类 MVP Adapter 接入后仍应保持这一公开调用方式
-兼容。
-
-## 契约验证
-
-```powershell
-python -m pytest tests/test_contract_examples.py -q
-```
-
-测试会直接加载：
-
-- `examples/contracts/routing_decision.json`；
-- `examples/contracts/parsed_document.json`；
-- `examples/contracts/quality_package.json`。
-
-修改公共字段时，必须同时更新 Pydantic 模型、固定样例、测试、接口说明和 Spec。
-
-## 维护约束
-
-- 当前仓库是唯一代码基线；
-- 个人本地参考材料不进入 Git 仓库；
-- 路由层决定调用哪个模型，不产生质量结论；
-- Adapter 和统一层保存真实证据，不伪造缺失 bbox、表头或 OCR 置信度；
-- 质量层只做有证据的修复和关系绑定；
-- 前端只能通过后端 API 使用解析能力；
-- 公共协议不兼容变更必须提升 Schema 版本并经三人共同评审。
+- [质量修复 Agent Spec](specs/001-quality-layer-implementation/spec.md)
+- [Agno Agent 详细设计](specs/001-quality-layer-implementation/agno-agent-design.md)
+- [质量层进展](docs/quality-layer-progress.md)
+- [质量输入需求](docs/quality_input_requirements.md)
+- [质量契约决策](docs/quality-decisions.md)
+- [三方协作分工](docs/开发分工.md)
+- [公共契约模型](core/contracts.py)

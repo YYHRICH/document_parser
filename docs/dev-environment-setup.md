@@ -1,7 +1,7 @@
 # 开发环境搭建指南（换机/新环境）
 
 > 适用：`feature/quality-layer` 分支开发（质量层）
-> 更新：2026-08-18 ｜ 已验证环境：Windows 10 + Python 3.13
+> 更新：2026-08-18 ｜ 已验证环境：Windows 10 + Python 3.11.15
 
 ## 1. 拉取代码
 
@@ -28,6 +28,12 @@ python -m venv .venv
 requirements.txt 已包含：pydantic / markitdown / pywin32 / requests / pdfplumber / pytest。
 （`pdfplumber`、`requests` 为 tools/ 解析工具链依赖；docling 为可选，见第 4 节。）
 
+将仓库安装为可编辑包，确保无论 checkout 目录叫什么都可以使用 `document_parser` 导入：
+
+```powershell
+.venv/Scripts/python.exe -m pip install --editable . --no-deps --no-build-isolation
+```
+
 ## 3. API 密钥（.env，不入库）
 
 在仓库根目录创建 `.env`（`.gitignore` 已排除）：
@@ -49,7 +55,7 @@ MinerU 云 API + pdfplumber 兜底已满足开发；docling 本地解析需要�
 ```bash
 # a. 在纯英文路径建 venv（docling C++ 层读不了中文路径）
 python -m venv C:/dp_env
-C:/dp_env/Scripts/python.exe -m pip install docling torch==2.7.1 torchvision==0.22.0
+C:/dp_env/Scripts/python.exe -m pip install docling torch==2.7.1 torchvision==0.22.1
 
 # b. torch 2.13.0 在 Windows 有 c10.dll 加载 bug，必须固定 2.7.1（同上已固定）
 # c. 运行任何 docling 命令需禁用 JIT（本机无 MSVC 编译器）：

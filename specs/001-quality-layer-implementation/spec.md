@@ -1,42 +1,41 @@
-# 质量层实现规格与开发计划
+# 单文档质量修复 Agent 实现规格与开发计划
 
-> 分支：`feature/quality-layer`  
-> 状态：Draft v0.1  
-> 适用输入：`ParsedDocument 2.2`  
-> 适用输出：`QualityPackage 1.0`  
-> 目标：在不改变解析事实、不执行路由和解析器的前提下，完成证据驱动的质量检查、安全修复、结构关系绑定、质量准入和四件套落盘。
+> 分支：`feature/quality-layer`
+> 状态：Draft v0.2
+> 当前输入：解析器输出经 Adapter 转换后的统一质量文档视图
+> 适用输出：`optimized.md`、`canonical_document.json`、`quality_report.json` 和 `package_manifest.json`
+> 目标：让 LLM 主动检查并修复单个文档包的格式/结构问题，由确定性验证器定义合格状态、反馈修复结果并最终生成可审计产物。
 
 ---
 
 ## 1. 本 Spec 的目标
 
-本 Spec 用于指导 `feature/quality-layer` 的编码、测试和联调，解决以下问题：
+本 Spec 指导质量层从“规则检查流水线”演进为“单文档质量修复 Agent”。上游负责选择解析器、统一输出和多文档并行；本分支只处理一次一个文档包。
 
-1. 明确质量层的模块边界、入口、执行顺序和内部数据模型；
-2. 将表格绑定、标题树、引用关系、完整性和来源检查拆为可测试规则；
-3. 定义白名单修复、能力矩阵和 Gate 的确定性推导方式；
-4. 定义 LLM 可选辅助的安全边界、降级行为和测试方法；
-5. 给出里程碑、提交拆分、测试矩阵、验收标准和联调清单。
+核心原则是：坏情况不要求穷举，合格状态必须可验证。LLM 负责主动理解文档、发现未被规则覆盖的格式问题并输出修复后的统一文档；质量工具负责读取上下文、验证 Schema、检查内容不变量、重跑确定性规则、生成审核文件和回滚失败修复。
 
 ### 1.1 成功标准
 
-- 同一输入、同一配置重复运行，产物内容、稳定 ID 和 SHA-256 一致；
-- 每个 `verified` binding/relation/capability 都能回指 ParsedDocument 中的真实证据；
-- 缺少证据时安全降级，不生成伪造文字、标题、表头、数字、bbox 或来源关系；
-- no-op 是合法输出，且不会产生虚假的 `applied_repairs`；
-- 五种 Gate 状态通过统一决策器推导，规则模块不得自行指定最终状态；
-- 无 LLM、LLM 超时、LLM 返回非法结构时，纯规则主流程仍可完成且结果不被错误升级；
-- 四个 golden 样例和新增的 no-op、reparse、rejected 测试均通过；
-- 原有契约回归测试持续通过。
+- 任意当前阶段解析器结果都能通过 Adapter 进入同一个 `DocumentPackageView`；上游统一层完成后只替换 Adapter；
+- 单文档 Agent 能够在有问题时迭代检查和修复，无需预先枚举所有坏样例；
+- 修复候选符合统一文档 Schema，block/table/cell ID、来源定位和事实内容不会被无证据改写；
+- 修复后重新生成 `optimized.md`、`canonical_document.json` 和 `quality_report.json`，三者内容一致；
+- `quality_report.json` 能逐对象标记 `auto_usable`、`manual_review_required` 或 `rejected`；
+- 通过确定性验证和规则重跑后才接受修复，LLM 不能自行宣布通过；
+- 修复失败、无改善、超预算或内容不变量破坏时，保留原版本并回滚或转人工复核；
+- LLM 关闭、超时、非法输出或不可用时，确定性检查和三件套生成仍可运行；
+- 相同输入、相同配置和相同缓存结果重复运行时，最终业务产物和 manifest 哈希稳定；
+- 既有契约、Golden、no-op、拒绝和原子落盘测试持续通过。
 
 ### 1.2 非目标
 
-- 不选择或执行 Docling、MinerU、OCR；
-- 不实现 Adapter、后端或 Web；
-- 不修改 ParsedDocument 中的解析事实；
-- 不使用 LLM 对原文进行自由改写；
-- 不根据语义相似度把不唯一关系升级为 `verified`；
-- 不在本分支单方面改变公共 Pydantic 契约字段语义。
+- 不在质量层选择或执行 Docling、MinerU、OCR 或其他解析器；
+- 不负责多文档批处理、并行调度、队列、重试编排或跨文档关系；
+- 不依赖任何解析器的私有对象；
+- 不让 LLM 修改正文事实、数字、单位、日期、公式、代码、URL、原始 ID、页码或 bbox；
+- 不允许 LLM 执行任意 Python、Shell、文件系统写入或网络操作；
+- 不把 LLM 的自由文本直接当作最终 Markdown、canonical JSON 或审核结论；
+- 不要求规则列举所有版式错误；规则主要负责已知不变量、证据约束和修复后验收。
 
 ---
 
@@ -54,6 +53,13 @@
 | D-06 | `reparse_recommendation.parser_id` 的允许值 | 由路由分支提供 parser catalog 和静态建议映射 | 无合法 parser_id 时不能构造伪推荐；保持人工复核并报告配置缺口 |
 | D-07 | canonical block content 的规范化规则 | 默认保留输入 `markdown`，只允许白名单修复产生变化 | 未确认的格式优化全部 no-op |
 | D-08 | 只有未修复 info issue 时应为 pass 还是 pass_with_warnings | 建议 info 不阻塞 pass，warning 才触发 pass_with_warnings；以产品展示约定为准 | 在 Gate 配置中显式固定，禁止不同规则自行解释 |
+| D-10 | LLM 在质量层中的角色 | 单文档正式修复 Agent：LLM 主动检查、输出修复候选并根据验证反馈继续修复；默认可关闭 | 关闭时运行确定性检查/审核路径，不假装完成 LLM 修复 |
+| D-17 | 临时输入与上游统一层 | 当前以各解析器 Adapter 映射到 `DocumentPackageView`；上游统一层完成后接入新 Adapter | Agent、工具和验证器只依赖内部视图 |
+| D-18 | LLM 修复输出形态 | LLM 返回结构化修复后的文档或局部区域；系统确定性生成 Markdown、canonical JSON 和审核文件 | 非结构化自由文本只作为失败输入，不直接提交 |
+| D-19 | 修复接受条件 | 由 Schema、内容不变量、来源约束和规则重跑共同决定；LLM 可以改善状态，但不能自行解除 blocker | 验证失败则反馈给 LLM、回滚或转人工 |
+| D-20 | 审核粒度 | `quality_report.json` 同时提供文档级状态和 block/table/asset/reference 级可用性结论 | 无法定位时至少给出页码、block 或 issue 范围 |
+| D-21 | 工具传输 | 核心先定义 Python 工具协议；MCP 作为可选外部传输层，不让核心逻辑依赖 MCP 运行时 | 离线测试使用 fake tool/agent |
+| D-22 | Agent 框架选择 | 使用 Agno 负责单 Agent 运行、工具循环、结构化输出和 session；revision、验证、回滚和产物仍由质量层负责 | 不使用 Team/多 Agent；没有 Agno 时运行确定性路径 |
 
 ### 2.1 Golden 单一事实源建议
 
@@ -71,101 +77,52 @@
 
 ### 3.1 公共入口
 
-建议对外只暴露一个主要入口：
+质量层保留确定性入口，同时增加单文档 Agent 入口：
 
 ```python
-def run_quality(
-    parsed_document: ParsedDocument,
-    *,
-    config: QualityConfig | None = None,
-    llm_advisor: LLMAdvisor | None = None,
-) -> QualityPackage:
-    ...
+def run_quality(document, *, config=None) -> QualityPackage:
+    """确定性检查、canonical 构建和审核输出；不调用 LLM。"""
+
+
+def run_quality_repair(document, *, config=None, llm_client=None) -> QualityPackage:
+    """单文档质量修复 Agent；内部迭代后输出最终 QualityPackage。"""
 ```
 
-落盘操作可由独立函数承担，避免规则测试必须访问文件系统：
+`document` 当前由各解析器 Adapter 转为内部 `DocumentPackageView`；在上游统一层完成前，可直接由 `ParsedDocument 2.2` 适配。多文档并行由调用方负责。
 
-```python
-def write_quality_package(
-    package: QualityPackage,
-    output_dir: Path,
-) -> PackageManifest:
-    ...
-```
-
-如果现有契约要求 `run_quality()` 同时落盘，可在入口中组合两个函数，但内部仍保持计算与 I/O 分离。
-
-### 3.2 执行流水线
+### 3.2 单文档 Agent 流水线
 
 ```text
-ParsedDocument 校验
-  → EvidenceContext 构建
-  → applicability / capability 前置判定
-  → 确定性规则执行
-  → 生成 issues / candidates / repair proposals
-  → 白名单 repair 校验与应用
-  → 受影响规则重跑
-  → 可选 LLM 顾问调用（只处理未决候选）
-  → LLM 建议结构校验与证据引用校验
-  → canonical document 构建
-  → capability matrix 汇总
-  → Gate 推导
-  → QualityPackage Pydantic 校验
-  → 稳定序列化、哈希与原子化落盘
+输入文档包 / Adapter
+  → 建立稳定 revision 和文档索引
+  → 生成摘要、问题提示和可分页上下文
+  → LLM 主动检查文档区域并输出修复候选
+  → Schema / 内容不变量 / 来源约束校验
+  → 重新构建 canonical 与审核结果
+  → 确定性规则和 Gate 重跑
+  → 通过：提交当前 revision
+  → 未通过：反馈验证结果并继续下一轮
+  → 无改善、超预算或不可安全解释：回滚并人工复核
+  → 三件套 + manifest 原子落盘
 ```
 
-### 3.3 建议目录
+规则不负责发现所有异常；Agent 可以通过只读工具主动检查未被规则覆盖的结构问题。规则和验证器负责定义“好的文档”必须满足的可枚举条件。
+
+### 3.3 内部模块建议
 
 ```text
 quality/
-├── __init__.py
-├── api.py
-├── config.py
-├── context.py
-├── models_internal.py
-├── ids.py
-├── pipeline.py
-├── evidence/
-│   ├── resolver.py
-│   ├── requirements.py
-│   └── availability.py
-├── rules/
-│   ├── base.py
-│   ├── completeness.py
-│   ├── provenance.py
-│   ├── tables.py
-│   ├── headings.py
-│   └── references.py
-├── repairs/
-│   ├── base.py
-│   ├── registry.py
-│   └── markdown_safe.py
-├── builders/
-│   ├── canonical.py
-│   ├── markdown.py
-│   └── source_locator.py
-├── gates/
-│   ├── capabilities.py
-│   ├── evaluator.py
-│   └── invariants.py
-├── llm/
-│   ├── protocol.py
-│   ├── schemas.py
-│   ├── prompts.py
-│   ├── validator.py
-│   └── cache.py
-└── packaging/
-    ├── canonical_json.py
-    ├── hashing.py
-    └── writer.py
-
-tests/quality/
-├── unit/
-├── integration/
-├── contract/
-├── golden/
-└── fixtures/parsed_documents/
+├── adapters/                    # 不同输入到统一视图
+├── agent/                       # 单文档状态机、上下文、LLM loop
+├── tools/                       # 读取、候选提交、验证、事务和回滚
+├── rules/                       # 已知不变量与确定性检查
+├── repairs/                     # 可回放的确定性修复能力
+├── builders/                    # Markdown/canonical/review 构建
+├── gates/                       # capability 和最终 Gate
+└── packaging/                   # 序列化、manifest、原子落盘
 ```
+
+核心工具先定义为 Python 协议；需要让外部 LLM 通过 MCP 调用时，再提供 MCP wrapper。工具不得暴露任意代码执行或任意文件写入。
 
 ---
 
@@ -451,50 +408,58 @@ evidence 保存 marker 原文、字符偏移、归一化 label 和全部候选 I
 
 ---
 
-## 6. 白名单修复
+## 6. 文档修复和内容不变量
 
-### 6.1 Repair 约束
+### 6.1 修复候选
 
-每个 repair 必须包含：
+LLM 不直接写最终文件，而是返回符合 Schema 的 `RepairedDocumentCandidate`，可以覆盖整篇文档或一个有明确边界的区域。候选必须携带：
 
-- 稳定 `rule_id`；
-- before/after；
-- 受影响 block IDs；
-- 结构化证据；
-- 可回放参数；
-- 幂等性测试；
-- 失败后的回滚行为。
+- `base_revision`；
+- 受影响 block/table/asset/reference ID；
+- 修复后的结构内容；
+- 简短修复原因；
+- 证据引用；
+- 可选的受影响范围和下一步建议。
 
-### 6.2 MVP 可接受修复
+系统根据候选计算 before/after 差异和新的 revision，不信任 LLM 自报的哈希或审核结论。
 
-建议第一版只允许低风险、可证明等价的修复，例如：
+### 6.2 允许改变的内容
 
-- 行尾和换行规范化，但需团队先确定 canonical serialization；
-- 去除明确的行尾空白；
-- 在表格网格 verified 且所有文本完全来自 cells 时，重新渲染损坏的 Markdown 表格；
-- 修复明确的 Markdown 分隔符结构，不改变单元格文字；
-- 修复完全相同、来源定位相同且上游明确标记为重复的渲染副本。
+- Markdown 标记、空行和表格分隔结构；
+- block 类型、层级、父子关系和阅读顺序；
+- table/cell 的网格、span、header role、column path 和续表关系；
+- 图片、图注、脚注和引用的结构关系；
+- canonical 中由上述结构确定性派生的元数据。
 
-### 6.3 MVP 禁止修复
+### 6.3 内容不变量
 
-- 猜测 OCR 字符；
-- 改写句子；
-- 补数字、公式、标题、表头或图片描述；
-- 根据相邻列推算缺失值；
-- 根据视觉平均值伪造 bbox；
-- 仅凭 LLM 建议改变事实内容；
-- 为制造唯一性而给 row_key 或 reference label 追加序号。
+修复前后必须保持：
 
-### 6.4 LLM 建议不等于 repair
+- block/cell 的可见文本、数字、单位、日期、公式、代码和 URL；
+- 原始稳定 ID、source locator、页码、bbox 粒度和 provenance；
+- 输入中没有的文字、数字、bbox、图片描述和来源关系不得出现；
+- 不能通过删除或改写文本来掩盖质量问题。
 
-LLM 对标题层级、续表或引用目标给出的建议属于 advisory decision，不应无条件写入 `applied_repairs`。只有实际改变 `optimized_markdown` 或 canonical 内容且满足白名单定义的操作，才是 repair。
+若结构修复需要改变事实内容，候选必须拒绝并转人工复核。
 
-如果公共契约暂时没有 suggestion audit 字段：
+### 6.4 迭代、回滚和接受
 
-- relation/binding 的 evidence 可记录 `suggestion_id`、模型版本和证据引用；
-- 接受的 LLM 关系最高仍为 `inferred`；
-- 调用计数保留在内部日志和测试结果中；
-- 不私自增加 `quality_report.metrics`。
+每轮修复都在独立 revision 中执行：
+
+```text
+snapshot(revision N)
+  → LLM candidate
+  → schema/content/provenance validation
+  → canonical + review rebuild
+  → rules/Gate rerun
+  → commit revision N+1 or rollback
+```
+
+接受条件由验证器和重跑结果决定，不由 LLM 自行决定。某个 blocker 只有在修复后确定性检查确认消失时才能解除；LLM 可以导致 `verified` 结果，但不能直接声明 `verified`。
+
+### 6.5 不应硬编码的部分
+
+不为每种文档、解析器或样例编写“遇到 X 就改成 Y”的规则。规则和工具只固定统一文档模型的安全边界；具体发现、修复范围、修复顺序和修复内容由 LLM 根据当前文档决定。
 
 ---
 
@@ -596,125 +561,114 @@ def decide_gate(issues, capabilities, recommendation):
 
 ---
 
-## 9. LLM 可选顾问层
+## 9. 单文档质量修复 Agent
 
-### 9.1 是否应在 MVP 启用
+### 9.1 角色
 
-建议分两阶段：
+M6 不再是只给候选的 LLM 顾问层。LLM 是单文档的正式格式/结构修复执行者：
 
-- MVP-A：纯规则主链路和全部 Gate 不变量先完成；
-- MVP-B：在不改变公共输出兼容性的前提下，加入可关闭的 LLM advisor。
+- 主动阅读统一文档包，而不是只处理规则已列出的候选；
+- 识别规则无法穷举的版式和结构异常；
+- 输出修复后的统一文档或局部区域；
+- 根据验证工具返回的问题继续修复；
+- 在无法安全判断时主动停止并请求人工复核。
 
-LLM 不应成为 sdp-004、sdp-006 正例通过的必要条件，也不应成为任何契约测试的默认依赖。
+LLM 不修改事实内容，也不直接调用解析器、Shell 或文件系统。
 
-### 9.2 合理介入点
+### 9.2 读取上下文
 
-当前三个介入点合理，但仅适合生成候选：
+文档很大时采用分层读取：
 
-1. 跨页表格 continuation 候选排序；
-2. 缺 level 或跳级标题的候选父节点/级别；
-3. 引用目标多候选时的候选排序和解释。
+1. 文档级摘要和目录；
+2. 章节、页或 block 范围；
+3. 表格完整网格及相邻页；
+4. 当前问题前后的局部上下文；
+5. 修复后全局验证结果。
 
-可选的第四类场景：对 issue 生成面向人工复核的简短说明。该说明不能影响 Gate，也不能写入事实字段。
+工具必须支持 cursor/limit 或稳定 region ID，不能要求一次把整个文档放进上下文。
 
-不建议介入：
+### 9.3 工具协议
 
-- OCR 文字纠错；
-- 缺失数字和公式补全；
-- bbox 推断；
-- 表格缺失值填充；
-- 无引用标签时仅凭主题语义建立 verified 关系。
+第一版工具分为：
 
-### 9.3 状态上限
+```text
+get_document_outline
+get_document_summary
+get_region_context
+get_table_context
+submit_repaired_candidate
+validate_candidate
+rerun_quality_checks
+commit_revision
+rollback_revision
+```
 
-即使 evidence_refs 真实存在，校验器通常只能证明“LLM 引用了这些证据”，不能证明其语义结论必然正确。因此：
+`submit_repaired_candidate` 接收结构化文档或区域，不接收任意脚本。MCP 只作为工具协议的可选传输，不改变核心验证逻辑。
 
-- 纯 LLM 结论状态上限固定为 `inferred`；
-- `verified` 必须由确定性规则独立得出；
-- LLM 不能把 manual/reparse blocker 移除；
-- LLM 可以帮助缩小人工候选、补充解释，但不能成为 false-pass 的解除条件。
-
-### 9.4 建议 Schema
+### 9.4 修复候选 Schema
 
 ```json
 {
   "schema_version": "1.0",
-  "suggestions": [
-    {
-      "suggestion_id": "stable-id",
-      "target_type": "table_continuation",
-      "target_ids": ["table-a", "table-b"],
-      "proposed_action": {
-        "action": "treat_as_continuation",
-        "candidate_mapping": [[0, 0], [1, 1]]
-      },
-      "evidence_refs": [
-        {
-          "object_type": "table",
-          "object_id": "table-a",
-          "field_path": "cells",
-          "value_sha256": "..."
-        }
-      ],
-      "confidence": 0.78,
-      "reasoning": "short explanation"
-    }
+  "base_revision": 3,
+  "scope": {
+    "type": "region",
+    "ids": ["table-03", "block-117"]
+  },
+  "repaired_document": { "...": "统一文档结构" },
+  "reasoning": "简短原因，不作为事实证据",
+  "evidence_refs": [
+    {"object_type": "table", "object_id": "table-03", "field_path": "cells"}
   ]
 }
 ```
 
-使用判别联合类型，为每种 `target_type` 定义独立的 `proposed_action` Pydantic 模型，禁止自由字典直接进入执行层。
+LLM 可以返回整篇文档或局部修复区域；系统负责合并、计算差异并生成三份最终产物。LLM 返回的 `reasoning` 不能替代 evidence，也不能直接决定审核状态。
 
-### 9.5 Prompt 约束
+### 9.5 验证顺序
 
-Prompt 只提供最小证据投影：
+按以下顺序验证每个候选：
 
-- 目标对象 ID；
-- 必要原文；
-- header/cell 坐标和 span；
-- page/bbox；
-- 已有确定性规则结论；
-- 允许的 action 枚举；
-- 明确要求未知时返回空 suggestions。
+1. JSON/Schema 合法；
+2. base revision 仍然是当前版本；
+3. 所有 ID、scope 和字段路径存在；
+4. 结构满足统一文档契约；
+5. 内容、数字、公式、URL 和来源不变量保持；
+6. table grid、heading tree、relation target 等局部不变量满足；
+7. 重新构建 `canonical_document.json` 和 `quality_report.json`；
+8. 重跑确定性规则和 Gate；
+9. 无改善、冲突或超过预算时回滚并转人工。
 
-不得向模型提供“请修复文档”之类开放指令。必须要求只返回 schema 对象，不使用 Markdown code fence。
+### 9.6 审核结果
 
-### 9.6 validate_suggestion
+审核文件对文档和对象分别给出：
 
-按顺序校验：
+```text
+auto_usable
+manual_review_required
+rejected
+```
 
-1. JSON/schema 合法；
-2. target_type 和 action 在白名单；
-3. target_ids 存在且类型正确；
-4. evidence_refs 字段路径存在；
-5. value_sha256 与当前证据一致；
-6. 建议未引入输入中不存在的文字、数字、bbox 或 ID；
-7. 建议没有试图提升到 verified；
-8. 与确定性规则冲突时拒绝；
-9. 接受后仍保留原有 blocker，除非确定性规则重跑独立解决。
+`auto_usable` 只能由验证器和规则重跑支持；LLM 的 confidence/reasoning 只能作为解释，不得单独放行。
 
-### 9.7 成本、延迟和缓存
+### 9.7 预算、缓存和降级
 
-- 只对规则产生的 manual/inferred 候选调用；
-- 按文档批量提交同类候选，设置每批上限；
-- 限制证据投影长度，不发送完整 native artifacts；
-- 单次超时和整文档总预算均可配置；
-- cache key 包含 parser provenance、证据投影哈希、prompt version、schema version、model ID；
-- 失败采用负缓存短 TTL，防止同一运行反复请求；
-- cache 命中结果仍必须重新执行 evidence hash 校验。
+- 单文档最大轮数、总耗时、输入/输出 token 和局部重试次数可配置；
+- 相同 `document_id + revision + context_hash + prompt_version + schema_version + model_id` 可缓存；
+- 缓存命中仍要重新执行内容和来源哈希校验；
+- client 未配置、超时、非法 Schema、内容变化、工具失败或无改善时，保留原 revision；
+- LLM 不可用不能把文档错误降级，也不能伪造修复成功；最终审核文件应明确剩余问题。
 
-### 9.8 降级行为
+### 9.8 结束条件
 
-以下情况统一降级纯规则模式：
+Agent 在以下情况结束：
 
-- client 未配置；
-- API key 不存在；
-- 超时或网络错误；
-- schema 解析失败；
-- evidence 校验失败；
-- 超出调用预算。
+- 所有适用验证通过且不存在 blocker；
+- 剩余问题均已明确标为人工复核；
+- 文档被拒绝，无法安全解释；
+- 达到预算或连续若干轮没有改善。
 
-降级不得改变原本规则产生的 state。是否向公共 quality_report 增加 warning，需按 D-05 决定；默认只记内部可观测日志，避免“可选顾问不可用”导致文档质量被错误降级。
+多文档并行、任务重试和队列管理不属于 Agent，由上游负责。
 
 ---
 
@@ -782,68 +736,40 @@ quality_report 不记录自身哈希，manifest 不记录自身哈希。
 
 ### 12.1 测试层级
 
-1. **Unit**：每条规则的最小正例、边界和反例；
-2. **Contract**：ParsedDocument/QualityPackage validator 和 Gate 不变量；
-3. **Integration**：完整 `run_quality()`，不落盘；
-4. **Packaging**：四件套、哈希、稳定序列化和原子写入；
-5. **Golden**：四个共享样例；
-6. **Property/Metamorphic**：稳定性、幂等性、证据不伪造；
-7. **LLM Offline**：fake advisor、非法返回、超时和无 client。
+1. **Adapter**：不同解析器临时输出都能映射到同一 `DocumentPackageView`；
+2. **Unit**：规则、canonical builder、内容不变量和审核汇总；
+3. **Contract**：输入/输出 Schema、Gate 不变量和三件套；
+4. **Integration**：单文档 Agent 的 inspect → repair → validate 循环；
+5. **Packaging**：稳定序列化、manifest、原子写入和篡改检测；
+6. **Golden**：共享样例和已知冲突；
+7. **LLM Offline**：Fake agent、合法修复、非法内容、超时、无改善、回滚和预算耗尽；
+8. **Property/Metamorphic**：内容保真、幂等、稳定 ID 和不会因删除证据而升级。
 
-### 12.2 Golden 4 验收矩阵
-
-| 样例 | 必须验证 | 禁止出现 | 预期 Gate |
-| --- | --- | --- | --- |
-| sdp-004 | 四个确定 column_path；合并表头按 cell identity 去重；row_key/value/source 正确 | 拍平或丢失父表头、伪造 cell bbox | pass，待 D-01 解决 |
-| sdp-005 | 页内确定 binding 保留；漂移列列出 evidence；能力阻塞准确 | 为追求完整而错误跨页绑定 | 默认 manual_review_required；有合法重解析映射时可 reparse |
-| sdp-006 | 标题树 verified；数字引用唯一对应；关系 ID 稳定 | 无 marker 证据的引用、跳过唯一性检查 | pass |
-| sdp-007 | 输出全部候选；歧义关系不 verified；blocking reason 明确 | 静默选择第一个候选 | manual_review_required |
-
-### 12.3 必增合成场景
+### 12.2 Agent 必测场景
 
 | 场景 | 断言 |
 | --- | --- |
-| no-op | optimized markdown 与输入保持约定一致；repairs 为空 |
-| cell bbox 缺失 | locator 使用 table bbox；不存在计算出的 cell bbox |
-| table capability unavailable | 表格规则安全跳过并给出 reason |
-| span 冲突 | grid 不 verified；不生成错误 binding |
-| H1→H3 | inferred + level jump issue |
-| heading_level 缺失 | 不生成 verified parent_child |
-| citation 0 候选 | missing issue，不生成 verified relation |
-| citation 2 候选 | manual review，保存全部候选 |
-| OCR failed + 内容不完整 | 合法 recommendation 存在时 reparse |
-| 输入 ID 冲突 | rejected 或 manual，取决于是否仍可安全区分 |
-| manifest 缺文件 | Pydantic/packaging 校验失败 |
+| LLM 发现规则未知的格式问题 | 候选可被 Schema 接受，修复后生成一致三件套 |
+| 修复改变正文数字 | 候选拒绝，原 revision 保留 |
+| 表格 span/续表修复 | 网格、canonical 和审核结果一致 |
+| 验证失败 | 反馈给 Agent，未超过预算时继续修复 |
+| 连续无改善 | 停止并标记人工复核，不死循环 |
+| LLM 超时/非法输出 | 回滚，确定性审核路径仍可运行 |
+| 部分区域可用、部分区域歧义 | review report 分对象标记可用和人工复核 |
+| 同一候选重复提交 | revision/repair 幂等，不重复污染输出 |
+| 大文档 | 使用摘要、cursor 和局部上下文，不发送整篇全文 |
 
-### 12.4 性质测试
+### 12.3 Golden 和安全断言
 
-- 输入 blocks/tables 数组被随机打乱，输出业务排序和 ID 不变；
-- 同一输入运行两次，JSON bytes 和 hashes 一致；
-- 所有 verified evidence refs 均能在 ParsedDocument 中解析；
-- 输出 bbox 必须来自输入中的某个合法 bbox；
-- repair 回放结果一致，第二次运行不重复产生相同 repair；
-- 增加无关 info block 不应改变既有 table binding ID；
-- 删除必要证据后，状态只能保持或降级，不得升级；
-- LLM 开启后不得把纯规则 manual/reparse 结果升级为 pass。
+保留 sdp-004、sdp-005、sdp-006、sdp-007 的现有能力断言，并额外断言：
 
-### 12.5 LLM 离线测试
+- 修复前后事实文本和数字集合保持；
+- 所有 `auto_usable` 对象都有可解析证据和通过的验证项；
+- `manual_review_required` 对象保留完整候选和原因；
+- 无法安全解释的输入不会被 LLM 输出伪造为 pass；
+- 三件套由同一 revision 生成，manifest 哈希可复算。
 
-实现 `FakeLLMAdvisor`，覆盖：
-
-- 返回一个 schema 合法、证据真实的建议 → 接受但最高 inferred；
-- 引用不存在的 ID → 拒绝；
-- value hash 不一致 → 拒绝；
-- 返回新增文字/bbox → 拒绝；
-- 返回非法 JSON/schema → 降级；
-- 抛出 timeout → 降级；
-- client=None → 不调用且纯规则结果相同；
-- 相同证据第二次调用 → 命中缓存；
-- evidence 变化 → 缓存失效；
-- LLM 建议与确定性规则冲突 → 规则优先。
-
-### 12.6 回归命令
-
-建议最终形成：
+### 12.4 回归命令
 
 ```bash
 python -m pytest tests/test_contract_examples.py -q
@@ -853,7 +779,17 @@ python -m pytest tests/quality/integration -q
 python -m pytest tests/quality/golden -q
 ```
 
-在 fixtures 未落地前，golden 测试应明确 skip reason，不能用空 fixture 假装通过。
+### 12.5 Fake Agent 覆盖
+
+Fake Agent 至少覆盖：
+
+- 主动发现并修复一个规则未列出的排版问题；
+- 返回 Schema 合法但内容被篡改的候选，必须拒绝；
+- 返回未知 ID、非法 span、悬空 relation，必须拒绝；
+- 修复后验证仍失败，继续一轮；
+- 连续无改善，停止并人工复核；
+- timeout、非法 JSON、无 client、工具异常全部回滚；
+- 相同 revision/context 命中缓存，证据变化后缓存失效。
 
 ---
 
@@ -930,18 +866,21 @@ python -m pytest tests/quality/golden -q
 
 完成定义：相同输入重复打包，产物 bytes 和 hashes 一致。
 
-### M6：LLM 顾问层（可选增强）
+### M6：单文档质量修复 Agent
 
 交付：
 
-- LLMAdvisor protocol；
-- 判别联合 Schema；
-- evidence projection、validator、cache；
-- Fake advisor 和降级测试；
-- 成本/延迟配置；
-- 公共 metrics 是否加入的契约决定。
+- `DocumentPackageAdapter` 和统一质量文档视图；
+- 单文档 Agent 状态机、revision、预算和结束条件；
+- 摘要、分页、区域和表格上下文读取工具；
+- 结构化 `RepairedDocumentCandidate` Schema；
+- LLM 主动检查、修复、验证反馈和回滚循环；
+- 内容/数字/来源不变量验证；
+- 三件业务文件生成和逐对象审核结果；
+- Fake Agent、超时、非法输出、无改善和大文档测试；
+- 可选 MCP wrapper，不让核心逻辑依赖 MCP 运行时。
 
-完成定义：关闭或破坏 LLM 后，纯规则输出不会变差；LLM 无法制造 verified 或解除 blocker。
+完成定义：在单文档范围内，LLM 能发现并修复规则未穷举的格式问题；修复不会改变事实内容；验证失败会继续修复或安全转人工；关闭或破坏 LLM 不会产生错误放行，三件套和 manifest 始终一致。
 
 ### M7：联调和交付
 
@@ -973,7 +912,7 @@ python -m pytest tests/quality/golden -q
 10. `feat(quality): add replayable repair registry`
 11. `feat(quality): build canonical document and markdown`
 12. `feat(quality): package artifacts with stable hashes`
-13. `feat(quality): add optional llm advisor`
+13. `feat(quality): add single-document repair agent`
 14. `test(quality): enable shared golden fixtures`
 15. `docs(quality): publish input requirements and integration guide`
 
@@ -1024,8 +963,9 @@ python -m pytest tests/quality/golden -q
 | 表格算法过度猜测 | 错误字段绑定 | cell identity 去重、唯一性检查、局部降级 |
 | `unavailable` 被误当 blocker | 无表格文档误拒绝 | 内部 applicability 独立计算 |
 | reparse 推荐越界 | 质量层变相路由 | 只使用路由团队提供的静态 catalog，不执行推荐 |
-| LLM 幻觉 | 无证据事实进入产物 | typed evidence refs、hash 校验、最高 inferred、规则优先 |
-| LLM 不稳定 | 测试波动、延迟增加 | 默认关闭、fake client、缓存、预算、纯规则降级 |
+| LLM 幻觉或丢内容 | 修复候选改变事实或删除结构 | typed candidate、内容/来源不变量、revision、回滚、规则重跑 |
+| LLM 不稳定或死循环 | 延迟、成本、重复修复 | 单文档预算、无改善停止、缓存、fake agent、人工复核 |
+| Agent 只看到局部而漏修 | 文档仍有未知格式问题 | 文档摘要、分区扫描、全局复检、审核文件保留剩余风险 |
 | 哈希递归或不稳定 | manifest 永远不一致 | report 不哈希自身、固定序列化、hash golden |
 
 ---
@@ -1066,20 +1006,23 @@ python -m pytest tests/quality/golden -q
 - [ ] 写文件失败不遗留半成品；
 - [ ] 原有契约回归测试通过。
 
-### LLM
+### 单文档 Agent
 
-- [ ] LLM 默认可关闭；
-- [ ] 无 key/超时/非法返回可降级；
-- [ ] LLM 建议最高 inferred；
-- [ ] LLM 不能解除确定性 blocker；
-- [ ] evidence ref 和 hash 均校验；
-- [ ] fake advisor 覆盖接受、拒绝、缓存和失败路径；
-- [ ] 公共 metrics 字段已获得契约确认，或未写入公共输出。
+- [ ] Adapter 能把当前解析器输出映射到统一质量视图；
+- [ ] LLM 默认可关闭，关闭后确定性审核仍可运行；
+- [ ] Agent 能主动检查规则未列举的格式问题；
+- [ ] 修复候选通过 Schema、内容、来源和 revision 校验；
+- [ ] 修复失败、无改善、超时和非法返回会回滚或转人工；
+- [ ] Agent 具有最大轮数、时间/token 预算和明确结束条件；
+- [ ] `auto_usable` 只能由验证器和规则重跑支持；
+- [ ] 三件业务文件和 manifest 来自同一 revision；
+- [ ] Fake Agent 覆盖发现、修复、拒绝、缓存、回滚和失败路径；
+- [ ] 多文档并行不进入质量 Agent，由上游负责。
 
 ---
 
 ## 18. 推荐的实际开工顺序
 
-第一轮先完成 M0 + M1，建立证据模型、能力矩阵和 Gate 不变量；第二轮完成标题树和数字引用，用较简单的关系能力验证架构；第三轮集中实现表格网格、column_path 和跨页降级；随后补 canonical/packaging；最后再接入 LLM 顾问层。
+先保持 M1-M5 的确定性规则、canonical、Gate 和 packaging 稳定；然后实现临时 Adapter 和单文档 Agent 的读/修/验循环；再接入真实 LLM、长文档上下文、缓存和预算；最后接入上游正式统一文档包。
 
-此顺序的关键是先稳定“什么时候不得通过”，再逐步增加“什么时候可以 verified”。这样即使上游 fixtures 尚未完成，质量层也能以合成数据安全推进，并在真实 ParsedDocument 到位后快速联调。
+关键顺序是：先定义“什么是合格文档”和“什么绝对不能改”，再让 LLM 在这些边界内主动发现和修复未知问题。这样规则不需要穷举所有坏情况，Agent 也不能用自由改写绕过验收。

@@ -9,13 +9,13 @@
 | M0 契约冻结与骨架 | ✅ 完成 | D-01~D-16 决策、quality/ 包骨架、内部模型、稳定 ID、Gate 不变量测试 |
 | M1 完整流水线 | ✅ 完成 | EvidenceContext、QL-CONT/PROV 规则、能力矩阵、Gate 五态、run_quality 打通 |
 | M2 标题树与数字引用 | ✅ 完成 | QL-HDG 树算法 + 层级粒度检测、QL-REF 参考索引 + 唯一性绑定 |
-| M3 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表（QL-TBL-007） |
+| M3 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
 | M4 白名单修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
-| M5 四件套落盘 | ⬜ 待办 | write_quality_package 原子化写入 |
-| M6 LLM 顾问层 | ⬜ 待办 | MVP-B 可关闭增强（D-10） |
+| M5 四件套落盘 | ✅ 完成 | 确定性序列化、manifest 校验、原子化写入和篡改检测 |
+| M6 单文档质量修复 Agent | ⬜ 待办 | Agno 运行时、Adapter、修复循环和审核输出 |
 | M7 联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
 
-测试状态：**167 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）
+测试状态：**199 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）
 
 ## 二、已实现能力
 
@@ -36,7 +36,7 @@ tools/
 ```text
 ParsedDocument 2.2
   → EvidenceContext（索引 + 能力判定）
-  → 14 条规则（CONT/PROV/HDG/REF/TBL/RPR）
+  → 15 条规则（CONT/PROV/HDG/REF/TBL/RPR）
   → 能力矩阵（6 项标准能力 + 观测项）
   → Gate 五态决策（唯一裁判）
   → QualityPackage 1.0（含可复算 SHA-256 绑定，四件套内存版）
@@ -50,7 +50,7 @@ ParsedDocument 2.2
 | QL-PROV-001~004 | 来源可回溯、bbox 合法、artifact 哈希、capability reason |
 | QL-HDG-001/004 | 标题字段、stack 建树 + 层级粒度可疑检测（编号重建 inferred） |
 | QL-REF-001/004 | 参考索引恢复（顺序编号）、数字 marker 唯一性绑定 |
-| QL-TBL-004/006/007 | column_path/row_key/binding、跨页续表识别 |
+| QL-TBL-004/006/007/008 | column_path/row_key/binding、跨页续表与列漂移识别 |
 | QL-RPR-001/002 | 行尾空白、表格分隔行修复（幂等） |
 
 ### 质量红线（持续遵守）
@@ -100,13 +100,13 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 - D-07：canonical content 默认保留输入，白名单修复才变
 - D-08：info 不阻塞 pass
 - D-09：cell 身份 = (table_id, 行, 列) 临时方案，等朱 cell_id
-- D-10：MVP-A 纯规则先行，LLM 二期可关闭
+- D-10：确定性规则作为基础和降级路径，M6 接入可关闭的单文档质量修复 Agent
 - D-12：fixtures 用真实解析 + 合成
 - D-16：4 个 golden 样本两份标注均漂移，已登记 KNOWN_CONFLICTS 待数据负责人
 
 ## 六、已知限制（诚实清单）
 
-1. 跨页表格**不合并**：页内绑定保留，跨页关系单独表达（table_continuation），列漂移检测仅表头级
+1. 跨页表格**不合并**：页内绑定保留，跨页关系单独表达（table_continuation），列漂移检测包含表头顺序与可用 cell bbox 几何证据
 2. 作者-年份引用（如 (Zhang, 2023)）为二期能力，当前只做数字引用
 3. MinerU/docling 标题层级粒度粗（全平）→ 树全部 inferred，需朱的正式 Adapter 数据或编号证据
 4. 本地 docling 需英文路径 junction（C:\dp_venv_link）+ TORCH_COMPILE_DISABLE=1
@@ -115,6 +115,5 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 
 ## 七、下一步
 
-1. **M5**：write_quality_package 四件套原子化落盘 + 篡改检测测试
-2. **M6**：LLM 顾问层（fake advisor 测试、证据校验、最高 inferred）
-3. **M7**：接入朱真实 ParsedDocument、与张确认 reparse catalog、golden 验收
+1. **M6**：Agno 单文档质量修复 Agent（Fake Agent、候选验证、revision 和审核输出）
+2. **M7**：接入朱真实 ParsedDocument、与张确认 reparse catalog、golden 验收

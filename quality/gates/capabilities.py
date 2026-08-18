@@ -14,7 +14,7 @@ from document_parser.core.contracts import (
 )
 
 from quality.evidence.context import EvidenceContext
-from quality.models_internal import CapabilityObservation
+from quality.models_internal import CapabilityObservation, EvidenceRef
 
 # 六项标准能力（spec §7.2）
 STANDARD_CAPABILITIES = (
@@ -52,10 +52,41 @@ class CapabilityVerdict:
     applicable: bool = True
     blocking: bool = True
     evidence: dict = field(default_factory=dict)
+    evidence_refs: tuple[EvidenceRef, ...] = ()
 
 
 def _merge_state(states: list[QualityCapabilityState]) -> QualityCapabilityState:
     return max(states, key=lambda s: _STATE_RANK[s])
+
+
+def _merge_observations(
+    observations: list[CapabilityObservation],
+) -> tuple[QualityCapabilityState, tuple[EvidenceRef, ...]]:
+    """合并状态和证据，并以稳定顺序去重证据引用。"""
+    state = _merge_state([obs.observed_state for obs in observations])
+    refs: dict[tuple[str, str, str, str | None], EvidenceRef] = {}
+    for observation in observations:
+        for ref in observation.evidence_refs:
+            key = (ref.object_type, ref.object_id, ref.field_path, ref.value_sha256)
+            refs[key] = ref
+    return state, tuple(
+        refs[key]
+        for key in sorted(refs, key=lambda item: (*item[:3], item[3] or ""))
+    )
+
+
+def _evidence_payload(refs: tuple[EvidenceRef, ...]) -> dict:
+    return {
+        "evidence_refs": [
+            {
+                "object_type": ref.object_type,
+                "object_id": ref.object_id,
+                "field_path": ref.field_path,
+                "value_sha256": ref.value_sha256,
+            }
+            for ref in refs
+        ]
+    }
 
 
 class CapabilityMatrixBuilder:
@@ -71,11 +102,11 @@ class CapabilityMatrixBuilder:
     ) -> dict[str, CapabilityVerdict]:
         """汇总规则观测 + 未观测能力补全，返回内部判定（含 blocking）。"""
         # 1. 合并同名观测（取最严重）
-        by_name: dict[str, list[QualityCapabilityState]] = {}
+        by_name: dict[str, list[CapabilityObservation]] = {}
         for obs in observations:
-            by_name.setdefault(obs.capability_name, []).append(obs.observed_state)
+            by_name.setdefault(obs.capability_name, []).append(obs)
         merged = {
-            name: _merge_state(states) for name, states in by_name.items()
+            name: _merge_observations(items) for name, items in by_name.items()
         }
 
         verdicts: dict[str, CapabilityVerdict] = {}
@@ -83,11 +114,23 @@ class CapabilityMatrixBuilder:
 
         for name in STANDARD_CAPABILITIES:
             if name in merged:
+                observed_state, evidence_refs = merged[name]
+                state = observed_state
+                evidence = {
+                    "rule_observations": observed_state.value,
+                    **_evidence_payload(evidence_refs),
+                }
+                if state == QualityCapabilityState.VERIFIED and not evidence_refs:
+                    state = QualityCapabilityState.INFERRED
+                    evidence["downgrade_reason"] = (
+                        "verified capability requires at least one evidence_ref"
+                    )
                 verdicts[name] = CapabilityVerdict(
                     name=name,
-                    state=merged[name],
-                    blocking=merged[name] != QualityCapabilityState.VERIFIED,
-                    evidence={"rule_observations": merged[name].value},
+                    state=state,
+                    blocking=state != QualityCapabilityState.VERIFIED,
+                    evidence=evidence,
+                    evidence_refs=evidence_refs,
                 )
             elif name in _TABLE_CAPABILITIES and not has_tables:
                 # D-03：无表格文档 → 不适用，不阻塞
@@ -108,13 +151,24 @@ class CapabilityMatrixBuilder:
                 )
 
         # 2. 非标准能力（如 reading_order_reliable、kind_content_consistent）
-        for name, state in merged.items():
+        for name, (observed_state, evidence_refs) in merged.items():
             if name not in STANDARD_CAPABILITIES:
+                state = observed_state
+                evidence = {
+                    "rule_observations": observed_state.value,
+                    **_evidence_payload(evidence_refs),
+                }
+                if state == QualityCapabilityState.VERIFIED and not evidence_refs:
+                    state = QualityCapabilityState.INFERRED
+                    evidence["downgrade_reason"] = (
+                        "verified capability requires at least one evidence_ref"
+                    )
                 verdicts[name] = CapabilityVerdict(
                     name=name,
                     state=state,
                     blocking=False,
-                    evidence={"rule_observations": state.value},
+                    evidence=evidence,
+                    evidence_refs=evidence_refs,
                 )
         return verdicts
 

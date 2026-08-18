@@ -199,7 +199,7 @@ class QL_CONT_003_KindContent(QualityRule):
             b
             for b in context.parsed.blocks
             if b.kind in (BlockKind.PARAGRAPH, BlockKind.HEADING)
-            and not (b.text or "").strip()
+            and not (b.text or b.markdown or "").strip()
         ]
         if empty_blocks:
             issues.append(

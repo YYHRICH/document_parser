@@ -125,6 +125,30 @@ def test_empty_document_rejected():
     assert package.quality_report.gate_summary.critical_issue_count >= 1
 
 
+def test_missing_required_evidence_does_not_pass():
+    """缺少规则声明的必需 capability 时，不得错误放行。"""
+    doc = _load("sdp-004-mineru").model_copy(update={"capabilities": {}})
+    package = run_quality(doc)
+
+    assert package.quality_report.state != QualityState.PASS
+    assert any(
+        issue.category == "evidence_availability"
+        for issue in package.quality_report.issues
+    )
+
+
+def test_duplicate_source_ids_do_not_collide_in_canonical_blocks():
+    """来源 ID 重复时，canonical block 仍按 block 身份保持唯一。"""
+    doc = _load("sdp-004-mineru")
+    first = doc.blocks[0].model_copy(update={"source_block_id": "duplicate", "order_index": 0})
+    second = doc.blocks[1].model_copy(update={"source_block_id": "duplicate", "order_index": 0})
+    package = run_quality(doc.model_copy(update={"blocks": [first, second]}))
+
+    ids = [block.block_id for block in package.canonical_document.blocks]
+    assert len(ids) == len(set(ids))
+    assert package.quality_report.state == QualityState.MANUAL_REVIEW_REQUIRED
+
+
 def test_no_verified_content_without_evidence():
     """空 blocks 的 canonical 也必须合法（空列表允许）。"""
     doc = _load("sdp-004-mineru").model_copy(update={"blocks": []})
@@ -163,8 +187,24 @@ def test_stable_canonical_block_ids():
         from quality.ids import block_id as make_block_id
 
         doc_key = doc.source_sha256 or str(doc.document_id)
+        source_block = next(
+            item
+            for item in doc.blocks
+            if item.source_block_id == block.source_locator.source_block_id
+        )
         assert block.block_id == make_block_id(
             doc_key,
             block.source_locator.source_block_id,
             block.order_index,
+            block_uuid=str(source_block.id),
         )
+
+
+def test_pipeline_canonical_uses_repaired_block_markdown():
+    doc = _load("sdp-004-mineru")
+    block = doc.blocks[0].model_copy(update={"markdown": doc.blocks[0].markdown.rstrip() + "  "})
+    repaired_doc = doc.model_copy(update={"blocks": [block, *doc.blocks[1:] ], "markdown": doc.markdown.rstrip() + "  "})
+    package = run_quality(repaired_doc)
+    assert package.canonical_document.blocks[0].content == block.markdown.rstrip()
+    assert package.quality_report.applied_repairs
+    assert package.quality_report.applied_repairs[0].affected_block_ids == [str(block.id)]

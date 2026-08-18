@@ -11,6 +11,7 @@ from uuid import uuid4
 
 from document_parser.core.contracts import (
     GateSummary,
+    IssueSeverity,
     IssueStatus,
     PackageManifest,
     ParsedDocument,
@@ -26,14 +27,14 @@ from quality.evidence.context import EvidenceContext
 from quality.gates.capabilities import CapabilityMatrixBuilder
 from quality.gates.evaluator import GateEvaluator
 from quality.ids import issue_id
-from quality.models_internal import IssueDraft, RuleResult
+from quality.models_internal import EvidenceRef, IssueDraft, RuleResult
 from quality.packaging.hashing import (
     markdown_bytes,
     sha256_bytes,
     sha256_text,
     stable_json_bytes,
 )
-from quality.repairs.registry import apply_repairs
+from quality.repairs.registry import WHITELIST_REPAIRS, apply_repairs
 from quality.rules.base import QualityRule
 from quality.rules.completeness import (
     QL_CONT_001_BlocksExist,
@@ -58,7 +59,7 @@ from quality.rules.tables import (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
 )
-from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation
+from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
 
 # 注册的规则集合（M1 完整性/来源 + M2 标题/引用 + M3 表格）
 QUALITY_RULES: tuple[type[QualityRule], ...] = (
@@ -76,11 +77,78 @@ QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
     QL_TBL_007_CrossPageContinuation,
+    QL_TBL_008_ColumnDrift,
 )
 
 
 def _document_key(parsed: ParsedDocument) -> str:
     return parsed.source_sha256 or str(parsed.document_id)
+
+
+def _execute_rules(context: EvidenceContext, rules: tuple[type[QualityRule], ...]):
+    """在给定最终 EvidenceContext 上执行规则并统一处理证据阻断。"""
+    issue_drafts: list[IssueDraft] = []
+    observations = []
+    relation_candidates = []
+    binding_candidates = []
+    for rule_type in rules:
+        rule = rule_type()
+        blocked_requirements = [
+            check
+            for check in context.check_requirements(rule.required_evidence)
+            if check.blocked
+        ]
+        if blocked_requirements:
+            reasons = "; ".join(
+                f"{check.requirement.kind}: {check.reason or check.state.value}"
+                for check in blocked_requirements
+            )
+            issue_drafts.append(
+                IssueDraft(
+                    severity=IssueSeverity.WARNING,
+                    category="evidence_availability",
+                    message=f"{rule.rule_id} 因所需证据不可用而跳过：{reasons}。",
+                    evidence_refs=[
+                        EvidenceRef(
+                            object_type="capability",
+                            object_id=check.requirement.kind,
+                            field_path="state",
+                        )
+                        for check in blocked_requirements
+                    ],
+                )
+            )
+            continue
+        result: RuleResult = rule.execute(context)
+        issue_drafts.extend(result.issues)
+        observations.extend(result.capability_observations)
+        relation_candidates.extend(result.relation_candidates)
+        binding_candidates.extend(result.binding_candidates)
+    return issue_drafts, observations, relation_candidates, binding_candidates
+
+
+def _repair_block_ids(parsed_document: ParsedDocument) -> dict[str, list[str]]:
+    """确定哪些真实 block 会被某个白名单修复改变。"""
+    affected: dict[str, list[str]] = {}
+    for rule_type in WHITELIST_REPAIRS:
+        rule = rule_type()
+        affected[rule.rule_id] = [
+            str(block.id)
+            for block in parsed_document.blocks
+            if rule.apply(block.markdown).applied
+        ]
+    return affected
+
+
+def _apply_repairs_to_blocks(parsed_document: ParsedDocument) -> list:
+    """将同一白名单变换投影到 block markdown，供 canonical/重跑规则使用。"""
+    repaired = []
+    for block in parsed_document.blocks:
+        markdown = block.markdown
+        for rule_type in WHITELIST_REPAIRS:
+            markdown = rule_type().apply(markdown).after
+        repaired.append(block.model_copy(update={"markdown": markdown}))
+    return repaired
 
 
 def run_pipeline(
@@ -94,18 +162,22 @@ def run_pipeline(
     context = EvidenceContext(parsed_document)
     doc_key = _document_key(parsed_document)
 
-    # 1. 执行规则（证据不足时规则自行降级或跳过）
-    issue_drafts: list[IssueDraft] = []
-    observations = []
-    relation_candidates = []
-    binding_candidates = []
-    for rule_type in rules:
-        rule = rule_type()
-        result: RuleResult = rule.execute(context)
-        issue_drafts.extend(result.issues)
-        observations.extend(result.capability_observations)
-        relation_candidates.extend(result.relation_candidates)
-        binding_candidates.extend(result.binding_candidates)
+    # 1. 先应用白名单修复，再以最终证据重跑规则。
+    repair_result = apply_repairs(
+        parsed_document.markdown,
+        document_key=doc_key,
+        affected_block_ids_by_rule=_repair_block_ids(parsed_document),
+    )
+    repaired_document = parsed_document.model_copy(
+        update={
+            "markdown": repair_result.markdown,
+            "blocks": _apply_repairs_to_blocks(parsed_document),
+        }
+    )
+    context = EvidenceContext(repaired_document)
+    issue_drafts, observations, relation_candidates, binding_candidates = _execute_rules(
+        context, rules
+    )
 
     # 2. 能力矩阵
     matrix_builder = CapabilityMatrixBuilder(config)
@@ -139,15 +211,22 @@ def run_pipeline(
             message=draft.message,
             affected_block_ids=list(draft.affected_block_ids),
             evidence={
-                ref.object_type: f"{ref.object_id}:{ref.field_path}"
-                for ref in draft.evidence_refs
+                **draft.evidence,
+                "evidence_refs": [
+                    {
+                        "object_type": ref.object_type,
+                        "object_id": ref.object_id,
+                        "field_path": ref.field_path,
+                        **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
+                    }
+                    for ref in draft.evidence_refs
+                ],
             },
         )
         for draft in issue_drafts
     ]
 
-    # 6. 白名单修复（M4）：只做低风险等价变换；无修复时 no-op 合法（D-07）
-    repair_result = apply_repairs(parsed_document.markdown, document_key=doc_key)
+    # 6. optimized markdown 已在规则重跑前生成；canonical/report 使用同一最终输入。
     optimized_markdown = repair_result.markdown
     optimized_sha = sha256_text(optimized_markdown)
     canonical_sha = sha256_bytes(stable_json_bytes(canonical))

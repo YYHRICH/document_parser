@@ -137,6 +137,26 @@ def test_prov003_bad_artifact_hash():
     )
 
 
+def test_prov003_non_hex_artifact_hash_is_rejected():
+    """防御分支：64 位但非十六进制的哈希也必须被发现。"""
+    doc = _load("sdp-004-mineru")
+    bad_artifact = NativeArtifact.model_construct(
+        artifact_id="bad-non-hex",
+        artifact_type="structured_content",
+        path="native/bad.json",
+        file_type="application/json",
+        size_bytes=1,
+        sha256="z" * 64,
+        required_for_quality=True,
+    )
+    result = QL_PROV_003_ArtifactsValid().execute(
+        EvidenceContext(doc.model_copy(update={"native_artifacts": [bad_artifact]}))
+    )
+
+    assert any(i.severity == IssueSeverity.CRITICAL for i in result.issues)
+    assert result.capability_observations[0].observed_state == QualityCapabilityState.REJECTED
+
+
 def test_prov003_clean_verified():
     doc = _load("sdp-004-mineru")
     result = QL_PROV_003_ArtifactsValid().execute(EvidenceContext(doc))

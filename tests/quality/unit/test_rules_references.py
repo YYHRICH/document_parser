@@ -181,3 +181,31 @@ def test_no_reference_heading_no_binding():
 def test_rule_ids_are_stable():
     assert QL_REF_001_ReferenceIndex.rule_id == "QL-REF-001"
     assert QL_REF_004_BindCitations.rule_id == "QL-REF-004"
+
+
+def test_explicit_reference_label_is_preserved():
+    doc = _doc(_p("见 [3]。", 0), _h("参考文献", 1), _p("[3] C. 2023", 2))
+    result = QL_REF_004_BindCitations().execute(EvidenceContext(doc))
+    assert len(result.relation_candidates) == 1
+    assert result.relation_candidates[0].state == QualityCapabilityState.VERIFIED
+    assert result.relation_candidates[0].evidence["normalized_labels"] == ["3"]
+
+
+def test_same_marker_in_multiple_blocks_is_not_deduplicated():
+    doc = _doc(_p("见 [1]。", 0), _p("再见 [1]。", 1), _h("参考文献", 2), _p("A. 2023", 3))
+    result = QL_REF_004_BindCitations().execute(EvidenceContext(doc))
+    assert len(result.relation_candidates) == 2
+    assert {r.from_id for r in result.relation_candidates} == {str(doc.blocks[0].id), str(doc.blocks[1].id)}
+
+
+def test_markdown_link_is_not_citation():
+    doc = _doc(_p("链接 [1](https://example.com)", 0), _h("参考文献", 1), _p("A. 2023", 2))
+    result = QL_REF_004_BindCitations().execute(EvidenceContext(doc))
+    assert result.relation_candidates == ()
+
+
+def test_duplicate_reference_labels_are_ambiguous():
+    doc = _doc(_p("见 [1]。", 0), _h("参考文献", 1), _p("[1] A", 2), _p("[1] B", 3))
+    result = QL_REF_004_BindCitations().execute(EvidenceContext(doc))
+    assert result.relation_candidates == ()
+    assert any(i.category == "ambiguous_target" for i in result.issues)

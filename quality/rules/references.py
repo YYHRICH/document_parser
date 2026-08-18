@@ -1,15 +1,9 @@
-"""数字引用绑定规则（QL-REF-*，spec §5.5.1 MVP）。
-
-参考索引恢复：参考文献标题之后的连续段落按顺序编号（第 k 条 = [k]）。
-正文 marker 支持 [1]、[12]、[1, 3, 5]、[2-4]/[2–4]、[1][2]；
-范围展开只在参考索引确实存在所有编号时成立。
-目标不唯一、编号缺失 → 绝不 verified。
-"""
+"""数字引用绑定规则（QL-REF-*，spec §5.5.1 MVP）。"""
 
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from document_parser.core.contracts import (
     BlockKind,
@@ -28,23 +22,34 @@ from quality.models_internal import (
 )
 from quality.rules.base import QualityRule
 
-# 参考文献标题模式
 _REF_HEADING = re.compile(r"^(?:参考文献|references?|bibliography|文献)$", re.IGNORECASE)
-
-# 说明性文字过滤（合成文档的"引用规则"说明行）
 _EXPLANATORY = re.compile(r"引用规则|指向参考文献|分别指|指第")
-
-# marker：([1]、[12]、[1, 3, 5]、[2-4]、[2–4]）
 _MARKER = re.compile(r"\[(\d+(?:\s*[,，]\s*\d+|\s*[-–]\s*\d+)*)\]")
-
-# 范围展开上限（防误报）
 _MAX_EXPAND = 50
+_EXPLICIT_LABEL = re.compile(r"^\s*(?:\[(\d+)\]|(\d+)[\.、)）])\s*")
+
+
+def _block_text(block, *, heading: bool = False) -> str:
+    value = block.text if block.text is not None else block.markdown
+    value = value or ""
+    if heading:
+        value = re.sub(r"^\s*#{1,6}\s*", "", value)
+    return value.strip()
+
+
+def _text_field(block) -> str:
+    return "text" if block.text is not None else "markdown"
+
+
+def _reference_heading_index(blocks) -> int | None:
+    for i, block in enumerate(blocks):
+        if block.kind == BlockKind.HEADING and _REF_HEADING.match(_block_text(block, heading=True)):
+            return i
+    return None
 
 
 @dataclass(frozen=True)
 class ReferenceEntry:
-    """参考索引条目：按顺序编号的第 k 条（k 从 1 开始）。"""
-
     key: str
     block_id: str
     source_block_id: str
@@ -55,30 +60,40 @@ class ReferenceEntry:
         return int(self.key)
 
 
-def build_reference_index(context: EvidenceContext) -> list[ReferenceEntry]:
-    """在参考文献标题之后按顺序恢复编号的参考条目（有位置+顺序证据）。
+def _entry_label(block, fallback: int) -> str:
+    metadata_label = block.metadata.get("reference_label")
+    if metadata_label is not None:
+        match = re.search(r"\d+", str(metadata_label))
+        if match:
+            return match.group(0)
+    match = _EXPLICIT_LABEL.match(_block_text(block))
+    if match:
+        return match.group(1) or match.group(2)
+    return str(fallback)
 
-    过滤空段落与说明性文字（如"引用规则：..."）。
-    """
+
+def build_reference_index(context: EvidenceContext) -> list[ReferenceEntry]:
+    """恢复参考条目；显式标签优先，未标注条目保留顺序回退。"""
     blocks = context.ordered_blocks()
-    ref_start: int | None = None
-    for i, block in enumerate(blocks):
-        if block.kind == BlockKind.HEADING and _REF_HEADING.match((block.text or "").strip()):
-            ref_start = i + 1
-            break
-    if ref_start is None:
+    ref_heading = _reference_heading_index(blocks)
+    if ref_heading is None:
         return []
 
     entries: list[ReferenceEntry] = []
-    for block in blocks[ref_start:]:
-        text = (block.text or "").strip()
-        if not text:
+    fallback = 1
+    for block in blocks[ref_heading + 1 :]:
+        if block.kind == BlockKind.HEADING:
+            break
+        if block.kind not in (BlockKind.PARAGRAPH, BlockKind.REFERENCE):
             continue
-        if _EXPLANATORY.search(text):
+        text = _block_text(block)
+        if not text or _EXPLANATORY.search(text):
             continue
+        key = _entry_label(block, fallback)
+        fallback += 1
         entries.append(
             ReferenceEntry(
-                key=str(len(entries) + 1),
+                key=key,
                 block_id=str(block.id),
                 source_block_id=block.source_block_id or "",
                 text=text,
@@ -88,10 +103,6 @@ def build_reference_index(context: EvidenceContext) -> list[ReferenceEntry]:
 
 
 def _expand_marker(marker: str) -> list[int] | None:
-    """展开 marker 内部编号：'1' -> [1]；'1, 3, 5' -> [1,3,5]；'2-4' -> [2,3,4]。
-
-    返回 None 表示解析失败（非法格式），空列表表示无编号。
-    """
     numbers: list[int] = []
     for part in marker.split(","):
         part = part.strip()
@@ -108,12 +119,18 @@ def _expand_marker(marker: str) -> list[int] | None:
             numbers.extend(range(start, end + 1))
             continue
         return None
-    return numbers
+    return list(dict.fromkeys(numbers))
+
+
+def _is_markdown_link(text: str, match: re.Match[str]) -> bool:
+    """[label](url)（含图片链接）不是数字引用。"""
+    if match.start() > 0 and text[match.start() - 1] == "!":
+        return True
+    tail = text[match.end() :]
+    return bool(re.match(r"\s*\(", tail))
 
 
 class QL_REF_001_ReferenceIndex(QualityRule):
-    """参考索引构建（有标题+顺序证据，输出观测供 004 使用）。"""
-
     rule_id = "QL-REF-001"
     required_evidence = (
         EvidenceRequirement(kind="blocks", required_state="available"),
@@ -122,42 +139,26 @@ class QL_REF_001_ReferenceIndex(QualityRule):
 
     def execute(self, context: EvidenceContext) -> RuleResult:
         entries = build_reference_index(context)
-        observations = []
         issues = []
-        if not entries:
-            has_ref_heading = any(
-                b.kind == BlockKind.HEADING
-                and _REF_HEADING.match((b.text or "").strip())
-                for b in context.parsed.blocks
-            )
-            if has_ref_heading:
-                issues.append(
-                    IssueDraft(
-                        severity=IssueSeverity.INFO,
-                        category="reference_structure",
-                        message="存在参考文献标题但未恢复出任何条目。",
-                        affected_block_ids=[],
-                    )
+        if not entries and _reference_heading_index(context.ordered_blocks()) is not None:
+            issues.append(
+                IssueDraft(
+                    severity=IssueSeverity.INFO,
+                    category="reference_structure",
+                    message="存在参考文献标题但未恢复出任何条目。",
+                    affected_block_ids=[],
                 )
-        observations.append(
-            CapabilityObservation(
-                capability_name="reference_index_built",
-                observed_state=(
-                    QualityCapabilityState.VERIFIED
-                    if entries
-                    else QualityCapabilityState.UNAVAILABLE
-                ),
             )
-        )
         return RuleResult(
             issues=tuple(issues),
-            capability_observations=tuple(observations),
+            capability_observations=(CapabilityObservation(
+                capability_name="reference_index_built",
+                observed_state=QualityCapabilityState.VERIFIED if entries else QualityCapabilityState.UNAVAILABLE,
+            ),),
         )
 
 
 class QL_REF_004_BindCitations(QualityRule):
-    """正文数字引用 → reference_of 绑定（唯一性判定）。"""
-
     rule_id = "QL-REF-004"
     required_evidence = (
         EvidenceRequirement(kind="blocks", required_state="available"),
@@ -166,90 +167,95 @@ class QL_REF_004_BindCitations(QualityRule):
 
     def execute(self, context: EvidenceContext) -> RuleResult:
         index = build_reference_index(context)
-        by_key = {entry.key: entry for entry in index}
-
+        by_key: dict[str, list[ReferenceEntry]] = {}
+        for entry in index:
+            by_key.setdefault(entry.key, []).append(entry)
+        ref_heading = _reference_heading_index(context.ordered_blocks())
+        ordered = context.ordered_blocks()
+        body = ordered if ref_heading is None else ordered[:ref_heading]
+        order_conflict = bool(context.duplicate_order_indices)
         issues: list[IssueDraft] = []
         candidates: list[RelationCandidate] = []
-        bound_markers: set[str] = set()
+        if order_conflict:
+            issues.append(IssueDraft(
+                severity=IssueSeverity.WARNING,
+                category="reading_order_conflict",
+                message="存在重复 order_index，引用绑定顺序不确定，关系降级为人工复核。",
+                affected_block_ids=[],
+            ))
 
-        for block in context.ordered_blocks():
+        for block in body:
             if block.kind not in (BlockKind.PARAGRAPH, BlockKind.REFERENCE):
                 continue
-            text = block.text or ""
+            text = _block_text(block)
             if _EXPLANATORY.search(text):
-                continue  # 说明性文字不算引用
+                continue
+            field = _text_field(block)
             for match in _MARKER.finditer(text):
+                if _is_markdown_link(text, match):
+                    continue
                 marker = match.group(0)
-                if marker in bound_markers:
-                    continue
                 expanded = _expand_marker(match.group(1))
-                if expanded is None or not expanded:
+                if not expanded:
                     continue
-                bound_markers.add(marker)
                 offset = match.start()
-                # 目标唯一性：逐个编号查索引
                 missing = [str(n) for n in expanded if str(n) not in by_key]
-                found = [str(n) for n in expanded if str(n) in by_key]
-
+                ambiguous = [str(n) for n in expanded if len(by_key.get(str(n), [])) > 1]
+                found = [str(n) for n in expanded if len(by_key.get(str(n), [])) == 1]
+                marker_evidence = {
+                    "marker": marker,
+                    "marker_offset": offset,
+                    "normalized_labels": [str(n) for n in expanded],
+                    "candidate_ids": [e.block_id for n in expanded for e in by_key.get(str(n), [])],
+                }
                 if missing:
-                    issues.append(
-                        IssueDraft(
-                            severity=IssueSeverity.WARNING,
-                            category="citation_binding",
-                            message=f"引用 {marker} 展开后 {len(missing)} 个编号在参考索引中缺失: "
-                            f"{', '.join(missing)}",
-                            affected_block_ids=[str(block.id)],
-                            evidence_refs=[
-                                EvidenceRef(
-                                    object_type="block",
-                                    object_id=str(block.id),
-                                    field_path="text",
-                                )
-                            ],
-                        )
-                    )
+                    issues.append(IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="citation_binding",
+                        message=f"引用 {marker} 展开后 {len(missing)} 个编号在参考索引中缺失: {', '.join(missing)}",
+                        affected_block_ids=[str(block.id)],
+                        evidence_refs=[EvidenceRef(object_type="block", object_id=str(block.id), field_path=field)],
+                        evidence=marker_evidence,
+                    ))
+                if ambiguous:
+                    issues.append(IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="ambiguous_target",
+                        message=f"引用 {marker} 的编号存在多个参考条目，无法唯一绑定: {', '.join(ambiguous)}",
+                        affected_block_ids=[str(block.id)],
+                        evidence_refs=[EvidenceRef(object_type="block", object_id=str(block.id), field_path=field)],
+                        evidence=marker_evidence,
+                    ))
+                # 一个 marker 只在其展开的所有标签都能唯一命中时成立；
+                # 部分绑定会把不完整证据误报成 verified。
+                if missing or ambiguous:
+                    continue
                 for key in found:
-                    entry = by_key[key]
-                    candidates.append(
-                        RelationCandidate(
-                            relation_type="reference_of",
-                            from_id=str(block.id),
-                            to_id=entry.block_id,
-                            state=QualityCapabilityState.VERIFIED,
-                            evidence_refs=[
-                                EvidenceRef(
-                                    object_type="block",
-                                    object_id=str(block.id),
-                                    field_path="text",
-                                ),
-                                EvidenceRef(
-                                    object_type="block",
-                                    object_id=entry.block_id,
-                                    field_path="text",
-                                ),
-                            ],
-                        )
-                    )
+                    entry = by_key[key][0]
+                    if order_conflict:
+                        state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                    elif not (block.source_block_id and entry.source_block_id):
+                        state = QualityCapabilityState.INFERRED
+                    else:
+                        state = QualityCapabilityState.VERIFIED
+                    candidates.append(RelationCandidate(
+                        relation_type="reference_of",
+                        from_id=str(block.id),
+                        to_id=entry.block_id,
+                        state=state,
+                        marker_key=f"{offset}:{marker}",
+                        evidence_refs=[
+                            EvidenceRef(object_type="block", object_id=str(block.id), field_path=field),
+                            EvidenceRef(object_type="block", object_id=entry.block_id, field_path="text"),
+                        ],
+                        evidence={**marker_evidence, "target_key": key},
+                    ))
 
         observations: list[CapabilityObservation] = []
         if index:
-            verified = sum(
-                1 for c in candidates if c.state == QualityCapabilityState.VERIFIED
-            )
-            observations.append(
-                CapabilityObservation(
-                    capability_name="non_table_relation_reliable",
-                    observed_state=(
-                        QualityCapabilityState.VERIFIED
-                        if verified == len(candidates) and candidates
-                        else QualityCapabilityState.MANUAL_REVIEW_REQUIRED
-                        if candidates
-                        else QualityCapabilityState.UNAVAILABLE
-                    ),
-                )
-            )
-        return RuleResult(
-            issues=tuple(issues),
-            relation_candidates=tuple(candidates),
-            capability_observations=tuple(observations),
-        )
+            verified = sum(c.state == QualityCapabilityState.VERIFIED for c in candidates)
+            observations.append(CapabilityObservation(
+                capability_name="non_table_relation_reliable",
+                observed_state=(QualityCapabilityState.VERIFIED if verified == len(candidates) and candidates else QualityCapabilityState.MANUAL_REVIEW_REQUIRED if candidates or issues else QualityCapabilityState.UNAVAILABLE),
+            ))
+        return RuleResult(issues=tuple(issues), relation_candidates=tuple(candidates), capability_observations=tuple(observations))

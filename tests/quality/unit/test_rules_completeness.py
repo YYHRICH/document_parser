@@ -156,6 +156,23 @@ def test_cont003_empty_text_info():
     assert any(i.severity == IssueSeverity.INFO for i in result.issues)
 
 
+def test_cont003_markdown_is_used_when_text_missing():
+    block = DocumentBlock(
+        id=uuid4(),
+        source_block_id="markdown-only",
+        order_index=0,
+        kind=BlockKind.PARAGRAPH,
+        text=None,
+        markdown="markdown 中有正文",
+        anchor=SourceAnchor(),
+    )
+    result = QL_CONT_003_KindContent().execute(
+        EvidenceContext(_make_doc(block))
+    )
+
+    assert not any(i.category == "content_completeness" for i in result.issues)
+
+
 def test_cont003_clean_state_verified():
     doc = _load("sdp-004-mineru")
     result = QL_CONT_003_KindContent().execute(EvidenceContext(doc))

@@ -7,7 +7,7 @@ from pathlib import Path
 from document_parser.core.contracts import ParsedDocument
 
 from quality import run_quality
-from quality.repairs.registry import WHITELIST_REPAIRS, apply_repairs
+from quality.repairs.registry import WHITELIST_REPAIRS, apply_repairs, replay_repair, rollback_repair
 from quality.repairs.whitelist import (
     QL_RPR_001_TrailingWhitespace,
     QL_RPR_002_TableSeparator,
@@ -109,3 +109,31 @@ def test_pipeline_repair_idempotent_on_real_fixture():
     # 对已修复的 markdown 再跑修复：无变化
     result = apply_repairs(pkg.optimized_markdown, document_key="doc")
     assert result.markdown == pkg.optimized_markdown
+
+
+def test_repair_replay_and_rollback_are_safe():
+    md = "正文  \n"
+    result = apply_repairs(md, document_key=DOC_KEY, affected_block_ids_by_rule={"QL-RPR-001": ["block-1"]})
+    repair = result.applied[0]
+    assert repair.affected_block_ids == ["block-1"]
+    assert replay_repair(repair.evidence["before"], repair) == repair.evidence["after"]
+    assert rollback_repair(repair.evidence["after"], repair) == repair.evidence["before"]
+    assert "parameters" in repair.evidence and "rollback" in repair.evidence
+
+
+def test_trailing_whitespace_preserves_crlf():
+    outcome = QL_RPR_001_TrailingWhitespace().apply("a  \r\nb\r\n")
+    assert outcome.after == "a\r\nb\r\n"
+
+
+def test_table_separator_does_not_modify_fenced_code():
+    md = "```\n| A | B |\n|---|---|---|\n```"
+    outcome = QL_RPR_002_TableSeparator().apply(md)
+    assert not outcome.applied
+
+
+def test_repair_id_uses_full_input_identity():
+    prefix = "x" * 70
+    first = apply_repairs(prefix + "A  \n", document_key=DOC_KEY).applied[0].repair_id
+    second = apply_repairs(prefix + "B  \n", document_key=DOC_KEY).applied[0].repair_id
+    assert first != second

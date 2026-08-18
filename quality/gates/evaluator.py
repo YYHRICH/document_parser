@@ -24,6 +24,48 @@ from quality.gates.capabilities import CapabilityVerdict
 from quality.models_internal import IssueDraft
 
 
+_INFO_STATE_TRANSITIONS = {
+    QualityState.PASS: QualityState.PASS_WITH_WARNINGS,
+    QualityState.PASS_WITH_WARNINGS: QualityState.PASS_WITH_WARNINGS,
+    QualityState.MANUAL_REVIEW_REQUIRED: QualityState.MANUAL_REVIEW_REQUIRED,
+    QualityState.REPARSE_REQUIRED: QualityState.REPARSE_REQUIRED,
+    QualityState.REJECTED: QualityState.REJECTED,
+}
+
+
+def _apply_info_policy(
+    state: QualityState,
+    *,
+    has_info: bool,
+    enabled: bool,
+) -> QualityState:
+    """应用 info 策略，但绝不降低已有 Gate 状态。"""
+    if not enabled or not has_info:
+        return state
+    return _INFO_STATE_TRANSITIONS[state]
+
+
+def _critical_target_state(config: GateConfig) -> QualityState:
+    """读取 critical issue 的目标状态，并拒绝普通放行状态配置。"""
+    try:
+        state = QualityState(config.critical_issue_min_state)
+    except ValueError as exc:
+        raise ValueError(
+            "critical_issue_min_state 必须是 manual_review_required、"
+            "reparse_required 或 rejected。"
+        ) from exc
+    if state not in {
+        QualityState.MANUAL_REVIEW_REQUIRED,
+        QualityState.REPARSE_REQUIRED,
+        QualityState.REJECTED,
+    }:
+        raise ValueError(
+            "critical_issue_min_state 必须是 manual_review_required、"
+            "reparse_required 或 rejected。"
+        )
+    return state
+
+
 @dataclass(frozen=True)
 class GateDecision:
     """Gate 决策结果（内部判定 + 公共投影）。"""
@@ -89,7 +131,18 @@ class GateEvaluator:
         info_issues = [i for i in issues if i.severity == IssueSeverity.INFO]
 
         # 3. 按优先级决策
-        if rejected_caps or critical_issues:
+        critical_target = _critical_target_state(self._config)
+        critical_requires_rejected = (
+            critical_issues and critical_target == QualityState.REJECTED
+        )
+        critical_requires_reparse = (
+            critical_issues and critical_target == QualityState.REPARSE_REQUIRED
+        )
+        critical_requires_manual = (
+            critical_issues and critical_target == QualityState.MANUAL_REVIEW_REQUIRED
+        )
+
+        if rejected_caps or critical_requires_rejected:
             blocking_reasons.extend(
                 f"capability {v.name} rejected" for v in rejected_caps
             )
@@ -97,10 +150,15 @@ class GateEvaluator:
                 f"critical issue: {i.message}" for i in critical_issues
             )
             state = QualityState.REJECTED
-        elif reparse_caps:
+        elif reparse_caps or critical_requires_reparse:
             if reparse_recommendation is not None:
                 blocking_reasons.extend(
                     f"capability {v.name} reparse_required" for v in reparse_caps
+                )
+                blocking_reasons.extend(
+                    f"critical issue requires reparse: {i.message}"
+                    for i in critical_issues
+                    if critical_requires_reparse
                 )
                 state = QualityState.REPARSE_REQUIRED
             else:
@@ -108,9 +166,14 @@ class GateEvaluator:
                 # 不能假装 reparse：降级为人工复核
                 blocking_reasons.append("reparse required but no valid recommendation")
                 state = QualityState.MANUAL_REVIEW_REQUIRED
-        elif manual_caps:
+        elif manual_caps or critical_requires_manual:
             blocking_reasons.extend(
                 f"capability {v.name} = {v.state.value}" for v in manual_caps
+            )
+            blocking_reasons.extend(
+                f"critical issue requires manual review: {i.message}"
+                for i in critical_issues
+                if critical_requires_manual
             )
             state = QualityState.MANUAL_REVIEW_REQUIRED
         elif warning_issues:
@@ -124,17 +187,30 @@ class GateEvaluator:
             state = QualityState.PASS
 
         # 4. 不变量修正（D-08：info 是否阻塞）
-        if self._config.info_blocks_pass and info_issues:
-            state = QualityState.PASS_WITH_WARNINGS
+        state = _apply_info_policy(
+            state,
+            has_info=bool(info_issues),
+            enabled=self._config.info_blocks_pass,
+        )
+
+        manual_review_issue_count = len(manual_caps)
+        if state == QualityState.MANUAL_REVIEW_REQUIRED:
+            manual_review_issue_count += len(critical_issues)
+        reparse_issue_count = len(reparse_caps)
+        if state == QualityState.REPARSE_REQUIRED and critical_requires_reparse:
+            reparse_issue_count += len(critical_issues)
 
         summary = GateSummary(
             critical_issue_count=len(critical_issues),
-            manual_review_issue_count=0,
+            manual_review_issue_count=manual_review_issue_count,
             warning_or_info_issue_count=len(warning_issues) + len(info_issues),
-            reparse_issue_count=len(reparse_caps),
+            reparse_issue_count=reparse_issue_count,
             capability_blockers=[v.name for v in capability_blockers],
             blocking_reasons=list(blocking_reasons),
-            critical_false_pass=False,
+            critical_false_pass=bool(
+                critical_issues
+                and state in {QualityState.PASS, QualityState.PASS_WITH_WARNINGS}
+            ),
         )
         return GateDecision(
             state=state,

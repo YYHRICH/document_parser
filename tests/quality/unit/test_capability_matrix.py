@@ -11,7 +11,7 @@ from quality.gates.capabilities import (
     CapabilityMatrixBuilder,
     STANDARD_CAPABILITIES,
 )
-from quality.models_internal import CapabilityObservation
+from quality.models_internal import CapabilityObservation, EvidenceRef
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
@@ -86,3 +86,46 @@ def test_to_public_assessments_projects_state_and_evidence():
         # 公共契约只有 state + evidence（applicable/blocking 不投影）
         assert assessment.state is not None
         assert isinstance(assessment.evidence, dict)
+
+
+def test_capability_evidence_refs_are_preserved_and_deduplicated():
+    builder = CapabilityMatrixBuilder()
+    context = EvidenceContext(_load("sdp-004-mineru"))
+    first = EvidenceRef("document", "doc", "blocks", "a" * 64)
+    second = EvidenceRef("block", "block-1", "source_block_id")
+    verdicts = builder.build(
+        [
+            CapabilityObservation(
+                "content_complete",
+                QualityCapabilityState.VERIFIED,
+                evidence_refs=[second, first, second],
+            )
+        ],
+        context,
+    )
+
+    verdict = verdicts["content_complete"]
+    assert verdict.state == QualityCapabilityState.VERIFIED
+    assert [
+        (ref.object_type, ref.object_id, ref.field_path)
+        for ref in verdict.evidence_refs
+    ] == [
+        ("block", "block-1", "source_block_id"),
+        ("document", "doc", "blocks"),
+    ]
+    public = builder.to_public_assessments(verdicts)["content_complete"]
+    assert len(public.evidence["evidence_refs"]) == 2
+    assert public.evidence["evidence_refs"][0]["object_type"] == "block"
+
+
+def test_verified_capability_without_evidence_is_downgraded():
+    builder = CapabilityMatrixBuilder()
+    context = EvidenceContext(_load("sdp-004-mineru"))
+    verdict = builder.build(
+        [CapabilityObservation("content_complete", QualityCapabilityState.VERIFIED)],
+        context,
+    )["content_complete"]
+
+    assert verdict.state == QualityCapabilityState.INFERRED
+    assert verdict.blocking
+    assert "downgrade_reason" in verdict.evidence

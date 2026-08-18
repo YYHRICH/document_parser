@@ -45,10 +45,66 @@ def test_info_issue_blocks_when_configured():
     assert decision.state == QualityState.PASS_WITH_WARNINGS
 
 
+def test_info_policy_preserves_all_gate_states():
+    evaluator = GateEvaluator(GateConfig(info_blocks_pass=True))
+    info = [_issue(IssueSeverity.INFO)]
+
+    assert evaluator.decide(info, {}).state == QualityState.PASS_WITH_WARNINGS
+    assert evaluator.decide([_issue(IssueSeverity.WARNING), *info], {}).state == QualityState.PASS_WITH_WARNINGS
+    assert evaluator.decide([_issue(IssueSeverity.CRITICAL), *info], {}).state == QualityState.REJECTED
+    assert evaluator.decide(
+        info,
+        {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.MANUAL_REVIEW_REQUIRED)},
+    ).state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert evaluator.decide(
+        info,
+        {"content_complete": _cap("content_complete", QualityCapabilityState.REPARSE_REQUIRED)},
+        reparse_recommendation=ReparseRecommendation(parser_id="mineru", reason="reparse"),
+    ).state == QualityState.REPARSE_REQUIRED
+
+
 def test_critical_issue_rejects():
     decision = GateEvaluator().decide([_issue(IssueSeverity.CRITICAL)], {})
     assert decision.state == QualityState.REJECTED
     assert decision.summary.critical_issue_count == 1
+
+
+def test_critical_issue_min_state_is_honored():
+    evaluator = GateEvaluator(
+        GateConfig(critical_issue_min_state="manual_review_required")
+    )
+    decision = evaluator.decide([_issue(IssueSeverity.CRITICAL)], {})
+
+    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.summary.manual_review_issue_count == 1
+
+
+def test_critical_issue_can_require_reparse_with_recommendation():
+    evaluator = GateEvaluator(
+        GateConfig(critical_issue_min_state="reparse_required")
+    )
+    decision = evaluator.decide(
+        [_issue(IssueSeverity.CRITICAL)],
+        {},
+        reparse_recommendation=ReparseRecommendation(
+            parser_id="mineru", reason="reparse"
+        ),
+    )
+
+    assert decision.state == QualityState.REPARSE_REQUIRED
+    assert decision.summary.reparse_issue_count == 1
+
+
+def test_manual_capability_summary_count_is_populated():
+    verdicts = {
+        "heading_tree_reliable": _cap(
+            "heading_tree_reliable",
+            QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
+        )
+    }
+    decision = GateEvaluator().decide([], verdicts)
+
+    assert decision.summary.manual_review_issue_count == 1
 
 
 def test_manual_capability_forces_manual_review():

@@ -6,9 +6,12 @@ from pathlib import Path
 from uuid import uuid4
 
 from document_parser.core.contracts import (
+    BlockKind,
+    DocumentBlock,
     ParsedDocument,
     ParsedTable,
     QualityCapabilityState,
+    SourceAnchor,
     TableCell,
 )
 
@@ -54,7 +57,16 @@ def _cell(text: str, r: int, c: int, *, col_hdr=False, row_hdr=False, row_span=1
 
 def _doc_with_table(table: ParsedTable) -> ParsedDocument:
     doc = _load("sdp-004-mineru")
-    return doc.model_copy(update={"tables": [table]})
+    block = DocumentBlock(
+        id=table.block_id,
+        source_block_id=f"tbl-{table.table_id}",
+        order_index=len(doc.blocks),
+        kind=BlockKind.TABLE,
+        text="table",
+        markdown="table",
+        anchor=SourceAnchor(page_number=table.page_number),
+    )
+    return doc.model_copy(update={"blocks": [*doc.blocks, block], "tables": [table]})
 
 
 # 多级表头正例（docling 风格）
@@ -208,6 +220,44 @@ def test_column_path_rule_observations():
     obs = result.capability_observations[0]
     assert obs.capability_name == "table_grid_reliable"
     assert obs.observed_state == QualityCapabilityState.VERIFIED
+
+
+def test_data_hole_downgrades_grid():
+    table = _table("hole", [
+        _cell("H", 0, 0, col_hdr=True),
+        _cell("A", 1, 0, row_hdr=True),
+    ], rows=2, cols=2)
+    analysis = analyze_grid(table)
+    assert not analysis.valid
+    result = QL_TBL_004_ColumnPath().execute(EvidenceContext(_doc_with_table(table)))
+    assert result.capability_observations[0].observed_state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+
+
+def test_duplicate_row_key_is_manual_not_verified():
+    table = _table("dup", [
+        _cell("名称", 0, 0, col_hdr=True), _cell("值", 0, 1, col_hdr=True),
+        _cell("A", 1, 0, row_hdr=True), _cell("1", 1, 1),
+        _cell("A", 2, 0, row_hdr=True), _cell("2", 2, 1),
+    ], rows=3, cols=2)
+    result = QL_TBL_006_BuildBindings().execute(EvidenceContext(_doc_with_table(table)))
+    assert result.binding_candidates
+    assert all(b.source_locator.provenance_status == QualityCapabilityState.MANUAL_REVIEW_REQUIRED for b in result.binding_candidates)
+    assert any(i.category == "table_field_binding" for i in result.issues)
+
+
+def test_cell_bbox_is_preserved():
+    table = _merged_header_table().model_copy(update={
+        "cells": [c.model_copy(update={"bbox": (10.0, 20.0, 30.0, 40.0)}) if c.start_row == 2 and c.start_col == 2 else c for c in _merged_header_table().cells]
+    })
+    result = QL_TBL_006_BuildBindings().execute(EvidenceContext(_doc_with_table(table)))
+    binding = next(b for b in result.binding_candidates if b.value == "12 V")
+    assert binding.source_locator.bbox == (10.0, 20.0, 30.0, 40.0)
+    assert binding.source_locator.bbox_granularity == "cell"
+
+
+def test_no_table_produces_no_table_observation():
+    result = QL_TBL_004_ColumnPath().execute(EvidenceContext(_load("sdp-006-fallback")))
+    assert result.capability_observations == ()
 
 
 def test_rule_ids_are_stable():

@@ -13,7 +13,7 @@ from document_parser.core.contracts import (
 )
 
 from quality.evidence.context import EvidenceContext
-from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation
+from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
@@ -125,5 +125,28 @@ def test_column_count_mismatch_not_paired():
     assert result.relation_candidates == ()
 
 
+def test_unrelated_table_between_pages_not_paired():
+    t1 = _table("t-a", 1, ["行号", "物料", "数量"], 3)
+    tm = _table("t-mid", 1, ["其他", "字段", "列"], 3)
+    t2 = _table("t-b", 2, ["行号", "物料", "数量"], 3)
+    result = QL_TBL_007_CrossPageContinuation().execute(EvidenceContext(_doc_with_tables(t1, tm, t2)))
+    assert result.relation_candidates == ()
+
+
+def test_unknown_page_is_not_adjacent():
+    t1 = _table("t-a", 1, ["行号", "物料", "数量"], 3).model_copy(update={"page_number": None})
+    t2 = _table("t-b", 2, ["行号", "物料", "数量"], 3)
+    result = QL_TBL_007_CrossPageContinuation().execute(EvidenceContext(_doc_with_tables(t1, t2)))
+    assert result.relation_candidates == ()
+
+
+def test_column_drift_rule_detects_header_order_change():
+    t1 = _table("t-a", 1, ["行号", "物料", "数量"], 3)
+    t2 = _table("t-b", 2, ["行号", "数量", "物料"], 3)
+    result = QL_TBL_008_ColumnDrift().execute(EvidenceContext(_doc_with_tables(t1, t2)))
+    assert any(i.category == "column_drift" for i in result.issues)
+
+
 def test_rule_id_is_stable():
     assert QL_TBL_007_CrossPageContinuation.rule_id == "QL-TBL-007"
+    assert QL_TBL_008_ColumnDrift.rule_id == "QL-TBL-008"

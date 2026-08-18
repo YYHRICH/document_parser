@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
 
 from document_parser.core.contracts import (
     CanonicalSourceLocator,
@@ -51,6 +51,7 @@ class IssueDraft:
     message: str
     affected_block_ids: list[str] = field(default_factory=list)
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
+    evidence: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -63,6 +64,10 @@ class RelationCandidate:
     to_id: str
     state: QualityCapabilityState = QualityCapabilityState.INFERRED
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
+    # Optional occurrence discriminator (e.g. citation marker offset) for stable IDs.
+    marker_key: str = ""
+    # Rule-specific structured evidence serialized into the canonical relation.
+    evidence: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -78,6 +83,7 @@ class BindingCandidate:
     # D-09：单元格身份 = "r{row}c{col}" 坐标组合（朱提供 cell_id 后替换）
     cell_key: str = ""
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
+    evidence: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)

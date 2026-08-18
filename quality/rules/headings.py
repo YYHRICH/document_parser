@@ -32,6 +32,14 @@ _NUMBERED_HEADING = re.compile(
 )
 
 
+
+
+def _heading_text(block) -> str:
+    """Return heading text with markdown heading syntax removed as a fallback."""
+    value = block.text if block.text is not None else block.markdown
+    return re.sub(r"^\s*#{1,6}\s*", "", value or "").strip()
+
+
 def _numbered_level(text: str) -> int | None:
     """从编号模式推断层级："1.1" -> 2，"1" -> 1；无编号返回 None。
 
@@ -70,7 +78,7 @@ class QL_HDG_001_HeadingFields(QualityRule):
         undetermined = [
             b
             for b in headings
-            if b.heading_level is None and _numbered_level(b.text or "") is None
+            if b.heading_level is None and _numbered_level(_heading_text(b)) is None
         ]
         issues: list[IssueDraft] = []
         if undetermined:
@@ -116,13 +124,24 @@ class QL_HDG_004_BuildTree(QualityRule):
         candidates: list[RelationCandidate] = []
         observations: list[CapabilityObservation] = []
 
+        order_conflict = bool(context.duplicate_order_indices)
+        if order_conflict:
+            issues.append(
+                IssueDraft(
+                    severity=IssueSeverity.WARNING,
+                    category="reading_order_conflict",
+                    message=("标题存在重复 order_index，阅读顺序不确定，关系降级为人工复核。"),
+                    affected_block_ids=[str(h.id) for h in headings],
+                )
+            )
+
         # 层级粒度检测：同一 parser level 下出现多个编号层级，或全部标题同 level
         # （真实解析器常见缺陷：文档标题与章节全部标为 level 2）→ 编号重建（inferred）
         level_groups: dict[int, set[int | None]] = {}
         for heading in headings:
             if heading.heading_level is not None:
                 level_groups.setdefault(heading.heading_level, set()).add(
-                    _numbered_level(heading.text or "")
+                    _numbered_level(_heading_text(heading))
                 )
         granularity_suspect = any(
             len({v for v in values if v is not None}) > 1
@@ -148,7 +167,7 @@ class QL_HDG_004_BuildTree(QualityRule):
         root_seen = False
         for heading in headings:
             level = heading.heading_level
-            numbered = _numbered_level(heading.text or "")
+            numbered = _numbered_level(_heading_text(heading))
             if rebuild_by_numbering:
                 # 粒度可疑：编号优先；文档第一个标题作为根（level 1）
                 effective_level = numbered
@@ -166,7 +185,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                     IssueDraft(
                         severity=IssueSeverity.WARNING,
                         category="heading_level_missing",
-                        message=f"标题层级无法确定: {(heading.text or '')[:30]!r}",
+                        message=f"标题层级无法确定: {_heading_text(heading)[:30]!r}",
                         affected_block_ids=[str(heading.id)],
                     )
                 )
@@ -176,9 +195,19 @@ class QL_HDG_004_BuildTree(QualityRule):
             while stack and stack[-1][1] >= effective_level:
                 stack.pop()
             if not stack:
-                # 文档开头标题：第一个作为根，其余无父 → 孤立标题
+                # 只有 H1（或编号恢复的一级标题）可作为无父根。
+                # 开头直接 H2/H3 没有可验证父节点，必须人工复核；不创建虚拟 H1。
                 if not root_seen:
                     root_seen = True
+                    if effective_level > 1:
+                        issues.append(
+                            IssueDraft(
+                                severity=IssueSeverity.WARNING,
+                                category="heading_parent_missing",
+                                message=f"标题 {_heading_text(heading)[:30]!r} 无父节点（level={effective_level}）。",
+                                affected_block_ids=[str(heading.id)],
+                            )
+                        )
                     stack.append((heading, effective_level))
                     continue
                 if effective_level > 1:
@@ -186,7 +215,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                         IssueDraft(
                             severity=IssueSeverity.WARNING,
                             category="heading_parent_missing",
-                            message=f"标题 {(heading.text or '')[:30]!r} 无父节点（level={effective_level}）。",
+                            message=f"标题 {_heading_text(heading)[:30]!r} 无父节点（level={effective_level}）。",
                             affected_block_ids=[str(heading.id)],
                         )
                     )
@@ -204,7 +233,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                         severity=IssueSeverity.INFO,
                         category="heading_level_jump",
                         message=f"标题层级跳跃 {parent_level} → {effective_level}: "
-                        f"{(heading.text or '')[:30]!r}",
+                        f"{_heading_text(heading)[:30]!r}",
                         affected_block_ids=[str(parent.id), str(heading.id)],
                     )
                 )
@@ -213,6 +242,26 @@ class QL_HDG_004_BuildTree(QualityRule):
                 # （spec：只有层级、顺序和来源证据一致才 verified）
                 state = QualityCapabilityState.INFERRED
 
+            # 阅读顺序冲突或孤儿根会污染整棵树，禁止输出 verified。
+            if order_conflict or any(i.category == "heading_parent_missing" for i in issues):
+                state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+            elif not (
+                parent.order_index is not None
+                and heading.order_index is not None
+                and parent.source_block_id
+                and heading.source_block_id
+            ):
+                state = min(
+                    state,
+                    QualityCapabilityState.INFERRED,
+                    key=lambda value: {
+                        QualityCapabilityState.UNAVAILABLE: 0,
+                        QualityCapabilityState.MANUAL_REVIEW_REQUIRED: 1,
+                        QualityCapabilityState.INFERRED: 2,
+                        QualityCapabilityState.VERIFIED: 3,
+                    }[value],
+                )
+
             candidates.append(
                 RelationCandidate(
                     relation_type="parent_child",
@@ -220,16 +269,12 @@ class QL_HDG_004_BuildTree(QualityRule):
                     to_id=str(heading.id),
                     state=state,
                     evidence_refs=[
-                        EvidenceRef(
-                            object_type="block",
-                            object_id=str(parent.id),
-                            field_path="heading_level",
-                        ),
-                        EvidenceRef(
-                            object_type="block",
-                            object_id=str(heading.id),
-                            field_path="heading_level",
-                        ),
+                        EvidenceRef(object_type="block", object_id=str(parent.id), field_path="heading_level"),
+                        EvidenceRef(object_type="block", object_id=str(heading.id), field_path="heading_level"),
+                        EvidenceRef(object_type="block", object_id=str(parent.id), field_path="order_index"),
+                        EvidenceRef(object_type="block", object_id=str(heading.id), field_path="order_index"),
+                        EvidenceRef(object_type="block", object_id=str(parent.id), field_path="source_block_id"),
+                        EvidenceRef(object_type="block", object_id=str(heading.id), field_path="source_block_id"),
                     ],
                 )
             )
@@ -238,12 +283,14 @@ class QL_HDG_004_BuildTree(QualityRule):
         # 能力观测：存在孤立标题（层级证据冲突）→ 整树 manual_review_required
         # （spec §5.4：开头直接 H2/H3 且无父节点 → manual_review_required）
         has_orphan = any(i.category == "heading_parent_missing" for i in issues)
-        if candidates:
+        if candidates or has_orphan or order_conflict:
             verified_count = sum(
                 1 for c in candidates if c.state == QualityCapabilityState.VERIFIED
             )
-            if has_orphan:
+            if has_orphan or order_conflict:
                 state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+            elif not candidates:
+                state = QualityCapabilityState.UNAVAILABLE
             elif verified_count == len(candidates):
                 state = QualityCapabilityState.VERIFIED
             elif any(

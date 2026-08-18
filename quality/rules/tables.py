@@ -70,6 +70,13 @@ def analyze_grid(table: ParsedTable) -> _GridAnalysis:
     cells = table.cells
     if not cells:
         analysis.valid = False
+        analysis.issues.append(
+            IssueDraft(
+                severity=IssueSeverity.WARNING,
+                category="table_grid",
+                message="表格没有可用单元格，网格无法恢复。",
+            )
+        )
         return analysis
 
     max_row = max(c.start_row + c.row_span for c in cells)
@@ -126,28 +133,26 @@ def analyze_grid(table: ParsedTable) -> _GridAnalysis:
         for col in range(declared_cols):
             if (row, col) not in occupancy:
                 analysis.holes.append((row, col))
-    if analysis.holes:
-        analysis.issues.append(
-            IssueDraft(
-                severity=IssueSeverity.INFO,
-                category="table_grid",
-                message=f"网格存在 {len(analysis.holes)} 个空洞槽位。",
-            )
-        )
-
     # QL-TBL-003：header 区域恢复
     # 1) 有 column_header 标记的连续起始行
-    marked_header_rows = sorted(
-        {c.start_row for c in cells if c.column_header}
-    )
+    marked_header_rows = sorted({c.start_row for c in cells if c.column_header})
     header_rows: list[int] = []
     if marked_header_rows:
-        # 从 row 0 开始取连续
+        # header 标记必须从第 0 行开始并连续；否则区域边界不确定。
         expected = 0
         while expected in marked_header_rows:
             header_rows.append(expected)
             expected += 1
-        # 多级表头：header 标记行后紧跟的非数据行（无 row_header 标记）
+        if marked_header_rows[0] != 0 or len(header_rows) != len(marked_header_rows):
+            analysis.issues.append(
+                IssueDraft(
+                    severity=IssueSeverity.WARNING,
+                    category="table_header_structure",
+                    message="column_header 标记不构成从第 0 行开始的连续表头区域。",
+                )
+            )
+            analysis.valid = False
+        # 多级表头：header 标记行后紧随的非数据行（无 row_header 标记）
         # ——通过"下一个被 row_header 标记或含数据特征的行"前连续的未标记行判断：
         # 这里保守策略：如果 header 区域第一行存在 colspan>1（多级表头），
         # 将紧随其后的未标记行也纳入 header，直到出现 rowhdr=True 或非空数据行
@@ -171,6 +176,17 @@ def analyze_grid(table: ParsedTable) -> _GridAnalysis:
         # 2) 无标记：第一行视为表头（保守）
         header_rows = [0] if declared_rows > 0 else []
     analysis.header_rows = header_rows
+    # 表头多级结构中，父表头下方的空槽位是合法布局；数据区空洞才是结构缺失。
+    data_holes = [h for h in analysis.holes if h[0] > max(header_rows or [0])]
+    if data_holes:
+        analysis.issues.append(
+            IssueDraft(
+                severity=IssueSeverity.WARNING,
+                category="table_grid",
+                message=f"数据区网格存在 {len(data_holes)} 个空洞槽位。",
+            )
+        )
+        analysis.valid = False
     return analysis
 
 
@@ -210,6 +226,8 @@ class QL_TBL_004_ColumnPath(QualityRule):
     def execute(self, context: EvidenceContext) -> RuleResult:
         issues: list[IssueDraft] = []
         observations: list[CapabilityObservation] = []
+        if not context.parsed.tables:
+            return RuleResult()
         grid_verified = True
         for table in context.parsed.tables:
             analysis = analyze_grid(table)
@@ -220,13 +238,12 @@ class QL_TBL_004_ColumnPath(QualityRule):
             # 验证每个数据列的 column_path 可确定
             for col in range(table.num_cols or 0):
                 path = _column_path_for_col(table, col, analysis.header_rows)
-                if path is None:
+                if path is None or not path:
                     issues.append(
                         IssueDraft(
                             severity=IssueSeverity.WARNING,
                             category="table_field_binding",
-                            message=f"table {table.table_id} 列 {col} 的表头互斥（同层多候选），"
-                            "column_path 无法确定。",
+                            message=f"table {table.table_id} 列 {col} 的 column_path 无法确定（表头互斥或为空）。",
                         )
                     )
                     grid_verified = False
@@ -270,24 +287,40 @@ class QL_TBL_006_BuildBindings(QualityRule):
             # table.block_id 是 DocumentBlock 的 UUID（对应解析器的 table block）
             block = context.block(str(table.block_id))
 
+            # 先建立每行 row_key，并检测重复；禁止用序号伪造唯一性。
+            row_infos: dict[int, tuple[list[TableCell], str, QualityCapabilityState]] = {}
+            key_rows: dict[str, list[int]] = {}
             for row in range(last_header_row + 1, table.num_rows or 0):
                 row_cells = [c for c in table.cells if c.start_row == row]
                 if not row_cells:
                     continue
-                # row_key（QL-TBL-005）：row_header 标记优先
-                row_header_cell = next(
-                    (c for c in row_cells if c.row_header), None
-                )
+                row_headers = sorted((c for c in row_cells if c.row_header), key=lambda c: c.start_col)
                 first_cell = min(row_cells, key=lambda c: c.start_col)
-                row_key_source = row_header_cell or first_cell
-                row_key = row_key_source.text.strip()
+                sources = row_headers or [first_cell]
+                row_key = " / ".join(c.text.strip() for c in sources if c.text.strip())
                 if not row_key:
-                    continue  # 无 row_key → 安全降级，不生成 binding
+                    continue
                 row_key_state = (
                     QualityCapabilityState.VERIFIED
-                    if row_header_cell is not None
+                    if row_headers
                     else QualityCapabilityState.INFERRED
                 )
+                row_infos[row] = (row_cells, row_key, row_key_state)
+                key_rows.setdefault(row_key, []).append(row)
+            duplicate_keys = {key for key, rows in key_rows.items() if len(rows) > 1}
+            if duplicate_keys:
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_field_binding",
+                        message=f"row_key 重复，无法唯一定位: {', '.join(sorted(duplicate_keys))}。",
+                        affected_block_ids=[str(table.block_id)],
+                    )
+                )
+
+            for row, (row_cells, row_key, row_key_state) in row_infos.items():
+                if row_key in duplicate_keys:
+                    row_key_state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
 
                 # 每个非 header 数据单元格 → binding
                 for cell in row_cells:
@@ -301,18 +334,39 @@ class QL_TBL_006_BuildBindings(QualityRule):
                     path_text = [text for text, _ in path]
                     # binding 状态：path 全部来自真实 header cell + row_key 状态
                     path_verified = True  # 已通过互斥检查
-                    state = (
-                        QualityCapabilityState.VERIFIED
-                        if path_verified and row_key_state == QualityCapabilityState.VERIFIED
-                        else QualityCapabilityState.INFERRED
-                    )
+                    if row_key_state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED:
+                        state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                    elif path_verified and row_key_state == QualityCapabilityState.VERIFIED:
+                        state = QualityCapabilityState.VERIFIED
+                    else:
+                        state = QualityCapabilityState.INFERRED
+                    if block is None or not block.source_block_id:
+                        state = QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                    if cell.bbox is not None:
+                        source_bbox = cell.bbox
+                        bbox_granularity = "cell"
+                    else:
+                        source_bbox = table.bbox
+                        bbox_granularity = "table" if table.bbox is not None else None
                     source_locator = CanonicalSourceLocator(
                         source_block_id=block.source_block_id if block else "",
                         page_number=table.page_number,
-                        bbox=table.bbox,  # 来源只有表级 bbox：保留表级来源（禁止伪造 cell bbox）
-                        bbox_granularity="table",
+                        bbox=source_bbox,
+                        bbox_granularity=bbox_granularity,
+                        table_cell=f"r{row}c{cell.start_col}",
                         provenance_status=state,
                     )
+                    path_evidence = [
+                        {
+                            "cell_id": f"{table.table_id}:r{c.start_row}c{c.start_col}",
+                            "text": text,
+                            "start_row": c.start_row,
+                            "start_col": c.start_col,
+                            "row_span": c.row_span,
+                            "col_span": c.col_span,
+                        }
+                        for text, c in path
+                    ]
                     candidates.append(
                         BindingCandidate(
                             table_id=table.table_id,
@@ -337,6 +391,29 @@ class QL_TBL_006_BuildBindings(QualityRule):
                                     for _, c in path
                                 ],
                             ],
+                            evidence={
+                                "row_key": {
+                                    "value": row_key,
+                                    "source_cells": [
+                                        {
+                                            "cell_id": f"{table.table_id}:r{c.start_row}c{c.start_col}",
+                                            "start_row": c.start_row,
+                                            "start_col": c.start_col,
+                                            "row_span": c.row_span,
+                                            "col_span": c.col_span,
+                                        }
+                                        for c in (sorted((c for c in row_cells if c.row_header), key=lambda c: c.start_col) or [min(row_cells, key=lambda c: c.start_col)])
+                                    ],
+                                },
+                                "column_path_segments": path_evidence,
+                                "value_cell": {
+                                    "cell_id": f"{table.table_id}:r{row}c{cell.start_col}",
+                                    "start_row": row,
+                                    "start_col": cell.start_col,
+                                    "row_span": cell.row_span,
+                                    "col_span": cell.col_span,
+                                },
+                            },
                         )
                     )
 

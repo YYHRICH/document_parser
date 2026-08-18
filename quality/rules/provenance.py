@@ -26,6 +26,15 @@ from quality.models_internal import (
 from quality.rules.base import QualityRule
 
 
+def _valid_sha256(value: object) -> bool:
+    """校验 SHA-256 是否为 64 位十六进制字符串。"""
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdefABCDEF" for character in value)
+    )
+
+
 def _valid_bbox(bbox) -> bool:
     """bbox 必须为 4 元组且 (r>l, bottom>top)。"""
     if not isinstance(bbox, (tuple, list)) or len(bbox) != 4:
@@ -173,7 +182,7 @@ class QL_PROV_003_ArtifactsValid(QualityRule):
     def execute(self, context: EvidenceContext) -> RuleResult:
         issues: list[IssueDraft] = []
         for asset in context.parsed.assets:
-            if not asset.sha256 or len(asset.sha256) != 64:
+            if not _valid_sha256(asset.sha256):
                 issues.append(
                     IssueDraft(
                         severity=IssueSeverity.WARNING,
@@ -183,7 +192,7 @@ class QL_PROV_003_ArtifactsValid(QualityRule):
                     )
                 )
         for artifact in context.parsed.native_artifacts:
-            if not artifact.sha256 or len(artifact.sha256) != 64:
+            if not _valid_sha256(artifact.sha256):
                 severity = (
                     IssueSeverity.CRITICAL
                     if artifact.required_for_quality

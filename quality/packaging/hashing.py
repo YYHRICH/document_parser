@@ -23,10 +23,21 @@ def sha256_text(text: str) -> str:
 
 
 def stable_json_bytes(model) -> bytes:
-    """Pydantic 模型的确定性 JSON 序列化（固定缩进与末尾换行）。"""
-    payload = model.model_dump_json(indent=2)
-    return (payload + "\n").encode("utf-8")
+    """Serialize a Pydantic model/dict deterministically as UTF-8 JSON."""
+    if hasattr(model, "model_dump"):
+        payload = model.model_dump(mode="json")
+    else:
+        payload = model
+    text = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        indent=2,
+        separators=(",", ": "),
+    )
+    return (text + "\n").encode("utf-8")
 
 
 def markdown_bytes(markdown: str) -> bytes:
+    """Encode optimized Markdown exactly as represented (UTF-8)."""
     return markdown.encode("utf-8")
