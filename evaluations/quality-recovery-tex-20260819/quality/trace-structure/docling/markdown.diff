@@ -1,0 +1,44 @@
+--- parsed.md
++++ optimized.md
+@@ -2,9 +2,9 @@
+ 
+ TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1
+ 
+-## 1 范围与身份 TRACE-S-SEC-101
++### 1 范围与身份 TRACE-S-SEC-101
+ 
+-## 1.1 固定事实 TRACE-S-PARA-111
++#### 1.1 固定事实 TRACE-S-PARA-111
+ 
+ 本报告生成日期为 2026-08-19 ，批次编号为 TR-2026-08 。验收率固定为 99.75% ，预算为 CNY 。以上数字、标点和货币单位均不得被质量恢复过程改写。
+ 
+@@ -12,13 +12,13 @@
+ 
+ 安全端点为 https://example.test/api?v=2&amp;mode=safe 。短横线、斜线、问号、等号和与号 都是事实的一部分。
+ 
+-## 1.1.1 有序步骤 TRACE-S-LIST-121
++##### 1.1.1 有序步骤 TRACE-S-LIST-121
+ 
+ 1. 校验 Source ID ，不得生成新的事实。
+ 2. 保留日期 2026-08-19 与编号 TR-2026-08 。
+ 3. 只允许调整可证明的 Markdown 格式或结构。
+ 
+-## 1.2 代码与公式 TRACE-S-CODE-131
++#### 1.2 代码与公式 TRACE-S-CODE-131
+ 
+ 内联代码为 x = a+b ，命令为 python -m quality.check --mode=safe 符和等号不得改变。
+ 
+@@ -30,11 +30,11 @@
+ 
+ 并定义约束 a + b ≥ 10 、误差 ϵ &lt; 0 . 005 。公式运算符属于受保护事实。
+ 
+-## 2 跨页语义 TRACE-S-SEC-201
++### 2 跨页语义 TRACE-S-SEC-201
+ 
+ 本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确 结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。
+ 
+-## 2.1 引用 TRACE-S-REF-211
++#### 2.1 引用 TRACE-S-REF-211
+ 
+ 引用条目： Quality Recovery Protocol, revision 2.2, archive key QR-0819-A 。引用键、版本号 与 archive key 都必须原样保留。
+ 

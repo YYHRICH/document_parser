@@ -1,0 +1,12 @@
+{
+  "document": "trace-tables",
+  "parser": "mineru",
+  "parser_id": "mineru-cloud",
+  "source_sha256": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
+  "markdown_sha256": "2e0f74e94530203a874f2fc3c0ee07fcf3e6dc4160ced88c651c9aafefbdfb44",
+  "markdown_chars": 3785,
+  "blocks": 14,
+  "headings": 4,
+  "tables": 3,
+  "warnings": []
+}

@@ -1,0 +1,334 @@
+{
+  "results": [
+    {
+      "document": "trace-structure",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-structure:mineru",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 2,
+      "final_state": "manual_review_required",
+      "final_issues": 2,
+      "blocks": 26,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 7,
+        "rate": 0.7143,
+        "missing": [
+          "x = a+b",
+          "E = mc^2"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 7,
+        "rate": 0.7143,
+        "missing": [
+          "x = a+b",
+          "E = mc^2"
+        ]
+      }
+    },
+    {
+      "document": "trace-structure",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-structure:docling",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        false
+      ],
+      "changed": true,
+      "changed_block_ids": [
+        "05425346-9c6f-46e4-9f2f-d01353b6c673",
+        "a9967438-be83-4e1e-827c-19a432ec9521",
+        "c1cc2e39-2418-47f3-8bce-f482f66da112",
+        "d42162c0-431e-482d-b04f-92dc5780c296",
+        "e8717164-0849-4464-9596-fa1937c6e485",
+        "ffca310b-e52c-4b9a-898b-676f2c34127e"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 2,
+      "final_state": "pass",
+      "final_issues": 1,
+      "blocks": 22,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 4,
+        "total": 7,
+        "rate": 0.5714,
+        "missing": [
+          "CNY 12,345.67",
+          "https://example.test/api?v=2&mode=safe",
+          "E = mc^2"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 4,
+        "total": 7,
+        "rate": 0.5714,
+        "missing": [
+          "CNY 12,345.67",
+          "https://example.test/api?v=2&mode=safe",
+          "E = mc^2"
+        ]
+      }
+    },
+    {
+      "document": "trace-tables",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-tables:mineru",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        false
+      ],
+      "changed": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [
+        "table-001"
+      ],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 4,
+      "final_state": "manual_review_required",
+      "final_issues": 2,
+      "blocks": 14,
+      "tables": 3,
+      "parsed_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      }
+    },
+    {
+      "document": "trace-tables",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-tables:docling",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        false
+      ],
+      "changed": true,
+      "changed_block_ids": [
+        "1ad5f248-4616-4ffd-acc0-1e3952dde506",
+        "98ef799b-0f96-4fa0-ab58-a1f96a43a5fb",
+        "c30b5b5b-f147-4ab3-b059-058b1bb57d7a"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 0,
+      "blocks": 13,
+      "tables": 3,
+      "parsed_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      }
+    },
+    {
+      "document": "trace-layout",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-layout:mineru",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "blocks": 26,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 7,
+        "total": 8,
+        "rate": 0.875,
+        "missing": [
+          "TRACE-L-FOOT-121"
+        ]
+      },
+      "optimized_marker_recall": {
+        "found": 7,
+        "total": 8,
+        "rate": 0.875,
+        "missing": [
+          "TRACE-L-FOOT-121"
+        ]
+      },
+      "parsed_fact_recall": {
+        "found": 4,
+        "total": 5,
+        "rate": 0.8,
+        "missing": [
+          "alpha <= beta + 0.05"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 4,
+        "total": 5,
+        "rate": 0.8,
+        "missing": [
+          "alpha <= beta + 0.05"
+        ]
+      }
+    },
+    {
+      "document": "trace-layout",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-layout:docling",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        false
+      ],
+      "changed": true,
+      "changed_block_ids": [
+        "139ee20f-be10-4896-8450-5f3830c53539",
+        "40bac072-6594-493d-bf15-267148fdb92a",
+        "d04e5341-94b1-48ab-8c33-fa7617e116f3",
+        "fc17fe1e-d24a-432b-9cd6-2b974a49d064"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "pass",
+      "final_issues": 0,
+      "blocks": 21,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

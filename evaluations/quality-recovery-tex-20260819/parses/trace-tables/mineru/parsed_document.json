@@ -1,0 +1,2319 @@
+{
+  "document_id": "3fe21fb7-dd7c-403c-8e90-0b54fe860783",
+  "filename": "trace-tables.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 51357,
+  "source_sha256": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
+  "routing_decision": null,
+  "markdown": "# 可追溯复杂表格测试 TRACE-T-DOC-001 | Source: TEX-TABLE-20260819-V1\n\n## 1 合并表头 TRACE-T-CAP-101\n\n表 1: 批次环境与财务事实\n<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">温度范围</td><td colspan=\"2\">验证结果</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>LOT-A17</td><td>-20-70 C</td><td>99.90%</td><td>USD 8,760.50</td></tr><tr><td>LOT-B04</td><td>-10-55 C</td><td>98.25%</td><td>USD 4,210.00</td></tr></table>\n\n最小加工公差为 0.125 mm。温度范围中的两个连字符、百分号、小数点和货币逗号均为事实。\n\n## 2 跨页明细\n\n表 2: 跨页追踪明细\n<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>判定说明</td></tr><tr><td>TRACE-T-R01</td><td>LOT-A17</td><td>0.125 mm</td><td>保留三位小数与单位。</td></tr><tr><td>TRACE-T-R02</td><td>LOT-A17</td><td>99.90%</td><td>不得把百分号转成文字。</td></tr><tr><td>TRACE-T-R03</td><td>LOT-A17</td><td>-20-70 C</td><td>不得改变范围分隔符。</td></tr><tr><td>TRACE-T-R04</td><td>LOT-B04</td><td>USD 8,760.50</td><td>不得改变货币与千位分隔。</td></tr><tr><td>TRACE-T-R05</td><td>LOT-B04</td><td>12.500 kg</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R06</td><td>LOT-A17</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-T-R07</td><td>LOT-B04</td><td>3.3 V</td><td>数值与单位不得拆改。</td></tr><tr><td>TRACE-T-R08</td><td>LOT-A17</td><td>4-20 mA</td><td>范围必须完整。</td></tr><tr><td>TRACE-T-R09</td><td>LOT-B04</td><td>1.00e-3</td><td>科学计数法必须完整。</td></tr><tr><td>TRACE-T-R10</td><td>LOT-A17</td><td>2026-08-19</td><td>日期分隔符必须完整。</td></tr><tr><td>TRACE-T-R11</td><td>LOT-B04</td><td>A+B=C</td><td>运算符必须完整。</td></tr><tr><td>TRACE-T-R12</td><td>LOT-A17</td><td>0.005%</td><td>小数和百分号必须完整。</td></tr><tr><td>TRACE-T-R13</td><td>LOT-B04</td><td>42 N.m</td><td>点号属于单位表达。</td></tr><tr><td>TRACE-T-R14</td><td>LOT-A17</td><td>2:1</td><td>比例冒号不得变化。</td></tr><tr><td>TRACE-T-R15</td><td>LOT-B04</td><td>SN-0819-15</td><td>序列号短横线必须完整。</td></tr><tr><td>TRACE-T-R16</td><td>LOT-A17</td><td>18.0 C</td><td>温度值必须完整。</td></tr><tr><td>TRACE-T-R17</td><td>LOT-B04</td><td>5.000 L</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R18</td><td>LOT-A17</td><td>100+/-2 Hz</td><td>正负容差不得变化。</td></tr><tr><td>TRACE-T-R19</td><td>LOT-B04</td><td>0x7F3A</td><td>十六进制值必须完整。</td></tr><tr><td>TRACE-T-R20</td><td>LOT-A17</td><td>PASS-20</td><td>最后一行必须可追踪。</td></tr><tr><td>TRACE-T-R21</td><td>LOT-B04</td><td>21.125 mm</td><td>跨页后继续保留单位。</td></tr><tr><td>TRACE-T-R22</td><td>LOT-A17</td><td>22.250 mm</td><td>跨页后继续保留小数。</td></tr><tr><td>TRACE-T-R23</td><td>LOT-B04</td><td>23.375 mm</td><td>不得交换批次与测量值。</td></tr><tr><td>TRACE-T-R24</td><td>LOT-A17</td><td>24.500 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R25</td><td>LOT-B04</td><td>25.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R26</td><td>LOT-A17</td><td>26.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R27</td><td>LOT-B04</td><td>27.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R28</td><td>LOT-A17</td><td>28.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R29</td><td>LOT-B04</td><td>29.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R30</td><td>LOT-A17</td><td>30.250 mm</td><td>跨页追踪点必须存在。</td></tr><tr><td>TRACE-T-R31</td><td>LOT-B04</td><td>31.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R32</td><td>LOT-A17</td><td>32.500 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R33</td><td>LOT-B04</td><td>33.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R34</td><td>LOT-A17</td><td>34.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R35</td><td>LOT-B04</td><td>35.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R36</td><td>LOT-A17</td><td>36.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R37</td><td>LOT-B04</td><td>37.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R38</td><td>LOT-A17</td><td>38.250 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R39</td><td>LOT-B04</td><td>39.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R40</td><td>LOT-A17</td><td>PASS-40</td><td>最终行必须可追踪。</td></tr></table>\n\n## 3 汇总结论 TRACE-T-SUM-201\n\n表格恢复只能调整网格、表头角色和跨页关系，不能修改任一单元格事实文本。",
+  "blocks": [
+    {
+      "id": "ea02d96f-7fcc-4e70-898e-9f1ff00c850f",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "可追溯复杂表格测试 TRACE-T-DOC-001 | Source: TEX-TABLE-20260819-V1",
+      "heading_level": 1,
+      "markdown": "可追溯复杂表格测试 TRACE-T-DOC-001 | Source: TEX-TABLE-20260819-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          297.0,
+          57.0,
+          699.0,
+          99.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8cd0ae38-0ee7-44bc-8709-ea7cf7729a30",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 合并表头 TRACE-T-CAP-101",
+      "heading_level": 2,
+      "markdown": "1 合并表头 TRACE-T-CAP-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.0,
+          126.0,
+          692.0,
+          145.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7f0eae4c-c43c-43a8-aba4-5ec0351ba59e",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 批次 | 温度范围 | 验证结果 |   |\n| --- | --- | --- | --- |\n| 精度 | 成本 |   |   |\n| LOT-A17 | -20-70 C | 99.90% | USD 8,760.50 |\n| LOT-B04 | -10-55 C | 98.25% | USD 4,210.00 |",
+      "heading_level": null,
+      "markdown": "| 批次 | 温度范围 | 验证结果 |   |\n| --- | --- | --- | --- |\n| 精度 | 成本 |   |   |\n| LOT-A17 | -20-70 C | 99.90% | USD 8,760.50 |\n| LOT-B04 | -10-55 C | 98.25% | USD 4,210.00 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          310.0,
+          192.0,
+          685.0,
+          298.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [
+          "表 1: 批次环境与财务事实"
+        ],
+        "footnote": [
+          "最小加工公差为 0.125 mm。温度范围中的两个连字符、百分号、小数点和货币逗号均为事实。"
+        ],
+        "img_path": "images/98c15600707c3cdd94da6141817209fd1b315026cebea1bb65378d75382ac4c0.jpg"
+      }
+    },
+    {
+      "id": "afca5f2f-85f5-42d4-8a9a-9b2bd15650b6",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 跨页明细",
+      "heading_level": 2,
+      "markdown": "2 跨页明细",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          426.0,
+          359.0,
+          569.0,
+          380.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ce5227cc-85b7-4d01-8501-3b9e2cd2bdf1",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 追踪标记 | 批次 | 测量值 | 判定说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | LOT-A17 | 0.125 mm | 保留三位小数与单位。 |\n| TRACE-T-R02 | LOT-A17 | 99.90% | 不得把百分号转成文字。 |\n| TRACE-T-R03 | LOT-A17 | -20-70 C | 不得改变范围分隔符。 |\n| TRACE-T-R04 | LOT-B04 | USD 8,760.50 | 不得改变货币与千位分隔。 |\n| TRACE-T-R05 | LOT-B04 | 12.500 kg | 固定三位小数。 |\n| TRACE-T-R06 | LOT-A17 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-T-R07 | LOT-B04 | 3.3 V | 数值与单位不得拆改。 |\n| TRACE-T-R08 | LOT-A17 | 4-20 mA | 范围必须完整。 |\n| TRACE-T-R09 | LOT-B04 | 1.00e-3 | 科学计数法必须完整。 |\n| TRACE-T-R10 | LOT-A17 | 2026-08-19 | 日期分隔符必须完整。 |\n| TRACE-T-R11 | LOT-B04 | A+B=C | 运算符必须完整。 |\n| TRACE-T-R12 | LOT-A17 | 0.005% | 小数和百分号必须完整。 |\n| TRACE-T-R13 | LOT-B04 | 42 N.m | 点号属于单位表达。 |\n| TRACE-T-R14 | LOT-A17 | 2:1 | 比例冒号不得变化。 |\n| TRACE-T-R15 | LOT-B04 | SN-0819-15 | 序列号短横线必须完整。 |\n| TRACE-T-R16 | LOT-A17 | 18.0 C | 温度值必须完整。 |\n| TRACE-T-R17 | LOT-B04 | 5.000 L | 固定三位小数。 |\n| TRACE-T-R18 | LOT-A17 | 100+/-2 Hz | 正负容差不得变化。 |\n| TRACE-T-R19 | LOT-B04 | 0x7F3A | 十六进制值必须完整。 |\n| TRACE-T-R20 | LOT-A17 | PASS-20 | 最后一行必须可追踪。 |\n| TRACE-T-R21 | LOT-B04 | 21.125 mm | 跨页后继续保留单位。 |\n| TRACE-T-R22 | LOT-A17 | 22.250 mm | 跨页后继续保留小数。 |\n| TRACE-T-R23 | LOT-B04 | 23.375 mm | 不得交换批次与测量值。 |\n| TRACE-T-R24 | LOT-A17 | 24.500 mm | 不得丢失尾随零。 |\n| TRACE-T-R25 | LOT-B04 | 25.625 mm | 保留三位小数。 |\n| TRACE-T-R26 | LOT-A17 | 26.750 mm | 保留三位小数。 |\n| TRACE-T-R27 | LOT-B04 | 27.875 mm | 保留三位小数。 |\n| TRACE-T-R28 | LOT-A17 | 28.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R29 | LOT-B04 | 29.125 mm | 保留三位小数。 |\n| TRACE-T-R30 | LOT-A17 | 30.250 mm | 跨页追踪点必须存在。 |\n| TRACE-T-R31 | LOT-B04 | 31.375 mm | 保留三位小数。 |\n| TRACE-T-R32 | LOT-A17 | 32.500 mm | 保留三位小数。 |\n| TRACE-T-R33 | LOT-B04 | 33.625 mm | 保留三位小数。 |\n| TRACE-T-R34 | LOT-A17 | 34.750 mm | 保留三位小数。 |\n| TRACE-T-R35 | LOT-B04 | 35.875 mm | 保留三位小数。 |\n| TRACE-T-R36 | LOT-A17 | 36.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R37 | LOT-B04 | 37.125 mm | 保留三位小数。 |\n| TRACE-T-R38 | LOT-A17 | 38.250 mm | 保留三位小数。 |\n| TRACE-T-R39 | LOT-B04 | 39.375 mm | 保留三位小数。 |\n| TRACE-T-R40 | LOT-A17 | PASS-40 | 最终行必须可追踪。 |",
+      "heading_level": null,
+      "markdown": "| 追踪标记 | 批次 | 测量值 | 判定说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | LOT-A17 | 0.125 mm | 保留三位小数与单位。 |\n| TRACE-T-R02 | LOT-A17 | 99.90% | 不得把百分号转成文字。 |\n| TRACE-T-R03 | LOT-A17 | -20-70 C | 不得改变范围分隔符。 |\n| TRACE-T-R04 | LOT-B04 | USD 8,760.50 | 不得改变货币与千位分隔。 |\n| TRACE-T-R05 | LOT-B04 | 12.500 kg | 固定三位小数。 |\n| TRACE-T-R06 | LOT-A17 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-T-R07 | LOT-B04 | 3.3 V | 数值与单位不得拆改。 |\n| TRACE-T-R08 | LOT-A17 | 4-20 mA | 范围必须完整。 |\n| TRACE-T-R09 | LOT-B04 | 1.00e-3 | 科学计数法必须完整。 |\n| TRACE-T-R10 | LOT-A17 | 2026-08-19 | 日期分隔符必须完整。 |\n| TRACE-T-R11 | LOT-B04 | A+B=C | 运算符必须完整。 |\n| TRACE-T-R12 | LOT-A17 | 0.005% | 小数和百分号必须完整。 |\n| TRACE-T-R13 | LOT-B04 | 42 N.m | 点号属于单位表达。 |\n| TRACE-T-R14 | LOT-A17 | 2:1 | 比例冒号不得变化。 |\n| TRACE-T-R15 | LOT-B04 | SN-0819-15 | 序列号短横线必须完整。 |\n| TRACE-T-R16 | LOT-A17 | 18.0 C | 温度值必须完整。 |\n| TRACE-T-R17 | LOT-B04 | 5.000 L | 固定三位小数。 |\n| TRACE-T-R18 | LOT-A17 | 100+/-2 Hz | 正负容差不得变化。 |\n| TRACE-T-R19 | LOT-B04 | 0x7F3A | 十六进制值必须完整。 |\n| TRACE-T-R20 | LOT-A17 | PASS-20 | 最后一行必须可追踪。 |\n| TRACE-T-R21 | LOT-B04 | 21.125 mm | 跨页后继续保留单位。 |\n| TRACE-T-R22 | LOT-A17 | 22.250 mm | 跨页后继续保留小数。 |\n| TRACE-T-R23 | LOT-B04 | 23.375 mm | 不得交换批次与测量值。 |\n| TRACE-T-R24 | LOT-A17 | 24.500 mm | 不得丢失尾随零。 |\n| TRACE-T-R25 | LOT-B04 | 25.625 mm | 保留三位小数。 |\n| TRACE-T-R26 | LOT-A17 | 26.750 mm | 保留三位小数。 |\n| TRACE-T-R27 | LOT-B04 | 27.875 mm | 保留三位小数。 |\n| TRACE-T-R28 | LOT-A17 | 28.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R29 | LOT-B04 | 29.125 mm | 保留三位小数。 |\n| TRACE-T-R30 | LOT-A17 | 30.250 mm | 跨页追踪点必须存在。 |\n| TRACE-T-R31 | LOT-B04 | 31.375 mm | 保留三位小数。 |\n| TRACE-T-R32 | LOT-A17 | 32.500 mm | 保留三位小数。 |\n| TRACE-T-R33 | LOT-B04 | 33.625 mm | 保留三位小数。 |\n| TRACE-T-R34 | LOT-A17 | 34.750 mm | 保留三位小数。 |\n| TRACE-T-R35 | LOT-B04 | 35.875 mm | 保留三位小数。 |\n| TRACE-T-R36 | LOT-A17 | 36.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R37 | LOT-B04 | 37.125 mm | 保留三位小数。 |\n| TRACE-T-R38 | LOT-A17 | 38.250 mm | 保留三位小数。 |\n| TRACE-T-R39 | LOT-B04 | 39.375 mm | 保留三位小数。 |\n| TRACE-T-R40 | LOT-A17 | PASS-40 | 最终行必须可追踪。 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          122.0,
+          436.0,
+          877.0,
+          907.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [
+          "表 2: 跨页追踪明细"
+        ],
+        "footnote": [],
+        "img_path": "images/e9c3d972795e7be2148fc018599c9df32e4ef29a6ecaf91ca54ff5dead67c227.jpg"
+      }
+    },
+    {
+      "id": "c630aff9-54b9-4d33-8172-800d7760a39c",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-RUNNING-HEADER-T",
+      "heading_level": null,
+      "markdown": "TRACE-RUNNING-HEADER-T",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          80.0,
+          15.0,
+          332.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "789c2d10-3fab-4d7a-9572-d62ec4613f2e",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-TABLE-20260819-V1",
+      "heading_level": null,
+      "markdown": "TEX-TABLE-20260819-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          714.0,
+          15.0,
+          915.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "20bb6431-9c8a-444e-af83-d59592009577",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          494.0,
+          965.0,
+          504.0,
+          977.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ba3e7a52-beef-42e0-bcb2-943b29f2ee15",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "table",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          121.0,
+          79.0,
+          877.0,
+          552.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003",
+        "caption": [
+          ""
+        ],
+        "footnote": [],
+        "img_path": ""
+      }
+    },
+    {
+      "id": "5ef72813-a24b-4434-90ce-c716f982eaab",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 汇总结论 TRACE-T-SUM-201",
+      "heading_level": 2,
+      "markdown": "3 汇总结论 TRACE-T-SUM-201",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          300.0,
+          583.0,
+          695.0,
+          602.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "760b9ae5-e4d9-4e9e-b590-e0dde6c3d4da",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格恢复只能调整网格、表头角色和跨页关系，不能修改任一单元格事实文本。",
+      "heading_level": null,
+      "markdown": "表格恢复只能调整网格、表头角色和跨页关系，不能修改任一单元格事实文本。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          114.0,
+          617.0,
+          697.0,
+          632.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "404a6f7e-382c-4400-b6b2-0df07435b45b",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-RUNNING-HEADER-T",
+      "heading_level": null,
+      "markdown": "TRACE-RUNNING-HEADER-T",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          82.0,
+          15.0,
+          331.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "12b6c08b-33bb-4453-8660-fd0a36948f73",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-TABLE-20260819-V1",
+      "heading_level": null,
+      "markdown": "TEX-TABLE-20260819-V1",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          714.0,
+          15.0,
+          915.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a2404e44-eb6f-4f1b-b17b-3cc65b79c169",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          965.0,
+          505.0,
+          977.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "7f0eae4c-c43c-43a8-aba4-5ec0351ba59e",
+      "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">温度范围</td><td colspan=\"2\">验证结果</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>LOT-A17</td><td>-20-70 C</td><td>99.90%</td><td>USD 8,760.50</td></tr><tr><td>LOT-B04</td><td>-10-55 C</td><td>98.25%</td><td>USD 4,210.00</td></tr></table>",
+      "markdown": "| 批次 | 温度范围 | 验证结果 |   |\n| --- | --- | --- | --- |\n| 精度 | 成本 |   |   |\n| LOT-A17 | -20-70 C | 99.90% | USD 8,760.50 |\n| LOT-B04 | -10-55 C | 98.25% | USD 4,210.00 |",
+      "caption": "表 1: 批次环境与财务事实",
+      "image_path": "images/98c15600707c3cdd94da6141817209fd1b315026cebea1bb65378d75382ac4c0.jpg",
+      "page_number": 1,
+      "bbox": [
+        310.0,
+        192.0,
+        685.0,
+        298.0
+      ],
+      "num_rows": 4,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度范围",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "验证结果",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "精度",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "成本",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "-20-70 C",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "99.90%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 8,760.50",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "-10-55 C",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "98.25%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 4,210.00",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "ce5227cc-85b7-4d01-8501-3b9e2cd2bdf1",
+      "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>判定说明</td></tr><tr><td>TRACE-T-R01</td><td>LOT-A17</td><td>0.125 mm</td><td>保留三位小数与单位。</td></tr><tr><td>TRACE-T-R02</td><td>LOT-A17</td><td>99.90%</td><td>不得把百分号转成文字。</td></tr><tr><td>TRACE-T-R03</td><td>LOT-A17</td><td>-20-70 C</td><td>不得改变范围分隔符。</td></tr><tr><td>TRACE-T-R04</td><td>LOT-B04</td><td>USD 8,760.50</td><td>不得改变货币与千位分隔。</td></tr><tr><td>TRACE-T-R05</td><td>LOT-B04</td><td>12.500 kg</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R06</td><td>LOT-A17</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-T-R07</td><td>LOT-B04</td><td>3.3 V</td><td>数值与单位不得拆改。</td></tr><tr><td>TRACE-T-R08</td><td>LOT-A17</td><td>4-20 mA</td><td>范围必须完整。</td></tr><tr><td>TRACE-T-R09</td><td>LOT-B04</td><td>1.00e-3</td><td>科学计数法必须完整。</td></tr><tr><td>TRACE-T-R10</td><td>LOT-A17</td><td>2026-08-19</td><td>日期分隔符必须完整。</td></tr><tr><td>TRACE-T-R11</td><td>LOT-B04</td><td>A+B=C</td><td>运算符必须完整。</td></tr><tr><td>TRACE-T-R12</td><td>LOT-A17</td><td>0.005%</td><td>小数和百分号必须完整。</td></tr><tr><td>TRACE-T-R13</td><td>LOT-B04</td><td>42 N.m</td><td>点号属于单位表达。</td></tr><tr><td>TRACE-T-R14</td><td>LOT-A17</td><td>2:1</td><td>比例冒号不得变化。</td></tr><tr><td>TRACE-T-R15</td><td>LOT-B04</td><td>SN-0819-15</td><td>序列号短横线必须完整。</td></tr><tr><td>TRACE-T-R16</td><td>LOT-A17</td><td>18.0 C</td><td>温度值必须完整。</td></tr><tr><td>TRACE-T-R17</td><td>LOT-B04</td><td>5.000 L</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R18</td><td>LOT-A17</td><td>100+/-2 Hz</td><td>正负容差不得变化。</td></tr><tr><td>TRACE-T-R19</td><td>LOT-B04</td><td>0x7F3A</td><td>十六进制值必须完整。</td></tr><tr><td>TRACE-T-R20</td><td>LOT-A17</td><td>PASS-20</td><td>最后一行必须可追踪。</td></tr><tr><td>TRACE-T-R21</td><td>LOT-B04</td><td>21.125 mm</td><td>跨页后继续保留单位。</td></tr><tr><td>TRACE-T-R22</td><td>LOT-A17</td><td>22.250 mm</td><td>跨页后继续保留小数。</td></tr><tr><td>TRACE-T-R23</td><td>LOT-B04</td><td>23.375 mm</td><td>不得交换批次与测量值。</td></tr><tr><td>TRACE-T-R24</td><td>LOT-A17</td><td>24.500 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R25</td><td>LOT-B04</td><td>25.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R26</td><td>LOT-A17</td><td>26.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R27</td><td>LOT-B04</td><td>27.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R28</td><td>LOT-A17</td><td>28.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R29</td><td>LOT-B04</td><td>29.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R30</td><td>LOT-A17</td><td>30.250 mm</td><td>跨页追踪点必须存在。</td></tr><tr><td>TRACE-T-R31</td><td>LOT-B04</td><td>31.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R32</td><td>LOT-A17</td><td>32.500 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R33</td><td>LOT-B04</td><td>33.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R34</td><td>LOT-A17</td><td>34.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R35</td><td>LOT-B04</td><td>35.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R36</td><td>LOT-A17</td><td>36.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R37</td><td>LOT-B04</td><td>37.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R38</td><td>LOT-A17</td><td>38.250 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R39</td><td>LOT-B04</td><td>39.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R40</td><td>LOT-A17</td><td>PASS-40</td><td>最终行必须可追踪。</td></tr></table>",
+      "markdown": "| 追踪标记 | 批次 | 测量值 | 判定说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | LOT-A17 | 0.125 mm | 保留三位小数与单位。 |\n| TRACE-T-R02 | LOT-A17 | 99.90% | 不得把百分号转成文字。 |\n| TRACE-T-R03 | LOT-A17 | -20-70 C | 不得改变范围分隔符。 |\n| TRACE-T-R04 | LOT-B04 | USD 8,760.50 | 不得改变货币与千位分隔。 |\n| TRACE-T-R05 | LOT-B04 | 12.500 kg | 固定三位小数。 |\n| TRACE-T-R06 | LOT-A17 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-T-R07 | LOT-B04 | 3.3 V | 数值与单位不得拆改。 |\n| TRACE-T-R08 | LOT-A17 | 4-20 mA | 范围必须完整。 |\n| TRACE-T-R09 | LOT-B04 | 1.00e-3 | 科学计数法必须完整。 |\n| TRACE-T-R10 | LOT-A17 | 2026-08-19 | 日期分隔符必须完整。 |\n| TRACE-T-R11 | LOT-B04 | A+B=C | 运算符必须完整。 |\n| TRACE-T-R12 | LOT-A17 | 0.005% | 小数和百分号必须完整。 |\n| TRACE-T-R13 | LOT-B04 | 42 N.m | 点号属于单位表达。 |\n| TRACE-T-R14 | LOT-A17 | 2:1 | 比例冒号不得变化。 |\n| TRACE-T-R15 | LOT-B04 | SN-0819-15 | 序列号短横线必须完整。 |\n| TRACE-T-R16 | LOT-A17 | 18.0 C | 温度值必须完整。 |\n| TRACE-T-R17 | LOT-B04 | 5.000 L | 固定三位小数。 |\n| TRACE-T-R18 | LOT-A17 | 100+/-2 Hz | 正负容差不得变化。 |\n| TRACE-T-R19 | LOT-B04 | 0x7F3A | 十六进制值必须完整。 |\n| TRACE-T-R20 | LOT-A17 | PASS-20 | 最后一行必须可追踪。 |\n| TRACE-T-R21 | LOT-B04 | 21.125 mm | 跨页后继续保留单位。 |\n| TRACE-T-R22 | LOT-A17 | 22.250 mm | 跨页后继续保留小数。 |\n| TRACE-T-R23 | LOT-B04 | 23.375 mm | 不得交换批次与测量值。 |\n| TRACE-T-R24 | LOT-A17 | 24.500 mm | 不得丢失尾随零。 |\n| TRACE-T-R25 | LOT-B04 | 25.625 mm | 保留三位小数。 |\n| TRACE-T-R26 | LOT-A17 | 26.750 mm | 保留三位小数。 |\n| TRACE-T-R27 | LOT-B04 | 27.875 mm | 保留三位小数。 |\n| TRACE-T-R28 | LOT-A17 | 28.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R29 | LOT-B04 | 29.125 mm | 保留三位小数。 |\n| TRACE-T-R30 | LOT-A17 | 30.250 mm | 跨页追踪点必须存在。 |\n| TRACE-T-R31 | LOT-B04 | 31.375 mm | 保留三位小数。 |\n| TRACE-T-R32 | LOT-A17 | 32.500 mm | 保留三位小数。 |\n| TRACE-T-R33 | LOT-B04 | 33.625 mm | 保留三位小数。 |\n| TRACE-T-R34 | LOT-A17 | 34.750 mm | 保留三位小数。 |\n| TRACE-T-R35 | LOT-B04 | 35.875 mm | 保留三位小数。 |\n| TRACE-T-R36 | LOT-A17 | 36.000 mm | 不得丢失尾随零。 |\n| TRACE-T-R37 | LOT-B04 | 37.125 mm | 保留三位小数。 |\n| TRACE-T-R38 | LOT-A17 | 38.250 mm | 保留三位小数。 |\n| TRACE-T-R39 | LOT-B04 | 39.375 mm | 保留三位小数。 |\n| TRACE-T-R40 | LOT-A17 | PASS-40 | 最终行必须可追踪。 |",
+      "caption": "表 2: 跨页追踪明细",
+      "image_path": "images/e9c3d972795e7be2148fc018599c9df32e4ef29a6ecaf91ca54ff5dead67c227.jpg",
+      "page_number": 1,
+      "bbox": [
+        122.0,
+        436.0,
+        877.0,
+        907.0
+      ],
+      "num_rows": 41,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "追踪标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "测量值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "判定说明",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R01",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0.125 mm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数与单位。",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R02",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "99.90%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得把百分号转成文字。",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R03",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "-20-70 C",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得改变范围分隔符。",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R04",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 8,760.50",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得改变货币与千位分隔。",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R05",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "12.500 kg",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "固定三位小数。",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R06",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "7/16 in",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "斜线是尺寸事实。",
+          "start_row": 6,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R07",
+          "start_row": 7,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 7,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "3.3 V",
+          "start_row": 7,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "数值与单位不得拆改。",
+          "start_row": 7,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R08",
+          "start_row": 8,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 8,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "4-20 mA",
+          "start_row": 8,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "范围必须完整。",
+          "start_row": 8,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R09",
+          "start_row": 9,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 9,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1.00e-3",
+          "start_row": 9,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "科学计数法必须完整。",
+          "start_row": 9,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R10",
+          "start_row": 10,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 10,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-19",
+          "start_row": 10,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "日期分隔符必须完整。",
+          "start_row": 10,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R11",
+          "start_row": 11,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 11,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "A+B=C",
+          "start_row": 11,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "运算符必须完整。",
+          "start_row": 11,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R12",
+          "start_row": 12,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 12,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0.005%",
+          "start_row": 12,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "小数和百分号必须完整。",
+          "start_row": 12,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R13",
+          "start_row": 13,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 13,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "42 N.m",
+          "start_row": 13,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "点号属于单位表达。",
+          "start_row": 13,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R14",
+          "start_row": 14,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 14,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2:1",
+          "start_row": 14,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "比例冒号不得变化。",
+          "start_row": 14,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R15",
+          "start_row": 15,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 15,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SN-0819-15",
+          "start_row": 15,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "序列号短横线必须完整。",
+          "start_row": 15,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R16",
+          "start_row": 16,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 16,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "18.0 C",
+          "start_row": 16,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度值必须完整。",
+          "start_row": 16,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R17",
+          "start_row": 17,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 17,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "5.000 L",
+          "start_row": 17,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "固定三位小数。",
+          "start_row": 17,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R18",
+          "start_row": 18,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 18,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "100+/-2 Hz",
+          "start_row": 18,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正负容差不得变化。",
+          "start_row": 18,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R19",
+          "start_row": 19,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 19,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0x7F3A",
+          "start_row": 19,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "十六进制值必须完整。",
+          "start_row": 19,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R20",
+          "start_row": 20,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 20,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "PASS-20",
+          "start_row": 20,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "最后一行必须可追踪。",
+          "start_row": 20,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R21",
+          "start_row": 21,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 21,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "21.125 mm",
+          "start_row": 21,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "跨页后继续保留单位。",
+          "start_row": 21,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R22",
+          "start_row": 22,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 22,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "22.250 mm",
+          "start_row": 22,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "跨页后继续保留小数。",
+          "start_row": 22,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R23",
+          "start_row": 23,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 23,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "23.375 mm",
+          "start_row": 23,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得交换批次与测量值。",
+          "start_row": 23,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R24",
+          "start_row": 24,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 24,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "24.500 mm",
+          "start_row": 24,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得丢失尾随零。",
+          "start_row": 24,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R25",
+          "start_row": 25,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 25,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "25.625 mm",
+          "start_row": 25,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 25,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R26",
+          "start_row": 26,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 26,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "26.750 mm",
+          "start_row": 26,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 26,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R27",
+          "start_row": 27,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 27,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "27.875 mm",
+          "start_row": 27,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 27,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R28",
+          "start_row": 28,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 28,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "28.000 mm",
+          "start_row": 28,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得丢失尾随零。",
+          "start_row": 28,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R29",
+          "start_row": 29,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 29,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "29.125 mm",
+          "start_row": 29,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 29,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R30",
+          "start_row": 30,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 30,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "30.250 mm",
+          "start_row": 30,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "跨页追踪点必须存在。",
+          "start_row": 30,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R31",
+          "start_row": 31,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 31,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "31.375 mm",
+          "start_row": 31,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 31,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R32",
+          "start_row": 32,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 32,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "32.500 mm",
+          "start_row": 32,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 32,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R33",
+          "start_row": 33,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 33,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "33.625 mm",
+          "start_row": 33,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 33,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R34",
+          "start_row": 34,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 34,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "34.750 mm",
+          "start_row": 34,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 34,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R35",
+          "start_row": 35,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 35,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "35.875 mm",
+          "start_row": 35,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 35,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R36",
+          "start_row": 36,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 36,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "36.000 mm",
+          "start_row": 36,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "不得丢失尾随零。",
+          "start_row": 36,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R37",
+          "start_row": 37,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 37,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "37.125 mm",
+          "start_row": 37,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 37,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R38",
+          "start_row": 38,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 38,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "38.250 mm",
+          "start_row": 38,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 38,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R39",
+          "start_row": 39,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-B04",
+          "start_row": 39,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "39.375 mm",
+          "start_row": 39,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留三位小数。",
+          "start_row": 39,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R40",
+          "start_row": 40,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "LOT-A17",
+          "start_row": 40,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "PASS-40",
+          "start_row": 40,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "最终行必须可追踪。",
+          "start_row": 40,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "ba3e7a52-beef-42e0-bcb2-943b29f2ee15",
+      "html": null,
+      "markdown": null,
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        121.0,
+        79.0,
+        877.0,
+        552.0
+      ],
+      "num_rows": null,
+      "num_cols": null,
+      "cells": [],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-18T18:21:42.862673Z"
+}

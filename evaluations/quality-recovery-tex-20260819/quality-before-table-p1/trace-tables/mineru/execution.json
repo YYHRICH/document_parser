@@ -1,0 +1,23 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-tables:mineru",
+  "accepted": true,
+  "final_revision_id": "dca84e331d5ea1e3b02a78206715b68d42562e57e0134c655db44571bedabd51",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [
+        "table-001"
+      ],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "75c967bfbb2ee2c1efa009e233efe482cea5956501cc28f85ce13287f5dc1b96",
+      "source_content_fingerprint": "sem-v2:4b034b496dfd1b2dfa7772121ba4386cfea9673a4c279a598f594d1bcad5b242",
+      "candidate_content_fingerprint": "sem-v2:4b034b496dfd1b2dfa7772121ba4386cfea9673a4c279a598f594d1bcad5b242"
+    }
+  ]
+}

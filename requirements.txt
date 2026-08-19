@@ -1,5 +1,6 @@
 # Runtime dependencies
 pydantic>=2.7,<3
+markdown-it-py>=4,<5
 agno>=2.9,<3
 openai>=1.40,<2
 markitdown[all]>=0.1.0,<1

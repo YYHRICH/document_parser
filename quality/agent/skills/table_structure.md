@@ -43,11 +43,13 @@ priority: specialist
 
 ## 4. 允许的 Patch
 
-- `replace_table_cells`：提交完整、无冲突的 cell 网格和 span；
+- `update_table_cell_layout`：提交已有 cell 的 cell_index、坐标、span 和 header 角色，不携带正文；
+- `replace_table_cells`：兼容完整网格提交，仅在确定性重建确有必要时使用；
 - `update_block_markdown`：只修复表格 Markdown 分隔线或表格前后的换行；
 - 跨页任务使用包含所有相关页的 `scope_pages`。
 
-`TableCellPatch.text` 必须保留输入中的事实词元；不要提交只包含部分 cell 的猜测性网格。
+增量 Patch 的正文由宿主从输入表格复制；如果提供 expected_text_sha256，宿主会校验
+候选基于的正文仍是当前 revision。兼容路径中的 `TableCellPatch.text` 仍必须保留事实词元。
 
 ## 5. 人工复核条件
 

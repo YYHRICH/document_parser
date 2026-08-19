@@ -3,10 +3,17 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from hashlib import sha256
+import re
 from uuid import UUID
 
 from document_parser.core.contracts import ParsedDocument, TableCell
 
+from quality.agent.markdown_projection import (
+    MarkdownProjectionError,
+    build_markdown_projection,
+    replace_block_source,
+)
 from quality.agent.models import CandidateValidation, RelationPatch, RepairOperation, RepairedDocumentCandidate
 from quality.packaging.hashing import sha256_bytes, stable_json_bytes
 
@@ -54,8 +61,11 @@ class InMemoryRevisionStore:
         candidate: RepairedDocumentCandidate,
         relation_overrides: tuple[RelationPatch, ...] = (),
     ) -> DocumentRevision:
+        next_revision_id = document_digest(document, relation_overrides)
+        if next_revision_id == revision.revision_id:
+            return revision
         next_revision = DocumentRevision(
-            revision_id=document_digest(document, relation_overrides),
+            revision_id=next_revision_id,
             document=document,
             parent_revision_id=revision.revision_id,
             attempt=revision.attempt + 1,
@@ -104,52 +114,59 @@ def materialize_revision_candidate(
 ) -> tuple[ParsedDocument, tuple[RelationPatch, ...]]:
     """同时物化文档结构、资源归属和关系覆盖。"""
 
-    document = revision.document
-    blocks = list(document.blocks)
-    block_index = {str(block.id): index for index, block in enumerate(blocks)}
+    source_document = revision.document
+    document = source_document
     tables = list(document.tables)
     assets = list(document.assets)
     relation_overrides = list(revision.relation_overrides)
+    root_affecting_patch = False
 
     for block_id, markdown in candidate.block_markdown.items():
-        index = block_index.get(block_id)
-        if index is None:
-            raise ValueError(f"未知 block ID：{block_id}")
-        blocks[index] = blocks[index].model_copy(update={"markdown": markdown})
+        document = _replace_block_markdown(document, block_id, markdown)
+        root_affecting_patch = True
 
-    reordered = False
     for operation in candidate.operations:
         if operation.operation == "update_block_markdown":
-            _update_block_markdown(blocks, operation)
+            document = _replace_block_markdown(
+                document, operation.block_id, operation.markdown or ""
+            )
+            root_affecting_patch = True
         elif operation.operation == "move_block":
-            _move_block(blocks, operation)
-            reordered = True
+            document = _move_block(document, operation)
+            root_affecting_patch = True
         elif operation.operation == "update_heading_level":
-            _update_heading_level(blocks, operation)
+            document = _update_heading_level(document, operation)
+            root_affecting_patch = True
         elif operation.operation == "remove_block":
-            _remove_block(blocks, operation)
-            reordered = True
+            document = _remove_block(document, operation)
+            root_affecting_patch = True
         elif operation.operation == "replace_table_cells":
             _replace_table_cells(tables, operation)
+        elif operation.operation == "update_table_cell_layout":
+            _update_table_cell_layout(tables, operation)
         elif operation.operation in {"upsert_relation", "remove_relation"}:
             _apply_relation_patch(relation_overrides, operation.relation)
         elif operation.operation == "update_asset_references":
             _update_asset_references(assets, operation)
-            _sync_asset_relation_patches(relation_overrides, document, operation)
+            _sync_asset_relation_patches(
+                relation_overrides, source_document, operation
+            )
 
-    if reordered:
-        blocks = [
-            block.model_copy(update={"order_index": index})
-            for index, block in enumerate(blocks)
-        ]
+    markdown = document.markdown
+    if candidate.repaired_markdown is not None:
+        if root_affecting_patch:
+            if candidate.repaired_markdown not in {
+                source_document.markdown,
+                document.markdown,
+            }:
+                raise MarkdownProjectionError(
+                    "repaired_markdown 与宿主根据 block operations 生成的根 Markdown 冲突。"
+                )
+        else:
+            markdown = candidate.repaired_markdown
 
-    markdown = (
-        document.markdown
-        if candidate.repaired_markdown is None
-        else candidate.repaired_markdown
-    )
     materialized = document.model_copy(
-        update={"markdown": markdown, "blocks": blocks, "tables": tables, "assets": assets}
+        update={"markdown": markdown, "tables": tables, "assets": assets}
     )
     return materialized, tuple(relation_overrides)
 
@@ -211,32 +228,138 @@ def _sync_asset_relation_patches(
             ),
         )
 
-def _update_block_markdown(blocks, operation: RepairOperation) -> None:
-    index = _find_block_index(blocks, operation.block_id)
-    blocks[index] = blocks[index].model_copy(update={"markdown": operation.markdown})
+def _replace_block_markdown(
+    document: ParsedDocument,
+    block_id: str | None,
+    markdown: str,
+) -> ParsedDocument:
+    index = _find_block_index(document.blocks, block_id)
+    block = document.blocks[index]
+    if block.markdown == markdown:
+        return document
+    updated_markdown = replace_block_source(document, str(block.id), markdown)
+    blocks = list(document.blocks)
+    blocks[index] = block.model_copy(update={"markdown": markdown})
+    return document.model_copy(
+        update={"markdown": updated_markdown, "blocks": blocks}
+    )
 
 
-def _update_heading_level(blocks, operation: RepairOperation) -> None:
-    index = _find_block_index(blocks, operation.block_id)
-    block = blocks[index]
+def _update_heading_level(
+    document: ParsedDocument,
+    operation: RepairOperation,
+) -> ParsedDocument:
+    index = _find_block_index(document.blocks, operation.block_id)
+    block = document.blocks[index]
     if block.kind.value != "heading":
         raise ValueError(f"block {operation.block_id} 不是标题块。")
-    blocks[index] = block.model_copy(update={"heading_level": operation.heading_level})
+    heading_level = operation.heading_level or 1
+    body = re.sub(r"^\s{0,3}#{1,6}(?:[ \t]+|$)", "", block.markdown, count=1)
+    markdown = f"{'#' * heading_level} {body.lstrip()}"
+    updated = _replace_block_markdown(document, operation.block_id, markdown)
+    blocks = list(updated.blocks)
+    updated_index = _find_block_index(blocks, operation.block_id)
+    blocks[updated_index] = blocks[updated_index].model_copy(
+        update={"heading_level": heading_level}
+    )
+    return updated.model_copy(update={"blocks": blocks})
 
 
-def _remove_block(blocks, operation: RepairOperation) -> None:
-    index = _find_block_index(blocks, operation.block_id)
+def _remove_block(
+    document: ParsedDocument,
+    operation: RepairOperation,
+) -> ParsedDocument:
+    index = _find_block_index(document.blocks, operation.block_id)
+    block = document.blocks[index]
+    projection = build_markdown_projection(document)
+    span = projection.spans.get(str(block.id))
+    markdown = document.markdown
+    if span is not None:
+        span = projection.require_source(str(block.id))
+        markdown = document.markdown[: span.edit_start] + document.markdown[span.edit_end :]
+    else:
+        remaining_blocks = list(document.blocks)
+        remaining_blocks.pop(index)
+        projected_remaining = document.model_copy(
+            update={"blocks": _reindex_blocks(remaining_blocks)}
+        )
+        remaining_projection = build_markdown_projection(projected_remaining)
+        represented_duplicate = any(
+            other.id != block.id
+            and other.markdown == block.markdown
+            and str(other.id) in remaining_projection.spans
+            for other in remaining_blocks
+        )
+        if not represented_duplicate:
+            raise MarkdownProjectionError(
+                f"block {block.id} 无法映射，且根 Markdown 中没有已映射的完全重复副本。"
+            )
+    blocks = list(document.blocks)
     blocks.pop(index)
+    blocks = _reindex_blocks(blocks)
+    return document.model_copy(update={"markdown": markdown, "blocks": blocks})
 
 
-def _move_block(blocks, operation: RepairOperation) -> None:
-    source_index = _find_block_index(blocks, operation.block_id)
+def _move_block(
+    document: ParsedDocument,
+    operation: RepairOperation,
+) -> ParsedDocument:
+    source_index = _find_block_index(document.blocks, operation.block_id)
+    projection = build_markdown_projection(document)
+    source_span = projection.require_source(operation.block_id or "")
+    target_span = (
+        None
+        if operation.before_block_id is None
+        else projection.require_source(operation.before_block_id)
+    )
+    if operation.before_block_id == operation.block_id:
+        return document
+
+    segment = document.markdown[source_span.edit_start : source_span.edit_end]
+    without_source = (
+        document.markdown[: source_span.edit_start]
+        + document.markdown[source_span.edit_end :]
+    )
+    if target_span is None:
+        insertion_at = len(without_source)
+    else:
+        insertion_at = target_span.edit_start
+        if target_span.edit_start > source_span.edit_start:
+            insertion_at -= source_span.edit_end - source_span.edit_start
+    markdown = _insert_source_segment(without_source, insertion_at, segment)
+
+    blocks = list(document.blocks)
     block = blocks.pop(source_index)
     if operation.before_block_id is None:
         blocks.append(block)
-        return
-    target_index = _find_block_index(blocks, operation.before_block_id)
-    blocks.insert(target_index, block)
+    else:
+        target_index = _find_block_index(blocks, operation.before_block_id)
+        blocks.insert(target_index, block)
+    return document.model_copy(
+        update={"markdown": markdown, "blocks": _reindex_blocks(blocks)}
+    )
+
+
+def _insert_source_segment(markdown: str, index: int, segment: str) -> str:
+    prefix = markdown[:index]
+    suffix = markdown[index:]
+    insertion = segment
+    if prefix and not prefix.endswith(("\n", "\r")) and not insertion.startswith(
+        ("\n", "\r")
+    ):
+        insertion = "\n\n" + insertion
+    if suffix and not insertion.endswith(("\n", "\r")) and not suffix.startswith(
+        ("\n", "\r")
+    ):
+        insertion += "\n\n"
+    return prefix + insertion + suffix
+
+
+def _reindex_blocks(blocks):
+    return [
+        block.model_copy(update={"order_index": index})
+        for index, block in enumerate(blocks)
+    ]
 
 
 def _replace_table_cells(tables, operation: RepairOperation) -> None:
@@ -244,6 +367,53 @@ def _replace_table_cells(tables, operation: RepairOperation) -> None:
         if table.table_id != operation.table_id:
             continue
         cells = [TableCell.model_validate(cell.model_dump()) for cell in operation.cells]
+        num_rows = max(
+            (cell.start_row + cell.row_span for cell in cells),
+            default=0,
+        )
+        num_cols = max(
+            (cell.start_col + cell.col_span for cell in cells),
+            default=0,
+        )
+        tables[index] = table.model_copy(
+            update={"cells": cells, "num_rows": num_rows, "num_cols": num_cols}
+        )
+        return
+    raise ValueError(f"未知 table ID：{operation.table_id}")
+
+
+def _update_table_cell_layout(tables, operation: RepairOperation) -> None:
+    """只更新已有 cell 的布局字段，正文始终从源表复制。"""
+
+    for index, table in enumerate(tables):
+        if table.table_id != operation.table_id:
+            continue
+        cells = list(table.cells)
+        for patch in operation.cell_layout_patches:
+            if patch.cell_index >= len(cells):
+                raise ValueError(
+                    f"table {operation.table_id} 的 cell_index 越界：{patch.cell_index}"
+                )
+            current = cells[patch.cell_index]
+            if patch.expected_text_sha256 is not None:
+                actual_hash = sha256(
+                    current.text.encode("utf-8", errors="replace")
+                ).hexdigest()
+                if actual_hash != patch.expected_text_sha256:
+                    raise ValueError(
+                        f"table {operation.table_id} 的 cell {patch.cell_index} "
+                        "正文指纹与候选不一致。"
+                    )
+            cells[patch.cell_index] = current.model_copy(
+                update={
+                    "start_row": patch.start_row,
+                    "start_col": patch.start_col,
+                    "row_span": patch.row_span,
+                    "col_span": patch.col_span,
+                    "column_header": patch.column_header,
+                    "row_header": patch.row_header,
+                }
+            )
         num_rows = max(
             (cell.start_row + cell.row_span for cell in cells),
             default=0,

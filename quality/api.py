@@ -1,6 +1,7 @@
 """质量层公共入口。
 
-- ``run_quality_repair``：Agno 单文档 Agent 正式入口；
+- ``run_quality_repair``：兼容入口，只返回 ``QualityPackage``；
+- ``run_quality_repair_detailed``：生产可观测入口，返回 ``RepairExecution``；
 - ``run_quality``：显式确定性维护/测试入口；
 - ``write_quality_package``：质量产物四件套落盘。
 
@@ -17,6 +18,7 @@ from quality.agent.runtime import (
     RepairAgent,
     RepairAgentConfig,
     RepairAgentFactory,
+    RepairExecution,
     run_repair,
 )
 from quality.config import QualityConfig
@@ -56,6 +58,25 @@ def run_quality_repair(
         config=config,
         agent_config=agent_config,
     ).package
+
+
+def run_quality_repair_detailed(
+    parsed_document: ParsedDocument,
+    *,
+    agent: RepairAgent | None = None,
+    agent_factory: RepairAgentFactory | None = None,
+    config: QualityConfig | None = None,
+    agent_config: RepairAgentConfig | None = None,
+) -> RepairExecution:
+    """执行正式单文档 Agent 修复并返回完整、脱敏的执行详情。"""
+
+    return run_repair(
+        parsed_document,
+        agent=agent,
+        agent_factory=agent_factory,
+        config=config,
+        agent_config=agent_config,
+    )
 
 
 def write_quality_package(

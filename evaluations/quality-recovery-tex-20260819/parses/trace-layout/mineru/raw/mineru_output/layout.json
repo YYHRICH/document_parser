@@ -1,0 +1,2050 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.5206,
+                    "bbox": [
+                        173,
+                        48,
+                        420,
+                        84
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                219,
+                                50,
+                                375,
+                                67
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        219,
+                                        50,
+                                        375,
+                                        67
+                                    ],
+                                    "type": "text",
+                                    "content": "双栏与对象关系测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                176,
+                                73,
+                                418,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        73,
+                                        418,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9535,
+                    "bbox": [
+                        54,
+                        96,
+                        288,
+                        113
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                54,
+                                97,
+                                286,
+                                113
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        97,
+                                        286,
+                                        113
+                                    ],
+                                    "type": "text",
+                                    "content": "1 左栏起点 TRACE-L-COL-A01",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9813,
+                    "bbox": [
+                        47,
+                        125,
+                        294,
+                        170
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                126,
+                                292,
+                                136
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        126,
+                                        292,
+                                        136
+                                    ],
+                                    "type": "text",
+                                    "content": "阅读顺序声明为 READ-A-B-C-D。A 段必须先于",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                50,
+                                142,
+                                291,
+                                152
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        142,
+                                        291,
+                                        152
+                                    ],
+                                    "type": "text",
+                                    "content": "B 段，随后进入右栏的 C 段与 D 段。本段包含条件",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                49,
+                                157,
+                                220,
+                                169
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        157,
+                                        107,
+                                        169
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "\\alpha \\leq \\beta + 0 . 0 5",
+                                    "score": 0.4561
+                                },
+                                {
+                                    "bbox": [
+                                        107,
+                                        158,
+                                        220,
+                                        167
+                                    ],
+                                    "type": "text",
+                                    "content": "，不等号与小数必须保留。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9463,
+                    "bbox": [
+                        48,
+                        186,
+                        130,
+                        200
+                    ],
+                    "index": 7,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                186,
+                                128,
+                                200
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        186,
+                                        128,
+                                        200
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 对象说明",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9746,
+                    "bbox": [
+                        47,
+                        209,
+                        294,
+                        238
+                    ],
+                    "index": 8,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                72,
+                                212,
+                                291,
+                                220
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        212,
+                                        291,
+                                        220
+                                    ],
+                                    "type": "text",
+                                    "content": "下面的框模拟独立图形对象。它不携带外部资源，但",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                52,
+                                227,
+                                183,
+                                235
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        52,
+                                        227,
+                                        183,
+                                        235
+                                    ],
+                                    "type": "text",
+                                    "content": "图注与对象必须保持邻接关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8587,
+                    "bbox": [
+                        68,
+                        241,
+                        274,
+                        302
+                    ],
+                    "index": 9,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                129,
+                                245,
+                                213,
+                                253
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        129,
+                                        245,
+                                        213,
+                                        253
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-L-FIG-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                108,
+                                263,
+                                234,
+                                273
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        108,
+                                        263,
+                                        234,
+                                        273
+                                    ],
+                                    "type": "text",
+                                    "content": "Figure checksum 7F3A-91C2",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                82,
+                                279,
+                                260,
+                                288
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        82,
+                                        279,
+                                        260,
+                                        288
+                                    ],
+                                    "type": "text",
+                                    "content": "Flow: INPUT VERIFY OUTPUT",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                98,
+                                291,
+                                244,
+                                300
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        98,
+                                        291,
+                                        244,
+                                        300
+                                    ],
+                                    "type": "text",
+                                    "content": "图 1：验证流程 TRACE-L-CAP-111",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9711,
+                    "bbox": [
+                        48,
+                        309,
+                        295,
+                        338
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                310,
+                                292,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        310,
+                                        292,
+                                        321
+                                    ],
+                                    "type": "text",
+                                    "content": "对象校验使用固定 checksum，不得把字符 F、A、C",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                51,
+                                326,
+                                105,
+                                336
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        326,
+                                        105,
+                                        336
+                                    ],
+                                    "type": "text",
+                                    "content": "与数字混淆。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9503,
+                    "bbox": [
+                        305,
+                        96,
+                        539,
+                        113
+                    ],
+                    "index": 11,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                306,
+                                96,
+                                537,
+                                113
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        306,
+                                        96,
+                                        537,
+                                        113
+                                    ],
+                                    "type": "text",
+                                    "content": "2 右栏起点 TRACE-L-COL-B01",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9738,
+                    "bbox": [
+                        299,
+                        132,
+                        546,
+                        161
+                    ],
+                    "index": 12,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                135,
+                                542,
+                                142
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        135,
+                                        542,
+                                        142
+                                    ],
+                                    "type": "text",
+                                    "content": "C 段延续阅读顺序。这里包含脚注引用<sup>1</sup>，脚注标记",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                303,
+                                150,
+                                505,
+                                158
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        303,
+                                        150,
+                                        505,
+                                        158
+                                    ],
+                                    "type": "text",
+                                    "content": "应与脚注正文建立关系，而不是并入相邻标题。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9437,
+                    "bbox": [
+                        299,
+                        199,
+                        381,
+                        214
+                    ],
+                    "index": 13,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                300,
+                                198,
+                                380,
+                                214
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        300,
+                                        198,
+                                        380,
+                                        214
+                                    ],
+                                    "type": "text",
+                                    "content": "2.1 约束公式",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9072,
+                    "bbox": [
+                        347,
+                        257,
+                        409,
+                        270
+                    ],
+                    "index": 14,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                347,
+                                257,
+                                409,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        347,
+                                        257,
+                                        409,
+                                        270
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\alpha \\leq \\beta + 0 . 0 5",
+                                    "image_path": "c395028a018f320ce81a0c601031a281c6d5ceb09b206d47b46056fecd3ae076.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8587,
+                    "bbox": [
+                        452,
+                        257,
+                        545,
+                        271
+                    ],
+                    "index": 15,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                455,
+                                258,
+                                543,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        455,
+                                        258,
+                                        543,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-L-EQ-131)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9785,
+                    "bbox": [
+                        299,
+                        294,
+                        546,
+                        338
+                    ],
+                    "index": 16,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                321,
+                                294,
+                                544,
+                                306
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        321,
+                                        294,
+                                        544,
+                                        306
+                                    ],
+                                    "type": "text",
+                                    "content": "D 段完成 READ-A-B-C-D。页面底部的 Page token",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                311,
+                                543,
+                                320
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        311,
+                                        543,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "PL-42 是重复页脚事实，可标记为版面噪声，但不得擅",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                326,
+                                366,
+                                336
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        326,
+                                        366,
+                                        336
+                                    ],
+                                    "type": "text",
+                                    "content": "自改写其字符。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.7368,
+                    "bbox": [
+                        337,
+                        812,
+                        344,
+                        822
+                    ],
+                    "index": 1,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                338,
+                                813,
+                                343,
+                                822
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        338,
+                                        813,
+                                        343,
+                                        822
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9355,
+                    "bbox": [
+                        48,
+                        13,
+                        196,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                15,
+                                194,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        15,
+                                        194,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-RUNNING-HEADER-L",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9394,
+                    "bbox": [
+                        415,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 3,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                417,
+                                14,
+                                544,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        417,
+                                        14,
+                                        544,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-LAYOUT-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9402,
+                    "bbox": [
+                        57,
+                        781,
+                        277,
+                        793
+                    ],
+                    "index": 17,
+                    "type": "page_footnote",
+                    "lines": [
+                        {
+                            "bbox": [
+                                60,
+                                783,
+                                275,
+                                792
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        60,
+                                        783,
+                                        275,
+                                        792
+                                    ],
+                                    "type": "text",
+                                    "content": "<sup>1</sup>TRACE-L-FOOT-121：脚注事实为 footnote-value-19.25。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8825,
+                    "bbox": [
+                        249,
+                        811,
+                        331,
+                        823
+                    ],
+                    "index": 18,
+                    "type": "footer",
+                    "lines": [
+                        {
+                            "bbox": [
+                                250,
+                                812,
+                                329,
+                                822
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        250,
+                                        812,
+                                        329,
+                                        822
+                                    ],
+                                    "type": "text",
+                                    "content": "Page token PL-42",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.5206,
+                    "bbox": [
+                        173,
+                        48,
+                        420,
+                        84
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                219,
+                                50,
+                                375,
+                                67
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        219,
+                                        50,
+                                        375,
+                                        67
+                                    ],
+                                    "type": "text",
+                                    "content": "双栏与对象关系测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                176,
+                                73,
+                                418,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        73,
+                                        418,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9535,
+                    "bbox": [
+                        54,
+                        96,
+                        288,
+                        113
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                54,
+                                97,
+                                286,
+                                113
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        97,
+                                        286,
+                                        113
+                                    ],
+                                    "type": "text",
+                                    "content": "1 左栏起点 TRACE-L-COL-A01",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9813,
+                    "bbox": [
+                        47,
+                        125,
+                        294,
+                        170
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                126,
+                                292,
+                                136
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        126,
+                                        292,
+                                        136
+                                    ],
+                                    "type": "text",
+                                    "content": "阅读顺序声明为 READ-A-B-C-D。A 段必须先于",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                50,
+                                142,
+                                291,
+                                152
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        142,
+                                        291,
+                                        152
+                                    ],
+                                    "type": "text",
+                                    "content": "B 段，随后进入右栏的 C 段与 D 段。本段包含条件",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                49,
+                                157,
+                                220,
+                                169
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        157,
+                                        107,
+                                        169
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "\\alpha \\leq \\beta + 0 . 0 5",
+                                    "score": 0.4561
+                                },
+                                {
+                                    "bbox": [
+                                        107,
+                                        158,
+                                        220,
+                                        167
+                                    ],
+                                    "type": "text",
+                                    "content": "，不等号与小数必须保留。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        49,
+                        126,
+                        292,
+                        169
+                    ]
+                },
+                {
+                    "score": 0.9463,
+                    "bbox": [
+                        48,
+                        186,
+                        130,
+                        200
+                    ],
+                    "index": 7,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                186,
+                                128,
+                                200
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        186,
+                                        128,
+                                        200
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 对象说明",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9746,
+                    "bbox": [
+                        47,
+                        209,
+                        294,
+                        238
+                    ],
+                    "index": 8,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                72,
+                                212,
+                                291,
+                                220
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        212,
+                                        291,
+                                        220
+                                    ],
+                                    "type": "text",
+                                    "content": "下面的框模拟独立图形对象。它不携带外部资源，但",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                52,
+                                227,
+                                183,
+                                235
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        52,
+                                        227,
+                                        183,
+                                        235
+                                    ],
+                                    "type": "text",
+                                    "content": "图注与对象必须保持邻接关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        52,
+                        212,
+                        291,
+                        235
+                    ]
+                },
+                {
+                    "score": 0.8587,
+                    "bbox": [
+                        68,
+                        241,
+                        274,
+                        302
+                    ],
+                    "index": 9,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                129,
+                                245,
+                                213,
+                                253
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        129,
+                                        245,
+                                        213,
+                                        253
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-L-FIG-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                108,
+                                263,
+                                234,
+                                273
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        108,
+                                        263,
+                                        234,
+                                        273
+                                    ],
+                                    "type": "text",
+                                    "content": "Figure checksum 7F3A-91C2",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                82,
+                                279,
+                                260,
+                                288
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        82,
+                                        279,
+                                        260,
+                                        288
+                                    ],
+                                    "type": "text",
+                                    "content": "Flow: INPUT VERIFY OUTPUT",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                98,
+                                291,
+                                244,
+                                300
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        98,
+                                        291,
+                                        244,
+                                        300
+                                    ],
+                                    "type": "text",
+                                    "content": "图 1：验证流程 TRACE-L-CAP-111",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        82,
+                        245,
+                        260,
+                        300
+                    ]
+                },
+                {
+                    "score": 0.9711,
+                    "bbox": [
+                        48,
+                        309,
+                        295,
+                        338
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                310,
+                                292,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        310,
+                                        292,
+                                        321
+                                    ],
+                                    "type": "text",
+                                    "content": "对象校验使用固定 checksum，不得把字符 F、A、C",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                51,
+                                326,
+                                105,
+                                336
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        326,
+                                        105,
+                                        336
+                                    ],
+                                    "type": "text",
+                                    "content": "与数字混淆。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        51,
+                        310,
+                        292,
+                        336
+                    ]
+                },
+                {
+                    "score": 0.9503,
+                    "bbox": [
+                        305,
+                        96,
+                        539,
+                        113
+                    ],
+                    "index": 11,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                306,
+                                96,
+                                537,
+                                113
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        306,
+                                        96,
+                                        537,
+                                        113
+                                    ],
+                                    "type": "text",
+                                    "content": "2 右栏起点 TRACE-L-COL-B01",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9738,
+                    "bbox": [
+                        299,
+                        132,
+                        546,
+                        161
+                    ],
+                    "index": 12,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                135,
+                                542,
+                                142
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        135,
+                                        542,
+                                        142
+                                    ],
+                                    "type": "text",
+                                    "content": "C 段延续阅读顺序。这里包含脚注引用<sup>1</sup>，脚注标记",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                303,
+                                150,
+                                505,
+                                158
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        303,
+                                        150,
+                                        505,
+                                        158
+                                    ],
+                                    "type": "text",
+                                    "content": "应与脚注正文建立关系，而不是并入相邻标题。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        303,
+                        135,
+                        542,
+                        158
+                    ]
+                },
+                {
+                    "score": 0.9437,
+                    "bbox": [
+                        299,
+                        199,
+                        381,
+                        214
+                    ],
+                    "index": 13,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                300,
+                                198,
+                                380,
+                                214
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        300,
+                                        198,
+                                        380,
+                                        214
+                                    ],
+                                    "type": "text",
+                                    "content": "2.1 约束公式",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9072,
+                    "bbox": [
+                        347,
+                        257,
+                        409,
+                        270
+                    ],
+                    "index": 14,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                347,
+                                257,
+                                409,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        347,
+                                        257,
+                                        409,
+                                        270
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\alpha \\leq \\beta + 0 . 0 5",
+                                    "image_path": "c395028a018f320ce81a0c601031a281c6d5ceb09b206d47b46056fecd3ae076.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8587,
+                    "bbox": [
+                        452,
+                        257,
+                        545,
+                        271
+                    ],
+                    "index": 15,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                455,
+                                258,
+                                543,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        455,
+                                        258,
+                                        543,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-L-EQ-131)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        455,
+                        258,
+                        543,
+                        270
+                    ]
+                },
+                {
+                    "score": 0.9785,
+                    "bbox": [
+                        299,
+                        294,
+                        546,
+                        338
+                    ],
+                    "index": 16,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                321,
+                                294,
+                                544,
+                                306
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        321,
+                                        294,
+                                        544,
+                                        306
+                                    ],
+                                    "type": "text",
+                                    "content": "D 段完成 READ-A-B-C-D。页面底部的 Page token",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                311,
+                                543,
+                                320
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        311,
+                                        543,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "PL-42 是重复页脚事实，可标记为版面噪声，但不得擅",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                326,
+                                366,
+                                336
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        326,
+                                        366,
+                                        336
+                                    ],
+                                    "type": "text",
+                                    "content": "自改写其字符。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        302,
+                        294,
+                        544,
+                        336
+                    ]
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.9496,
+                    "bbox": [
+                        174,
+                        49,
+                        419,
+                        65
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                176,
+                                50,
+                                416,
+                                65
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        50,
+                                        416,
+                                        65
+                                    ],
+                                    "type": "text",
+                                    "content": "3 引用与附录 TRACE-L-REF-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8964,
+                    "bbox": [
+                        68,
+                        78,
+                        446,
+                        91
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                79,
+                                443,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        79,
+                                        443,
+                                        91
+                                    ],
+                                    "type": "text",
+                                    "content": "正式引用：Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8987,
+                    "bbox": [
+                        71,
+                        103,
+                        381,
+                        117
+                    ],
+                    "index": 5,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                76,
+                                105,
+                                378,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        76,
+                                        105,
+                                        378,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9164,
+                    "bbox": [
+                        67,
+                        128,
+                        427,
+                        142
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                71,
+                                131,
+                                424,
+                                140
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        71,
+                                        131,
+                                        424,
+                                        140
+                                    ],
+                                    "type": "text",
+                                    "content": "本页再次出现运行页眉与 Page token PL-42，用于检测重复页眉页脚的解析行为。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 1,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9353,
+                    "bbox": [
+                        48,
+                        13,
+                        196,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                15,
+                                194,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        15,
+                                        194,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-RUNNING-HEADER-L",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9388,
+                    "bbox": [
+                        415,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                417,
+                                15,
+                                543,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        417,
+                                        15,
+                                        543,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-LAYOUT-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.6105,
+                    "bbox": [
+                        249,
+                        811,
+                        331,
+                        823
+                    ],
+                    "index": 7,
+                    "type": "footer",
+                    "lines": [
+                        {
+                            "bbox": [
+                                250,
+                                812,
+                                329,
+                                823
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        250,
+                                        812,
+                                        329,
+                                        823
+                                    ],
+                                    "type": "text",
+                                    "content": "Page token PL-42",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.7044,
+                    "bbox": [
+                        336,
+                        812,
+                        344,
+                        822
+                    ],
+                    "index": 8,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                337,
+                                812,
+                                344,
+                                822
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        337,
+                                        812,
+                                        344,
+                                        822
+                                    ],
+                                    "type": "text",
+                                    "content": "2",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.9496,
+                    "bbox": [
+                        174,
+                        49,
+                        419,
+                        65
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                176,
+                                50,
+                                416,
+                                65
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        50,
+                                        416,
+                                        65
+                                    ],
+                                    "type": "text",
+                                    "content": "3 引用与附录 TRACE-L-REF-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8964,
+                    "bbox": [
+                        68,
+                        78,
+                        446,
+                        91
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                79,
+                                443,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        79,
+                                        443,
+                                        91
+                                    ],
+                                    "type": "text",
+                                    "content": "正式引用：Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        70,
+                        79,
+                        443,
+                        91
+                    ]
+                },
+                {
+                    "score": 0.8987,
+                    "bbox": [
+                        71,
+                        103,
+                        381,
+                        117
+                    ],
+                    "index": 5,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                76,
+                                105,
+                                378,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        76,
+                                        105,
+                                        378,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        76,
+                        105,
+                        378,
+                        114
+                    ]
+                },
+                {
+                    "score": 0.9164,
+                    "bbox": [
+                        67,
+                        128,
+                        427,
+                        142
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                71,
+                                131,
+                                424,
+                                140
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        71,
+                                        131,
+                                        424,
+                                        140
+                                    ],
+                                    "type": "text",
+                                    "content": "本页再次出现运行页眉与 Page token PL-42，用于检测重复页眉页脚的解析行为。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        71,
+                        131,
+                        424,
+                        140
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

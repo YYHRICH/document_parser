@@ -1,0 +1,173 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "a8440179be175799ffb12b2a109894e550e2047b2d84ea6713a5b1cc12479d40",
+    "input_parsed_document.json": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
+    "optimized.md": "2e0f74e94530203a874f2fc3c0ee07fcf3e6dc4160ced88c651c9aafefbdfb44"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "3fe21fb7-dd7c-403c-8e90-0b54fe860783",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ea02d96f-7fcc-4e70-898e-9f1ff00c850f",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "3fe21fb7-dd7c-403c-8e90-0b54fe860783",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "manual_review_required"
+      },
+      "state": "manual_review_required"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "3fe21fb7-dd7c-403c-8e90-0b54fe860783",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability table_grid_reliable = manual_review_required",
+      "capability table_field_binding_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "table_grid_reliable",
+      "table_field_binding_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 2,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 2
+  },
+  "issues": [
+    {
+      "affected_block_ids": [],
+      "category": "table_grid",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "9ac3f313-0e0a-5fae-9bee-02866c79b407",
+      "message": "表格没有可用单元格，网格无法恢复。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_grid",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "9ac3f313-0e0a-5fae-9bee-02866c79b407",
+      "message": "表格没有可用单元格，网格无法恢复。",
+      "severity": "warning",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "1486ea356b184fe6f262a46cef9c31a7b1fdef3547f438b5ecc18e0dbfdb7423",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260819:trace-tables:mineru",
+      "stop_reason": "committed"
+    },
+    "binding_count": 168,
+    "canonical_block_count": 14,
+    "issue_count": 2,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 3,
+    "repair_count": 0,
+    "source_block_count": 14,
+    "table_count": 3
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

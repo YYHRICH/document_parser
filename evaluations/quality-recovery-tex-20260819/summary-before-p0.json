@@ -1,0 +1,296 @@
+{
+  "results": [
+    {
+      "document": "trace-structure",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-structure:mineru",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 2,
+      "final_state": "manual_review_required",
+      "final_issues": 2,
+      "blocks": 26,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 7,
+        "rate": 0.7143,
+        "missing": [
+          "x = a+b",
+          "E = mc^2"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 7,
+        "rate": 0.7143,
+        "missing": [
+          "x = a+b",
+          "E = mc^2"
+        ]
+      }
+    },
+    {
+      "document": "trace-structure",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-structure:docling",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "rejected_candidate",
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        false,
+        false
+      ],
+      "changed": true,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 2,
+      "final_state": "pass",
+      "final_issues": 1,
+      "blocks": 22,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 4,
+        "total": 7,
+        "rate": 0.5714,
+        "missing": [
+          "CNY 12,345.67",
+          "https://example.test/api?v=2&mode=safe",
+          "E = mc^2"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 4,
+        "total": 7,
+        "rate": 0.5714,
+        "missing": [
+          "CNY 12,345.67",
+          "https://example.test/api?v=2&mode=safe",
+          "E = mc^2"
+        ]
+      }
+    },
+    {
+      "document": "trace-tables",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-tables:mineru",
+      "agent_accepted": false,
+      "attempt_codes": [
+        "agent_error"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 4,
+      "final_state": "manual_review_required",
+      "final_issues": 4,
+      "blocks": 14,
+      "tables": 3,
+      "parsed_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      }
+    },
+    {
+      "document": "trace-tables",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-tables:docling",
+      "agent_accepted": false,
+      "attempt_codes": [
+        "rejected_candidate",
+        "agent_error"
+      ],
+      "attempt_no_progress": [
+        false,
+        true
+      ],
+      "changed": false,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "blocks": 13,
+      "tables": 3,
+      "parsed_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 10,
+        "total": 10,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 6,
+        "rate": 0.8333,
+        "missing": [
+          "-20--70 C"
+        ]
+      }
+    },
+    {
+      "document": "trace-layout",
+      "parser": "mineru",
+      "session_id": "quality-recovery-tex-20260819:trace-layout:mineru",
+      "agent_accepted": false,
+      "attempt_codes": [
+        "agent_error"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "blocks": 26,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 7,
+        "total": 8,
+        "rate": 0.875,
+        "missing": [
+          "TRACE-L-FOOT-121"
+        ]
+      },
+      "optimized_marker_recall": {
+        "found": 7,
+        "total": 8,
+        "rate": 0.875,
+        "missing": [
+          "TRACE-L-FOOT-121"
+        ]
+      },
+      "parsed_fact_recall": {
+        "found": 4,
+        "total": 5,
+        "rate": 0.8,
+        "missing": [
+          "alpha <= beta + 0.05"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 4,
+        "total": 5,
+        "rate": 0.8,
+        "missing": [
+          "alpha <= beta + 0.05"
+        ]
+      }
+    },
+    {
+      "document": "trace-layout",
+      "parser": "docling",
+      "session_id": "quality-recovery-tex-20260819:trace-layout:docling",
+      "agent_accepted": true,
+      "attempt_codes": [
+        "accepted"
+      ],
+      "attempt_no_progress": [
+        true
+      ],
+      "changed": false,
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "blocks": 21,
+      "tables": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ class CandidateEvidenceRef(BaseModel):
 
 
 class TableCellPatch(BaseModel):
-    """表格布局 Patch；文本保留用于事实词元校验。"""
+    """完整表格替换的兼容 Patch；新 Agent 应优先使用增量布局 Patch。"""
 
     text: str
     start_row: int = Field(ge=0)
@@ -27,6 +27,23 @@ class TableCellPatch(BaseModel):
     col_span: int = Field(default=1, ge=1)
     column_header: bool = False
     row_header: bool = False
+
+
+class TableCellLayoutPatch(BaseModel):
+    """不携带正文的单元格布局 Patch。
+
+    cell_index 指向输入 ParsedTable.cells 的稳定位置；宿主复制原 cell.text，
+    模型只能调整网格坐标、span 和 header 角色。
+    """
+
+    cell_index: int = Field(ge=0)
+    start_row: int = Field(ge=0)
+    start_col: int = Field(ge=0)
+    row_span: int = Field(default=1, ge=1)
+    col_span: int = Field(default=1, ge=1)
+    column_header: bool = False
+    row_header: bool = False
+    expected_text_sha256: str | None = None
 
 
 class RelationPatch(BaseModel):
@@ -53,6 +70,7 @@ class RepairOperation(BaseModel):
         "update_heading_level",
         "remove_block",
         "replace_table_cells",
+        "update_table_cell_layout",
         "upsert_relation",
         "remove_relation",
         "update_asset_references",
@@ -63,6 +81,7 @@ class RepairOperation(BaseModel):
     heading_level: int | None = Field(default=None, ge=1, le=6)
     table_id: str | None = None
     cells: list[TableCellPatch] = Field(default_factory=list)
+    cell_layout_patches: list[TableCellLayoutPatch] = Field(default_factory=list)
     relation: RelationPatch | None = None
     asset_path: str | None = None
     referenced_by_block_ids: list[str] = Field(default_factory=list)
@@ -85,6 +104,13 @@ class RepairOperation(BaseModel):
                 raise ValueError("replace_table_cells 必须提供 table_id。")
             if not self.cells:
                 raise ValueError("replace_table_cells 必须提供 cells。")
+        if self.operation == "update_table_cell_layout":
+            if not self.table_id:
+                raise ValueError("update_table_cell_layout 必须提供 table_id。")
+            if not self.cell_layout_patches:
+                raise ValueError(
+                    "update_table_cell_layout 必须提供 cell_layout_patches。"
+                )
         if self.operation in {"upsert_relation", "remove_relation"}:
             if self.relation is None:
                 raise ValueError(f"{self.operation} 必须提供 relation。")

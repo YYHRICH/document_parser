@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
+from typing import Any
 
 from quality.agent.index import DocumentIndex
 from quality.agent.models import CandidateValidation
@@ -23,6 +25,7 @@ class DocumentAgentContext:
     max_context_chars: int = 12000
     document_index: DocumentIndex | None = None
     focus_page: int | None = None
+    quality_diagnostics: Mapping[str, Any] | None = None
 
     def to_prompt(self, max_chars: int | None = None) -> str:
         """通过集中式 Prompt 模板生成给 Agno 的用户输入。"""
@@ -40,6 +43,7 @@ class DocumentAgentContext:
                 if self.document_index is not None
                 else ""
             ),
+            quality_diagnostics=self.quality_diagnostics,
             max_chars=max_chars or self.max_context_chars,
         )
 
@@ -57,6 +61,7 @@ class DocumentContextBuilder:
         revision: DocumentRevision,
         feedback: CandidateValidation | None = None,
         max_context_chars: int = 12000,
+        quality_diagnostics: Mapping[str, Any] | None = None,
     ) -> DocumentAgentContext:
         document_index = DocumentIndex.from_document(revision.document)
         summaries = tuple(
@@ -72,6 +77,7 @@ class DocumentContextBuilder:
             feedback=feedback,
             max_context_chars=max_context_chars,
             document_index=document_index,
+            quality_diagnostics=quality_diagnostics,
         )
 
     def build_page(
@@ -80,6 +86,7 @@ class DocumentContextBuilder:
         page_number: int,
         feedback: CandidateValidation | None = None,
         max_context_chars: int = 12000,
+        quality_diagnostics: Mapping[str, Any] | None = None,
     ) -> DocumentAgentContext:
         """只构建一个页面的上下文，索引仍保留为全篇结构地图。"""
 
@@ -104,4 +111,5 @@ class DocumentContextBuilder:
             max_context_chars=max_context_chars,
             document_index=document_index,
             focus_page=page_number,
+            quality_diagnostics=quality_diagnostics,
         )

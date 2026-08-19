@@ -7,6 +7,35 @@ name = "document-parser"
 version = "0.0.0"
 description = "Document parser and quality layer"
 requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.7,<3",
+  "markdown-it-py>=4,<5",
+]
+
+[project.optional-dependencies]
+agent = [
+  "agno>=2.9,<3",
+  "openai>=1.40,<2",
+  "python-dotenv>=1,<2",
+]
+markitdown = [
+  "markitdown[all]>=0.1.0,<1",
+  "pywin32>=306; platform_system == 'Windows'",
+]
+docling = [
+  "docling>=2.120",
+]
+dev = [
+  "agno>=2.9,<3",
+  "openai>=1.40,<2",
+  "python-dotenv>=1,<2",
+  "markitdown[all]>=0.1.0,<1",
+  "pywin32>=306; platform_system == 'Windows'",
+  "requests>=2.31",
+  "pdfplumber>=0.11",
+  "pytest>=8,<9",
+  "wheel>=0.45,<1",
+]
 
 [tool.setuptools]
 packages = [
@@ -16,6 +45,8 @@ packages = [
   "document_parser.parsers.markitdown",
   "quality",
   "quality.agent",
+  "quality.agent.skills",
+  "quality.agent.tools",
   "quality.builders",
   "quality.evidence",
   "quality.gates",
@@ -30,3 +61,6 @@ document_parser = "."
 "document_parser.core" = "core"
 "document_parser.parsers" = "parsers"
 "document_parser.parsers.markitdown" = "parsers/markitdown"
+
+[tool.setuptools.package-data]
+"quality.agent.skills" = ["*.md"]

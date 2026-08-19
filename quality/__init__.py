@@ -1,15 +1,17 @@
 """质量层：证据驱动的质量检查、安全修复、关系绑定、质量准入与四件套。
 
-正式入口：``run_quality_repair(parsed_document, agent_factory=...) -> QualityPackage``。
+兼容入口 ``run_quality_repair`` 返回 ``QualityPackage``；生产可观测入口
+``run_quality_repair_detailed`` 返回包含 session 和尝试详情的 ``RepairExecution``。
 入口层为每个文档创建唯一 toolbox；直接传 ``agent`` 仅用于测试或已组装的适配场景。
 ``run_quality`` 只用于显式确定性维护/测试；rules、repairs、gates、builders
 和packaging 通过 Agent toolbox 提供安全服务。
 """
 
-from quality.agent.runtime import QualityAgentNotConfigured
+from quality.agent.runtime import QualityAgentNotConfigured, RepairExecution
 from quality.api import (
     run_quality,
     run_quality_repair,
+    run_quality_repair_detailed,
     write_quality_package,
 )
 from quality.config import GateConfig, QualityConfig
@@ -26,8 +28,10 @@ from quality.models_internal import (
 
 __all__ = [
     "QualityAgentNotConfigured",
+    "RepairExecution",
     "run_quality",
     "run_quality_repair",
+    "run_quality_repair_detailed",
     "write_quality_package",
     "GateConfig",
     "QualityConfig",

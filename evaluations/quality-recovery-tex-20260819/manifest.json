@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260819",
+  "documents": [
+    {
+      "document": "trace-structure",
+      "source_id": "TEX-STRUCT-20260819-V1",
+      "tex": {
+        "path": "sources\\trace-structure.tex",
+        "sha256": "866f820670559dfe5b164c4b97135fa2fe7848f06c7027b3739571a00da6e187"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-structure.pdf",
+        "sha256": "af09fd940ead6e680646cf2c41250df5bd9b3dcc3222a206fcf191c3623a41f0",
+        "size_bytes": 63587
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-structure.txt",
+        "sha256": "97915112af4c7aaebf401d706e57ecb21ab9250b75c09c1fa379fb2d5353a2f2",
+        "marker_recall": {
+          "found": 8,
+          "total": 8,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 7,
+          "rate": 0.8571,
+          "missing": [
+            "E = mc^2"
+          ]
+        }
+      }
+    },
+    {
+      "document": "trace-tables",
+      "source_id": "TEX-TABLE-20260819-V1",
+      "tex": {
+        "path": "sources\\trace-tables.tex",
+        "sha256": "a5dbabb0ac9b18570d24b550997f3150c25bba6c56697fa2c0f766c3c4366b44"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-tables.pdf",
+        "sha256": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
+        "size_bytes": 51357
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-tables.txt",
+        "sha256": "8130a29aed139953c708044bb98cf2034ac078ec55d577944474334225d56f03",
+        "marker_recall": {
+          "found": 10,
+          "total": 10,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "trace-layout",
+      "source_id": "TEX-LAYOUT-20260819-V1",
+      "tex": {
+        "path": "sources\\trace-layout.tex",
+        "sha256": "c2a5e684311257db19a23f155c4229a1ee120fb324b212b3a892014829237b26"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-layout.pdf",
+        "sha256": "772a00657b9e741bc09a51ec21dc519fb5b12b76113326d089f58f02fb0f7778",
+        "size_bytes": 59771
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-layout.txt",
+        "sha256": "93a4431c434e17c07146cdc392eea0aaa3c0e007eaaa2aa0a7f32cd69603b6d0",
+        "marker_recall": {
+          "found": 8,
+          "total": 8,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    }
+  ]
+}

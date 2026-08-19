@@ -12,7 +12,7 @@ from quality.agent.revision import (
     materialize_revision_candidate,
 )
 from quality.agent.tools.document_read import DocumentReadTools
-from quality.agent.validator import CandidateValidator
+from quality.agent.validator import CandidateValidator, normalize_candidate_declarations
 from quality.config import QualityConfig
 from quality.pipeline import run_pipeline
 
@@ -50,12 +50,46 @@ class QualityToolbox:
     def read_tools(self) -> DocumentReadTools:
         return DocumentReadTools(self.current_revision)
 
-    def validate_candidate(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
+    def _parse_candidate(
+        self,
+        candidate: RepairedDocumentCandidate | dict[str, Any],
+    ) -> RepairedDocumentCandidate:
         parsed = (
             candidate
             if isinstance(candidate, RepairedDocumentCandidate)
             else RepairedDocumentCandidate.model_validate(candidate)
         )
+        return normalize_candidate_declarations(self.current_revision, parsed)
+
+    def get_quality_diagnostics(self) -> dict[str, Any]:
+        """返回当前 revision 的紧凑质量问题，供 Agent 定向生成 Patch。"""
+
+        package = run_pipeline(
+            self.current_revision.document,
+            config=self.quality_config,
+            relation_overrides=self.current_revision.relation_overrides,
+        )
+        report = package.quality_report
+        return {
+            "revision_id": self.current_revision.revision_id,
+            "quality_state": report.state.value,
+            "blocking_reasons": list(report.gate_summary.blocking_reasons),
+            "capability_blockers": list(report.gate_summary.capability_blockers),
+            "issues": [
+                {
+                    "issue_id": issue.issue_id,
+                    "category": issue.category,
+                    "severity": issue.severity.value,
+                    "message": issue.message,
+                    "affected_block_ids": list(issue.affected_block_ids),
+                    "evidence_refs": issue.evidence.get("evidence_refs", []),
+                }
+                for issue in report.issues
+            ],
+        }
+
+    def validate_candidate(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
+        parsed = self._parse_candidate(candidate)
         validation = self.validator.validate(self.current_revision, parsed)
         self.last_candidate = parsed
         self.last_validation = validation
@@ -69,11 +103,7 @@ class QualityToolbox:
     ) -> dict[str, Any]:
         """宿主页面循环使用的带 scope 约束验证，不暴露给 Agent。"""
 
-        parsed = (
-            candidate
-            if isinstance(candidate, RepairedDocumentCandidate)
-            else RepairedDocumentCandidate.model_validate(candidate)
-        )
+        parsed = self._parse_candidate(candidate)
         validation = self.validator.validate(
             self.current_revision,
             parsed,
@@ -85,11 +115,7 @@ class QualityToolbox:
         return validation.model_dump(mode="json")
 
     def get_repair_diff(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
-        parsed = (
-            candidate
-            if isinstance(candidate, RepairedDocumentCandidate)
-            else RepairedDocumentCandidate.model_validate(candidate)
-        )
+        parsed = self._parse_candidate(candidate)
         before = self.current_revision.document
         after, relation_overrides = materialize_revision_candidate(
             self.current_revision, parsed
@@ -133,11 +159,7 @@ class QualityToolbox:
         }
 
     def rerun_quality_checks(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
-        parsed = (
-            candidate
-            if isinstance(candidate, RepairedDocumentCandidate)
-            else RepairedDocumentCandidate.model_validate(candidate)
-        )
+        parsed = self._parse_candidate(candidate)
         validation = self.validator.validate(self.current_revision, parsed)
         if not validation.accepted:
             return {"accepted": False, "validation": validation.model_dump(mode="json")}
@@ -157,23 +179,25 @@ class QualityToolbox:
         }
 
     def commit_revision(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
-        parsed = (
-            candidate
-            if isinstance(candidate, RepairedDocumentCandidate)
-            else RepairedDocumentCandidate.model_validate(candidate)
-        )
+        parsed = self._parse_candidate(candidate)
         validation = self.validator.validate(self.current_revision, parsed)
         if not validation.accepted:
             raise ValueError(f"候选未通过验证，禁止 commit：{validation.errors}")
         self.store.record_attempt(self.current_revision, parsed, validation)
+        self.last_candidate = parsed
+        self.last_validation = validation
+        if validation.no_progress:
+            return {
+                "status": "unchanged",
+                "revision_id": self.current_revision.revision_id,
+                "parent_revision_id": self.current_revision.parent_revision_id,
+            }
         document, relation_overrides = materialize_revision_candidate(
             self.current_revision, parsed
         )
         self.current_revision = self.store.commit(
             self.current_revision, document, parsed, relation_overrides
         )
-        self.last_candidate = parsed
-        self.last_validation = validation
         return {
             "status": "committed",
             "revision_id": self.current_revision.revision_id,
@@ -205,6 +229,7 @@ class QualityToolbox:
         # runtime 在本地验证后执行，避免模型绕过事务边界。
         return [
             *read.as_agno_tools(),
+            self.get_quality_diagnostics,
             self.validate_candidate,
             self.get_repair_diff,
             self.rerun_quality_checks,

@@ -1,0 +1,41 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-tables:docling",
+  "accepted": false,
+  "final_revision_id": "5a71da1768fc9d06176d224a5f2bd2c3fda1f4b1932c321199441ce78fab5a2f",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "rejected_candidate",
+      "message": "候选未通过确定性校验。",
+      "errors": [
+        "affected_ids 必须与实际改变的 block/table ID 完全一致。"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [
+        "table-001"
+      ],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5a71da1768fc9d06176d224a5f2bd2c3fda1f4b1932c321199441ce78fab5a2f",
+      "source_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be",
+      "candidate_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be"
+    },
+    {
+      "accepted": false,
+      "code": "agent_error",
+      "message": "Agent 调用失败，保留原 revision 并转人工复核。",
+      "errors": [
+        "builtins.RuntimeError"
+      ],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5a71da1768fc9d06176d224a5f2bd2c3fda1f4b1932c321199441ce78fab5a2f",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

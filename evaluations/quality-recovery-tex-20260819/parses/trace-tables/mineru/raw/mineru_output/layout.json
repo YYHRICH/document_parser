@@ -1,0 +1,1178 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.6111,
+                    "bbox": [
+                        177,
+                        48,
+                        416,
+                        84
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                220,
+                                50,
+                                375,
+                                67
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        220,
+                                        50,
+                                        375,
+                                        67
+                                    ],
+                                    "type": "text",
+                                    "content": "可追溯复杂表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                180,
+                                73,
+                                414,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        73,
+                                        414,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9549,
+                    "bbox": [
+                        180,
+                        106,
+                        412,
+                        122
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                106,
+                                411,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        106,
+                                        411,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 合并表头 TRACE-T-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        185,
+                        162,
+                        408,
+                        251
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9344,
+                            "bbox": [
+                                237,
+                                150,
+                                357,
+                                163
+                            ],
+                            "index": 5,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        240,
+                                        152,
+                                        354,
+                                        161
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                240,
+                                                152,
+                                                354,
+                                                161
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 批次环境与财务事实",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.972,
+                            "bbox": [
+                                185,
+                                162,
+                                408,
+                                251
+                            ],
+                            "index": 6,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        185,
+                                        162,
+                                        408,
+                                        251
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                185,
+                                                162,
+                                                408,
+                                                251
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">温度范围</td><td colspan=\"2\">验证结果</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>LOT-A17</td><td>-20-70 C</td><td>99.90%</td><td>USD 8,760.50</td></tr><tr><td>LOT-B04</td><td>-10-55 C</td><td>98.25%</td><td>USD 4,210.00</td></tr></table>",
+                                            "image_path": "98c15600707c3cdd94da6141817209fd1b315026cebea1bb65378d75382ac4c0.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.8665,
+                            "bbox": [
+                                68,
+                                267,
+                                481,
+                                281
+                            ],
+                            "index": 7,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        269,
+                                        479,
+                                        279
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                269,
+                                                479,
+                                                279
+                                            ],
+                                            "type": "text",
+                                            "content": "最小加工公差为 0.125 mm。温度范围中的两个连字符、百分号、小数点和货币逗号均为事实。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6,
+                    "score": 0.972
+                },
+                {
+                    "score": 0.9499,
+                    "bbox": [
+                        254,
+                        302,
+                        339,
+                        320
+                    ],
+                    "index": 8,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                254,
+                                301,
+                                339,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        301,
+                                        339,
+                                        321
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页明细",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        73,
+                        367,
+                        522,
+                        763
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9377,
+                            "bbox": [
+                                252,
+                                342,
+                                342,
+                                355
+                            ],
+                            "index": 9,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        343,
+                                        340,
+                                        354
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                343,
+                                                340,
+                                                354
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 跨页追踪明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9887,
+                            "bbox": [
+                                73,
+                                367,
+                                522,
+                                763
+                            ],
+                            "index": 10,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        73,
+                                        367,
+                                        522,
+                                        763
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                73,
+                                                367,
+                                                522,
+                                                763
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>判定说明</td></tr><tr><td>TRACE-T-R01</td><td>LOT-A17</td><td>0.125 mm</td><td>保留三位小数与单位。</td></tr><tr><td>TRACE-T-R02</td><td>LOT-A17</td><td>99.90%</td><td>不得把百分号转成文字。</td></tr><tr><td>TRACE-T-R03</td><td>LOT-A17</td><td>-20-70 C</td><td>不得改变范围分隔符。</td></tr><tr><td>TRACE-T-R04</td><td>LOT-B04</td><td>USD 8,760.50</td><td>不得改变货币与千位分隔。</td></tr><tr><td>TRACE-T-R05</td><td>LOT-B04</td><td>12.500 kg</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R06</td><td>LOT-A17</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-T-R07</td><td>LOT-B04</td><td>3.3 V</td><td>数值与单位不得拆改。</td></tr><tr><td>TRACE-T-R08</td><td>LOT-A17</td><td>4-20 mA</td><td>范围必须完整。</td></tr><tr><td>TRACE-T-R09</td><td>LOT-B04</td><td>1.00e-3</td><td>科学计数法必须完整。</td></tr><tr><td>TRACE-T-R10</td><td>LOT-A17</td><td>2026-08-19</td><td>日期分隔符必须完整。</td></tr><tr><td>TRACE-T-R11</td><td>LOT-B04</td><td>A+B=C</td><td>运算符必须完整。</td></tr><tr><td>TRACE-T-R12</td><td>LOT-A17</td><td>0.005%</td><td>小数和百分号必须完整。</td></tr><tr><td>TRACE-T-R13</td><td>LOT-B04</td><td>42 N.m</td><td>点号属于单位表达。</td></tr><tr><td>TRACE-T-R14</td><td>LOT-A17</td><td>2:1</td><td>比例冒号不得变化。</td></tr><tr><td>TRACE-T-R15</td><td>LOT-B04</td><td>SN-0819-15</td><td>序列号短横线必须完整。</td></tr><tr><td>TRACE-T-R16</td><td>LOT-A17</td><td>18.0 C</td><td>温度值必须完整。</td></tr><tr><td>TRACE-T-R17</td><td>LOT-B04</td><td>5.000 L</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R18</td><td>LOT-A17</td><td>100+/-2 Hz</td><td>正负容差不得变化。</td></tr><tr><td>TRACE-T-R19</td><td>LOT-B04</td><td>0x7F3A</td><td>十六进制值必须完整。</td></tr><tr><td>TRACE-T-R20</td><td>LOT-A17</td><td>PASS-20</td><td>最后一行必须可追踪。</td></tr></table>",
+                                            "image_path": "e9c3d972795e7be2148fc018599c9df32e4ef29a6ecaf91ca54ff5dead67c227.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.7426,
+                            "bbox": [
+                                476,
+                                770,
+                                516,
+                                783
+                            ],
+                            "index": 11,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        475,
+                                        771,
+                                        515,
+                                        783
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                475,
+                                                771,
+                                                515,
+                                                783
+                                            ],
+                                            "type": "text",
+                                            "content": "下页继续",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "score": 0.9887
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9247,
+                    "bbox": [
+                        48,
+                        13,
+                        198,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                15,
+                                195,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        15,
+                                        195,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-RUNNING-HEADER-T",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9276,
+                    "bbox": [
+                        425,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                426,
+                                15,
+                                543,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        426,
+                                        15,
+                                        543,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-TABLE-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8449,
+                    "bbox": [
+                        294,
+                        812,
+                        300,
+                        822
+                    ],
+                    "index": 12,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                813,
+                                300,
+                                823
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        813,
+                                        300,
+                                        823
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.6111,
+                    "bbox": [
+                        177,
+                        48,
+                        416,
+                        84
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                220,
+                                50,
+                                375,
+                                67
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        220,
+                                        50,
+                                        375,
+                                        67
+                                    ],
+                                    "type": "text",
+                                    "content": "可追溯复杂表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                180,
+                                73,
+                                414,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        73,
+                                        414,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9549,
+                    "bbox": [
+                        180,
+                        106,
+                        412,
+                        122
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                106,
+                                411,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        106,
+                                        411,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 合并表头 TRACE-T-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        185,
+                        162,
+                        408,
+                        251
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9344,
+                            "bbox": [
+                                237,
+                                150,
+                                357,
+                                163
+                            ],
+                            "index": 5,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        240,
+                                        152,
+                                        354,
+                                        161
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                240,
+                                                152,
+                                                354,
+                                                161
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 批次环境与财务事实",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.972,
+                            "bbox": [
+                                185,
+                                162,
+                                408,
+                                251
+                            ],
+                            "index": 6,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        185,
+                                        162,
+                                        408,
+                                        251
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                185,
+                                                162,
+                                                408,
+                                                251
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">温度范围</td><td colspan=\"2\">验证结果</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>LOT-A17</td><td>-20-70 C</td><td>99.90%</td><td>USD 8,760.50</td></tr><tr><td>LOT-B04</td><td>-10-55 C</td><td>98.25%</td><td>USD 4,210.00</td></tr></table>",
+                                            "image_path": "98c15600707c3cdd94da6141817209fd1b315026cebea1bb65378d75382ac4c0.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.8665,
+                            "bbox": [
+                                68,
+                                267,
+                                481,
+                                281
+                            ],
+                            "index": 7,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        269,
+                                        479,
+                                        279
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                269,
+                                                479,
+                                                279
+                                            ],
+                                            "type": "text",
+                                            "content": "最小加工公差为 0.125 mm。温度范围中的两个连字符、百分号、小数点和货币逗号均为事实。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6,
+                    "score": 0.972
+                },
+                {
+                    "score": 0.9499,
+                    "bbox": [
+                        254,
+                        302,
+                        339,
+                        320
+                    ],
+                    "index": 8,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                254,
+                                301,
+                                339,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        301,
+                                        339,
+                                        321
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页明细",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        73,
+                        367,
+                        522,
+                        763
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9377,
+                            "bbox": [
+                                252,
+                                342,
+                                342,
+                                355
+                            ],
+                            "index": 9,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        343,
+                                        340,
+                                        354
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                343,
+                                                340,
+                                                354
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 跨页追踪明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9887,
+                            "bbox": [
+                                73,
+                                367,
+                                522,
+                                763
+                            ],
+                            "index": 10,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        73,
+                                        367,
+                                        522,
+                                        763
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                73,
+                                                367,
+                                                522,
+                                                763
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>判定说明</td></tr><tr><td>TRACE-T-R01</td><td>LOT-A17</td><td>0.125 mm</td><td>保留三位小数与单位。</td></tr><tr><td>TRACE-T-R02</td><td>LOT-A17</td><td>99.90%</td><td>不得把百分号转成文字。</td></tr><tr><td>TRACE-T-R03</td><td>LOT-A17</td><td>-20-70 C</td><td>不得改变范围分隔符。</td></tr><tr><td>TRACE-T-R04</td><td>LOT-B04</td><td>USD 8,760.50</td><td>不得改变货币与千位分隔。</td></tr><tr><td>TRACE-T-R05</td><td>LOT-B04</td><td>12.500 kg</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R06</td><td>LOT-A17</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-T-R07</td><td>LOT-B04</td><td>3.3 V</td><td>数值与单位不得拆改。</td></tr><tr><td>TRACE-T-R08</td><td>LOT-A17</td><td>4-20 mA</td><td>范围必须完整。</td></tr><tr><td>TRACE-T-R09</td><td>LOT-B04</td><td>1.00e-3</td><td>科学计数法必须完整。</td></tr><tr><td>TRACE-T-R10</td><td>LOT-A17</td><td>2026-08-19</td><td>日期分隔符必须完整。</td></tr><tr><td>TRACE-T-R11</td><td>LOT-B04</td><td>A+B=C</td><td>运算符必须完整。</td></tr><tr><td>TRACE-T-R12</td><td>LOT-A17</td><td>0.005%</td><td>小数和百分号必须完整。</td></tr><tr><td>TRACE-T-R13</td><td>LOT-B04</td><td>42 N.m</td><td>点号属于单位表达。</td></tr><tr><td>TRACE-T-R14</td><td>LOT-A17</td><td>2:1</td><td>比例冒号不得变化。</td></tr><tr><td>TRACE-T-R15</td><td>LOT-B04</td><td>SN-0819-15</td><td>序列号短横线必须完整。</td></tr><tr><td>TRACE-T-R16</td><td>LOT-A17</td><td>18.0 C</td><td>温度值必须完整。</td></tr><tr><td>TRACE-T-R17</td><td>LOT-B04</td><td>5.000 L</td><td>固定三位小数。</td></tr><tr><td>TRACE-T-R18</td><td>LOT-A17</td><td>100+/-2 Hz</td><td>正负容差不得变化。</td></tr><tr><td>TRACE-T-R19</td><td>LOT-B04</td><td>0x7F3A</td><td>十六进制值必须完整。</td></tr><tr><td>TRACE-T-R20</td><td>LOT-A17</td><td>PASS-20</td><td>最后一行必须可追踪。</td></tr><tr><td>TRACE-T-R21</td><td>LOT-B04</td><td>21.125 mm</td><td>跨页后继续保留单位。</td></tr><tr><td>TRACE-T-R22</td><td>LOT-A17</td><td>22.250 mm</td><td>跨页后继续保留小数。</td></tr><tr><td>TRACE-T-R23</td><td>LOT-B04</td><td>23.375 mm</td><td>不得交换批次与测量值。</td></tr><tr><td>TRACE-T-R24</td><td>LOT-A17</td><td>24.500 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R25</td><td>LOT-B04</td><td>25.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R26</td><td>LOT-A17</td><td>26.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R27</td><td>LOT-B04</td><td>27.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R28</td><td>LOT-A17</td><td>28.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R29</td><td>LOT-B04</td><td>29.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R30</td><td>LOT-A17</td><td>30.250 mm</td><td>跨页追踪点必须存在。</td></tr><tr><td>TRACE-T-R31</td><td>LOT-B04</td><td>31.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R32</td><td>LOT-A17</td><td>32.500 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R33</td><td>LOT-B04</td><td>33.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R34</td><td>LOT-A17</td><td>34.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R35</td><td>LOT-B04</td><td>35.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R36</td><td>LOT-A17</td><td>36.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R37</td><td>LOT-B04</td><td>37.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R38</td><td>LOT-A17</td><td>38.250 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R39</td><td>LOT-B04</td><td>39.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R40</td><td>LOT-A17</td><td>PASS-40</td><td>最终行必须可追踪。</td></tr></table>",
+                                            "image_path": "e9c3d972795e7be2148fc018599c9df32e4ef29a6ecaf91ca54ff5dead67c227.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "score": 0.9887
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        72,
+                        67,
+                        522,
+                        465
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9201,
+                            "bbox": [
+                                253,
+                                53,
+                                341,
+                                65
+                            ],
+                            "index": 3,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        54,
+                                        340,
+                                        65
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                54,
+                                                340,
+                                                65
+                                            ],
+                                            "type": "text",
+                                            "content": "跨页追踪明细（续）",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9898,
+                            "bbox": [
+                                72,
+                                67,
+                                522,
+                                465
+                            ],
+                            "index": 4,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        67,
+                                        522,
+                                        465
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                72,
+                                                67,
+                                                522,
+                                                465
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>判定说明</td></tr><tr><td>TRACE-T-R21</td><td>LOT-B04</td><td>21.125 mm</td><td>跨页后继续保留单位。</td></tr><tr><td>TRACE-T-R22</td><td>LOT-A17</td><td>22.250 mm</td><td>跨页后继续保留小数。</td></tr><tr><td>TRACE-T-R23</td><td>LOT-B04</td><td>23.375 mm</td><td>不得交换批次与测量值。</td></tr><tr><td>TRACE-T-R24</td><td>LOT-A17</td><td>24.500 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R25</td><td>LOT-B04</td><td>25.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R26</td><td>LOT-A17</td><td>26.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R27</td><td>LOT-B04</td><td>27.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R28</td><td>LOT-A17</td><td>28.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R29</td><td>LOT-B04</td><td>29.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R30</td><td>LOT-A17</td><td>30.250 mm</td><td>跨页追踪点必须存在。</td></tr><tr><td>TRACE-T-R31</td><td>LOT-B04</td><td>31.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R32</td><td>LOT-A17</td><td>32.500 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R33</td><td>LOT-B04</td><td>33.625 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R34</td><td>LOT-A17</td><td>34.750 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R35</td><td>LOT-B04</td><td>35.875 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R36</td><td>LOT-A17</td><td>36.000 mm</td><td>不得丢失尾随零。</td></tr><tr><td>TRACE-T-R37</td><td>LOT-B04</td><td>37.125 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R38</td><td>LOT-A17</td><td>38.250 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R39</td><td>LOT-B04</td><td>39.375 mm</td><td>保留三位小数。</td></tr><tr><td>TRACE-T-R40</td><td>LOT-A17</td><td>PASS-40</td><td>最终行必须可追踪。</td></tr></table>",
+                                            "image_path": "9eff746f83cd30b60bd3d0961b1f337d6645aa11a02618872ed0cfb786896f24.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4,
+                    "score": 0.9898
+                },
+                {
+                    "score": 0.9513,
+                    "bbox": [
+                        179,
+                        491,
+                        414,
+                        507
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                491,
+                                412,
+                                506
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        491,
+                                        412,
+                                        506
+                                    ],
+                                    "type": "text",
+                                    "content": "3 汇总结论 TRACE-T-SUM-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9466,
+                    "bbox": [
+                        68,
+                        519,
+                        415,
+                        532
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                72,
+                                522,
+                                412,
+                                529
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        522,
+                                        412,
+                                        529
+                                    ],
+                                    "type": "text",
+                                    "content": "表格恢复只能调整网格、表头角色和跨页关系，不能修改任一单元格事实文本。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 1,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9455,
+                    "bbox": [
+                        49,
+                        13,
+                        197,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                15,
+                                195,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        15,
+                                        195,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-RUNNING-HEADER-T",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9465,
+                    "bbox": [
+                        425,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                426,
+                                15,
+                                543,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        426,
+                                        15,
+                                        543,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-TABLE-20260819-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8529,
+                    "bbox": [
+                        293,
+                        812,
+                        301,
+                        822
+                    ],
+                    "index": 7,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                813,
+                                300,
+                                822
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        813,
+                                        300,
+                                        822
+                                    ],
+                                    "type": "text",
+                                    "content": "2",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        72,
+                        67,
+                        522,
+                        465
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9201,
+                            "bbox": [
+                                253,
+                                53,
+                                341,
+                                65
+                            ],
+                            "index": 3,
+                            "type": "table_caption",
+                            "lines": [],
+                            "lines_deleted": true
+                        },
+                        {
+                            "score": 0.9898,
+                            "bbox": [
+                                72,
+                                67,
+                                522,
+                                465
+                            ],
+                            "index": 4,
+                            "type": "table_body",
+                            "lines": [],
+                            "lines_deleted": true
+                        }
+                    ],
+                    "index": 4,
+                    "score": 0.9898
+                },
+                {
+                    "score": 0.9513,
+                    "bbox": [
+                        179,
+                        491,
+                        414,
+                        507
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                491,
+                                412,
+                                506
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        491,
+                                        412,
+                                        506
+                                    ],
+                                    "type": "text",
+                                    "content": "3 汇总结论 TRACE-T-SUM-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9466,
+                    "bbox": [
+                        68,
+                        519,
+                        415,
+                        532
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                72,
+                                522,
+                                412,
+                                529
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        522,
+                                        412,
+                                        529
+                                    ],
+                                    "type": "text",
+                                    "content": "表格恢复只能调整网格、表头角色和跨页关系，不能修改任一单元格事实文本。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        72,
+                        522,
+                        412,
+                        529
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

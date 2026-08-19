@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from collections import Counter
-import hashlib
-import re
 
 from document_parser.core.contracts import ParsedDocument
 
+from quality.agent.markdown_projection import (
+    root_rewrite_preserves_block_sources,
+)
+from quality.agent.markdown_semantics import semantic_content_fingerprint
 from quality.agent.models import CandidateValidation, RepairedDocumentCandidate
 from quality.agent.revision import (
     DocumentRevision,
@@ -15,14 +17,52 @@ from quality.agent.revision import (
     parse_block_id,
 )
 
-_TOKEN_RE = re.compile(r"https?://[^\s]+|[A-Za-z_][A-Za-z0-9_]*|\d+(?:\.\d+)?|[\u4e00-\u9fff]+")
+
+def normalize_candidate_declarations(
+    revision: DocumentRevision,
+    candidate: RepairedDocumentCandidate,
+) -> RepairedDocumentCandidate:
+    """由宿主根据实际 Patch 规范化冗余 affected 声明。
+
+    模型只负责提出 operations；安全边界仍由 CandidateValidator 对
+    物化后的事实指纹、稳定 ID 和不可变字段执行确定性校验。
+    """
+
+    try:
+        candidate_document, _ = materialize_revision_candidate(revision, candidate)
+    except (TypeError, ValueError, KeyError):
+        # 无法物化的候选留给 Validator 生成原有错误，不在规范化阶段掩盖。
+        return candidate
+
+    changed_ids = _changed_block_ids(revision.document, candidate_document)
+    for operation in candidate.operations:
+        if operation.operation == "move_block":
+            for block_id in (operation.block_id, operation.before_block_id):
+                if block_id and block_id not in changed_ids:
+                    changed_ids.append(block_id)
+    changed_table_ids = _changed_table_ids(revision.document, candidate_document)
+    relation_keys = {
+        operation.relation.key()
+        for operation in candidate.operations
+        if operation.operation in {"upsert_relation", "remove_relation"}
+        and operation.relation is not None
+    }
+    changed_asset_paths = _changed_asset_paths(
+        revision.document, candidate_document
+    )
+    return candidate.model_copy(
+        update={
+            "affected_ids": sorted(set(changed_ids) | set(changed_table_ids)),
+            "affected_relation_keys": sorted(relation_keys),
+            "affected_asset_paths": sorted(changed_asset_paths),
+        }
+    )
 
 
 def content_fingerprint(markdown: str) -> str:
-    """提取事实词元后计算指纹，忽略 Markdown 空白和装饰符号。"""
+    """计算 Markdown 语义指纹，忽略空白和装饰但保留标点与敏感载荷。"""
 
-    tokens = _TOKEN_RE.findall(markdown)
-    return hashlib.sha256("\x1f".join(tokens).encode("utf-8")).hexdigest()
+    return semantic_content_fingerprint(markdown)
 
 
 class CandidateValidator:
@@ -85,8 +125,38 @@ class CandidateValidator:
         candidate_fp = content_fingerprint(candidate_document.markdown)
         if candidate.source_content_fingerprint not in {None, source_fp}:
             errors.append("候选声明的 source_content_fingerprint 与当前文档不一致。")
-        if candidate_fp != source_fp:
+        allows_structural_content_change = any(
+            operation.operation in {"move_block", "remove_block"}
+            for operation in candidate.operations
+        )
+        if candidate_fp != source_fp and not allows_structural_content_change:
             errors.append("候选改变了事实词元，质量层只允许格式/结构修复。")
+
+        has_block_projection = bool(candidate.block_markdown) or any(
+            operation.operation
+            in {
+                "update_block_markdown",
+                "move_block",
+                "update_heading_level",
+                "remove_block",
+            }
+            for operation in candidate.operations
+        )
+        root_only_rewrite = (
+            candidate.repaired_markdown is not None
+            and candidate.repaired_markdown != revision.document.markdown
+            and not has_block_projection
+        )
+        if (
+            root_only_rewrite
+            and candidate_fp == source_fp
+            and not root_rewrite_preserves_block_sources(
+                revision.document, candidate_document
+            )
+        ):
+            errors.append(
+                "repaired_markdown 改变了 block token 内部格式，必须改用可投影的 block operation。"
+            )
 
         for before in revision.document.blocks:
             after = _by_id(candidate_document.blocks).get(str(before.id))
@@ -99,7 +169,11 @@ class CandidateValidator:
                 (table for table in candidate_document.tables if table.table_id == before.table_id),
                 None,
             )
-            if after is not None and _table_text_tokens(before) != _table_text_tokens(after):
+            if (
+                after is not None
+                and _table_text_fingerprints(before)
+                != _table_text_fingerprints(after)
+            ):
                 errors.append(f"table {before.table_id} 改变了单元格事实文本。")
 
         removed_ids = {
@@ -327,8 +401,8 @@ def _changed_asset_paths(before: ParsedDocument, after: ParsedDocument) -> list[
     )
 
 
-def _table_text_tokens(table) -> Counter[str]:
-    return Counter(_TOKEN_RE.findall(" ".join(cell.text for cell in table.cells)))
+def _table_text_fingerprints(table) -> Counter[str]:
+    return Counter(content_fingerprint(cell.text) for cell in table.cells)
 
 
 def _immutable_fields_changed(

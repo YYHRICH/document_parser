@@ -40,6 +40,12 @@ from .core.contracts import (
     TableFieldBinding,
 )
 from .core.gateway import DocumentParserGateway
+from .core.package_loader import (
+    DocumentPackageError,
+    DocumentPackageAdapter,
+    DocumentPackageLoader,
+    load_document_package,
+)
 
 __all__ = [
     "AppliedRepair",
@@ -53,6 +59,9 @@ __all__ = [
     "DocumentAsset",
     "DocumentBlock",
     "DocumentParserGateway",
+    "DocumentPackageError",
+    "DocumentPackageAdapter",
+    "DocumentPackageLoader",
     "DocumentSignals",
     "EvidenceAvailability",
     "EvidenceCapability",
@@ -80,4 +89,5 @@ __all__ = [
     "SourceAnchor",
     "TableCell",
     "TableFieldBinding",
+    "load_document_package",
 ]

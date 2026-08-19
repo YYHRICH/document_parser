@@ -1,0 +1,51 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-structure:docling",
+  "accepted": true,
+  "final_revision_id": "f267c93a0b430f25b3e29699d6b78359f3d888305879aac6920b2951b3ca037f",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "rejected_candidate",
+      "message": "候选未通过确定性校验。",
+      "errors": [
+        "affected_ids 必须与实际改变的 block/table ID 完全一致。"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [
+        "ffca310b-e52c-4b9a-898b-676f2c34127e",
+        "e8717164-0849-4464-9596-fa1937c6e485",
+        "a9967438-be83-4e1e-827c-19a432ec9521",
+        "05425346-9c6f-46e4-9f2f-d01353b6c673",
+        "d42162c0-431e-482d-b04f-92dc5780c296",
+        "c1cc2e39-2418-47f3-8bce-f482f66da112"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5c9c49c36206864852e1d2ed7c583b1d66554f006ce670271200e4a614d4cc6d",
+      "source_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3",
+      "candidate_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3"
+    },
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [
+        "ffca310b-e52c-4b9a-898b-676f2c34127e",
+        "e8717164-0849-4464-9596-fa1937c6e485",
+        "a9967438-be83-4e1e-827c-19a432ec9521",
+        "05425346-9c6f-46e4-9f2f-d01353b6c673",
+        "d42162c0-431e-482d-b04f-92dc5780c296",
+        "c1cc2e39-2418-47f3-8bce-f482f66da112"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5c9c49c36206864852e1d2ed7c583b1d66554f006ce670271200e4a614d4cc6d",
+      "source_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3",
+      "candidate_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3"
+    }
+  ]
+}

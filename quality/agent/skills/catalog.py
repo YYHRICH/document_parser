@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-from pathlib import Path
+from importlib.resources import files
 
-SKILL_DIR = Path(__file__).resolve().parent
 DEFAULT_SKILL_IDS = ("document_quality_repair",)
 
 _SKILL_FILES = {
@@ -29,7 +28,7 @@ def load_skill(skill_id: str) -> str:
     filename = _SKILL_FILES.get(skill_id)
     if filename is None:
         raise ValueError(f"未知质量修复 Skill: {skill_id}")
-    return (SKILL_DIR / filename).read_text(encoding="utf-8")
+    return files("quality.agent.skills").joinpath(filename).read_text(encoding="utf-8")
 
 
 def render_skills(skill_ids: Iterable[str] = DEFAULT_SKILL_IDS) -> str:

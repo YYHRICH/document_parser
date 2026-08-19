@@ -5,9 +5,12 @@ from __future__ import annotations
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from typing import Any, Literal, Protocol
+from uuid import uuid4
 
 from document_parser.core.contracts import ParsedDocument, QualityPackage
+from pydantic import ValidationError
 
+from quality.agent.agno_adapter import CandidateSchemaError
 from quality.agent.context import DocumentAgentContext, DocumentContextBuilder
 from quality.agent.index import DocumentIndex
 from quality.agent.models import CandidateValidation, RepairedDocumentCandidate
@@ -56,6 +59,7 @@ class RepairAgentConfig:
     mode: Literal["document", "paged"] = "document"
     max_pages: int | None = None
     progress_callback: ProgressCallback | None = None
+    session_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -64,6 +68,7 @@ class RepairExecution:
     attempts: tuple[CandidateValidation, ...]
     final_revision_id: str
     accepted: bool
+    session_id: str
 
 
 def run_repair(
@@ -78,6 +83,7 @@ def run_repair(
 
     quality_config = config or QualityConfig()
     runtime_config = agent_config or RepairAgentConfig()
+    session_id = runtime_config.session_id or uuid4().hex
     toolbox = QualityToolbox.open(parsed_document, quality_config=quality_config)
     if agent is not None and agent_factory is not None:
         raise ValueError("agent 和 agent_factory 只能提供一个。")
@@ -98,6 +104,7 @@ def run_repair(
             agent,
             quality_config,
             runtime_config,
+            session_id,
         )
     return _run_document_repair(
         parsed_document,
@@ -105,6 +112,7 @@ def run_repair(
         agent,
         quality_config,
         runtime_config,
+        session_id,
     )
 
 
@@ -114,36 +122,65 @@ def _run_document_repair(
     agent: RepairAgent,
     quality_config: QualityConfig,
     runtime_config: RepairAgentConfig,
+    session_id: str,
 ) -> RepairExecution:
     revision = toolbox.current_revision
     context_builder = DocumentContextBuilder()
     attempts: list[CandidateValidation] = []
     feedback: CandidateValidation | None = None
     accepted = False
+    accepted_no_progress = False
     _emit(runtime_config, "document", "started", None, 0, 0, "开始整篇文档修复")
 
-    for _ in range(runtime_config.max_rounds):
+    for round_index in range(runtime_config.max_rounds):
         context = context_builder.build(
             revision,
             feedback,
             max_context_chars=runtime_config.max_context_chars,
+            quality_diagnostics=toolbox.get_quality_diagnostics(),
         )
         try:
             candidate = agent.run(context, feedback=feedback)
+        except CandidateSchemaError as exc:
+            validation = _candidate_schema_error_validation(revision, exc)
+            attempts.append(validation)
+            toolbox.rollback_revision(validation.message)
+            feedback = validation
+            if round_index + 1 < runtime_config.max_rounds:
+                continue
+            break
         except Exception as exc:
             validation = _agent_error_validation(revision, exc)
             attempts.append(validation)
             toolbox.rollback_revision(validation.message)
             break
 
-        validation = CandidateValidation.model_validate(
-            toolbox.validate_candidate(candidate)
-        )
+        try:
+            candidate = RepairedDocumentCandidate.model_validate(candidate)
+        except ValidationError as exc:
+            validation = _candidate_schema_error_validation(revision, exc)
+            attempts.append(validation)
+            toolbox.rollback_revision(validation.message)
+            feedback = validation
+            if round_index + 1 < runtime_config.max_rounds:
+                continue
+            break
+        try:
+            validation = CandidateValidation.model_validate(
+                toolbox.validate_candidate(candidate)
+            )
+        except Exception as exc:
+            validation = _validator_error_validation(revision, exc)
+            attempts.append(validation)
+            toolbox.rollback_revision(validation.message)
+            break
         attempts.append(validation)
         if validation.accepted:
-            toolbox.commit_revision(candidate)
-            revision = toolbox.current_revision
             accepted = True
+            accepted_no_progress = validation.no_progress
+            if not validation.no_progress:
+                toolbox.commit_revision(candidate)
+                revision = toolbox.current_revision
             break
         if validation.no_progress:
             break
@@ -159,7 +196,11 @@ def _run_document_repair(
         None,
         0,
         0,
-        "整篇文档修复完成" if accepted else "整篇文档转人工复核",
+        (
+            "整篇文档检查完成，无需修改"
+            if accepted_no_progress
+            else "整篇文档修复完成" if accepted else "整篇文档转人工复核"
+        ),
     )
     return _finish_execution(
         parsed_document,
@@ -167,7 +208,16 @@ def _run_document_repair(
         quality_config,
         attempts,
         accepted,
-        {"attempt_count": len(attempts), "mode": "document"},
+        session_id,
+        {
+            "attempt_count": len(attempts),
+            "mode": "document",
+            "stop_reason": (
+                "no_progress"
+                if accepted_no_progress
+                else "committed" if accepted else "manual_review"
+            ),
+        },
     )
 
 
@@ -177,6 +227,7 @@ def _run_paged_repair(
     agent: RepairAgent,
     quality_config: QualityConfig,
     runtime_config: RepairAgentConfig,
+    session_id: str,
 ) -> RepairExecution:
     index = DocumentIndex.from_document(toolbox.current_revision.document)
     pages = [entry.page_number for entry in index.pages]
@@ -193,6 +244,7 @@ def _run_paged_repair(
             agent,
             quality_config,
             runtime_config,
+            session_id,
         )
 
     context_builder = DocumentContextBuilder()
@@ -212,25 +264,50 @@ def _run_paged_repair(
             total_pages,
             f"开始处理第 {page_number} 页",
         )
-        for _ in range(runtime_config.max_rounds):
+        for round_index in range(runtime_config.max_rounds):
             revision = toolbox.current_revision
             context = context_builder.build_page(
                 revision,
                 page_number,
                 feedback,
                 max_context_chars=runtime_config.max_context_chars,
+                quality_diagnostics=toolbox.get_quality_diagnostics(),
             )
             try:
                 candidate = agent.run(context, feedback=feedback)
+            except CandidateSchemaError as exc:
+                validation = _candidate_schema_error_validation(revision, exc)
+                attempts.append(validation)
+                toolbox.rollback_revision(validation.message)
+                feedback = validation
+                if round_index + 1 < runtime_config.max_rounds:
+                    continue
+                break
             except Exception as exc:
                 validation = _agent_error_validation(revision, exc)
                 attempts.append(validation)
                 toolbox.rollback_revision(validation.message)
                 break
 
-            validation = CandidateValidation.model_validate(
-                toolbox.validate_candidate_for_page(candidate, page_number)
-            )
+            try:
+                candidate = RepairedDocumentCandidate.model_validate(candidate)
+            except ValidationError as exc:
+                validation = _candidate_schema_error_validation(revision, exc)
+                attempts.append(validation)
+                toolbox.rollback_revision(validation.message)
+                feedback = validation
+                if round_index + 1 < runtime_config.max_rounds:
+                    continue
+                break
+            try:
+                validation = CandidateValidation.model_validate(
+                    toolbox.validate_candidate_for_page(candidate, page_number)
+                )
+            except Exception as exc:
+                validation = _validator_error_validation(revision, exc)
+                attempts.append(validation)
+                toolbox.rollback_revision(validation.message)
+                break
             attempts.append(validation)
             if validation.accepted:
                 if not validation.no_progress:
@@ -272,6 +349,7 @@ def _run_paged_repair(
         quality_config,
         attempts,
         accepted,
+        session_id,
         {
             "attempt_count": len(attempts),
             "mode": "paged",
@@ -288,12 +366,14 @@ def _finish_execution(
     quality_config: QualityConfig,
     attempts: list[CandidateValidation],
     accepted: bool,
+    session_id: str,
     agent_metrics: Mapping[str, Any],
 ) -> RepairExecution:
     revision = toolbox.current_revision
     metrics: Mapping[str, Any] = {
         "agent": {
             **dict(agent_metrics),
+            "session_id": session_id,
             "accepted": accepted,
             "final_revision_id": revision.revision_id,
             "last_code": attempts[-1].code if attempts else "not_run",
@@ -310,20 +390,73 @@ def _finish_execution(
         attempts=tuple(attempts),
         final_revision_id=revision.revision_id,
         accepted=accepted,
+        session_id=session_id,
     )
 
 
 def _agent_error_validation(revision, exc: Exception) -> CandidateValidation:
+    code, message = _classify_agent_error(exc)
+    return _failure_validation(revision, exc, code=code, message=message)
+
+
+def _candidate_schema_error_validation(revision, exc: Exception) -> CandidateValidation:
+    return _failure_validation(
+        revision,
+        exc,
+        code="candidate_schema_error",
+        message="Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+        no_progress=False,
+    )
+
+
+def _validator_error_validation(revision, exc: Exception) -> CandidateValidation:
+    return _failure_validation(
+        revision,
+        exc,
+        code="validator_error",
+        message="确定性 Validator 执行失败，保留原 revision 并转人工复核。",
+    )
+
+
+def _failure_validation(
+    revision,
+    exc: Exception,
+    *,
+    code: str,
+    message: str,
+    no_progress: bool = True,
+) -> CandidateValidation:
+    exception_type = f"{type(exc).__module__}.{type(exc).__name__}"
     return CandidateValidation(
         accepted=False,
-        code="agent_error",
-        message="Agent 调用失败，保留原 revision 并转人工复核。",
-        errors=[f"{type(exc).__name__}: {exc}"],
-        no_progress=True,
+        code=code,
+        message=message,
+        errors=[exception_type],
+        no_progress=no_progress,
         base_revision=revision.revision_id,
         source_content_fingerprint="",
         candidate_content_fingerprint="",
     )
+
+
+def _classify_agent_error(exc: Exception) -> tuple[str, str]:
+    """将模型侧异常归类并脱敏；不把 Provider 响应正文带入公共结果。"""
+
+    exception_name = type(exc).__name__.lower()
+    module_root = type(exc).__module__.split(".", 1)[0]
+    if isinstance(exc, TimeoutError) or "timeout" in exception_name:
+        return "agent_timeout", "Agent 调用超时，保留原 revision 并转人工复核。"
+    if isinstance(exc, ValidationError):
+        return (
+            "candidate_schema_error",
+            "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+        )
+    if module_root in {"agno", "openai", "httpx", "httpcore"}:
+        return (
+            "provider_error",
+            "模型 Provider 调用失败，保留原 revision 并转人工复核。",
+        )
+    return "agent_error", "Agent 调用失败，保留原 revision 并转人工复核。"
 
 
 def _emit(

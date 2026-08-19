@@ -134,7 +134,7 @@ rejected
 | 单文档质量修复 Agent | 第一阶段完成，持续开发 | Agno Agent、Skills、Tools、页面模式、结构化 Patch、关系/资源 Patch、候选验证和审核输出 |
 | 上游统一文档包联调与交付 | 待办 | 接入上游正式统一文档包和多文档联调 |
 
-当前测试基线：`225 passed, 1 xfailed`。
+当前测试基线：`260 passed, 1 xfailed`。
 
 ## 代码入口
 
@@ -158,6 +158,33 @@ package = run_quality_repair(
     config=config,
     agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
 )
+```
+
+生产调用如果需要区分 Provider、超时、Schema、Validator 和 no-progress 终态，使用
+兼容新增的 detailed 入口；`session_id` 同时写入执行结果和 QualityReport 指标：
+
+```python
+from quality import run_quality_repair_detailed
+from quality.agent import RepairAgentConfig
+
+execution = run_quality_repair_detailed(
+    document_package,
+    config=config,
+    agent_config=RepairAgentConfig(session_id="upstream-job-id"),
+    agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
+)
+package = execution.package
+print(execution.session_id, execution.accepted, execution.attempts)
+```
+
+上游统一文档包可以通过同一个稳定入口加载。加载器会读取包内的
+`parsed_document.json`，按需注入 `assets/` sidecar，并校验资源引用、路径、大小和
+SHA-256；质量层不会直接读取解析器私有对象：
+
+```python
+from document_parser import load_document_package
+
+parsed_document = load_document_package("document_package")
 ```
 
 超大文档可显式启用页面模式；runtime 会先构建全篇索引，再逐页发出进度事件：
@@ -184,10 +211,12 @@ MCP 可以作为工具传输层，但核心 Agent、验证器和事务逻辑不�
 
 ## 开发命令
 
-首次准备环境时先安装当前仓库为可编辑包：
+首次准备开发环境时安装 dev extra；生产按需选择 Agent、MarkItDown 或 Docling extra：
 
 ```powershell
-.venv\Scripts\python.exe -m pip install --editable . --no-deps --no-build-isolation
+.venv\Scripts\python.exe -m pip install --editable ".[dev]"
+.venv\Scripts\python.exe -m pip install ".[agent,markitdown]"
+.venv\Scripts\python.exe -m pip install ".[docling]"
 ```
 
 测试命令：

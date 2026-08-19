@@ -1,0 +1,70 @@
+% TRACE-SOURCE-ID: TEX-LAYOUT-20260819-V1
+% TRACE-PURPOSE: two-column order, caption, footnote and citation fidelity
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,fancyhdr,hyperref,multicol,xcolor}
+\hypersetup{
+  pdftitle={Traceable Layout Evaluation},
+  pdfauthor={Document Parser QA},
+  pdfsubject={TEX-LAYOUT-20260819-V1},
+  pdfkeywords={TRACE-L-DOC-001, two-column, caption, footnote}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TRACE-RUNNING-HEADER-L}
+\fancyhead[R]{TEX-LAYOUT-20260819-V1}
+\fancyfoot[C]{Page token PL-42 | \thepage}
+
+\begin{document}
+\begin{center}
+{\LARGE 双栏与对象关系测试}\par
+{\small TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1}
+\end{center}
+
+\begin{multicols}{2}
+\section{左栏起点 TRACE-L-COL-A01}
+阅读顺序声明为 READ-A-B-C-D。A 段必须先于 B 段，随后进入右栏的 C 段与 D 段。
+本段包含条件 $\alpha \leq \beta + 0.05$，不等号与小数必须保留。
+
+\subsection{对象说明}
+下面的框模拟独立图形对象。它不携带外部资源，但图注与对象必须保持邻接关系。
+
+\begin{center}
+\fbox{\parbox{0.82\columnwidth}{
+\centering
+TRACE-L-FIG-101\\[3pt]
+Figure checksum 7F3A-91C2\\
+Flow: INPUT $\rightarrow$ VERIFY $\rightarrow$ OUTPUT
+}}
+
+\small 图 1：验证流程 TRACE-L-CAP-111
+\end{center}
+
+对象校验使用固定 checksum，不得把字符 F、A、C 与数字混淆。
+
+\columnbreak
+\section{右栏起点 TRACE-L-COL-B01}
+C 段延续阅读顺序。这里包含脚注引用\footnote{TRACE-L-FOOT-121：脚注事实为 footnote-value-19.25。}，
+脚注标记应与脚注正文建立关系，而不是并入相邻标题。
+
+\subsection{约束公式}
+\begin{equation}
+\alpha \leq \beta + 0.05
+\tag{TRACE-L-EQ-131}
+\end{equation}
+
+D 段完成 READ-A-B-C-D。页面底部的 Page token PL-42 是重复页脚事实，
+可标记为版面噪声，但不得擅自改写其字符。
+\end{multicols}
+
+\newpage
+\section{引用与附录 TRACE-L-REF-201}
+正式引用：Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819。
+
+\begin{quote}
+图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。
+\end{quote}
+
+本页再次出现运行页眉与 Page token PL-42，用于检测重复页眉页脚的解析行为。
+
+\end{document}

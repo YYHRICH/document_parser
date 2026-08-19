@@ -1,0 +1,298 @@
+[
+    {
+        "type": "text",
+        "text": "可追溯结构测试报告",
+        "text_level": 1,
+        "bbox": [
+            366,
+            71,
+            630,
+            93
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+        "text_level": 1,
+        "bbox": [
+            277,
+            104,
+            719,
+            120
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 范围与身份 TRACE-S-SEC-101",
+        "text_level": 2,
+        "bbox": [
+            295,
+            147,
+            700,
+            166
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.1 固定事实 TRACE-S-PARA-111",
+        "text_level": 2,
+        "bbox": [
+            99,
+            184,
+            457,
+            200
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+        "bbox": [
+            99,
+            215,
+            897,
+            252
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。",
+        "bbox": [
+            99,
+            256,
+            897,
+            293
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.1.1 有序步骤 TRACE-S-LIST-121",
+        "text_level": 2,
+        "bbox": [
+            99,
+            316,
+            433,
+            331
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1. 校验 Source ID，不得生成新的事实。",
+        "bbox": [
+            121,
+            346,
+            448,
+            361
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2. 保留日期 2026-08-19 与编号 TR-2026-08。",
+        "bbox": [
+            121,
+            367,
+            487,
+            382
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "3. 只允许调整可证明的 Markdown 格式或结构。",
+        "bbox": [
+            121,
+            387,
+            514,
+            404
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.2 代码与公式 TRACE-S-CODE-131",
+        "text_level": 2,
+        "bbox": [
+            99,
+            426,
+            478,
+            442
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。",
+        "bbox": [
+            99,
+            457,
+            897,
+            493
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8ad236101b5f6335104010eb58399f2a48798222f5958ea679a2456fa2644868.jpg",
+        "text": "$$\nE = m c ^ { 2 }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            363,
+            518,
+            442,
+            535
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "(TRACE-S-MATH-141)",
+        "bbox": [
+            699,
+            520,
+            895,
+            536
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。",
+        "bbox": [
+            136,
+            548,
+            705,
+            564
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TRACE-RUNNING-HEADER-S",
+        "bbox": [
+            100,
+            28,
+            369,
+            43
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TEX-STRUCT-20260819-V1",
+        "bbox": [
+            660,
+            28,
+            895,
+            42
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "1",
+        "bbox": [
+            494,
+            951,
+            504,
+            963
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2 跨页语义 TRACE-S-SEC-201",
+        "text_level": 2,
+        "bbox": [
+            307,
+            72,
+            689,
+            91
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+        "bbox": [
+            99,
+            108,
+            897,
+            147
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2.1 引用 TRACE-S-REF-211",
+        "text_level": 2,
+        "bbox": [
+            99,
+            168,
+            398,
+            185
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。",
+        "bbox": [
+            100,
+            199,
+            897,
+            236
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+        "bbox": [
+            146,
+            254,
+            838,
+            271
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "TRACE-RUNNING-HEADER-S",
+        "bbox": [
+            100,
+            28,
+            369,
+            43
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "TEX-STRUCT-20260819-V1",
+        "bbox": [
+            660,
+            28,
+            895,
+            42
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_number",
+        "text": "2",
+        "bbox": [
+            492,
+            951,
+            505,
+            963
+        ],
+        "page_idx": 1
+    }
+]

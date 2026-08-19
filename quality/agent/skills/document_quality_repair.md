@@ -58,7 +58,8 @@ priority: primary
 | 阅读顺序错误 | `move_block` | 只移动已有 block，不重写内容 |
 | 标题级别错误 | `update_heading_level` | 依据标题树和层级证据 |
 | 明确的完全重复 block | `remove_block` | 仅在重复指纹和证据都成立时使用 |
-| 表格网格/合并关系错误 | `replace_table_cells` | cell 文本必须保持事实词元 |
+| 表格网格/合并关系错误 | `update_table_cell_layout` | 只提交已有 cell 的坐标/span/header，正文由宿主保留 |
+| 完整表格重建（兼容路径） | `replace_table_cells` | cell 文本必须保持事实词元 |
 | 正文引用/标题等已有关系错误 | `upsert_relation` / `remove_relation` | 端点必须是输入中的已有 block/asset，不能新造关系目标 |
 | 图片与已有图注归属错误 | `update_asset_references` | 只修改 `referenced_by_block_ids`，资源内容和路径不变 |
 

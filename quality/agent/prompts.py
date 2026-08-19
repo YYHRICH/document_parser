@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from collections.abc import Sequence
+import json
+from typing import Any
 
 from quality.agent.models import CandidateValidation
 
@@ -13,9 +16,13 @@ DEFAULT_REPAIR_INSTRUCTIONS: tuple[str, ...] = (
     "先阅读 document_index 了解全篇结构，再按稳定 ID 使用只读工具查看必要证据。",
     "先使用只读工具查看必要证据，再提交 RepairedDocumentCandidate。",
     "优先输出最小范围的 operations；block_markdown 仅用于兼容旧候选。",
+    "表格只提交 update_table_cell_layout 的 cell_layout_patches，不要提交单元格正文；宿主会保留原文本。",
+    "不要主动提交整篇 repaired_markdown；根 Markdown 由宿主根据 block operations 投影生成。",
     "不要直接调用 commit_revision；候选必须先经过本地验证。",
     "不得修改数字、单位、日期、公式、代码、URL、稳定 ID、页码、bbox 或来源定位。",
-    "如果没有明确问题，返回原 Markdown、change_kind=none、空 affected_ids，并说明原因。",
+    "只处理 quality_diagnostics 中有证据且允许由结构 Patch 修复的问题。",
+    "affected_ids、affected_relation_keys、affected_asset_paths 可以留空，由宿主根据 operations 的实际差异规范化。",
+    "如果没有明确可修问题，返回 repaired_markdown=null、change_kind=none、空 operations 和空 affected_ids，并说明原因。",
     "所有回答必须是符合 schema 的合法 json 对象。",
 )
 
@@ -30,6 +37,7 @@ def render_repair_prompt(
     feedback: CandidateValidation | None = None,
     focus_page: int | None = None,
     document_index: str = "",
+    quality_diagnostics: Mapping[str, Any] | None = None,
     max_chars: int = 12000,
 ) -> str:
     """渲染一次 Agent run 的用户 Prompt。
@@ -48,6 +56,11 @@ def render_repair_prompt(
         )
 
     block_text = "\n".join(block_summaries)
+    diagnostics_text = json.dumps(
+        dict(quality_diagnostics or {}),
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
     prefix = (
         f"<quality_repair_prompt version=\"{PROMPT_VERSION}\">\n"
         "<task>\n"
@@ -55,12 +68,27 @@ def render_repair_prompt(
         "候选的 base_revision 必须等于当前 revision，lineage 必须包含该 revision。\n"
         "只能改变格式或结构，不能改变事实内容。\n"
         "operations 只能作用于已有 block/table ID，且必须带 evidence_refs。\n"
+        "affected 声明字段可以为空，宿主会从实际 Patch 自动推导。\n"
         "</task>\n"
         f"<document_id>{document_id}</document_id>\n"
         f"<filename>{filename}</filename>\n"
         f"<base_revision>{revision_id}</base_revision>\n"
         f"<focus_page>{focus_page if focus_page is not None else 'document'}</focus_page>\n"
         f"{feedback_text}"
+        "<quality_diagnostics>\n"
+        f"{diagnostics_text}\n"
+        "</quality_diagnostics>\n"
+        "<json_examples>\n"
+        f'{{"base_revision":"{revision_id}","lineage":["{revision_id}"],'
+        '"operations":[],"affected_ids":[],"evidence_refs":[],'
+        '"change_kind":"none","reasoning":"没有明确可安全修复的问题"}\n'
+        f'{{"base_revision":"{revision_id}","lineage":["{revision_id}"],'
+        '"operations":[{"operation":"update_heading_level",'
+        '"block_id":"EXISTING_BLOCK_UUID","heading_level":2}],'
+        '"affected_ids":[],"evidence_refs":[{"object_type":"block",'
+        '"object_id":"EXISTING_BLOCK_UUID","field_path":"heading_level"}],'
+        '"change_kind":"structure","reasoning":"依据编号层级修复标题"}\n'
+        "</json_examples>\n"
         "<context>\n<document_index>\n"
         f"{document_index}\n"
         "</document_index>\n<block_summaries>\n"

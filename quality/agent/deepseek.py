@@ -95,8 +95,13 @@ def build_deepseek_model(config: DeepSeekConfig | None = None):
         request_params={"response_format": {"type": "json_object"}},
         # V4 默认开启 thinking；关闭后避免 Agno 工具轮次缺少 reasoning_content。
         extra_body={"thinking": {"type": "disabled"}},
+        # JSON 候选应尽量确定，并保留足够输出预算避免长候选被截断。
+        temperature=0.0,
+        max_tokens=4096,
         timeout=60.0,
-        max_retries=0,
+        # 这里只重试可安全重放的只读 provider 请求；Schema 重试由
+        # quality.agent.runtime 使用验证反馈单独处理。
+        max_retries=2,
         retry_with_guidance=False,
         retry_with_guidance_limit=0,
     )

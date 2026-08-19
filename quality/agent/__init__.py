@@ -19,6 +19,7 @@ from quality.agent.models import (
     RepairOperation,
     RelationPatch,
     RepairedDocumentCandidate,
+    TableCellLayoutPatch,
     TableCellPatch,
 )
 from quality.agent.revision import DocumentRevision, InMemoryRevisionStore
@@ -45,6 +46,7 @@ __all__ = [
     "CandidateValidator",
     "RepairOperation",
     "RelationPatch",
+    "TableCellLayoutPatch",
     "TableCellPatch",
     "DocumentReadTools",
     "DEFAULT_SKILL_IDS",

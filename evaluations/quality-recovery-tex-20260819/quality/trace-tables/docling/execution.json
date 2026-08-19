@@ -1,0 +1,25 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-tables:docling",
+  "accepted": true,
+  "final_revision_id": "562d0a4e4c589707b51a51b7eabf124d2240fe98b63fbe445b4f6b87fd33a111",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [
+        "98ef799b-0f96-4fa0-ab58-a1f96a43a5fb",
+        "1ad5f248-4616-4ffd-acc0-1e3952dde506",
+        "c30b5b5b-f147-4ab3-b059-058b1bb57d7a"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5a71da1768fc9d06176d224a5f2bd2c3fda1f4b1932c321199441ce78fab5a2f",
+      "source_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be",
+      "candidate_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+% TRACE-SOURCE-ID: TEX-STRUCT-20260819-V1
+% TRACE-PURPOSE: heading/list/code/formula/reference fidelity
+\documentclass[11pt,a4paper]{ctexart}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,booktabs,enumitem,fancyhdr,hyperref,xcolor}
+\hypersetup{
+  pdftitle={Traceable Structure Evaluation},
+  pdfauthor={Document Parser QA},
+  pdfsubject={TEX-STRUCT-20260819-V1},
+  pdfkeywords={TRACE-S-DOC-001, quality recovery, structure}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TRACE-RUNNING-HEADER-S}
+\fancyhead[R]{TEX-STRUCT-20260819-V1}
+\fancyfoot[C]{\thepage}
+\setlist{nosep}
+
+\begin{document}
+\begin{center}
+  {\LARGE 可追溯结构测试报告}\par
+  \vspace{4pt}
+  {\small TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1}
+\end{center}
+
+\section{范围与身份 TRACE-S-SEC-101}
+\subsection{固定事实 TRACE-S-PARA-111}
+本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为
+99.75\%，预算为 CNY 12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。
+
+安全端点为 \url{https://example.test/api?v=2&mode=safe}。短横线、斜线、问号、
+等号和与号都是事实的一部分。
+
+\subsubsection{有序步骤 TRACE-S-LIST-121}
+\begin{enumerate}
+  \item 校验 Source ID，不得生成新的事实。
+  \item 保留日期 2026-08-19 与编号 TR-2026-08。
+  \item 只允许调整可证明的 Markdown 格式或结构。
+\end{enumerate}
+
+\subsection{代码与公式 TRACE-S-CODE-131}
+内联代码为 \verb|x = a+b|，命令为 \verb|python -m quality.check --mode=safe|。
+代码中的加号、连字符和等号不得改变。
+
+\begin{equation}
+E = mc^2
+\tag{TRACE-S-MATH-141}
+\end{equation}
+
+并定义约束 $a+b\geq 10$、误差 $\epsilon<0.005$。公式运算符属于受保护事实。
+
+\newpage
+\section{跨页语义 TRACE-S-SEC-201}
+本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。
+明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。
+
+\subsection{引用 TRACE-S-REF-211}
+引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。
+引用键、版本号与 archive key 都必须原样保留。
+
+\begin{quote}
+可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。
+\end{quote}
+
+\end{document}

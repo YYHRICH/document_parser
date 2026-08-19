@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from hashlib import sha256
 from typing import Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -12,6 +13,22 @@ from quality.agent.context import DocumentAgentContext
 from quality.agent.models import CandidateValidation, RepairedDocumentCandidate
 from quality.agent.prompts import DEFAULT_REPAIR_INSTRUCTIONS
 from quality.agent.skills import DEFAULT_SKILL_IDS, render_skills
+
+
+class CandidateSchemaError(RuntimeError):
+    """Agno 返回了无法转换为候选 Schema 的内容。
+
+    异常只携带长度和哈希，不把可能包含文档正文的模型输出带入公共日志。
+    """
+
+    def __init__(self, content: str) -> None:
+        encoded = content.encode("utf-8", errors="replace")
+        self.content_length = len(content)
+        self.content_sha256 = sha256(encoded).hexdigest()
+        super().__init__(
+            "Agno 未返回结构化候选"
+            f"（length={self.content_length}, sha256={self.content_sha256}）。"
+        )
 
 
 class QualityRepairAgent:
@@ -37,6 +54,11 @@ class QualityRepairAgent:
             "model": model,
             "tools": tools or [],
             "output_schema": RepairedDocumentCandidate,
+            # DeepSeek 的 OpenAI-compatible endpoint 支持 json_object，
+            # 不支持 OpenAI 专有 json_schema。显式 JSON mode 会让 Agno
+            # 把 Pydantic schema 写入提示词，再在本地完成类型校验。
+            "use_json_mode": True,
+            "structured_outputs": False,
         }
         if session_id is not None:
             kwargs["session_id"] = session_id
@@ -68,7 +90,7 @@ class QualityRepairAgent:
         if isinstance(content, RepairedDocumentCandidate):
             return content
         if isinstance(content, str):
-            raise RuntimeError(f"Agno 未返回结构化候选：{content[:500]}")
+            raise CandidateSchemaError(content)
         return RepairedDocumentCandidate.model_validate(content)
 
 

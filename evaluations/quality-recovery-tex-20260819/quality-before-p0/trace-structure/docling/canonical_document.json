@@ -1,0 +1,691 @@
+{
+  "blocks": [
+    {
+      "block_id": "5388a776-36a2-5495-8f54-6a58381a0149",
+      "content": "# 可追溯结构测试报告",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          220.168,
+          61.69597139999996,
+          375.1065999999999,
+          78.91137140000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-0"
+      }
+    },
+    {
+      "block_id": "8f7c108d-e795-5763-9a76-e90bc69f7b2a",
+      "content": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          167.91400000000002,
+          90.05314439999995,
+          427.3699917999998,
+          100.01574440000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-1"
+      }
+    },
+    {
+      "block_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
+      "content": "## 1 范围与身份 TRACE-S-SEC-101",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          178.966,
+          125.52861419999999,
+          416.32394339999996,
+          140.6351628
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-2"
+      }
+    },
+    {
+      "block_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5",
+      "content": "### 1.1 固定事实 TRACE-S-PARA-111",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 3
+      },
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          156.52948319999996,
+          271.07614880000006,
+          169.11830880000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-3"
+      }
+    },
+    {
+      "block_id": "5950c282-4f85-599a-bf43-6a6cfc40d837",
+      "content": "本报告生成日期为 2026-08-19 ，批次编号为 TR-2026-08 。验收率固定为 99.75% ，预算为 CNY 。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          84.18,
+          182.09408310000003,
+          532.9130202,
+          210.61718310000003
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-4"
+      }
+    },
+    {
+      "block_id": "4bf95477-0003-5e26-a054-ff445eb69cd4",
+      "content": "12,345.67",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          62.36200000000002,
+          200.28626540000005,
+          106.60930960000003,
+          211.19536540000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-5"
+      }
+    },
+    {
+      "block_id": "379a0a55-8f3b-58ac-972d-46b29be08606",
+      "content": "安全端点为 https://example.test/api?v=2&mode=safe 。短横线、斜线、问号、等号和与号 都是事实的一部分。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          62.361999999999966,
+          217.3220831,
+          532.9214169000004,
+          245.84518309999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-6"
+      }
+    },
+    {
+      "block_id": "d338f7a2-b9f5-5980-8e5f-8b8223a47a00",
+      "content": "#### 1.1.1 有序步骤 TRACE-S-LIST-121",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 4
+      },
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          267.8310831,
+          257.78772879999997,
+          279.31836540000006
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-7"
+      }
+    },
+    {
+      "block_id": "d908ad24-eec4-50b6-a45f-5ae71f4b9ef2",
+      "content": "校验 Source ID ，不得生成新的事实。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          292.49808310000003,
+          271.631,
+          303.9853654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-8"
+      }
+    },
+    {
+      "block_id": "df9aa368-1374-5fae-81bc-a429c515a112",
+      "content": "保留日期 2026-08-19 与编号 TR-2026-08 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          310.11208309999995,
+          294.60609999999997,
+          321.5993654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-9"
+      }
+    },
+    {
+      "block_id": "59e5699c-6837-5ee8-a318-5a00e17aa7ef",
+      "content": "只允许调整可证明的 Markdown 格式或结构。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          327.7260831,
+          311.1876,
+          339.2133654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-10"
+      }
+    },
+    {
+      "block_id": "0e69f7ae-7a06-5250-9c2e-9ae5ff6c624d",
+      "content": "### 1.2 代码与公式 TRACE-S-CODE-131",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 3
+      },
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          360.24048319999997,
+          283.55717760000005,
+          372.8293088
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-11"
+      }
+    },
+    {
+      "block_id": "b4bcdc82-6527-5236-a7dc-9c8c3453f231",
+      "content": "内联代码为 x = a+b ，命令为 python -m quality.check --mode=safe 符和等号不得改变。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          62.361999999999966,
+          385.8050831,
+          427.37171250000046,
+          414.3281831
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-12"
+      }
+    },
+    {
+      "block_id": "a77ca0ca-7733-5349-ab73-279e6b7892a2",
+      "content": "",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          219.388,
+          438.07042169999994,
+          261.1471231,
+          450.10082070345817
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-FormulaItem-13"
+      }
+    },
+    {
+      "block_id": "255b4b83-7664-5f05-97da-3a55b6aea10d",
+      "content": "。代码中的加号、连字",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 14,
+      "source_locator": {
+        "bbox": [
+          427.371,
+          385.8050831,
+          532.9165425000002,
+          396.7141831
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-14"
+      }
+    },
+    {
+      "block_id": "55baf3a7-79d0-54c9-be20-59a9cf9084d5",
+      "content": "(TRACE-S-MATH-141)",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 15,
+      "source_locator": {
+        "bbox": [
+          418.673,
+          439.22526539999996,
+          532.9243643999998,
+          450.1343654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-15"
+      }
+    },
+    {
+      "block_id": "56315179-b87d-50d8-953f-4a122637c242",
+      "content": "并定义约束 a + b ≥ 10 、误差 ϵ < 0 . 005 。公式运算符属于受保护事实。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 16,
+      "source_locator": {
+        "bbox": [
+          84.17999999999995,
+          462.73708309999995,
+          424.50440000000015,
+          481.3375208877419
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-16"
+      }
+    },
+    {
+      "block_id": "0ce65965-3730-5562-9537-a2e71374ee0c",
+      "content": "## 2 跨页语义 TRACE-S-SEC-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 17,
+      "source_locator": {
+        "bbox": [
+          186.139,
+          61.919614199999955,
+          409.1365972,
+          77.02616279999995
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-17"
+      }
+    },
+    {
+      "block_id": "4b934069-3f2a-5e9b-95ff-993d5d5d91b7",
+      "content": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确 结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 18,
+      "source_locator": {
+        "bbox": [
+          62.36200000000001,
+          93.30008310000005,
+          532.9040103000004,
+          122.40136540000003
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-18"
+      }
+    },
+    {
+      "block_id": "d6b4ebbc-a9a8-5bd7-a1d7-62908352fb33",
+      "content": "### 2.1 引用 TRACE-S-REF-211",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 3
+      },
+      "order_index": 19,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          143.42848319999996,
+          236.05876800000001,
+          156.01730880000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-19"
+      }
+    },
+    {
+      "block_id": "dd95561d-fe7b-5008-82d8-4ca72a28c3c8",
+      "content": "引用条目： Quality Recovery Protocol, revision 2.2, archive key QR-0819-A 。引用键、版本号 与 archive key 都必须原样保留。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 20,
+      "source_locator": {
+        "bbox": [
+          62.36200000000002,
+          168.9940831,
+          532.9052547000001,
+          198.09436540000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-20"
+      }
+    },
+    {
+      "block_id": "8fbaf72d-c517-560b-b17b-96f33a3a123e",
+      "content": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 21,
+      "source_locator": {
+        "bbox": [
+          89.635,
+          216.1770831,
+          504.30080000000015,
+          227.66436540000007
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-21"
+      }
+    }
+  ],
+  "document_id": "11fd2c67-3ab2-47b7-a465-e3f2dcea15cb",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "5388a776-36a2-5495-8f54-6a58381a0149",
+      "relation_id": "549005b2-4871-508c-aec4-ab6c7dab544f",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
+      "relation_id": "7f2e9fe8-16cb-56d6-841c-9c454f906826",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5",
+      "relation_id": "46fa6537-e318-53c7-a4cf-457f09c1a0c7",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "d338f7a2-b9f5-5980-8e5f-8b8223a47a00"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
+      "relation_id": "037dba18-9675-5b00-aeb9-d2906d917968",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "0e69f7ae-7a06-5250-9c2e-9ae5ff6c624d"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "5388a776-36a2-5495-8f54-6a58381a0149",
+      "relation_id": "32308599-d76a-5253-ab46-99afb1c0b765",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "0ce65965-3730-5562-9537-a2e71374ee0c"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "0ce65965-3730-5562-9537-a2e71374ee0c",
+      "relation_id": "5eee96d1-7a52-565b-9fae-de4737414c7c",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "d6b4ebbc-a9a8-5bd7-a1d7-62908352fb33"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

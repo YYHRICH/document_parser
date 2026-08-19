@@ -2,7 +2,7 @@
 
 > 当前分支：`feature/quality-layer`  
 > 当前远端基线：以 `origin/feature/quality-layer` 最新提交为准  
-> 最近验证：`225 passed, 1 xfailed`  
+> 最近验证：`260 passed, 1 xfailed`
 > 适用范围：单文档质量修复 Agent 第一阶段
 
 ## 1. 这部分代码负责什么
@@ -52,6 +52,19 @@ package = run_quality_repair(
 )
 ```
 
+生产调用需要保留每轮验证、脱敏错误类别和 session 关联时，使用 detailed 入口：
+
+```python
+from quality import run_quality_repair_detailed
+from quality.agent import RepairAgentConfig
+
+execution = run_quality_repair_detailed(
+    parsed_document,
+    agent_config=RepairAgentConfig(session_id="upstream-job-id"),
+    agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
+)
+```
+
 超大文档页面模式：
 
 ```python
@@ -82,6 +95,11 @@ agent_config = RepairAgentConfig(
 | `remove_relation` | 删除已有错误关系 | 以 tombstone 覆盖规则重新推导结果 |
 | `update_asset_references` | 调整资源与已有 block 的归属 | 只改 `referenced_by_block_ids`，不改资源内容/路径 |
 
+涉及 block 内容、标题或顺序的操作会通过根 Markdown source span 同步投影；
+无法精确映射，或移动/删除目标不独占完整 token 时，Validator 会拒绝候选并转人工。
+Agent 不应主动提交整篇 `repaired_markdown`，根 Markdown 由宿主根据 operations
+生成。
+
 关系 Patch 会进入 `DocumentRevision.relation_overrides`，并在 canonical 构建时投影到 `CanonicalDocument.relations`。资源归属 Patch 同时保留在 `ParsedDocument.assets` 的结构字段中。
 
 ## 5. 安全边界
@@ -92,7 +110,7 @@ agent_config = RepairAgentConfig(
 - 稳定 ID、页码、bbox、source locator 和 provenance；
 - 输入中不存在的对象、关系和事实。
 
-Agent 只拥有读取、差异和候选验证工具。`commit_revision`、`rollback_revision` 和最终打包由 runtime 在本地控制。Validator 不通过时，原 revision 保留。
+Agent 只拥有读取、差异和候选验证工具。`commit_revision`、`rollback_revision` 和最终打包由 runtime 在本地控制。Validator 不通过时，原 revision 保留；accepted no-op 正常完成但不创建 revision，底层 store 禁止同 digest 提交形成自引用。
 
 ## 6. 换机开发
 
@@ -105,7 +123,7 @@ git switch --track origin/feature/quality-layer
 cd document_parser
 py -m venv .venv
 .venv\Scripts\python.exe -m pip install --upgrade pip
-.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m pip install --editable ".[dev]"
 ```
 
 如果已经 clone 仓库：
@@ -125,7 +143,7 @@ git pull --ff-only
 .venv\Scripts\python.exe -m pip check
 ```
 
-当前基线为 `225 passed, 1 xfailed`；唯一 xfail 是已登记的 golden 标注冲突，不是运行环境故障。
+当前基线为 `260 passed, 1 xfailed`；唯一 xfail 是已登记的 golden 标注冲突，不是运行环境故障。
 
 ## 8. 下一步建议
 
@@ -137,6 +155,7 @@ git pull --ff-only
 
 详细设计见：
 
+- [Review 缺陷与后续开发台账](quality-agent-review-backlog.md)
 - [质量 Agent 设计](quality-agent-design.md)
 - [实现 Spec](../specs/001-quality-layer-implementation/spec.md)
 - [Agno Agent 设计](../specs/001-quality-layer-implementation/agno-agent-design.md)

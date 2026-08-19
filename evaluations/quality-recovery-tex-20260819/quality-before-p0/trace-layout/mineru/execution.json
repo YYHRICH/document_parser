@@ -1,0 +1,23 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-layout:mineru",
+  "accepted": false,
+  "final_revision_id": "39bb5f7f63dbdb78daeeb21d5b9666cd442786bf83fef3ab168eca314918544d",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "agent_error",
+      "message": "Agent 调用失败，保留原 revision 并转人工复核。",
+      "errors": [
+        "builtins.RuntimeError"
+      ],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "39bb5f7f63dbdb78daeeb21d5b9666cd442786bf83fef3ab168eca314918544d",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

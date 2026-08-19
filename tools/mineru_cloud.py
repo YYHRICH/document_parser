@@ -329,7 +329,7 @@ def _content_list_to_blocks(content_list: list[dict]) -> tuple[list[DocumentBloc
                     html=html or None,
                     markdown=table_md or None,
                     caption="".join(item.get("table_caption") or []) or None,
-                    image_path=item.get("img_path"),
+                    image_path=item.get("img_path") or None,
                     page_number=page_number,
                     bbox=_bbox_tuple(item.get("bbox")),
                     num_rows=max((c.start_row + c.row_span for c in cells), default=0) if cells else None,
