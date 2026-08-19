@@ -128,7 +128,7 @@ sequenceDiagram
 
 Agent 的具体修复策略不写死在宿主代码里。宿主只决定三件事：给它多少上下文、最多允许几轮、什么候选才算安全。
 
-页面模式由 runtime 负责编排：先发出 overview 进度事件，再按页或跨页上下文调用 Agent。进度通过 RepairProgressEvent 回调输出，CLI/Web 层可以自行渲染进度条；Skill 不负责进度和事务。
+页面模式由 runtime 负责编排，且是生产默认：先发出 overview 进度事件，再逐页运行确定性预修复；当前页仍有可修问题时才把页级上下文交给 Agent。进度通过 RepairProgressEvent 回调输出，CLI/Web 层可以自行渲染进度条；Skill 不负责进度和事务。
 
 ## 4. Agent 看什么、改什么
 
@@ -216,7 +216,7 @@ Prompt 模板位于 `quality/agent/prompts.py`，`context.py` 只负责把文档
 
 ## 8. 性能认识与后续优化
 
-单纯让模型回答一句话通常只需要一次请求；完整 Agent 还可能包含读取工具、候选生成、验证反馈、重新生成和质量流水线，因此耗时更长。当前默认边界是 12,000 字符上下文、3 个修复轮次、8 次工具调用和 60 秒单请求超时；超大文档可通过 RepairAgentConfig(mode=paged) 按页运行。
+单纯让模型回答一句话通常只需要一次请求；完整 Agent 还可能包含读取工具、候选生成、验证反馈、重新生成和质量流水线，因此耗时更长。当前默认边界是页面级上下文、3 个修复轮次、8 次工具调用和 60 秒单请求超时；单个候选最多 8 个 operations。规则可直接处理的标题层级问题不会消耗 LLM，只有当前页仍有可修问题时才进入 Agent；整篇模式必须通过 `RepairAgentConfig(mode="document")` 显式启用。
 
 后续优化会优先做三件事：
 
@@ -226,6 +226,6 @@ Prompt 模板位于 `quality/agent/prompts.py`，`context.py` 只负责把文档
 
 ## 9. 当前实现状态
 
-第一阶段已经打通 Agno Agent、DeepSeek 配置、Skill 目录、页面索引、结构化 Patch、候选验证、revision 提交/回滚和 QualityPackage 生成。当前本地测试基线为 `225 passed, 1 xfailed`。
+第一阶段已经打通 Agno Agent、DeepSeek 配置、Skill 目录、页面索引、结构化 Patch、候选验证、revision 提交/回滚和 QualityPackage 生成。当前本地测试基线为 `286 passed, 1 xfailed`。
 
 仍待后续联调的内容包括：上游正式统一文档包、百页级文档的分区修复策略、多文档并行调度，以及代表性真实文档的性能压测。

@@ -134,7 +134,7 @@ rejected
 | 单文档质量修复 Agent | 第一阶段完成，持续开发 | Agno Agent、Skills、Tools、页面模式、结构化 Patch、关系/资源 Patch、候选验证和审核输出 |
 | 上游统一文档包联调与交付 | 待办 | 接入上游正式统一文档包和多文档联调 |
 
-当前测试基线：`260 passed, 1 xfailed`。
+当前测试基线：`286 passed, 1 xfailed`。
 
 ## 代码入口
 
@@ -170,7 +170,10 @@ from quality.agent import RepairAgentConfig
 execution = run_quality_repair_detailed(
     document_package,
     config=config,
-    agent_config=RepairAgentConfig(session_id="upstream-job-id"),
+    agent_config=RepairAgentConfig(
+        mode="paged",
+        session_id="upstream-job-id",
+    ),
     agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
 )
 package = execution.package
@@ -187,7 +190,8 @@ from document_parser import load_document_package
 parsed_document = load_document_package("document_package")
 ```
 
-超大文档可显式启用页面模式；runtime 会先构建全篇索引，再逐页发出进度事件：
+生产默认使用页面模式；runtime 会先构建全篇索引，再逐页发出进度事件。需要
+兼容旧的整篇 Agent 流程时，必须显式设置 `mode="document"`：
 
 ```python
 from quality.agent import RepairAgentConfig

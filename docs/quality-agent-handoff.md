@@ -2,7 +2,7 @@
 
 > 当前分支：`feature/quality-layer`  
 > 当前远端基线：以 `origin/feature/quality-layer` 最新提交为准  
-> 最近验证：`260 passed, 1 xfailed`
+> 最近验证：`286 passed, 1 xfailed`
 > 适用范围：单文档质量修复 Agent 第一阶段
 
 ## 1. 这部分代码负责什么
@@ -39,7 +39,7 @@ quality/agent/
 
 ## 3. 常用入口
 
-整篇文档模式：
+生产默认使用分页模式：
 
 ```python
 from quality import run_quality_repair
@@ -48,6 +48,7 @@ from quality.agent import build_deepseek_model, build_quality_repair_agent
 model = build_deepseek_model()
 package = run_quality_repair(
     parsed_document,
+    agent_config=RepairAgentConfig(mode="paged", session_id="upstream-job-id"),
     agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
 )
 ```
@@ -60,7 +61,10 @@ from quality.agent import RepairAgentConfig
 
 execution = run_quality_repair_detailed(
     parsed_document,
-    agent_config=RepairAgentConfig(session_id="upstream-job-id"),
+    agent_config=RepairAgentConfig(
+        mode="paged",
+        session_id="upstream-job-id",
+    ),
     agent_factory=lambda toolbox: build_quality_repair_agent(model, toolbox),
 )
 ```
@@ -78,7 +82,8 @@ agent_config = RepairAgentConfig(
 )
 ```
 
-默认模式是 `document`，保持现有调用兼容；需要按页显示进度时显式设置 `mode="paged"`。
+默认模式是 `paged`，每页先运行低成本确定性预修复；只有当前页仍有可修问题时才调用
+LLM。需要兼容旧的整篇流程时，必须显式设置 `mode="document"`。
 
 ## 4. 当前 Patch 操作
 
@@ -143,7 +148,7 @@ git pull --ff-only
 .venv\Scripts\python.exe -m pip check
 ```
 
-当前基线为 `260 passed, 1 xfailed`；唯一 xfail 是已登记的 golden 标注冲突，不是运行环境故障。
+当前基线为 `286 passed, 1 xfailed`；唯一 xfail 是已登记的 golden 标注冲突，不是运行环境故障。
 
 ## 8. 下一步建议
 
