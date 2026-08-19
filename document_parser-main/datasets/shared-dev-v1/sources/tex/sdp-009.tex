@@ -1,0 +1,21 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=18mm]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{colortbl}
+\setmainfont{Arial}
+\setCJKmainfont{SimHei}
+\pagestyle{empty}
+\begin{document}
+{\fontsize{22}{26}\selectfont\bfseries 库存汇总截图}\par\vspace{8mm}
+\renewcommand{\arraystretch}{2.1}
+\begin{tabular}{|c|c|c|c|c|}\hline
+\rowcolor{blue!12} 编号 & 物料 & 期初 & 变化 & 期末\\\hline
+A-01 & 传感器 & 120 & +8 & 128\\\hline
+A-02 & 连接线 & 250 & -12 & 238\\\hline
+A-03 & 支架 & 80 & +5 & 85\\\hline
+\end{tabular}
+\vspace{14mm}\par\color{gray}\small OCR TARGET: A-02 / 连接线 / 238
+\end{document}

@@ -1,7 +1,7 @@
 # Document Parser
 
 > 当前分支：`feature/parser-integration-web`
-> 负责人：朱
+> 负责人：朱（parse-integration）
 > 核心目标：真实接入 Docling、MinerU、OCR，统一输出 `ParsedDocument 2.2`，完成后端、
 > Web 和从路由到质量结果的工程串联。
 
@@ -9,17 +9,19 @@
 
 ### 开始开发前必须阅读
 
-1. `docs/开发分工.md` 中“朱：统一接入、解耦与完整串联”和三次联调；
-2. `specs/001-document-parser-collaboration/spec.md` 中现有基线、共享开发文件集、统一接入、
+1. `docs/开发分工.md` 中“朱（parse-integration）：统一接入、解耦与完整串联”和三次联调；
+2. `docs/朱-parse-integration-契约基线.md` 中第一阶段契约边界和缺失证据策略；
+3. `docs/unified-document-package-requirements.md` 中统一文档包、侧车资源和交付前校验要求；
+4. `specs/001-document-parser-collaboration/spec.md` 中现有基线、共享开发文件集、统一接入、
    Web、交付形式和 Gate B/C/D；
-3. `examples/contracts/README.md` 中三份接口及文件产物约定；
-4. `examples/contracts/routing_decision.json`、`parsed_document.json`、
+5. `examples/contracts/README.md` 中三份接口及文件产物约定；
+6. `examples/contracts/routing_decision.json`、`parsed_document.json`、
    `quality_package.json`；
-5. `core/contracts.py` 中全部公共 Pydantic 模型；
-6. `core/gateway.py`、`core/converter.py` 和 `parsers/markitdown/`，理解必须保留的现有
+7. `core/contracts.py` 中全部公共 Pydantic 模型；
+8. `core/gateway.py`、`core/converter.py` 和 `parsers/markitdown/`，理解必须保留的现有
    调用方式和回归能力。
 
-### 你负责的接口位置
+### 朱（parse-integration）负责的接口位置
 
 你同时是两个接口的消费者和生产者：
 
@@ -108,7 +110,13 @@ tests/e2e/
 当前公共契约回归命令：
 
 ```powershell
-python -m pytest tests/test_contract_examples.py -q
+venv\Scripts\python.exe -m pytest tests/test_contract_examples.py -q
+```
+
+统一文档包打包示例：
+
+```powershell
+venv\Scripts\python.exe scripts\build_document_package.py examples\contracts\parsed_document.json outputs\document_package --native-dir native_input --source complex-paper.pdf
 ```
 
 ---
@@ -132,7 +140,7 @@ python -m pytest tests/test_contract_examples.py -q
 MVP 尚需三人分别完成：
 
 - 张云雅：Docling、MinerU、OCR 自动/手动路由和 JPG/JPEG/PNG 测评；
-- 朱：三类 Adapter、统一输出、后端、Web 和端到端串联；
+- 朱（parse-integration）：三类 Adapter、统一输出、后端、Web 和端到端串联；
 - 质量负责人：表格字段绑定、标题树恢复、引用绑定、质量门和四件套。
 
 MarkItDown 是需要保留的现有基线，不等于 Docling、MinerU、OCR 已经接入。
@@ -140,6 +148,8 @@ MarkItDown 是需要保留的现有基线，不等于 Docling、MinerU、OCR 已
 ## 协作文档
 
 - [三人开发分工](docs/开发分工.md)
+- [朱 parse-integration 契约基线](docs/朱-parse-integration-契约基线.md)
+- [统一文档包实施指南](docs/unified-document-package-requirements.md)
 - [完整开发 Spec](specs/001-document-parser-collaboration/spec.md)
 - [三方联调接口](examples/contracts/README.md)
 - [契约模型代码](core/contracts.py)
@@ -170,6 +180,7 @@ document_parser/
 │  ├─ converter.py       # 旧 Office 格式转换
 │  ├─ gateway.py         # 当前统一编排入口
 │  └─ inspector.py       # 文件基础特征检查
+├─ normalizers/          # 解析器原始输出 -> ParsedDocument 的中间层
 ├─ parsers/
 │  └─ markitdown/        # 当前可运行解析基线
 ├─ docs/
@@ -183,7 +194,6 @@ document_parser/
 
 ```text
 routing/
-normalizers/
 quality/
 backend/
 frontend/

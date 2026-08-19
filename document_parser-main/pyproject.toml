@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-parser"
+version = "0.1.0"
+description = "Multi-parser document routing, normalization and quality pipeline"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.7,<3",
+  "markitdown[all]>=0.1.0,<1",
+  "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+docling = [
+  "docling>=2.117,<3",
+  "rapidocr>=3.9,<4",
+  "onnxruntime>=1.28,<2",
+]
+
+[project.scripts]
+document-parser-route = "document_parser.routing.cli:main"
+
+[tool.setuptools]
+packages = [
+  "document_parser",
+  "document_parser.core",
+  "document_parser.parsers",
+  "document_parser.parsers.markitdown",
+  "document_parser.routing",
+]
+package-dir = {document_parser = "."}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

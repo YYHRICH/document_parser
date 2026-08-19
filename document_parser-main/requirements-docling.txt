@@ -1,0 +1,4 @@
+# Docling + RapidOCR 可选运行环境。建议放在独立虚拟环境中安装。
+docling>=2.117,<3
+rapidocr>=3.9,<4
+onnxruntime>=1.28,<2

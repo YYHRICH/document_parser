@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document Parser</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>Document Parser</h1>
+          <p>Upload, route, parse, reparse.</p>
+        </div>
+        <div class="status" id="appStatus">Ready</div>
+      </header>
+
+      <section class="panel">
+        <h2>Parse</h2>
+        <form id="parseForm" class="grid">
+          <label class="field">
+            <span>File</span>
+            <input id="fileInput" name="file" type="file" required />
+          </label>
+          <label class="field">
+            <span>Parser</span>
+            <select id="parserSelect" name="parser_id"></select>
+          </label>
+          <label class="field">
+            <span>Route profile</span>
+            <select id="routeProfile" name="route_profile">
+              <option value="local_first">local_first</option>
+              <option value="quality_first">quality_first</option>
+            </select>
+          </label>
+          <label class="field inline">
+            <input id="allowCloud" type="checkbox" checked />
+            <span>Allow cloud</span>
+          </label>
+          <label class="field inline">
+            <input id="libreofficeAvailable" type="checkbox" />
+            <span>LibreOffice available</span>
+          </label>
+          <label class="field">
+            <span>Extra JSON options</span>
+            <textarea id="extraOptions" rows="4">{}</textarea>
+          </label>
+          <div class="actions">
+            <button type="submit">Parse</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Reparse</h2>
+        <form id="reparseForm" class="grid">
+          <label class="field">
+            <span>Parse ID</span>
+            <input id="reparseId" type="text" placeholder="parse_..." />
+          </label>
+          <label class="field">
+            <span>Parser</span>
+            <select id="reparseParser"></select>
+          </label>
+          <label class="field">
+            <span>Extra JSON options</span>
+            <textarea id="reparseOptions" rows="3">{}</textarea>
+          </label>
+          <div class="actions">
+            <button type="submit">Reparse</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Result</h2>
+        <div id="resultMeta" class="meta"></div>
+        <div class="columns">
+          <div>
+            <h3>Routing</h3>
+            <pre id="routingOutput" class="block"></pre>
+          </div>
+          <div>
+            <h3>Document</h3>
+            <pre id="documentOutput" class="block"></pre>
+          </div>
+        </div>
+        <div class="columns">
+          <div>
+            <h3>Markdown</h3>
+            <pre id="markdownOutput" class="block markdown"></pre>
+          </div>
+          <div>
+            <h3>Artifacts</h3>
+            <div id="artifactsOutput" class="artifact-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Quality Package</h2>
+        <div id="qualityMeta" class="meta">No quality package loaded.</div>
+        <pre id="qualityOutput" class="block"></pre>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

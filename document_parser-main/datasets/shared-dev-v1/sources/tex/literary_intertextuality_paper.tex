@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage[margin=22mm,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\setmainfont{Arial}
+\setCJKmainfont{SimSun}
+\definecolor{navy}{HTML}{243B53}
+\definecolor{muted}{HTML}{52606D}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=navy}
+\pagestyle{fancy}\fancyhf{}\lhead{Computational Literary Studies}\rhead{arXiv:2410.17759}\cfoot{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{3pt}\setlength{\tabcolsep}{4pt}
+\setlength{\emergencystretch}{3em}
+\begin{document}
+\begin{center}
+{\color{navy}\fontsize{19}{23}\selectfont\bfseries Latent Structures of Intertextuality in French Fiction\par}
+\vspace{2mm}
+{\large A computational literary studies case report\par}
+\vspace{3mm}
+Jean Barré\par
+{\small Centre for Digital Humanities\quad\href{https://arxiv.org/abs/2410.17759}{arXiv:2410.17759}\quad 23 October 2024}
+\end{center}
+\vspace{3mm}
+\begin{quote}\small
+\textbf{Abstract.} This paper presents a reproducible way to study intertextuality in a large French-fiction corpus. We compare contextual representations of novels from the eighteenth to the early twentieth century, then examine how genre and canonical status shape the resulting similarity network. The report is written as a document-processing fixture: all counts below are an explicit, self-contained reconstruction for testing extraction of headings, tables, citations, and references.
+\end{quote}
+\noindent\textbf{Keywords:} intertextuality; French fiction; literary canon; computational literary studies; text embeddings
+\section{Introduction}
+Intertextuality treats literary works as participants in a changing network rather than as isolated objects. Computational methods make it possible to compare thousands of works while retaining interpretable metadata about period, genre, and circulation. The present sample follows the research question and bibliographic identity of Barré's arXiv paper, but uses compact illustrative values so that the file can be redistributed as a development fixture.
+\section{Corpus and operationalization}
+The corpus is organized by publication period and broad genre. A work is represented by a normalized embedding computed from its text; similarity is measured with cosine distance. Canonical status is an auxiliary label derived from a curated reading list, never a claim about literary value.
+\begin{table}[ht]
+\centering
+\caption{Illustrative corpus inventory}
+\begin{tabularx}{0.92\linewidth}{l r r X}
+\toprule
+Period & Works & Median words & Notes\\
+\midrule
+18th century & 2,940 & 58,100 & smaller genre coverage\\
+19th century & 6,870 & 71,400 & strongest network density\\
+1900--1930 & 2,460 & 64,900 & transitional publication formats\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\section{Method}
+We first remove paratextual boilerplate and preserve chapter boundaries. We then encode each novel with a contextual language model and construct a $k$-nearest-neighbor graph. Community detection is run separately within each period, followed by a regression in which edge strength is predicted by genre agreement, period distance, and canonical-status agreement. The workflow stores the original filename, model version, and evidence location for every derived relation.
+\section{Findings}
+The illustrative network has three stable observations:
+\begin{enumerate}
+\item genre agreement is associated with denser local neighborhoods than raw publication proximity;
+\item canonical works occupy bridges between otherwise distinct genre communities;
+\item the strength of both effects changes across periods, so a single global threshold is misleading.
+\end{enumerate}
+These findings should be read as a description of the sample's analytical design, not as a substitute for the full empirical estimates in the linked preprint.
+\newpage
+\section{Error analysis and reproducibility}
+A literary similarity edge is not self-authenticating. OCR noise, alternate editions, and quoted passages can create false neighbors. We therefore retain a confidence field, the source page or chapter span, and a review status for every edge.
+\begin{table}[ht]
+\centering
+\caption{Quality controls for derived intertextual links}
+\begin{tabularx}{0.96\linewidth}{p{35mm}X p{25mm}}
+\toprule
+Failure mode & Evidence retained & Action\\
+\midrule
+Multiple editions & edition identifier and page span & manual review\\
+Quoted passage & matched span and surrounding context & keep with warning\\
+OCR uncertainty & token confidence and image crop & re-OCR\\
+Genre ambiguity & label provenance and alternatives & unresolved\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\section{Limitations}
+Embedding similarity is a measurement choice, not a direct observation of influence. The corpus boundary, genre taxonomy, and canonical list all affect the network. Future work should compare several encoders, report sensitivity to segmentation, and pair quantitative evidence with close reading.
+\section{Conclusion}
+A useful computational-literary document keeps its interpretive claims connected to stable evidence. For document parsing, this paper also provides realistic scholarly structure: a title page, abstract, numbered sections, tables, inline mathematics, hyperlinks, and a reference list.
+\section*{References}
+\begin{enumerate}
+\item Barré, J. (2024). \emph{Latent Structures of Intertextuality in French Fiction}. arXiv preprint arXiv:2410.17759. \url{https://arxiv.org/abs/2410.17759}.
+\item Moretti, F. (2005). \emph{Graphs, Maps, Trees: Abstract Models for Literary History}. Verso.
+\item Jockers, M. L. (2013). \emph{Macroanalysis: Digital Methods and Literary History}. University of Illinois Press.
+\end{enumerate}
+\vfill
+{\small\color{muted}Document-processing fixture. Analytical values are illustrative; bibliographic metadata points to the public arXiv record.}
+\end{document}
