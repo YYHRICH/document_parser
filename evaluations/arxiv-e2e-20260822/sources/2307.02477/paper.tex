@@ -1,0 +1,179 @@
+\pdfoutput=1
+
+
+
+\documentclass[11pt,a4paper]{article} 
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\input{math.tex}
+\usepackage{style}
+\usepackage{url}
+
+\usepackage{gb4e}
+\noautomath
+
+
+\usepackage[acceptedWithA]{tacl2021v1}
+
+\usepackage{microtype}
+
+\usepackage{inconsolata}
+
+\usepackage{centernot}
+\usepackage{wasysym}
+\usepackage{marvosym}
+\usepackage{cuted}
+
+\usepackage{forest}
+
+
+\usepackage{makecell}
+
+\renewcommand{\cellalign}{cl}
+\renewcommand{\theadalign}{cl}
+
+\usepackage{adjustbox}
+\usepackage{dashbox}
+\newcommand{\coloredbox}[2]{%
+    \colorlet{currentcolor}{.}%
+    {\color{#1}%
+    \fbox{\color{currentcolor}#2}}%
+}
+\newcommand{\coloreddashedbox}[2]{%
+    \colorlet{currentcolor}{.}%
+    {\color{#1}%
+    \adjustbox{precode=\dbox}{\color{currentcolor}#2}}%
+}
+\definecolor{boxbg}{rgb}{0.85,0.85,0.85}
+\newcommand{\shadedbox}[1]{%
+    {\fcolorbox{white}{boxbg}{\begin{varwidth}{\textwidth}\centering #1\end{varwidth}}}%
+}
+
+\usepackage{xspace,mfirstuc,tabulary}
+\newcommand{\dateOfLastUpdate}{Dec. 15, 2021}
+\newcommand{\styleFileVersion}{tacl2021v1}
+
+\newif\iftaclinstructions
+\taclinstructionsfalse %
+\iftaclinstructions
+\renewcommand{\confidential}{}
+\renewcommand{\anonsubtext}{(No author info supplied here, for consistency with
+TACL-submission anonymization requirements)}
+\newcommand{\instr}
+\fi
+
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{mdred}{rgb}{0.7,0,0}
+\definecolor{mdgreen}{rgb}{0.05,0.6,0.05}
+\definecolor{mdblue}{rgb}{0,0,0.7}
+\definecolor{dkblue}{rgb}{0,0,0.5}
+\definecolor{dkgray}{rgb}{0.3,0.3,0.3}
+\definecolor{slate}{rgb}{0.25,0.25,0.4}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{ltgray}{rgb}{0.7,0.7,0.7}
+\definecolor{purple}{rgb}{0.7,0,1.0}
+\definecolor{lavender}{rgb}{0.65,0.55,1.0}
+\definecolor{real}{HTML}{3498DB}
+\definecolor{cf}{HTML}{DB7734}
+
+\newcommand{\papercomment}[3]{\ensuretext{\textcolor{#3}{[#1 #2]}}}
+\renewcommand{\papercomment}[3]{}  %
+
+\newcommand{\tocite}[1]{\papercomment{\marker{To}{Cite}}{#1}{dkblue}}
+\newcommand{\todo}[1]{\papercomment{\marker{To}{Do}}{#1}{dkblue}}
+\newcommand{\zfw}[1]{\papercomment{\marker{Z}{W}}{#1}{mdblue}}
+\newcommand{\llq}[1]{\papercomment{\marker{L}{Q}}{#1}{orange}}
+\newcommand{\ajr}[1]{\papercomment{\marker{A}{R}}{#1}{purple}}
+\newcommand{\cby}[1]{\papercomment{\marker{B}{C}}{#1}{red}}
+\newcommand{\nk}[1]{\papercomment{\marker{N}{K}}{#1}{teal}}
+\newcommand{\te}[1]{\papercomment{\marker{T}{E}}{#1}{brown}}
+\newcommand{\bw}[1]{\papercomment{\marker{B}{W}}{#1}{cyan}}
+\newcommand{\jda}[1]{\papercomment{\marker{J}{A}}{#1}{olive}}
+
+
+\usepackage{xspace}
+\renewcommand{\eg}{e.g.,\xspace}%
+\newcommand{\ie}{i.e.,\xspace}
+
+\newcommand{\graphicalmodel}{\begin{tikzpicture}[
+roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
+]
+\node[roundnode]      (W)                              {W};
+\node[roundnode]      (X)                 [right=of W] {X};
+\node[roundnode]      (Y)                 [right=of X] {Y};
+
+\draw[->] (X.east) -- (Y.west);
+\draw[->] (W.east) .. controls +(up:7mm) and +(up:7mm) .. (Y.west);
+\end{tikzpicture} \xspace}
+
+\interfootnotelinepenalty=0
+
+
+
+\title{Reasoning or Reciting? Exploring the Capabilities and Limitations of  Language Models Through Counterfactual Tasks}
+
+
+\author{Zhaofeng Wu$^\text{\Cancer}$ \quad
+    Linlu Qiu$^\text{\Cancer}$ \quad
+    Alexis Ross$^\text{\Cancer}$ \quad
+    Ekin Akyürek$^\text{\Cancer}$ \quad
+    Boyuan Chen$^\text{\Cancer}$ \\
+    \textbf{Bailin Wang}$^\text{\Cancer}$ \quad
+    \textbf{Najoung Kim}$^\text{\Libra}$ \quad
+    \textbf{Jacob Andreas}$^\text{\Cancer}$ \quad
+    \textbf{Yoon Kim}$^\text{\Cancer}$ \quad\\
+    $^\text{\Cancer}$MIT \quad $^\text{\Libra}$Boston University \\
+    \texttt{zfw@csail.mit.edu}
+}
+
+\begin{document}
+\maketitle
+
+
+\begin{strip}  %
+    \vspace{-1cm}
+    \centering
+    \includegraphics[width=\textwidth]{figures/overview.pdf}
+    \captionof{figure}{GPT-4's performance on the default version of various tasks (\textcolor{real}{blue}) and counterfactual counterparts (\textcolor{cf}{orange}). The shown results use 0-shot chain-of-thought prompting (\S\ref{sec:results}; \citealp{kojima2023large}).
+    GPT-4 consistently and substantially underperforms on counterfactual variants compared to default task instantiations.
+    }
+    \label{fig:overview}
+\end{strip}
+
+
+\begin{abstract}
+
+The impressive performance of recent language models across a wide range of tasks suggests that they possess a degree of abstract reasoning skills. Are these skills general and transferable, or specialized to specific tasks seen during pretraining? To disentangle these effects, we propose an evaluation framework based on ``counterfactual'' task variants that deviate from 
+the default assumptions underlying standard tasks. Across a suite of 11 tasks, we observe nontrivial performance on the counterfactual variants, but nevertheless find that performance substantially and consistently degrades compared to the default conditions.
+This suggests that while current LMs may possess abstract task-solving skills to an extent, they often also rely on narrow, non-transferable procedures for task-solving.
+These results motivate a more careful interpretation of language model performance that teases apart these aspects of behavior. 
+
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_setup}
+\input{sections/03_tasks}
+\input{sections/04_results}
+\input{sections/05_analysis}
+\input{sections/06_discussion}
+\input{sections/07_limitations}
+\input{sections/08_related_work}
+\input{sections/09_conclusion}
+
+\iftaclpubformat
+\section*{Acknowledgments}
+We thank, alphabetically, Alex Gu, Alisa Liu, Belinda Li, Chenghao Yang, Han Guo, Hao Peng, Heyun Li, Jesse Dodge, Pratyusha Sharma, Tiwa Eisape, and Yizhong Wang for helpful discussions and feedback for this work. We are also grateful to  Simeng Han for providing us with an updated version of the FOLIO dataset.
+Our drawing evaluation would not have been possible without our annotators Alex Hu, Ananya Harsh Jha, Belinda Li, Erjia Cao, Ha-na Park, Huirong Wen, Jiangjie Chen, Kabir Swain, Ka Wai Chan, Lucy Li, Simran Swain, Tejas Srinivasan, Tianyu Liu, Yue Bai, Yutaro Yamada, and Ziwei Wei. 
+Zhaofeng would like to thank Jiamin Zhang for the guitar lessons, which were short but helpful for the relevant components of this paper.
+Figure~\ref{fig:overview} uses icons from \url{flaticon.com}. This study was supported by funds from the MIT--IBM Watson AI Lab, the MIT Quest for Intelligence, and the National Science Foundation under grants IIS-2212310 and IIS-2238240.
+\fi
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+\clearpage
+\appendix
+
+\input{sections/99_appendix}
+
+\end{document}

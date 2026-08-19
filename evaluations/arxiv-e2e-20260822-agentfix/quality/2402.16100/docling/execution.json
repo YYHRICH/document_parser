@@ -1,0 +1,47 @@
+{
+  "session_id": "arxiv-e2e-20260822:2402.16100:docling",
+  "accepted": true,
+  "final_revision_id": "769b8906f3b1ef22e693581558976a0100b4c6f8d733fc2b722048637ae08779",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+      "source_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6",
+      "candidate_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6"
+    },
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [
+        "246cdd3c-5a1d-5fdd-acb1-a50dda2f5b8e",
+        "b483239b-a3e1-570d-a38d-a1a15a5114c7",
+        "c3090e55-3bba-59a4-aebb-11e7bfe4a76f",
+        "ff721bf6-8967-5e2d-a2b0-5e8c609b908d",
+        "69b5a214-f300-5bb7-8cb0-b8336dfe584e",
+        "22ea29df-9968-5bad-82d4-d1d3babe08fd",
+        "4d661ef8-24f4-5628-a52b-4ad5051b7145",
+        "809f56cd-786f-53e9-a7b1-3e8a3bfc08cd",
+        "22f81e20-ed11-5867-94ea-70a7fbfa5bb6",
+        "fa525b79-430b-58e9-8439-307d67ca9105",
+        "e649006e-055e-5a63-983b-2dae8b106fe4"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+      "source_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6",
+      "candidate_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6"
+    }
+  ]
+}

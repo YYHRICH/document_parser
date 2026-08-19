@@ -1,0 +1,313 @@
+[
+    {
+        "layout_dets": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.9302,
+                "bbox": [
+                    137,
+                    37,
+                    404,
+                    68
+                ],
+                "index": 1
+            },
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.9392,
+                "bbox": [
+                    1180,
+                    37,
+                    1515,
+                    69
+                ],
+                "index": 2
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.7112,
+                "bbox": [
+                    628,
+                    136,
+                    1025,
+                    190
+                ],
+                "index": 3
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5601,
+                "bbox": [
+                    495,
+                    199,
+                    1157,
+                    233
+                ],
+                "index": 4
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.9581,
+                "bbox": [
+                    442,
+                    294,
+                    1208,
+                    339
+                ],
+                "index": 5
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8759,
+                "bbox": [
+                    188,
+                    374,
+                    1214,
+                    410
+                ],
+                "index": 6
+            },
+            {
+                "cls_id": 7,
+                "label": "figure_title",
+                "score": 0.8933,
+                "bbox": [
+                    745,
+                    460,
+                    908,
+                    494
+                ],
+                "index": 7
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9714,
+                "bbox": [
+                    458,
+                    491,
+                    1193,
+                    745
+                ],
+                "index": 8,
+                "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>TABLE-ALPHA</td><td>2026-08-21</td><td>99.875%</td><td>USD 2,450.00</td></tr><tr><td>TABLE-BETA</td><td>2026-08-21</td><td>98.250%</td><td>USD 1,125.50</td></tr></table>"
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.9562,
+                "bbox": [
+                    592,
+                    846,
+                    1060,
+                    891
+                ],
+                "index": 9
+            },
+            {
+                "cls_id": 7,
+                "label": "figure_title",
+                "score": 0.8315,
+                "bbox": [
+                    731,
+                    954,
+                    923,
+                    990
+                ],
+                "index": 10
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9884,
+                "bbox": [
+                    176,
+                    1023,
+                    1478,
+                    1941
+                ],
+                "index": 11,
+                "html": "<table><tr><td>标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-T-R01</td><td>TABLE-ALPHA</td><td>0.03125 mm</td><td>保留五位小数。</td></tr><tr><td>TRACE-T-R02</td><td>TABLE-BETA</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-T-R03</td><td>TABLE-ALPHA</td><td>A+B=C</td><td>运算符是事实。</td></tr><tr><td>TRACE-T-R04</td><td>TABLE-BETA</td><td>7/16 in</td><td>保留尺寸。</td></tr><tr><td>TRACE-T-R05</td><td>TABLE-ALPHA</td><td>1.2500 kg</td><td>保留尾随零。</td></tr><tr><td>TRACE-T-R06</td><td>TABLE-BETA</td><td>USD 2,450.00</td><td>保留货币。</td></tr><tr><td>TRACE-T-R07</td><td>TABLE-ALPHA</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-T-R08</td><td>TABLE-BETA</td><td>2026-08-21</td><td>保留日期。</td></tr><tr><td>TRACE-T-R09</td><td>TABLE-ALPHA</td><td>2.25 mm</td><td>页面边界前记录。</td></tr><tr><td>TRACE-T-R10</td><td>TABLE-BETA</td><td>3.50 mm</td><td>跨页后记录。</td></tr><tr><td>TRACE-T-R11</td><td>TABLE-ALPHA</td><td>4.75 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R12</td><td>TABLE-BETA</td><td>6.00 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R13</td><td>TABLE-ALPHA</td><td>8.125 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R14</td><td>TABLE-BETA</td><td>9.250 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R15</td><td>TABLE-ALPHA</td><td>10.375 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R16</td><td>TABLE-BETA</td><td>11.500 mm</td><td>最后一行可追踪。</td></tr></table>"
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.9342,
+                "bbox": [
+                    539,
+                    2012,
+                    1110,
+                    2055
+                ],
+                "index": 12
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9033,
+                "bbox": [
+                    190,
+                    2089,
+                    1370,
+                    2126
+                ],
+                "index": 13
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8444,
+                "bbox": [
+                    817,
+                    2258,
+                    836,
+                    2284
+                ],
+                "index": 14
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    142,
+                    43,
+                    399,
+                    68
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    1185,
+                    44,
+                    1511,
+                    67
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    635,
+                    141,
+                    1017,
+                    189
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    500,
+                    203,
+                    1152,
+                    233
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    443,
+                    294,
+                    1203,
+                    340
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    194,
+                    376,
+                    1209,
+                    406
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    745,
+                    462,
+                    907,
+                    495
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    592,
+                    845,
+                    1056,
+                    890
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    733,
+                    957,
+                    918,
+                    990
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    542,
+                    2009,
+                    1105,
+                    2056
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    195,
+                    2092,
+                    1364,
+                    2123
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "label": "ocr_text",
+                "bbox": [
+                    817,
+                    2259,
+                    835,
+                    2288
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 0,
+            "width": 1654,
+            "height": 2339
+        }
+    }
+]

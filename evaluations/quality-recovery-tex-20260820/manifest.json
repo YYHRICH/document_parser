@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260820",
+  "documents": [
+    {
+      "document": "trace-mixed",
+      "source_id": "TEX-MIXED-20260820-V1",
+      "tex": {
+        "path": "sources\\trace-mixed.tex",
+        "sha256": "a7a05a9dbbcd07922fd07d6fe86a1619eeff48d04b8ba17b66a7b6c6a213d629"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-mixed.pdf",
+        "sha256": "42ec843049c4dd5d2718d9d9fe30e602ec3a3f53b4107582b30dcd1c3a14806b",
+        "size_bytes": 55942
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-mixed.txt",
+        "sha256": "a00750a947c1092d54f7a9fd5474b66e9ea7d0bef60e31b2fafb95423e44bf52",
+        "marker_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 7,
+          "total": 7,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "trace-grid",
+      "source_id": "TEX-GRID-20260820-V1",
+      "tex": {
+        "path": "sources\\trace-grid.tex",
+        "sha256": "8db1f3851c0612e369ac261e49041ef0764bfec3e6f4c1bf18a2e20d78256dc8"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-grid.pdf",
+        "sha256": "524cdd68ca462ee0cc52c428fe44cca3ae175e519d0066f6510f4bc287537a05",
+        "size_bytes": 39309
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-grid.txt",
+        "sha256": "5f1fb39d8f13e66a4011ac6c0b4b06cdf8de4b66242a51ccadcdaa7eaf896e6a",
+        "marker_recall": {
+          "found": 7,
+          "total": 7,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "trace-columns",
+      "source_id": "TEX-COLUMNS-20260820-V1",
+      "tex": {
+        "path": "sources\\trace-columns.tex",
+        "sha256": "cb30eb9b123babbeaee606e15eef7a4955ad4ca307958847f4ef3b81b0552c75"
+      },
+      "pdf": {
+        "path": "pdfs\\trace-columns.pdf",
+        "sha256": "2a57fc5bac1eec86ac3f360ac9697a6405481c74fd4000b2deb3cc472cc95669",
+        "size_bytes": 36150
+      },
+      "pdf_text": {
+        "path": "pdf_text\\trace-columns.txt",
+        "sha256": "feeea1cbd53c3034b35b76be27e9c26281991b0bc070b3c19c39b9987996bf41",
+        "marker_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    }
+  ]
+}

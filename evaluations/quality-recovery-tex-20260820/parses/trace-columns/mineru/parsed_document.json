@@ -1,0 +1,718 @@
+{
+  "document_id": "c29d0165-3bb4-40b9-82e5-db9b039f3e36",
+  "filename": "trace-columns.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 36150,
+  "source_sha256": "2a57fc5bac1eec86ac3f360ac9697a6405481c74fd4000b2deb3cc472cc95669",
+  "routing_decision": null,
+  "markdown": "# 双栏阅读顺序测试\n\nTRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1\n\n## 1 左栏校验 TRACE-C-LEFT-101\n\n左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。\n\n1. LEFT-CHECK-A1：准备输入。\n\n2. LEFT-CHECK-A2：确认 threshold 0.25。\n\n## 1.1 左栏公式 TRACE-C-LEFT-111\n\n左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。\n\n## 2 右栏校验\n\n## TRACE-C-RIGHT-201\n\n右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。\n\n1. RIGHT-CHECK-B1：读取第二路输入。\n\n2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。\n\n## 2.1 右栏结论 TRACE-C-RIGHT-211\n\n右栏结论不能被提前插入左栏中间。\n\n## 3 双栏结束 TRACE-C-END-301\n\n本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+  "blocks": [
+    {
+      "id": "f7b4ab0f-cd13-5aeb-878b-ba973e88a211",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "双栏阅读顺序测试",
+      "heading_level": 1,
+      "markdown": "双栏阅读顺序测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          378.0,
+          64.0,
+          620.0,
+          87.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bc8bdd28-f077-54fb-8a42-df24b8152351",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+      "heading_level": null,
+      "markdown": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          267.0,
+          92.0,
+          729.0,
+          108.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "88bd4e17-6316-5fd0-9dfc-e1bc25559da7",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 左栏校验 TRACE-C-LEFT-101",
+      "heading_level": 2,
+      "markdown": "1 左栏校验 TRACE-C-LEFT-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          124.0,
+          492.0,
+          145.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ec1d1342-837a-5745-bb36-b6f28b40ab65",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。",
+      "heading_level": null,
+      "markdown": "左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          89.0,
+          162.0,
+          494.0,
+          200.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2103ee3a-d4fb-5ffa-9f7b-c1c760d24735",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. LEFT-CHECK-A1：准备输入。",
+      "heading_level": null,
+      "markdown": "1. LEFT-CHECK-A1：准备输入。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          110.0,
+          205.0,
+          396.0,
+          222.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5af9cf42-2c43-5f9b-a02c-b24132614a43",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. LEFT-CHECK-A2：确认 threshold 0.25。",
+      "heading_level": null,
+      "markdown": "2. LEFT-CHECK-A2：确认 threshold 0.25。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          110.0,
+          227.0,
+          495.0,
+          243.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cc153321-d769-5cd3-9e5e-95c92d5f3892",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 左栏公式 TRACE-C-LEFT-111",
+      "heading_level": 2,
+      "markdown": "1.1 左栏公式 TRACE-C-LEFT-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          268.0,
+          447.0,
+          286.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4cdc5aa1-76c9-5409-949d-b399dac4f7e0",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。",
+      "heading_level": null,
+      "markdown": "左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          87.0,
+          300.0,
+          494.0,
+          338.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a4371684-4c85-5131-9dd9-f8c2aa1fbbe8",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 右栏校验",
+      "heading_level": 2,
+      "markdown": "2 右栏校验",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          633.0,
+          124.0,
+          776.0,
+          145.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2142a87d-7ff3-5240-82fb-4eb0ed31b5ef",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "TRACE-C-RIGHT-201",
+      "heading_level": 2,
+      "markdown": "TRACE-C-RIGHT-201",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          583.0,
+          153.0,
+          865.0,
+          172.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5c877364-a6c4-56dc-98fd-44ac443bfe58",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。",
+      "heading_level": null,
+      "markdown": "右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          502.0,
+          189.0,
+          909.0,
+          227.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "86259888-6974-5a6f-96e2-437b4760ae24",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. RIGHT-CHECK-B1：读取第二路输入。",
+      "heading_level": null,
+      "markdown": "1. RIGHT-CHECK-B1：读取第二路输入。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          524.0,
+          231.0,
+          877.0,
+          248.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a16b6b31-2be2-5a6b-a2c0-021f1dfae6dd",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。",
+      "heading_level": null,
+      "markdown": "2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          524.0,
+          252.0,
+          991.0,
+          269.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1f3a6396-9117-5236-8395-7b6a85009324",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2.1 右栏结论 TRACE-C-RIGHT-211",
+      "heading_level": 2,
+      "markdown": "2.1 右栏结论 TRACE-C-RIGHT-211",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          502.0,
+          291.0,
+          877.0,
+          309.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "65ce5ee3-41f2-5e14-a8ea-bd0a698b961a",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "右栏结论不能被提前插入左栏中间。",
+      "heading_level": null,
+      "markdown": "右栏结论不能被提前插入左栏中间。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          537.0,
+          321.0,
+          831.0,
+          338.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "35169f28-d80b-5f58-afcd-7e9632938b24",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-COLUMNS-HEADER",
+      "heading_level": null,
+      "markdown": "TRACE-COLUMNS-HEADER",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          90.0,
+          22.0,
+          349.0,
+          36.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c24937da-59ba-5dca-86eb-91f40adb7f0f",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-COLUMNS-20260820-V1",
+      "heading_level": null,
+      "markdown": "TEX-COLUMNS-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          653.0,
+          22.0,
+          905.0,
+          36.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1b6a16fa-b59c-57e8-8bc9-b7044a292920",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          492.0,
+          958.0,
+          505.0,
+          971.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5a7024ce-8b90-5e87-bae6-f83315119010",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 双栏结束 TRACE-C-END-301",
+      "heading_level": 2,
+      "markdown": "3 双栏结束 TRACE-C-END-301",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          300.0,
+          65.0,
+          695.0,
+          83.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ea4474a-f85f-5f8b-932d-f265734c541c",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+      "heading_level": null,
+      "markdown": "本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          89.0,
+          102.0,
+          909.0,
+          139.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "894f49c1-c7db-5b60-a0e5-7a7fbb913777",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-COLUMNS-HEADER",
+      "heading_level": null,
+      "markdown": "TRACE-COLUMNS-HEADER",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          90.0,
+          22.0,
+          347.0,
+          36.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "45e238b8-a042-52c3-95e0-a987a87c1255",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-COLUMNS-20260820-V1",
+      "heading_level": null,
+      "markdown": "TEX-COLUMNS-20260820-V1",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          653.0,
+          22.0,
+          905.0,
+          35.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "abe4ccfb-c6ff-529a-a386-55e096b4b497",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          958.0,
+          505.0,
+          970.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru-cloud",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "markdown_only",
+      "reason": "表格未提供 cells 网格，只有 markdown。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T03:29:59.958660Z"
+}

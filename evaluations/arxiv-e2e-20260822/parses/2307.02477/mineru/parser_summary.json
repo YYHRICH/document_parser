@@ -1,0 +1,19 @@
+{
+  "document": "2307.02477",
+  "parser": "mineru",
+  "source_sha256": "c7e3f360460c7a66c6d1329891aabebf7bff4e1ef4ee67896538d803d5dec75b",
+  "blocks": 268,
+  "tables": 31,
+  "warnings": [
+    "mineru-cloud:table-013: 数据网格存在 1 个未占位槽位。",
+    "mineru-cloud:table-017: 数据网格存在 2 个未占位槽位。",
+    "mineru-cloud:table-018: 数据网格存在 4 个未占位槽位。",
+    "mineru-cloud:table-019: 数据网格存在 22 个未占位槽位。",
+    "mineru-cloud:table-020: 数据网格存在 3 个未占位槽位。",
+    "mineru-cloud:table-021: 数据网格存在 22 个未占位槽位。",
+    "mineru-cloud:table-022: 数据网格存在 1 个未占位槽位。",
+    "mineru-cloud:table-024: 数据网格存在 1 个未占位槽位。",
+    "mineru-cloud:table-025: 数据网格存在 17 个未占位槽位。",
+    "mineru-cloud:table-026: 数据网格存在 2 个未占位槽位。"
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "document_id": "61f4a730-2128-46ae-86de-2c07ef557967",
+  "filename": "trace-columns.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 36150,
+  "source_sha256": "2a57fc5bac1eec86ac3f360ac9697a6405481c74fd4000b2deb3cc472cc95669",
+  "routing_decision": null,
+  "markdown": "## 双栏阅读顺序测试\n\nTRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1\n\n## 1 左栏校验 TRACE-C-LEFT-101\n\n左栏第一项是 LEFT-CHECK-A1 ，必须先于 左栏第二项出现。\n\n1. LEFT-CHECK-A1 ：准备输入。\n2. LEFT-CHECK-A2 ：确认 threshold ≤ 0 . 25 。\n\n## 1.1 左栏公式 TRACE-C-LEFT-111\n\n左栏约束为 p + q = 1 ，公式编号为 C-LEFTEQ-1 。\n\n## 2 右栏校验 TRACE-C-RIGHT-201\n\n右栏第一项是 RIGHT-CHECK-B1 ， 必须与左 栏内容区分。\n\n1. RIGHT-CHECK-B1 ：读取第二路输入。\n2. RIGHT-CHECK-B2 ： 保存 DOI 10.7777/columns.2026 。\n\n## 2.1 右栏结论 TRACE-C-RIGHT-211\n\n右栏结论不能被提前插入左栏中间。\n\n## 3 双栏结束 TRACE-C-END-301\n\n本页用于检查上一页两栏的结束边界。 最终结论仍需保留 LEFT-CHECK-A1 、 LEFT-CHECK-A2 、 RIGHT-CHECK-B1 和 RIGHT-CHECK-B2 。\n\n2",
+  "blocks": [
+    {
+      "id": "75d17c4d-e0f0-54d8-9f9f-7d5668aee480",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "双栏阅读顺序测试",
+      "heading_level": 1,
+      "markdown": "# 双栏阅读顺序测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          228.776,
+          56.02697139999998,
+          366.4991999999999,
+          73.24237140000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b9ea6eac-f1e8-5a66-94c6-4131a49b754d",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+      "heading_level": null,
+      "markdown": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          162.51500000000001,
+          80.39914439999995,
+          432.7505249999999,
+          90.36174440000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1c380230-8184-51fc-afb1-2e0a64b1745f",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 左栏校验 TRACE-C-LEFT-101",
+      "heading_level": 1,
+      "markdown": "# 1 左栏校验 TRACE-C-LEFT-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          106.48461420000001,
+          292.67071640000006,
+          121.5911628
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "26cfef15-8e7b-508a-883d-5c77ac307f23",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "左栏第一项是 LEFT-CHECK-A1 ，必须先于 左栏第二项出现。",
+      "heading_level": null,
+      "markdown": "左栏第一项是 LEFT-CHECK-A1 ，必须先于 左栏第二项出现。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.692999999999984,
+          138.96008310000002,
+          292.6504092,
+          167.48318310000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "775841d9-40d1-530e-ae36-6fb0a5645b6d",
+      "source_block_id": "docling-ListItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "LEFT-CHECK-A1 ：准备输入。",
+      "heading_level": null,
+      "markdown": "LEFT-CHECK-A1 ：准备输入。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.024,
+          174.75208310000005,
+          239.42059999999998,
+          186.2393654
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95d70646-3f28-53a3-be6a-e1c73711b592",
+      "source_block_id": "docling-ListItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "LEFT-CHECK-A2 ：确认 threshold ≤ 0 . 25 。",
+      "heading_level": null,
+      "markdown": "LEFT-CHECK-A2 ：确认 threshold ≤ 0 . 25 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.024,
+          192.36608309999997,
+          299.68809999999996,
+          210.96652088774192
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c5004095-b111-5d21-bace-0c69fcf23866",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 左栏公式 TRACE-C-LEFT-111",
+      "heading_level": 1,
+      "markdown": "# 1.1 左栏公式 TRACE-C-LEFT-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          228.10348320000003,
+          263.9476144,
+          240.69230879999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c2876a46-c080-53c5-83de-4eede4bff228",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "左栏约束为 p + q = 1 ，公式编号为 C-LEFTEQ-1 。",
+      "heading_level": null,
+      "markdown": "左栏约束为 p + q = 1 ，公式编号为 C-LEFTEQ-1 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.692999999999984,
+          254.7640831,
+          292.6561279,
+          283.8653654
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e2c15398-1a3a-569b-96eb-73aa76fed34b",
+      "source_block_id": "docling-SectionHeaderItem-8",
+      "order_index": 8,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 右栏校验 TRACE-C-RIGHT-201",
+      "heading_level": 1,
+      "markdown": "# 2 右栏校验 TRACE-C-RIGHT-201",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          349.88100000000003,
+          106.48461420000001,
+          513.7576426,
+          144.90316280000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f1f9d102-4093-5995-9fd9-10234d1337ce",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "右栏第一项是 RIGHT-CHECK-B1 ， 必须与左 栏内容区分。",
+      "heading_level": null,
+      "markdown": "右栏第一项是 RIGHT-CHECK-B1 ， 必须与左 栏内容区分。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.6190000000001,
+          161.22908310000003,
+          538.5932228000001,
+          189.75118310000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bcfd97af-9179-5f59-92c4-f2bb69f5b38c",
+      "source_block_id": "docling-ListItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "RIGHT-CHECK-B1 ：读取第二路输入。",
+      "heading_level": null,
+      "markdown": "RIGHT-CHECK-B1 ：读取第二路输入。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          315.95,
+          196.48308310000004,
+          524.9569000000001,
+          207.9703654
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "39d25d33-30a2-5a85-a919-a75a2995b4da",
+      "source_block_id": "docling-ListItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "RIGHT-CHECK-B2 ： 保存 DOI 10.7777/columns.2026 。",
+      "heading_level": null,
+      "markdown": "RIGHT-CHECK-B2 ： 保存 DOI 10.7777/columns.2026 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          315.95,
+          214.09708309999996,
+          594.3211,
+          225.58436540000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2567ee17-b062-5dc5-939b-937dd66cf277",
+      "source_block_id": "docling-SectionHeaderItem-12",
+      "order_index": 12,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2.1 右栏结论 TRACE-C-RIGHT-211",
+      "heading_level": 1,
+      "markdown": "# 2.1 右栏结论 TRACE-C-RIGHT-211",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.619,
+          246.76148320000004,
+          520.6342944,
+          259.3503088
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d0182690-3105-5c14-972e-30c61ed2cfc6",
+      "source_block_id": "docling-TextItem-13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "右栏结论不能被提前插入左栏中间。",
+      "heading_level": null,
+      "markdown": "右栏结论不能被提前插入左栏中间。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          324.437,
+          272.3780831,
+          498.98260000000033,
+          283.2871831
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3377c625-e9fd-5a32-9cbd-ddeed1f15b76",
+      "source_block_id": "docling-SectionHeaderItem-14",
+      "order_index": 14,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 双栏结束 TRACE-C-END-301",
+      "heading_level": 1,
+      "markdown": "# 3 双栏结束 TRACE-C-END-301",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          182.61,
+          55.969614200000024,
+          412.66592760000003,
+          71.07616280000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ed49231d-6060-5151-a7b9-72a0e6e4a646",
+      "source_block_id": "docling-TextItem-15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页用于检查上一页两栏的结束边界。 最终结论仍需保留 LEFT-CHECK-A1 、 LEFT-CHECK-A2 、 RIGHT-CHECK-B1 和 RIGHT-CHECK-B2 。",
+      "heading_level": null,
+      "markdown": "本页用于检查上一页两栏的结束边界。 最终结论仍需保留 LEFT-CHECK-A1 、 LEFT-CHECK-A2 、 RIGHT-CHECK-B1 和 RIGHT-CHECK-B2 。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.69300000000004,
+          87.3500831,
+          545.6141,
+          116.45136539999999
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9f137003-1868-541a-b54a-ce5fb37ad656",
+      "source_block_id": "docling-TextItem-16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          294.91100000000006,
+          806.2922654,
+          300.3655500000001,
+          817.2013654
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling-local",
+        "table_count": 0,
+        "warning_count": 1,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 1,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "page 1: 按左栏到右栏重排。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T03:27:09.332567Z"
+}

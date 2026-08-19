@@ -1,0 +1,14 @@
+\vspace{-1mm}
+\subsection{SET Game} \label{sec:set-setup}
+\vspace{-1mm}
+SET is a popular card game where each card has 4 attributes with 3 different values for each  attribute:
+\begin{itemize}
+    \item \emph{color}: (\texttt{red, blue, green})
+    \item \emph{shape}: (\texttt{diamond, oval, squiggle})
+    \item \emph{shading}: (\texttt{solid, shaded, open})
+    \item \emph{number}: (\texttt{1, 2, 3})
+\end{itemize}
+In each round, a player finds a SET of 3 cards in a 12-card board whose values for each attribute are \textbf{either} \emph{all the same} \textbf{or} \emph{all unique}. This game has been thoroughly studied in computer science, from the perspective of coding theory and combinatorics~\citep{davis2003card}, linear algebra~\citep{coleman2012game}, and complexity theory~\citep{Chaudhuri2003ONTC}. We suspect this popularity makes it susceptible to overfitting by LMs and investigate this possibility.
+We ask the LM to identify the card on a board that completes a 3-card SET with two given cards.
+In the counterfactual setup, we invert the rule for the \emph{number} attribute, requiring its value to be mixed, in other words, \textbf{neither} \emph{all the same} \textbf{nor} \emph{all unique}.
+For the CCC, we ask the model for the validity of a SET under the original rule and the counterfactual rule.

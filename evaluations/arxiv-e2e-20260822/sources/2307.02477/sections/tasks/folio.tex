@@ -1,0 +1,8 @@
+\subsection{Natural Language Reasoning with First-Order Logic} \label{sec:folio-task}
+
+We next consider a deductive reasoning task that is still based on natural language.
+Logical reasoning is a prerequisite ability for many complex tasks~\citep{McCarthy_Programs59} and has been the focus of much recent work~\citepia{clark2020transformers,tafjord-etal-2021-proofwriter,saparov-mitchell-2022-towards,saparov2023language}. Nevertheless, LMs struggle with reasoning with premises that are inconsistent with common sense~\citep{dasgupta2022language,yu2023ifqa,tang2023large}. Here, we undertake a similar study from the perspective of counterfactual analysis to disentangle the effect of common sense from  a model's actual logical reasoning capability.
+
+Following prior work, we evaluate in an entailment format and ask LMs if a series of premises entails a conclusion. We use the FOLIO dataset~\citep{han2022folio} most of whose premises are consistent with common sense, and manually rewrite them to violate common sense. We study if LM performance is affected by the truthfulness of the premises under which they operate.
+The CCC directly asks the model if the original 
+or post-rewrite premise is true, when presented both as options.

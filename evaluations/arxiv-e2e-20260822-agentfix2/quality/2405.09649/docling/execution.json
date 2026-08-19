@@ -1,0 +1,44 @@
+{
+  "session_id": "arxiv-e2e-20260822:2405.09649:docling",
+  "accepted": true,
+  "final_revision_id": "3d39cfd2be4819f55cbb8fa2c91abca0f7d646b8757bf8250a6e0750b0722bd7",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError",
+        "reason=trailing_text"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "32bd409e5c8138f596558cc9c1396d1e0882c5da542a84727f120c604e03022a",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    },
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [
+        "30d848fd-9958-5cb4-bc9d-291b39a61aac",
+        "c05a3458-fb53-528e-a674-c5fea9120614",
+        "992f738a-105c-5e2a-9e49-7b421d0e5646",
+        "5ccad51c-9d42-5069-9bc5-8bb2825e536b",
+        "460393fc-0c61-5ad0-bd51-69d62b367ce0"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "32bd409e5c8138f596558cc9c1396d1e0882c5da542a84727f120c604e03022a",
+      "source_content_fingerprint": "sem-v2:e45349157fb5c243dc62d5e695d92194a796c6bc6885b1108e2bfa910f4880d6",
+      "candidate_content_fingerprint": "sem-v2:e45349157fb5c243dc62d5e695d92194a796c6bc6885b1108e2bfa910f4880d6"
+    }
+  ]
+}

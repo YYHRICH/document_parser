@@ -1,0 +1,510 @@
+{
+  "blocks": [
+    {
+      "block_id": "23999adc-e5ed-5220-9c8e-9d1b6577b5fb",
+      "content": "# 混合内容可追溯测试",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          220.168,
+          61.69597139999996,
+          375.1065999999999,
+          78.91137140000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-0"
+      }
+    },
+    {
+      "block_id": "4426d26a-55c2-5147-a6ac-44b0936c3bc0",
+      "content": "TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          169.638,
+          86.06814440000005,
+          425.63696959999993,
+          96.0307444
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-1"
+      }
+    },
+    {
+      "block_id": "692d5a56-fcb3-513e-8940-59fc583f9a50",
+      "content": "## 1 身份与固定事实 TRACE-M-SEC-101",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          161.449,
+          121.54361419999998,
+          433.8266176000001,
+          136.65016279999998
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-2"
+      }
+    },
+    {
+      "block_id": "63f19e21-026d-5808-b7c6-da0edd339779",
+      "content": "记录编号为 MIX-77 ，生成日期为 2026-08-20 ，目标通过率为 98.60% ，预算为 EUR 12,345.67 。 数字、百分号、货币和日期均是受保护事实。 1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          62.361999999999966,
+          152.92408309999996,
+          539.9450999999999,
+          181.44718309999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-3"
+      }
+    },
+    {
+      "block_id": "46e35d50-0fd0-52c5-a072-e69b73dab030",
+      "content": "### 1.1 执行步骤 TRACE-M-LIST-111",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 3
+      },
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          203.05248319999998,
+          267.8482448,
+          215.64130880000005
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-4"
+      }
+    },
+    {
+      "block_id": "700b9d30-9538-5a0a-b626-62f1dbf7aecf",
+      "content": "校验记录 MIX-77 与日期 2026-08-20 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          228.61808310000004,
+          275.3731,
+          240.10536539999998
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-5"
+      }
+    },
+    {
+      "block_id": "0fb2e2f9-63c3-5ccd-89c2-99a0f7af8ab0",
+      "content": "运行安全配置并保留所有参数。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          246.23208310000007,
+          242.36239999999998,
+          257.7193654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-6"
+      }
+    },
+    {
+      "block_id": "39ffa3e4-d926-546e-b53b-973f5b9b7d0f",
+      "content": "只修复可证明的结构问题。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          75.693,
+          263.8460831,
+          220.5442,
+          275.33336540000005
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-7"
+      }
+    },
+    {
+      "block_id": "97051114-df5b-509f-bbc2-d9d0a1928e09",
+      "content": "### 1.2 代码与公式 TRACE-M-CODE-121",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 3
+      },
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          62.362,
+          296.3604832,
+          288.841376,
+          308.94930880000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-8"
+      }
+    },
+    {
+      "block_id": "fa762cf3-52e2-57e4-ba26-d059131ffb17",
+      "content": "命令为 calc --profile=gold ，命令中的双连字符和等号属于事实。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          84.18,
+          321.9260831,
+          414.81370000000015,
+          333.71882020000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-9"
+      }
+    },
+    {
+      "block_id": "149b6ca2-34fb-512b-b128-0e086556d959",
+      "content": "",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          206.818,
+          352.4190847,
+          270.2698308,
+          361.9528207034582
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-FormulaItem-10"
+      }
+    },
+    {
+      "block_id": "646d92ed-77fe-5ee6-8025-1622d0dcc314",
+      "content": "约束为 a + b ≥ 12 ，不得把运算符改写成自然语言。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          62.361999999999966,
+          379.0720831,
+          311.5944999999999,
+          397.67252088774194
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-11"
+      }
+    },
+    {
+      "block_id": "6d115d53-4b47-54ee-9238-15246c9b04c9",
+      "content": "1 TRACE-M-FOOT-141 ：脚注内容只能被定位，不能被猜测。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          74.351,
+          770.8610544,
+          322.1727999999999,
+          781.2274816
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-12"
+      }
+    },
+    {
+      "block_id": "a10effb1-18ba-5f04-9579-4d49236a8e53",
+      "content": "(TRACE-M-MATH-131)",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          414.735,
+          351.0772654,
+          532.9136403999998,
+          361.9863654
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-13"
+      }
+    },
+    {
+      "block_id": "8a776615-d764-5278-a6d3-ac0eb7bc4129",
+      "content": "## 2 跨页引用 TRACE-M-REF-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 14,
+      "source_locator": {
+        "bbox": [
+          182.19400000000002,
+          61.919614199999955,
+          413.0820072,
+          77.02616279999995
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-14"
+      }
+    },
+    {
+      "block_id": "33a861e7-4671-53ac-b48e-2e90ab086fa1",
+      "content": "本页故意重复页眉并延续语义。引用键为 MIX-REF-42 ，版本为 revision 3.1 。质量 Agent 可以 合并段落或调整 Markdown ，但必须保留引用键和版本号。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 15,
+      "source_locator": {
+        "bbox": [
+          62.361999999999966,
+          93.30008310000005,
+          532.9132,
+          122.40136540000003
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-15"
+      }
+    },
+    {
+      "block_id": "1a61886d-f94f-5055-966f-a7c7b467a511",
+      "content": "TRACE-M-QUOTE-211 ：任何修复都必须能回溯到原始页面和 block 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 16,
+      "source_locator": {
+        "bbox": [
+          89.635,
+          137.4940831,
+          431.6021,
+          148.98136539999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-16"
+      }
+    }
+  ],
+  "document_id": "47e61431-c501-41b0-88ce-bd4b266ac6b1",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "23999adc-e5ed-5220-9c8e-9d1b6577b5fb",
+      "relation_id": "7fe3a809-114a-5419-84fa-7ca194561391",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "692d5a56-fcb3-513e-8940-59fc583f9a50"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "bdda586e-1fc6-5695-a6bb-dc7683d9d252",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "bdda586e-1fc6-5695-a6bb-dc7683d9d252",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "bdda586e-1fc6-5695-a6bb-dc7683d9d252",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "692d5a56-fcb3-513e-8940-59fc583f9a50",
+      "relation_id": "d6a6d3a9-2445-5aad-9e8d-cd68cd0b1b1e",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "46e35d50-0fd0-52c5-a072-e69b73dab030"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "b8a8d8cb-9f6e-5cf5-8818-ce2dcb3bd8e7",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "b8a8d8cb-9f6e-5cf5-8818-ce2dcb3bd8e7",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "b8a8d8cb-9f6e-5cf5-8818-ce2dcb3bd8e7",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "692d5a56-fcb3-513e-8940-59fc583f9a50",
+      "relation_id": "004e5545-c113-5a61-b43b-acc77ec366b8",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "97051114-df5b-509f-bbc2-d9d0a1928e09"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "fd96d1fa-7cce-5b12-903f-d2f77def9626",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "fd96d1fa-7cce-5b12-903f-d2f77def9626",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "fd96d1fa-7cce-5b12-903f-d2f77def9626",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "23999adc-e5ed-5220-9c8e-9d1b6577b5fb",
+      "relation_id": "5f70e7fb-1153-547f-b7fb-784d44ec4b49",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "8a776615-d764-5278-a6d3-ac0eb7bc4129"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

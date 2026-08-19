@@ -1,0 +1,622 @@
+\begin{thebibliography}{100}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{mirnezami2012preparing}
+\bibinfo{author}{Mirnezami, R.}, \bibinfo{author}{Nicholson, J.} \& \bibinfo{author}{Darzi, A.}
+\newblock \bibinfo{title}{Preparing for precision medicine}.
+\newblock \emph{\bibinfo{journal}{N Engl J Med}} \textbf{\bibinfo{volume}{366}}, \bibinfo{pages}{489--491} (\bibinfo{year}{2012}).
+
+\bibitem{barabasi2011network}
+\bibinfo{author}{Barab{\'a}si, A.-L.}, \bibinfo{author}{Gulbahce, N.} \& \bibinfo{author}{Loscalzo, J.}
+\newblock \bibinfo{title}{Network medicine: a network-based approach to human disease}.
+\newblock \emph{\bibinfo{journal}{Nature reviews genetics}} \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{56--68} (\bibinfo{year}{2011}).
+
+\bibitem{konig2017precision}
+\bibinfo{author}{K{\"o}nig, I.~R.}, \bibinfo{author}{Fuchs, O.}, \bibinfo{author}{Hansen, G.}, \bibinfo{author}{von Mutius, E.} \& \bibinfo{author}{Kopp, M.~V.}
+\newblock \bibinfo{title}{What is precision medicine?}
+\newblock \emph{\bibinfo{journal}{European respiratory journal}} \textbf{\bibinfo{volume}{50}} (\bibinfo{year}{2017}).
+
+\bibitem{collins2015new}
+\bibinfo{author}{Collins, F.~S.} \& \bibinfo{author}{Varmus, H.}
+\newblock \bibinfo{title}{A new initiative on precision medicine}.
+\newblock \emph{\bibinfo{journal}{New England journal of medicine}} \textbf{\bibinfo{volume}{372}}, \bibinfo{pages}{793--795} (\bibinfo{year}{2015}).
+
+\bibitem{lu2023precision}
+\bibinfo{author}{Lu, C.~Y.}, \bibinfo{author}{Terry, V.} \& \bibinfo{author}{Thomas, D.~M.}
+\newblock \bibinfo{title}{Precision medicine: affording the successes of science}.
+\newblock \emph{\bibinfo{journal}{NPJ Precision Oncology}} \textbf{\bibinfo{volume}{7}}, \bibinfo{pages}{3} (\bibinfo{year}{2023}).
+
+\bibitem{wong2023singapore}
+\bibinfo{author}{Wong, E.} \emph{et~al.}
+\newblock \bibinfo{title}{The singapore national precision medicine strategy}.
+\newblock \emph{\bibinfo{journal}{Nature Genetics}} \textbf{\bibinfo{volume}{55}}, \bibinfo{pages}{178--186} (\bibinfo{year}{2023}).
+
+\bibitem{ashley2016towards}
+\bibinfo{author}{Ashley, E.~A.}
+\newblock \bibinfo{title}{Towards precision medicine}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Genetics}} \textbf{\bibinfo{volume}{17}}, \bibinfo{pages}{507--522} (\bibinfo{year}{2016}).
+
+\bibitem{chen2013promise}
+\bibinfo{author}{Chen, R.} \& \bibinfo{author}{Snyder, M.}
+\newblock \bibinfo{title}{Promise of personalized omics to precision medicine}.
+\newblock \emph{\bibinfo{journal}{Wiley Interdisciplinary Reviews: Systems Biology and Medicine}} \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{73--82} (\bibinfo{year}{2013}).
+
+\bibitem{hoffman2020biomedical}
+\bibinfo{author}{Hoffman, J.~M.}, \bibinfo{author}{Flynn, A.~J.}, \bibinfo{author}{Juskewitch, J.~E.} \& \bibinfo{author}{Freimuth, R.~R.}
+\newblock \bibinfo{title}{Biomedical data science and informatics challenges to implementing pharmacogenomics with electronic health records}.
+\newblock \emph{\bibinfo{journal}{Annual Review of Biomedical Data Science}} \textbf{\bibinfo{volume}{3}}, \bibinfo{pages}{289--314} (\bibinfo{year}{2020}).
+
+\bibitem{venkatesh2024health}
+\bibinfo{author}{Venkatesh, K.~P.}, \bibinfo{author}{Brito, G.} \& \bibinfo{author}{Kamel~Boulos, M.~N.}
+\newblock \bibinfo{title}{Health digital twins in life science and health care innovation}.
+\newblock \emph{\bibinfo{journal}{Annual Review of Pharmacology and Toxicology}} \textbf{\bibinfo{volume}{64}}, \bibinfo{pages}{159--170} (\bibinfo{year}{2024}).
+
+\bibitem{jensen2012mining}
+\bibinfo{author}{Jensen, P.~B.}, \bibinfo{author}{Jensen, L.~J.} \& \bibinfo{author}{Brunak, S.}
+\newblock \bibinfo{title}{Mining electronic health records: towards better research applications and clinical care}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Genetics}} \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{395--405} (\bibinfo{year}{2012}).
+
+\bibitem{correia2020mining}
+\bibinfo{author}{Correia, R.~B.}, \bibinfo{author}{Wood, I.~B.}, \bibinfo{author}{Bollen, J.} \& \bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{Mining social media data for biomedical signals and health-related behavior}.
+\newblock \emph{\bibinfo{journal}{Annual review of biomedical data science}} \textbf{\bibinfo{volume}{3}}, \bibinfo{pages}{433--458} (\bibinfo{year}{2020}).
+
+\bibitem{hucka2003systems}
+\bibinfo{author}{Hucka, M.} \emph{et~al.}
+\newblock \bibinfo{title}{The systems biology markup language (sbml): a medium for representation and exchange of biochemical network models}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{19}}, \bibinfo{pages}{524--531} (\bibinfo{year}{2003}).
+
+\bibitem{hunter2003integration}
+\bibinfo{author}{Hunter, P.~J.} \& \bibinfo{author}{Borg, T.~K.}
+\newblock \bibinfo{title}{Integration from proteins to organs: the physiome project}.
+\newblock \emph{\bibinfo{journal}{Nature reviews Molecular cell biology}} \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{237--243} (\bibinfo{year}{2003}).
+
+\bibitem{bjornsson2020digital}
+\bibinfo{author}{Bj{\"o}rnsson, B.} \emph{et~al.}
+\newblock \bibinfo{title}{Digital twins to personalize medicine}.
+\newblock \emph{\bibinfo{journal}{Genome medicine}} \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{1--4} (\bibinfo{year}{2020}).
+
+\bibitem{erol2020digital}
+\bibinfo{author}{Erol, T.}, \bibinfo{author}{Mendi, A.~F.} \& \bibinfo{author}{Do{\u{g}}an, D.}
+\newblock \bibinfo{title}{The digital twin revolution in healthcare}.
+\newblock In \emph{\bibinfo{booktitle}{2020 4th international symposium on multidisciplinary studies and innovative technologies (ISMSIT)}}, \bibinfo{pages}{1--7} (\bibinfo{organization}{IEEE}, \bibinfo{year}{2020}).
+
+\bibitem{Eddy2003diab}
+\bibinfo{author}{Eddy, D.~M.} \& \bibinfo{author}{Schlessinger, L.}
+\newblock \bibinfo{title}{Validation of the archimedes diabetes model}.
+\newblock \emph{\bibinfo{journal}{Diabetes Care}} \textbf{\bibinfo{volume}{26}}, \bibinfo{pages}{3102–3110} (\bibinfo{year}{2003}).
+\newblock \urlprefix\url{http://dx.doi.org/10.2337/diacare.26.11.3102}.
+
+\bibitem{CorralAcero2020heart}
+\bibinfo{author}{Corral-Acero, J.} \emph{et~al.}
+\newblock \bibinfo{title}{The ‘digital twin’ to enable the vision of precision cardiology}.
+\newblock \emph{\bibinfo{journal}{European Heart Journal}} \textbf{\bibinfo{volume}{41}}, \bibinfo{pages}{4556–4564} (\bibinfo{year}{2020}).
+\newblock \urlprefix\url{http://dx.doi.org/10.1093/eurheartj/ehaa159}.
+
+\bibitem{coorey2021health}
+\bibinfo{author}{Coorey, G.}, \bibinfo{author}{Figtree, G.~A.}, \bibinfo{author}{Fletcher, D.~F.} \& \bibinfo{author}{Redfern, J.}
+\newblock \bibinfo{title}{The health digital twin: advancing precision cardiovascular medicine}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Cardiology}} \textbf{\bibinfo{volume}{18}}, \bibinfo{pages}{803--804} (\bibinfo{year}{2021}).
+
+\bibitem{laubenbacher2021using}
+\bibinfo{author}{Laubenbacher, R.}, \bibinfo{author}{Sluka, J.~P.} \& \bibinfo{author}{Glazier, J.~A.}
+\newblock \bibinfo{title}{Using digital twins in viral infection}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{371}}, \bibinfo{pages}{1105--1106} (\bibinfo{year}{2021}).
+
+\bibitem{laubenbacher2024digital}
+\bibinfo{author}{Laubenbacher, R.}, \bibinfo{author}{Mehrad, B.}, \bibinfo{author}{Shmulevich, I.} \& \bibinfo{author}{Trayanova, N.}
+\newblock \bibinfo{title}{Digital twins in medicine}.
+\newblock \emph{\bibinfo{journal}{Nature Computational Science}} \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{184--191} (\bibinfo{year}{2024}).
+
+\bibitem{KamelBoulos2021}
+\bibinfo{author}{Kamel~Boulos, M.~N.} \& \bibinfo{author}{Zhang, P.}
+\newblock \bibinfo{title}{Digital twins: From personalised medicine to precision public health}.
+\newblock \emph{\bibinfo{journal}{Journal of Personalized Medicine}} \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{745} (\bibinfo{year}{2021}).
+\newblock \urlprefix\url{http://dx.doi.org/10.3390/jpm11080745}.
+
+\bibitem{Matheny2020}
+\bibinfo{author}{Matheny, M.~E.}, \bibinfo{author}{Whicher, D.} \& \bibinfo{author}{Thadaney~Israni, S.}
+\newblock \bibinfo{title}{Artificial intelligence in health care: A report from the national academy of medicine}.
+\newblock \emph{\bibinfo{journal}{JAMA}} \textbf{\bibinfo{volume}{323}}, \bibinfo{pages}{509} (\bibinfo{year}{2020}).
+\newblock \urlprefix\url{http://dx.doi.org/10.1001/jama.2019.21579}.
+
+\bibitem{batty2018inventing}
+\bibinfo{author}{Batty, M.}
+\newblock \emph{\bibinfo{title}{Inventing future cities}} (\bibinfo{publisher}{The MIT Press}, \bibinfo{address}{Boston, USA}, \bibinfo{year}{2018}).
+
+\bibitem{grieves2005product}
+\bibinfo{author}{Grieves, M.~W.}
+\newblock \bibinfo{title}{{Product lifecycle management: the new paradigm for enterprises}}.
+\newblock \emph{\bibinfo{journal}{International Journal of Product Development}} \textbf{\bibinfo{volume}{2}}, \bibinfo{pages}{71--84} (\bibinfo{year}{2005}).
+\newblock \urlprefix\url{https://ideas.repec.org/a/ids/ijpdev/v2y2005i1-2p71-84.html}.
+
+\bibitem{niederer2021scaling}
+\bibinfo{author}{Niederer, S.~A.}, \bibinfo{author}{Sacks, M.~S.}, \bibinfo{author}{Girolami, M.} \& \bibinfo{author}{Willcox, K.}
+\newblock \bibinfo{title}{Scaling digital twins from the artisanal to the industrial}.
+\newblock \emph{\bibinfo{journal}{Nature Computational Science}} \textbf{\bibinfo{volume}{1}}, \bibinfo{pages}{313--320} (\bibinfo{year}{2021}).
+\newblock \urlprefix\url{https://doi.org/10.1038/s43588-021-00072-5}.
+
+\bibitem{caldarelli2023role}
+\bibinfo{author}{Caldarelli, G.} \emph{et~al.}
+\newblock \bibinfo{title}{The role of complexity for digital twins of cities}.
+\newblock \emph{\bibinfo{journal}{Nature Computational Science}} \textbf{\bibinfo{volume}{3}}, \bibinfo{pages}{374--381} (\bibinfo{year}{2023}).
+
+\bibitem{gell1994complex}
+\bibinfo{author}{Gell-Mann, M.}
+\newblock \bibinfo{title}{Complex adaptive systems}.
+\newblock In \emph{\bibinfo{booktitle}{SANTA FE INSTITUTE STUDIES IN THE SCIENCES OF COMPLEXITY-PROCEEDINGS VOLUME-}}, vol.~\bibinfo{volume}{19}, \bibinfo{pages}{17--17} (\bibinfo{organization}{ADDISON-WESLEY PUBLISHING CO}, \bibinfo{year}{1994}).
+
+\bibitem{holland2002complex}
+\bibinfo{author}{Holland, J.~H.}
+\newblock \bibinfo{title}{Complex adaptive systems and spontaneous emergence}.
+\newblock In \emph{\bibinfo{booktitle}{Complexity and Industrial Clusters: Dynamics and Models in Theory and Practice}}, \bibinfo{pages}{25--34} (\bibinfo{publisher}{Springer}, \bibinfo{year}{2002}).
+
+\bibitem{holland2006studying}
+\bibinfo{author}{Holland, J.~H.}
+\newblock \bibinfo{title}{Studying complex adaptive systems}.
+\newblock \emph{\bibinfo{journal}{Journal of systems science and complexity}} \textbf{\bibinfo{volume}{19}}, \bibinfo{pages}{1--8} (\bibinfo{year}{2006}).
+
+\bibitem{kamel2021digital}
+\bibinfo{author}{Kamel~Boulos, M.~N.} \& \bibinfo{author}{Zhang, P.}
+\newblock \bibinfo{title}{Digital twins: from personalised medicine to precision public health}.
+\newblock \emph{\bibinfo{journal}{Journal of personalized medicine}} \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{745} (\bibinfo{year}{2021}).
+
+\bibitem{artime2022origin}
+\bibinfo{author}{Artime, O.} \& \bibinfo{author}{De~Domenico, M.}
+\newblock \bibinfo{title}{From the origin of life to pandemics: Emergent phenomena in complex systems} (\bibinfo{year}{2022}).
+
+\bibitem{rosen1987complex}
+\bibinfo{author}{Rosen, R.}
+\newblock \bibinfo{title}{On complex systems}.
+\newblock \emph{\bibinfo{journal}{European Journal of Operational Research}} \textbf{\bibinfo{volume}{30}}, \bibinfo{pages}{129--134} (\bibinfo{year}{1987}).
+
+\bibitem{lopatkin2020predictive}
+\bibinfo{author}{Lopatkin, A.~J.} \& \bibinfo{author}{Collins, J.~J.}
+\newblock \bibinfo{title}{Predictive biology: modelling, understanding and harnessing microbial complexity}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Microbiology}} \textbf{\bibinfo{volume}{18}}, \bibinfo{pages}{507--520} (\bibinfo{year}{2020}).
+
+\bibitem{vermeulen2020exposome}
+\bibinfo{author}{Vermeulen, R.}, \bibinfo{author}{Schymanski, E.~L.}, \bibinfo{author}{Barab{\'a}si, A.-L.} \& \bibinfo{author}{Miller, G.~W.}
+\newblock \bibinfo{title}{The exposome and health: Where chemistry meets biology}.
+\newblock \emph{\bibinfo{journal}{Science}} \textbf{\bibinfo{volume}{367}}, \bibinfo{pages}{392--396} (\bibinfo{year}{2020}).
+
+\bibitem{vineis2020new}
+\bibinfo{author}{Vineis, P.} \emph{et~al.}
+\newblock \bibinfo{title}{What is new in the exposome?}
+\newblock \emph{\bibinfo{journal}{Environment international}} \textbf{\bibinfo{volume}{143}}, \bibinfo{pages}{105887} (\bibinfo{year}{2020}).
+
+\bibitem{steinhubl2015emerging}
+\bibinfo{author}{Steinhubl, S.~R.}, \bibinfo{author}{Muse, E.~D.} \& \bibinfo{author}{Topol, E.~J.}
+\newblock \bibinfo{title}{The emerging field of mobile health}.
+\newblock \emph{\bibinfo{journal}{Science translational medicine}} \textbf{\bibinfo{volume}{7}}, \bibinfo{pages}{283rv3--283rv3} (\bibinfo{year}{2015}).
+
+\bibitem{buldyrev2010catastrophic}
+\bibinfo{author}{Buldyrev, S.~V.}, \bibinfo{author}{Parshani, R.}, \bibinfo{author}{Paul, G.}, \bibinfo{author}{Stanley, H.~E.} \& \bibinfo{author}{Havlin, S.}
+\newblock \bibinfo{title}{Catastrophic cascade of failures in interdependent networks}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{464}}, \bibinfo{pages}{1025--1028} (\bibinfo{year}{2010}).
+
+\bibitem{de2023more}
+\bibinfo{author}{De~Domenico, M.}
+\newblock \bibinfo{title}{More is different in real-world multilayer networks}.
+\newblock \emph{\bibinfo{journal}{Nature Physics}} \textbf{\bibinfo{volume}{19}}, \bibinfo{pages}{1247--1262} (\bibinfo{year}{2023}).
+
+\bibitem{sanchez2024prevalence}
+\bibinfo{author}{S{\'a}nchez-Valle, J.} \emph{et~al.}
+\newblock \bibinfo{title}{Prevalence and differences in the co-administration of drugs known to interact: an analysis of three distinct and large populations}.
+\newblock \emph{\bibinfo{journal}{BMC medicine}} \textbf{\bibinfo{volume}{22}}, \bibinfo{pages}{166} (\bibinfo{year}{2024}).
+
+\bibitem{dolley2018big}
+\bibinfo{author}{Dolley, S.}
+\newblock \bibinfo{title}{Big data’s role in precision public health}.
+\newblock \emph{\bibinfo{journal}{Frontiers in public health}} \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{297813} (\bibinfo{year}{2018}).
+
+\bibitem{nunez2024rare}
+\bibinfo{author}{N{\'u}{\~n}ez-Carpintero, I.} \emph{et~al.}
+\newblock \bibinfo{title}{Rare disease research workflow using multilayer networks elucidates the molecular determinants of severity in congenital myasthenic syndromes}.
+\newblock \emph{\bibinfo{journal}{Nature Communications}} \textbf{\bibinfo{volume}{15}}, \bibinfo{pages}{1227} (\bibinfo{year}{2024}).
+
+\bibitem{pescosolido2016social}
+\bibinfo{author}{Pescosolido, B.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{The social symbiome framework1: Linking genes-to-global cultures in public health using network science}.
+\newblock In \emph{\bibinfo{booktitle}{Handbook of applied system science}}, \bibinfo{pages}{25--48} (\bibinfo{publisher}{Routledge}, \bibinfo{year}{2016}).
+
+\bibitem{walpole2013multiscale}
+\bibinfo{author}{Walpole, J.}, \bibinfo{author}{Papin, J.~A.} \& \bibinfo{author}{Peirce, S.~M.}
+\newblock \bibinfo{title}{Multiscale computational models of complex biological systems}.
+\newblock \emph{\bibinfo{journal}{Annual review of biomedical engineering}} \textbf{\bibinfo{volume}{15}}, \bibinfo{pages}{137--154} (\bibinfo{year}{2013}).
+
+\bibitem{correia2024conserved}
+\bibinfo{author}{Correia, R.~B.} \emph{et~al.}
+\newblock \bibinfo{title}{The conserved transcriptional program of metazoan male germ cells uncovers ancient origins of human infertility}.
+\newblock \emph{\bibinfo{journal}{eLife}} \bibinfo{pages}{In Press. Biorxiv: 2022.03.02.482557} (\bibinfo{year}{2024}).
+
+\bibitem{kennedy2024multiscale}
+\bibinfo{author}{Kennedy, K.~E.} \emph{et~al.}
+\newblock \bibinfo{title}{Multiscale networks in multiple sclerosis}.
+\newblock \emph{\bibinfo{journal}{PLOS Computational Biology}} \textbf{\bibinfo{volume}{20}}, \bibinfo{pages}{e1010980} (\bibinfo{year}{2024}).
+
+\bibitem{thattai2001intrinsic}
+\bibinfo{author}{Thattai, M.} \& \bibinfo{author}{Van~Oudenaarden, A.}
+\newblock \bibinfo{title}{Intrinsic noise in gene regulatory networks}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{98}}, \bibinfo{pages}{8614--8619} (\bibinfo{year}{2001}).
+
+\bibitem{levine2005gene}
+\bibinfo{author}{Levine, M.} \& \bibinfo{author}{Davidson, E.~H.}
+\newblock \bibinfo{title}{Gene regulatory networks for development}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{102}}, \bibinfo{pages}{4936--4942} (\bibinfo{year}{2005}).
+
+\bibitem{davidson2005gene}
+\bibinfo{author}{Davidson, E.} \& \bibinfo{author}{Levin, M.}
+\newblock \bibinfo{title}{Gene regulatory networks}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{102}}, \bibinfo{pages}{4935--4935} (\bibinfo{year}{2005}).
+
+\bibitem{karlebach2008modelling}
+\bibinfo{author}{Karlebach, G.} \& \bibinfo{author}{Shamir, R.}
+\newblock \bibinfo{title}{Modelling and analysis of gene regulatory networks}.
+\newblock \emph{\bibinfo{journal}{Nature reviews Molecular cell biology}} \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{770--780} (\bibinfo{year}{2008}).
+
+\bibitem{vazquez2003global}
+\bibinfo{author}{Vazquez, A.}, \bibinfo{author}{Flammini, A.}, \bibinfo{author}{Maritan, A.} \& \bibinfo{author}{Vespignani, A.}
+\newblock \bibinfo{title}{Global protein function prediction from protein-protein interaction networks}.
+\newblock \emph{\bibinfo{journal}{Nature biotechnology}} \textbf{\bibinfo{volume}{21}}, \bibinfo{pages}{697--700} (\bibinfo{year}{2003}).
+
+\bibitem{szklarczyk2015string}
+\bibinfo{author}{Szklarczyk, D.} \emph{et~al.}
+\newblock \bibinfo{title}{String v10: protein--protein interaction networks, integrated over the tree of life}.
+\newblock \emph{\bibinfo{journal}{Nucleic acids research}} \textbf{\bibinfo{volume}{43}}, \bibinfo{pages}{D447--D452} (\bibinfo{year}{2015}).
+
+\bibitem{han2004evidence}
+\bibinfo{author}{Han, J.-D.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Evidence for dynamically organized modularity in the yeast protein--protein interaction network}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{430}}, \bibinfo{pages}{88--93} (\bibinfo{year}{2004}).
+
+\bibitem{han2005effect}
+\bibinfo{author}{Han, J.-D.~J.}, \bibinfo{author}{Dupuy, D.}, \bibinfo{author}{Bertin, N.}, \bibinfo{author}{Cusick, M.~E.} \& \bibinfo{author}{Vidal, M.}
+\newblock \bibinfo{title}{Effect of sampling on topology predictions of protein-protein interaction networks}.
+\newblock \emph{\bibinfo{journal}{Nature biotechnology}} \textbf{\bibinfo{volume}{23}}, \bibinfo{pages}{839--844} (\bibinfo{year}{2005}).
+
+\bibitem{stelzl2005human}
+\bibinfo{author}{Stelzl, U.} \emph{et~al.}
+\newblock \bibinfo{title}{A human protein-protein interaction network: a resource for annotating the proteome}.
+\newblock \emph{\bibinfo{journal}{Cell}} \textbf{\bibinfo{volume}{122}}, \bibinfo{pages}{957--968} (\bibinfo{year}{2005}).
+
+\bibitem{deeds2006simple}
+\bibinfo{author}{Deeds, E.~J.}, \bibinfo{author}{Ashenberg, O.} \& \bibinfo{author}{Shakhnovich, E.~I.}
+\newblock \bibinfo{title}{A simple physical model for scaling in protein-protein interaction networks}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{103}}, \bibinfo{pages}{311--316} (\bibinfo{year}{2006}).
+
+\bibitem{stelzl2006value}
+\bibinfo{author}{Stelzl, U.} \& \bibinfo{author}{Wanker, E.~E.}
+\newblock \bibinfo{title}{The value of high quality protein--protein interaction networks for systems biology}.
+\newblock \emph{\bibinfo{journal}{Current opinion in chemical biology}} \textbf{\bibinfo{volume}{10}}, \bibinfo{pages}{551--558} (\bibinfo{year}{2006}).
+
+\bibitem{dittrich2008identifying}
+\bibinfo{author}{Dittrich, M.~T.}, \bibinfo{author}{Klau, G.~W.}, \bibinfo{author}{Rosenwald, A.}, \bibinfo{author}{Dandekar, T.} \& \bibinfo{author}{M{\"u}ller, T.}
+\newblock \bibinfo{title}{Identifying functional modules in protein--protein interaction networks: an integrated exact approach}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{24}}, \bibinfo{pages}{i223--i231} (\bibinfo{year}{2008}).
+
+\bibitem{nepusz2012detecting}
+\bibinfo{author}{Nepusz, T.}, \bibinfo{author}{Yu, H.} \& \bibinfo{author}{Paccanaro, A.}
+\newblock \bibinfo{title}{Detecting overlapping protein complexes in protein-protein interaction networks}.
+\newblock \emph{\bibinfo{journal}{Nature methods}} \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{471--472} (\bibinfo{year}{2012}).
+
+\bibitem{jeong2000large}
+\bibinfo{author}{Jeong, H.}, \bibinfo{author}{Tombor, B.}, \bibinfo{author}{Albert, R.}, \bibinfo{author}{Oltvai, Z.~N.} \& \bibinfo{author}{Barab{\'a}si, A.-L.}
+\newblock \bibinfo{title}{The large-scale organization of metabolic networks}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{407}}, \bibinfo{pages}{651--654} (\bibinfo{year}{2000}).
+
+\bibitem{liu2013observability}
+\bibinfo{author}{Liu, Y.-Y.}, \bibinfo{author}{Slotine, J.-J.} \& \bibinfo{author}{Barab{\'a}si, A.-L.}
+\newblock \bibinfo{title}{Observability of complex systems}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{110}}, \bibinfo{pages}{2460--2465} (\bibinfo{year}{2013}).
+
+\bibitem{guimera2005functional}
+\bibinfo{author}{Guimera, R.} \& \bibinfo{author}{Nunes~Amaral, L.~A.}
+\newblock \bibinfo{title}{Functional cartography of complex metabolic networks}.
+\newblock \emph{\bibinfo{journal}{nature}} \textbf{\bibinfo{volume}{433}}, \bibinfo{pages}{895--900} (\bibinfo{year}{2005}).
+
+\bibitem{mackeySimpleMathematicalModels2016}
+\bibinfo{author}{Mackey, M.~C.}, \bibinfo{author}{Santill{\'a}n, M.}, \bibinfo{author}{{Tyran-Kami{\'n}ska}, M.} \& \bibinfo{author}{Zeron, E.~S.}
+\newblock \emph{\bibinfo{title}{Simple {{Mathematical Models}} of {{Gene Regulatory Dynamics}}}}.
+\newblock Lecture {{Notes}} on {{Mathematical Modelling}} in the {{Life Sciences}} (\bibinfo{publisher}{Springer International Publishing}, \bibinfo{address}{Cham}, \bibinfo{year}{2016}).
+
+\bibitem{gates2021effective}
+\bibinfo{author}{Gates, A.~J.}, \bibinfo{author}{Brattig~Correia, R.}, \bibinfo{author}{Wang, X.} \& \bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{The effective graph reveals redundancy, canalization, and control pathways in biochemical regulation and signaling}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of Sciences}} \textbf{\bibinfo{volume}{118}}, \bibinfo{pages}{e2022598118} (\bibinfo{year}{2021}).
+
+\bibitem{schwab2020ConceptsBooleanNetwork}
+\bibinfo{author}{Schwab, J.~D.}, \bibinfo{author}{K{\"u}hlwein, S.~D.}, \bibinfo{author}{Ikonomi, N.}, \bibinfo{author}{K{\"u}hl, M.} \& \bibinfo{author}{Kestler, H.~A.}
+\newblock \bibinfo{title}{Concepts in {{Boolean}} network modeling: {{What}} do they all mean?}
+\newblock \emph{\bibinfo{journal}{Computational and Structural Biotechnology Journal}} \textbf{\bibinfo{volume}{18}}, \bibinfo{pages}{571--582} (\bibinfo{year}{2020}).
+
+\bibitem{rozum2024BooleanNetworksPredictivea}
+\bibinfo{author}{Rozum, J.~C.}, \bibinfo{author}{Campbell, C.}, \bibinfo{author}{Newby, E.}, \bibinfo{author}{Nasrollahi, F. S.~F.} \& \bibinfo{author}{Albert, R.}
+\newblock \bibinfo{title}{Boolean {{Networks}} as {{Predictive Models}} of {{Emergent Biological Behaviors}}}.
+\newblock \emph{\bibinfo{journal}{Elements in the Structure and Dynamics of Complex Networks}}  (\bibinfo{year}{2024}).
+
+\bibitem{marques2013canalization}
+\bibinfo{author}{Marques-Pita, M.} \& \bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{Canalization and control in automata networks: body segmentation in drosophila melanogaster}.
+\newblock \emph{\bibinfo{journal}{PloS one}} \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{e55946} (\bibinfo{year}{2013}).
+
+\bibitem{gomeztejedazanudo2021CellLineSpecific}
+\bibinfo{author}{G{\'o}mez Tejeda~Za{\~n}udo, J.} \emph{et~al.}
+\newblock \bibinfo{title}{Cell {{Line}}--{{Specific Network Models}} of {{ER}}+ {{Breast Cancer Identify Potential PI3K$\alpha$ Inhibitor Resistance Mechanisms}} and {{Drug Combinations}}}.
+\newblock \emph{\bibinfo{journal}{Cancer Research}} \textbf{\bibinfo{volume}{81}}, \bibinfo{pages}{4603--4617} (\bibinfo{year}{2021}).
+
+\bibitem{folkesson2023SynergisticEffectsComplex}
+\bibinfo{author}{Folkesson, E.}, \bibinfo{author}{Sakshaug, B.~C.}, \bibinfo{author}{Hoel, A.~D.}, \bibinfo{author}{Klinkenberg, G.} \& \bibinfo{author}{Flobak, {\AA}.}
+\newblock \bibinfo{title}{Synergistic effects of complex drug combinations in colorectal cancer cells predicted by logical modelling}.
+\newblock \emph{\bibinfo{journal}{Frontiers in Systems Biology}} \textbf{\bibinfo{volume}{3}} (\bibinfo{year}{2023}).
+
+\bibitem{calzone2022ModelingSignalingPathways}
+\bibinfo{author}{Calzone, L.}, \bibinfo{author}{No{\"e}l, V.}, \bibinfo{author}{Barillot, E.}, \bibinfo{author}{Kroemer, G.} \& \bibinfo{author}{Stoll, G.}
+\newblock \bibinfo{title}{Modeling signaling pathways in biology with {{MaBoSS}}: {{From}} one single cell to a dynamic population of heterogeneous interacting cells}.
+\newblock \emph{\bibinfo{journal}{Computational and Structural Biotechnology Journal}} \textbf{\bibinfo{volume}{20}}, \bibinfo{pages}{5661--5671} (\bibinfo{year}{2022}).
+
+\bibitem{montagud2022PatientspecificBooleanModels}
+\bibinfo{author}{Montagud, A.} \emph{et~al.}
+\newblock \bibinfo{title}{Patient-specific {{Boolean}} models of signalling networks guide personalised treatments}.
+\newblock \emph{\bibinfo{journal}{eLife}} \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{e72626} (\bibinfo{year}{2022}).
+
+\bibitem{manicka2022effective}
+\bibinfo{author}{Manicka, S.}, \bibinfo{author}{Marques-Pita, M.} \& \bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{Effective connectivity determines the critical dynamics of biochemical networks}.
+\newblock \emph{\bibinfo{journal}{Journal of the Royal Society Interface}} \textbf{\bibinfo{volume}{19}}, \bibinfo{pages}{20210659} (\bibinfo{year}{2022}).
+
+\bibitem{costa2023effective}
+\bibinfo{author}{Costa, F.~X.}, \bibinfo{author}{Rozum, J.~C.}, \bibinfo{author}{Marcus, A.~M.} \& \bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{Effective connectivity and bias entropy improve prediction of dynamical regime in automata networks}.
+\newblock \emph{\bibinfo{journal}{Entropy}} \textbf{\bibinfo{volume}{25}}, \bibinfo{pages}{374} (\bibinfo{year}{2023}).
+
+\bibitem{rocha2022feasibility}
+\bibinfo{author}{Rocha, L.~M.}
+\newblock \bibinfo{title}{On the feasibility of dynamical analysis of network models of biochemical regulation}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{38}}, \bibinfo{pages}{3674--3675} (\bibinfo{year}{2022}).
+
+\bibitem{rozumPystablemotifsPythonLibrary2022}
+\bibinfo{author}{Rozum, J.~C.}, \bibinfo{author}{Deritei, D.}, \bibinfo{author}{Park, K.~H.}, \bibinfo{author}{G{\'o}mez Tejeda~Za{\~n}udo, J.} \& \bibinfo{author}{Albert, R.}
+\newblock \bibinfo{title}{Pystablemotifs: {{Python}} library for attractor identification and control in {{Boolean}} networks}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{38}}, \bibinfo{pages}{1465--1466} (\bibinfo{year}{2022}).
+
+\bibitem{benesAEONPyPython2022}
+\bibinfo{author}{Bene{\v s}, N.} \emph{et~al.}
+\newblock \bibinfo{title}{{{AEON}}.py: {{Python}} library for attractor analysis in asynchronous {{Boolean}} networks}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{38}}, \bibinfo{pages}{4978--4980} (\bibinfo{year}{2022}).
+
+\bibitem{bhat2020WholeCellModelingSimulation}
+\bibinfo{author}{Bhat, N.~G.} \& \bibinfo{author}{Balaji, S.}
+\newblock \bibinfo{title}{Whole-{{Cell Modeling}} and {{Simulation}}: {{A Brief Survey}}}.
+\newblock \emph{\bibinfo{journal}{New Generation Computing}} \textbf{\bibinfo{volume}{38}}, \bibinfo{pages}{259--281} (\bibinfo{year}{2020}).
+
+\bibitem{karr2012WholeCellComputationalModel}
+\bibinfo{author}{Karr, J.~R.} \emph{et~al.}
+\newblock \bibinfo{title}{A {{Whole-Cell Computational Model Predicts Phenotype}} from {{Genotype}}}.
+\newblock \emph{\bibinfo{journal}{Cell}} \textbf{\bibinfo{volume}{150}}, \bibinfo{pages}{389--401} (\bibinfo{year}{2012}).
+
+\bibitem{rees-garbutt2020DesigningMinimalGenomes}
+\bibinfo{author}{{Rees-Garbutt}, J.} \emph{et~al.}
+\newblock \bibinfo{title}{Designing minimal genomes using whole-cell models}.
+\newblock \emph{\bibinfo{journal}{Nature Communications}} \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{836} (\bibinfo{year}{2020}).
+
+\bibitem{sun2021ColiWholeCellModeling}
+\bibinfo{author}{Sun, G.}, \bibinfo{author}{{Ahn-Horst}, T.~A.} \& \bibinfo{author}{Covert, M.~W.}
+\newblock \bibinfo{title}{The {{E}}. coli {{Whole-Cell Modeling Project}}}.
+\newblock \emph{\bibinfo{journal}{EcoSal Plus}} \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{eESP--0001--2020} (\bibinfo{year}{2021}).
+
+\bibitem{poncedeleon2023PhysiBoSSSustainableIntegration}
+\bibinfo{author}{{Ponce-de-Leon}, M.} \emph{et~al.}
+\newblock \bibinfo{title}{{{PhysiBoSS}} 2.0: A sustainable integration of stochastic {{Boolean}} and agent-based modelling frameworks}.
+\newblock \emph{\bibinfo{journal}{npj Systems Biology and Applications}} \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{1--12} (\bibinfo{year}{2023}).
+
+\bibitem{shalek2014single}
+\bibinfo{author}{Shalek, A.~K.} \emph{et~al.}
+\newblock \bibinfo{title}{Single-cell rna-seq reveals dynamic paracrine control of cellular variation}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{510}}, \bibinfo{pages}{363--369} (\bibinfo{year}{2014}).
+\newblock \urlprefix\url{https://www.nature.com/articles/nature13437}.
+
+\bibitem{cesaro2022mast}
+\bibinfo{author}{Cesaro, G.} \emph{et~al.}
+\newblock \bibinfo{title}{Mast: a hybrid multi-agent spatio-temporal model of tumor microenvironment informed using a data-driven approach}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics Advances}} \textbf{\bibinfo{volume}{2}}, \bibinfo{pages}{vbac092} (\bibinfo{year}{2022}).
+\newblock \urlprefix\url{https://academic.oup.com/bioinformaticsadvances/article/2/1/vbac092/6873756}.
+
+\bibitem{baruzzo2022identify}
+\bibinfo{author}{Baruzzo, G.}, \bibinfo{author}{Cesaro, G.} \& \bibinfo{author}{Di~Camillo, B.}
+\newblock \bibinfo{title}{Identify, quantify and characterize cellular communication from single-cell rna sequencing data with scseqcomm}.
+\newblock \emph{\bibinfo{journal}{Bioinformatics}} \textbf{\bibinfo{volume}{38}}, \bibinfo{pages}{1920--1929} (\bibinfo{year}{2022}).
+\newblock \urlprefix\url{https://academic.oup.com/bioinformatics/article/38/7/1920/6511439}.
+
+\bibitem{kumar2018analysis}
+\bibinfo{author}{Kumar, M.~P.} \emph{et~al.}
+\newblock \bibinfo{title}{Analysis of single-cell rna-seq identifies cell-cell communication associated with tumor characteristics}.
+\newblock \emph{\bibinfo{journal}{Cell reports}} \textbf{\bibinfo{volume}{25}}, \bibinfo{pages}{1458--1468} (\bibinfo{year}{2018}).
+\newblock \urlprefix\url{https://www.cell.com/cell-reports/pdf/S2211-1247(18)31636-X.pdf}.
+
+\bibitem{puram2017single}
+\bibinfo{author}{Puram, S.~V.} \emph{et~al.}
+\newblock \bibinfo{title}{Single-cell transcriptomic analysis of primary and metastatic tumor ecosystems in head and neck cancer}.
+\newblock \emph{\bibinfo{journal}{Cell}} \textbf{\bibinfo{volume}{171}}, \bibinfo{pages}{1611--1624} (\bibinfo{year}{2017}).
+\newblock \urlprefix\url{https://www.cell.com/cell/pdf/S0092-8674(17)31270-9.pdf}.
+
+\bibitem{zhang2019landscape}
+\bibinfo{author}{Zhang, Q.} \emph{et~al.}
+\newblock \bibinfo{title}{Landscape and dynamics of single immune cells in hepatocellular carcinoma}.
+\newblock \emph{\bibinfo{journal}{Cell}} \textbf{\bibinfo{volume}{179}}, \bibinfo{pages}{829--845} (\bibinfo{year}{2019}).
+\newblock \urlprefix\url{https://www.cell.com/cell/pdf/S0092-8674(19)31119-5.pdf}.
+
+\bibitem{Sporns2005}
+\bibinfo{author}{Sporns, O.}, \bibinfo{author}{Tononi, G.} \& \bibinfo{author}{K{\"{o}}tter, R.}
+\newblock \bibinfo{title}{{The Human Connectome: A Structural Description of the Human Brain}}.
+\newblock \emph{\bibinfo{journal}{PLoS Comput. Biol.}} \textbf{\bibinfo{volume}{1}}, \bibinfo{pages}{e42} (\bibinfo{year}{2005}).
+\newblock \urlprefix\url{http://dx.plos.org/10.1371/journal.pcbi.0010042}.
+
+\bibitem{bullmore_complex_2009}
+\bibinfo{author}{Bullmore, E.} \& \bibinfo{author}{Sporns, O.}
+\newblock \bibinfo{title}{{Complex brain networks: graph theoretical analysis of structural and functional systems}}.
+\newblock \emph{\bibinfo{journal}{Nat. Rev. Neurosci.}} \textbf{\bibinfo{volume}{10}}, \bibinfo{pages}{186--198} (\bibinfo{year}{2009}).
+\newblock \urlprefix\url{https://www.nature.com/articles/nrn2575}.
+
+\bibitem{Sporns2002}
+\bibinfo{author}{Sporns, O.}, \bibinfo{author}{Tononi, G.} \& \bibinfo{author}{Edelman, G.~M.}
+\newblock \bibinfo{title}{{Theoretical neuroanatomy and the connectivity of the cerebral cortex}}.
+\newblock \emph{\bibinfo{journal}{Behav. Brain Res.}} \textbf{\bibinfo{volume}{135}}, \bibinfo{pages}{69--74} (\bibinfo{year}{2002}).
+\newblock \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0166432802001572}.
+
+\bibitem{Sporns2004}
+\bibinfo{author}{Sporns, O.}, \bibinfo{author}{Chialvo, D.~R.}, \bibinfo{author}{Kaiser, M.} \& \bibinfo{author}{Hilgetag, C.~C.}
+\newblock \bibinfo{title}{{Organization, development and function of complex brain networks}}.
+\newblock \emph{\bibinfo{journal}{Trends Cogn. Sci.}} \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{418--425} (\bibinfo{year}{2004}).
+
+\bibitem{Chialvo2010}
+\bibinfo{author}{Chialvo, D.~R.}
+\newblock \bibinfo{title}{{Emergent complex neural dynamics}}.
+\newblock \emph{\bibinfo{journal}{Nat. Phys.}} \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{744--750} (\bibinfo{year}{2010}).
+\newblock \urlprefix\url{https://doi.org/10.1038/nphys1803}.
+
+\bibitem{Siva2023}
+\bibinfo{author}{Siva, N.}
+\newblock \bibinfo{title}{{What happened to the Human Brain Project?}}
+\newblock \emph{\bibinfo{journal}{Lancet}} \textbf{\bibinfo{volume}{402}}, \bibinfo{pages}{1408--1409} (\bibinfo{year}{2023}).
+\newblock \urlprefix\url{https://doi.org/10.1016/S0140-6736(23)02346-2}.
+
+\bibitem{wagner2007road}
+\bibinfo{author}{Wagner, G.~P.}, \bibinfo{author}{Pavlicev, M.} \& \bibinfo{author}{Cheverud, J.~M.}
+\newblock \bibinfo{title}{The road to modularity}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Genetics}} \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{921--931} (\bibinfo{year}{2007}).
+
+\bibitem{jacob1974logic}
+\bibinfo{author}{Jacob, F.}
+\newblock \emph{\bibinfo{title}{The logic of living systems: A history of heredity}} (\bibinfo{publisher}{Allen Lane. First edition}, \bibinfo{year}{1974}).
+
+\bibitem{haken1975cooperative}
+\bibinfo{author}{Haken, H.}
+\newblock \bibinfo{title}{Cooperative phenomena in systems far from thermal equilibrium and in nonphysical systems}.
+\newblock \emph{\bibinfo{journal}{Reviews of modern physics}} \textbf{\bibinfo{volume}{47}}, \bibinfo{pages}{67} (\bibinfo{year}{1975}).
+
+\bibitem{ritort2008nonequilibrium}
+\bibinfo{author}{Ritort, F.}
+\newblock \bibinfo{title}{Nonequilibrium fluctuations in small systems: From physics to biology}.
+\newblock \emph{\bibinfo{journal}{Advances in chemical physics}} \textbf{\bibinfo{volume}{137}}, \bibinfo{pages}{31} (\bibinfo{year}{2008}).
+
+\bibitem{fang2019nonequilibrium}
+\bibinfo{author}{Fang, X.}, \bibinfo{author}{Kruse, K.}, \bibinfo{author}{Lu, T.} \& \bibinfo{author}{Wang, J.}
+\newblock \bibinfo{title}{Nonequilibrium physics in biology}.
+\newblock \emph{\bibinfo{journal}{Reviews of Modern Physics}} \textbf{\bibinfo{volume}{91}}, \bibinfo{pages}{045004} (\bibinfo{year}{2019}).
+
+\bibitem{de2013mathematical}
+\bibinfo{author}{De~Domenico, M.} \emph{et~al.}
+\newblock \bibinfo{title}{Mathematical formulation of multilayer networks}.
+\newblock \emph{\bibinfo{journal}{Physical Review X}} \textbf{\bibinfo{volume}{3}}, \bibinfo{pages}{041022} (\bibinfo{year}{2013}).
+
+\bibitem{gao2012networks}
+\bibinfo{author}{Gao, J.}, \bibinfo{author}{Buldyrev, S.~V.}, \bibinfo{author}{Stanley, H.~E.} \& \bibinfo{author}{Havlin, S.}
+\newblock \bibinfo{title}{Networks formed from interdependent networks}.
+\newblock \emph{\bibinfo{journal}{Nature physics}} \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{40--48} (\bibinfo{year}{2012}).
+
+\bibitem{de2018multilayer}
+\bibinfo{author}{De~Domenico, M.}
+\newblock \bibinfo{title}{Multilayer network modeling of integrated biological systems. comment on" network science of biological systems at different scales: A review" by gosak et al.}
+\newblock \emph{\bibinfo{journal}{Physics of Life Reviews}} \textbf{\bibinfo{volume}{24}}, \bibinfo{pages}{149--152} (\bibinfo{year}{2018}).
+
+\bibitem{greene2017putting}
+\bibinfo{author}{Greene, J.~A.} \& \bibinfo{author}{Loscalzo, J.}
+\newblock \bibinfo{title}{Putting the patient back together—social medicine, network medicine, and the limits of reductionism} (\bibinfo{year}{2017}).
+
+\bibitem{halu2019multiplex}
+\bibinfo{author}{Halu, A.}, \bibinfo{author}{De~Domenico, M.}, \bibinfo{author}{Arenas, A.} \& \bibinfo{author}{Sharma, A.}
+\newblock \bibinfo{title}{The multiplex network of human diseases}.
+\newblock \emph{\bibinfo{journal}{NPJ systems biology and applications}} \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{15} (\bibinfo{year}{2019}).
+
+\bibitem{freeman2001biocomplexity}
+\bibinfo{author}{Freeman, W.~J.}, \bibinfo{author}{Kozma, R.} \& \bibinfo{author}{Werbos, P.~J.}
+\newblock \bibinfo{title}{Biocomplexity: adaptive behavior in complex stochastic dynamical systems}.
+\newblock \emph{\bibinfo{journal}{Biosystems}} \textbf{\bibinfo{volume}{59}}, \bibinfo{pages}{109--123} (\bibinfo{year}{2001}).
+
+\bibitem{fuller2022pollution}
+\bibinfo{author}{Fuller, R.} \emph{et~al.}
+\newblock \bibinfo{title}{Pollution and health: a progress update}.
+\newblock \emph{\bibinfo{journal}{The Lancet Planetary Health}} \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{e535--e547} (\bibinfo{year}{2022}).
+
+\bibitem{van2023deciphering}
+\bibinfo{author}{van~der Laan, L.~J.}, \bibinfo{author}{Bosker, T.} \& \bibinfo{author}{Peijnenburg, W.~J.}
+\newblock \bibinfo{title}{Deciphering potential implications of dietary microplastics for human health}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Gastroenterology \& Hepatology}} \textbf{\bibinfo{volume}{20}}, \bibinfo{pages}{340--341} (\bibinfo{year}{2023}).
+
+\bibitem{al2023microplastics}
+\bibinfo{author}{Al~Mamun, A.}, \bibinfo{author}{Prasetya, T. A.~E.}, \bibinfo{author}{Dewi, I.~R.} \& \bibinfo{author}{Ahmad, M.}
+\newblock \bibinfo{title}{Microplastics in human food chains: Food becoming a threat to health safety}.
+\newblock \emph{\bibinfo{journal}{Science of the Total Environment}} \textbf{\bibinfo{volume}{858}}, \bibinfo{pages}{159834} (\bibinfo{year}{2023}).
+
+\bibitem{Parreno2024}
+\bibinfo{author}{Parreno, V.} \emph{et~al.}
+\newblock \bibinfo{title}{Transient loss of polycomb components induces an epigenetic cancer fate}.
+\newblock \emph{\bibinfo{journal}{Nature}}  (\bibinfo{year}{2024}).
+\newblock \urlprefix\url{http://dx.doi.org/10.1038/s41586-024-07328-w}.
+
+\bibitem{de2016physics}
+\bibinfo{author}{De~Domenico, M.}, \bibinfo{author}{Granell, C.}, \bibinfo{author}{Porter, M.~A.} \& \bibinfo{author}{Arenas, A.}
+\newblock \bibinfo{title}{The physics of spreading processes in multilayer networks}.
+\newblock \emph{\bibinfo{journal}{Nature Physics}} \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{901--906} (\bibinfo{year}{2016}).
+
+\bibitem{kowalski2019delivering}
+\bibinfo{author}{Kowalski, P.~S.}, \bibinfo{author}{Rudra, A.}, \bibinfo{author}{Miao, L.} \& \bibinfo{author}{Anderson, D.~G.}
+\newblock \bibinfo{title}{Delivering the messenger: advances in technologies for therapeutic mrna delivery}.
+\newblock \emph{\bibinfo{journal}{Molecular Therapy}} \textbf{\bibinfo{volume}{27}}, \bibinfo{pages}{710--728} (\bibinfo{year}{2019}).
+
+\bibitem{rohner2022unlocking}
+\bibinfo{author}{Rohner, E.}, \bibinfo{author}{Yang, R.}, \bibinfo{author}{Foo, K.~S.}, \bibinfo{author}{Goedel, A.} \& \bibinfo{author}{Chien, K.~R.}
+\newblock \bibinfo{title}{Unlocking the promise of mrna therapeutics}.
+\newblock \emph{\bibinfo{journal}{Nature biotechnology}} \textbf{\bibinfo{volume}{40}}, \bibinfo{pages}{1586--1600} (\bibinfo{year}{2022}).
+
+\bibitem{nicolis1977self}
+\bibinfo{author}{Nicolis, G.} \& \bibinfo{author}{Prigogine, I.}
+\newblock \bibinfo{title}{Self-organization in nonequilibrium systems: from dissipative structures to order through fluctuations}.
+\newblock \emph{\bibinfo{journal}{Berichte der Bunsengesellschaft für physikalische Chemie}}  (\bibinfo{year}{1977}).
+
+\bibitem{heylighen2001science}
+\bibinfo{author}{Heylighen, F.} \emph{et~al.}
+\newblock \bibinfo{title}{The science of self-organization and adaptivity}.
+\newblock \emph{\bibinfo{journal}{The encyclopedia of life support systems}} \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{253--280} (\bibinfo{year}{2001}).
+
+\bibitem{camazine2020self}
+\bibinfo{author}{Camazine, S.} \emph{et~al.}
+\newblock \bibinfo{title}{Self-organization in biological systems}.
+\newblock In \emph{\bibinfo{booktitle}{Self-Organization in Biological Systems}} (\bibinfo{publisher}{Princeton university press}, \bibinfo{year}{2020}).
+
+\bibitem{bagley1989modeling}
+\bibinfo{author}{Bagley, R.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Modeling adaptive biological systems}.
+\newblock \emph{\bibinfo{journal}{Biosystems}} \textbf{\bibinfo{volume}{23}}, \bibinfo{pages}{113--137} (\bibinfo{year}{1989}).
+
+\bibitem{peel2022statistical}
+\bibinfo{author}{Peel, L.}, \bibinfo{author}{Peixoto, T.~P.} \& \bibinfo{author}{De~Domenico, M.}
+\newblock \bibinfo{title}{Statistical inference links data and theory in network science}.
+\newblock \emph{\bibinfo{journal}{Nature Communications}} \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{6794} (\bibinfo{year}{2022}).
+
+\bibitem{corro2020brief}
+\bibinfo{author}{Corr{\`o}, C.}, \bibinfo{author}{Novellasdemunt, L.} \& \bibinfo{author}{Li, V.~S.}
+\newblock \bibinfo{title}{A brief history of organoids}.
+\newblock \emph{\bibinfo{journal}{American Journal of Physiology-Cell Physiology}} \textbf{\bibinfo{volume}{319}}, \bibinfo{pages}{C151--C165} (\bibinfo{year}{2020}).
+
+\bibitem{hofer2021engineering}
+\bibinfo{author}{Hofer, M.} \& \bibinfo{author}{Lutolf, M.~P.}
+\newblock \bibinfo{title}{Engineering organoids}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Materials}} \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{402--420} (\bibinfo{year}{2021}).
+
+\bibitem{zhao2022organoids}
+\bibinfo{author}{Zhao, Z.} \emph{et~al.}
+\newblock \bibinfo{title}{Organoids}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Methods Primers}} \textbf{\bibinfo{volume}{2}}, \bibinfo{pages}{94} (\bibinfo{year}{2022}).
+
+\bibitem{hofman2021integrating}
+\bibinfo{author}{Hofman, J.~M.} \emph{et~al.}
+\newblock \bibinfo{title}{Integrating explanation and prediction in computational social science}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{595}}, \bibinfo{pages}{181--188} (\bibinfo{year}{2021}).
+
+\end{thebibliography}

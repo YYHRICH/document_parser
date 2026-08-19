@@ -1,0 +1,367 @@
+{
+  "blocks": [
+    {
+      "block_id": "796cd9a1-2889-52a7-871c-4d22f27d0970",
+      "content": "# 双栏公式阅读顺序测试",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          211.561,
+          50.3579714,
+          383.7149999999999,
+          67.57337140000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-0"
+      }
+    },
+    {
+      "block_id": "8310cc2e-9c2e-561c-971d-78d92777014c",
+      "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          170.327,
+          73.46008159999997,
+          424.9458608000001,
+          82.42648159999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-1"
+      }
+    },
+    {
+      "block_id": "e82d380b-e84e-56c7-ad0d-0cc7083afaec",
+      "content": "## 1 左栏 TRACE-C2-LEFT-101 2 右栏 TRACE-C2-RIGHT-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          64.086,
+          97.49861420000002,
+          537.653207,
+          112.60516280000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-2"
+      }
+    },
+    {
+      "block_id": "258d47c9-6efa-54bc-b958-276e049f07cb",
+      "content": "左栏第一项为 COLUMN-A1 ，第二项为 COLUMN- 。两项必须按左栏顺序出现。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          63.477000000000004,
+          126.68212660000006,
+          292.656675,
+          152.18572660000007
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-3"
+      }
+    },
+    {
+      "block_id": "caba3238-118b-5743-8360-a7f241323a38",
+      "content": "A2",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          51.024,
+          142.75114440000004,
+          63.47725,
+          152.7137444
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-4"
+      }
+    },
+    {
+      "block_id": "a1bee6cf-5b03-5777-a5b1-23f53d4ad1c5",
+      "content": "COLUMN-A1 ：读取输入。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          63.198,
+          163.13012660000004,
+          196.72659999999996,
+          173.62074440000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-5"
+      }
+    },
+    {
+      "block_id": "843f07a7-3e58-5801-a81e-f864b89c299b",
+      "content": "COLUMN-A2 ：检查 p ≤ 1 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          63.198,
+          184.80212659999995,
+          203.3966,
+          201.78874524903222
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-6"
+      }
+    },
+    {
+      "block_id": "c63134a9-a9c3-5aaa-8420-5edddbf9190a",
+      "content": "左栏公式 TRACE-C2-EQ-211",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          51.024,
+          214.38548320000007,
+          249.22852800000004,
+          226.97430880000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-7"
+      }
+    },
+    {
+      "block_id": "461430cf-3c19-57bb-a94c-f118d4ce78f2",
+      "content": "右栏第一项为 COLUMN-B1 ，第二项为 COLUMN- B2 。它们不能插入左栏中间。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          302.61899999999997,
+          132.35612660000004,
+          544.251675,
+          158.38774439999997
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-8"
+      }
+    },
+    {
+      "block_id": "a1eb343f-7dff-5cb9-8567-f9ade61eb2d2",
+      "content": "COLUMN-B1 ：读取第二路输入。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          314.793,
+          185.59112659999994,
+          477.79140000000007,
+          196.08174440000005
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-9"
+      }
+    },
+    {
+      "block_id": "6f57889a-87ea-5bbf-b836-26d8523ac8e0",
+      "content": "COLUMN-B2 ：保存 DOI 10.8888/columns.2026 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          314.793,
+          221.29212659999996,
+          549.3836,
+          231.78274439999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-10"
+      }
+    },
+    {
+      "block_id": "f37e0cec-6454-5a01-8a9d-1c6fd6a9b738",
+      "content": "p + q = 1 , q ≥ 0 (TRACE-C2-EQ-211) 右栏补充约束为 r ≥ 0 ，并保留原始关系。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          80.473,
+          258.9861265999999,
+          508.3004000000001,
+          275.9727452490323
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-11"
+      }
+    },
+    {
+      "block_id": "7f8b0d64-abf9-5f45-8e45-622cbab0cfdb",
+      "content": "## 3 双栏结论 TRACE-C2-END-301",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          178.572,
+          293.5616142,
+          416.71818440000015,
+          308.6681628
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-12"
+      }
+    },
+    {
+      "block_id": "940505fd-a53e-5aca-b880-ac1dd5e2a720",
+      "content": "最终顺序应为 COLUMN-A1 、 COLUMN-A2 、左栏公式、 COLUMN-B1 、 COLUMN-B2 。公式事实包括 p ≤ 1 、 q ≥ 0 和 DOI 10.8888/columns.2026 。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          51.02400000000006,
+          322.74512659999994,
+          550.8596,
+          355.27274524903225
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-13"
+      }
+    }
+  ],
+  "document_id": "9e4af42c-55de-4f83-ae91-b2b97d6724ef",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "480e46c3-ea8b-5087-b5cd-cb37775d9406",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "480e46c3-ea8b-5087-b5cd-cb37775d9406",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "480e46c3-ea8b-5087-b5cd-cb37775d9406",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "796cd9a1-2889-52a7-871c-4d22f27d0970",
+      "relation_id": "a499f3d0-3c76-5616-932f-d6bcbb48ccdb",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "e82d380b-e84e-56c7-ad0d-0cc7083afaec"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "88491c7c-a2bf-5053-8bb4-1b1e09eb302e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "88491c7c-a2bf-5053-8bb4-1b1e09eb302e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "efeb1b4b-ff7d-5ab4-8ebf-6e55c14e6ea3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "88491c7c-a2bf-5053-8bb4-1b1e09eb302e",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "796cd9a1-2889-52a7-871c-4d22f27d0970",
+      "relation_id": "907bbc29-ba9a-5695-9853-b57d0d35f545",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "7f8b0d64-abf9-5f45-8e45-622cbab0cfdb"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

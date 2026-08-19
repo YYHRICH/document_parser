@@ -1,0 +1,131 @@
+{
+  "results": [
+    {
+      "document": "trace-mixed",
+      "parser": "docling",
+      "accepted": true,
+      "changed": true,
+      "changed_block_ids": [
+        "969737cb-f897-515c-9123-27ff7a7f34e4",
+        "b8a8d8cb-9f6e-5cf5-8818-ce2dcb3bd8e7",
+        "bdda586e-1fc6-5695-a6bb-dc7683d9d252",
+        "fd96d1fa-7cce-5b12-903f-d2f77def9626"
+      ],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 2,
+      "final_state": "pass",
+      "final_issues": 1,
+      "parsed_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 6,
+        "total": 7,
+        "rate": 0.8571,
+        "missing": [
+          "y = (a+b)/2"
+        ]
+      },
+      "optimized_fact_recall": {
+        "found": 6,
+        "total": 7,
+        "rate": 0.8571,
+        "missing": [
+          "y = (a+b)/2"
+        ]
+      }
+    },
+    {
+      "document": "trace-grid",
+      "parser": "docling",
+      "accepted": true,
+      "changed": true,
+      "changed_block_ids": [
+        "98b1a298-2bc8-53a4-9718-c72894a688ce",
+        "dc70820c-3e2b-5ee6-a762-515bf7401bf5",
+        "eada3bfe-9f32-53a1-b90f-d6fd0397df2f"
+      ],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 0,
+      "parsed_marker_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "trace-columns",
+      "parser": "docling",
+      "accepted": true,
+      "changed": true,
+      "changed_block_ids": [
+        "1c380230-8184-51fc-afb1-2e0a64b1745f",
+        "2567ee17-b062-5dc5-939b-937dd66cf277",
+        "3377c625-e9fd-5a32-9cbd-ddeed1f15b76",
+        "c5004095-b111-5d21-bace-0c69fcf23866",
+        "e2c15398-1a3a-569b-96eb-73aa76fed34b"
+      ],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "pass",
+      "final_issues": 0,
+      "parsed_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

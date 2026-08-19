@@ -1,0 +1,1285 @@
+{
+  "document_id": "67ad7461-e27c-49d1-8b97-9b902122bc0d",
+  "filename": "table-pages.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 37104,
+  "source_sha256": "9b72f12c59c84357aeca08717de72461d0b5c87b5984ec2198f9680b3a501227",
+  "routing_decision": null,
+  "markdown": "# 跨页网格表格测试\n\nTRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1\n\n## 1 表头与固定事实 TRACE-T-CAP-101\n\n批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。\n\n表 1: 汇总表\n<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>TABLE-ALPHA</td><td>2026-08-21</td><td>99.875%</td><td>USD 2,450.00</td></tr><tr><td>TABLE-BETA</td><td>2026-08-21</td><td>98.250%</td><td>USD 1,125.50</td></tr></table>\n\n## 2 长表 TRACE-T-R03\n\n表 2: 跨页明细\n<table><tr><td>标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-T-R01</td><td>TABLE-ALPHA</td><td>0.03125 mm</td><td>保留五位小数。</td></tr><tr><td>TRACE-T-R02</td><td>TABLE-BETA</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-T-R03</td><td>TABLE-ALPHA</td><td>A+B=C</td><td>运算符是事实。</td></tr><tr><td>TRACE-T-R04</td><td>TABLE-BETA</td><td>7/16 in</td><td>保留尺寸。</td></tr><tr><td>TRACE-T-R05</td><td>TABLE-ALPHA</td><td>1.2500 kg</td><td>保留尾随零。</td></tr><tr><td>TRACE-T-R06</td><td>TABLE-BETA</td><td>USD 2,450.00</td><td>保留货币。</td></tr><tr><td>TRACE-T-R07</td><td>TABLE-ALPHA</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-T-R08</td><td>TABLE-BETA</td><td>2026-08-21</td><td>保留日期。</td></tr><tr><td>TRACE-T-R09</td><td>TABLE-ALPHA</td><td>2.25 mm</td><td>页面边界前记录。</td></tr><tr><td>TRACE-T-R10</td><td>TABLE-BETA</td><td>3.50 mm</td><td>跨页后记录。</td></tr><tr><td>TRACE-T-R11</td><td>TABLE-ALPHA</td><td>4.75 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R12</td><td>TABLE-BETA</td><td>6.00 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R13</td><td>TABLE-ALPHA</td><td>8.125 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R14</td><td>TABLE-BETA</td><td>9.250 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R15</td><td>TABLE-ALPHA</td><td>10.375 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R16</td><td>TABLE-BETA</td><td>11.500 mm</td><td>最后一行可追踪。</td></tr></table>\n\n## 3 总结 TRACE-T-END-201\n\n最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+  "blocks": [
+    {
+      "id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "跨页网格表格测试",
+      "heading_level": 1,
+      "markdown": "跨页网格表格测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          379.0,
+          57.0,
+          620.0,
+          80.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6a07d8b8-14f8-5e40-b659-25c2858a5361",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+      "heading_level": null,
+      "markdown": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          299.0,
+          84.0,
+          699.0,
+          98.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c14f35d7-8149-52a4-96eb-6d4db43db3e3",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 表头与固定事实 TRACE-T-CAP-101",
+      "heading_level": 2,
+      "markdown": "1 表头与固定事实 TRACE-T-CAP-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          267.0,
+          124.0,
+          729.0,
+          145.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "df70a6bd-10d0-592b-9ede-38f03d8e82f6",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。",
+      "heading_level": null,
+      "markdown": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          112.0,
+          159.0,
+          734.0,
+          174.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2d1d5dd1-abe6-596a-8c9f-3d38e0cc501f",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 批次 | 日期 | 指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "heading_level": null,
+      "markdown": "| 批次 | 日期 | 指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [
+          "表 1: 汇总表"
+        ],
+        "footnote": [],
+        "img_path": "images/4684e5d42c6a46e6985e79d482c4d2e029ad7f58f252d1bc858e41aebb132f56.jpg"
+      }
+    },
+    {
+      "id": "fca1b708-5781-5527-ac79-a89ba1c29ad4",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 长表 TRACE-T-R03",
+      "heading_level": 2,
+      "markdown": "2 长表 TRACE-T-R03",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          357.0,
+          361.0,
+          640.0,
+          380.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "17a4968e-079d-5e87-98f8-4be73d09de3e",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "heading_level": null,
+      "markdown": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [
+          "表 2: 跨页明细"
+        ],
+        "footnote": [],
+        "img_path": "images/f6451e0388ea07b12a9a39e6fff0c9c99c324d6d766c22e41c8ac86de246321d.jpg"
+      }
+    },
+    {
+      "id": "bc974c3b-fd84-59a6-a481-8276a3de81c4",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 总结 TRACE-T-END-201",
+      "heading_level": 2,
+      "markdown": "3 总结 TRACE-T-END-201",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          326.0,
+          860.0,
+          670.0,
+          878.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "908c2c68-6e37-5a0a-ad57-2c009e76f63a",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+      "heading_level": null,
+      "markdown": "最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          114.0,
+          894.0,
+          828.0,
+          909.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c13256d7-677e-5005-8368-e66b6e207a7e",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-T-HEADER",
+      "heading_level": null,
+      "markdown": "TRACE-T-HEADER",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          82.0,
+          15.0,
+          243.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "59e81283-7e96-5c60-ba3f-8b7794eef453",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-TABLE-20260821-V1",
+      "heading_level": null,
+      "markdown": "TEX-TABLE-20260821-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          712.0,
+          15.0,
+          915.0,
+          28.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1db96618-81cc-50d9-923c-f5924e3a6ccf",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          494.0,
+          965.0,
+          504.0,
+          977.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "2d1d5dd1-abe6-596a-8c9f-3d38e0cc501f",
+      "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>TABLE-ALPHA</td><td>2026-08-21</td><td>99.875%</td><td>USD 2,450.00</td></tr><tr><td>TABLE-BETA</td><td>2026-08-21</td><td>98.250%</td><td>USD 1,125.50</td></tr></table>",
+      "markdown": "| 批次 | 日期 | 指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "caption": "表 1: 汇总表",
+      "image_path": "images/4684e5d42c6a46e6985e79d482c4d2e029ad7f58f252d1bc858e41aebb132f56.jpg",
+      "page_number": 1,
+      "bbox": [
+        275.0,
+        209.0,
+        721.0,
+        318.0
+      ],
+      "num_rows": 4,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "日期",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 2,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "指标",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "精度",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "成本",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "99.875%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 2,450.00",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "98.250%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 1,125.50",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "17a4968e-079d-5e87-98f8-4be73d09de3e",
+      "html": "<table><tr><td>标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-T-R01</td><td>TABLE-ALPHA</td><td>0.03125 mm</td><td>保留五位小数。</td></tr><tr><td>TRACE-T-R02</td><td>TABLE-BETA</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-T-R03</td><td>TABLE-ALPHA</td><td>A+B=C</td><td>运算符是事实。</td></tr><tr><td>TRACE-T-R04</td><td>TABLE-BETA</td><td>7/16 in</td><td>保留尺寸。</td></tr><tr><td>TRACE-T-R05</td><td>TABLE-ALPHA</td><td>1.2500 kg</td><td>保留尾随零。</td></tr><tr><td>TRACE-T-R06</td><td>TABLE-BETA</td><td>USD 2,450.00</td><td>保留货币。</td></tr><tr><td>TRACE-T-R07</td><td>TABLE-ALPHA</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-T-R08</td><td>TABLE-BETA</td><td>2026-08-21</td><td>保留日期。</td></tr><tr><td>TRACE-T-R09</td><td>TABLE-ALPHA</td><td>2.25 mm</td><td>页面边界前记录。</td></tr><tr><td>TRACE-T-R10</td><td>TABLE-BETA</td><td>3.50 mm</td><td>跨页后记录。</td></tr><tr><td>TRACE-T-R11</td><td>TABLE-ALPHA</td><td>4.75 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R12</td><td>TABLE-BETA</td><td>6.00 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R13</td><td>TABLE-ALPHA</td><td>8.125 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R14</td><td>TABLE-BETA</td><td>9.250 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R15</td><td>TABLE-ALPHA</td><td>10.375 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R16</td><td>TABLE-BETA</td><td>11.500 mm</td><td>最后一行可追踪。</td></tr></table>",
+      "markdown": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "caption": "表 2: 跨页明细",
+      "image_path": "images/f6451e0388ea07b12a9a39e6fff0c9c99c324d6d766c22e41c8ac86de246321d.jpg",
+      "page_number": 1,
+      "bbox": [
+        105.0,
+        437.0,
+        894.0,
+        829.0
+      ],
+      "num_rows": 17,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "测量值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "说明",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R01",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0.03125 mm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留五位小数。",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R02",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "4-20 mA",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留范围。",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R03",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "A+B=C",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "运算符是事实。",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R04",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "7/16 in",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留尺寸。",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R05",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1.2500 kg",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留尾随零。",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R06",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "USD 2,450.00",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留货币。",
+          "start_row": 6,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R07",
+          "start_row": 7,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 7,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "0.005%",
+          "start_row": 7,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留百分号。",
+          "start_row": 7,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R08",
+          "start_row": 8,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 8,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 8,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留日期。",
+          "start_row": 8,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R09",
+          "start_row": 9,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 9,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2.25 mm",
+          "start_row": 9,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "页面边界前记录。",
+          "start_row": 9,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R10",
+          "start_row": 10,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 10,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "3.50 mm",
+          "start_row": 10,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "跨页后记录。",
+          "start_row": 10,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R11",
+          "start_row": 11,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 11,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "4.75 mm",
+          "start_row": 11,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 11,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R12",
+          "start_row": 12,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 12,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "6.00 mm",
+          "start_row": 12,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 12,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R13",
+          "start_row": 13,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 13,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "8.125 mm",
+          "start_row": 13,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 13,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R14",
+          "start_row": 14,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 14,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "9.250 mm",
+          "start_row": 14,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 14,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R15",
+          "start_row": 15,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 15,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "10.375 mm",
+          "start_row": 15,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 15,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TRACE-T-R16",
+          "start_row": 16,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 16,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "11.500 mm",
+          "start_row": 16,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "最后一行可追踪。",
+          "start_row": 16,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru-cloud",
+        "table_count": 2,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": 0,
+        "formula_incomplete_count": 0,
+        "formula_placeholder_count": 0
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T04:33:25.560754Z"
+}

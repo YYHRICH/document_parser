@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260821",
+  "documents": [
+    {
+      "document": "formula-token",
+      "source_id": "TEX-FORMULA-20260821-V1",
+      "tex": {
+        "path": "sources\\formula-token.tex",
+        "sha256": "0ca7dfbb02ddcc500b002919688af494775e8dda7db43958c3ed012d5d33f731"
+      },
+      "pdf": {
+        "path": "pdfs\\formula-token.pdf",
+        "sha256": "c80553229b3bd199c5f51fa0302289a0e006d729a200b49af65ae91e502cd7be",
+        "size_bytes": 42885
+      },
+      "pdf_text": {
+        "path": "pdf_text\\formula-token.txt",
+        "sha256": "9ac841b44ae24b5fc7052225aa3bf1272b574708da1fafb7007f0b7c4327ae5e",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 7,
+          "rate": 0.8571,
+          "missing": [
+            "x != y"
+          ]
+        }
+      }
+    },
+    {
+      "document": "table-pages",
+      "source_id": "TEX-TABLE-20260821-V1",
+      "tex": {
+        "path": "sources\\table-pages.tex",
+        "sha256": "d178773e5f8a095bca4525caa6e71cf370127298226b6eeb9300ade429b76b03"
+      },
+      "pdf": {
+        "path": "pdfs\\table-pages.pdf",
+        "sha256": "9b72f12c59c84357aeca08717de72461d0b5c87b5984ec2198f9680b3a501227",
+        "size_bytes": 37104
+      },
+      "pdf_text": {
+        "path": "pdf_text\\table-pages.txt",
+        "sha256": "4def3a03773851841ed618f4a1d8082145289cfb71660c4d9a7c0f59b41dcad6",
+        "marker_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "columns-formula",
+      "source_id": "TEX-COLUMNS-20260821-V1",
+      "tex": {
+        "path": "sources\\columns-formula.tex",
+        "sha256": "0836a3e9c52005454bacba3884c4d02a717de950a1811770fa8c6f9549b8cc97"
+      },
+      "pdf": {
+        "path": "pdfs\\columns-formula.pdf",
+        "sha256": "2d24b13bc4528e161d7ba2e1c1b7bc694429315442084c668a05b457776d127e",
+        "size_bytes": 36444
+      },
+      "pdf_text": {
+        "path": "pdf_text\\columns-formula.txt",
+        "sha256": "74a021bfee9585b663eefa437eb71a668a913352e5719640ee7ca54e8fc16c18",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 7,
+          "total": 7,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    }
+  ]
+}

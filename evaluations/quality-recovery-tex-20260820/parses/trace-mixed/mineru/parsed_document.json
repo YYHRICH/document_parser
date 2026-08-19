@@ -1,0 +1,690 @@
+{
+  "document_id": "2ca16eb9-180b-474a-9477-13b8804dac5f",
+  "filename": "trace-mixed.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 55942,
+  "source_sha256": "42ec843049c4dd5d2718d9d9fe30e602ec3a3f53b4107582b30dcd1c3a14806b",
+  "routing_decision": null,
+  "markdown": "# 混合内容可追溯测试 TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1\n\n## 1 身份与固定事实 TRACE-M-SEC-101\n\n记录编号为 MIX-77，生成日期为 2026-08-20，目标通过率为 98.60%，预算为 EUR 12,345.67。数字、百分号、货币和日期均是受保护事实。<sup>1</sup>\n\n## 1.1 执行步骤 TRACE-M-LIST-111\n\n1. 校验记录 MIX-77 与日期 2026-08-20。\n\n2. 运行安全配置并保留所有参数。\n\n3. 只修复可证明的结构问题。\n\n## 1.2 代码与公式 TRACE-M-CODE-121\n\n命令为 calc --profile=gold，命令中的双连字符和等号属于事实。\n\n$$\ny = ( a + b ) / 2\n$$\n\n(TRACE-M-MATH-131)\n\n约束为 $a + b \\geq 1 2$ ，不得把运算符改写成自然语言。\n\n## 2 跨页引用 TRACE-M-REF-201\n\n本页故意重复页眉并延续语义。引用键为 MIX-REF-42，版本为 revision 3.1。质量 Agent 可以合并段落或调整 Markdown，但必须保留引用键和版本号。\n\nTRACE-M-QUOTE-211：任何修复都必须能回溯到原始页面和 block。",
+  "blocks": [
+    {
+      "id": "6b6f0862-46f9-5eef-adf4-737dcf1123ab",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "混合内容可追溯测试 TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1",
+      "heading_level": 1,
+      "markdown": "混合内容可追溯测试 TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          277.0,
+          71.0,
+          717.0,
+          115.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 身份与固定事实 TRACE-M-SEC-101",
+      "heading_level": 2,
+      "markdown": "1 身份与固定事实 TRACE-M-SEC-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          265.0,
+          142.0,
+          729.0,
+          162.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b94bd5c2-174d-57ed-9640-e9394eeb7759",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "记录编号为 MIX-77，生成日期为 2026-08-20，目标通过率为 98.60%，预算为 EUR 12,345.67。数字、百分号、货币和日期均是受保护事实。<sup>1</sup>",
+      "heading_level": null,
+      "markdown": "记录编号为 MIX-77，生成日期为 2026-08-20，目标通过率为 98.60%，预算为 EUR 12,345.67。数字、百分号、货币和日期均是受保护事实。<sup>1</sup>",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          179.0,
+          899.0,
+          217.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f26e46bb-fef0-550a-8c2e-2fd251218a5e",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 执行步骤 TRACE-M-LIST-111",
+      "heading_level": 2,
+      "markdown": "1.1 执行步骤 TRACE-M-LIST-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          240.0,
+          453.0,
+          256.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7bc77bc8-1114-5c4e-989b-6af9fe9f269c",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 校验记录 MIX-77 与日期 2026-08-20。",
+      "heading_level": null,
+      "markdown": "1. 校验记录 MIX-77 与日期 2026-08-20。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          269.0,
+          455.0,
+          285.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5ac31a8f-8463-5971-9b39-128f094844a4",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 运行安全配置并保留所有参数。",
+      "heading_level": null,
+      "markdown": "2. 运行安全配置并保留所有参数。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          290.0,
+          401.0,
+          306.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "705312b5-d936-5af8-89f8-a3f1ae75a5b0",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 只修复可证明的结构问题。",
+      "heading_level": null,
+      "markdown": "3. 只修复可证明的结构问题。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          311.0,
+          363.0,
+          328.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c807cb73-0d49-5912-84af-c43fc0d37ffd",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.2 代码与公式 TRACE-M-CODE-121",
+      "heading_level": 2,
+      "markdown": "1.2 代码与公式 TRACE-M-CODE-121",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          350.0,
+          487.0,
+          367.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0c05197c-3fb2-5d7e-8ce7-825a28b44ed9",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "命令为 calc --profile=gold，命令中的双连字符和等号属于事实。",
+      "heading_level": null,
+      "markdown": "命令为 calc --profile=gold，命令中的双连字符和等号属于事实。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          134.0,
+          380.0,
+          689.0,
+          397.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4ac5a6b1-18b9-55fa-8321-7459ea085b92",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "$$\ny = ( a + b ) / 2\n$$",
+      "heading_level": null,
+      "markdown": "$$\ny = ( a + b ) / 2\n$$",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          341.0,
+          414.0,
+          457.0,
+          432.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "07e0275c-3b31-525e-b485-c9e65b22a6f7",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "(TRACE-M-MATH-131)",
+      "heading_level": null,
+      "markdown": "(TRACE-M-MATH-131)",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          692.0,
+          414.0,
+          897.0,
+          431.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fcf664ca-7201-537e-b776-bf7f32ce9319",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "约束为 $a + b \\geq 1 2$ ，不得把运算符改写成自然语言。",
+      "heading_level": null,
+      "markdown": "约束为 $a + b \\geq 1 2$ ，不得把运算符改写成自然语言。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          449.0,
+          515.0,
+          464.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3ceb3e6f-5493-5787-875f-b33046de1ed4",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          494.0,
+          952.0,
+          504.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "30e0f8aa-dce3-5217-a648-5f6d3d7b5490",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-MIX-HEADER",
+      "heading_level": null,
+      "markdown": "TRACE-MIX-HEADER",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          28.0,
+          302.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d483c62c-1f61-5fc3-b198-f7074a337936",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-MIXED-20260820-V1",
+      "heading_level": null,
+      "markdown": "TEX-MIXED-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          673.0,
+          28.0,
+          895.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3bfecca2-588e-56a3-95c4-60ae68b4120a",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "<sup>1</sup>TRACE-M-FOOT-141：脚注内容只能被定位，不能被猜测。",
+      "heading_level": null,
+      "markdown": "<sup>1</sup>TRACE-M-FOOT-141：脚注内容只能被定位，不能被猜测。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          119.0,
+          914.0,
+          536.0,
+          931.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ab4f7a24-918b-5340-b87c-51ab9d42334b",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 跨页引用 TRACE-M-REF-201",
+      "heading_level": 2,
+      "markdown": "2 跨页引用 TRACE-M-REF-201",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          300.0,
+          72.0,
+          695.0,
+          91.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1ba2eb37-b7ce-55e9-bcda-87e0fa3cdeea",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页故意重复页眉并延续语义。引用键为 MIX-REF-42，版本为 revision 3.1。质量 Agent 可以合并段落或调整 Markdown，但必须保留引用键和版本号。",
+      "heading_level": null,
+      "markdown": "本页故意重复页眉并延续语义。引用键为 MIX-REF-42，版本为 revision 3.1。质量 Agent 可以合并段落或调整 Markdown，但必须保留引用键和版本号。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          109.0,
+          897.0,
+          146.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d95400f7-3ae0-5876-9cef-5b982e5c09ac",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-M-QUOTE-211：任何修复都必须能回溯到原始页面和 block。",
+      "heading_level": null,
+      "markdown": "TRACE-M-QUOTE-211：任何修复都必须能回溯到原始页面和 block。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          144.0,
+          161.0,
+          717.0,
+          178.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d154b6d8-b746-579d-9948-a5005dab9a45",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-MIX-HEADER",
+      "heading_level": null,
+      "markdown": "TRACE-MIX-HEADER",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          29.0,
+          302.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e7fe172f-5443-5207-a439-4d77cf9948a0",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-MIXED-20260820-V1",
+      "heading_level": null,
+      "markdown": "TEX-MIXED-20260820-V1",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          673.0,
+          29.0,
+          895.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6197e7d0-c39b-50e2-a61b-356dce115e62",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          951.0,
+          505.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru-cloud",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "markdown_only",
+      "reason": "表格未提供 cells 网格，只有 markdown。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T03:29:40.859934Z"
+}

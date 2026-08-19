@@ -1,0 +1,1422 @@
+{
+  "document_id": "34c19790-66b7-49e3-ae34-8777d9e5b31e",
+  "filename": "trace-grid.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 39309,
+  "source_sha256": "524cdd68ca462ee0cc52c428fe44cca3ae175e519d0066f6510f4bc287537a05",
+  "routing_decision": null,
+  "markdown": "## 复杂网格表格测试\n\nTRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1\n\n## 1 合并表头 TRACE-G-CAP-101\n\n表 1: 网格校验结果\n\n| 批次      | 日期         | 验证指标    | 验证指标         |\n|---------|------------|---------|--------------|\n|         |            | 精度      | 成本           |\n| GRID-A9 | 2026-08-20 | 99.125% | USD 1,250.00 |\n| GRID-B4 | 2026-08-20 | 97.500% | USD 980.00   |\n\n最小分辨率为 0.0625 mm 。 TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。\n\n## 2 跨页明细\n\n表 2: 网格追踪明细\n\n| 追踪标记        | 批次      | 测量值          | 说明       |\n|-------------|---------|--------------|----------|\n| TRACE-G-R01 | GRID-A9 | 0.0625 mm    | 保留四位小数。  |\n| TRACE-G-R02 | GRID-B4 | 12.500 kg    | 保留单位。    |\n| TRACE-G-R03 | GRID-A9 | 4-20 mA      | 保留范围。    |\n| TRACE-G-R04 | GRID-B4 | USD 1,250.00 | 保留货币和逗号。 |\n| TRACE-G-R05 | GRID-A9 | 1.00e-3      | 保留科学计数法。 |\n| TRACE-G-R06 | GRID-B4 | 7/16 in      | 斜线是尺寸事实。 |\n| TRACE-G-R07 | GRID-A9 | 0.005%       | 保留百分号。   |\n| TRACE-G-R08 | GRID-B4 | 2026-08-20   | 保留日期分隔符。 |\n| TRACE-G-R09 | GRID-A9 | A+B=C        | 保留运算符。   |\n| TRACE-G-R10 | GRID-B4 | 10.000 mm    | 保留尾随零。   |\n| TRACE-G-R11 | GRID-A9 | 11.125 mm    | 跨页后仍可追踪。 |\n| TRACE-G-R12 | GRID-B4 | 12.250 mm    | 最后一行可追踪。 |\n\n## 3 汇总 TRACE-G-SUM-201\n\n报告日期为 2026-08-20 ，关键批次为 GRID-A9 和 GRID-B4 。",
+  "blocks": [
+    {
+      "id": "87366d3b-1f26-5b3a-8fd5-4e8917c24c38",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "复杂网格表格测试",
+      "heading_level": 1,
+      "markdown": "# 复杂网格表格测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          228.776,
+          50.424971400000004,
+          366.4991999999999,
+          67.64037140000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15bb40cb-a7fc-53d7-a695-1f10ff5f7c70",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1",
+      "heading_level": null,
+      "markdown": "TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          183.633,
+          73.52808159999995,
+          411.63958560000026,
+          82.49448159999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dc70820c-3e2b-5ee6-a762-515bf7401bf5",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 合并表头 TRACE-G-CAP-101",
+      "heading_level": 1,
+      "markdown": "# 1 合并表头 TRACE-G-CAP-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          182.445,
+          106.77261420000002,
+          412.8308902,
+          121.87916280000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3d90288e-65b0-58fc-8e28-29ff1b70da18",
+      "source_block_id": "docling-TableItem-3",
+      "order_index": 3,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 批次 | 日期 | 验证指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| GRID-A9 | 2026-08-20 | 99.125% | USD 1,250.00 |\n| GRID-B4 | 2026-08-20 | 97.500% | USD 980.00 |",
+      "heading_level": null,
+      "markdown": "| 批次 | 日期 | 验证指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| GRID-A9 | 2026-08-20 | 99.125% | USD 1,250.00 |\n| GRID-B4 | 2026-08-20 | 97.500% | USD 980.00 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          181.09330687901053,
+          163.44407108745088,
+          414.5570137963826,
+          253.30621751537433
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "475d75c1-4124-5a96-babb-3e5e90f62466",
+      "source_block_id": "docling-TextItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表 1: 网格校验结果",
+      "heading_level": null,
+      "markdown": "表 1: 网格校验结果",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          255.02299999999997,
+          152.1121266,
+          340.25260000000003,
+          162.6027444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c3976e7e-cd40-50b4-a767-5e4c61d697a2",
+      "source_block_id": "docling-TextItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "最小分辨率为 0.0625 mm 。 TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。",
+      "heading_level": null,
+      "markdown": "最小分辨率为 0.0625 mm 。 TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.949,
+          270.5651266,
+          465.9572000000001,
+          281.0557444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "98b1a298-2bc8-53a4-9718-c72894a688ce",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 跨页明细",
+      "heading_level": 1,
+      "markdown": "# 2 跨页明细",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          257.73400000000004,
+          305.14061419999996,
+          337.5418,
+          320.24716279999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2f056ca7-a226-5675-bc03-2c340b90a915",
+      "source_block_id": "docling-TableItem-7",
+      "order_index": 7,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 追踪标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-G-R01 | GRID-A9 | 0.0625 mm | 保留四位小数。 |\n| TRACE-G-R02 | GRID-B4 | 12.500 kg | 保留单位。 |\n| TRACE-G-R03 | GRID-A9 | 4-20 mA | 保留范围。 |\n| TRACE-G-R04 | GRID-B4 | USD 1,250.00 | 保留货币和逗号。 |\n| TRACE-G-R05 | GRID-A9 | 1.00e-3 | 保留科学计数法。 |\n| TRACE-G-R06 | GRID-B4 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-G-R07 | GRID-A9 | 0.005% | 保留百分号。 |\n| TRACE-G-R08 | GRID-B4 | 2026-08-20 | 保留日期分隔符。 |\n| TRACE-G-R09 | GRID-A9 | A+B=C | 保留运算符。 |\n| TRACE-G-R10 | GRID-B4 | 10.000 mm | 保留尾随零。 |\n| TRACE-G-R11 | GRID-A9 | 11.125 mm | 跨页后仍可追踪。 |\n| TRACE-G-R12 | GRID-B4 | 12.250 mm | 最后一行可追踪。 |",
+      "heading_level": null,
+      "markdown": "| 追踪标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-G-R01 | GRID-A9 | 0.0625 mm | 保留四位小数。 |\n| TRACE-G-R02 | GRID-B4 | 12.500 kg | 保留单位。 |\n| TRACE-G-R03 | GRID-A9 | 4-20 mA | 保留范围。 |\n| TRACE-G-R04 | GRID-B4 | USD 1,250.00 | 保留货币和逗号。 |\n| TRACE-G-R05 | GRID-A9 | 1.00e-3 | 保留科学计数法。 |\n| TRACE-G-R06 | GRID-B4 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-G-R07 | GRID-A9 | 0.005% | 保留百分号。 |\n| TRACE-G-R08 | GRID-B4 | 2026-08-20 | 保留日期分隔符。 |\n| TRACE-G-R09 | GRID-A9 | A+B=C | 保留运算符。 |\n| TRACE-G-R10 | GRID-B4 | 10.000 mm | 保留尾随零。 |\n| TRACE-G-R11 | GRID-A9 | 11.125 mm | 跨页后仍可追踪。 |\n| TRACE-G-R12 | GRID-B4 | 12.250 mm | 最后一行可追踪。 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          73.26833806421702,
+          369.92438999373206,
+          521.7204623149473,
+          623.4873946408902
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "413836ff-4feb-523c-b237-b23c96a0105c",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表 2: 网格追踪明细",
+      "heading_level": null,
+      "markdown": "表 2: 网格追踪明细",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          255.023,
+          345.3611266,
+          340.25260000000003,
+          355.8517444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "eada3bfe-9f32-53a1-b90f-d6fd0397df2f",
+      "source_block_id": "docling-SectionHeaderItem-9",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 汇总 TRACE-G-SUM-201",
+      "heading_level": 1,
+      "markdown": "# 3 汇总 TRACE-G-SUM-201",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          195.89499999999998,
+          650.0506142,
+          399.3811652000001,
+          665.1571628
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3ed21efa-ed1b-5a83-989b-d9b78d8f1cde",
+      "source_block_id": "docling-TextItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "报告日期为 2026-08-20 ，关键批次为 GRID-A9 和 GRID-B4 。",
+      "heading_level": null,
+      "markdown": "报告日期为 2026-08-20 ，关键批次为 GRID-A9 和 GRID-B4 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.94899999999998,
+          679.2341266000001,
+          344.06460000000004,
+          689.7247444000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "3d90288e-65b0-58fc-8e28-29ff1b70da18",
+      "html": null,
+      "markdown": "| 批次 | 日期 | 验证指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| GRID-A9 | 2026-08-20 | 99.125% | USD 1,250.00 |\n| GRID-B4 | 2026-08-20 | 97.500% | USD 980.00 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        181.09330687901053,
+        163.44407108745088,
+        414.5570137963826,
+        253.30621751537433
+      ],
+      "num_rows": 4,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            187.725,
+            662.4228880484375,
+            207.65019999999998,
+            652.4602880484375
+          ]
+        },
+        {
+          "text": "日期",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            241.812,
+            662.4228880484375,
+            261.73720000000003,
+            652.4602880484375
+          ]
+        },
+        {
+          "text": "验证指标",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            333.97700000000003,
+            671.1268880484375,
+            373.82740000000007,
+            661.1642880484375
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "精度",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            316.303,
+            647.6688880484375,
+            336.2282,
+            637.7062880484375
+          ]
+        },
+        {
+          "text": "成本",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            387.625,
+            647.6688880484375,
+            407.5502,
+            637.7062880484375
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            187.725,
+            623.4848702484375,
+            229.8568354,
+            613.5222702484375
+          ]
+        },
+        {
+          "text": "2026-08-20",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            241.8119554,
+            623.4848702484375,
+            288.29744700000003,
+            613.5222702484375
+          ]
+        },
+        {
+          "text": "99.125%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            300.252567,
+            623.4848702484375,
+            336.22751560000006,
+            613.5222702484375
+          ]
+        },
+        {
+          "text": "USD 1,250.00",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            348.1826356000001,
+            623.4848702484375,
+            407.5497689999999,
+            613.5222702484375
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            187.725,
+            604.8348702484375,
+            229.4384062,
+            594.8722702484375
+          ]
+        },
+        {
+          "text": "2026-08-20",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            241.8119554,
+            604.8348702484375,
+            288.29744700000003,
+            594.8722702484375
+          ]
+        },
+        {
+          "text": "97.500%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            300.252567,
+            604.8348702484375,
+            336.22751560000006,
+            594.8722702484375
+          ]
+        },
+        {
+          "text": "USD 980.00",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            355.9335384000001,
+            604.8348702484375,
+            407.54976899999997,
+            594.8722702484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "2f056ca7-a226-5675-bc03-2c340b90a915",
+      "html": null,
+      "markdown": "| 追踪标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-G-R01 | GRID-A9 | 0.0625 mm | 保留四位小数。 |\n| TRACE-G-R02 | GRID-B4 | 12.500 kg | 保留单位。 |\n| TRACE-G-R03 | GRID-A9 | 4-20 mA | 保留范围。 |\n| TRACE-G-R04 | GRID-B4 | USD 1,250.00 | 保留货币和逗号。 |\n| TRACE-G-R05 | GRID-A9 | 1.00e-3 | 保留科学计数法。 |\n| TRACE-G-R06 | GRID-B4 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-G-R07 | GRID-A9 | 0.005% | 保留百分号。 |\n| TRACE-G-R08 | GRID-B4 | 2026-08-20 | 保留日期分隔符。 |\n| TRACE-G-R09 | GRID-A9 | A+B=C | 保留运算符。 |\n| TRACE-G-R10 | GRID-B4 | 10.000 mm | 保留尾随零。 |\n| TRACE-G-R11 | GRID-A9 | 11.125 mm | 跨页后仍可追踪。 |\n| TRACE-G-R12 | GRID-B4 | 12.250 mm | 最后一行可追踪。 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        73.26833806421702,
+        369.92438999373206,
+        521.7204623149473,
+        623.4873946408902
+      ],
+      "num_rows": 13,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "追踪标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            463.3318880484375,
+            119.71340000000001,
+            453.3692880484375
+          ]
+        },
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            171.188,
+            463.3318880484375,
+            191.1132,
+            453.3692880484375
+          ]
+        },
+        {
+          "text": "测量值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            254.00900000000001,
+            463.3318880484375,
+            283.89680000000004,
+            453.3692880484375
+          ]
+        },
+        {
+          "text": "说明",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            463.3318880484375,
+            370.92920000000004,
+            453.3692880484375
+          ]
+        },
+        {
+          "text": "TRACE-G-R01",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            439.1468702484375,
+            147.30980200000002,
+            429.1842702484375
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            439.1468702484375,
+            213.312027,
+            429.1842702484375
+          ]
+        },
+        {
+          "text": "0.0625 mm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            439.1468702484375,
+            301.6003402,
+            429.1842702484375
+          ]
+        },
+        {
+          "text": "保留四位小数。",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            439.6748880484375,
+            420.7422000000001,
+            429.7122880484375
+          ]
+        },
+        {
+          "text": "TRACE-G-R02",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            420.4968702484375,
+            147.30980200000002,
+            410.5342702484375
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            420.4968702484375,
+            212.8935978,
+            410.5342702484375
+          ]
+        },
+        {
+          "text": "12.500 kg",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            420.4968702484375,
+            295.2442014,
+            410.5342702484375
+          ]
+        },
+        {
+          "text": "保留单位。",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            421.0248880484375,
+            400.81700000000006,
+            411.0622880484375
+          ]
+        },
+        {
+          "text": "TRACE-G-R03",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            401.84687024843754,
+            147.30980200000002,
+            391.88427024843753
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            401.84687024843754,
+            213.312027,
+            391.88427024843753
+          ]
+        },
+        {
+          "text": "4-20 mA",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            401.84687024843754,
+            293.0225416,
+            391.88427024843753
+          ]
+        },
+        {
+          "text": "保留范围。",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            402.3748880484375,
+            400.81700000000006,
+            392.4122880484375
+          ]
+        },
+        {
+          "text": "TRACE-G-R04",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            383.19687024843756,
+            147.30980200000002,
+            373.23427024843755
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            383.19687024843756,
+            212.8935978,
+            373.23427024843755
+          ]
+        },
+        {
+          "text": "USD 1,250.00",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            383.19687024843756,
+            313.3761334,
+            373.23427024843755
+          ]
+        },
+        {
+          "text": "保留货币和逗号。",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            383.72488804843755,
+            430.7048000000001,
+            373.76228804843754
+          ]
+        },
+        {
+          "text": "TRACE-G-R05",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            364.5468702484376,
+            147.30980200000002,
+            354.5842702484376
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            364.5468702484376,
+            213.312027,
+            354.5842702484376
+          ]
+        },
+        {
+          "text": "1.00e-3",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            364.5468702484376,
+            284.444743,
+            354.5842702484376
+          ]
+        },
+        {
+          "text": "保留科学计数法。",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            365.0748880484376,
+            430.7048000000001,
+            355.11228804843756
+          ]
+        },
+        {
+          "text": "TRACE-G-R06",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            345.8968702484376,
+            147.30980200000002,
+            335.9342702484376
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            345.8968702484376,
+            212.8935978,
+            335.9342702484376
+          ]
+        },
+        {
+          "text": "7/16 in",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            345.8968702484376,
+            285.5605542,
+            335.9342702484376
+          ]
+        },
+        {
+          "text": "斜线是尺寸事实。",
+          "start_row": 6,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            346.4248880484376,
+            430.7048000000001,
+            336.4622880484376
+          ]
+        },
+        {
+          "text": "TRACE-G-R07",
+          "start_row": 7,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            327.24687024843763,
+            147.30980200000002,
+            317.2842702484377
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 7,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            327.24687024843763,
+            213.312027,
+            317.2842702484377
+          ]
+        },
+        {
+          "text": "0.005%",
+          "start_row": 7,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            327.24687024843763,
+            285.00264860000004,
+            317.2842702484377
+          ]
+        },
+        {
+          "text": "保留百分号。",
+          "start_row": 7,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            327.77488804843756,
+            410.7796000000001,
+            317.8122880484376
+          ]
+        },
+        {
+          "text": "TRACE-G-R08",
+          "start_row": 8,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            308.59687024843765,
+            147.30980200000002,
+            298.6342702484376
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 8,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            308.59687024843765,
+            212.8935978,
+            298.6342702484376
+          ]
+        },
+        {
+          "text": "2026-08-20",
+          "start_row": 8,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            308.59687024843765,
+            300.49449160000006,
+            298.6342702484376
+          ]
+        },
+        {
+          "text": "保留日期分隔符。",
+          "start_row": 8,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            309.1248880484377,
+            430.7048000000001,
+            299.16228804843763
+          ]
+        },
+        {
+          "text": "TRACE-G-R09",
+          "start_row": 9,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            289.9468702484377,
+            147.30980200000002,
+            279.9842702484377
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 9,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            289.9468702484377,
+            213.312027,
+            279.9842702484377
+          ]
+        },
+        {
+          "text": "A+B=C",
+          "start_row": 9,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            289.9468702484377,
+            291.2292736,
+            279.9842702484377
+          ]
+        },
+        {
+          "text": "保留运算符。",
+          "start_row": 9,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            290.4748880484376,
+            410.7796000000001,
+            280.51228804843765
+          ]
+        },
+        {
+          "text": "TRACE-G-R10",
+          "start_row": 10,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            271.2968702484377,
+            147.30980200000002,
+            261.33427024843763
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 10,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            271.2968702484377,
+            212.8935978,
+            261.33427024843763
+          ]
+        },
+        {
+          "text": "10.000 mm",
+          "start_row": 10,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            271.2968702484377,
+            301.6003402,
+            261.33427024843763
+          ]
+        },
+        {
+          "text": "保留尾随零。",
+          "start_row": 10,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            271.82488804843774,
+            410.7796000000001,
+            261.8622880484377
+          ]
+        },
+        {
+          "text": "TRACE-G-R11",
+          "start_row": 11,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            252.64687024843772,
+            147.30980200000002,
+            242.68427024843766
+          ]
+        },
+        {
+          "text": "GRID-A9",
+          "start_row": 11,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            252.64687024843772,
+            213.312027,
+            242.68427024843766
+          ]
+        },
+        {
+          "text": "11.125 mm",
+          "start_row": 11,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            252.64687024843772,
+            301.6003402,
+            242.68427024843766
+          ]
+        },
+        {
+          "text": "跨页后仍可追踪。",
+          "start_row": 11,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            253.17488804843765,
+            430.7048000000001,
+            243.2122880484377
+          ]
+        },
+        {
+          "text": "TRACE-G-R12",
+          "start_row": 12,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            79.863,
+            233.99687024843774,
+            147.30980200000002,
+            224.03427024843768
+          ]
+        },
+        {
+          "text": "GRID-B4",
+          "start_row": 12,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            171.1801916,
+            233.99687024843774,
+            212.8935978,
+            224.03427024843768
+          ]
+        },
+        {
+          "text": "12.250 mm",
+          "start_row": 12,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            254.009,
+            233.99687024843774,
+            301.6003402,
+            224.03427024843768
+          ]
+        },
+        {
+          "text": "最后一行可追踪。",
+          "start_row": 12,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            351.004,
+            234.52488804843767,
+            430.7048000000001,
+            224.56228804843772
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling-local",
+        "table_count": 2,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T03:26:43.185523Z"
+}

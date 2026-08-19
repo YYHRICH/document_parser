@@ -1,0 +1,38 @@
+{
+  "session_id": "arxiv-e2e-20260822:2402.16100:docling",
+  "accepted": false,
+  "final_revision_id": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+      "source_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6",
+      "candidate_content_fingerprint": "sem-v2:86d69662c3de06ccdf16df7badff42d915fdca0a58c67c7cee7a108408e185d6"
+    },
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError",
+        "reason=malformed_json"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

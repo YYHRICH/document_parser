@@ -1,0 +1,166 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "dff8a80844ca0d76a2e78516d25f495ed97808ff762074b0aaa130855ebe9cf3",
+    "input_parsed_document.json": "42ec843049c4dd5d2718d9d9fe30e602ec3a3f53b4107582b30dcd1c3a14806b",
+    "optimized.md": "664370802e8eb8db28245cf108e9368aa9901d082229a502cf3a9bdf65c58c1f"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "2ca16eb9-180b-474a-9477-13b8804dac5f",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "2ca16eb9-180b-474a-9477-13b8804dac5f",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "2ca16eb9-180b-474a-9477-13b8804dac5f",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability heading_tree_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "heading_tree_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 1,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 1
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "6b6f0862-46f9-5eef-adf4-737dcf1123ab",
+        "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+        "f26e46bb-fef0-550a-8c2e-2fd251218a5e",
+        "c807cb73-0d49-5912-84af-c43fc0d37ffd",
+        "ab4f7a24-918b-5340-b87c-51ab9d42334b"
+      ],
+      "category": "heading_level_granularity_suspect",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "99dce0a3-26a5-566e-8798-459f8694b683",
+      "message": "解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
+      "severity": "info",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "3f8d88949bc81d78a2d377841fc6be64e1b42f4b0276d73dcfcbf2128654af1d",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260820:trace-mixed:mineru",
+      "stop_reason": "no_progress"
+    },
+    "binding_count": 0,
+    "canonical_block_count": 22,
+    "issue_count": 1,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 2,
+    "repair_count": 0,
+    "source_block_count": 22,
+    "table_count": 0
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

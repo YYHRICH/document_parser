@@ -1,0 +1,198 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "43afd8efe3bad3abb4b8c2614a336f57d2fa8b85b978351fb4f54f8b17fac18e",
+    "input_parsed_document.json": "c80553229b3bd199c5f51fa0302289a0e006d729a200b49af65ae91e502cd7be",
+    "optimized.md": "973a2988f6f20543b408757b71436697d1c0a7d92e120dbe8b99b7f15c31f80b"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "70c88c8b-11f3-4e2f-b451-28fca440cf19",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "dc0b270a-e97a-5fec-b027-c5c0c719b371",
+            "object_type": "block",
+            "value_sha256": null
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "f58e0b56-a446-5a47-8ae6-274964b56290",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "70c88c8b-11f3-4e2f-b451-28fca440cf19",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "manual_review_required"
+      },
+      "state": "manual_review_required"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "70c88c8b-11f3-4e2f-b451-28fca440cf19",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability table_grid_reliable = inferred",
+      "capability table_field_binding_reliable = inferred",
+      "capability provenance_reliable = manual_review_required"
+    ],
+    "capability_blockers": [
+      "table_grid_reliable",
+      "table_field_binding_reliable",
+      "provenance_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 3,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 3
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "15218d8b-7f39-55e4-8406-31efda9010e3"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "343920b3-9c8c-5bbc-b8e4-1fecdfb77c8c",
+      "message": "1 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "6dead97f-bd6c-5b26-b682-6ab3c55bbf6c"
+      ],
+      "category": "provenance",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "dd02d2ce-44fc-5222-80e9-7d09409c0ba3",
+      "message": "block bbox 非法: (170.308, 279.78108469999995, 170.308, 296.4615208877419)（要求 r>l 且 bottom>top）。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "06c0176d-9fc0-53da-9a7a-383c6acd3952"
+      ],
+      "category": "provenance",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "3be02703-7c1f-52a0-a0db-2e7183e349f6",
+      "message": "block bbox 非法: (315.14099999999996, 95.22008470000003, 315.14099999999996, 111.90052088774189)（要求 r>l 且 bottom>top）。",
+      "severity": "warning",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "8d5d54b7738b22130e5abca56ce5421170d56dd7e361d23ddab60d7209841d24",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260821:formula-token:docling",
+      "stop_reason": "committed"
+    },
+    "binding_count": 6,
+    "canonical_block_count": 13,
+    "issue_count": 3,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 3,
+    "repair_count": 0,
+    "source_block_count": 13,
+    "table_count": 1
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

@@ -1,0 +1,65 @@
+% TRACE-SOURCE-ID: TEX-GRID-20260820-V1
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage[margin=18mm]{geometry}
+\usepackage{array,booktabs,longtable,multirow,fancyhdr,hyperref}
+\hypersetup{pdftitle={Traceable Grid Evaluation},pdfsubject={TEX-GRID-20260820-V1}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{TRACE-GRID-HEADER}\fancyhead[R]{TEX-GRID-20260820-V1}\fancyfoot[C]{\thepage}
+\renewcommand{\arraystretch}{1.2}
+\begin{document}
+\begin{center}
+{\LARGE 复杂网格表格测试}\par
+{\small TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1}
+\end{center}
+
+\section{合并表头 TRACE-G-CAP-101}
+\begin{table}[h]
+\centering
+\caption{网格校验结果}
+\begin{tabular}{llrr}
+\toprule
+\multirow{2}{*}{批次} & \multirow{2}{*}{日期} & \multicolumn{2}{c}{验证指标}\\
+\cmidrule(lr){3-4}
+ & & 精度 & 成本\\
+\midrule
+GRID-A9 & 2026-08-20 & 99.125\% & USD 1,250.00\\
+GRID-B4 & 2026-08-20 & 97.500\% & USD 980.00\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+最小分辨率为 0.0625 mm。TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。
+
+\section{跨页明细}
+\begin{longtable}{p{28mm}p{25mm}p{30mm}p{58mm}}
+\caption{网格追踪明细}\\
+\toprule
+追踪标记 & 批次 & 测量值 & 说明\\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{网格追踪明细（续）}\\
+\toprule
+追踪标记 & 批次 & 测量值 & 说明\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{下页继续}\\
+\endfoot
+\bottomrule
+\endlastfoot
+TRACE-G-R01 & GRID-A9 & 0.0625 mm & 保留四位小数。\\
+TRACE-G-R02 & GRID-B4 & 12.500 kg & 保留单位。\\
+TRACE-G-R03 & GRID-A9 & 4--20 mA & 保留范围。\\
+TRACE-G-R04 & GRID-B4 & USD 1,250.00 & 保留货币和逗号。\\
+TRACE-G-R05 & GRID-A9 & 1.00e-3 & 保留科学计数法。\\
+TRACE-G-R06 & GRID-B4 & 7/16 in & 斜线是尺寸事实。\\
+TRACE-G-R07 & GRID-A9 & 0.005\% & 保留百分号。\\
+TRACE-G-R08 & GRID-B4 & 2026-08-20 & 保留日期分隔符。\\
+TRACE-G-R09 & GRID-A9 & A+B=C & 保留运算符。\\
+TRACE-G-R10 & GRID-B4 & 10.000 mm & 保留尾随零。\\
+TRACE-G-R11 & GRID-A9 & 11.125 mm & 跨页后仍可追踪。\\
+TRACE-G-R12 & GRID-B4 & 12.250 mm & 最后一行可追踪。\\
+\end{longtable}
+
+\section{汇总 TRACE-G-SUM-201}
+报告日期为 2026-08-20，关键批次为 GRID-A9 和 GRID-B4。
+\end{document}

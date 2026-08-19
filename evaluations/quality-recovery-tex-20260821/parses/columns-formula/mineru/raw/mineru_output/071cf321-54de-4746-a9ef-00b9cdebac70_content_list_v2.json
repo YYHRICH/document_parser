@@ -1,0 +1,347 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "双栏公式阅读顺序测试"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                351,
+                57,
+                647,
+                80
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                280,
+                84,
+                715,
+                98
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 左栏 TRACE-C2-LEFT-101"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                102,
+                114,
+                470,
+                133
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                148,
+                494,
+                164
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. COLUMN-A1：读取输入。"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                192,
+                326,
+                206
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. COLUMN-A2：检查 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p \\leq 1 ."
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                217,
+                336,
+                233
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 右栏 TRACE-C2-RIGHT-201"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                514,
+                114,
+                902,
+                133
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-B2。它们不能插入左栏中间。"
+                    }
+                ]
+            },
+            "bbox": [
+                502,
+                154,
+                917,
+                189
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. COLUMN-B1：读取第二路输入。"
+                    }
+                ]
+            },
+            "bbox": [
+                524,
+                217,
+                796,
+                234
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1.1 左栏公式 TRACE-C2-EQ-211"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                80,
+                253,
+                420,
+                269
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "p + q = 1 { \\mathrm { . } }"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q \\geq 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(TRACE-C2-EQ-211)"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                305,
+                494,
+                322
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。"
+                    }
+                ]
+            },
+            "bbox": [
+                522,
+                260,
+                915,
+                277
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "右栏补充约束为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "r \\geq 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，并保留原始关系。"
+                    }
+                ]
+            },
+            "bbox": [
+                536,
+                305,
+                847,
+                321
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3 双栏结论 TRACE-C2-END-301"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                294,
+                348,
+                702,
+                366
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p \\leq 1"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q \\geq 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "和 DOI 10.8888/columns.2026。"
+                    }
+                ]
+            },
+            "bbox": [
+                78,
+                381,
+                919,
+                416
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-C2-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                82,
+                15,
+                252,
+                28
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-COLUMNS-20260821-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                684,
+                15,
+                915,
+                28
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                494,
+                965,
+                504,
+                977
+            ]
+        }
+    ]
+]

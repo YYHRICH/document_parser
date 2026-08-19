@@ -1,0 +1,47 @@
+--- parsed.md
++++ optimized.md
+@@ -28,7 +28,7 @@
+ 
+ The adoption of digital twins (DTs) in precision medicine is increasingly viable, propelled by extensive data collection and advancements in artificial intelligence (AI), alongside traditional biomedical methodologies. However, the reliance on black-box predictive models, which utilize large datasets, presents limitations that could impede the broader application of DTs in clinical settings. We argue that hypothesis-driven generative models, particularly multiscale modeling, are essential for boosting the clinical accuracy and relevance of DTs, thereby making a significant impact on healthcare innovation. This paper explores the transformative potential of DTs in healthcare, emphasizing their capability to simulate complex, interdependent biological processes across multiple scales. By integrating generative models with extensive datasets, we propose a scenario-based modeling approach that enables the exploration of diverse therapeutic strategies, thus supporting dynamic clinical decisionmaking. This method not only leverages advancements in data science and big data for improving disease treatment and prevention but also incorporates insights from complex systems and network science, quantitative biology, and digital medicine, promising substantial advancements in patient care.
+ 
+-## Introduction
++### Introduction
+ 
+ Precision medicine aims at delivering diagnostic, prognostic and therapeutic strategies specifically tailored to individuals by explicitly accounting for their genetic information, lifestyle and environment [1], all organised in a network structure[2]. The success of this approach relies on at least two fundamental and non-trivial assumptions. The first assumption is that it is possible to predict, by means of computational, cellular, and organism models and to some level of accuracy, the response of a patient to a specific treatment. The second assumption is that it is possible to use heterogeneous data sources (multiomics, electronic health records, individual and social behavior, and so forth) to build massive databases with enough statistics to allow one to stratify a population with respect to characterizing and distinctive features of clinical interest [3].
+ 
+@@ -56,7 +56,7 @@
+ 
+ In short, this calls for more holistic and quantitative approach based on the complex adaptive nature of every patient rather than a mere replica of their salient aspects for statistical analysis.
+ 
+-## Multiscale modeling in health and disease: from genes to systems
++### Multiscale modeling in health and disease: from genes to systems
+ 
+ Accounting for the multiscale nature of biological systems is of paramount importance for designing effective digital twins. The recent progresses in study of complex systems, especially the ones with interconnected and interdependent structure, dynamics and function, provide a promising ground for figuring out and illustrating how diverse functional units and sub-systems interact at different scales. Indeed, in addition to extracting multiscale molecular details from large omics datasets (e.g., transcriptomic, genomic, metabolomic, and microbiomic), we can now extract large-scale human behavior data of biomedical relevance from social media, mobile devices and electronic health records, including new patient-stratification principles and unknown disease correlations [12, 37, 9, 40, 41, 11, 42]. Accordingly, the holistic integration and analysis of such multiscale data sources constitutes a novel opportunity to further improve personalization by including the exposome in the study of multilevel human complexity in disease [41, 43], and used to inform more accurate models for predictive purposes in biomedicine [44, 34, 42, 45, 46].
+ 
+@@ -90,7 +90,7 @@
+ 
+ <!-- image -->
+ 
+-## Challenges in multiscale modeling
++### Challenges in multiscale modeling
+ 
+ Multiscale modeling of biological systems presents formidable challenges, primarily due to the intricate and redundant networks of interactions and interdependent processes taking place and unfolding across different scales, from molecular (microscopic) to organismic (macroscopic) levels. These systems are characterized by dynamic processes that operate far from equilibrium, exchanging various types of signals - e.g., chemical, electrochemical, and more - thereby creating a complex ecosystem of interlinked dynamical processes [34]. Such complexity poses significant difficulties in developing models that are both significant and coherent, avoiding extremes like reductionism, which assumes that sufficient computational power can simulate an entire organism, or oversimplification, which relies excessively on abundant data to sidestep the need for intricate modeling.
+ 
+@@ -122,7 +122,7 @@
+ 
+ Furthermore, such models should be able to propagate perturbations from one scale to another to realistically mimic the behavior of a living organism. As previously discussed, the possibility that a perturbation at the lowest scale (e.g., a random mutation or a mRNA intervention) can alter biological processes at larger scales is a mandatory feature for any reliable design of a digital twin.
+ 
+-## Discussion and outlooks
++### Discussion and outlooks
+ 
+ Innovative approaches for model integration within digital twins have a huge transformative potential for applications to precision medicine, enabling a synergy between generative modeling, advanced AI and machine learning techniques, and traditional biomedical insights. The fusion of these techniques, rather than the choice of a specific one, is expected to facilitate the development of new frameworks for multiscale modeling, which are pivotal in capturing the intricate dynamics of pathogenesis in humans. Through these frameworks, the overarching goal is to resolve the previously identified challenges, significantly enhancing the accuracy and clinical relevance of digital twins beyond inductive modelling via advanced statistics.
+ 
+@@ -134,7 +134,7 @@
+ 
+ Therefore, the expected output of such a machinery, model-informed and data-driven, would not just be a yes/no decision about the adoption of a therapeutic strategy or an intervention, but a whole spectrum of alternatives where advantages and disadvantages in adopting each plausible strategy are outlined to inform human decision-making.
+ 
+-## References and Notes
++### References and Notes
+ 
+ - [1] Mirnezami, R., Nicholson, J. &amp; Darzi, A. Preparing for precision medicine. N Engl J Med 366 , 489-491 (2012).
+ - [2] Barab´ asi, A.-L., Gulbahce, N. &amp; Loscalzo, J. Network medicine: a network-based approach to human disease. Nature reviews genetics 12 , 56-68 (2011).

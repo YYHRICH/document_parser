@@ -1,0 +1,21 @@
+{
+  "session_id": "arxiv-e2e-20260822:2405.09649:mineru",
+  "accepted": true,
+  "final_revision_id": "5897e4e220704921082245ce11c554eb9dc54086a9da53e87902ee21ba3c656b",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "5897e4e220704921082245ce11c554eb9dc54086a9da53e87902ee21ba3c656b",
+      "source_content_fingerprint": "sem-v2:e2a4d72ad854df49ef159c3eaf3f483b8ca8af4e7059a312dfb130c83b4f206a",
+      "candidate_content_fingerprint": "sem-v2:e2a4d72ad854df49ef159c3eaf3f483b8ca8af4e7059a312dfb130c83b4f206a"
+    }
+  ]
+}

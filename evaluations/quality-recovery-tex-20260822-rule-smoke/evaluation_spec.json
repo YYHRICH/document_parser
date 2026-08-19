@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260819",
+  "documents": {
+    "trace-structure": {
+      "source_id": "TEX-STRUCT-20260819-V1",
+      "markers": [
+        "TRACE-S-DOC-001",
+        "TRACE-S-SEC-101",
+        "TRACE-S-PARA-111",
+        "TRACE-S-LIST-121",
+        "TRACE-S-CODE-131",
+        "TRACE-S-MATH-141",
+        "TRACE-S-SEC-201",
+        "TRACE-S-REF-211"
+      ],
+      "critical_facts": [
+        "2026-08-19",
+        "TR-2026-08",
+        "99.75%",
+        "CNY 12,345.67",
+        "https://example.test/api?v=2&mode=safe",
+        "x = a+b",
+        "E = mc^2"
+      ]
+    },
+    "trace-tables": {
+      "source_id": "TEX-TABLE-20260819-V1",
+      "markers": [
+        "TRACE-T-DOC-001",
+        "TRACE-T-CAP-101",
+        "TRACE-T-R01",
+        "TRACE-T-R05",
+        "TRACE-T-R10",
+        "TRACE-T-R15",
+        "TRACE-T-R20",
+        "TRACE-T-R30",
+        "TRACE-T-R40",
+        "TRACE-T-SUM-201"
+      ],
+      "critical_facts": [
+        "-20--70 C",
+        "0.125 mm",
+        "99.90%",
+        "USD 8,760.50",
+        "LOT-A17",
+        "LOT-B04"
+      ]
+    },
+    "trace-layout": {
+      "source_id": "TEX-LAYOUT-20260819-V1",
+      "markers": [
+        "TRACE-L-DOC-001",
+        "TRACE-L-COL-A01",
+        "TRACE-L-COL-B01",
+        "TRACE-L-FIG-101",
+        "TRACE-L-CAP-111",
+        "TRACE-L-FOOT-121",
+        "TRACE-L-EQ-131",
+        "TRACE-L-REF-201"
+      ],
+      "critical_facts": [
+        "READ-A-B-C-D",
+        "Figure checksum 7F3A-91C2",
+        "alpha <= beta + 0.05",
+        "DOI 10.5555/trace.2026.0819",
+        "Page token PL-42"
+      ]
+    }
+  }
+}

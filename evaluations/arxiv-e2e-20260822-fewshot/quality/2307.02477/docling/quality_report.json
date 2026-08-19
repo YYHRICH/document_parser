@@ -1,0 +1,1180 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "adacab9b6077f571b7ae874af32c374a89b7d9b73de89ffef779add13700cb84",
+    "input_parsed_document.json": "c7e3f360460c7a66c6d1329891aabebf7bff4e1ef4ee67896538d803d5dec75b",
+    "optimized.md": "0baccfe6b02785e1ceefa91dd9f2cc0c8b558409d547404aa8d422f1220a1a15"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "7bfef755-e66a-404c-a119-0702a070d627",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "209a62d1-c0be-5156-9c2e-44f2196281b2",
+            "object_type": "block",
+            "value_sha256": null
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "24a008c1-c4e5-54db-9b9e-0acb38367a26",
+            "object_type": "block",
+            "value_sha256": null
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "55a7716f-8768-55ca-9239-64a2efd77f17",
+            "object_type": "block",
+            "value_sha256": null
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "fd449f55-e2f5-5122-8450-6a32da16f6e0",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "7bfef755-e66a-404c-a119-0702a070d627",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "manual_review_required"
+      },
+      "state": "manual_review_required"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "table_column_drift_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "manual_review_required"
+      },
+      "state": "manual_review_required"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "manual_review_required"
+      },
+      "state": "manual_review_required"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "7bfef755-e66a-404c-a119-0702a070d627",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability heading_tree_reliable = inferred",
+      "capability table_grid_reliable = manual_review_required",
+      "capability table_field_binding_reliable = inferred",
+      "capability provenance_reliable = manual_review_required",
+      "capability non_table_relation_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "heading_tree_reliable",
+      "table_grid_reliable",
+      "table_field_binding_reliable",
+      "provenance_reliable",
+      "non_table_relation_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 5,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 70
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "de2eb989-2b7f-5b9a-8f81-12a116439781"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "dce6b75e-7a3a-540e-aede-b5db1aba7c28",
+      "message": "1 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "94c14734-4815-5f3f-9b91-489cce8f0188"
+      ],
+      "category": "provenance",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "eedfa27c-1c33-5365-8385-318328398c38",
+      "message": "block bbox 非法: (347.08700000000005, 728.4160846999999, 347.08700000000005, 737.7943034242667)（要求 r>l 且 bottom>top）。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "45165922-335f-5d69-8174-917f1af76457",
+        "7db5b545-0e26-5105-9c79-5bfc1c0e76c4",
+        "a6cc5eda-809c-5ebb-a35d-239247253e4f",
+        "2aff016c-4db2-57fa-94a9-cf369952ce93",
+        "24a008c1-c4e5-54db-9b9e-0acb38367a26",
+        "53e94ad7-660e-5601-91bb-99b43a44843f",
+        "fd449f55-e2f5-5122-8450-6a32da16f6e0",
+        "392c0c6b-4511-5da2-9f57-3631797c8a84",
+        "aebaecd8-2dc3-5df0-b14c-8a6027710a1e",
+        "55ff769b-916c-567e-a71e-f58a9325a700",
+        "6efaadee-5274-5ba7-b68d-f9f687f467fb",
+        "958a8690-6c4f-53a0-8f67-8fc53e9b92b9",
+        "18ebacdb-e355-5b0e-a4ba-59c18c298570",
+        "7a26b547-1b72-5385-be86-11c2e997f3b2",
+        "60c1cef0-6ec9-5d2a-8f57-936484d92911",
+        "633b3dd0-2cb6-5af5-aa83-352e1f00b994",
+        "22832b30-f772-57dc-b8e8-bb097acf58ab",
+        "209a62d1-c0be-5156-9c2e-44f2196281b2",
+        "53e9645a-d5a9-574f-acce-412cda4cdfe5",
+        "c5a26c61-cc1c-5e43-a7b5-d52871626758",
+        "37d6dde9-3c24-58c7-b2a9-431da0d74435",
+        "af5a84ba-a7bd-56a4-8742-2db3e06f0281",
+        "cb77ea8f-a945-5b6d-b403-42342a254a74",
+        "2c61da61-da07-52b9-a88c-328b4693c33a",
+        "90431759-5288-506a-a590-d90e75cfc3df",
+        "55a7716f-8768-55ca-9239-64a2efd77f17",
+        "e61ad5fc-a6b9-5f4d-83df-a544e243a34e",
+        "397a9dc5-9169-5aab-bfa5-76e8c7de59f4",
+        "34b712a8-1c8b-5f9e-b07f-c9d487b3c06c",
+        "ef06cffe-f5ca-5a50-bce0-1d8d0a1b20c8",
+        "667196a6-1f34-5282-b337-c122b55f5e93",
+        "2af568bf-60bd-5d4e-9b65-603e186f3fa5",
+        "89f92bd3-9fcd-5275-b3f8-742a9098e317",
+        "2ee0ffa2-df68-5d2c-a9aa-f8e72c3a97ae",
+        "ed02e1f8-175d-53ca-b804-393804cf086d",
+        "b6588841-8b26-5f0e-8f53-2035df5a3a42",
+        "77c89131-be79-5a88-8572-11a1029cd7b5",
+        "1d484681-461c-5f1e-8201-2c7f026bb324",
+        "94fbdd08-04c9-5109-bd43-83fcb52f821d",
+        "31a06a98-221d-54f4-ab5e-bf8b489b8073",
+        "499cc88d-a73d-57a4-9979-338b1c326a25",
+        "ed04eef3-59e9-5b6a-94c1-fc2de33100d6",
+        "04d20867-34ee-5e92-bcac-f0c1ae98a836",
+        "1101b13e-10d5-5f0e-a195-215ab286e0a7",
+        "be090a07-b8bd-5c6e-a35b-cc01ec3dec51",
+        "93d2f586-cdf5-556a-8ab5-b2b997ef1301",
+        "eb9156f8-4e1c-5e6f-b707-52f68d176faa",
+        "e2301221-2862-55df-9bbf-734ccd12d26e",
+        "3528537e-8b64-5f6b-8417-770329819818",
+        "911d828b-d757-591f-9010-a046cf83adc8",
+        "36b677df-2ea7-51a9-9e03-1fd5456afad5",
+        "f651ba0e-a9ce-5393-8f6d-a89dddcc26be",
+        "9e78fea9-fda4-5017-8e97-5ba2edfeb97b",
+        "cd7db332-007d-516e-ad82-7dcbbda8f5c6",
+        "25d83403-c7e0-5384-b02a-9f5a325de496",
+        "99b796a3-e4de-515b-92e5-22ec309213ab",
+        "69668378-fc77-5233-b541-1f14b1924959",
+        "76cf22b8-b6f0-56b8-bb6e-e26e590b0fda",
+        "090e0b7f-58f9-563c-8eb6-94923456c583",
+        "26238629-f136-5301-98e8-30c74c1f9ee9",
+        "3b710846-d97a-50e5-9938-a6ef941f66c5",
+        "99aef36a-e31e-5189-894f-a72ddb63b5c6",
+        "83b27b84-b447-5820-b21e-7ab32fcc0314",
+        "30dc1411-4fb4-5538-a4be-de8f87157226",
+        "7e3286fa-914e-513f-97c6-a8c85f8e4dcd",
+        "39c8d7ee-40f5-52c0-a076-f566ebb51cc5",
+        "7421ddda-af42-517a-8b58-771b03b2b3b7",
+        "42523162-f07c-5003-b17a-bce5a65cacb8",
+        "478e3ce3-036e-587d-802e-2ef4d0ae882e",
+        "ec6ec751-37fc-572e-9560-b7435a88e82b",
+        "3d52ebbe-627f-583e-b11f-29923d9d4e7d",
+        "7cbaac87-c436-5c27-88b7-d5fcac1d4298",
+        "d89e6652-8c9a-57fe-a87b-b8cff0eb5e5e",
+        "72676adb-6967-5538-8b1e-345f62a765fd",
+        "9b0f75de-e7e0-5524-a8db-00946f889366",
+        "676ad136-f95d-5c54-8e29-5d29750dd4e2",
+        "ec0563f3-6a19-57ee-8e65-dd7a3af76066",
+        "02d15199-e207-52d1-a17e-96416de98f67"
+      ],
+      "category": "heading_level_granularity_suspect",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "12bde661-99b6-5fab-9d68-18403bd8b923",
+      "message": "解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7db5b545-0e26-5105-9c79-5bfc1c0e76c4"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "72833982-59fd-53c0-bb63-c72460f4ed18",
+      "message": "标题层级无法确定: 'Zhaofeng Wu ª Linlu Qiu ª Alex'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "a6cc5eda-809c-5ebb-a35d-239247253e4f"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "028af12a-1dc2-5bff-8486-a25e358de757",
+      "message": "标题层级无法确定: 'Abstract'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "667196a6-1f34-5282-b337-c122b55f5e93"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "85c16c38-160d-5b2d-af61-e0e216efa091",
+      "message": "标题层级无法确定: 'Acknowledgments'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "2af568bf-60bd-5d4e-9b65-603e186f3fa5"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "c7b8cbe8-0a74-59c9-93ee-18363952fb66",
+      "message": "标题层级无法确定: 'References'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "89f92bd3-9fcd-5275-b3f8-742a9098e317"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "4a091f1e-5272-581e-bad4-e72f965ca966",
+      "message": "标题层级无法确定: 'A Full Setups'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "2ee0ffa2-df68-5d2c-a9aa-f8e72c3a97ae"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "5c897462-f19a-5e45-859e-e41fafea9050",
+      "message": "标题层级无法确定: 'A.1 Arithmetic'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ed02e1f8-175d-53ca-b804-393804cf086d"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "9aa6e7d0-dba6-5f47-9459-d1d3c6597067",
+      "message": "标题层级无法确定: 'A.2 Programming'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "b6588841-8b26-5f0e-8f53-2035df5a3a42"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "39ca2da6-5a51-56a2-a7ee-3919d266a029",
+      "message": "标题层级无法确定: 'A.3 Basic Syntactic Reasoning'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "77c89131-be79-5a88-8572-11a1029cd7b5"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "0a9f9077-6a22-5c0b-bf89-48d5b316135e",
+      "message": "标题层级无法确定: 'A.4 Natural Language Reasoning'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "1d484681-461c-5f1e-8201-2c7f026bb324"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "5ff1c2f2-5a63-5eae-b36d-b82ffb6abf53",
+      "message": "标题层级无法确定: 'A.5 Spatial Reasoning'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "94fbdd08-04c9-5109-bd43-83fcb52f821d"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "f6279498-efaf-54c1-bd54-e16b13b81707",
+      "message": "标题层级无法确定: 'A.6 Drawing'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "31a06a98-221d-54f4-ab5e-bf8b489b8073"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ae85aaba-30c6-547f-a256-1e090a97a32c",
+      "message": "标题层级无法确定: 'A.7 Music'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "499cc88d-a73d-57a4-9979-338b1c326a25"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "559cef30-9e76-56e5-8824-22297b224653",
+      "message": "标题层级无法确定: 'A.7.1 Playing Chords on Instru'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ed04eef3-59e9-5b6a-94c1-fc2de33100d6"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "b3062adc-3439-5397-a6ac-4ec1cbd529a1",
+      "message": "标题层级无法确定: 'A.7.2 Retrieving Notes of Famo'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "04d20867-34ee-5e92-bcac-f0c1ae98a836"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "199833cc-89e0-59d1-937b-5f7b1479b7ec",
+      "message": "标题层级无法确定: 'A.8 Chess'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "1101b13e-10d5-5f0e-a195-215ab286e0a7"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "6073ebdf-865c-5c5e-a7d3-d2d7cb823d54",
+      "message": "标题层级无法确定: 'A.9 SET Game'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "be090a07-b8bd-5c6e-a35b-cc01ec3dec51"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "6dee5b68-e2ca-5e8e-b164-40aaddb62fd1",
+      "message": "标题层级无法确定: 'B Prompts'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "93d2f586-cdf5-556a-8ab5-b2b997ef1301"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "031dd331-896e-527f-b0c8-d8d0f709631e",
+      "message": "标题层级无法确定: 'C Raw Results'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "eb9156f8-4e1c-5e6f-b707-52f68d176faa"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ec85d61f-0d83-5618-9f02-5336a8095e70",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "e2301221-2862-55df-9bbf-734ccd12d26e"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "09d90ced-937a-5ba9-af8e-45f0dc924b78",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "3528537e-8b64-5f6b-8417-770329819818"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "6b7e1ce5-2f75-57ab-b1b3-8e98b011f288",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "911d828b-d757-591f-9010-a046cf83adc8"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ea31e890-32c7-5a8a-af63-541dd8dfc0cf",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "36b677df-2ea7-51a9-9e03-1fd5456afad5"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "954b5f63-bc09-53cb-9230-3c024592b5fc",
+      "message": "标题层级无法确定: 'Default 1'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "f651ba0e-a9ce-5393-8f6d-a89dddcc26be"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "d270149b-51bc-51c3-8d60-396addad64c2",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "9e78fea9-fda4-5017-8e97-5ba2edfeb97b"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "5a56102e-59c0-541d-a98c-1803acdb966a",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "cd7db332-007d-516e-ad82-7dcbbda8f5c6"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "4d4ca130-b392-50db-a5b7-69c0c9157d3a",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "25d83403-c7e0-5384-b02a-9f5a325de496"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "6d7d719a-319b-541f-94b7-3b115a6fd942",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "99b796a3-e4de-515b-92e5-22ec309213ab"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "cc329135-f13f-5835-bbb4-5d5a735e5eae",
+      "message": "标题层级无法确定: 'Default 2'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "69668378-fc77-5233-b541-1f14b1924959"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ce65bdca-6ea5-51b0-bd4d-865e19381011",
+      "message": "标题层级无法确定: 'CF 1'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "76cf22b8-b6f0-56b8-bb6e-e26e590b0fda"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "b46b9530-62e7-5ae5-9aea-eafe897f4783",
+      "message": "标题层级无法确定: 'CF 2'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "090e0b7f-58f9-563c-8eb6-94923456c583"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "14dcf20b-e1d4-5b44-b01e-c807d4751fa9",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "26238629-f136-5301-98e8-30c74c1f9ee9"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "87a8629a-e19f-585e-b396-edbe19ed9a1e",
+      "message": "标题层级无法确定: 'ANSWER:'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "3b710846-d97a-50e5-9938-a6ef941f66c5"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "8aaa72e7-2682-5b29-802a-3af4afbab5d3",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "99aef36a-e31e-5189-894f-a72ddb63b5c6"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "5afcaaa0-6fde-548e-9c92-5d5eba0547a9",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "83b27b84-b447-5820-b21e-7ab32fcc0314"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "92613ff0-cec1-5a68-8918-18b3d7363597",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "30dc1411-4fb4-5538-a4be-de8f87157226"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "b6243bd6-80f6-5251-841b-a0fc7b22d1ac",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7e3286fa-914e-513f-97c6-a8c85f8e4dcd"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "51627441-af26-5a39-b95e-df24fb55544b",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "39c8d7ee-40f5-52c0-a076-f566ebb51cc5"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "83575e22-8bc2-5acf-a8a2-472a75c3851c",
+      "message": "标题层级无法确定: 'Default'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7421ddda-af42-517a-8b58-771b03b2b3b7"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "8500cae8-eda6-5368-9495-0e2813b91ad3",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "42523162-f07c-5003-b17a-bce5a65cacb8"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "50d07a64-be96-5850-845b-f5b4fbe53d14",
+      "message": "标题层级无法确定: 'ANSWER:'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "478e3ce3-036e-587d-802e-2ef4d0ae882e"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "8a524c8f-f6a7-5769-8b8b-51b638b6b2a1",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ec6ec751-37fc-572e-9560-b7435a88e82b"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "20c157b9-fe84-53af-ab5b-26cb3b676bf5",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "3d52ebbe-627f-583e-b11f-29923d9d4e7d"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "95dc4640-c872-58be-9f12-eb158fc11896",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7cbaac87-c436-5c27-88b7-d5fcac1d4298"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "c60286f2-d44b-5b81-a32e-ee727c36246d",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "d89e6652-8c9a-57fe-a87b-b8cff0eb5e5e"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "6a2b96d8-c15c-5c4a-9e9a-6724f8cd262c",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "72676adb-6967-5538-8b1e-345f62a765fd"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "420b6b22-428d-5778-8e70-a32a00e77e88",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "9b0f75de-e7e0-5524-a8db-00946f889366"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "9a7b761f-6c91-59ed-9c43-e235ae60dc67",
+      "message": "标题层级无法确定: \"{Let's think step by step.}\"",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "676ad136-f95d-5c54-8e29-5d29750dd4e2"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "a9e3b82e-8220-50a8-8cc5-453d96622753",
+      "message": "标题层级无法确定: 'Default'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ec0563f3-6a19-57ee-8e65-dd7a3af76066"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "41c41a26-4b34-5485-be0d-7e894474e76b",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02d15199-e207-52d1-a17e-96416de98f67"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "2cce8402-7ed1-5d55-9b4e-19b75d5a94e0",
+      "message": "标题层级无法确定: 'Mode Prompt'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_field_binding",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "f0a115a6-3a04-5ade-8c98-ccfbe6b37929",
+      "message": "table table-010 列 0 的 column_path 无法确定（表头互斥或为空）。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_field_binding",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "2201edb8-8774-55b2-a127-0ab970a354ce",
+      "message": "table table-017 列 0 的 column_path 无法确定（表头互斥或为空）。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_field_binding",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "e940f3cd-c851-5456-83f3-a20311076ce3",
+      "message": "table table-019 列 0 的 column_path 无法确定（表头互斥或为空）。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "fdd982c1-9dc5-5ef7-b5be-cf66dffabbc8"
+      ],
+      "category": "table_field_binding",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ad38279c-b2f8-55d1-95bc-e6e51ce34b6a",
+      "message": "row_key 重复，无法唯一定位: 2。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "table_header_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "251c31e5-64e8-5f49-9c5b-3e500c9169be",
+      "message": "column_header 标记不构成从第 0 行开始的连续表头区域。",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "dfff354d-0802-5eca-af41-9b64e35cb00d",
+        "5030ed6b-38aa-5ed8-8558-525e89095453"
+      ],
+      "category": "column_drift",
+      "evidence": {
+        "column_count": [
+          9,
+          9
+        ],
+        "column_geometry_drift": null,
+        "continuation_hint": false,
+        "evidence_refs": [],
+        "header_paths": [
+          [
+            "#instances",
+            "Tests/w/o0-CoT/Default/8",
+            "Tests/w/o0-CoT/CF/160",
+            "Tests/w/0-CoT/Default/8",
+            "Tests/w/0-CoT/CF/160",
+            "CCC/w/o0-CoT/Default/1",
+            "CCC/w/o0-CoT/CF/20",
+            "CCC/w/0-CoT/Default/1",
+            "CCC/w/0-CoT/CF/20"
+          ],
+          [
+            "#instances",
+            "Tests/w/o0-CoT/Default/400",
+            "Tests/w/o0-CoT/CF/400",
+            "Tests/w/0-CoT/Default/400",
+            "Tests/w/0-CoT/CF/400",
+            "CCC/w/o0-CoT/Default/120",
+            "CCC/w/o0-CoT/CF/120",
+            "CCC/w/0-CoT/Default/120",
+            "CCC/w/0-CoT/CF/120"
+          ]
+        ],
+        "page_numbers": [
+          48,
+          49
+        ],
+        "table_ids": [
+          "table-020",
+          "table-021"
+        ]
+      },
+      "issue_id": "d423f87c-b27c-540b-8988-ac7bcd1f38f0",
+      "message": "跨页表格列结构漂移: table-020 → table-021；原因=column_order_or_header。",
+      "severity": "warning",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "aee6b743d0fceecdfc670815a2f3b8f00d134bf8e2d8095ed09c1ef767497fde",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "arxiv-e2e-20260822:2307.02477:docling",
+      "stop_reason": "no_progress"
+    },
+    "binding_count": 528,
+    "canonical_block_count": 496,
+    "issue_count": 70,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 19,
+    "repair_count": 0,
+    "source_block_count": 496,
+    "table_count": 23
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

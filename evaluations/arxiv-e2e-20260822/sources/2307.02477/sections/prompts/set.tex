@@ -1,0 +1,73 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You will be shown 12 cards. Each card has a figure and a number.\\
+A figure is a combination of a color, a shape, and a fill.\\ Set of colors are: red , green , blue . \\Set of shapes are: squiggle , diamond , oval .\\\\
+Set of fills are: solid , striped , open . \\ \\--THE RULE OF THE GAME-- \\A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number), \\ the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, \\ e.g. if 2 of the cards have \\ the same value, and 1 of them has a different value, the set is NOT valid; for example, \\(blue, green, blue) is MIXED and does not satisfy any of the rule, \\whereas (oval, diamond, squiggle) is all different.\\\\Here is the board:\\
+(2 | green | oval | open) ... [truncated]\\\\You can pick a set by typing the cards in the below format:\\
+First card: CARD1\\
+Second card: CARD2\\
+Third card: CARD3\\
+Now remember the rule and tell me which three cards here constitutes a GAME-SET \\in the same format.
+\\I will give you 2 cards as a hint, and you tell me the third one.\\
+First card: (2 | green | oval | open)\\
+Second card: (1 | green | diamond | solid)\\
+\textbf{\{Let's think step by step.\}}}} \\
+        \midrule
+        CF & \texttt{\thead{You will be shown 12 cards. Each card has a figure and a number.\\
+A figure is a combination of a color, a shape, and a fill.\\ Set of colors are: red , green , blue . \\Set of shapes are: squiggle , diamond , oval .\\\\
+Set of fills are: solid , striped , open . \\ \\--THE RULE OF THE GAME-- \\(This is not the original SET game. It has a tweaked rule.)\\
+In this version, a GAME-SET is a set of three cards:\\
+- For each figure attribute except the number (color, shape, fill), the three cards \\ should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards \\ have the same value, and 1 of them has a different value, the set is NOT valid; \\ for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas \\ (oval, diamond, squiggle) is all different.
+\\- But only for the number attribute, 2 of the cards should have the same number, \\ and 1 of them should have a different number in order for the set to be valid.\\\\Here is the board:\\
+(2 | green | oval | open) ... [truncated]\\\\You can pick a set by typing the cards in the below format:\\
+First card: CARD1\\
+Second card: CARD2\\
+Third card: CARD3\\
+Now remember the rule and tell me which three cards here constitutes a GAME-SET \\in the same format.
+\\I will give you 2 cards as a hint, and you tell me the third one.\\
+First card: (2 | green | oval | open)\\
+Second card: (1 | green | diamond | solid)\\
+\textbf{\{Let's think step by step.\}}}}\\    
+    \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-set-test}
+    Prompts for the SET task. \texttt{\textbf{\{Let's think step by step\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}
+
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{Each card has a figure and a number.\\
+A figure is a combination of a color, a shape, and a fill.\\ Set of colors are: red , green , blue . \\Set of shapes are: squiggle , diamond , oval .\\\\
+Set of fills are: solid , striped , open . \\ \\--THE RULE OF THE GAME-- \\A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number), \\ the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, \\ e.g. if 2 of the cards have \\ the same value, and 1 of them has a different value, the set is NOT valid; for example, \\(blue, green, blue) is MIXED and does not satisfy any of the rule, \\whereas (oval, diamond, squiggle) is all different.\\\\
+I will give you three cards from the board, and you will tell me whether this\\constitutes a GAME-SET. \\\\
+First card: (1 | blue | oval | striped) \\
+Second card: (2 | red | squiggle | striped) \\
+Third card: (3 | green | diamond | striped) \\\\
+Is this a GAME-SET? \textbf{\{Answer with yes or no in the last line.}\\\textbf{Let's verify rules for each attribute step-by-step:\}}}} \\
+        \midrule
+        CF & \texttt{\thead{Each card has a figure and a number.\\
+A figure is a combination of a color, a shape, and a fill.\\ Set of colors are: red , green , blue . \\Set of shapes are: squiggle , diamond , oval .\\\\
+Set of fills are: solid , striped , open . \\ \\--THE RULE OF THE GAME-- \\(This is not the original SET game. It has a tweaked rule.)\\
+In this version, a GAME-SET is a set of three cards:\\
+- For each figure attribute except the number (color, shape, fill), the three cards \\ should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards \\ have the same value, and 1 of them has a different value, the set is NOT valid; \\ for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas \\ (oval, diamond, squiggle) is all different.
+\\- But only for the number attribute, 2 of the cards should have the same number, \\ and 1 of them should have a different number in order for the set to be valid.\\\\I will give you three cards from the board, and you will tell me whether this\\constitutes a GAME-SET. \\\\
+First card: (1 | blue | oval | striped) \\
+Second card: (2 | red | squiggle | striped) \\
+Third card: (3 | green | diamond | striped) \\\\
+Is this a GAME-SET? \textbf{\{Answer with yes or no in the last line.}\\\textbf{Let's verify rules for each attribute step-by-step:\}}}} \\ 
+    \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-set-control}
+    CCC prompts for the SET experiments. \texttt{\textbf{\{bold text\}}} is added only if 0-shot CoT is used. Note that we removed the board information for simplicity as it is not required for this CCC test.
+    }
+\end{table*}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "papers": [
+    {
+      "arxiv_id": "2412.06527",
+      "pdf": {
+        "path": "pdfs\\2412.06527.pdf",
+        "sha256": "01b2c11f1891c09ee26646fd88fbdcffb8e698a3f512f9a1018e743d1e14a9da",
+        "size_bytes": 711012
+      },
+      "source_archive": {
+        "path": "downloads\\2412.06527.source",
+        "sha256": "966c19d305161be109eb8a73198974a7007a6424236d5f2d850c4e9781d5cb0f",
+        "size_bytes": 35836
+      },
+      "main_tex": {
+        "path": "sources\\2412.06527.tex",
+        "sha256": "647b19662e28db57b4c269ac7aebf0aabdde4dcaf42f4554b90efbda12aeb10e",
+        "size_bytes": 99781
+      }
+    },
+    {
+      "arxiv_id": "2402.16100",
+      "pdf": {
+        "path": "pdfs\\2402.16100.pdf",
+        "sha256": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+        "size_bytes": 179386
+      },
+      "source_archive": {
+        "path": "downloads\\2402.16100.source",
+        "sha256": "f1c8b07cf19bbb8aa09c8f0e943196652ab1745a3adb58fa6f08efbfd15e0d1a",
+        "size_bytes": 20491
+      },
+      "main_tex": {
+        "path": "sources\\2402.16100.tex",
+        "sha256": "78ae0600d286f8e157f19610dd7471dca309a517708004753f6244e08e434206",
+        "size_bytes": 71334
+      }
+    },
+    {
+      "arxiv_id": "2405.09649",
+      "pdf": {
+        "path": "pdfs\\2405.09649.pdf",
+        "sha256": "199958d42a76839cf95dfd90f5f7845122da528ec522ddd2c8e82fcc7c5a8eda",
+        "size_bytes": 1734958
+      },
+      "source_archive": {
+        "path": "downloads\\2405.09649.source",
+        "sha256": "5140e10819ce4fc9f5f57cac20b803787f5be71b1d3980ccdaa83269fcbf9eb6",
+        "size_bytes": 1346449
+      },
+      "main_tex": {
+        "path": "sources\\2405.09649.tex",
+        "sha256": "8b9defc73e8510a2a59984a05f844821d7be5410495dc53c29f6544e1c15e2e9",
+        "size_bytes": 53263
+      }
+    },
+    {
+      "arxiv_id": "2307.02477",
+      "pdf": {
+        "path": "pdfs\\2307.02477.pdf",
+        "sha256": "c7e3f360460c7a66c6d1329891aabebf7bff4e1ef4ee67896538d803d5dec75b",
+        "size_bytes": 1639928
+      },
+      "source_archive": {
+        "path": "downloads\\2307.02477.source",
+        "sha256": "0adcabd8a11a802806aadfd587cc65a01564514f41a2b091ee4367094bae04a2",
+        "size_bytes": 945928
+      },
+      "main_tex": {
+        "path": "sources\\2307.02477.tex",
+        "sha256": "3887ccb00da84983bd5f5b2be0c0424663131598a4a1b8fb576002f8927727ea",
+        "size_bytes": 6679
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+\subsection{Basic Syntactic Reasoning}
+
+\citet{mahowald2023dissociating} distinguish between two types of LM capabilities: \emph{formal competence} that encompasses the knowledge of language, and \emph{functional competence} which involves using language, potentially combined with extralinguistic capacities, to interact with the world. While the other tasks we investigate in this paper assess a model's functional competence,
+we also include an evaluation on formal competence. %
+We revisit the attested syntactic knowledge of LMs~\citepia{yu2020word,linzen2021syntactic,ettinger2020bert,pimentel-cotterell-2021-bayesian,belinkov2022probing,lasri2022probing} by considering a meta-linguistic task~\citepia{beguvs2023large,hu2023prompt}: evaluating LMs in synthetic versions of English with  
+different word orders from English's subject-verb-object (SVO) ordering. We ask the LM to identify the main subject and the main verb of a sentence under both the original and counterfactual orders, where the latter is obtained from manipulating dependency trees~\citep{ravfogel2019studying}. 
+The CCC requires the model to revert simple reordered sentences to the original SVO ordering, equivalent to identifying these elements in a sentence.

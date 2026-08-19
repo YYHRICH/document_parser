@@ -1,0 +1,210 @@
+[
+  {
+    "chunk_id": "block:ed80739f-c956-5c9c-8474-9255d041dbbe",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "双栏公式阅读顺序测试",
+    "citation_ids": [
+      "block:ed80739f-c956-5c9c-8474-9255d041dbbe"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:f19a4056-802b-5627-bf68-93a887763293",
+    "kind": "paragraph",
+    "order_index": 1,
+    "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+    "citation_ids": [
+      "block:f19a4056-802b-5627-bf68-93a887763293"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:8bbf123a-4a35-59fd-adf6-be0b7ada563c",
+    "kind": "heading",
+    "order_index": 2,
+    "content": "1 左栏 TRACE-C2-LEFT-101",
+    "citation_ids": [
+      "block:8bbf123a-4a35-59fd-adf6-be0b7ada563c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:7f4dc9eb-d327-5d04-aecd-3245056e2fdc",
+    "kind": "paragraph",
+    "order_index": 3,
+    "content": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-",
+    "citation_ids": [
+      "block:7f4dc9eb-d327-5d04-aecd-3245056e2fdc"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:ec709d1a-3177-552d-a627-eb232a6a245b",
+    "kind": "paragraph",
+    "order_index": 4,
+    "content": "1. COLUMN-A1：读取输入。",
+    "citation_ids": [
+      "block:ec709d1a-3177-552d-a627-eb232a6a245b"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:584333a7-c374-5473-acc1-a1e29b9b0fab",
+    "kind": "paragraph",
+    "order_index": 5,
+    "content": "2. COLUMN-A2：检查 $p \\leq 1 .$",
+    "citation_ids": [
+      "block:584333a7-c374-5473-acc1-a1e29b9b0fab"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:8e6df042-3c7c-5875-8189-06aeff462d0d",
+    "kind": "heading",
+    "order_index": 6,
+    "content": "2 右栏 TRACE-C2-RIGHT-201",
+    "citation_ids": [
+      "block:8e6df042-3c7c-5875-8189-06aeff462d0d"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:853b33d1-c8b6-5f06-8446-3c18d295606a",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-B2。它们不能插入左栏中间。",
+    "citation_ids": [
+      "block:853b33d1-c8b6-5f06-8446-3c18d295606a"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:211a1ebe-4b60-5b67-af13-b9c308e1391c",
+    "kind": "paragraph",
+    "order_index": 8,
+    "content": "1. COLUMN-B1：读取第二路输入。",
+    "citation_ids": [
+      "block:211a1ebe-4b60-5b67-af13-b9c308e1391c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:e0ab57b2-1573-59cc-a4b8-0d0b0835cdba",
+    "kind": "heading",
+    "order_index": 9,
+    "content": "1.1 左栏公式 TRACE-C2-EQ-211",
+    "citation_ids": [
+      "block:e0ab57b2-1573-59cc-a4b8-0d0b0835cdba"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:cfc0c93a-bb5d-5e9a-b064-ff6c1d8a4e01",
+    "kind": "paragraph",
+    "order_index": 10,
+    "content": "$p + q = 1 { \\mathrm { . } }$ $q \\geq 0$ (TRACE-C2-EQ-211)",
+    "citation_ids": [
+      "block:cfc0c93a-bb5d-5e9a-b064-ff6c1d8a4e01"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:3280f257-d395-502e-bf2c-91de64a34108",
+    "kind": "paragraph",
+    "order_index": 11,
+    "content": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。",
+    "citation_ids": [
+      "block:3280f257-d395-502e-bf2c-91de64a34108"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:952b83f3-5068-5d3a-be74-9fd23b95d5f4",
+    "kind": "paragraph",
+    "order_index": 12,
+    "content": "右栏补充约束为 $r \\geq 0$ ，并保留原始关系。",
+    "citation_ids": [
+      "block:952b83f3-5068-5d3a-be74-9fd23b95d5f4"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:6a5cba81-86b4-5a8e-8c76-72ef6a2f0223",
+    "kind": "heading",
+    "order_index": 13,
+    "content": "3 双栏结论 TRACE-C2-END-301",
+    "citation_ids": [
+      "block:6a5cba81-86b4-5a8e-8c76-72ef6a2f0223"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:8d6c831a-253e-53d4-9c4b-b35018b73dc9",
+    "kind": "paragraph",
+    "order_index": 14,
+    "content": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括 $p \\leq 1$ $q \\geq 0$ 和 DOI 10.8888/columns.2026。",
+    "citation_ids": [
+      "block:8d6c831a-253e-53d4-9c4b-b35018b73dc9"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:86fa534f-1619-57d7-b324-4d1b66d8f387",
+    "kind": "paragraph",
+    "order_index": 15,
+    "content": "TRACE-C2-HEADER",
+    "citation_ids": [
+      "block:86fa534f-1619-57d7-b324-4d1b66d8f387"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:10962fc6-25c3-5967-8424-80fa21348a25",
+    "kind": "paragraph",
+    "order_index": 16,
+    "content": "TEX-COLUMNS-20260821-V1",
+    "citation_ids": [
+      "block:10962fc6-25c3-5967-8424-80fa21348a25"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:3d6822c9-5d2c-54f4-8ab3-93efb1ef1e76",
+    "kind": "page_number",
+    "order_index": 17,
+    "content": "1",
+    "citation_ids": [
+      "block:3d6822c9-5d2c-54f4-8ab3-93efb1ef1e76"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

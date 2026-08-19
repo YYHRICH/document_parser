@@ -1,0 +1,523 @@
+{
+  "blocks": [
+    {
+      "block_id": "5aa3f2a2-e896-59a4-b35d-ba095b78964b",
+      "content": "混合内容可追溯测试 TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          277.0,
+          71.0,
+          717.0,
+          115.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0001"
+      }
+    },
+    {
+      "block_id": "117948a6-f858-571e-ba90-f0734a93cdac",
+      "content": "1 身份与固定事实 TRACE-M-SEC-101",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          265.0,
+          142.0,
+          729.0,
+          162.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0002"
+      }
+    },
+    {
+      "block_id": "e8b2af01-3464-57c7-8852-a613e544134f",
+      "content": "记录编号为 MIX-77，生成日期为 2026-08-20，目标通过率为 98.60%，预算为 EUR 12,345.67。数字、百分号、货币和日期均是受保护事实。<sup>1</sup>",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          99.0,
+          179.0,
+          899.0,
+          217.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0003"
+      }
+    },
+    {
+      "block_id": "c3842cb3-fa2a-5c9f-afc7-d8d35aa3e634",
+      "content": "1.1 执行步骤 TRACE-M-LIST-111",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          99.0,
+          240.0,
+          453.0,
+          256.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0004"
+      }
+    },
+    {
+      "block_id": "16ef4356-c972-580b-8efb-85e9082da7a3",
+      "content": "1. 校验记录 MIX-77 与日期 2026-08-20。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          121.0,
+          269.0,
+          455.0,
+          285.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0005"
+      }
+    },
+    {
+      "block_id": "9059dcce-0792-5c3c-97f0-cc2b58592024",
+      "content": "2. 运行安全配置并保留所有参数。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          121.0,
+          290.0,
+          401.0,
+          306.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0006"
+      }
+    },
+    {
+      "block_id": "deb2790e-3eb6-5a63-a845-a5bfe48bf91d",
+      "content": "3. 只修复可证明的结构问题。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          121.0,
+          311.0,
+          363.0,
+          328.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0007"
+      }
+    },
+    {
+      "block_id": "9bd2bf96-c8ae-59a2-bea3-14f86888143c",
+      "content": "1.2 代码与公式 TRACE-M-CODE-121",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          100.0,
+          350.0,
+          487.0,
+          367.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0008"
+      }
+    },
+    {
+      "block_id": "bce32f70-7189-5523-ae18-3230dd98f0ed",
+      "content": "命令为 calc --profile=gold，命令中的双连字符和等号属于事实。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          134.0,
+          380.0,
+          689.0,
+          397.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0009"
+      }
+    },
+    {
+      "block_id": "e16675d4-2008-5de6-a64a-3fdc143fbe4a",
+      "content": "$$\ny = ( a + b ) / 2\n$$",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          341.0,
+          414.0,
+          457.0,
+          432.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0010"
+      }
+    },
+    {
+      "block_id": "5d7fd9fa-5a2e-577b-b400-aa781c85416c",
+      "content": "(TRACE-M-MATH-131)",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          692.0,
+          414.0,
+          897.0,
+          431.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0011"
+      }
+    },
+    {
+      "block_id": "92c8d172-5f05-593a-b976-44744c873d11",
+      "content": "约束为 $a + b \\geq 1 2$ ，不得把运算符改写成自然语言。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          99.0,
+          449.0,
+          515.0,
+          464.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0012"
+      }
+    },
+    {
+      "block_id": "f0715589-86b7-5526-9489-8517d446bfd8",
+      "content": "1",
+      "kind": "page_number",
+      "metadata": {},
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          494.0,
+          952.0,
+          504.0,
+          963.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0013"
+      }
+    },
+    {
+      "block_id": "a0b71418-c250-5d2f-9de3-f00e08923c81",
+      "content": "TRACE-MIX-HEADER",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          100.0,
+          28.0,
+          302.0,
+          43.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0014"
+      }
+    },
+    {
+      "block_id": "34f30df6-9a36-5ae9-a5aa-af0f704e24b1",
+      "content": "TEX-MIXED-20260820-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 14,
+      "source_locator": {
+        "bbox": [
+          673.0,
+          28.0,
+          895.0,
+          43.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0015"
+      }
+    },
+    {
+      "block_id": "407b9a5d-22ef-5b56-9330-ad4fe628800c",
+      "content": "<sup>1</sup>TRACE-M-FOOT-141：脚注内容只能被定位，不能被猜测。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 15,
+      "source_locator": {
+        "bbox": [
+          119.0,
+          914.0,
+          536.0,
+          931.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0016"
+      }
+    },
+    {
+      "block_id": "880f58a6-eb22-5ff6-9669-eb220a5d997b",
+      "content": "2 跨页引用 TRACE-M-REF-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 16,
+      "source_locator": {
+        "bbox": [
+          300.0,
+          72.0,
+          695.0,
+          91.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0017"
+      }
+    },
+    {
+      "block_id": "bdf2d19b-0dc8-5ee2-ba2c-2a1e107e9829",
+      "content": "本页故意重复页眉并延续语义。引用键为 MIX-REF-42，版本为 revision 3.1。质量 Agent 可以合并段落或调整 Markdown，但必须保留引用键和版本号。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 17,
+      "source_locator": {
+        "bbox": [
+          99.0,
+          109.0,
+          897.0,
+          146.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0018"
+      }
+    },
+    {
+      "block_id": "019e4ef8-cc63-56fa-af0c-067305379e5b",
+      "content": "TRACE-M-QUOTE-211：任何修复都必须能回溯到原始页面和 block。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 18,
+      "source_locator": {
+        "bbox": [
+          144.0,
+          161.0,
+          717.0,
+          178.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0019"
+      }
+    },
+    {
+      "block_id": "9b6352f5-7f31-5552-b930-e9988abd8c1c",
+      "content": "TRACE-MIX-HEADER",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 19,
+      "source_locator": {
+        "bbox": [
+          100.0,
+          29.0,
+          302.0,
+          42.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0020"
+      }
+    },
+    {
+      "block_id": "0043a6b9-4631-57f6-a2ae-1136e68be374",
+      "content": "TEX-MIXED-20260820-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 20,
+      "source_locator": {
+        "bbox": [
+          673.0,
+          29.0,
+          895.0,
+          42.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0021"
+      }
+    },
+    {
+      "block_id": "83605cf1-2f9a-5191-b454-7b37bc907a78",
+      "content": "2",
+      "kind": "page_number",
+      "metadata": {},
+      "order_index": 21,
+      "source_locator": {
+        "bbox": [
+          492.0,
+          951.0,
+          505.0,
+          963.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0022"
+      }
+    }
+  ],
+  "document_id": "2ca16eb9-180b-474a-9477-13b8804dac5f",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "f26e46bb-fef0-550a-8c2e-2fd251218a5e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "f26e46bb-fef0-550a-8c2e-2fd251218a5e",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "f26e46bb-fef0-550a-8c2e-2fd251218a5e",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "117948a6-f858-571e-ba90-f0734a93cdac",
+      "relation_id": "d79093b5-5f86-5295-a311-486a09d32170",
+      "relation_type": "parent_child",
+      "status": "inferred",
+      "to_id": "c3842cb3-fa2a-5c9f-afc7-d8d35aa3e634"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "c807cb73-0d49-5912-84af-c43fc0d37ffd",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c807cb73-0d49-5912-84af-c43fc0d37ffd",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "e835f3b5-c86c-53b6-be36-3ccfc75d7556",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c807cb73-0d49-5912-84af-c43fc0d37ffd",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "117948a6-f858-571e-ba90-f0734a93cdac",
+      "relation_id": "199e2d53-0318-5a83-8a72-aceb8ccdcc05",
+      "relation_type": "parent_child",
+      "status": "inferred",
+      "to_id": "9bd2bf96-c8ae-59a2-bea3-14f86888143c"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

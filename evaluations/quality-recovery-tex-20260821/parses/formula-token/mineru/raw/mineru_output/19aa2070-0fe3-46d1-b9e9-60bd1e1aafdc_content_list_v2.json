@@ -1,0 +1,316 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "公式符号保真测试TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                267,
+                71,
+                731,
+                116
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 固定事实 TRACE-F-SEC-101"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                305,
+                142,
+                690,
+                161
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正负号、分数和上下标的保留。"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                179,
+                899,
+                217
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1.1 数学表达式 TRACE-F-EQ-111"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                99,
+                239,
+                447,
+                256
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/adfa232fccdb001ed44d6189415f0f082e531c4e110ef6997d7a1d9861704179.jpg"
+                }
+            },
+            "bbox": [
+                231,
+                304,
+                354,
+                346
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f9e55720409396f8d0cb73416d9fbd7c3d3b20fdc146af4b8052909a12a091e9.jpg"
+                }
+            },
+            "bbox": [
+                480,
+                304,
+                601,
+                344
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(TRACE-F-EQ-111)"
+                    }
+                ]
+            },
+            "bbox": [
+                727,
+                328,
+                895,
+                346
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "约束函数为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，并且 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n \\in \\mathbb { N }"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                360,
+                410,
+                381
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/22520eb0df5bf80d3101572b82b85f67a0e8e77d0e840a1ae4030376e9a47d68.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "表 1: 符号核对表 TRACE-F-TABLE-121"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>标记</td><td>条件</td><td>值</td></tr><tr><td>FORMULA-42</td><td>score ≤ 0.875</td><td>EUR 4,321.09</td></tr><tr><td>TRACE-F-TABLE-121</td><td>delta ≥ 0.125</td><td>±0.05</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                263,
+                418,
+                732,
+                497
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-F-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                28,
+                277,
+                43
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-FORMULA-20260821-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                642,
+                28,
+                895,
+                43
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                494,
+                951,
+                504,
+                964
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 跨页结论 TRACE-F-END-201"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                302,
+                72,
+                692,
+                91
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                109,
+                897,
+                146
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-F-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                29,
+                277,
+                42
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-FORMULA-20260821-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                642,
+                29,
+                895,
+                42
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                951,
+                505,
+                963
+            ]
+        }
+    ]
+]

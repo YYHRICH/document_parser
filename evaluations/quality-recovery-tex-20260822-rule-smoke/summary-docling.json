@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "document": "trace-layout",
+      "parser": "docling",
+      "accepted": false,
+      "changed": true,
+      "changed_block_ids": [
+        "40bac072-6594-493d-bf15-267148fdb92a",
+        "fc17fe1e-d24a-432b-9cd6-2b974a49d064"
+      ],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "pass",
+      "final_issues": 0,
+      "parsed_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 8,
+        "total": 8,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

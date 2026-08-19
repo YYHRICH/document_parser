@@ -1,0 +1,205 @@
+[
+    {
+        "type": "text",
+        "text": "双栏公式阅读顺序测试",
+        "text_level": 1,
+        "bbox": [
+            351,
+            57,
+            647,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+        "bbox": [
+            280,
+            84,
+            715,
+            98
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 左栏 TRACE-C2-LEFT-101",
+        "text_level": 2,
+        "bbox": [
+            102,
+            114,
+            470,
+            133
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-",
+        "bbox": [
+            110,
+            148,
+            494,
+            164
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1. COLUMN-A1：读取输入。",
+        "bbox": [
+            100,
+            192,
+            326,
+            206
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2. COLUMN-A2：检查 $p \\leq 1 .$",
+        "bbox": [
+            99,
+            217,
+            336,
+            233
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2 右栏 TRACE-C2-RIGHT-201",
+        "text_level": 2,
+        "bbox": [
+            514,
+            114,
+            902,
+            133
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-B2。它们不能插入左栏中间。",
+        "bbox": [
+            502,
+            154,
+            917,
+            189
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1. COLUMN-B1：读取第二路输入。",
+        "bbox": [
+            524,
+            217,
+            796,
+            234
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.1 左栏公式 TRACE-C2-EQ-211",
+        "text_level": 2,
+        "bbox": [
+            80,
+            253,
+            420,
+            269
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "$p + q = 1 { \\mathrm { . } }$ $q \\geq 0$ (TRACE-C2-EQ-211)",
+        "bbox": [
+            127,
+            305,
+            494,
+            322
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。",
+        "bbox": [
+            522,
+            260,
+            915,
+            277
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "右栏补充约束为 $r \\geq 0$ ，并保留原始关系。",
+        "bbox": [
+            536,
+            305,
+            847,
+            321
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "3 双栏结论 TRACE-C2-END-301",
+        "text_level": 2,
+        "bbox": [
+            294,
+            348,
+            702,
+            366
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括 $p \\leq 1$ $q \\geq 0$ 和 DOI 10.8888/columns.2026。",
+        "bbox": [
+            78,
+            381,
+            919,
+            416
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TRACE-C2-HEADER",
+        "bbox": [
+            82,
+            15,
+            252,
+            28
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TEX-COLUMNS-20260821-V1",
+        "bbox": [
+            684,
+            15,
+            915,
+            28
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "1",
+        "bbox": [
+            494,
+            965,
+            504,
+            977
+        ],
+        "page_idx": 0
+    }
+]

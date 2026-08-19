@@ -1,0 +1,202 @@
+[
+    {
+        "type": "text",
+        "text": "公式符号保真测试TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+        "text_level": 1,
+        "bbox": [
+            267,
+            71,
+            731,
+            116
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 固定事实 TRACE-F-SEC-101",
+        "text_level": 2,
+        "bbox": [
+            305,
+            142,
+            690,
+            161
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正负号、分数和上下标的保留。",
+        "bbox": [
+            99,
+            179,
+            899,
+            217
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.1 数学表达式 TRACE-F-EQ-111",
+        "text_level": 2,
+        "bbox": [
+            99,
+            239,
+            447,
+            256
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "equation",
+        "img_path": "images/adfa232fccdb001ed44d6189415f0f082e531c4e110ef6997d7a1d9861704179.jpg",
+        "text": "$$\n\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            231,
+            304,
+            354,
+            346
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f9e55720409396f8d0cb73416d9fbd7c3d3b20fdc146af4b8052909a12a091e9.jpg",
+        "text": "$$\n\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            480,
+            304,
+            601,
+            344
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "(TRACE-F-EQ-111)",
+        "bbox": [
+            727,
+            328,
+            895,
+            346
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "约束函数为 $\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}$ ，并且 $n \\in \\mathbb { N }$",
+        "bbox": [
+            99,
+            360,
+            410,
+            381
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/22520eb0df5bf80d3101572b82b85f67a0e8e77d0e840a1ae4030376e9a47d68.jpg",
+        "table_caption": [
+            "表 1: 符号核对表 TRACE-F-TABLE-121"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>标记</td><td>条件</td><td>值</td></tr><tr><td>FORMULA-42</td><td>score ≤ 0.875</td><td>EUR 4,321.09</td></tr><tr><td>TRACE-F-TABLE-121</td><td>delta ≥ 0.125</td><td>±0.05</td></tr></table>",
+        "bbox": [
+            263,
+            418,
+            732,
+            497
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TRACE-F-HEADER",
+        "bbox": [
+            100,
+            28,
+            277,
+            43
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "TEX-FORMULA-20260821-V1",
+        "bbox": [
+            642,
+            28,
+            895,
+            43
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "1",
+        "bbox": [
+            494,
+            951,
+            504,
+            964
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2 跨页结论 TRACE-F-END-201",
+        "text_level": 2,
+        "bbox": [
+            302,
+            72,
+            692,
+            91
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。",
+        "bbox": [
+            100,
+            109,
+            897,
+            146
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "TRACE-F-HEADER",
+        "bbox": [
+            100,
+            29,
+            277,
+            42
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "TEX-FORMULA-20260821-V1",
+        "bbox": [
+            642,
+            29,
+            895,
+            42
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_number",
+        "text": "2",
+        "bbox": [
+            492,
+            951,
+            505,
+            963
+        ],
+        "page_idx": 1
+    }
+]

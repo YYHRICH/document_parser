@@ -1,0 +1,8 @@
+\subsection{Programming} \label{sec:programming-task}
+
+Even without explicit pretraining on large amounts of code, LMs have been found to possess  decent coding ability~\citep{gpt3}. The inclusion of large code corpora in LM pretraining~\citepia{pile,chowdhery2022palm,llama} further improves this capability in recent LMs, with  ChatGPT sometimes outperforming state-of-the-art approaches for bug fixing \citep{sobania-2023-analysis}.
+Nevertheless, \citet{micelibarone2023larger} show that GPT-3 and related models are fragile under identifier swaps in programs, suggesting that these models may only possess a shallow understanding of code.
+Here, we inspect an LM's programming ability through a deeper counterfactual perturbation: contrary to the traditional 0-based indexing in Python, we instruct the LM to evaluate or generate programs under a fictional language, ThonPy, that uses 1-based indexing but is otherwise identical to Python. 1-based indexing is a common assumption for other programming languages such as MATLAB and R and hence provides a fair testbed. We evaluate the LM's performance using the HumanEval dataset~\citep{chen2021codex}.
+The CCC here involves the same program execution task but on much simpler inputs, such as simple list indexing, that do not involve deeper reasoning.
+
+

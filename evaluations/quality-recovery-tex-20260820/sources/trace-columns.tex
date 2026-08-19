@@ -1,0 +1,38 @@
+% TRACE-SOURCE-ID: TEX-COLUMNS-20260820-V1
+\documentclass[11pt,a4paper]{ctexart}
+\usepackage[margin=20mm]{geometry}
+\usepackage{amsmath,fancyhdr,hyperref,multicol,enumitem}
+\hypersetup{pdftitle={Traceable Columns Evaluation},pdfsubject={TEX-COLUMNS-20260820-V1}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{TRACE-COLUMNS-HEADER}\fancyhead[R]{TEX-COLUMNS-20260820-V1}\fancyfoot[C]{\thepage}
+\setlist{nosep}
+\begin{document}
+\begin{center}
+{\LARGE 双栏阅读顺序测试}\par
+{\small TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1}
+\end{center}
+
+\begin{multicols}{2}
+\section{左栏校验 TRACE-C-LEFT-101}
+左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。
+\begin{enumerate}
+  \item LEFT-CHECK-A1：准备输入。
+  \item LEFT-CHECK-A2：确认 threshold $\leq 0.25$。
+\end{enumerate}
+\subsection{左栏公式 TRACE-C-LEFT-111}
+左栏约束为 $p+q=1$，公式编号为 C-LEFT-EQ-1。
+
+\columnbreak
+\section{右栏校验 TRACE-C-RIGHT-201}
+右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。
+\begin{enumerate}
+  \item RIGHT-CHECK-B1：读取第二路输入。
+  \item RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。
+\end{enumerate}
+\subsection{右栏结论 TRACE-C-RIGHT-211}
+右栏结论不能被提前插入左栏中间。
+\end{multicols}
+
+\newpage
+\section{双栏结束 TRACE-C-END-301}
+本页用于检查上一页两栏的结束边界。最终结论仍需保留 LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。
+\end{document}

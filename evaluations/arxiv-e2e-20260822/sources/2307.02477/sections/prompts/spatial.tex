@@ -1,0 +1,18 @@
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are in the middle of a kitchen. There is a microwave on the south side. There is a \\fridge on the west side. There is a coffee machine on the north side. We define the \\following directions. The north direction is (0, -1). The south direction is (0, 1). \\The east direction is (1, 0). The west direction is (-1, 0). What's the layout of the \\room in the following format? You can estimate the size of the objects. \\\\ \textasciigrave\textasciigrave\textasciigrave json \\
+\{"name": "??", "width": 500, "height": 500, "directions": \{"north": "??", "south": "??",\\ "east": "??", "west": "??"\}, "objects": [\{"name": "??", "x": "??", "y": "??"\}]\}
+\\\textasciigrave\textasciigrave\textasciigrave \\\\\textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF & \texttt{\thead{You are in the middle of a kitchen. There is a microwave on the south side. There is a \\fridge on the west side. There is a coffee machine on the north side. We define the \\following directions. The north direction is (-1, 0). The south direction is (1, 0). \\The east direction is (0, -1). The west direction is (0, 1). What's the layout of the \\room in the following format? You can estimate the size of the objects. \\\\ \textasciigrave\textasciigrave\textasciigrave json \\
+\{"name": "??", "width": 500, "height": 500, "directions": \{"north": "??", "south": "??",\\ "east": "??", "west": "??"\}, "objects": [\{"name": "??", "x": "??", "y": "??"\}]\}
+\\\textasciigrave\textasciigrave\textasciigrave \\\\\textbf{\{Let's think step by step.\}}}} \\     
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-spatial}
+    Prompts for the spatial reasoning task. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used.} 
+\end{table*}

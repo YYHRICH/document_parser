@@ -1,0 +1,182 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "61da484f1a19f9da7683e88cc538af3fc266133eba392a7a9cdabae9d559eda2",
+    "input_parsed_document.json": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+    "optimized.md": "afa2a3d3b5c477988dca270b39ad2c3e38b667832ee68eb203a97f5c0236c227"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "558e85a8-f054-5e96-99da-a82cfe363697",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability non_table_relation_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "non_table_relation_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 1,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 1
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "c241e8a1-dd39-5507-ba1f-d1fc8b4b8feb",
+        "5bc78d8b-57f5-5af7-b591-78e48c559967",
+        "d367b032-270e-5775-bafc-a6af53fe828c",
+        "df7c0739-0ff5-5499-88eb-93fad55afd13",
+        "dbb65eb7-9664-5163-b7bf-1543ad3a8435",
+        "1021a62b-4822-51e3-8f21-43087f018686",
+        "32d6afdf-dfee-5e38-8cc8-bf9e6d39aa2b",
+        "96cb482f-4477-5178-9b0f-05e89052131d",
+        "4c8b72a5-31d9-5782-a954-fedc9bfe23bb",
+        "2eba7796-82d6-590c-b034-12fa45c7ff0f",
+        "a460a077-ac4d-5a29-908c-2f3a70eb4e86",
+        "f40c5739-802d-5f7d-ad28-c029e3b2a9d3",
+        "32236edb-f2c0-5918-8944-293b7566dce7",
+        "c37637d5-b1f2-5e32-aab6-4540914d7104",
+        "1003f2db-fb24-521d-9fe0-eb3683503c10",
+        "27bf15ad-e74e-50e9-9e43-77a26ff4bb0b",
+        "d6c501d1-1da8-5cc6-ab08-c74781e29c57",
+        "2ce1fad7-719e-58fe-ba2d-b75b5c316b24",
+        "b7bb7f61-534a-5245-bdfa-a685454852f5"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "236655dd-c100-5f15-97a3-c8d68547d4a8",
+      "message": "19 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "769b8906f3b1ef22e693581558976a0100b4c6f8d733fc2b722048637ae08779",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "arxiv-e2e-20260822:2402.16100:docling",
+      "stop_reason": "committed"
+    },
+    "binding_count": 0,
+    "canonical_block_count": 128,
+    "issue_count": 1,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 105,
+    "repair_count": 0,
+    "source_block_count": 128,
+    "table_count": 0
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

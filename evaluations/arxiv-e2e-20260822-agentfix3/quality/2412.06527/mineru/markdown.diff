@@ -1,0 +1,64 @@
+--- parsed.md
++++ optimized.md
+@@ -6,29 +6,29 @@
+ 
+ ## Contents
+ 
+-1. Introduction 2   
+-1.1. Historical overview 2   
+-1.2. Setup and past work 3   
+-1.3. Feynman rule 4   
+-1.4. Anomaly equations 7   
+-1.5. Outline 7   
+-1.6. Conventions 7   
+-Acknowledgements 8   
+-2. MSP [0] and [1] theories 8   
+-2.1. The MSP [0, 1] theory 8   
+-2.2. The MSP [0] and [1] theories 10   
+-2.3. Polynomiality of the [1] theory 12   
+-2.4. Vanishing of the [0] theory 14   
+-3. The A-model Feynman rule 17   
+-3.1. Factorization of the [0] theory 18   
+-3.2. Polynomiality of the [0] theory and the A theory 19   
+-3.3. Choice of gauge 24   
+-4. The B-model Feynman rule 25   
+-4.1. B-model geometric quantization 26   
+-4.2. Factorization of the quantization action 27   
+-4.3. Modification of the A-model quantization 28   
+-4.4. Equality of A-model and B-model potentials 30   
+-5. Anomaly equations 32   
++1. Introduction 2
++1.1. Historical overview 2
++1.2. Setup and past work 3
++1.3. Feynman rule 4
++1.4. Anomaly equations 7
++1.5. Outline 7
++1.6. Conventions 7
++Acknowledgements 8
++2. MSP [0] and [1] theories 8
++2.1. The MSP [0, 1] theory 8
++2.2. The MSP [0] and [1] theories 10
++2.3. Polynomiality of the [1] theory 12
++2.4. Vanishing of the [0] theory 14
++3. The A-model Feynman rule 17
++3.1. Factorization of the [0] theory 18
++3.2. Polynomiality of the [0] theory and the A theory 19
++3.3. Choice of gauge 24
++4. The B-model Feynman rule 25
++4.1. B-model geometric quantization 26
++4.2. Factorization of the quantization action 27
++4.3. Modification of the A-model quantization 28
++4.4. Equality of A-model and B-model potentials 30
++5. Anomaly equations 32
+ References 34
+ 
+ ## 1. Introduction
+@@ -507,7 +507,7 @@
+ and the [1] theory with special insertions
+ 
+ $$
+-{ f _ { g , ( { \bf a } , { \bf b } ) ( { \bf a ^ { \prime } } , { \bf b } ^ { \prime } ) } ^ { [ 1 ] } } : = L ^ { \sum _ { i = 1 } ^ { m } a _ { i } ^ { \prime } } \int _ { \overline { { \mathcal { M } } } _ { g , n + m } } \prod _ { i = 1 } ^ { n } \psi _ { i } ^ { b _ { i } } \prod _ { j = 1 } ^ { m } \psi _ { n + j } ^ { b _ { j } ^ { \prime } } \qquad 
++{ f _ { g , ( { \bf a } , { \bf b } ) ( { \bf a ^ { \prime } } , { \bf b } ^ { \prime } ) } ^ { [ 1 ] } } : = L ^ { \sum _ { i = 1 } ^ { m } a _ { i } ^ { \prime } } \int _ { \overline { { \mathcal { M } } } _ { g , n + m } } \prod _ { i = 1 } ^ { n } \psi _ { i } ^ { b _ { i } } \prod _ { j = 1 } ^ { m } \psi _ { n + j } ^ { b _ { j } ^ { \prime } } \qquad
+ $$
+ 
+ for $\mathbf { a } \in \{ 0 , \ldots , N + 3 \} ^ { n } , \mathbf { a } ^ { \prime } \in \{ 1 , \ldots , N \} ^ { m } , \mathbf { b } \in \mathbb { Z } _ { > 0 } ^ { n }$ , and $\mathbf { b } ^ { \prime } \in \mathbb { Z } _ { \geq 0 } ^ { m }$ . Here, we define $\begin{array} { r } { \bar { \phi } _ { a } : = L ^ { - \frac { N + 3 } { 2 } } L ^ { a } p ^ { a } | _ { \mathcal { H } _ { 1 } } = \sum _ { \alpha = 1 } ^ { N } L _ { \alpha } ^ { a } \bar { \bf 1 } _ { \alpha } . } \end{array}$

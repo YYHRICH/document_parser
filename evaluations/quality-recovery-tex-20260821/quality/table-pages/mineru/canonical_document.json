@@ -1,0 +1,5185 @@
+{
+  "blocks": [
+    {
+      "block_id": "3b915214-964d-5996-aea2-747258c795a1",
+      "content": "跨页网格表格测试",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          379.0,
+          57.0,
+          620.0,
+          80.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0001"
+      }
+    },
+    {
+      "block_id": "798ceeb4-7fff-573b-8a72-f19e2178936a",
+      "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          299.0,
+          84.0,
+          699.0,
+          98.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0002"
+      }
+    },
+    {
+      "block_id": "1c8cd6dc-b481-543a-b35e-9749bfdecc16",
+      "content": "1 表头与固定事实 TRACE-T-CAP-101",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          267.0,
+          124.0,
+          729.0,
+          145.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0003"
+      }
+    },
+    {
+      "block_id": "08ddf91b-9d1f-57a7-8b10-e1a33a6c1d3d",
+      "content": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          112.0,
+          159.0,
+          734.0,
+          174.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0004"
+      }
+    },
+    {
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "content": "| 批次 | 日期 | 指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "kind": "table",
+      "metadata": {
+        "table_id": "table-001"
+      },
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0005"
+      }
+    },
+    {
+      "block_id": "90f8b08a-1bb0-51cf-a6ce-98b4c3bb8102",
+      "content": "2 长表 TRACE-T-R03",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          357.0,
+          361.0,
+          640.0,
+          380.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0006"
+      }
+    },
+    {
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "content": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "kind": "table",
+      "metadata": {
+        "table_id": "table-002"
+      },
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0007"
+      }
+    },
+    {
+      "block_id": "5a379fcf-80b4-59cf-80ae-f3f156c9a5ee",
+      "content": "3 总结 TRACE-T-END-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          326.0,
+          860.0,
+          670.0,
+          878.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0008"
+      }
+    },
+    {
+      "block_id": "2af2eb89-695e-5d0c-8d86-17e7c7b38670",
+      "content": "最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          114.0,
+          894.0,
+          828.0,
+          909.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0009"
+      }
+    },
+    {
+      "block_id": "ab05c31c-f22f-59a2-a52c-44721a4e3671",
+      "content": "TRACE-T-HEADER",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          82.0,
+          15.0,
+          243.0,
+          28.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0010"
+      }
+    },
+    {
+      "block_id": "396694e5-6ff3-50bb-8e90-061ae6c34f78",
+      "content": "TEX-TABLE-20260821-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          712.0,
+          15.0,
+          915.0,
+          28.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0011"
+      }
+    },
+    {
+      "block_id": "50108f20-d883-56c5-ad2a-f593ebb0cc44",
+      "content": "1",
+      "kind": "page_number",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          494.0,
+          965.0,
+          504.0,
+          977.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0012"
+      }
+    }
+  ],
+  "document_id": "67ad7461-e27c-49d1-8b97-9b902122bc0d",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "c14f35d7-8149-52a4-96eb-6d4db43db3e3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c14f35d7-8149-52a4-96eb-6d4db43db3e3",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c14f35d7-8149-52a4-96eb-6d4db43db3e3",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3b915214-964d-5996-aea2-747258c795a1",
+      "relation_id": "57363d53-e0cb-5b60-a149-8061b3c1080d",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "1c8cd6dc-b481-543a-b35e-9749bfdecc16"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "fca1b708-5781-5527-ac79-a89ba1c29ad4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "fca1b708-5781-5527-ac79-a89ba1c29ad4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "fca1b708-5781-5527-ac79-a89ba1c29ad4",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3b915214-964d-5996-aea2-747258c795a1",
+      "relation_id": "2c15079e-c54e-54f4-aa52-e12d74fcd342",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "90f8b08a-1bb0-51cf-a6ce-98b4c3bb8102"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "bc974c3b-fd84-59a6-a481-8276a3de81c4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "bc974c3b-fd84-59a6-a481-8276a3de81c4",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "bc974c3b-fd84-59a6-a481-8276a3de81c4",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3b915214-964d-5996-aea2-747258c795a1",
+      "relation_id": "349056bb-386a-5f73-84a6-fd940d274bc8",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "5a379fcf-80b4-59cf-80ae-f3f156c9a5ee"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": [
+    {
+      "binding_id": "753dafb2-863d-513a-8da0-cec76e9505f2",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "col_span": 1,
+            "row_span": 2,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r2c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TABLE-ALPHA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r2c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 2
+        }
+      },
+      "row_key": "TABLE-ALPHA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "14e36c0f-d600-56bd-bff4-9251d3b70276",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "日期"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "col_span": 1,
+            "row_span": 2,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "日期"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r2c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TABLE-ALPHA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r2c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 2
+        }
+      },
+      "row_key": "TABLE-ALPHA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "2026-08-21"
+    },
+    {
+      "binding_id": "7156338e-c8fb-5662-80e9-d8a96d1ffebe",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "指标",
+        "精度"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "col_span": 2,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "指标"
+          },
+          {
+            "cell_id": "table-001:r1c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 1,
+            "text": "精度"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r2c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r1c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TABLE-ALPHA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r2c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 2
+        }
+      },
+      "row_key": "TABLE-ALPHA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "99.875%"
+    },
+    {
+      "binding_id": "47180518-dde6-573e-8a31-2fbd3e6ef38b",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "指标",
+        "成本"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "col_span": 2,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "指标"
+          },
+          {
+            "cell_id": "table-001:r1c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 1,
+            "text": "成本"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r2c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r1c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TABLE-ALPHA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r2c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 2
+        }
+      },
+      "row_key": "TABLE-ALPHA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "USD 2,450.00"
+    },
+    {
+      "binding_id": "e3c0372a-9f97-5821-b0ba-95bc4b4faf4c",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "col_span": 1,
+            "row_span": 2,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r3c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TABLE-BETA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r3c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 3
+        }
+      },
+      "row_key": "TABLE-BETA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "eeb350f0-ee35-55a7-9813-37bdd2757949",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "日期"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "col_span": 1,
+            "row_span": 2,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "日期"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r3c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TABLE-BETA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r3c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 3
+        }
+      },
+      "row_key": "TABLE-BETA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "2026-08-21"
+    },
+    {
+      "binding_id": "64a7fd51-8785-56dc-9df1-82c7642d9d37",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "指标",
+        "精度"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "col_span": 2,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "指标"
+          },
+          {
+            "cell_id": "table-001:r1c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 1,
+            "text": "精度"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r3c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r1c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TABLE-BETA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r3c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 3
+        }
+      },
+      "row_key": "TABLE-BETA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "98.250%"
+    },
+    {
+      "binding_id": "8d38b37b-189b-5a55-95f7-39a7e40b2da1",
+      "block_id": "682b9609-51cc-5f0a-a2b5-e0a819d2cdd9",
+      "column_path": [
+        "指标",
+        "成本"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "col_span": 2,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "指标"
+          },
+          {
+            "cell_id": "table-001:r1c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 1,
+            "text": "成本"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-001:r3c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r0c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-001:r1c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-001:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TABLE-BETA"
+        },
+        "value_cell": {
+          "cell_id": "table-001:r3c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 3
+        }
+      },
+      "row_key": "TABLE-BETA",
+      "source_locator": {
+        "bbox": [
+          275.0,
+          209.0,
+          721.0,
+          318.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0005"
+      },
+      "status": "inferred",
+      "table_id": "table-001",
+      "value": "USD 1,125.50"
+    },
+    {
+      "binding_id": "1b7ebf73-6b75-5b77-ab7d-2471e41e1fc0",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r1c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r1c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 1
+            }
+          ],
+          "value": "TRACE-T-R01"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r1c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 1
+        }
+      },
+      "row_key": "TRACE-T-R01",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R01"
+    },
+    {
+      "binding_id": "eb960f16-ebbb-5f16-856e-a3ab64811a8e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r1c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r1c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 1
+            }
+          ],
+          "value": "TRACE-T-R01"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r1c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 1
+        }
+      },
+      "row_key": "TRACE-T-R01",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "dd3eeac7-e0c8-5d8a-a05d-6059683cadfe",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r1c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r1c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 1
+            }
+          ],
+          "value": "TRACE-T-R01"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r1c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 1
+        }
+      },
+      "row_key": "TRACE-T-R01",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "0.03125 mm"
+    },
+    {
+      "binding_id": "ea80afad-2495-5f85-bebd-1df93a13d729",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r1c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r1c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 1
+            }
+          ],
+          "value": "TRACE-T-R01"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r1c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 1
+        }
+      },
+      "row_key": "TRACE-T-R01",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留五位小数。"
+    },
+    {
+      "binding_id": "ad902782-57f3-5a26-a9a8-8a2d9307546b",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r2c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TRACE-T-R02"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r2c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 2
+        }
+      },
+      "row_key": "TRACE-T-R02",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R02"
+    },
+    {
+      "binding_id": "4f2cc470-661f-5e41-8172-f8c8aa848ef6",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r2c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TRACE-T-R02"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r2c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 2
+        }
+      },
+      "row_key": "TRACE-T-R02",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "353e22c2-3963-57f6-a0fb-eb029b1af592",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r2c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TRACE-T-R02"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r2c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 2
+        }
+      },
+      "row_key": "TRACE-T-R02",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "4-20 mA"
+    },
+    {
+      "binding_id": "296bfed3-cc52-57d5-8467-c74a698cf2dd",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r2c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r2c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 2
+            }
+          ],
+          "value": "TRACE-T-R02"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r2c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 2
+        }
+      },
+      "row_key": "TRACE-T-R02",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留范围。"
+    },
+    {
+      "binding_id": "ec77679f-ca32-553b-98c1-1e6fec0c0342",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r3c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TRACE-T-R03"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r3c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 3
+        }
+      },
+      "row_key": "TRACE-T-R03",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R03"
+    },
+    {
+      "binding_id": "9782803b-03a1-5b2a-b2a7-921d804fa8f3",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r3c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TRACE-T-R03"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r3c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 3
+        }
+      },
+      "row_key": "TRACE-T-R03",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "b5d21c8c-318b-5726-90e0-73c02a24028e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r3c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TRACE-T-R03"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r3c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 3
+        }
+      },
+      "row_key": "TRACE-T-R03",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "A+B=C"
+    },
+    {
+      "binding_id": "ea1ac5ef-53e8-5b3d-aa93-06840563e74a",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r3c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r3c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 3
+            }
+          ],
+          "value": "TRACE-T-R03"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r3c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 3
+        }
+      },
+      "row_key": "TRACE-T-R03",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "运算符是事实。"
+    },
+    {
+      "binding_id": "e1682491-15bb-57c0-9d2d-5a6ae28fe847",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r4c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r4c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 4
+            }
+          ],
+          "value": "TRACE-T-R04"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r4c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 4
+        }
+      },
+      "row_key": "TRACE-T-R04",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R04"
+    },
+    {
+      "binding_id": "8836ee64-14ab-5c49-92a4-a8cad6b49b37",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r4c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r4c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 4
+            }
+          ],
+          "value": "TRACE-T-R04"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r4c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 4
+        }
+      },
+      "row_key": "TRACE-T-R04",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "5532d381-a291-56df-b99d-461724bee41c",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r4c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r4c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 4
+            }
+          ],
+          "value": "TRACE-T-R04"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r4c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 4
+        }
+      },
+      "row_key": "TRACE-T-R04",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "7/16 in"
+    },
+    {
+      "binding_id": "b883b88f-d326-5986-9e16-0cdca4f7997c",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r4c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r4c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 4
+            }
+          ],
+          "value": "TRACE-T-R04"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r4c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 4
+        }
+      },
+      "row_key": "TRACE-T-R04",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留尺寸。"
+    },
+    {
+      "binding_id": "35feefa1-3981-58d7-b158-5320bbf84c16",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r5c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r5c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 5
+            }
+          ],
+          "value": "TRACE-T-R05"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r5c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 5
+        }
+      },
+      "row_key": "TRACE-T-R05",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R05"
+    },
+    {
+      "binding_id": "8399951c-e5f4-5c6f-a90a-cc2e5eaf9431",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r5c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r5c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 5
+            }
+          ],
+          "value": "TRACE-T-R05"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r5c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 5
+        }
+      },
+      "row_key": "TRACE-T-R05",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "0b6197c4-5e80-51dc-910c-0e6628b43050",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r5c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r5c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 5
+            }
+          ],
+          "value": "TRACE-T-R05"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r5c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 5
+        }
+      },
+      "row_key": "TRACE-T-R05",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "1.2500 kg"
+    },
+    {
+      "binding_id": "178682e3-ab3c-5aab-b2a5-44763a0bd73d",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r5c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r5c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 5
+            }
+          ],
+          "value": "TRACE-T-R05"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r5c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 5
+        }
+      },
+      "row_key": "TRACE-T-R05",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留尾随零。"
+    },
+    {
+      "binding_id": "669253d2-b5f9-5274-b05b-a3f0225cf81e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r6c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r6c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 6
+            }
+          ],
+          "value": "TRACE-T-R06"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r6c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 6
+        }
+      },
+      "row_key": "TRACE-T-R06",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R06"
+    },
+    {
+      "binding_id": "44beb1af-ad9f-5615-b7b4-dfc876e02806",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r6c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r6c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 6
+            }
+          ],
+          "value": "TRACE-T-R06"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r6c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 6
+        }
+      },
+      "row_key": "TRACE-T-R06",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "9fe852ec-9ccb-5d20-8dfd-a04f87115aa0",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r6c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r6c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 6
+            }
+          ],
+          "value": "TRACE-T-R06"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r6c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 6
+        }
+      },
+      "row_key": "TRACE-T-R06",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "USD 2,450.00"
+    },
+    {
+      "binding_id": "32f004b9-69a6-5086-94a4-e1f93ec7fd81",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r6c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r6c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 6
+            }
+          ],
+          "value": "TRACE-T-R06"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r6c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 6
+        }
+      },
+      "row_key": "TRACE-T-R06",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留货币。"
+    },
+    {
+      "binding_id": "b597890b-eaad-5be9-9411-1726cd54524f",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r7c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r7c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 7
+            }
+          ],
+          "value": "TRACE-T-R07"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r7c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 7
+        }
+      },
+      "row_key": "TRACE-T-R07",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R07"
+    },
+    {
+      "binding_id": "9f205963-801d-515b-9865-5cb270fdca6f",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r7c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r7c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 7
+            }
+          ],
+          "value": "TRACE-T-R07"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r7c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 7
+        }
+      },
+      "row_key": "TRACE-T-R07",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "8af881f9-887f-54b2-b6f2-2285f9982c13",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r7c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r7c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 7
+            }
+          ],
+          "value": "TRACE-T-R07"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r7c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 7
+        }
+      },
+      "row_key": "TRACE-T-R07",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "0.005%"
+    },
+    {
+      "binding_id": "535dea1a-85a2-5c2a-bdc6-36f46070dbdb",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r7c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r7c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 7
+            }
+          ],
+          "value": "TRACE-T-R07"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r7c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 7
+        }
+      },
+      "row_key": "TRACE-T-R07",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留百分号。"
+    },
+    {
+      "binding_id": "24396172-99f6-5ac3-a112-6b119f7ddf8f",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r8c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r8c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 8
+            }
+          ],
+          "value": "TRACE-T-R08"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r8c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 8
+        }
+      },
+      "row_key": "TRACE-T-R08",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R08"
+    },
+    {
+      "binding_id": "6e0466c9-4ed6-5f9f-9315-fc8437ad23df",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r8c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r8c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 8
+            }
+          ],
+          "value": "TRACE-T-R08"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r8c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 8
+        }
+      },
+      "row_key": "TRACE-T-R08",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "e9c34702-b4fa-5dd8-ae87-4ec4e053535e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r8c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r8c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 8
+            }
+          ],
+          "value": "TRACE-T-R08"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r8c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 8
+        }
+      },
+      "row_key": "TRACE-T-R08",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "2026-08-21"
+    },
+    {
+      "binding_id": "994a4f37-e12c-5b2b-8a71-5c82e6dba8c1",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r8c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r8c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 8
+            }
+          ],
+          "value": "TRACE-T-R08"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r8c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 8
+        }
+      },
+      "row_key": "TRACE-T-R08",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "保留日期。"
+    },
+    {
+      "binding_id": "1530e8c3-e8a2-52f6-bdae-2e14746fd5c3",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r9c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r9c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 9
+            }
+          ],
+          "value": "TRACE-T-R09"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r9c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 9
+        }
+      },
+      "row_key": "TRACE-T-R09",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R09"
+    },
+    {
+      "binding_id": "7ff6489f-15a3-5538-acc4-ce288d459b54",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r9c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r9c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 9
+            }
+          ],
+          "value": "TRACE-T-R09"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r9c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 9
+        }
+      },
+      "row_key": "TRACE-T-R09",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "c4258cb0-9020-591f-9a5f-387fe36e077c",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r9c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r9c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 9
+            }
+          ],
+          "value": "TRACE-T-R09"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r9c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 9
+        }
+      },
+      "row_key": "TRACE-T-R09",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "2.25 mm"
+    },
+    {
+      "binding_id": "3a53f008-2650-504b-879d-d370bb33cfc9",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r9c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r9c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 9
+            }
+          ],
+          "value": "TRACE-T-R09"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r9c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 9
+        }
+      },
+      "row_key": "TRACE-T-R09",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "页面边界前记录。"
+    },
+    {
+      "binding_id": "bcde5d5a-0052-5f12-befa-16dce45dff13",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r10c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r10c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 10
+            }
+          ],
+          "value": "TRACE-T-R10"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r10c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 10
+        }
+      },
+      "row_key": "TRACE-T-R10",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R10"
+    },
+    {
+      "binding_id": "d917b562-b35d-523d-9d3c-fbf920debb35",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r10c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r10c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 10
+            }
+          ],
+          "value": "TRACE-T-R10"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r10c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 10
+        }
+      },
+      "row_key": "TRACE-T-R10",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "f49775cd-d797-580a-863f-b46fbfefb73a",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r10c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r10c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 10
+            }
+          ],
+          "value": "TRACE-T-R10"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r10c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 10
+        }
+      },
+      "row_key": "TRACE-T-R10",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "3.50 mm"
+    },
+    {
+      "binding_id": "5bc45404-0dfc-573e-9f43-034d917f8d89",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r10c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r10c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 10
+            }
+          ],
+          "value": "TRACE-T-R10"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r10c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 10
+        }
+      },
+      "row_key": "TRACE-T-R10",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "跨页后记录。"
+    },
+    {
+      "binding_id": "42797ced-a7a3-5180-9ea1-442761017685",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r11c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r11c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 11
+            }
+          ],
+          "value": "TRACE-T-R11"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r11c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 11
+        }
+      },
+      "row_key": "TRACE-T-R11",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R11"
+    },
+    {
+      "binding_id": "fb3a4212-da57-5f96-b2fc-20b0456a4486",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r11c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r11c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 11
+            }
+          ],
+          "value": "TRACE-T-R11"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r11c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 11
+        }
+      },
+      "row_key": "TRACE-T-R11",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "37f47d63-53e1-5d32-ad18-e264695c60e0",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r11c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r11c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 11
+            }
+          ],
+          "value": "TRACE-T-R11"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r11c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 11
+        }
+      },
+      "row_key": "TRACE-T-R11",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "4.75 mm"
+    },
+    {
+      "binding_id": "b19dd1fa-78fe-5fba-8ca7-bbf9480dd196",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r11c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r11c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 11
+            }
+          ],
+          "value": "TRACE-T-R11"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r11c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 11
+        }
+      },
+      "row_key": "TRACE-T-R11",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "继续追踪。"
+    },
+    {
+      "binding_id": "83e580a4-d581-5cef-b758-be37d3525c1a",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r12c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r12c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 12
+            }
+          ],
+          "value": "TRACE-T-R12"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r12c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 12
+        }
+      },
+      "row_key": "TRACE-T-R12",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R12"
+    },
+    {
+      "binding_id": "5ad81e3c-6ec4-5b1e-832b-c398d4fef32d",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r12c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r12c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 12
+            }
+          ],
+          "value": "TRACE-T-R12"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r12c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 12
+        }
+      },
+      "row_key": "TRACE-T-R12",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "d3a3dc58-45c1-5da3-8711-a9b877a3d0bd",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r12c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r12c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 12
+            }
+          ],
+          "value": "TRACE-T-R12"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r12c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 12
+        }
+      },
+      "row_key": "TRACE-T-R12",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "6.00 mm"
+    },
+    {
+      "binding_id": "2b734b07-d9cc-5439-bea3-4f1f9324a002",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r12c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r12c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 12
+            }
+          ],
+          "value": "TRACE-T-R12"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r12c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 12
+        }
+      },
+      "row_key": "TRACE-T-R12",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "继续追踪。"
+    },
+    {
+      "binding_id": "c1b1e5e4-0bb4-5554-b131-8e2383b7fa70",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r13c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r13c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 13
+            }
+          ],
+          "value": "TRACE-T-R13"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r13c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 13
+        }
+      },
+      "row_key": "TRACE-T-R13",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R13"
+    },
+    {
+      "binding_id": "7486865a-a1e3-5c21-8ee5-1c296fe7dfe0",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r13c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r13c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 13
+            }
+          ],
+          "value": "TRACE-T-R13"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r13c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 13
+        }
+      },
+      "row_key": "TRACE-T-R13",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "7bb17374-ffa8-528c-8239-64ada4676ef4",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r13c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r13c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 13
+            }
+          ],
+          "value": "TRACE-T-R13"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r13c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 13
+        }
+      },
+      "row_key": "TRACE-T-R13",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "8.125 mm"
+    },
+    {
+      "binding_id": "1d7b4b79-aacf-558b-b991-2c25b9597bd1",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r13c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r13c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 13
+            }
+          ],
+          "value": "TRACE-T-R13"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r13c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 13
+        }
+      },
+      "row_key": "TRACE-T-R13",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "继续追踪。"
+    },
+    {
+      "binding_id": "23ace681-067e-5681-8769-ed33f99c4f45",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r14c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r14c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 14
+            }
+          ],
+          "value": "TRACE-T-R14"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r14c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 14
+        }
+      },
+      "row_key": "TRACE-T-R14",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R14"
+    },
+    {
+      "binding_id": "99ea31b1-a1f2-5173-b1fc-f38292fa18d5",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r14c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r14c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 14
+            }
+          ],
+          "value": "TRACE-T-R14"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r14c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 14
+        }
+      },
+      "row_key": "TRACE-T-R14",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "c3a86c04-b45d-53b1-9676-5141d40e359c",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r14c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r14c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 14
+            }
+          ],
+          "value": "TRACE-T-R14"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r14c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 14
+        }
+      },
+      "row_key": "TRACE-T-R14",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "9.250 mm"
+    },
+    {
+      "binding_id": "ad3af655-35fc-5e71-9148-896a24a3a058",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r14c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r14c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 14
+            }
+          ],
+          "value": "TRACE-T-R14"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r14c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 14
+        }
+      },
+      "row_key": "TRACE-T-R14",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "继续追踪。"
+    },
+    {
+      "binding_id": "0a733898-e560-5fea-818a-acb9368a7eb9",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r15c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r15c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 15
+            }
+          ],
+          "value": "TRACE-T-R15"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r15c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 15
+        }
+      },
+      "row_key": "TRACE-T-R15",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R15"
+    },
+    {
+      "binding_id": "fa1260b3-55f7-5e56-9698-f5b65e8719d8",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r15c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r15c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 15
+            }
+          ],
+          "value": "TRACE-T-R15"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r15c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 15
+        }
+      },
+      "row_key": "TRACE-T-R15",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-ALPHA"
+    },
+    {
+      "binding_id": "401dabaf-4150-58f8-a0c8-f6ac7beb0e1e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r15c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r15c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 15
+            }
+          ],
+          "value": "TRACE-T-R15"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r15c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 15
+        }
+      },
+      "row_key": "TRACE-T-R15",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "10.375 mm"
+    },
+    {
+      "binding_id": "7306b156-c452-502b-b97f-d6dff8ddae09",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r15c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r15c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 15
+            }
+          ],
+          "value": "TRACE-T-R15"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r15c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 15
+        }
+      },
+      "row_key": "TRACE-T-R15",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "继续追踪。"
+    },
+    {
+      "binding_id": "582d7e57-b814-550a-a471-767f1c459a5e",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "标记"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c0",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 0,
+            "start_row": 0,
+            "text": "标记"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r16c0",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c0",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r16c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 16
+            }
+          ],
+          "value": "TRACE-T-R16"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r16c0",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 0,
+          "start_row": 16
+        }
+      },
+      "row_key": "TRACE-T-R16",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TRACE-T-R16"
+    },
+    {
+      "binding_id": "887c6fa1-1866-5ffd-9d61-59ac76023774",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "批次"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c1",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 1,
+            "start_row": 0,
+            "text": "批次"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r16c1",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c1",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r16c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 16
+            }
+          ],
+          "value": "TRACE-T-R16"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r16c1",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 1,
+          "start_row": 16
+        }
+      },
+      "row_key": "TRACE-T-R16",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "TABLE-BETA"
+    },
+    {
+      "binding_id": "aa9a7d00-e474-5ca1-a557-16aaf89c5180",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "测量值"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c2",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 2,
+            "start_row": 0,
+            "text": "测量值"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r16c2",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c2",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r16c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 16
+            }
+          ],
+          "value": "TRACE-T-R16"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r16c2",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 2,
+          "start_row": 16
+        }
+      },
+      "row_key": "TRACE-T-R16",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "11.500 mm"
+    },
+    {
+      "binding_id": "f7f21495-7de6-53f0-95e7-5da275a1e755",
+      "block_id": "3fe281ac-76fd-5a7f-ac3f-cbb2fc8099b0",
+      "column_path": [
+        "说明"
+      ],
+      "evidence": {
+        "column_path_segments": [
+          {
+            "cell_id": "table-002:r0c3",
+            "col_span": 1,
+            "row_span": 1,
+            "start_col": 3,
+            "start_row": 0,
+            "text": "说明"
+          }
+        ],
+        "refs": [
+          {
+            "field_path": "text",
+            "object_id": "table-002:r16c3",
+            "object_type": "cell"
+          },
+          {
+            "field_path": "text",
+            "object_id": "table-002:r0c3",
+            "object_type": "cell"
+          }
+        ],
+        "row_key": {
+          "source_cells": [
+            {
+              "cell_id": "table-002:r16c0",
+              "col_span": 1,
+              "row_span": 1,
+              "start_col": 0,
+              "start_row": 16
+            }
+          ],
+          "value": "TRACE-T-R16"
+        },
+        "value_cell": {
+          "cell_id": "table-002:r16c3",
+          "col_span": 1,
+          "row_span": 1,
+          "start_col": 3,
+          "start_row": 16
+        }
+      },
+      "row_key": "TRACE-T-R16",
+      "source_locator": {
+        "bbox": [
+          105.0,
+          437.0,
+          894.0,
+          829.0
+        ],
+        "bbox_granularity": "table",
+        "page_number": 1,
+        "provenance_status": "inferred",
+        "source_block_id": "mineru-content-0007"
+      },
+      "status": "inferred",
+      "table_id": "table-002",
+      "value": "最后一行可追踪。"
+    }
+  ]
+}

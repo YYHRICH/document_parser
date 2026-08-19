@@ -1,0 +1,404 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "双栏阅读顺序测试"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                378,
+                64,
+                620,
+                87
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                267,
+                92,
+                729,
+                108
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 左栏校验 TRACE-C-LEFT-101"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                90,
+                124,
+                492,
+                145
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。"
+                    }
+                ]
+            },
+            "bbox": [
+                89,
+                162,
+                494,
+                200
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. LEFT-CHECK-A1：准备输入。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                205,
+                396,
+                222
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. LEFT-CHECK-A2：确认 threshold 0.25。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                227,
+                495,
+                243
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1.1 左栏公式 TRACE-C-LEFT-111"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                90,
+                268,
+                447,
+                286
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。"
+                    }
+                ]
+            },
+            "bbox": [
+                87,
+                300,
+                494,
+                338
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 右栏校验"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                633,
+                124,
+                776,
+                145
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-C-RIGHT-201"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                583,
+                153,
+                865,
+                172
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。"
+                    }
+                ]
+            },
+            "bbox": [
+                502,
+                189,
+                909,
+                227
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. RIGHT-CHECK-B1：读取第二路输入。"
+                    }
+                ]
+            },
+            "bbox": [
+                524,
+                231,
+                877,
+                248
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。"
+                    }
+                ]
+            },
+            "bbox": [
+                524,
+                252,
+                991,
+                269
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.1 右栏结论 TRACE-C-RIGHT-211"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                502,
+                291,
+                877,
+                309
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "右栏结论不能被提前插入左栏中间。"
+                    }
+                ]
+            },
+            "bbox": [
+                537,
+                321,
+                831,
+                338
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-COLUMNS-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                22,
+                349,
+                36
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-COLUMNS-20260820-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                653,
+                22,
+                905,
+                36
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                958,
+                505,
+                971
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3 双栏结束 TRACE-C-END-301"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                300,
+                65,
+                695,
+                83
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。"
+                    }
+                ]
+            },
+            "bbox": [
+                89,
+                102,
+                909,
+                139
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-COLUMNS-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                22,
+                347,
+                36
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-COLUMNS-20260820-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                653,
+                22,
+                905,
+                35
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                958,
+                505,
+                970
+            ]
+        }
+    ]
+]

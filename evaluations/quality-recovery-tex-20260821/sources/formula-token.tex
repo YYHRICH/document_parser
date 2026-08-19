@@ -1,0 +1,42 @@
+% TRACE-SOURCE-ID: TEX-FORMULA-20260821-V1
+\documentclass[11pt,a4paper]{ctexart}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,fancyhdr,hyperref}
+\hypersetup{pdftitle={Traceable Formula Token Evaluation},pdfsubject={TEX-FORMULA-20260821-V1}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{TRACE-F-HEADER}\fancyhead[R]{TEX-FORMULA-20260821-V1}\fancyfoot[C]{\thepage}
+\begin{document}
+\begin{center}
+{\LARGE 公式符号保真测试}\par
+{\small TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1}
+\end{center}
+
+\section{固定事实 TRACE-F-SEC-101}
+记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。
+本页测试比较符号、正负号、分数和上下标的保留。
+
+\subsection{数学表达式 TRACE-F-EQ-111}
+\begin{align}
+  score &\leq 0.875, & delta &\geq 0.125, \\
+  x &\neq y, & z &= \pm 0.05
+  \tag{TRACE-F-EQ-111}
+\end{align}
+约束函数为 $f(t)=\frac{t^2+1}{t+1}$，并且 $n\in\mathbb{N}$。
+
+\begin{table}[h]
+\centering
+\caption{符号核对表 TRACE-F-TABLE-121}
+\begin{tabular}{lll}
+\toprule
+标记 & 条件 & 值\\
+\midrule
+FORMULA-42 & score $\leq$ 0.875 & EUR 4,321.09\\
+TRACE-F-TABLE-121 & delta $\geq$ 0.125 & $\pm$0.05\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+\section{跨页结论 TRACE-F-END-201}
+结论要求保留 score $\leq$ 0.875、delta $\geq$ 0.125、$x\neq y$ 和 $\pm$0.05。
+任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。
+\end{document}

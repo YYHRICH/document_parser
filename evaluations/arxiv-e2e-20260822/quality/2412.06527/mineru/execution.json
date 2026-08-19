@@ -1,0 +1,44 @@
+{
+  "session_id": "arxiv-e2e-20260822:2412.06527:mineru",
+  "accepted": false,
+  "final_revision_id": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "rejected_candidate",
+      "message": "候选未通过确定性校验。",
+      "errors": [
+        "候选改变了事实词元，质量层只允许格式/结构修复。"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [
+        "70866484-76ac-5e6f-9b88-80b3c1a45e9e",
+        "3e901494-fc19-5e40-ac62-79c748fbf80e",
+        "8f3a821b-1c6e-5806-b352-828c91ece8b7",
+        "79ba34cb-e85b-5dd7-a52c-75da169fbf58"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+      "source_content_fingerprint": "sem-v2:b0e155bfa9da8a1696cd0de4e75a9b801d4097ccde01eda0a4c8e3b3fea657dc",
+      "candidate_content_fingerprint": "sem-v2:7e7d2b3835b80bd86076147785c37dada5c65f827e7e5c953fd3ce24ced46207"
+    },
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

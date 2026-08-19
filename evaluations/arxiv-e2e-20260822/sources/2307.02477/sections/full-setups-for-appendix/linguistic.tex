@@ -1,0 +1,18 @@
+\subsection{Basic Syntactic Reasoning}
+
+We follow \citet{ravfogel2019studying} and create synthetic variants of English with all six orderings of the subject, verb, and object. 
+Given a dependency tree of a regular English sentence, we alter the order of subject and object nodes with respect to the corresponding verb. The subtrees rooted at subject or object nodes are moved as a whole, whereas other non-core dependent nodes (e.g., prepositional phrases) are kept in the original positions. We use 100 sentences from English Penn Treebank~\cite{marcus1993building}, and convert the original phrase-structure trees into Universal Dependencies~\cite{nivre2016universal} using the Stanford converter~\cite{schuster2016enhanced}. 
+
+Our task is to identify the main verb and the main subject of a sentence. We only choose sentences where the main subject contains a single word. 
+\citet{ravfogel2019studying}'s data generation procedure sometimes results in sentences in the SVO order to be unnatural English sentences. To eliminate this complexity, we retain only sentences whose SVO variant according to \citet{ravfogel2019studying}'s data generation procedure is identical to the original English sentence.
+
+We designed the CCC to assess how well LMs understand the instruction that explains the difference of word orders in the counterfactual settings. We synthetically generate 100 simple three-word sentences (e.g., ``\texttt{anna saw john}'') in five counterfactual word orders (e.g., ``\texttt{anna john saw}'' in SOV), and ask LMs to reconstruct the original English sentences in SVO order. Conceptually, this is equivalent to asking the model to identify the subject, verb, and object in the perturbed order, but using a format that is more familiar to the LM. %
+
+To generate the simple sentences for the CCC, we designed a simple context-free grammar where the subject and the object are sampled from the vocabulary of person names, and the verb is sampled from the set $\{$\texttt{saw, loves, calls, knows, sees}$\}$. A key feature of the sentences generated from this approach is their retained plausibility when the subject and object are interchanged. This means that given a counterfactual sentence (e.g., ``\texttt{anna john saw}''), there are two natural English sentences as candidates for reconstruction (i.e., ``\texttt{anna saw john}'' and ``\texttt{john saw anna}'').  Due to this inherent ambiguity,  LMs cannot default to the heuristic of treating the synthetic sentence as bag-of-words and then reconstructing the most natural ordering of those words in real English.
+The random baseline chooses a random noun as the main subject and a random verb as the main verb.
+
+\paragraph{A note on CCC results.}
+The results for this task are shown in Table~\ref{tab:word_order_raw}. Generally, the models pass our crafted CCC challenge with decent accuracy, but we observed that, in a few cases, the LMs are confused by the reconstruction ambiguity explained above. GPT-3.5 and Claude fail in the OVS settings where they often directly copy the original sentence---e.g., instead of reconstructing ``\texttt{anna saw john}'' to ``\texttt{john saw anna}'', they simply copy the original sentence ``\texttt{anna saw john}'' as the output. Similarly, PaLM-2 often incorrectly reverses the subject and object in the SOV and VSO settings---e.g., instead of reconstructing ``\texttt{calls tom lucas}'' to ``\texttt{tom calls lucas}'', it outputs ``\texttt{lucas calls tom}''. 
+
+
+

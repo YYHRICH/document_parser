@@ -1,0 +1,26 @@
+\section{Discussion} \label{sec:discussion}
+
+
+\textbf{Do humans also perform worse with unfamiliar counterfactual conditions?}
+It is possible that humans may have lower performance under the counterfactual conditions with a fixed time budget, but not necessarily when given ample time to reason and revise. Analogous to the classic competence/performance distinction in linguistics \cite[\S1.1]{chomsky1965}, we hypothesize that humans have the \emph{competence} to generalize to new task conditions, even though it may sometimes require sufficient execution budget to realize it as robust \emph{performance}.\footnote{It is arguable if our evaluation setting provides sufficient execution budget~\citep{lampinen2023language}. Our in-context learning experiment (\S\ref{sec:analysis-icl}) may be thought of as increasing this budget, and yet the default-counterfactual gap is still sizeable there.}
+In fact, there is increasing evidence from cognitive science that human reasoning is scaffolded by rich causal models of the world~\citep{pearl1988,Lake2017-LAKBMT,ullman2020bayesian,wong2023word}, and that humans can intervene on these models to perform rapid and flexible counterfactual simulations~\citep{Lagnado2013CausalRA,Gerstenberg2017EyeTrackingC,Gerstenberg2021ACS}.
+However, stepping back, replicating or modeling human intelligence need not be a main goal of LMs in the first place, and human behavior is largely orthogonal to the desiderata we set for these models.
+
+\textbf{Is task-specific reasoning bad?}
+It is not necessarily bad when solving familiar tasks, but an ideal system should also possess general reasoning abilities that, when prompted, can be used to generalize to novel situations. Our point is that memorization is an often-overlooked confounding factor in interpreting LMs' reasoning abilities.
+
+\textbf{Why do we care about counterfactual worlds? Wouldn't a model for only the default task instantiation be nonetheless useful?}
+It is certainly true that such a model would  still be useful. However, many of the counterfactual worlds that we investigate are not very distant so that model performance under them still bears utility. For example, addition in different bases is certainly useful for many applications. More generally, we are necessarily interested in the counterfactual tasks themselves; we are only interested in them insofar as performance on these tasks can serve as a measurable proxy for the generalizability of these models and their underlying reasoning capabilities. %
+
+
+
+
+\textbf{Aren't the observed trends trivial? The default task variant is likely the most frequent during pretraining, so of course an LM performs better under it.}
+Indeed,  our results parallel the classic train-test gap in machine learning. However, an ideal learner with the right inductive biases should be able to structure their internal parameters and representations to implement general-purpose abstractions (e.g., the concept of addition), and use these abstractions to generalize to counterfactual conditions, analogous to physicists using mathematical abstractions to make predictions about universes that are substantially different from our own, or more generally to humans who can generalize to new stimuli in cognitive science studies~\citep{Lagnado2013CausalRA,Gerstenberg2017EyeTrackingC,Gerstenberg2021ACS}. Our study indicates that LMs trained on large text corpora,
+remarkable as they may be, are still quite susceptible to overfitting with frequency effects.
+
+\textbf{Can some more carefully designed prompts eliminate the default-counterfactual gap?}
+This is always a possibility, and one that we can never tractably rule out. Nevertheless, given the consistency of the gap across our tasks (which use different prompts) and the 0-shot CoT setting, we believe that a prompt that \emph{completely} bridges the default-counterfactual gap is unlikely.   Our in-context learning experiment (\S\ref{sec:analysis-icl}) further shows that while this gap could be reduced by more informative prompts,  it is not fully removed. It would be interesting to apply more advanced prompting techniques~\citepia{wang2022self,wang-etal-2022-iteratively,yao2023tree,sordoni2023deep} to our counterfactual tasks. We considered 0-shot chain-of-thought in this work, which did not fully bridge the default-counterfactual gap, but we leave the exploration of these more recent prompting techniques to future work.
+
+
+

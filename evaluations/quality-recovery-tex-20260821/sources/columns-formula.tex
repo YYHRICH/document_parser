@@ -1,0 +1,43 @@
+% TRACE-SOURCE-ID: TEX-COLUMNS-20260821-V1
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,multicol,fancyhdr,hyperref}
+\hypersetup{pdftitle={Traceable Columns Formula Evaluation},pdfsubject={TEX-COLUMNS-20260821-V1}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{TRACE-C2-HEADER}\fancyhead[R]{TEX-COLUMNS-20260821-V1}\fancyfoot[C]{\thepage}
+\begin{document}
+\begin{center}
+{\LARGE 双栏公式阅读顺序测试}\par
+{\small TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1}
+\end{center}
+
+\begin{multicols}{2}
+\section{左栏 TRACE-C2-LEFT-101}
+左栏第一项为 COLUMN-A1，第二项为 COLUMN-A2。两项必须按左栏顺序出现。
+
+\begin{enumerate}
+\item COLUMN-A1：读取输入。
+\item COLUMN-A2：检查 $p\leq 1$。
+\end{enumerate}
+
+\subsection{左栏公式 TRACE-C2-EQ-211}
+\begin{equation}
+  p + q = 1,\qquad q\geq 0
+  \tag{TRACE-C2-EQ-211}
+\end{equation}
+
+\columnbreak
+\section{右栏 TRACE-C2-RIGHT-201}
+右栏第一项为 COLUMN-B1，第二项为 COLUMN-B2。它们不能插入左栏中间。
+
+\begin{enumerate}
+\item COLUMN-B1：读取第二路输入。
+\item COLUMN-B2：保存 DOI 10.8888/columns.2026。
+\end{enumerate}
+
+右栏补充约束为 $r\geq 0$，并保留原始关系。
+\end{multicols}
+
+\section{双栏结论 TRACE-C2-END-301}
+最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。
+公式事实包括 $p\leq 1$、$q\geq 0$ 和 DOI 10.8888/columns.2026。
+\end{document}

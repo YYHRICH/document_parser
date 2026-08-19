@@ -1,0 +1,23 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lccccc}
+        \toprule
+        & \multicolumn{4}{c}{Tests} & \multirow{3}{*}{CCC} \\
+        \cmidrule(lr){2-5}
+        & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        & Default & CF & Default & CF \\
+        \midrule
+        \# instances & \multicolumn{4}{c}{81} & 310 \\
+        \midrule
+        GPT-4 & 93.8 & 74.1 & 98.8 & 82.7 & 97.4 \\
+        GPT-3.5 & 79.0 & 43.2 & 65.4 & 42.0 & 90.3 \\
+        Claude & 27.2 & 16.0 & 40.7 & 17.3 & 55.2 \\
+        PaLM-2 & 84.0 & 66.7 & 88.9 & 74.1 & 70.6 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    Results for the logical reasoning task (in accuracy; \%).
+    }
+\end{table*}

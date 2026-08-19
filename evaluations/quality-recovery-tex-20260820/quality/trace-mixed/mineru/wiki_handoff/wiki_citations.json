@@ -1,0 +1,354 @@
+[
+  {
+    "citation_id": "block:5aa3f2a2-e896-59a4-b35d-ba095b78964b",
+    "canonical_block_id": "5aa3f2a2-e896-59a4-b35d-ba095b78964b",
+    "source_block_id": "mineru-content-0001",
+    "page_number": 1,
+    "bbox": [
+      277.0,
+      71.0,
+      717.0,
+      115.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:117948a6-f858-571e-ba90-f0734a93cdac",
+    "canonical_block_id": "117948a6-f858-571e-ba90-f0734a93cdac",
+    "source_block_id": "mineru-content-0002",
+    "page_number": 1,
+    "bbox": [
+      265.0,
+      142.0,
+      729.0,
+      162.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:e8b2af01-3464-57c7-8852-a613e544134f",
+    "canonical_block_id": "e8b2af01-3464-57c7-8852-a613e544134f",
+    "source_block_id": "mineru-content-0003",
+    "page_number": 1,
+    "bbox": [
+      99.0,
+      179.0,
+      899.0,
+      217.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:c3842cb3-fa2a-5c9f-afc7-d8d35aa3e634",
+    "canonical_block_id": "c3842cb3-fa2a-5c9f-afc7-d8d35aa3e634",
+    "source_block_id": "mineru-content-0004",
+    "page_number": 1,
+    "bbox": [
+      99.0,
+      240.0,
+      453.0,
+      256.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:16ef4356-c972-580b-8efb-85e9082da7a3",
+    "canonical_block_id": "16ef4356-c972-580b-8efb-85e9082da7a3",
+    "source_block_id": "mineru-content-0005",
+    "page_number": 1,
+    "bbox": [
+      121.0,
+      269.0,
+      455.0,
+      285.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:9059dcce-0792-5c3c-97f0-cc2b58592024",
+    "canonical_block_id": "9059dcce-0792-5c3c-97f0-cc2b58592024",
+    "source_block_id": "mineru-content-0006",
+    "page_number": 1,
+    "bbox": [
+      121.0,
+      290.0,
+      401.0,
+      306.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:deb2790e-3eb6-5a63-a845-a5bfe48bf91d",
+    "canonical_block_id": "deb2790e-3eb6-5a63-a845-a5bfe48bf91d",
+    "source_block_id": "mineru-content-0007",
+    "page_number": 1,
+    "bbox": [
+      121.0,
+      311.0,
+      363.0,
+      328.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:9bd2bf96-c8ae-59a2-bea3-14f86888143c",
+    "canonical_block_id": "9bd2bf96-c8ae-59a2-bea3-14f86888143c",
+    "source_block_id": "mineru-content-0008",
+    "page_number": 1,
+    "bbox": [
+      100.0,
+      350.0,
+      487.0,
+      367.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:bce32f70-7189-5523-ae18-3230dd98f0ed",
+    "canonical_block_id": "bce32f70-7189-5523-ae18-3230dd98f0ed",
+    "source_block_id": "mineru-content-0009",
+    "page_number": 1,
+    "bbox": [
+      134.0,
+      380.0,
+      689.0,
+      397.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:e16675d4-2008-5de6-a64a-3fdc143fbe4a",
+    "canonical_block_id": "e16675d4-2008-5de6-a64a-3fdc143fbe4a",
+    "source_block_id": "mineru-content-0010",
+    "page_number": 1,
+    "bbox": [
+      341.0,
+      414.0,
+      457.0,
+      432.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:5d7fd9fa-5a2e-577b-b400-aa781c85416c",
+    "canonical_block_id": "5d7fd9fa-5a2e-577b-b400-aa781c85416c",
+    "source_block_id": "mineru-content-0011",
+    "page_number": 1,
+    "bbox": [
+      692.0,
+      414.0,
+      897.0,
+      431.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:92c8d172-5f05-593a-b976-44744c873d11",
+    "canonical_block_id": "92c8d172-5f05-593a-b976-44744c873d11",
+    "source_block_id": "mineru-content-0012",
+    "page_number": 1,
+    "bbox": [
+      99.0,
+      449.0,
+      515.0,
+      464.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:f0715589-86b7-5526-9489-8517d446bfd8",
+    "canonical_block_id": "f0715589-86b7-5526-9489-8517d446bfd8",
+    "source_block_id": "mineru-content-0013",
+    "page_number": 1,
+    "bbox": [
+      494.0,
+      952.0,
+      504.0,
+      963.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:a0b71418-c250-5d2f-9de3-f00e08923c81",
+    "canonical_block_id": "a0b71418-c250-5d2f-9de3-f00e08923c81",
+    "source_block_id": "mineru-content-0014",
+    "page_number": 1,
+    "bbox": [
+      100.0,
+      28.0,
+      302.0,
+      43.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:34f30df6-9a36-5ae9-a5aa-af0f704e24b1",
+    "canonical_block_id": "34f30df6-9a36-5ae9-a5aa-af0f704e24b1",
+    "source_block_id": "mineru-content-0015",
+    "page_number": 1,
+    "bbox": [
+      673.0,
+      28.0,
+      895.0,
+      43.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:407b9a5d-22ef-5b56-9330-ad4fe628800c",
+    "canonical_block_id": "407b9a5d-22ef-5b56-9330-ad4fe628800c",
+    "source_block_id": "mineru-content-0016",
+    "page_number": 1,
+    "bbox": [
+      119.0,
+      914.0,
+      536.0,
+      931.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:880f58a6-eb22-5ff6-9669-eb220a5d997b",
+    "canonical_block_id": "880f58a6-eb22-5ff6-9669-eb220a5d997b",
+    "source_block_id": "mineru-content-0017",
+    "page_number": 2,
+    "bbox": [
+      300.0,
+      72.0,
+      695.0,
+      91.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:bdf2d19b-0dc8-5ee2-ba2c-2a1e107e9829",
+    "canonical_block_id": "bdf2d19b-0dc8-5ee2-ba2c-2a1e107e9829",
+    "source_block_id": "mineru-content-0018",
+    "page_number": 2,
+    "bbox": [
+      99.0,
+      109.0,
+      897.0,
+      146.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:019e4ef8-cc63-56fa-af0c-067305379e5b",
+    "canonical_block_id": "019e4ef8-cc63-56fa-af0c-067305379e5b",
+    "source_block_id": "mineru-content-0019",
+    "page_number": 2,
+    "bbox": [
+      144.0,
+      161.0,
+      717.0,
+      178.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:9b6352f5-7f31-5552-b930-e9988abd8c1c",
+    "canonical_block_id": "9b6352f5-7f31-5552-b930-e9988abd8c1c",
+    "source_block_id": "mineru-content-0020",
+    "page_number": 2,
+    "bbox": [
+      100.0,
+      29.0,
+      302.0,
+      42.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:0043a6b9-4631-57f6-a2ae-1136e68be374",
+    "canonical_block_id": "0043a6b9-4631-57f6-a2ae-1136e68be374",
+    "source_block_id": "mineru-content-0021",
+    "page_number": 2,
+    "bbox": [
+      673.0,
+      29.0,
+      895.0,
+      42.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  },
+  {
+    "citation_id": "block:83605cf1-2f9a-5191-b454-7b37bc907a78",
+    "canonical_block_id": "83605cf1-2f9a-5191-b454-7b37bc907a78",
+    "source_block_id": "mineru-content-0022",
+    "page_number": 2,
+    "bbox": [
+      492.0,
+      951.0,
+      505.0,
+      963.0
+    ],
+    "table_id": null,
+    "table_cell": null,
+    "provenance_status": "verified",
+    "evidence": {}
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260821",
+  "documents": {
+    "formula-token": {
+      "source_id": "TEX-FORMULA-20260821-V1",
+      "markers": ["TRACE-F-DOC-001", "TRACE-F-SEC-101", "TRACE-F-EQ-111", "TRACE-F-TABLE-121", "TRACE-F-END-201"],
+      "critical_facts": ["FORMULA-42", "2026-08-21", "score <= 0.875", "delta >= 0.125", "x != y", "±0.05", "EUR 4,321.09"]
+    },
+    "table-pages": {
+      "source_id": "TEX-TABLE-20260821-V1",
+      "markers": ["TRACE-T-DOC-001", "TRACE-T-CAP-101", "TRACE-T-R03", "TRACE-T-R09", "TRACE-T-R16", "TRACE-T-END-201"],
+      "critical_facts": ["TABLE-ALPHA", "TABLE-BETA", "0.03125 mm", "USD 2,450.00", "2026-08-21", "A+B=C"]
+    },
+    "columns-formula": {
+      "source_id": "TEX-COLUMNS-20260821-V1",
+      "markers": ["TRACE-C2-DOC-001", "TRACE-C2-LEFT-101", "TRACE-C2-RIGHT-201", "TRACE-C2-EQ-211", "TRACE-C2-END-301"],
+      "critical_facts": ["COLUMN-A1", "COLUMN-A2", "COLUMN-B1", "COLUMN-B2", "p <= 1", "q >= 0", "DOI 10.8888/columns.2026"]
+    }
+  }
+}

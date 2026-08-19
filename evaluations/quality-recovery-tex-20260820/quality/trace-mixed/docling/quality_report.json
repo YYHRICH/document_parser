@@ -1,0 +1,163 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "99fee331b652cbb7928802e0367930ee080c43c02b0fae5cb66ef698d5a0fa7c",
+    "input_parsed_document.json": "42ec843049c4dd5d2718d9d9fe30e602ec3a3f53b4107582b30dcd1c3a14806b",
+    "optimized.md": "369ee9d522af4803766aeb24a7be909f083e9e17ec19f45f2f96a8b20381f7c8"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "47e61431-c501-41b0-88ce-bd4b266ac6b1",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "969737cb-f897-515c-9123-27ff7a7f34e4",
+            "object_type": "block",
+            "value_sha256": null
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "c7ac1584-0c7d-587d-aaa4-fb984577b418",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "47e61431-c501-41b0-88ce-bd4b266ac6b1",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "47e61431-c501-41b0-88ce-bd4b266ac6b1",
+  "gate_summary": {
+    "blocking_reasons": [],
+    "capability_blockers": [],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 0,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 1
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "a7402d32-78b0-5c0e-9557-9bfb724734c4"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "a3a14e94-c149-54e2-bf23-20a1e8d069e6",
+      "message": "1 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "77963038b5d763ce540ff85e15a37d196c088c657ac332d07b4ad974d0d86f08",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260820:trace-mixed:docling",
+      "stop_reason": "committed"
+    },
+    "binding_count": 0,
+    "canonical_block_count": 17,
+    "issue_count": 1,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 4,
+    "repair_count": 0,
+    "source_block_count": 17,
+    "table_count": 0
+  },
+  "reparse_recommendation": null,
+  "state": "pass"
+}

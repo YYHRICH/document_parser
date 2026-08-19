@@ -1,0 +1,26 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{Tests} & \multicolumn{4}{c}{CCC} \\
+        \cmidrule(lr){2-5}
+        \cmidrule(lr){6-9}
+        & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        \cmidrule(lr){6-7}
+        \cmidrule(lr){8-9} 
+        & Default & CF & Default & CF & Default & CF & Default & CF \\
+        \midrule
+        \# instances & \multicolumn{4}{c}{400} & \multicolumn{4}{c}{120} \\
+        \midrule
+        GPT-4 & 73.8 & 50.0 & 87.8 & 53.6 & 100.0 & 100.0 & 100.0 & 100.0 \\
+        GPT-3.5 & 60.1 & 54.4 & 60.2 & 48.9 & \phantom{0}85.8 & \phantom{0}90.0 & \phantom{0}91.7 & \phantom{0}93.3 \\
+        Claude & 59.2 & 50.0 & 60.2 & 50.4 & 100.0 & \phantom{0}50.0 & \phantom{0}76.7 & 100.0 \\
+        PaLM-2 & 48.0 & 51.5 & 48.5 & 51.2 & \phantom{0}61.7 & \phantom{0}23.3 & \phantom{0}50.0 & \phantom{0}23.3 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    Results for the chess task with $4$ moves (in accuracy; \%). CF refers to the setting where the initial positions of knights and bishops are swapped. We generate a balanced classification problem with $400$ openings via procedure generation.
+    }
+\end{table*}

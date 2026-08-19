@@ -1,0 +1,8 @@
+\subsection{Chess}
+
+We evaluate an LM's ability to understand chess rules by checking if it can determine whether a 4-move opening follows the rules of chess or not.
+In the counterfactual setting, we swap the position of bishops and knights on the board and evaluate the same task. For each setting, we randomly sample 400 unique chess openings via a procedural generation algorithm:
+200 are legal for the default setting but not for the counterfactual setting, and vice versa for the other 200, ensuring a more balanced and fair classification problem.
+We represent the moves as the LM input using the PGN format, the standard for chess moves description.
+
+For the CCC, we ask an LM for the starting positions of the four knights and four bishops on the board to make sure it understands the new initial board. For both the default and counterfactual settings, we ask for the positions of white knights, white bishops, black knights, and black bishops, totaling 8 pieces, and evaluate using accuracy. Since concluding the effectiveness of our counterfactual prompt using merely 8 CCC may not be statistically significant, we sample 15 LM responses using temperature=0.1 for asking about each piece.

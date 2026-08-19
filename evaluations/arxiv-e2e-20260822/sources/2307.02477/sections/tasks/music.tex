@@ -1,0 +1,17 @@
+\vspace{-1mm}
+\subsection{Music} \label{sec:music-task}
+\vspace{-1mm}
+
+Recent work has shown the potential of large-scale models for music infilling \citep{DBLP:journals/corr/abs-1903-07227,huang2019bach} and generation \citep{agostinelli2023musiclm, copet2023simple,ren2020popmag}. \citet{bubeck2023sparks} show that even a text-only LM with no music-specific pretraining exhibits some musical abilities, including understanding musical structure and manipulating melodies. We investigate the extent of LMs' musical abilities
+through two tasks. 
+
+
+
+In the \emph{chord placement} task, we evaluate whether LMs can provide the correct chord fret placements for string instruments with standard or altered string tunings. The altered tunings, known as \emph{scordatura}, are typical in music and are used to evoke a specific sound or effect (\eg enabling heavier, deeper sound in metal music). We evaluate LMs using an existing database\footnote{\url{https://github.com/tombatossals/chords-db}} that includes chords for guitar and ukulele. In the counterfactual setting, we instruct  LMs to provide fret placements for a special guitar/ukulele where one or two of the strings are altered.
+For guitar, we include drop-D tuning, a popular alternative guitar tuning that allows us to investigate whether the frequency of counterfactual tunings affects results (see \S\ref{sec:analysis-world-commonness}).
+To check whether the model has understood the tunings, we ask for the first three notes on each string (including open string) as the CCC.
+
+In the \emph{note retreival} task, we evaluate whether LMs can retrieve notes from famous melodies (\eg ``Twinkle Twinkle Little Star''). The process of re-writing melodies in different keys, referred to as ``transposition,'' is common in music (\eg to accommodate the ranges of different singers or instruments).
+We evaluate LMs' musical abilities under transpositions by prompting them to retrieve the $n$-th note in a melody in either its canonical key (default setting) or a different key (counterfactual setting). 
+We ask the LMs to retrieve the $n$-th note of the scale of the given key as the CCC. 
+

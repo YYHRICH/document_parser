@@ -1,0 +1,151 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "cb5db899c2f16e93d3fe6e2f191f1ace8a56ea14e8eda8b700b83bb09b1aecf7",
+    "input_parsed_document.json": "9b72f12c59c84357aeca08717de72461d0b5c87b5984ec2198f9680b3a501227",
+    "optimized.md": "954521e4f1bee7c5dc044b242a16de8cda642b9f9bfb4fcb5e7f5f83e0b62aa2"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "ce44e143-766b-48ba-a200-e4dbe7bb4d44",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "7cb88261-02bf-5c98-97be-b53ce888b463",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "ce44e143-766b-48ba-a200-e4dbe7bb4d44",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "ce44e143-766b-48ba-a200-e4dbe7bb4d44",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability table_grid_reliable = inferred",
+      "capability table_field_binding_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "table_grid_reliable",
+      "table_field_binding_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 2,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 0
+  },
+  "issues": [],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "0920fa643284bdf1fe019dd169c5f8cfdb7a14d895ddff660e9fafe841303a25",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260821:table-pages:docling",
+      "stop_reason": "committed"
+    },
+    "binding_count": 72,
+    "canonical_block_count": 10,
+    "issue_count": 0,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 3,
+    "repair_count": 0,
+    "source_block_count": 10,
+    "table_count": 2
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

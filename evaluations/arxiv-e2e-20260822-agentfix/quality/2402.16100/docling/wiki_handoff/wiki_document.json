@@ -1,0 +1,3502 @@
+{
+  "schema_name": "WikiHandoff",
+  "schema_version": "1.0",
+  "document_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+  "quality_state": "manual_review_required",
+  "optimized_markdown": "## OUJ-FTC-11\n\n## Notes on the Exact RG equation and the Wheeler-DeWitt equation\n\nHideto Kamei 1\n\nField theory group, The Open University of Japan, Chiba 261-8586, Japan\n\nFebruary 25, 2024\n\nIn this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.\n\n### 1 Introduction\n\nHere in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.\n\nNow we outline the structure of this note. In section 2, the setup of the derivation is given. In section 3, the role of the boundary condition in the setup is explained. In section 4, procedure for splitting the bulk action and identifying the boundary action is given. In section 5, derivation of the exact RG equation from the bulk is given. In section 6, interpretation of the equation as the exact RG is given. In section 7, an example to show the validity of the methodology is given. In section 8, discussion on the result and possible future research is given. In section 9, update on research since this note was first written is given.\n\n1 hidetokamei@gmail.com\n\n2 For a review, please refer to [6].\n\n### 2 Deriving the exact RG from the bulk theory\n\nHere we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.\n\nWe assume that the bulk action contains gravity and a scalar field (the extension to including many scalar fields and including other fields is straightforward). We take the parametrization of the 5d metric as,\n\n[[FORMULA_UNAVAILABLE]]\n\nWe will work in the Euclidean signature everywhere in this note. Here we fix the gauge of the metric as N = 1 , N i = 0. We decompose the Ricci scalar using extrinsic curvature,\n\n[[FORMULA_UNAVAILABLE]]\n\nFrom now on we treat the metric as fields and use the condensed notation, h ij ≡ h I , K ij ≡ K I . Further we will use so-called DeWitt's supermetric G IJ ≡ G ijkl ≡ √ h ( 1 2 ( h ik h jl + h il h jk ) -h ij h kl ) and its inverse G IJ for the condensed notation of the action. We can define the conjugate momentum of the metric and the scalar field as π I = δ L /δ∂ r h I , and p = δ L /δ∂ r φ , and construct the Hamiltonian H = π I ∂ r h I + p∂ r φ -L . The equation we wish to solve is the Wheeler-DeWitt equation, which is H Ψ = 0. Analogous to the Shr¨ odinger equation, we simply have to replace momentum π I , p with the derivative δ/δh I , δ/δφ . We wish to proceed following [2] to derive the exact RG equation of the CFT holgraphically. In the classical case, we will get the expression of the radial velocity of the fields (with respect to the 4d action) from Hamilton-Jacobi equation,\n\n[[FORMULA_UNAVAILABLE]]\n\nand in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.\n\n### 3 The role of the boundary condition and the fluctuation\n\nHere in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.\n\nFirst of all, we would like to claim that the boundary value of the bulk fields themselves could be considered as the dynamical fields in the boundary CFT in some cases. The main example we consider in this note is a scalar field in the AdS within the mass range -d 2 / 4 &lt; m 2 &lt; -( d 2 / 4) + 1. In this mass range, it is known, in addition to the standard Dirichlet boundary condition, we can also impose free boundary condition[11],[12],[13],[14],[15], and it is called 'alternative quantization'. Those two different boundary conditions correspond to different CFTs on the boundary, CFT D and CFT F respectively. In the case of free boundary condition, we also need to integrate over the value of the boundary condition of the bulk field, and therefore, the partition function of the CFT F can be obtained by promoting the source in the CFT D to a dynamical field and integrating over it as\n\n[[FORMULA_UNAVAILABLE]]\n\nThis expression can be interpreted as the path integral formally (or statistical partition function if one wishes), where J is now a dynamical field, and weight is exp( -Γ[ J ]), Γ being the generating functional for CFT D . Therefore, in the case of the free boundary condition, the boundary value of the bulk field can be considered as the field in the boundary CFT itself, and we can consider an exact RG with respect to that. 3 In addition, also for other fields, it is known that in the free boundary condition (or equivalently Neumann boundary condition in the classical limit), the bulk fields on the boundary are interpreted as the dynamical fields in the boundary CFT.[16],[17].\n\nAnother example for the free boundary condition is, trailing string in the AdS[18],[19]. We consider a string stretching from the horizon of the black brane to the boundary at the finite radial distance. The endpoint on the boundary is identified as the position of a particle in the CFT. Since the boundary is at the finite radial distance, the fluctuation of the string in the bulk can be transferred to the fluctuation of the endpoint, which is the fluctuation of the particle in the CFT. Therefore, we need to sum over all the possible value of the boundary position of the string, and it is formally the same as the path integral for the position of the particle in the CFT. Therefore, in the case of the trailing string, we also take the free boundary condition, and the boundary condition is promoted to a dynamical field in the boundary. we expect, if we take the boundary at the finite radial distance[2], boundary value of the closed string modes in the bulk might be also identified as the fields of the closed string modes of the boundary theory.\n\n3 Necessity of the free boundary condition was first realized by the necessity of having operator with small conformal dimension, which can't be realized by the naive Dirichlet boundary condition. Later it was realized those two CFTs are connected by an RG flow, by adding relevant perturbation f O 2 , where O is an operator to couple the source. (3.1) was obtained using that relationship.\n\nTherefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.\n\n### 4 The definition of the boundary Wilsonian effective action from the bulk\n\nWhen we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.\n\n[[FORMULA_UNAVAILABLE]]\n\nWe can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.\n\n### 5 Holographic Exact RG at finite radial distance\n\nLet's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].\n\nThe Wheeler-DeWitt equation is,\n\n[[FORMULA_UNAVAILABLE]]\n\nBoth UV and IR wavefunction, Ψ UV and Ψ IR are expected to satisfy the above WDW equation separately. Here we assume that V is a constant (which doesn't depend on φ ), and H matter = ( p 2 / 2) + W ( φ ) -Φ( φ ) R + (1 / 2)( ∂ i φ ) 2 , where W ( φ ) is the φ dependent part of the 5d potential, and its order φ 2 has the coefficient m 2 / 2 which satisfies the bound that we discussed. We assume that H matter is the order of O ( G 0 N ). We further assume that we can expand S = -log Ψ as S = ( S 0 / 16 πG N ) + S 1 + O ( G 1 N ), and suppose S 0 depends only on the metric, and not on the scalar field. By expanding the Wheeler-DeWitt equation for O ( G -1 N ), while still seperating S 0 into the UV part and the IR part with respect to the cutoff, we get\n\n[[FORMULA_UNAVAILABLE]]\n\nNote that the indices of the metric h I are implicitly contracted in the above expression. Strictly speaking, δ 2 S/δh 2 term is order O ( G 0 N ), but we added it for simplicity of the next order [21]. This form of the 5d potential implies that the bulk gravity could be constructed out of the Stochastic Quantization 4 , -∂ r h I = -G IJ ( δS UV /δh J ) + E I a ξ a , where ξ a is the gaussian noise and E is the inverse of the vielbein for G IJ [23]. For O ( G 0 N ), we get\n\n4 Please refer to [22] for an analogous discussion.\n\n[[FORMULA_UNAVAILABLE]]\n\nLet's derive the exact RG equation from the above equation of motion (5.3). We use the right hand side and the left hand side of the equality, and use δS 0 UV /δh + δS 0 IR /δh = 0, because S 0 is classical, purely gravitational part of the action, and the configuration of the metric h should minimize this. (See [2]) Remember that now the scalar field φ is quantized and we can't naively consider its classical trajectory. We have the classical gravity background, and we parameterize the physical scale by the overall factor of the metric. By parameterizing h ij = e 2 a δ ij , ' -a ' can be considered as the parameter for the RG flow.\n\n[[FORMULA_UNAVAILABLE]]\n\nHere we have assumed the behavior of the metric h is determined by the leading order of the action S UV = S 0 UV / 16 πG N , together with (2.3).\n\nThe above expression is a class of the exact RG equation presented in [7],[8],[10]. Please remember, in order to identify the above equation as the exact RG, we needed to identify the boundary value of the bulk field as the dynamical field on the boundary CFT as well. At least it is formally true in some cases of AdS/CFT where we can take free boundary condition, there we integrate over all the possible configuration of the boundary value of the bulk field, and it was treated as a dynamical field on the boundary [15], [14]. Moreover, when we put the boundary at the finite radial distance, the boundary condition of the stochastic string [19], [18] and graviton [2] were identified as the dynamical field on the boundary. However, in order to justify it from the field theory, we would need to show that the effective action can be thought of as a classical action, and that the value of the one-point function can be thought of as the value of the field, and that those fields are the fundamental degree of freedom. We will probably need the discussion about the large N field theory as a classical theory [24], [25], and about the formulation of the gauge theory in terms of Wilson loop [26].\n\nNote that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].\n\n### 6 From the viewpoint of the Exact RG\n\nLet's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,\n\n[[FORMULA_UNAVAILABLE]]\n\nWe now assume that the change of the effective action S 1 is solely due to the change of the field, and the functional form of S 1 doesn't change, as in the regular derivation of the exact RG. We can write down the Wilsonian effective action S 1 ( φ ′ , h ′ ) with respect to the new fields φ ′ , h ′ , and by definition it should satisfy\n\n[[FORMULA_UNAVAILABLE]]\n\nExpanding the left hand side with respect to φ , h , and collecting terms of the order O ( dr ), we get\n\n[[FORMULA_UNAVAILABLE]]\n\nIf we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.\n\n### 7 Example: Flow of the double trace operator\n\nWe then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are\n\n[[FORMULA_UNAVAILABLE]]\n\n[[FORMULA_UNAVAILABLE]]\n\nWe then wish to consider the flow of the double trace operator, which will correspond to the coefficient of the φ 2 term in S = S UV + S IR , since, according to the recipe of [1], the sum of the UV and IR action should be identified as the CFT effective action. We will need to see the bulk equation of motion for the evolution of F = F UV + F IR , and we can compute F UV and F IR respectively from the Schr¨ odinger equation as computed in [3]. Actually, since we restrict the form of the action to the Gaussian, there is no quantum correction to the double trace operator, (because ( δS 2 /δφ 2 ) term will have only constant O ( φ 0 ) term) and therefore we can look at Hamilton-Jacobi equation ( H = z∂ z S UV = (1 / 2 √ h ) p 2 +( √ h/ 2)( z 2 δ ij k i k j φ 2 + m 2 φ 2 )). Then we will get 5\n\nThis equation can be solved by F UV = z∂ z O / O , where O is the Bessel function which solves\n\n[[FORMULA_UNAVAILABLE]]\n\nThe above F UV , for kz ≪ 1, gives\n\n[[FORMULA_UNAVAILABLE]]\n\nNote that the behavior of F UV for small/large z is as expected, because it should follow the conformal scaling with ∆ -, ∆ + . On the other hand, we can also obtain F IR from the condition that the solution will not blow up at z →∞ , and get\n\n[[FORMULA_UNAVAILABLE]]\n\nWhen k ∼ 0, it can be approximated as F IR ∼ -∆ -. Therefore, if the identification of the total bulk action as the CFT effective action (as [1]) is correct, F , sum of F UV and F IR , should give the right coefficient for the double trace operator, and it is\n\n[[FORMULA_UNAVAILABLE]]\n\nBehavior of F at small z , F ∼ z 2 ν , is as expected from the conformal dimention of the coupling of the double trace operator. It is also confirmed that this F ∼ F UV -∆ -follows the same equation as the flow of the coupling of the double trace operator [15]. Here we wish to derive the same equation from a different perspective, from the exact RG flow equation that we have derived. By rewriting (5.4) with respect to S and S IR , and concentrating on φ 2 term, we will get an equation\n\n5 Note that the below result differ from [3] since their definition of F includes √ h as well.\n\n[[FORMULA_UNAVAILABLE]]\n\nwhich is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .\n\n### 8 Discussion\n\nTherefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.\n\nThis result will hopefully give a better understanding on how exact RG is related to the quantized gravity, and in relating the holographic RG and Polchinski RG. Also, we wish that there will be more understanding of Holography in terms of Stochastic Quantization as exact RG, which was only implied here. If this identification is established, we will be able to perform the exact RG in a much simpler way, because many miracles, such as no need of gauge-fixing, no need of putting the cutoff, simplification for large N and natural apperance of supersymmetry so on, happens in the stochastic quantization. Note that the same analysis would be applicable to Horava gravity, since they are constructed out of the stochastic quantization, and the stochastic quantization is equivalent to a class of exact RG. It was explained that the structure of stochastic quantization enables the simpler proof of its renormalizability[23], and we expect that might apply to other general holographic models. Further it was implied that the quantized gravity in the bulk will be written as Langevin equation, which might give more insights into microscopic picture for thermodynamics of spacetime[31], [32].\n\n6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG\n\n### 9 Update on recent research\n\nSince this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].\n\n### Acknowledgements\n\nI would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.\n\n### References\n\n- [1] J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].\n- [2] E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].\n- [3] I. Heemskerk and J. Polchinski, 'Holographic and Wilsonian Renormalization Groups,' arXiv:1010.1264 [hep-th].\n- [4] G. Parisi and Y. s. Wu, 'Perturbation Theory Without Gauge Fixing,' Sci. Sin. 24 , 483 (1981).\n- [5] P.H.Damgaard and H.Huffel, 'STOCHASTIC QUANTIZATION,' SINGAPORE, SINGAPORE: WORLD SCIENTIFIC (1988) 496p ,\n- [6] M. Fukuma, S. Matsuura and T. Sakai, 'Holographic renormalization group,' Prog. Theor. Phys. 109 , 489 (2003) [arXiv:hep-th/0212314].\n- [7] T. R. Morris, 'The Exact renormalization group and approximate solutions,' Int. J. Mod. Phys. A 9 , 2411 (1994) [arXiv:hep-ph/9308265].\n- [8] T. R. Morris, 'A manifestly gauge invariant exact renormalization group,' arXiv:hep-th/9810104.\n- [9] J. I. Latorre and T. R. Morris, 'Exact scheme independence,' JHEP 0011 , 004 (2000) [arXiv:hep-th/0008123].\n- [10] O. J. Rosten, 'Fundamentals of the Exact Renormalization Group,' arXiv:1003.1366 [hepth].\n- [11] I. R. Klebanov and E. Witten, 'AdS/CFT correspondence and symmetry breaking,' Nucl. Phys. B 556 , 89 (1999) [arXiv:hep-th/9905104].\n- [12] W. Mueck and K. S. Viswanathan, 'Regular and irregular boundary conditions in the AdS/CFT correspondence,' Phys. Rev. D 60 , 081901 (1999) [arXiv:hep-th/9906155].\n- [13] E. Witten, 'Multi-trace operators, boundary conditions, and AdS/CFT correspondence,' arXiv:hep-th/0112258.\n- [14] E. Witten, 'SL(2,Z) action on three-dimensional conformal field theories with Abelian symmetry,' arXiv:hep-th/0307041.\n\n- [15] T. Faulkner, H. Liu, M. Rangamani, 'Integrating out geometry: Holographic Wilsonian RG and the membrane paradigm,' [arXiv:1010.4036 [hep-th]].\n- [16] O. Aharony, D. Marolf and M. Rangamani, 'Conformal field theories in anti-de Sitter space,' JHEP 1102 , 041 (2011) [arXiv:1011.6144 [hep-th]].\n- [17] D. Marolf and S. F. Ross, 'Boundary conditions and new dualities: Vector fields in AdS/CFT,' JHEP 0611 , 085 (2006) [arXiv:hep-th/0606113].\n- [18] J. de Boer, V. E. Hubeny, M. Rangamani et al. , 'Brownian motion in AdS/CFT,' JHEP 0907 , 094 (2009). [arXiv:0812.5112 [hep-th]].\n- [19] D. T. Son, D. Teaney, 'Thermal Noise and Stochastic Strings in AdS/CFT,' JHEP 0907 , 021 (2009). [arXiv:0901.2338 [hep-th]].\n- [20] J. Polchinski, 'Renormalization And Effective Lagrangians,' Nucl. Phys. B 231 , 269 (1984).\n- [21] G. Lifschytz, S. D. Mathur and M. Ortiz, 'A Note on the semiclassical approximation in quantum gravity,' Phys. Rev. D 53 , 766 (1996) [arXiv:gr-qc/9412040].\n- [22] T. Nishioka, 'Horava-Lifshitz Holography,' Class. Quant. Grav. 26 , 242001 (2009) [arXiv:0905.0473 [hep-th]].\n- [23] D. Orlando and S. Reffert, 'On the Renormalizability of Horava-Lifshitz-type Gravities,' Class. Quant. Grav. 26 , 155021 (2009) [arXiv:0905.0301 [hep-th]].\n- [24] L. G. Yaffe, 'Large N Limits As Classical Mechanics,' Rev. Mod. Phys. 54 , 407 (1982).\n- [25] J. L. F. Barbon, 'Multitrace AdS/CFT and master field dynamics,' Phys. Lett. B 543 , 283 (2002) [arXiv:hep-th/0206207].\n- [26] Y. Makeenko, 'Large-N gauge theories,' arXiv:hep-th/0001047.\n- [27] J. C. Gaite, 'Stochastic formulation of the renormalization group: Supersymmetric structure and topology of the space of couplings,' J. Phys. A 37 , 10409 (2004) [arXiv:hep-th/0404212].\n- [28] Some implications of renormalization group theoretical ideas to statistics Physica D: Nonlinear Phenomena, Volume 205, Issue 1-4, June 2005, Pages 207-214 Rajaram, S.; Taguchi, Y.h.; Oono, Y.\n- [29] S. Hirano, 'Exact renormalization group and loop equation,' Phys. Rev. D 61 , 125011 (2000) [arXiv:hep-th/9910256].\n\n- [30] G. Lifschytz and V. Periwal, 'Schwinger-Dyson = Wheeler-DeWitt: Gauge theory observables as bulk operators,' JHEP 0004 , 026 (2000) [arXiv:hep-th/0003179].\n- [31] T. Jacobson, 'Thermodynamics of space-time: The Einstein equation of state,' Phys. Rev. Lett. 75 , 1260 (1995) [arXiv:gr-qc/9504004].\n- [32] E. P. Verlinde, 'On the Origin of Gravity and the Laws of Newton,' arXiv:1001.0785 [hep-th].\n- [33] S. J. Sin and Y. Zhou, 'Holographic Wilsonian RG Flow and Sliding Membrane Paradigm,' JHEP 05 , 030 (2011) doi:10.1007/JHEP05(2011)030 [arXiv:1102.4477 [hep-th]].\n- [34] V. Balasubramanian, M. Guica and A. Lawrence, 'Holographic Interpretations of the Renormalization Group,' JHEP 01 , 115 (2013) doi:10.1007/JHEP01(2013)115 [arXiv:1211.1729 [hep-th]].\n- [35] R. G. Leigh, O. Parrikar and A. B. Weiss, 'Exact renormalization group and higherspin holography,' Phys. Rev. D 91 , no.2, 026002 (2015) doi:10.1103/PhysRevD.91.026002 [arXiv:1407.4574 [hep-th]].\n- [36] B. Sathiapalan and H. Sonoda, 'A Holographic form for Wilson's RG,' Nucl. Phys. B 924 , 603-642 (2017) doi:10.1016/j.nuclphysb.2017.09.018 [arXiv:1706.03371 [hep-th]].\n- [37] B. Sathiapalan and H. Sonoda, 'Holographic Wilson's RG,' Nucl. Phys. B 948 , 114767 (2019) doi:10.1016/j.nuclphysb.2019.114767 [arXiv:1902.02486 [hep-th]].\n- [38] B. Sathiapalan, 'Holographic RG and Exact RG in O(N) Model,' Nucl. Phys. B 959 , 115142 (2020) doi:10.1016/j.nuclphysb.2020.115142 [arXiv:2005.10412 [hep-th]].\n- [39] P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Bulk gauge fields and holographic RG from exact RG,' JHEP 23 , 174 (2020) doi:10.1007/JHEP02(2023)174 [arXiv:2201.06240 [hep-th]].\n- [40] P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Aspects of the map from exact RG to holographic RG in AdS and dS,' Mod. Phys. Lett. A 37 , no.37n38, 2250235 (2022) doi:10.1142/S0217732322502352 [arXiv:2301.13605 [hep-th]].\n- [41] P. Dharanipragada and B. Sathiapalan, 'Holographic RG from ERG: Locality and General Coordinate Invariance in the Bulk,' [arXiv:2306.07442 [hep-th]].\n- [42] D. S. Mansi, A. Mauri and A. C. Petkou, 'Stochastic Quantization and AdS/CFT,' Phys. Lett. B 685 , 215-221 (2010) doi:10.1016/j.physletb.2010.01.033 [arXiv:0912.2105 [hep-th]].\n\n- [43] J. H. Oh and D. P. Jatkar, 'Stochastic quantization and holographic Wilsonian renormalization group,' JHEP 11 , 144 (2012) doi:10.1007/JHEP11(2012)144 [arXiv:1209.2242 [hep-th]].\n- [44] D. P. Jatkar and J. H. Oh, 'Stochastic quantization of conformally coupled scalar in AdS,' JHEP 10 , 170 (2013) doi:10.1007/JHEP10(2013)170 [arXiv:1305.2008 [hep-th]].\n- [45] J. H. Oh, 'First-order formalism of holographic Wilsonian renormalization group: Langevin equation,' J. Korean Phys. Soc. 79 , no.10, 903-917 (2021) doi:10.1007/s40042021-00320-x [arXiv:2110.05013 [hep-th]].\n- [46] G. Kim, J. s. Chae, W. Shin and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of scalar theory with generic mass, self-interaction and multiple trace deformation,' Int. J. Mod. Phys. A 38 , no.21, 2350114 (2023) doi:10.1142/S0217751X23501142 [arXiv:2305.18920 [hep-th]].\n- [47] J. H. Lee and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of conformally coupled scalar in AdS 4 ,' J. Korean Phys. Soc. 83 , no.9, 665-674 (2023) doi:10.1007/s40042-023-00926-3 [arXiv:2308.10010 [hep-th]].\n- [48] Y. Hatta and T. Kunihiro, 'Renormalization group method applied to kinetic equations: Roles of initial values and time,' Annals Phys. 298 , 24-57 (2002) doi:10.1006/aphy.2002.6234 [arXiv:hep-th/0108159 [hep-th]].",
+  "chunks": [
+    {
+      "chunk_id": "block:89052061-af72-5906-9811-ceba9511a080",
+      "kind": "heading",
+      "order_index": 0,
+      "content": "# OUJ-FTC-11",
+      "citation_ids": [
+        "block:89052061-af72-5906-9811-ceba9511a080"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:78c65662-9df9-5020-a22c-6247aca1bcab",
+      "kind": "heading",
+      "order_index": 1,
+      "content": "# Notes on the Exact RG equation and the Wheeler-DeWitt equation",
+      "citation_ids": [
+        "block:78c65662-9df9-5020-a22c-6247aca1bcab"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:879587bf-dcdd-5e24-98b7-ebb42492c0b9",
+      "kind": "paragraph",
+      "order_index": 2,
+      "content": "Hideto Kamei 1",
+      "citation_ids": [
+        "block:879587bf-dcdd-5e24-98b7-ebb42492c0b9"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:170f0f21-872d-513a-9341-596c10536e59",
+      "kind": "paragraph",
+      "order_index": 3,
+      "content": "Field theory group, The Open University of Japan, Chiba 261-8586, Japan",
+      "citation_ids": [
+        "block:170f0f21-872d-513a-9341-596c10536e59"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:644dfdc1-65c6-5456-a83b-bf14cb6f8239",
+      "kind": "paragraph",
+      "order_index": 4,
+      "content": "February 25, 2024",
+      "citation_ids": [
+        "block:644dfdc1-65c6-5456-a83b-bf14cb6f8239"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:8d326b72-f8a2-5a18-a358-e2414888fd11",
+      "kind": "paragraph",
+      "order_index": 5,
+      "content": "In this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.",
+      "citation_ids": [
+        "block:8d326b72-f8a2-5a18-a358-e2414888fd11"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:b26efa28-188f-5662-8507-e2921bbaab63",
+      "kind": "heading",
+      "order_index": 6,
+      "content": "## 1 Introduction",
+      "citation_ids": [
+        "block:b26efa28-188f-5662-8507-e2921bbaab63"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:d609d8c6-6ca2-5c9f-822c-63ed50a4a31b",
+      "kind": "paragraph",
+      "order_index": 7,
+      "content": "Here in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.",
+      "citation_ids": [
+        "block:d609d8c6-6ca2-5c9f-822c-63ed50a4a31b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5811d4dc-5691-58cb-81cb-43fd4e58f9d2",
+      "kind": "paragraph",
+      "order_index": 8,
+      "content": "Now we outline the structure of this note. In section 2, the setup of the derivation is given. In section 3, the role of the boundary condition in the setup is explained. In section 4, procedure for splitting the bulk action and identifying the boundary action is given. In section 5, derivation of the exact RG equation from the bulk is given. In section 6, interpretation of the equation as the exact RG is given. In section 7, an example to show the validity of the methodology is given. In section 8, discussion on the result and possible future research is given. In section 9, update on research since this note was first written is given.",
+      "citation_ids": [
+        "block:5811d4dc-5691-58cb-81cb-43fd4e58f9d2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5d38d5ec-1860-57b2-8886-20a08dca524e",
+      "kind": "paragraph",
+      "order_index": 9,
+      "content": "1 hidetokamei@gmail.com",
+      "citation_ids": [
+        "block:5d38d5ec-1860-57b2-8886-20a08dca524e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:6bb4f595-b9b9-527f-a037-560c5d8bb908",
+      "kind": "paragraph",
+      "order_index": 10,
+      "content": "2 For a review, please refer to [6].",
+      "citation_ids": [
+        "block:6bb4f595-b9b9-527f-a037-560c5d8bb908"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:76d54a1b-962a-55e9-93b0-f175ae68d45c",
+      "kind": "heading",
+      "order_index": 11,
+      "content": "## 2 Deriving the exact RG from the bulk theory",
+      "citation_ids": [
+        "block:76d54a1b-962a-55e9-93b0-f175ae68d45c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:b5c5dd8c-14c6-542c-9a22-850c9751b567",
+      "kind": "paragraph",
+      "order_index": 12,
+      "content": "Here we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.",
+      "citation_ids": [
+        "block:b5c5dd8c-14c6-542c-9a22-850c9751b567"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f49479ba-094e-5f25-a261-1d30b8e199e1",
+      "kind": "paragraph",
+      "order_index": 13,
+      "content": "We assume that the bulk action contains gravity and a scalar field (the extension to including many scalar fields and including other fields is straightforward). We take the parametrization of the 5d metric as,",
+      "citation_ids": [
+        "block:f49479ba-094e-5f25-a261-1d30b8e199e1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:1483cb85-33f0-5567-b547-1247e1043c86",
+      "kind": "paragraph",
+      "order_index": 14,
+      "content": "",
+      "citation_ids": [
+        "block:1483cb85-33f0-5567-b547-1247e1043c86"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:24d6de2a-a639-5b3a-8bb3-b40a52c41be0",
+      "kind": "paragraph",
+      "order_index": 15,
+      "content": "We will work in the Euclidean signature everywhere in this note. Here we fix the gauge of the metric as N = 1 , N i = 0. We decompose the Ricci scalar using extrinsic curvature,",
+      "citation_ids": [
+        "block:24d6de2a-a639-5b3a-8bb3-b40a52c41be0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:38298244-26a6-514d-b48e-6c88a6f50f16",
+      "kind": "paragraph",
+      "order_index": 16,
+      "content": "",
+      "citation_ids": [
+        "block:38298244-26a6-514d-b48e-6c88a6f50f16"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a47fbe8c-af85-58ea-a6c9-d25861228346",
+      "kind": "paragraph",
+      "order_index": 17,
+      "content": "From now on we treat the metric as fields and use the condensed notation, h ij ≡ h I , K ij ≡ K I . Further we will use so-called DeWitt's supermetric G IJ ≡ G ijkl ≡ √ h ( 1 2 ( h ik h jl + h il h jk ) -h ij h kl ) and its inverse G IJ for the condensed notation of the action. We can define the conjugate momentum of the metric and the scalar field as π I = δ L /δ∂ r h I , and p = δ L /δ∂ r φ , and construct the Hamiltonian H = π I ∂ r h I + p∂ r φ -L . The equation we wish to solve is the Wheeler-DeWitt equation, which is H Ψ = 0. Analogous to the Shr¨ odinger equation, we simply have to replace momentum π I , p with the derivative δ/δh I , δ/δφ . We wish to proceed following [2] to derive the exact RG equation of the CFT holgraphically. In the classical case, we will get the expression of the radial velocity of the fields (with respect to the 4d action) from Hamilton-Jacobi equation,",
+      "citation_ids": [
+        "block:a47fbe8c-af85-58ea-a6c9-d25861228346"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:541ffff5-5aff-5a94-9c36-79c6a6ff9f9f",
+      "kind": "paragraph",
+      "order_index": 18,
+      "content": "",
+      "citation_ids": [
+        "block:541ffff5-5aff-5a94-9c36-79c6a6ff9f9f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7078be41-f52f-54be-8c81-0b030695bc2e",
+      "kind": "paragraph",
+      "order_index": 19,
+      "content": "and in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.",
+      "citation_ids": [
+        "block:7078be41-f52f-54be-8c81-0b030695bc2e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ee7a8c81-9305-5a0d-aec9-c4eb75cd0a4b",
+      "kind": "heading",
+      "order_index": 20,
+      "content": "## 3 The role of the boundary condition and the fluctuation",
+      "citation_ids": [
+        "block:ee7a8c81-9305-5a0d-aec9-c4eb75cd0a4b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:4a0c3132-28a3-55e8-8d95-2b09639e84d4",
+      "kind": "paragraph",
+      "order_index": 21,
+      "content": "Here in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.",
+      "citation_ids": [
+        "block:4a0c3132-28a3-55e8-8d95-2b09639e84d4"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:0e0b2bc2-4b30-5209-8535-885078387292",
+      "kind": "paragraph",
+      "order_index": 22,
+      "content": "First of all, we would like to claim that the boundary value of the bulk fields themselves could be considered as the dynamical fields in the boundary CFT in some cases. The main example we consider in this note is a scalar field in the AdS within the mass range -d 2 / 4 < m 2 < -( d 2 / 4) + 1. In this mass range, it is known, in addition to the standard Dirichlet boundary condition, we can also impose free boundary condition[11],[12],[13],[14],[15], and it is called 'alternative quantization'. Those two different boundary conditions correspond to different CFTs on the boundary, CFT D and CFT F respectively. In the case of free boundary condition, we also need to integrate over the value of the boundary condition of the bulk field, and therefore, the partition function of the CFT F can be obtained by promoting the source in the CFT D to a dynamical field and integrating over it as",
+      "citation_ids": [
+        "block:0e0b2bc2-4b30-5209-8535-885078387292"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a9b6bf13-ed58-58f7-a6f8-f93b21009923",
+      "kind": "paragraph",
+      "order_index": 23,
+      "content": "",
+      "citation_ids": [
+        "block:a9b6bf13-ed58-58f7-a6f8-f93b21009923"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:d1d48294-672e-50b1-a28b-1db8a190775a",
+      "kind": "paragraph",
+      "order_index": 24,
+      "content": "This expression can be interpreted as the path integral formally (or statistical partition function if one wishes), where J is now a dynamical field, and weight is exp( -Γ[ J ]), Γ being the generating functional for CFT D . Therefore, in the case of the free boundary condition, the boundary value of the bulk field can be considered as the field in the boundary CFT itself, and we can consider an exact RG with respect to that. 3 In addition, also for other fields, it is known that in the free boundary condition (or equivalently Neumann boundary condition in the classical limit), the bulk fields on the boundary are interpreted as the dynamical fields in the boundary CFT.[16],[17].",
+      "citation_ids": [
+        "block:d1d48294-672e-50b1-a28b-1db8a190775a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:69d98295-0f25-5837-a68a-df853ad613a5",
+      "kind": "paragraph",
+      "order_index": 25,
+      "content": "Another example for the free boundary condition is, trailing string in the AdS[18],[19]. We consider a string stretching from the horizon of the black brane to the boundary at the finite radial distance. The endpoint on the boundary is identified as the position of a particle in the CFT. Since the boundary is at the finite radial distance, the fluctuation of the string in the bulk can be transferred to the fluctuation of the endpoint, which is the fluctuation of the particle in the CFT. Therefore, we need to sum over all the possible value of the boundary position of the string, and it is formally the same as the path integral for the position of the particle in the CFT. Therefore, in the case of the trailing string, we also take the free boundary condition, and the boundary condition is promoted to a dynamical field in the boundary. we expect, if we take the boundary at the finite radial distance[2], boundary value of the closed string modes in the bulk might be also identified as the fields of the closed string modes of the boundary theory.",
+      "citation_ids": [
+        "block:69d98295-0f25-5837-a68a-df853ad613a5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:6296c915-e509-5b2b-bd7e-bf987ae3b66a",
+      "kind": "paragraph",
+      "order_index": 26,
+      "content": "3 Necessity of the free boundary condition was first realized by the necessity of having operator with small conformal dimension, which can't be realized by the naive Dirichlet boundary condition. Later it was realized those two CFTs are connected by an RG flow, by adding relevant perturbation f O 2 , where O is an operator to couple the source. (3.1) was obtained using that relationship.",
+      "citation_ids": [
+        "block:6296c915-e509-5b2b-bd7e-bf987ae3b66a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:d1b80156-ec1e-5f8c-a817-89e864b8b606",
+      "kind": "paragraph",
+      "order_index": 27,
+      "content": "Therefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.",
+      "citation_ids": [
+        "block:d1b80156-ec1e-5f8c-a817-89e864b8b606"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:bcaefbc7-a531-548b-9edb-8924c959dbc2",
+      "kind": "heading",
+      "order_index": 28,
+      "content": "## 4 The definition of the boundary Wilsonian effective action from the bulk",
+      "citation_ids": [
+        "block:bcaefbc7-a531-548b-9edb-8924c959dbc2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:35d2643a-7876-5833-80a1-b2dca1f85bea",
+      "kind": "paragraph",
+      "order_index": 29,
+      "content": "When we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.",
+      "citation_ids": [
+        "block:35d2643a-7876-5833-80a1-b2dca1f85bea"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c053b4b4-cf5e-5d11-884b-abd075d203c5",
+      "kind": "paragraph",
+      "order_index": 30,
+      "content": "",
+      "citation_ids": [
+        "block:c053b4b4-cf5e-5d11-884b-abd075d203c5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:24c323c6-ebdc-5cd3-8a75-1daf7d07930a",
+      "kind": "paragraph",
+      "order_index": 31,
+      "content": "We can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.",
+      "citation_ids": [
+        "block:24c323c6-ebdc-5cd3-8a75-1daf7d07930a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:024b04ad-e3f7-59e3-82db-dd300bdc6f56",
+      "kind": "heading",
+      "order_index": 32,
+      "content": "## 5 Holographic Exact RG at finite radial distance",
+      "citation_ids": [
+        "block:024b04ad-e3f7-59e3-82db-dd300bdc6f56"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:4cf617b7-0990-5aa3-a69d-1a6ca2218403",
+      "kind": "paragraph",
+      "order_index": 33,
+      "content": "Let's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].",
+      "citation_ids": [
+        "block:4cf617b7-0990-5aa3-a69d-1a6ca2218403"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:aca52fb8-9cec-5c9d-9179-86bab75a8739",
+      "kind": "paragraph",
+      "order_index": 34,
+      "content": "The Wheeler-DeWitt equation is,",
+      "citation_ids": [
+        "block:aca52fb8-9cec-5c9d-9179-86bab75a8739"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:78c2c7c2-faa3-5f72-b74d-3e644302a351",
+      "kind": "paragraph",
+      "order_index": 35,
+      "content": "",
+      "citation_ids": [
+        "block:78c2c7c2-faa3-5f72-b74d-3e644302a351"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:8c9d710f-f690-50e3-8d70-d8b565378aab",
+      "kind": "paragraph",
+      "order_index": 36,
+      "content": "Both UV and IR wavefunction, Ψ UV and Ψ IR are expected to satisfy the above WDW equation separately. Here we assume that V is a constant (which doesn't depend on φ ), and H matter = ( p 2 / 2) + W ( φ ) -Φ( φ ) R + (1 / 2)( ∂ i φ ) 2 , where W ( φ ) is the φ dependent part of the 5d potential, and its order φ 2 has the coefficient m 2 / 2 which satisfies the bound that we discussed. We assume that H matter is the order of O ( G 0 N ). We further assume that we can expand S = -log Ψ as S = ( S 0 / 16 πG N ) + S 1 + O ( G 1 N ), and suppose S 0 depends only on the metric, and not on the scalar field. By expanding the Wheeler-DeWitt equation for O ( G -1 N ), while still seperating S 0 into the UV part and the IR part with respect to the cutoff, we get",
+      "citation_ids": [
+        "block:8c9d710f-f690-50e3-8d70-d8b565378aab"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:468d7224-f1b3-53a4-b4a8-5de0d8166028",
+      "kind": "paragraph",
+      "order_index": 37,
+      "content": "",
+      "citation_ids": [
+        "block:468d7224-f1b3-53a4-b4a8-5de0d8166028"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:03b0b42c-e8b0-5e43-b54d-574bb9a3817c",
+      "kind": "paragraph",
+      "order_index": 38,
+      "content": "Note that the indices of the metric h I are implicitly contracted in the above expression. Strictly speaking, δ 2 S/δh 2 term is order O ( G 0 N ), but we added it for simplicity of the next order [21]. This form of the 5d potential implies that the bulk gravity could be constructed out of the Stochastic Quantization 4 , -∂ r h I = -G IJ ( δS UV /δh J ) + E I a ξ a , where ξ a is the gaussian noise and E is the inverse of the vielbein for G IJ [23]. For O ( G 0 N ), we get",
+      "citation_ids": [
+        "block:03b0b42c-e8b0-5e43-b54d-574bb9a3817c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:329f8db4-e35c-586b-a649-75695573d366",
+      "kind": "paragraph",
+      "order_index": 39,
+      "content": "4 Please refer to [22] for an analogous discussion.",
+      "citation_ids": [
+        "block:329f8db4-e35c-586b-a649-75695573d366"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:fc2a6cf0-1b58-53c3-b167-2d2526659e4e",
+      "kind": "paragraph",
+      "order_index": 40,
+      "content": "",
+      "citation_ids": [
+        "block:fc2a6cf0-1b58-53c3-b167-2d2526659e4e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:1ce93b39-a3c3-52a4-a4ad-d4c33a272a03",
+      "kind": "paragraph",
+      "order_index": 41,
+      "content": "Let's derive the exact RG equation from the above equation of motion (5.3). We use the right hand side and the left hand side of the equality, and use δS 0 UV /δh + δS 0 IR /δh = 0, because S 0 is classical, purely gravitational part of the action, and the configuration of the metric h should minimize this. (See [2]) Remember that now the scalar field φ is quantized and we can't naively consider its classical trajectory. We have the classical gravity background, and we parameterize the physical scale by the overall factor of the metric. By parameterizing h ij = e 2 a δ ij , ' -a ' can be considered as the parameter for the RG flow.",
+      "citation_ids": [
+        "block:1ce93b39-a3c3-52a4-a4ad-d4c33a272a03"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e044ddf6-d1b2-54d3-9eaa-3fcb8522b08a",
+      "kind": "paragraph",
+      "order_index": 42,
+      "content": "",
+      "citation_ids": [
+        "block:e044ddf6-d1b2-54d3-9eaa-3fcb8522b08a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c48e7714-e8db-5c2c-ac6d-bec34919308a",
+      "kind": "paragraph",
+      "order_index": 43,
+      "content": "Here we have assumed the behavior of the metric h is determined by the leading order of the action S UV = S 0 UV / 16 πG N , together with (2.3).",
+      "citation_ids": [
+        "block:c48e7714-e8db-5c2c-ac6d-bec34919308a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:0d5ed800-28f8-5160-83d3-844ad0e2b519",
+      "kind": "paragraph",
+      "order_index": 44,
+      "content": "The above expression is a class of the exact RG equation presented in [7],[8],[10]. Please remember, in order to identify the above equation as the exact RG, we needed to identify the boundary value of the bulk field as the dynamical field on the boundary CFT as well. At least it is formally true in some cases of AdS/CFT where we can take free boundary condition, there we integrate over all the possible configuration of the boundary value of the bulk field, and it was treated as a dynamical field on the boundary [15], [14]. Moreover, when we put the boundary at the finite radial distance, the boundary condition of the stochastic string [19], [18] and graviton [2] were identified as the dynamical field on the boundary. However, in order to justify it from the field theory, we would need to show that the effective action can be thought of as a classical action, and that the value of the one-point function can be thought of as the value of the field, and that those fields are the fundamental degree of freedom. We will probably need the discussion about the large N field theory as a classical theory [24], [25], and about the formulation of the gauge theory in terms of Wilson loop [26].",
+      "citation_ids": [
+        "block:0d5ed800-28f8-5160-83d3-844ad0e2b519"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e30de992-8c71-5685-aed3-8fae9edd7e7d",
+      "kind": "paragraph",
+      "order_index": 45,
+      "content": "Note that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].",
+      "citation_ids": [
+        "block:e30de992-8c71-5685-aed3-8fae9edd7e7d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:3096ca2a-9d92-54e2-964c-367813cab9f3",
+      "kind": "heading",
+      "order_index": 46,
+      "content": "## 6 From the viewpoint of the Exact RG",
+      "citation_ids": [
+        "block:3096ca2a-9d92-54e2-964c-367813cab9f3"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:fcef9bb5-43d6-548a-92bb-4584a36b0a74",
+      "kind": "paragraph",
+      "order_index": 47,
+      "content": "Let's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,",
+      "citation_ids": [
+        "block:fcef9bb5-43d6-548a-92bb-4584a36b0a74"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:244b6302-ea07-5841-8301-7dfde8a392fc",
+      "kind": "paragraph",
+      "order_index": 48,
+      "content": "",
+      "citation_ids": [
+        "block:244b6302-ea07-5841-8301-7dfde8a392fc"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:76452916-8827-5311-8235-e2e48037247a",
+      "kind": "paragraph",
+      "order_index": 49,
+      "content": "We now assume that the change of the effective action S 1 is solely due to the change of the field, and the functional form of S 1 doesn't change, as in the regular derivation of the exact RG. We can write down the Wilsonian effective action S 1 ( φ ′ , h ′ ) with respect to the new fields φ ′ , h ′ , and by definition it should satisfy",
+      "citation_ids": [
+        "block:76452916-8827-5311-8235-e2e48037247a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:cd67a18d-a7bb-5ebf-81e1-3f0dc7bd378c",
+      "kind": "paragraph",
+      "order_index": 50,
+      "content": "",
+      "citation_ids": [
+        "block:cd67a18d-a7bb-5ebf-81e1-3f0dc7bd378c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:bc8cdf8a-12be-5f22-8419-fbe966408e95",
+      "kind": "paragraph",
+      "order_index": 51,
+      "content": "Expanding the left hand side with respect to φ , h , and collecting terms of the order O ( dr ), we get",
+      "citation_ids": [
+        "block:bc8cdf8a-12be-5f22-8419-fbe966408e95"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:91c13e22-386a-59f3-85dd-e4375e9e01eb",
+      "kind": "paragraph",
+      "order_index": 52,
+      "content": "",
+      "citation_ids": [
+        "block:91c13e22-386a-59f3-85dd-e4375e9e01eb"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:55470f63-56ab-5008-a70c-8ab3f6e298a5",
+      "kind": "paragraph",
+      "order_index": 53,
+      "content": "If we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.",
+      "citation_ids": [
+        "block:55470f63-56ab-5008-a70c-8ab3f6e298a5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:65996f6c-c2f3-500a-a4e5-3166869aa87c",
+      "kind": "heading",
+      "order_index": 54,
+      "content": "## 7 Example: Flow of the double trace operator",
+      "citation_ids": [
+        "block:65996f6c-c2f3-500a-a4e5-3166869aa87c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:d8911b9e-e41d-5b50-9c07-7632d41b11b7",
+      "kind": "paragraph",
+      "order_index": 55,
+      "content": "We then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are",
+      "citation_ids": [
+        "block:d8911b9e-e41d-5b50-9c07-7632d41b11b7"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f80fc8fb-229c-53e5-91ee-326ca7b9c07d",
+      "kind": "paragraph",
+      "order_index": 56,
+      "content": "",
+      "citation_ids": [
+        "block:f80fc8fb-229c-53e5-91ee-326ca7b9c07d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:74368f6e-45eb-5292-900c-2b2438720aa0",
+      "kind": "paragraph",
+      "order_index": 57,
+      "content": "",
+      "citation_ids": [
+        "block:74368f6e-45eb-5292-900c-2b2438720aa0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:26e1ba40-d0c5-503b-856c-3aaddbf2a98b",
+      "kind": "paragraph",
+      "order_index": 58,
+      "content": "We then wish to consider the flow of the double trace operator, which will correspond to the coefficient of the φ 2 term in S = S UV + S IR , since, according to the recipe of [1], the sum of the UV and IR action should be identified as the CFT effective action. We will need to see the bulk equation of motion for the evolution of F = F UV + F IR , and we can compute F UV and F IR respectively from the Schr¨ odinger equation as computed in [3]. Actually, since we restrict the form of the action to the Gaussian, there is no quantum correction to the double trace operator, (because ( δS 2 /δφ 2 ) term will have only constant O ( φ 0 ) term) and therefore we can look at Hamilton-Jacobi equation ( H = z∂ z S UV = (1 / 2 √ h ) p 2 +( √ h/ 2)( z 2 δ ij k i k j φ 2 + m 2 φ 2 )). Then we will get 5",
+      "citation_ids": [
+        "block:26e1ba40-d0c5-503b-856c-3aaddbf2a98b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e270eb48-0b9a-5473-b4b2-68e772d81e91",
+      "kind": "paragraph",
+      "order_index": 59,
+      "content": "This equation can be solved by F UV = z∂ z O / O , where O is the Bessel function which solves",
+      "citation_ids": [
+        "block:e270eb48-0b9a-5473-b4b2-68e772d81e91"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ad4ba62c-3730-5cc6-a90e-c5506412a8e7",
+      "kind": "paragraph",
+      "order_index": 60,
+      "content": "",
+      "citation_ids": [
+        "block:ad4ba62c-3730-5cc6-a90e-c5506412a8e7"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a8913776-2fbc-5f9a-9ca2-34833d4510a0",
+      "kind": "paragraph",
+      "order_index": 61,
+      "content": "The above F UV , for kz ≪ 1, gives",
+      "citation_ids": [
+        "block:a8913776-2fbc-5f9a-9ca2-34833d4510a0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:cbf8a257-c350-5345-9356-f1100ccbc77f",
+      "kind": "paragraph",
+      "order_index": 62,
+      "content": "",
+      "citation_ids": [
+        "block:cbf8a257-c350-5345-9356-f1100ccbc77f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5e413bc7-dd6a-5c77-8d6a-3facf43a2ff7",
+      "kind": "paragraph",
+      "order_index": 63,
+      "content": "Note that the behavior of F UV for small/large z is as expected, because it should follow the conformal scaling with ∆ -, ∆ + . On the other hand, we can also obtain F IR from the condition that the solution will not blow up at z →∞ , and get",
+      "citation_ids": [
+        "block:5e413bc7-dd6a-5c77-8d6a-3facf43a2ff7"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7e427285-05c0-5398-81e7-723a26245fd1",
+      "kind": "paragraph",
+      "order_index": 64,
+      "content": "",
+      "citation_ids": [
+        "block:7e427285-05c0-5398-81e7-723a26245fd1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7f35d322-7d31-5cdb-8be4-b8a948d157a1",
+      "kind": "paragraph",
+      "order_index": 65,
+      "content": "When k ∼ 0, it can be approximated as F IR ∼ -∆ -. Therefore, if the identification of the total bulk action as the CFT effective action (as [1]) is correct, F , sum of F UV and F IR , should give the right coefficient for the double trace operator, and it is",
+      "citation_ids": [
+        "block:7f35d322-7d31-5cdb-8be4-b8a948d157a1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e2660eba-440c-5ac0-8e78-9cf3a4d0abe6",
+      "kind": "paragraph",
+      "order_index": 66,
+      "content": "",
+      "citation_ids": [
+        "block:e2660eba-440c-5ac0-8e78-9cf3a4d0abe6"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7d5e0263-8876-5c11-9204-3ebb63986242",
+      "kind": "paragraph",
+      "order_index": 67,
+      "content": "Behavior of F at small z , F ∼ z 2 ν , is as expected from the conformal dimention of the coupling of the double trace operator. It is also confirmed that this F ∼ F UV -∆ -follows the same equation as the flow of the coupling of the double trace operator [15]. Here we wish to derive the same equation from a different perspective, from the exact RG flow equation that we have derived. By rewriting (5.4) with respect to S and S IR , and concentrating on φ 2 term, we will get an equation",
+      "citation_ids": [
+        "block:7d5e0263-8876-5c11-9204-3ebb63986242"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e22cf8bc-d4ac-560c-8b25-f9699e91d9ac",
+      "kind": "paragraph",
+      "order_index": 68,
+      "content": "5 Note that the below result differ from [3] since their definition of F includes √ h as well.",
+      "citation_ids": [
+        "block:e22cf8bc-d4ac-560c-8b25-f9699e91d9ac"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:9e3604de-c144-591c-983c-fea1098e0062",
+      "kind": "paragraph",
+      "order_index": 69,
+      "content": "",
+      "citation_ids": [
+        "block:9e3604de-c144-591c-983c-fea1098e0062"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:42b1f6c5-d893-5aba-b6f0-22c32268c07c",
+      "kind": "paragraph",
+      "order_index": 70,
+      "content": "which is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .",
+      "citation_ids": [
+        "block:42b1f6c5-d893-5aba-b6f0-22c32268c07c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:68935ee8-d4b3-5b54-b7ff-e75e768cb7c4",
+      "kind": "heading",
+      "order_index": 71,
+      "content": "## 8 Discussion",
+      "citation_ids": [
+        "block:68935ee8-d4b3-5b54-b7ff-e75e768cb7c4"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:4ed81231-fbdf-5351-98b4-05fbbf55786d",
+      "kind": "paragraph",
+      "order_index": 72,
+      "content": "Therefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.",
+      "citation_ids": [
+        "block:4ed81231-fbdf-5351-98b4-05fbbf55786d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:b3d421ac-630e-5d91-bee2-c43effaa5740",
+      "kind": "paragraph",
+      "order_index": 73,
+      "content": "This result will hopefully give a better understanding on how exact RG is related to the quantized gravity, and in relating the holographic RG and Polchinski RG. Also, we wish that there will be more understanding of Holography in terms of Stochastic Quantization as exact RG, which was only implied here. If this identification is established, we will be able to perform the exact RG in a much simpler way, because many miracles, such as no need of gauge-fixing, no need of putting the cutoff, simplification for large N and natural apperance of supersymmetry so on, happens in the stochastic quantization. Note that the same analysis would be applicable to Horava gravity, since they are constructed out of the stochastic quantization, and the stochastic quantization is equivalent to a class of exact RG. It was explained that the structure of stochastic quantization enables the simpler proof of its renormalizability[23], and we expect that might apply to other general holographic models. Further it was implied that the quantized gravity in the bulk will be written as Langevin equation, which might give more insights into microscopic picture for thermodynamics of spacetime[31], [32].",
+      "citation_ids": [
+        "block:b3d421ac-630e-5d91-bee2-c43effaa5740"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:3f79c8a2-01e2-5a57-8fca-557a0d9965c2",
+      "kind": "paragraph",
+      "order_index": 74,
+      "content": "6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG",
+      "citation_ids": [
+        "block:3f79c8a2-01e2-5a57-8fca-557a0d9965c2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f76c0122-e604-5400-a9b5-e7b77aab7c36",
+      "kind": "heading",
+      "order_index": 75,
+      "content": "## 9 Update on recent research",
+      "citation_ids": [
+        "block:f76c0122-e604-5400-a9b5-e7b77aab7c36"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:870caf5c-823a-5ce0-866b-af8ded092d5c",
+      "kind": "paragraph",
+      "order_index": 76,
+      "content": "Since this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].",
+      "citation_ids": [
+        "block:870caf5c-823a-5ce0-866b-af8ded092d5c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7f6d75fa-4979-5c67-acb7-18ae3301aa4d",
+      "kind": "heading",
+      "order_index": 77,
+      "content": "## Acknowledgements",
+      "citation_ids": [
+        "block:7f6d75fa-4979-5c67-acb7-18ae3301aa4d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:e4084e03-c1f2-5584-a3f2-133a3b30818d",
+      "kind": "paragraph",
+      "order_index": 78,
+      "content": "I would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.",
+      "citation_ids": [
+        "block:e4084e03-c1f2-5584-a3f2-133a3b30818d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:94c7ea82-ba52-5e78-908a-4ef37093d683",
+      "kind": "heading",
+      "order_index": 79,
+      "content": "## References",
+      "citation_ids": [
+        "block:94c7ea82-ba52-5e78-908a-4ef37093d683"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:f645b74b-0a63-5379-8f98-105ceff96370",
+      "kind": "paragraph",
+      "order_index": 80,
+      "content": "J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].",
+      "citation_ids": [
+        "block:f645b74b-0a63-5379-8f98-105ceff96370"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e9b03b0f-33c0-5780-9e55-39b4e88b142c",
+      "kind": "paragraph",
+      "order_index": 81,
+      "content": "E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].",
+      "citation_ids": [
+        "block:e9b03b0f-33c0-5780-9e55-39b4e88b142c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:fbb4b071-b2ff-5299-9bfc-117ab2ec07bf",
+      "kind": "paragraph",
+      "order_index": 82,
+      "content": "I. Heemskerk and J. Polchinski, 'Holographic and Wilsonian Renormalization Groups,' arXiv:1010.1264 [hep-th].",
+      "citation_ids": [
+        "block:fbb4b071-b2ff-5299-9bfc-117ab2ec07bf"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:16528e1f-0662-50b9-a352-d30a7f4ebcd6",
+      "kind": "paragraph",
+      "order_index": 83,
+      "content": "G. Parisi and Y. s. Wu, 'Perturbation Theory Without Gauge Fixing,' Sci. Sin. 24 , 483 (1981).",
+      "citation_ids": [
+        "block:16528e1f-0662-50b9-a352-d30a7f4ebcd6"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:df071ba6-c020-5a21-80ae-8b2ac5c2103d",
+      "kind": "paragraph",
+      "order_index": 84,
+      "content": "P.H.Damgaard and H.Huffel, 'STOCHASTIC QUANTIZATION,' SINGAPORE, SINGAPORE: WORLD SCIENTIFIC (1988) 496p ,",
+      "citation_ids": [
+        "block:df071ba6-c020-5a21-80ae-8b2ac5c2103d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:33201bb6-0983-51ae-b4a2-999273010d3e",
+      "kind": "paragraph",
+      "order_index": 85,
+      "content": "M. Fukuma, S. Matsuura and T. Sakai, 'Holographic renormalization group,' Prog. Theor. Phys. 109 , 489 (2003) [arXiv:hep-th/0212314].",
+      "citation_ids": [
+        "block:33201bb6-0983-51ae-b4a2-999273010d3e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:0a1106bb-0451-5687-b938-0e6d2a860f91",
+      "kind": "paragraph",
+      "order_index": 86,
+      "content": "T. R. Morris, 'The Exact renormalization group and approximate solutions,' Int. J. Mod. Phys. A 9 , 2411 (1994) [arXiv:hep-ph/9308265].",
+      "citation_ids": [
+        "block:0a1106bb-0451-5687-b938-0e6d2a860f91"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c3192a2a-4d8b-5485-985e-2e6bb0d858aa",
+      "kind": "paragraph",
+      "order_index": 87,
+      "content": "T. R. Morris, 'A manifestly gauge invariant exact renormalization group,' arXiv:hep-th/9810104.",
+      "citation_ids": [
+        "block:c3192a2a-4d8b-5485-985e-2e6bb0d858aa"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:8161b0d6-5f2e-54e8-9e23-4d94beb446e4",
+      "kind": "paragraph",
+      "order_index": 88,
+      "content": "J. I. Latorre and T. R. Morris, 'Exact scheme independence,' JHEP 0011 , 004 (2000) [arXiv:hep-th/0008123].",
+      "citation_ids": [
+        "block:8161b0d6-5f2e-54e8-9e23-4d94beb446e4"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:583878f4-a17a-5718-976f-f2c11e62600e",
+      "kind": "paragraph",
+      "order_index": 89,
+      "content": "O. J. Rosten, 'Fundamentals of the Exact Renormalization Group,' arXiv:1003.1366 [hepth].",
+      "citation_ids": [
+        "block:583878f4-a17a-5718-976f-f2c11e62600e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:59ed8a80-d98b-5259-a26d-f14c02530db6",
+      "kind": "paragraph",
+      "order_index": 90,
+      "content": "I. R. Klebanov and E. Witten, 'AdS/CFT correspondence and symmetry breaking,' Nucl. Phys. B 556 , 89 (1999) [arXiv:hep-th/9905104].",
+      "citation_ids": [
+        "block:59ed8a80-d98b-5259-a26d-f14c02530db6"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5109d990-78ef-57d9-ae28-b9739608709b",
+      "kind": "paragraph",
+      "order_index": 91,
+      "content": "W. Mueck and K. S. Viswanathan, 'Regular and irregular boundary conditions in the AdS/CFT correspondence,' Phys. Rev. D 60 , 081901 (1999) [arXiv:hep-th/9906155].",
+      "citation_ids": [
+        "block:5109d990-78ef-57d9-ae28-b9739608709b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ad16fb3a-8231-5311-b2c0-e63332ddeffb",
+      "kind": "paragraph",
+      "order_index": 92,
+      "content": "E. Witten, 'Multi-trace operators, boundary conditions, and AdS/CFT correspondence,' arXiv:hep-th/0112258.",
+      "citation_ids": [
+        "block:ad16fb3a-8231-5311-b2c0-e63332ddeffb"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:fee4f6c1-ae12-5671-81a9-0b93a7cd5497",
+      "kind": "paragraph",
+      "order_index": 93,
+      "content": "E. Witten, 'SL(2,Z) action on three-dimensional conformal field theories with Abelian symmetry,' arXiv:hep-th/0307041.",
+      "citation_ids": [
+        "block:fee4f6c1-ae12-5671-81a9-0b93a7cd5497"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:6df28ec1-447b-5298-9ed1-28fa30b3a626",
+      "kind": "paragraph",
+      "order_index": 94,
+      "content": "T. Faulkner, H. Liu, M. Rangamani, 'Integrating out geometry: Holographic Wilsonian RG and the membrane paradigm,' [arXiv:1010.4036 [hep-th]].",
+      "citation_ids": [
+        "block:6df28ec1-447b-5298-9ed1-28fa30b3a626"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:d64ffeee-6df6-56e1-88e0-141f31371e14",
+      "kind": "paragraph",
+      "order_index": 95,
+      "content": "O. Aharony, D. Marolf and M. Rangamani, 'Conformal field theories in anti-de Sitter space,' JHEP 1102 , 041 (2011) [arXiv:1011.6144 [hep-th]].",
+      "citation_ids": [
+        "block:d64ffeee-6df6-56e1-88e0-141f31371e14"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:1fc4bc0b-5cec-5f97-ad83-bbe0f6c02d89",
+      "kind": "paragraph",
+      "order_index": 96,
+      "content": "D. Marolf and S. F. Ross, 'Boundary conditions and new dualities: Vector fields in AdS/CFT,' JHEP 0611 , 085 (2006) [arXiv:hep-th/0606113].",
+      "citation_ids": [
+        "block:1fc4bc0b-5cec-5f97-ad83-bbe0f6c02d89"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:2b985803-8258-5747-9261-fa9b178eae9a",
+      "kind": "paragraph",
+      "order_index": 97,
+      "content": "J. de Boer, V. E. Hubeny, M. Rangamani et al. , 'Brownian motion in AdS/CFT,' JHEP 0907 , 094 (2009). [arXiv:0812.5112 [hep-th]].",
+      "citation_ids": [
+        "block:2b985803-8258-5747-9261-fa9b178eae9a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:18f11987-4255-5642-a29d-99c3d7ece1f2",
+      "kind": "paragraph",
+      "order_index": 98,
+      "content": "D. T. Son, D. Teaney, 'Thermal Noise and Stochastic Strings in AdS/CFT,' JHEP 0907 , 021 (2009). [arXiv:0901.2338 [hep-th]].",
+      "citation_ids": [
+        "block:18f11987-4255-5642-a29d-99c3d7ece1f2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:36fcee87-620b-5db3-a651-9ae8c5c515dc",
+      "kind": "paragraph",
+      "order_index": 99,
+      "content": "J. Polchinski, 'Renormalization And Effective Lagrangians,' Nucl. Phys. B 231 , 269 (1984).",
+      "citation_ids": [
+        "block:36fcee87-620b-5db3-a651-9ae8c5c515dc"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a0e5d459-d679-576a-9e49-39a405483a1c",
+      "kind": "paragraph",
+      "order_index": 100,
+      "content": "G. Lifschytz, S. D. Mathur and M. Ortiz, 'A Note on the semiclassical approximation in quantum gravity,' Phys. Rev. D 53 , 766 (1996) [arXiv:gr-qc/9412040].",
+      "citation_ids": [
+        "block:a0e5d459-d679-576a-9e49-39a405483a1c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:b19a929d-0272-54a0-a84a-0b2259380ca2",
+      "kind": "paragraph",
+      "order_index": 101,
+      "content": "T. Nishioka, 'Horava-Lifshitz Holography,' Class. Quant. Grav. 26 , 242001 (2009) [arXiv:0905.0473 [hep-th]].",
+      "citation_ids": [
+        "block:b19a929d-0272-54a0-a84a-0b2259380ca2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:068bd586-ac45-5be5-87b8-4b343f20228d",
+      "kind": "paragraph",
+      "order_index": 102,
+      "content": "D. Orlando and S. Reffert, 'On the Renormalizability of Horava-Lifshitz-type Gravities,' Class. Quant. Grav. 26 , 155021 (2009) [arXiv:0905.0301 [hep-th]].",
+      "citation_ids": [
+        "block:068bd586-ac45-5be5-87b8-4b343f20228d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a0826a8b-0bf5-5463-ba42-66189631b5e1",
+      "kind": "paragraph",
+      "order_index": 103,
+      "content": "L. G. Yaffe, 'Large N Limits As Classical Mechanics,' Rev. Mod. Phys. 54 , 407 (1982).",
+      "citation_ids": [
+        "block:a0826a8b-0bf5-5463-ba42-66189631b5e1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:0cea82ed-f1ec-587e-9a2f-ae77846c2a2a",
+      "kind": "paragraph",
+      "order_index": 104,
+      "content": "J. L. F. Barbon, 'Multitrace AdS/CFT and master field dynamics,' Phys. Lett. B 543 , 283 (2002) [arXiv:hep-th/0206207].",
+      "citation_ids": [
+        "block:0cea82ed-f1ec-587e-9a2f-ae77846c2a2a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e254cff2-4d15-5e6d-acf1-a40a6e856e21",
+      "kind": "paragraph",
+      "order_index": 105,
+      "content": "Y. Makeenko, 'Large-N gauge theories,' arXiv:hep-th/0001047.",
+      "citation_ids": [
+        "block:e254cff2-4d15-5e6d-acf1-a40a6e856e21"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ec874d2a-de5b-598a-a9d3-0fc33f82b81f",
+      "kind": "paragraph",
+      "order_index": 106,
+      "content": "J. C. Gaite, 'Stochastic formulation of the renormalization group: Supersymmetric structure and topology of the space of couplings,' J. Phys. A 37 , 10409 (2004) [arXiv:hep-th/0404212].",
+      "citation_ids": [
+        "block:ec874d2a-de5b-598a-a9d3-0fc33f82b81f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a7f7fd9c-4688-5694-95a8-abc9a61f0b40",
+      "kind": "paragraph",
+      "order_index": 107,
+      "content": "Some implications of renormalization group theoretical ideas to statistics Physica D: Nonlinear Phenomena, Volume 205, Issue 1-4, June 2005, Pages 207-214 Rajaram, S.; Taguchi, Y.h.; Oono, Y.",
+      "citation_ids": [
+        "block:a7f7fd9c-4688-5694-95a8-abc9a61f0b40"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ae7f24a5-e01e-56a6-bf12-5908cb1c898c",
+      "kind": "paragraph",
+      "order_index": 108,
+      "content": "S. Hirano, 'Exact renormalization group and loop equation,' Phys. Rev. D 61 , 125011 (2000) [arXiv:hep-th/9910256].",
+      "citation_ids": [
+        "block:ae7f24a5-e01e-56a6-bf12-5908cb1c898c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:9ebbf674-a820-59a0-b252-0fd3775be235",
+      "kind": "paragraph",
+      "order_index": 109,
+      "content": "G. Lifschytz and V. Periwal, 'Schwinger-Dyson = Wheeler-DeWitt: Gauge theory observables as bulk operators,' JHEP 0004 , 026 (2000) [arXiv:hep-th/0003179].",
+      "citation_ids": [
+        "block:9ebbf674-a820-59a0-b252-0fd3775be235"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:06f4199b-e277-560c-8d03-6274bb00df3d",
+      "kind": "paragraph",
+      "order_index": 110,
+      "content": "T. Jacobson, 'Thermodynamics of space-time: The Einstein equation of state,' Phys. Rev. Lett. 75 , 1260 (1995) [arXiv:gr-qc/9504004].",
+      "citation_ids": [
+        "block:06f4199b-e277-560c-8d03-6274bb00df3d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:45e802c4-723f-5315-b137-91500d1a27a5",
+      "kind": "paragraph",
+      "order_index": 111,
+      "content": "E. P. Verlinde, 'On the Origin of Gravity and the Laws of Newton,' arXiv:1001.0785 [hep-th].",
+      "citation_ids": [
+        "block:45e802c4-723f-5315-b137-91500d1a27a5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:d2b527cc-4e30-595b-9151-b46c9ad1064a",
+      "kind": "paragraph",
+      "order_index": 112,
+      "content": "S. J. Sin and Y. Zhou, 'Holographic Wilsonian RG Flow and Sliding Membrane Paradigm,' JHEP 05 , 030 (2011) doi:10.1007/JHEP05(2011)030 [arXiv:1102.4477 [hep-th]].",
+      "citation_ids": [
+        "block:d2b527cc-4e30-595b-9151-b46c9ad1064a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:2dc2e076-a41e-5e71-9d74-1684b3854740",
+      "kind": "paragraph",
+      "order_index": 113,
+      "content": "V. Balasubramanian, M. Guica and A. Lawrence, 'Holographic Interpretations of the Renormalization Group,' JHEP 01 , 115 (2013) doi:10.1007/JHEP01(2013)115 [arXiv:1211.1729 [hep-th]].",
+      "citation_ids": [
+        "block:2dc2e076-a41e-5e71-9d74-1684b3854740"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:4c20b36a-4b01-596d-8a27-2bdea1941e37",
+      "kind": "paragraph",
+      "order_index": 114,
+      "content": "R. G. Leigh, O. Parrikar and A. B. Weiss, 'Exact renormalization group and higherspin holography,' Phys. Rev. D 91 , no.2, 026002 (2015) doi:10.1103/PhysRevD.91.026002 [arXiv:1407.4574 [hep-th]].",
+      "citation_ids": [
+        "block:4c20b36a-4b01-596d-8a27-2bdea1941e37"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:91219293-bb77-5086-9ab9-a783c2d164d2",
+      "kind": "paragraph",
+      "order_index": 115,
+      "content": "B. Sathiapalan and H. Sonoda, 'A Holographic form for Wilson's RG,' Nucl. Phys. B 924 , 603-642 (2017) doi:10.1016/j.nuclphysb.2017.09.018 [arXiv:1706.03371 [hep-th]].",
+      "citation_ids": [
+        "block:91219293-bb77-5086-9ab9-a783c2d164d2"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:963f4341-2357-5fb5-a313-adc6cb6948a1",
+      "kind": "paragraph",
+      "order_index": 116,
+      "content": "B. Sathiapalan and H. Sonoda, 'Holographic Wilson's RG,' Nucl. Phys. B 948 , 114767 (2019) doi:10.1016/j.nuclphysb.2019.114767 [arXiv:1902.02486 [hep-th]].",
+      "citation_ids": [
+        "block:963f4341-2357-5fb5-a313-adc6cb6948a1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:17da50ea-81b4-5691-953c-4c21158ce265",
+      "kind": "paragraph",
+      "order_index": 117,
+      "content": "B. Sathiapalan, 'Holographic RG and Exact RG in O(N) Model,' Nucl. Phys. B 959 , 115142 (2020) doi:10.1016/j.nuclphysb.2020.115142 [arXiv:2005.10412 [hep-th]].",
+      "citation_ids": [
+        "block:17da50ea-81b4-5691-953c-4c21158ce265"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:b5a8ef85-2a9e-557f-b4f7-78417219b931",
+      "kind": "paragraph",
+      "order_index": 118,
+      "content": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Bulk gauge fields and holographic RG from exact RG,' JHEP 23 , 174 (2020) doi:10.1007/JHEP02(2023)174 [arXiv:2201.06240 [hep-th]].",
+      "citation_ids": [
+        "block:b5a8ef85-2a9e-557f-b4f7-78417219b931"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:4c59594a-cb07-5beb-b8c9-63e5ba0bc213",
+      "kind": "paragraph",
+      "order_index": 119,
+      "content": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Aspects of the map from exact RG to holographic RG in AdS and dS,' Mod. Phys. Lett. A 37 , no.37n38, 2250235 (2022) doi:10.1142/S0217732322502352 [arXiv:2301.13605 [hep-th]].",
+      "citation_ids": [
+        "block:4c59594a-cb07-5beb-b8c9-63e5ba0bc213"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:b15c6edc-05d6-545f-bf7e-be5054b819e7",
+      "kind": "paragraph",
+      "order_index": 120,
+      "content": "P. Dharanipragada and B. Sathiapalan, 'Holographic RG from ERG: Locality and General Coordinate Invariance in the Bulk,' [arXiv:2306.07442 [hep-th]].",
+      "citation_ids": [
+        "block:b15c6edc-05d6-545f-bf7e-be5054b819e7"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a3b10c73-2225-5b62-8539-c3d234379faa",
+      "kind": "paragraph",
+      "order_index": 121,
+      "content": "D. S. Mansi, A. Mauri and A. C. Petkou, 'Stochastic Quantization and AdS/CFT,' Phys. Lett. B 685 , 215-221 (2010) doi:10.1016/j.physletb.2010.01.033 [arXiv:0912.2105 [hep-th]].",
+      "citation_ids": [
+        "block:a3b10c73-2225-5b62-8539-c3d234379faa"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:780719e4-b3d9-5bbb-9172-253d9c6ab6c9",
+      "kind": "paragraph",
+      "order_index": 122,
+      "content": "J. H. Oh and D. P. Jatkar, 'Stochastic quantization and holographic Wilsonian renormalization group,' JHEP 11 , 144 (2012) doi:10.1007/JHEP11(2012)144 [arXiv:1209.2242 [hep-th]].",
+      "citation_ids": [
+        "block:780719e4-b3d9-5bbb-9172-253d9c6ab6c9"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e863d20c-ed0e-5a1b-9e20-d2d75fbf8a66",
+      "kind": "paragraph",
+      "order_index": 123,
+      "content": "D. P. Jatkar and J. H. Oh, 'Stochastic quantization of conformally coupled scalar in AdS,' JHEP 10 , 170 (2013) doi:10.1007/JHEP10(2013)170 [arXiv:1305.2008 [hep-th]].",
+      "citation_ids": [
+        "block:e863d20c-ed0e-5a1b-9e20-d2d75fbf8a66"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:aec7cc47-f453-5113-8ca4-49a5af54e0a0",
+      "kind": "paragraph",
+      "order_index": 124,
+      "content": "J. H. Oh, 'First-order formalism of holographic Wilsonian renormalization group: Langevin equation,' J. Korean Phys. Soc. 79 , no.10, 903-917 (2021) doi:10.1007/s40042021-00320-x [arXiv:2110.05013 [hep-th]].",
+      "citation_ids": [
+        "block:aec7cc47-f453-5113-8ca4-49a5af54e0a0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:9997e055-25e2-510d-8b1a-0a358a7c2aed",
+      "kind": "paragraph",
+      "order_index": 125,
+      "content": "G. Kim, J. s. Chae, W. Shin and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of scalar theory with generic mass, self-interaction and multiple trace deformation,' Int. J. Mod. Phys. A 38 , no.21, 2350114 (2023) doi:10.1142/S0217751X23501142 [arXiv:2305.18920 [hep-th]].",
+      "citation_ids": [
+        "block:9997e055-25e2-510d-8b1a-0a358a7c2aed"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f6488783-3a19-5327-8b0e-c38a92f69e41",
+      "kind": "paragraph",
+      "order_index": 126,
+      "content": "J. H. Lee and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of conformally coupled scalar in AdS 4 ,' J. Korean Phys. Soc. 83 , no.9, 665-674 (2023) doi:10.1007/s40042-023-00926-3 [arXiv:2308.10010 [hep-th]].",
+      "citation_ids": [
+        "block:f6488783-3a19-5327-8b0e-c38a92f69e41"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:1ae59dda-5ae8-5dbb-bc27-0430d5b31193",
+      "kind": "paragraph",
+      "order_index": 127,
+      "content": "Y. Hatta and T. Kunihiro, 'Renormalization group method applied to kinetic equations: Roles of initial values and time,' Annals Phys. 298 , 24-57 (2002) doi:10.1006/aphy.2002.6234 [arXiv:hep-th/0108159 [hep-th]].",
+      "citation_ids": [
+        "block:1ae59dda-5ae8-5dbb-bc27-0430d5b31193"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "block:89052061-af72-5906-9811-ceba9511a080",
+      "canonical_block_id": "89052061-af72-5906-9811-ceba9511a080",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "page_number": 1,
+      "bbox": [
+        57.8398,
+        69.87135999999998,
+        134.9988032222976,
+        80.64299519999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:78c65662-9df9-5020-a22c-6247aca1bcab",
+      "canonical_block_id": "78c65662-9df9-5020-a22c-6247aca1bcab",
+      "source_block_id": "docling-SectionHeaderItem-1",
+      "page_number": 1,
+      "bbox": [
+        57.8398,
+        127.8769426,
+        539.755791480585,
+        164.9493070000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:879587bf-dcdd-5e24-98b7-ebb42492c0b9",
+      "canonical_block_id": "879587bf-dcdd-5e24-98b7-ebb42492c0b9",
+      "source_block_id": "docling-TextItem-2",
+      "page_number": 1,
+      "bbox": [
+        253.31964000000002,
+        192.68833000000006,
+        343.86116,
+        209.04089620000002
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:170f0f21-872d-513a-9341-596c10536e59",
+      "canonical_block_id": "170f0f21-872d-513a-9341-596c10536e59",
+      "source_block_id": "docling-TextItem-3",
+      "page_number": 1,
+      "bbox": [
+        219.11974,
+        235.11381000000006,
+        378.3594743945728,
+        278.8809652
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:644dfdc1-65c6-5456-a83b-bf14cb6f8239",
+      "canonical_block_id": "644dfdc1-65c6-5456-a83b-bf14cb6f8239",
+      "source_block_id": "docling-TextItem-4",
+      "page_number": 1,
+      "bbox": [
+        243.47990000000001,
+        309.64046,
+        354.2950667480305,
+        324.00100620000006
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:8d326b72-f8a2-5a18-a358-e2414888fd11",
+      "canonical_block_id": "8d326b72-f8a2-5a18-a358-e2414888fd11",
+      "source_block_id": "docling-TextItem-5",
+      "page_number": 1,
+      "bbox": [
+        57.83989999999994,
+        355.59351000000004,
+        539.7346510284289,
+        431.0406652000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b26efa28-188f-5662-8507-e2921bbaab63",
+      "canonical_block_id": "b26efa28-188f-5662-8507-e2921bbaab63",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "page_number": 1,
+      "bbox": [
+        57.83989999999994,
+        457.9891300000001,
+        193.75908912705336,
+        473.5002054000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d609d8c6-6ca2-5c9f-822c-63ed50a4a31b",
+      "canonical_block_id": "d609d8c6-6ca2-5c9f-822c-63ed50a4a31b",
+      "source_block_id": "docling-TextItem-7",
+      "page_number": 1,
+      "bbox": [
+        57.83989999999994,
+        488.79341000000005,
+        539.681552777882,
+        580.2007652000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5811d4dc-5691-58cb-81cb-43fd4e58f9d2",
+      "canonical_block_id": "5811d4dc-5691-58cb-81cb-43fd4e58f9d2",
+      "source_block_id": "docling-TextItem-8",
+      "page_number": 1,
+      "bbox": [
+        57.84071999999992,
+        584.0734100000001,
+        539.7604620983807,
+        659.6405652000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5d38d5ec-1860-57b2-8886-20a08dca524e",
+      "canonical_block_id": "5d38d5ec-1860-57b2-8886-20a08dca524e",
+      "source_block_id": "docling-TextItem-9",
+      "page_number": 1,
+      "bbox": [
+        71.2801,
+        669.3396251,
+        180.25706706421786,
+        680.13066
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:6bb4f595-b9b9-527f-a037-560c5d8bb908",
+      "canonical_block_id": "6bb4f595-b9b9-527f-a037-560c5d8bb908",
+      "source_block_id": "docling-TextItem-10",
+      "page_number": 1,
+      "bbox": [
+        71.2801,
+        681.6997851,
+        213.8378008813371,
+        692.49082
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:76d54a1b-962a-55e9-93b0-f175ae68d45c",
+      "canonical_block_id": "76d54a1b-962a-55e9-93b0-f175ae68d45c",
+      "source_block_id": "docling-SectionHeaderItem-11",
+      "page_number": 2,
+      "bbox": [
+        57.83979999999997,
+        124.26932,
+        464.8872993572971,
+        139.78039539999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b5c5dd8c-14c6-542c-9a22-850c9751b567",
+      "canonical_block_id": "b5c5dd8c-14c6-542c-9a22-850c9751b567",
+      "source_block_id": "docling-TextItem-12",
+      "page_number": 2,
+      "bbox": [
+        57.83949999999999,
+        155.07360000000006,
+        539.7415194406399,
+        230.64075519999994
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f49479ba-094e-5f25-a261-1d30b8e199e1",
+      "canonical_block_id": "f49479ba-094e-5f25-a261-1d30b8e199e1",
+      "source_block_id": "docling-TextItem-13",
+      "page_number": 2,
+      "bbox": [
+        57.83959999999996,
+        234.51379999999995,
+        539.6515113087999,
+        278.2809551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1483cb85-33f0-5567-b547-1247e1043c86",
+      "canonical_block_id": "1483cb85-33f0-5567-b547-1247e1043c86",
+      "source_block_id": "docling-FormulaItem-14",
+      "page_number": 2,
+      "bbox": [
+        150.71969999999996,
+        292.2224975,
+        539.7431703089916,
+        306.91252749999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:24d6de2a-a639-5b3a-8bb3-b40a52c41be0",
+      "canonical_block_id": "24d6de2a-a639-5b3a-8bb3-b40a52c41be0",
+      "source_block_id": "docling-TextItem-15",
+      "page_number": 2,
+      "bbox": [
+        57.840309999999874,
+        321.99339999999995,
+        539.7345923559678,
+        350.59252749999996
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:38298244-26a6-514d-b48e-6c88a6f50f16",
+      "canonical_block_id": "38298244-26a6-514d-b48e-6c88a6f50f16",
+      "source_block_id": "docling-FormulaItem-16",
+      "page_number": 2,
+      "bbox": [
+        180.84027999999986,
+        360.87329,
+        539.7430203089916,
+        389.35709199999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a47fbe8c-af85-58ea-a6c9-d25861228346",
+      "canonical_block_id": "a47fbe8c-af85-58ea-a6c9-d25861228346",
+      "source_block_id": "docling-TextItem-17",
+      "page_number": 2,
+      "bbox": [
+        57.83981,
+        398.54221750000005,
+        571.1555116000001,
+        539.0405551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:541ffff5-5aff-5a94-9c36-79c6a6ff9f9f",
+      "canonical_block_id": "541ffff5-5aff-5a94-9c36-79c6a6ff9f9f",
+      "source_block_id": "docling-FormulaItem-18",
+      "page_number": 2,
+      "bbox": [
+        235.31987999999998,
+        564.1534999999999,
+        539.7427203089917,
+        624.0725275
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7078be41-f52f-54be-8c81-0b030695bc2e",
+      "canonical_block_id": "7078be41-f52f-54be-8c81-0b030695bc2e",
+      "source_block_id": "docling-TextItem-19",
+      "page_number": 2,
+      "bbox": [
+        57.83985999999999,
+        634.35344,
+        539.742996,
+        678.1205952
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ee7a8c81-9305-5a0d-aec9-c4eb75cd0a4b",
+      "canonical_block_id": "ee7a8c81-9305-5a0d-aec9-c4eb75cd0a4b",
+      "source_block_id": "docling-SectionHeaderItem-20",
+      "page_number": 3,
+      "bbox": [
+        57.8398,
+        66.18921999999998,
+        539.9589696610759,
+        81.70029539999996
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4a0c3132-28a3-55e8-8d95-2b09639e84d4",
+      "canonical_block_id": "4a0c3132-28a3-55e8-8d95-2b09639e84d4",
+      "source_block_id": "docling-TextItem-21",
+      "page_number": 3,
+      "bbox": [
+        57.83979999999997,
+        97.11379999999997,
+        539.7332166169089,
+        140.7609551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0e0b2bc2-4b30-5209-8535-885078387292",
+      "canonical_block_id": "0e0b2bc2-4b30-5209-8535-885078387292",
+      "source_block_id": "docling-TextItem-22",
+      "page_number": 3,
+      "bbox": [
+        57.84009999999995,
+        144.7535999999999,
+        539.7421867807489,
+        300.5523274999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a9b6bf13-ed58-58f7-a6f8-f93b21009923",
+      "canonical_block_id": "a9b6bf13-ed58-58f7-a6f8-f93b21009923",
+      "source_block_id": "docling-FormulaItem-23",
+      "page_number": 3,
+      "bbox": [
+        204.48180999999988,
+        310.5616919999997,
+        539.7450903089916,
+        346.4153367999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d1d48294-672e-50b1-a28b-1db8a190775a",
+      "canonical_block_id": "d1d48294-672e-50b1-a28b-1db8a190775a",
+      "source_block_id": "docling-TextItem-24",
+      "page_number": 3,
+      "bbox": [
+        57.84122999999994,
+        349.5933999999997,
+        539.77330005056,
+        472.80075519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:69d98295-0f25-5837-a68a-df853ad613a5",
+      "canonical_block_id": "69d98295-0f25-5837-a68a-df853ad613a5",
+      "source_block_id": "docling-TextItem-25",
+      "page_number": 3,
+      "bbox": [
+        57.84110999999996,
+        476.67339999999973,
+        539.6898947023615,
+        631.6807551999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:6296c915-e509-5b2b-bd7e-bf987ae3b66a",
+      "canonical_block_id": "6296c915-e509-5b2b-bd7e-bf987ae3b66a",
+      "source_block_id": "docling-TextItem-26",
+      "page_number": 3,
+      "bbox": [
+        57.83994000000001,
+        642.2196251,
+        539.8884810204559,
+        692.49076
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d1b80156-ec1e-5f8c-a817-89e864b8b606",
+      "canonical_block_id": "d1b80156-ec1e-5f8c-a817-89e864b8b606",
+      "source_block_id": "docling-TextItem-27",
+      "page_number": 4,
+      "bbox": [
+        57.84010000000001,
+        101.07359999999994,
+        539.6972423499777,
+        176.64075519999983
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:bcaefbc7-a531-548b-9edb-8924c959dbc2",
+      "canonical_block_id": "bcaefbc7-a531-548b-9edb-8924c959dbc2",
+      "source_block_id": "docling-SectionHeaderItem-28",
+      "page_number": 4,
+      "bbox": [
+        57.84010000000001,
+        203.58921999999984,
+        539.7345795454038,
+        243.22019539999985
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:35d2643a-7876-5833-80a1-b2dca1f85bea",
+      "canonical_block_id": "35d2643a-7876-5833-80a1-b2dca1f85bea",
+      "source_block_id": "docling-TextItem-29",
+      "page_number": 4,
+      "bbox": [
+        57.84010000000001,
+        258.51379999999983,
+        539.8001618228739,
+        445.32075519999984
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c053b4b4-cf5e-5d11-884b-abd075d203c5",
+      "canonical_block_id": "c053b4b4-cf5e-5d11-884b-abd075d203c5",
+      "source_block_id": "docling-FormulaItem-30",
+      "page_number": 4,
+      "bbox": [
+        177.12026000000006,
+        470.0417919999998,
+        539.7431963089919,
+        566.9755367999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:24c323c6-ebdc-5cd3-8a75-1daf7d07930a",
+      "canonical_block_id": "24c323c6-ebdc-5cd3-8a75-1daf7d07930a",
+      "source_block_id": "docling-TextItem-31",
+      "page_number": 4,
+      "bbox": [
+        57.84033600000015,
+        569.7933999999998,
+        539.7596812,
+        693.0007551999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:024b04ad-e3f7-59e3-82db-dd300bdc6f56",
+      "canonical_block_id": "024b04ad-e3f7-59e3-82db-dd300bdc6f56",
+      "source_block_id": "docling-SectionHeaderItem-32",
+      "page_number": 5,
+      "bbox": [
+        57.839920000000006,
+        187.8693199999999,
+        483.1901445894053,
+        203.38039539999988
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4cf617b7-0990-5aa3-a69d-1a6ca2218403",
+      "canonical_block_id": "4cf617b7-0990-5aa3-a69d-1a6ca2218403",
+      "source_block_id": "docling-TextItem-33",
+      "page_number": 5,
+      "bbox": [
+        57.839920000000006,
+        218.67359999999996,
+        539.6807568815359,
+        294.91252749999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:aca52fb8-9cec-5c9d-9179-86bab75a8739",
+      "canonical_block_id": "aca52fb8-9cec-5c9d-9179-86bab75a8739",
+      "source_block_id": "docling-TextItem-34",
+      "page_number": 5,
+      "bbox": [
+        75.36012000000005,
+        298.1137999999999,
+        246.59983092244505,
+        310.08095519999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:78c2c7c2-faa3-5f72-b74d-3e644302a351",
+      "canonical_block_id": "78c2c7c2-faa3-5f72-b74d-3e644302a351",
+      "source_block_id": "docling-FormulaItem-35",
+      "page_number": 5,
+      "bbox": [
+        126.11992000000005,
+        315.69444,
+        539.7429303089917,
+        358.1755367999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:8c9d710f-f690-50e3-8d70-d8b565378aab",
+      "canonical_block_id": "8c9d710f-f690-50e3-8d70-d8b565378aab",
+      "source_block_id": "docling-TextItem-36",
+      "page_number": 5,
+      "bbox": [
+        57.840370000000064,
+        370.4733,
+        539.7619262616319,
+        493.6806651999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:468d7224-f1b3-53a4-b4a8-5de0d8166028",
+      "canonical_block_id": "468d7224-f1b3-53a4-b4a8-5de0d8166028",
+      "source_block_id": "docling-FormulaItem-37",
+      "page_number": 5,
+      "bbox": [
+        68.4,
+        518.97462,
+        539.7428603089917,
+        563.4008752
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:03b0b42c-e8b0-5e43-b54d-574bb9a3817c",
+      "canonical_block_id": "03b0b42c-e8b0-5e43-b54d-574bb9a3817c",
+      "source_block_id": "docling-TextItem-38",
+      "page_number": 5,
+      "bbox": [
+        57.84017000000006,
+        565.9424174999999,
+        539.7427944609025,
+        635.477112
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:329f8db4-e35c-586b-a649-75695573d366",
+      "canonical_block_id": "329f8db4-e35c-586b-a649-75695573d366",
+      "source_block_id": "docling-TextItem-39",
+      "page_number": 5,
+      "bbox": [
+        71.2801,
+        637.7796251,
+        281.63719081853634,
+        648.57066
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:fc2a6cf0-1b58-53c3-b167-2d2526659e4e",
+      "canonical_block_id": "fc2a6cf0-1b58-53c3-b167-2d2526659e4e",
+      "source_block_id": "docling-FormulaItem-40",
+      "page_number": 6,
+      "bbox": [
+        80.04012999999998,
+        93.81493,
+        539.7424603089917,
+        167.2553368
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1ce93b39-a3c3-52a4-a4ad-d4c33a272a03",
+      "canonical_block_id": "1ce93b39-a3c3-52a4-a4ad-d4c33a272a03",
+      "source_block_id": "docling-TextItem-41",
+      "page_number": 6,
+      "bbox": [
+        57.83960000000002,
+        172.95332000000008,
+        539.6804932559362,
+        288.79671199999996
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e044ddf6-d1b2-54d3-9eaa-3fcb8522b08a",
+      "canonical_block_id": "e044ddf6-d1b2-54d3-9eaa-3fcb8522b08a",
+      "source_block_id": "docling-FormulaItem-42",
+      "page_number": 6,
+      "bbox": [
+        106.43992600000001,
+        294.02021575,
+        539.7428603089917,
+        330.3352768
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c48e7714-e8db-5c2c-ac6d-bec34919308a",
+      "canonical_block_id": "c48e7714-e8db-5c2c-ac6d-bec34919308a",
+      "source_block_id": "docling-TextItem-43",
+      "page_number": 6,
+      "bbox": [
+        57.839800000000025,
+        329.91373999999996,
+        539.7343226752002,
+        359.83246749999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0d5ed800-28f8-5160-83d3-844ad0e2b519",
+      "canonical_block_id": "0d5ed800-28f8-5160-83d3-844ad0e2b519",
+      "source_block_id": "docling-TextItem-44",
+      "page_number": 6,
+      "bbox": [
+        57.84001800000004,
+        361.7137399999999,
+        539.759681150848,
+        564.3604952000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e30de992-8c71-5685-aed3-8fae9edd7e7d",
+      "canonical_block_id": "e30de992-8c71-5685-aed3-8fae9edd7e7d",
+      "source_block_id": "docling-TextItem-45",
+      "page_number": 6,
+      "bbox": [
+        57.840058,
+        568.2335400000001,
+        539.7252513467138,
+        644.5924675000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:3096ca2a-9d92-54e2-964c-367813cab9f3",
+      "canonical_block_id": "3096ca2a-9d92-54e2-964c-367813cab9f3",
+      "source_block_id": "docling-SectionHeaderItem-46",
+      "page_number": 7,
+      "bbox": [
+        57.8398,
+        66.18921999999998,
+        399.9375427173788,
+        81.70029539999996
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:fcef9bb5-43d6-548a-92bb-4584a36b0a74",
+      "canonical_block_id": "fcef9bb5-43d6-548a-92bb-4584a36b0a74",
+      "source_block_id": "docling-TextItem-47",
+      "page_number": 7,
+      "bbox": [
+        57.8398,
+        97.11379999999997,
+        539.7016930547203,
+        204.3609551999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:244b6302-ea07-5841-8301-7dfde8a392fc",
+      "canonical_block_id": "244b6302-ea07-5841-8301-7dfde8a392fc",
+      "source_block_id": "docling-FormulaItem-48",
+      "page_number": 7,
+      "bbox": [
+        225.00041999999996,
+        216.38002574999996,
+        539.7426603089916,
+        278.26879999999994
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:76452916-8827-5311-8235-e2e48037247a",
+      "canonical_block_id": "76452916-8827-5311-8235-e2e48037247a",
+      "source_block_id": "docling-TextItem-49",
+      "page_number": 7,
+      "bbox": [
+        57.840109999999925,
+        288.0200957499999,
+        539.6799437683968,
+        348.36039519999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:cd67a18d-a7bb-5ebf-81e1-3f0dc7bd378c",
+      "canonical_block_id": "cd67a18d-a7bb-5ebf-81e1-3f0dc7bd378c",
+      "source_block_id": "docling-FormulaItem-50",
+      "page_number": 7,
+      "bbox": [
+        175.68081999999987,
+        360.241632,
+        539.7433803089916,
+        396.09527679999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:bc8cdf8a-12be-5f22-8419-fbe966408e95",
+      "canonical_block_id": "bc8cdf8a-12be-5f22-8419-fbe966408e95",
+      "source_block_id": "docling-TextItem-51",
+      "page_number": 7,
+      "bbox": [
+        57.84087999999997,
+        399.93465999999995,
+        539.7607562616319,
+        428.0404952
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:91c13e22-386a-59f3-85dd-e4375e9e01eb",
+      "canonical_block_id": "91c13e22-386a-59f3-85dd-e4375e9e01eb",
+      "source_block_id": "docling-FormulaItem-52",
+      "page_number": 7,
+      "bbox": [
+        152.16117999999997,
+        428.18025575,
+        539.7425603089918,
+        457.396912
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:55470f63-56ab-5008-a70c-8ab3f6e298a5",
+      "canonical_block_id": "55470f63-56ab-5008-a70c-8ab3f6e298a5",
+      "source_block_id": "docling-TextItem-53",
+      "page_number": 7,
+      "bbox": [
+        57.839999999999975,
+        463.7850593,
+        539.6810993620097,
+        557.7604752
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:65996f6c-c2f3-500a-a4e5-3166869aa87c",
+      "canonical_block_id": "65996f6c-c2f3-500a-a4e5-3166869aa87c",
+      "source_block_id": "docling-SectionHeaderItem-54",
+      "page_number": 7,
+      "bbox": [
+        57.840599999999995,
+        584.82924,
+        460.9014875696752,
+        600.3403154
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d8911b9e-e41d-5b50-9c07-7632d41b11b7",
+      "canonical_block_id": "d8911b9e-e41d-5b50-9c07-7632d41b11b7",
+      "source_block_id": "docling-TextItem-55",
+      "page_number": 7,
+      "bbox": [
+        57.840599999999995,
+        615.63352,
+        539.801462,
+        691.2006752
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f80fc8fb-229c-53e5-91ee-326ca7b9c07d",
+      "canonical_block_id": "f80fc8fb-229c-53e5-91ee-326ca7b9c07d",
+      "source_block_id": "docling-FormulaItem-56",
+      "page_number": 8,
+      "bbox": [
+        159.47998,
+        103.41494,
+        539.7426303089917,
+        179.6151268000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:74368f6e-45eb-5292-900c-2b2438720aa0",
+      "canonical_block_id": "74368f6e-45eb-5292-900c-2b2438720aa0",
+      "source_block_id": "docling-FormulaItem-57",
+      "page_number": 8,
+      "bbox": [
+        173.27992,
+        312.3936,
+        539.7431003089918,
+        340.877222
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:26e1ba40-d0c5-503b-856c-3aaddbf2a98b",
+      "canonical_block_id": "26e1ba40-d0c5-503b-856c-3aaddbf2a98b",
+      "source_block_id": "docling-TextItem-58",
+      "page_number": 8,
+      "bbox": [
+        57.83961999999991,
+        174.15340000000015,
+        539.7596133232638,
+        313.3209552
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e270eb48-0b9a-5473-b4b2-68e772d81e91",
+      "canonical_block_id": "e270eb48-0b9a-5473-b4b2-68e772d81e91",
+      "source_block_id": "docling-TextItem-59",
+      "page_number": 8,
+      "bbox": [
+        75.36024000000009,
+        343.77475,
+        539.5743585469697,
+        364.517022
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ad4ba62c-3730-5cc6-a90e-c5506412a8e7",
+      "canonical_block_id": "ad4ba62c-3730-5cc6-a90e-c5506412a8e7",
+      "source_block_id": "docling-FormulaItem-60",
+      "page_number": 8,
+      "bbox": [
+        210.36128000000014,
+        367.58233750000005,
+        539.7440503089917,
+        389.957222
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a8913776-2fbc-5f9a-9ca2-34833d4510a0",
+      "canonical_block_id": "a8913776-2fbc-5f9a-9ca2-34833d4510a0",
+      "source_block_id": "docling-TextItem-61",
+      "page_number": 8,
+      "bbox": [
+        75.36119000000008,
+        394.77475,
+        247.85554724825613,
+        415.517022
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:cbf8a257-c350-5345-9356-f1100ccbc77f",
+      "canonical_block_id": "cbf8a257-c350-5345-9356-f1100ccbc77f",
+      "source_block_id": "docling-FormulaItem-62",
+      "page_number": 8,
+      "bbox": [
+        226.32085000000006,
+        416.18278749999996,
+        539.7426603089916,
+        446.4725275
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5e413bc7-dd6a-5c77-8d6a-3facf43a2ff7",
+      "canonical_block_id": "5e413bc7-dd6a-5c77-8d6a-3facf43a2ff7",
+      "source_block_id": "docling-TextItem-63",
+      "page_number": 8,
+      "bbox": [
+        57.83910999999989,
+        456.27333999999996,
+        539.6797141265665,
+        508.516732
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7e427285-05c0-5398-81e7-723a26245fd1",
+      "canonical_block_id": "7e427285-05c0-5398-81e7-723a26245fd1",
+      "source_block_id": "docling-FormulaItem-64",
+      "page_number": 8,
+      "bbox": [
+        233.0387699999999,
+        510.0222975,
+        539.7429603089918,
+        540.4325275
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7f35d322-7d31-5cdb-8be4-b8a948d157a1",
+      "canonical_block_id": "7f35d322-7d31-5cdb-8be4-b8a948d157a1",
+      "source_block_id": "docling-TextItem-65",
+      "page_number": 8,
+      "bbox": [
+        57.84011000000004,
+        549.21494,
+        539.6804743308035,
+        593.2809752
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e2660eba-440c-5ac0-8e78-9cf3a4d0abe6",
+      "canonical_block_id": "e2660eba-440c-5ac0-8e78-9cf3a4d0abe6",
+      "source_block_id": "docling-FormulaItem-66",
+      "page_number": 8,
+      "bbox": [
+        211.80037000000002,
+        602.4225775,
+        539.7431303089917,
+        632.8325275
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7d5e0263-8876-5c11-9204-3ebb63986242",
+      "canonical_block_id": "7d5e0263-8876-5c11-9204-3ebb63986242",
+      "source_block_id": "docling-TextItem-67",
+      "page_number": 8,
+      "bbox": [
+        57.840059999999994,
+        641.7823275,
+        539.680553463424,
+        679.397012
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e22cf8bc-d4ac-560c-8b25-f9699e91d9ac",
+      "canonical_block_id": "e22cf8bc-d4ac-560c-8b25-f9699e91d9ac",
+      "source_block_id": "docling-TextItem-68",
+      "page_number": 8,
+      "bbox": [
+        71.2801,
+        673.759034,
+        460.1989837903992,
+        692.49066
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:9e3604de-c144-591c-983c-fea1098e0062",
+      "canonical_block_id": "9e3604de-c144-591c-983c-fea1098e0062",
+      "source_block_id": "docling-FormulaItem-69",
+      "page_number": 9,
+      "bbox": [
+        231.72026999999997,
+        147.38053574999992,
+        539.7432703089918,
+        169.2771919999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:42b1f6c5-d893-5aba-b6f0-22c32268c07c",
+      "canonical_block_id": "42b1f6c5-d893-5aba-b6f0-22c32268c07c",
+      "source_block_id": "docling-TextItem-70",
+      "page_number": 9,
+      "bbox": [
+        57.84041000000008,
+        171.15369999999984,
+        539.6901153066242,
+        230.76065519999975
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:68935ee8-d4b3-5b54-b7ff-e75e768cb7c4",
+      "canonical_block_id": "68935ee8-d4b3-5b54-b7ff-e75e768cb7c4",
+      "source_block_id": "docling-SectionHeaderItem-71",
+      "page_number": 9,
+      "bbox": [
+        57.84039000000001,
+        257.8294199999998,
+        175.519622655008,
+        273.3404953999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4ed81231-fbdf-5351-98b4-05fbbf55786d",
+      "canonical_block_id": "4ed81231-fbdf-5351-98b4-05fbbf55786d",
+      "source_block_id": "docling-TextItem-72",
+      "page_number": 9,
+      "bbox": [
+        57.84008000000003,
+        288.6336999999998,
+        539.7273652773888,
+        570.8406551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b3d421ac-630e-5d91-bee2-c43effaa5740",
+      "canonical_block_id": "b3d421ac-630e-5d91-bee2-c43effaa5740",
+      "source_block_id": "docling-TextItem-73",
+      "page_number": 9,
+      "bbox": [
+        57.84038000000004,
+        574.7136999999998,
+        539.7824186559486,
+        650.2808551999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:3f79c8a2-01e2-5a57-8fca-557a0d9965c2",
+      "canonical_block_id": "3f79c8a2-01e2-5a57-8fca-557a0d9965c2",
+      "source_block_id": "docling-TextItem-74",
+      "page_number": 9,
+      "bbox": [
+        57.83994000000001,
+        660.3396251,
+        539.7411350870509,
+        684.33066
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f76c0122-e604-5400-a9b5-e7b77aab7c36",
+      "canonical_block_id": "f76c0122-e604-5400-a9b5-e7b77aab7c36",
+      "source_block_id": "docling-SectionHeaderItem-75",
+      "page_number": 10,
+      "bbox": [
+        57.83979999999997,
+        219.54931999999985,
+        310.8789790826762,
+        235.06039539999983
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:870caf5c-823a-5ce0-866b-af8ded092d5c",
+      "canonical_block_id": "870caf5c-823a-5ce0-866b-af8ded092d5c",
+      "source_block_id": "docling-TextItem-76",
+      "page_number": 10,
+      "bbox": [
+        57.83979999999997,
+        250.47349999999983,
+        539.8005496514814,
+        580.2006951999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7f6d75fa-4979-5c67-acb7-18ae3301aa4d",
+      "canonical_block_id": "7f6d75fa-4979-5c67-acb7-18ae3301aa4d",
+      "source_block_id": "docling-SectionHeaderItem-77",
+      "page_number": 10,
+      "bbox": [
+        57.84030999999993,
+        607.2690599999997,
+        219.06622179239054,
+        622.7801353999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e4084e03-c1f2-5584-a3f2-133a3b30818d",
+      "canonical_block_id": "e4084e03-c1f2-5584-a3f2-133a3b30818d",
+      "source_block_id": "docling-TextItem-78",
+      "page_number": 10,
+      "bbox": [
+        57.84030999999993,
+        638.0733399999998,
+        539.5204855642365,
+        666.0006951999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:94c7ea82-ba52-5e78-908a-4ef37093d683",
+      "canonical_block_id": "94c7ea82-ba52-5e78-908a-4ef37093d683",
+      "source_block_id": "docling-SectionHeaderItem-79",
+      "page_number": 11,
+      "bbox": [
+        57.8398,
+        66.18921999999998,
+        148.62602825426802,
+        81.70029539999996
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f645b74b-0a63-5379-8f98-105ceff96370",
+      "canonical_block_id": "f645b74b-0a63-5379-8f98-105ceff96370",
+      "source_block_id": "docling-ListItem-80",
+      "page_number": 11,
+      "bbox": [
+        63.719879999999996,
+        97.11379999999997,
+        539.7253975050243,
+        124.92075519999992
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e9b03b0f-33c0-5780-9e55-39b4e88b142c",
+      "canonical_block_id": "e9b03b0f-33c0-5780-9e55-39b4e88b142c",
+      "source_block_id": "docling-ListItem-81",
+      "page_number": 11,
+      "bbox": [
+        63.71998000000001,
+        138.7535999999999,
+        539.6815311981569,
+        166.68095519999986
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:fbb4b071-b2ff-5299-9bfc-117ab2ec07bf",
+      "canonical_block_id": "fbb4b071-b2ff-5299-9bfc-117ab2ec07bf",
+      "source_block_id": "docling-ListItem-82",
+      "page_number": 11,
+      "bbox": [
+        63.720080000000024,
+        180.51379999999983,
+        539.7256518885889,
+        208.44075519999978
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:16528e1f-0662-50b9-a352-d30a7f4ebcd6",
+      "canonical_block_id": "16528e1f-0662-50b9-a352-d30a7f4ebcd6",
+      "source_block_id": "docling-ListItem-83",
+      "page_number": 11,
+      "bbox": [
+        63.720180000000056,
+        222.27359999999976,
+        539.7249018073599,
+        250.20095519999973
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:df071ba6-c020-5a21-80ae-8b2ac5c2103d",
+      "canonical_block_id": "df071ba6-c020-5a21-80ae-8b2ac5c2103d",
+      "source_block_id": "docling-ListItem-84",
+      "page_number": 11,
+      "bbox": [
+        63.72018000000011,
+        264.0337999999997,
+        539.7446399213569,
+        291.84075519999976
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:33201bb6-0983-51ae-b4a2-999273010d3e",
+      "canonical_block_id": "33201bb6-0983-51ae-b4a2-999273010d3e",
+      "source_block_id": "docling-ListItem-85",
+      "page_number": 11,
+      "bbox": [
+        63.7201800000002,
+        305.7934999999997,
+        539.6397995069443,
+        333.6008551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0a1106bb-0451-5687-b938-0e6d2a860f91",
+      "canonical_block_id": "0a1106bb-0451-5687-b938-0e6d2a860f91",
+      "source_block_id": "docling-ListItem-86",
+      "page_number": 11,
+      "bbox": [
+        63.72038000000019,
+        347.5535999999997,
+        539.638659859354,
+        375.36055519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c3192a2a-4d8b-5485-985e-2e6bb0d858aa",
+      "canonical_block_id": "c3192a2a-4d8b-5485-985e-2e6bb0d858aa",
+      "source_block_id": "docling-ListItem-87",
+      "page_number": 11,
+      "bbox": [
+        63.7205000000002,
+        389.3136999999997,
+        539.7264844111362,
+        417.12065519999976
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:8161b0d6-5f2e-54e8-9e23-4d94beb446e4",
+      "canonical_block_id": "8161b0d6-5f2e-54e8-9e23-4d94beb446e4",
+      "source_block_id": "docling-ListItem-88",
+      "page_number": 11,
+      "bbox": [
+        63.72060000000019,
+        430.95349999999974,
+        539.8632678077439,
+        458.88085519999976
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:583878f4-a17a-5718-976f-f2c11e62600e",
+      "canonical_block_id": "583878f4-a17a-5718-976f-f2c11e62600e",
+      "source_block_id": "docling-ListItem-89",
+      "page_number": 11,
+      "bbox": [
+        57.84050000000019,
+        472.71369999999973,
+        539.5773354302979,
+        500.64065519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:59ed8a80-d98b-5259-a26d-f14c02530db6",
+      "canonical_block_id": "59ed8a80-d98b-5259-a26d-f14c02530db6",
+      "source_block_id": "docling-ListItem-90",
+      "page_number": 11,
+      "bbox": [
+        57.84050000000019,
+        514.4734999999997,
+        539.640311560397,
+        542.4008551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5109d990-78ef-57d9-ae28-b9739608709b",
+      "canonical_block_id": "5109d990-78ef-57d9-ae28-b9739608709b",
+      "source_block_id": "docling-ListItem-91",
+      "page_number": 11,
+      "bbox": [
+        57.84060000000018,
+        556.2336999999998,
+        539.6802567385091,
+        584.0406551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ad16fb3a-8231-5311-b2c0-e63332ddeffb",
+      "canonical_block_id": "ad16fb3a-8231-5311-b2c0-e63332ddeffb",
+      "source_block_id": "docling-ListItem-92",
+      "page_number": 11,
+      "bbox": [
+        57.841400000000135,
+        597.9937999999997,
+        539.4875094406658,
+        625.8007551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:fee4f6c1-ae12-5671-81a9-0b93a7cd5497",
+      "canonical_block_id": "fee4f6c1-ae12-5671-81a9-0b93a7cd5497",
+      "source_block_id": "docling-ListItem-93",
+      "page_number": 11,
+      "bbox": [
+        57.841400000000135,
+        639.7534999999997,
+        539.6528235517442,
+        667.5604551999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:6df28ec1-447b-5298-9ed1-28fa30b3a626",
+      "canonical_block_id": "6df28ec1-447b-5298-9ed1-28fa30b3a626",
+      "source_block_id": "docling-ListItem-94",
+      "page_number": 12,
+      "bbox": [
+        57.8398,
+        69.27359999999999,
+        539.6508538144769,
+        97.20095519999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d64ffeee-6df6-56e1-88e0-141f31371e14",
+      "canonical_block_id": "d64ffeee-6df6-56e1-88e0-141f31371e14",
+      "source_block_id": "docling-ListItem-95",
+      "page_number": 12,
+      "bbox": [
+        57.839800000000025,
+        111.03379999999993,
+        539.6224197227519,
+        138.9611551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1fc4bc0b-5cec-5f97-ad83-bbe0f6c02d89",
+      "canonical_block_id": "1fc4bc0b-5cec-5f97-ad83-bbe0f6c02d89",
+      "source_block_id": "docling-ListItem-96",
+      "page_number": 12,
+      "bbox": [
+        57.83990000000003,
+        152.79399999999987,
+        539.6514688347647,
+        180.72095519999982
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:2b985803-8258-5747-9261-fa9b178eae9a",
+      "canonical_block_id": "2b985803-8258-5747-9261-fa9b178eae9a",
+      "source_block_id": "docling-ListItem-97",
+      "page_number": 12,
+      "bbox": [
+        57.84019999999998,
+        194.5537999999998,
+        539.6818897532161,
+        222.36075519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:18f11987-4255-5642-a29d-99c3d7ece1f2",
+      "canonical_block_id": "18f11987-4255-5642-a29d-99c3d7ece1f2",
+      "source_block_id": "docling-ListItem-98",
+      "page_number": 12,
+      "bbox": [
+        57.84000000000003,
+        236.31389999999976,
+        539.6400592,
+        264.1208551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:36fcee87-620b-5db3-a651-9ae8c5c515dc",
+      "canonical_block_id": "36fcee87-620b-5db3-a651-9ae8c5c515dc",
+      "source_block_id": "docling-ListItem-99",
+      "page_number": 12,
+      "bbox": [
+        57.84020000000004,
+        278.0735999999997,
+        539.7262282073599,
+        305.88095519999973
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a0e5d459-d679-576a-9e49-39a405483a1c",
+      "canonical_block_id": "a0e5d459-d679-576a-9e49-39a405483a1c",
+      "source_block_id": "docling-ListItem-100",
+      "page_number": 12,
+      "bbox": [
+        57.8404000000001,
+        319.8336999999997,
+        539.650221241293,
+        347.64065519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b19a929d-0272-54a0-a84a-0b2259380ca2",
+      "canonical_block_id": "b19a929d-0272-54a0-a84a-0b2259380ca2",
+      "source_block_id": "docling-ListItem-101",
+      "page_number": 12,
+      "bbox": [
+        57.840200000000095,
+        361.5933999999997,
+        539.862717312,
+        389.4007551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:068bd586-ac45-5be5-87b8-4b343f20228d",
+      "canonical_block_id": "068bd586-ac45-5be5-87b8-4b343f20228d",
+      "source_block_id": "docling-ListItem-102",
+      "page_number": 12,
+      "bbox": [
+        57.84100000000012,
+        403.2335999999997,
+        539.606748356352,
+        431.1609551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a0826a8b-0bf5-5463-ba42-66189631b5e1",
+      "canonical_block_id": "a0826a8b-0bf5-5463-ba42-66189631b5e1",
+      "source_block_id": "docling-ListItem-103",
+      "page_number": 12,
+      "bbox": [
+        57.84080000000009,
+        444.9937999999997,
+        532.4394240245759,
+        456.9609551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0cea82ed-f1ec-587e-9a2f-ae77846c2a2a",
+      "canonical_block_id": "0cea82ed-f1ec-587e-9a2f-ae77846c2a2a",
+      "source_block_id": "docling-ListItem-104",
+      "page_number": 12,
+      "bbox": [
+        57.84060000000011,
+        470.91369999999966,
+        539.6407592,
+        498.7206551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e254cff2-4d15-5e6d-acf1-a40a6e856e21",
+      "canonical_block_id": "e254cff2-4d15-5e6d-acf1-a40a6e856e21",
+      "source_block_id": "docling-ListItem-105",
+      "page_number": 12,
+      "bbox": [
+        57.839900000000114,
+        512.6733999999997,
+        408.23964964684814,
+        524.6405551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ec874d2a-de5b-598a-a9d3-0fc33f82b81f",
+      "canonical_block_id": "ec874d2a-de5b-598a-a9d3-0fc33f82b81f",
+      "source_block_id": "docling-ListItem-106",
+      "page_number": 12,
+      "bbox": [
+        57.839900000000114,
+        538.4733999999997,
+        539.8616408727039,
+        582.2405551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a7f7fd9c-4688-5694-95a8-abc9a61f0b40",
+      "canonical_block_id": "a7f7fd9c-4688-5694-95a8-abc9a61f0b40",
+      "source_block_id": "docling-ListItem-107",
+      "page_number": 12,
+      "bbox": [
+        57.83970000000011,
+        596.0733999999998,
+        539.6966318594049,
+        639.8405551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ae7f24a5-e01e-56a6-bf12-5908cb1c898c",
+      "canonical_block_id": "ae7f24a5-e01e-56a6-bf12-5908cb1c898c",
+      "source_block_id": "docling-ListItem-108",
+      "page_number": 12,
+      "bbox": [
+        57.83970000000011,
+        653.7932999999997,
+        539.8455674076158,
+        681.6006551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:9ebbf674-a820-59a0-b252-0fd3775be235",
+      "canonical_block_id": "9ebbf674-a820-59a0-b252-0fd3775be235",
+      "source_block_id": "docling-ListItem-109",
+      "page_number": 13,
+      "bbox": [
+        57.8398,
+        69.27359999999999,
+        539.5771346923009,
+        97.20095519999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:06f4199b-e277-560c-8d03-6274bb00df3d",
+      "canonical_block_id": "06f4199b-e277-560c-8d03-6274bb00df3d",
+      "source_block_id": "docling-ListItem-110",
+      "page_number": 13,
+      "bbox": [
+        57.83989999999997,
+        111.03379999999993,
+        539.6397432436225,
+        138.9611551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:45e802c4-723f-5315-b137-91500d1a27a5",
+      "canonical_block_id": "45e802c4-723f-5315-b137-91500d1a27a5",
+      "source_block_id": "docling-ListItem-111",
+      "page_number": 13,
+      "bbox": [
+        57.83989999999994,
+        152.79399999999987,
+        539.8456056522236,
+        180.72095519999982
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d2b527cc-4e30-595b-9151-b46c9ad1064a",
+      "canonical_block_id": "d2b527cc-4e30-595b-9151-b46c9ad1064a",
+      "source_block_id": "docling-ListItem-112",
+      "page_number": 13,
+      "bbox": [
+        57.83989999999994,
+        194.5537999999998,
+        539.6068513036798,
+        222.36075519999974
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:2dc2e076-a41e-5e71-9d74-1684b3854740",
+      "canonical_block_id": "2dc2e076-a41e-5e71-9d74-1684b3854740",
+      "source_block_id": "docling-ListItem-113",
+      "page_number": 13,
+      "bbox": [
+        57.83979999999991,
+        236.31389999999976,
+        539.9659743911423,
+        280.08105519999975
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4c20b36a-4b01-596d-8a27-2bdea1941e37",
+      "canonical_block_id": "4c20b36a-4b01-596d-8a27-2bdea1941e37",
+      "source_block_id": "docling-ListItem-114",
+      "page_number": 13,
+      "bbox": [
+        57.839599999999905,
+        293.9138999999997,
+        539.8453362195967,
+        337.6810551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:91219293-bb77-5086-9ab9-a783c2d164d2",
+      "canonical_block_id": "91219293-bb77-5086-9ab9-a783c2d164d2",
+      "source_block_id": "docling-ListItem-115",
+      "page_number": 13,
+      "bbox": [
+        57.83939999999993,
+        351.63379999999967,
+        539.6395591999999,
+        379.4407551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:963f4341-2357-5fb5-a313-adc6cb6948a1",
+      "canonical_block_id": "963f4341-2357-5fb5-a313-adc6cb6948a1",
+      "source_block_id": "docling-ListItem-116",
+      "page_number": 13,
+      "bbox": [
+        57.83869999999996,
+        393.2735999999997,
+        539.8444170076157,
+        421.2009551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:17da50ea-81b4-5691-953c-4c21158ce265",
+      "canonical_block_id": "17da50ea-81b4-5691-953c-4c21158ce265",
+      "source_block_id": "docling-ListItem-117",
+      "page_number": 13,
+      "bbox": [
+        57.83859999999993,
+        435.0337999999997,
+        539.6383592,
+        462.9611551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b5a8ef85-2a9e-557f-b4f7-78417219b931",
+      "canonical_block_id": "b5a8ef85-2a9e-557f-b4f7-78417219b931",
+      "source_block_id": "docling-ListItem-118",
+      "page_number": 13,
+      "bbox": [
+        57.83850000000001,
+        476.7939999999997,
+        539.8440801979906,
+        520.5607551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4c59594a-cb07-5beb-b8c9-63e5ba0bc213",
+      "canonical_block_id": "4c59594a-cb07-5beb-b8c9-63e5ba0bc213",
+      "source_block_id": "docling-ListItem-119",
+      "page_number": 13,
+      "bbox": [
+        57.838300000000004,
+        534.3939999999998,
+        539.861739546624,
+        578.1607551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:b15c6edc-05d6-545f-bf7e-be5054b819e7",
+      "canonical_block_id": "b15c6edc-05d6-545f-bf7e-be5054b819e7",
+      "source_block_id": "docling-ListItem-120",
+      "page_number": 13,
+      "bbox": [
+        57.83909999999997,
+        592.1138999999997,
+        539.6386627424766,
+        619.9208551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a3b10c73-2225-5b62-8539-c3d234379faa",
+      "canonical_block_id": "a3b10c73-2225-5b62-8539-c3d234379faa",
+      "source_block_id": "docling-ListItem-121",
+      "page_number": 13,
+      "bbox": [
+        57.83909999999997,
+        633.8735999999997,
+        539.638795051878,
+        661.6809551999997
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:780719e4-b3d9-5bbb-9172-253d9c6ab6c9",
+      "canonical_block_id": "780719e4-b3d9-5bbb-9172-253d9c6ab6c9",
+      "source_block_id": "docling-ListItem-122",
+      "page_number": 14,
+      "bbox": [
+        57.8398,
+        69.27359999999999,
+        539.8453287890945,
+        113.04075519999992
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e863d20c-ed0e-5a1b-9e20-d2d75fbf8a66",
+      "canonical_block_id": "e863d20c-ed0e-5a1b-9e20-d2d75fbf8a66",
+      "source_block_id": "docling-ListItem-123",
+      "page_number": 14,
+      "bbox": [
+        57.83960000000002,
+        126.99389999999994,
+        539.6049492002817,
+        154.8008551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:aec7cc47-f453-5113-8ca4-49a5af54e0a0",
+      "canonical_block_id": "aec7cc47-f453-5113-8ca4-49a5af54e0a0",
+      "source_block_id": "docling-ListItem-124",
+      "page_number": 14,
+      "bbox": [
+        57.83949999999999,
+        168.7535999999999,
+        539.9361283039746,
+        212.40075519999982
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:9997e055-25e2-510d-8b1a-0a358a7c2aed",
+      "canonical_block_id": "9997e055-25e2-510d-8b1a-0a358a7c2aed",
+      "source_block_id": "docling-ListItem-125",
+      "page_number": 14,
+      "bbox": [
+        57.83930000000001,
+        226.35349999999983,
+        539.8615035665919,
+        285.96045519999984
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f6488783-3a19-5327-8b0e-c38a92f69e41",
+      "canonical_block_id": "f6488783-3a19-5327-8b0e-c38a92f69e41",
+      "source_block_id": "docling-ListItem-126",
+      "page_number": 14,
+      "bbox": [
+        57.83909999999997,
+        299.9135999999998,
+        539.8444771358717,
+        343.5603551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1ae59dda-5ae8-5dbb-bc27-0430d5b31193",
+      "canonical_block_id": "1ae59dda-5ae8-5dbb-bc27-0430d5b31193",
+      "source_block_id": "docling-ListItem-127",
+      "page_number": 14,
+      "bbox": [
+        57.83889999999997,
+        357.51349999999985,
+        539.8620111472637,
+        401.2806551999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    }
+  ],
+  "warnings": [
+    "info:content_completeness: 19 个 block 内容为空。"
+  ],
+  "metadata": {
+    "quality_report_contract_version": "1.0",
+    "chunk_count": 128,
+    "citation_count": 128,
+    "table_binding_count": 0
+  }
+}

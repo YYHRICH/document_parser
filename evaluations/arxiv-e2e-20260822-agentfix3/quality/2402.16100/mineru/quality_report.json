@@ -1,0 +1,2391 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "307a1aab50f4f76f3dd194034b7df3e25f5fd8053c7f93137389c6a165667fdd",
+    "input_parsed_document.json": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+    "optimized.md": "cb40f32e6a57fd23e6e2e6e1230416c32209ead33bcc64aee4aeced5d6760ea5"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "fab1695b-ac36-4ad8-8748-1ab98ed1c188",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "72b54ce6-23a3-57a7-b54d-cb24a882e77d",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "fab1695b-ac36-4ad8-8748-1ab98ed1c188",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "fab1695b-ac36-4ad8-8748-1ab98ed1c188",
+  "gate_summary": {
+    "blocking_reasons": [
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [4] 展开后 1 个编号在参考索引中缺失: 4",
+      "warning issue: 引用 [5] 展开后 1 个编号在参考索引中缺失: 5",
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [6] 展开后 1 个编号在参考索引中缺失: 6",
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [11] 展开后 1 个编号在参考索引中缺失: 11",
+      "warning issue: 引用 [16] 展开后 1 个编号在参考索引中缺失: 16",
+      "warning issue: 引用 [17] 展开后 1 个编号在参考索引中缺失: 17",
+      "warning issue: 引用 [18] 展开后 1 个编号在参考索引中缺失: 18",
+      "warning issue: 引用 [19] 展开后 1 个编号在参考索引中缺失: 19",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [20] 展开后 1 个编号在参考索引中缺失: 20",
+      "warning issue: 引用 [21] 展开后 1 个编号在参考索引中缺失: 21",
+      "warning issue: 引用 [21] 展开后 1 个编号在参考索引中缺失: 21",
+      "warning issue: 引用 [22] 展开后 1 个编号在参考索引中缺失: 22",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [7] 展开后 1 个编号在参考索引中缺失: 7",
+      "warning issue: 引用 [8] 展开后 1 个编号在参考索引中缺失: 8",
+      "warning issue: 引用 [10] 展开后 1 个编号在参考索引中缺失: 10",
+      "warning issue: 引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "warning issue: 引用 [14] 展开后 1 个编号在参考索引中缺失: 14",
+      "warning issue: 引用 [19] 展开后 1 个编号在参考索引中缺失: 19",
+      "warning issue: 引用 [18] 展开后 1 个编号在参考索引中缺失: 18",
+      "warning issue: 引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "warning issue: 引用 [24] 展开后 1 个编号在参考索引中缺失: 24",
+      "warning issue: 引用 [25] 展开后 1 个编号在参考索引中缺失: 25",
+      "warning issue: 引用 [26] 展开后 1 个编号在参考索引中缺失: 26",
+      "warning issue: 引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "warning issue: 引用 [10] 展开后 1 个编号在参考索引中缺失: 10",
+      "warning issue: 引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "warning issue: 引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "warning issue: 引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "warning issue: 引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "warning issue: 引用 [29] 展开后 1 个编号在参考索引中缺失: 29",
+      "warning issue: 引用 [30] 展开后 1 个编号在参考索引中缺失: 30",
+      "warning issue: 引用 [23] 展开后 1 个编号在参考索引中缺失: 23",
+      "warning issue: 引用 [31] 展开后 1 个编号在参考索引中缺失: 31",
+      "warning issue: 引用 [32] 展开后 1 个编号在参考索引中缺失: 32",
+      "warning issue: 引用 [28] 展开后 1 个编号在参考索引中缺失: 28",
+      "warning issue: 引用 [33] 展开后 1 个编号在参考索引中缺失: 33",
+      "warning issue: 引用 [34] 展开后 1 个编号在参考索引中缺失: 34",
+      "warning issue: 引用 [35] 展开后 1 个编号在参考索引中缺失: 35",
+      "warning issue: 引用 [36] 展开后 1 个编号在参考索引中缺失: 36",
+      "warning issue: 引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "warning issue: 引用 [38] 展开后 1 个编号在参考索引中缺失: 38",
+      "warning issue: 引用 [39] 展开后 1 个编号在参考索引中缺失: 39",
+      "warning issue: 引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "warning issue: 引用 [41] 展开后 1 个编号在参考索引中缺失: 41",
+      "warning issue: 引用 [33] 展开后 1 个编号在参考索引中缺失: 33",
+      "warning issue: 引用 [34] 展开后 1 个编号在参考索引中缺失: 34",
+      "warning issue: 引用 [36] 展开后 1 个编号在参考索引中缺失: 36",
+      "warning issue: 引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "warning issue: 引用 [38] 展开后 1 个编号在参考索引中缺失: 38",
+      "warning issue: 引用 [39] 展开后 1 个编号在参考索引中缺失: 39",
+      "warning issue: 引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "warning issue: 引用 [41] 展开后 1 个编号在参考索引中缺失: 41",
+      "warning issue: 引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "warning issue: 引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "warning issue: 引用 [42] 展开后 1 个编号在参考索引中缺失: 42",
+      "warning issue: 引用 [43] 展开后 1 个编号在参考索引中缺失: 43",
+      "warning issue: 引用 [44] 展开后 1 个编号在参考索引中缺失: 44",
+      "warning issue: 引用 [45] 展开后 1 个编号在参考索引中缺失: 45",
+      "warning issue: 引用 [46] 展开后 1 个编号在参考索引中缺失: 46",
+      "warning issue: 引用 [47] 展开后 1 个编号在参考索引中缺失: 47",
+      "warning issue: 引用 [43] 展开后 1 个编号在参考索引中缺失: 43",
+      "warning issue: 引用 [44] 展开后 1 个编号在参考索引中缺失: 44",
+      "warning issue: 引用 [45] 展开后 1 个编号在参考索引中缺失: 45",
+      "warning issue: 引用 [46] 展开后 1 个编号在参考索引中缺失: 46",
+      "warning issue: 引用 [47] 展开后 1 个编号在参考索引中缺失: 47",
+      "warning issue: 引用 [48] 展开后 1 个编号在参考索引中缺失: 48"
+    ],
+    "capability_blockers": [],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 0,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 87
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "03d585a5-ef1d-5375-ada4-d84350f92dc1",
+        "f9f8f90a-712a-5ed3-96a4-d2b78e54d222",
+        "848185f8-3c11-58ad-9b4d-2b476c2bf064",
+        "cf4778d3-7959-5a1e-94e6-709e9ef2baee",
+        "1df60e72-1c05-5eba-b040-33f3e9d263b4",
+        "e2d4a96a-32bb-56c8-b9f1-5de207cf4687",
+        "8e73810c-f271-5a5f-9f27-864d82e9b069",
+        "17f82fa6-25f4-5a6c-a78d-ae0a6044f15a",
+        "268cbf1f-320b-5d0c-b881-f4c5ce6734c6",
+        "8ceefaf9-946c-5666-95e1-871e48e88139"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "5fe7bff6-69b5-5504-a890-fb88b8d7036d",
+      "message": "10 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [],
+      "category": "reference_structure",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "13a60f1a-7d86-5096-aaa9-9e83e6e2f6b8",
+      "message": "存在参考文献标题但未恢复出任何条目。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02f3eb05-ebf0-50fd-950b-26805d39a408"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "02f3eb05-ebf0-50fd-950b-26805d39a408",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 269,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "51905a0c-cab2-5a4e-bc24-8fda78d4dac3",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02f3eb05-ebf0-50fd-950b-26805d39a408"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "02f3eb05-ebf0-50fd-950b-26805d39a408",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 273,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "b6314441-a8b7-5299-8718-5abe4a0cc317",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02f3eb05-ebf0-50fd-950b-26805d39a408"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "02f3eb05-ebf0-50fd-950b-26805d39a408",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 281,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "ba05f963-e243-5756-a2e5-c92d44205901",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02f3eb05-ebf0-50fd-950b-26805d39a408"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "02f3eb05-ebf0-50fd-950b-26805d39a408",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[4]",
+        "marker_offset": 351,
+        "normalized_labels": [
+          "4"
+        ]
+      },
+      "issue_id": "eaa62b1d-3736-571c-a3f9-8c4ecc0d1ead",
+      "message": "引用 [4] 展开后 1 个编号在参考索引中缺失: 4",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "02f3eb05-ebf0-50fd-950b-26805d39a408"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "02f3eb05-ebf0-50fd-950b-26805d39a408",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[5]",
+        "marker_offset": 355,
+        "normalized_labels": [
+          "5"
+        ]
+      },
+      "issue_id": "a8c5e488-c8c5-5d2d-a37a-40fa5b6ff9ef",
+      "message": "引用 [5] 展开后 1 个编号在参考索引中缺失: 5",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "39e9b7e1-0670-5636-afd6-832c15e976f4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "39e9b7e1-0670-5636-afd6-832c15e976f4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 140,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "b3f4c7f9-6007-5191-aad3-03459f2c029d",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "9febce57-22af-512b-9fe7-a5620b5b54aa"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "9febce57-22af-512b-9fe7-a5620b5b54aa",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[6]",
+        "marker_offset": 42,
+        "normalized_labels": [
+          "6"
+        ]
+      },
+      "issue_id": "f178b000-1683-5430-b0ed-484e30dcc043",
+      "message": "引用 [6] 展开后 1 个编号在参考索引中缺失: 6",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "d238e341-f369-5c0b-872a-be48a84f6103"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "d238e341-f369-5c0b-872a-be48a84f6103",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 297,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "b9082ca6-faa9-521e-8c98-6095aad99ce1",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "eac620b5-20f2-58b1-9fb3-94b4ae367015"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "eac620b5-20f2-58b1-9fb3-94b4ae367015",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 1059,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "44094808-71d4-5249-9ce9-bc05957fab42",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "33cec6be-a3b5-5adc-84a0-79c2721b3f5c"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "33cec6be-a3b5-5adc-84a0-79c2721b3f5c",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[11]",
+        "marker_offset": 456,
+        "normalized_labels": [
+          "11"
+        ]
+      },
+      "issue_id": "1b899966-7284-55a7-96cf-16cebf848351",
+      "message": "引用 [11] 展开后 1 个编号在参考索引中缺失: 11",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "c115efc5-ce9f-5212-84f5-3fb2bf0ce6db"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "c115efc5-ce9f-5212-84f5-3fb2bf0ce6db",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[16]",
+        "marker_offset": 710,
+        "normalized_labels": [
+          "16"
+        ]
+      },
+      "issue_id": "0cdd7900-40c1-51e6-858e-221b886cf4b9",
+      "message": "引用 [16] 展开后 1 个编号在参考索引中缺失: 16",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "c115efc5-ce9f-5212-84f5-3fb2bf0ce6db"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "c115efc5-ce9f-5212-84f5-3fb2bf0ce6db",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[17]",
+        "marker_offset": 715,
+        "normalized_labels": [
+          "17"
+        ]
+      },
+      "issue_id": "ec1114ad-dbfd-5dc9-b70a-e6fdb7c2f320",
+      "message": "引用 [17] 展开后 1 个编号在参考索引中缺失: 17",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[18]",
+        "marker_offset": 78,
+        "normalized_labels": [
+          "18"
+        ]
+      },
+      "issue_id": "205489b7-dcf6-586b-8cba-8870e9b65f6c",
+      "message": "引用 [18] 展开后 1 个编号在参考索引中缺失: 18",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[19]",
+        "marker_offset": 83,
+        "normalized_labels": [
+          "19"
+        ]
+      },
+      "issue_id": "0b9d328e-44d6-587d-a377-d1146af3c8ec",
+      "message": "引用 [19] 展开后 1 个编号在参考索引中缺失: 19",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "0d0c9acd-13ce-5a3a-a3aa-7e58b04504c4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 910,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "0292877a-bf83-50ad-8d0f-273da4fb9f35",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "a3d77b17-dc9c-5b8a-8c83-8561313c924d"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "a3d77b17-dc9c-5b8a-8c83-8561313c924d",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 334,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "40037a14-dab1-5bb0-894b-cf41c279191a",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "a3d77b17-dc9c-5b8a-8c83-8561313c924d"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "a3d77b17-dc9c-5b8a-8c83-8561313c924d",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 510,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "3182237a-534a-5108-8d91-466ef71cc092",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "69aab290-c139-5144-83f0-db3c5f1efffe"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "69aab290-c139-5144-83f0-db3c5f1efffe",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[15]",
+        "marker_offset": 504,
+        "normalized_labels": [
+          "15"
+        ]
+      },
+      "issue_id": "8640f490-fe65-5160-8b32-ddcf6b65e314",
+      "message": "引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "21317e52-3ed4-5ce7-85a8-2fb81e6225a4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "21317e52-3ed4-5ce7-85a8-2fb81e6225a4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 98,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "aa3ca2d4-20f3-50fb-afff-3fac6ca0dc1c",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "21317e52-3ed4-5ce7-85a8-2fb81e6225a4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "21317e52-3ed4-5ce7-85a8-2fb81e6225a4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[20]",
+        "marker_offset": 141,
+        "normalized_labels": [
+          "20"
+        ]
+      },
+      "issue_id": "46972d7f-a74e-5543-ba76-19c29d705f98",
+      "message": "引用 [20] 展开后 1 个编号在参考索引中缺失: 20",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "21317e52-3ed4-5ce7-85a8-2fb81e6225a4"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "21317e52-3ed4-5ce7-85a8-2fb81e6225a4",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[21]",
+        "marker_offset": 464,
+        "normalized_labels": [
+          "21"
+        ]
+      },
+      "issue_id": "6752f7ff-aa3a-5599-be0c-251f4312fd0f",
+      "message": "引用 [21] 展开后 1 个编号在参考索引中缺失: 21",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "c4bda5da-6857-5082-9de9-12c869380ad7"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "c4bda5da-6857-5082-9de9-12c869380ad7",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[21]",
+        "marker_offset": 260,
+        "normalized_labels": [
+          "21"
+        ]
+      },
+      "issue_id": "78a261ad-3c28-5f64-b97b-6a5237ae7c74",
+      "message": "引用 [21] 展开后 1 个编号在参考索引中缺失: 21",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "de66df3a-d990-571a-a9eb-8f84b3c12309"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "de66df3a-d990-571a-a9eb-8f84b3c12309",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[22]",
+        "marker_offset": 28,
+        "normalized_labels": [
+          "22"
+        ]
+      },
+      "issue_id": "8945d5ec-792f-5c28-b907-ffacccde63ae",
+      "message": "引用 [22] 展开后 1 个编号在参考索引中缺失: 22",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "e779f200-91d4-5a37-971e-6c0f682a0b72"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "e779f200-91d4-5a37-971e-6c0f682a0b72",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 377,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "685045fc-49db-52c4-93b7-eaa67ee4e48c",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[7]",
+        "marker_offset": 70,
+        "normalized_labels": [
+          "7"
+        ]
+      },
+      "issue_id": "5268b286-7a20-548f-bf21-331e0f9c3abd",
+      "message": "引用 [7] 展开后 1 个编号在参考索引中缺失: 7",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[8]",
+        "marker_offset": 74,
+        "normalized_labels": [
+          "8"
+        ]
+      },
+      "issue_id": "1146531e-8d44-5afb-b757-133470c45424",
+      "message": "引用 [8] 展开后 1 个编号在参考索引中缺失: 8",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[10]",
+        "marker_offset": 78,
+        "normalized_labels": [
+          "10"
+        ]
+      },
+      "issue_id": "34c98e71-86e6-5e94-970c-a8ade2313907",
+      "message": "引用 [10] 展开后 1 个编号在参考索引中缺失: 10",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[15]",
+        "marker_offset": 518,
+        "normalized_labels": [
+          "15"
+        ]
+      },
+      "issue_id": "73ce385f-d4ee-53c2-ab23-edd27c387c84",
+      "message": "引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[14]",
+        "marker_offset": 524,
+        "normalized_labels": [
+          "14"
+        ]
+      },
+      "issue_id": "5477a6f9-4c2b-50e7-bd0b-47cb96754723",
+      "message": "引用 [14] 展开后 1 个编号在参考索引中缺失: 14",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[19]",
+        "marker_offset": 644,
+        "normalized_labels": [
+          "19"
+        ]
+      },
+      "issue_id": "d0db7e0c-0cd0-5482-840b-733feb6bc81b",
+      "message": "引用 [19] 展开后 1 个编号在参考索引中缺失: 19",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[18]",
+        "marker_offset": 650,
+        "normalized_labels": [
+          "18"
+        ]
+      },
+      "issue_id": "d8a77e12-55e2-57eb-b152-4c132c8d148f",
+      "message": "引用 [18] 展开后 1 个编号在参考索引中缺失: 18",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[2]",
+        "marker_offset": 668,
+        "normalized_labels": [
+          "2"
+        ]
+      },
+      "issue_id": "a7ad859a-3abd-5eac-919b-12fb1cf67dd2",
+      "message": "引用 [2] 展开后 1 个编号在参考索引中缺失: 2",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[24]",
+        "marker_offset": 1112,
+        "normalized_labels": [
+          "24"
+        ]
+      },
+      "issue_id": "49562f34-a52a-5271-99f5-0a1158c2307e",
+      "message": "引用 [24] 展开后 1 个编号在参考索引中缺失: 24",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[25]",
+        "marker_offset": 1118,
+        "normalized_labels": [
+          "25"
+        ]
+      },
+      "issue_id": "7a9fbb82-9de9-5f95-9809-6386eeace747",
+      "message": "引用 [25] 展开后 1 个编号在参考索引中缺失: 25",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "7b1e745c-8e46-592a-a303-aee7556c78f9"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "7b1e745c-8e46-592a-a303-aee7556c78f9",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[26]",
+        "marker_offset": 1194,
+        "normalized_labels": [
+          "26"
+        ]
+      },
+      "issue_id": "504cc4ed-f7bb-5ec4-8939-7defefe2c977",
+      "message": "引用 [26] 展开后 1 个编号在参考索引中缺失: 26",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "3d1c5cba-57e3-567e-b75b-f8a6a2881074"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "3d1c5cba-57e3-567e-b75b-f8a6a2881074",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[27]",
+        "marker_offset": 389,
+        "normalized_labels": [
+          "27"
+        ]
+      },
+      "issue_id": "bb7cf904-682d-545d-9e98-32d7385c69a4",
+      "message": "引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "197abbc5-1d19-51a9-b74b-b9a73fc144fc"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "197abbc5-1d19-51a9-b74b-b9a73fc144fc",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[10]",
+        "marker_offset": 376,
+        "normalized_labels": [
+          "10"
+        ]
+      },
+      "issue_id": "583a47f6-ae52-5865-b797-f012461e6025",
+      "message": "引用 [10] 展开后 1 个编号在参考索引中缺失: 10",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "f8ce9062-a278-5b20-8cd5-ed7427955d99"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "f8ce9062-a278-5b20-8cd5-ed7427955d99",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[27]",
+        "marker_offset": 578,
+        "normalized_labels": [
+          "27"
+        ]
+      },
+      "issue_id": "0e77aa17-1333-5628-af77-5035b1b29571",
+      "message": "引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ac1bdba7-ab74-575f-a2fb-626f64d848ad"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ac1bdba7-ab74-575f-a2fb-626f64d848ad",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 174,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "95befb68-ceb9-5753-aa75-0fb41d372fe1",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ac1bdba7-ab74-575f-a2fb-626f64d848ad"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ac1bdba7-ab74-575f-a2fb-626f64d848ad",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[15]",
+        "marker_offset": 182,
+        "normalized_labels": [
+          "15"
+        ]
+      },
+      "issue_id": "7e691e9e-b258-5889-8bce-379e260e95d3",
+      "message": "引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "1b133de1-e133-554c-a926-48af88fb7159"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "1b133de1-e133-554c-a926-48af88fb7159",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 202,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "db83ef33-6b64-5158-b70f-88f78f3167c6",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "1b133de1-e133-554c-a926-48af88fb7159"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "1b133de1-e133-554c-a926-48af88fb7159",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 549,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "5413acd4-3348-50ae-a3cf-233279be5f59",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ae668478-a8ae-53d4-bd66-76310a139724"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ae668478-a8ae-53d4-bd66-76310a139724",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[1]",
+        "marker_offset": 173,
+        "normalized_labels": [
+          "1"
+        ]
+      },
+      "issue_id": "510f5fdd-8111-5456-94b3-c4285a1b774a",
+      "message": "引用 [1] 展开后 1 个编号在参考索引中缺失: 1",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5d1ad121-f65a-5322-872f-3727f202b276"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5d1ad121-f65a-5322-872f-3727f202b276",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[15]",
+        "marker_offset": 316,
+        "normalized_labels": [
+          "15"
+        ]
+      },
+      "issue_id": "aebd52f5-a93b-5359-ab9e-bec20a4bf215",
+      "message": "引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "63d189f8-c9d4-5cbb-a7e1-e85de96b7b94"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "63d189f8-c9d4-5cbb-a7e1-e85de96b7b94",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 44,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "d8331e1b-a9f0-5b91-8981-a24d34cf9cfd",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "9d7a36d8-0b9c-5c8e-89e0-23bd37be9092"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "9d7a36d8-0b9c-5c8e-89e0-23bd37be9092",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[15]",
+        "marker_offset": 33,
+        "normalized_labels": [
+          "15"
+        ]
+      },
+      "issue_id": "7340d5e6-e1d7-5dc9-97e4-cd2f288081d2",
+      "message": "引用 [15] 展开后 1 个编号在参考索引中缺失: 15",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "53d9f419-e25c-5b1d-b013-4bf5f9028522"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "53d9f419-e25c-5b1d-b013-4bf5f9028522",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[27]",
+        "marker_offset": 591,
+        "normalized_labels": [
+          "27"
+        ]
+      },
+      "issue_id": "f851e75e-b484-53f2-99db-585f1043ae83",
+      "message": "引用 [27] 展开后 1 个编号在参考索引中缺失: 27",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "53d9f419-e25c-5b1d-b013-4bf5f9028522"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "53d9f419-e25c-5b1d-b013-4bf5f9028522",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[3]",
+        "marker_offset": 1162,
+        "normalized_labels": [
+          "3"
+        ]
+      },
+      "issue_id": "195ac55c-68b5-581c-8b46-7c361206d6d3",
+      "message": "引用 [3] 展开后 1 个编号在参考索引中缺失: 3",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "53d9f419-e25c-5b1d-b013-4bf5f9028522"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "53d9f419-e25c-5b1d-b013-4bf5f9028522",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[29]",
+        "marker_offset": 1380,
+        "normalized_labels": [
+          "29"
+        ]
+      },
+      "issue_id": "24d8e587-383c-55eb-85e4-69e9255a212b",
+      "message": "引用 [29] 展开后 1 个编号在参考索引中缺失: 29",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "53d9f419-e25c-5b1d-b013-4bf5f9028522"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "53d9f419-e25c-5b1d-b013-4bf5f9028522",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[30]",
+        "marker_offset": 1532,
+        "normalized_labels": [
+          "30"
+        ]
+      },
+      "issue_id": "3d06bf77-a82b-5c76-9070-d711de55866f",
+      "message": "引用 [30] 展开后 1 个编号在参考索引中缺失: 30",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ecffd644-8246-5e00-9d51-cbc3cc51c1cd"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ecffd644-8246-5e00-9d51-cbc3cc51c1cd",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[23]",
+        "marker_offset": 920,
+        "normalized_labels": [
+          "23"
+        ]
+      },
+      "issue_id": "f29b2465-d36d-54ea-b44f-8e28c8d9d669",
+      "message": "引用 [23] 展开后 1 个编号在参考索引中缺失: 23",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ecffd644-8246-5e00-9d51-cbc3cc51c1cd"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ecffd644-8246-5e00-9d51-cbc3cc51c1cd",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[31]",
+        "marker_offset": 1181,
+        "normalized_labels": [
+          "31"
+        ]
+      },
+      "issue_id": "7af0b344-c676-5e03-a4d3-9a6c09a26fce",
+      "message": "引用 [31] 展开后 1 个编号在参考索引中缺失: 31",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "ecffd644-8246-5e00-9d51-cbc3cc51c1cd"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "ecffd644-8246-5e00-9d51-cbc3cc51c1cd",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[32]",
+        "marker_offset": 1187,
+        "normalized_labels": [
+          "32"
+        ]
+      },
+      "issue_id": "297084f4-4f49-52e7-bee9-6dfa0353ee82",
+      "message": "引用 [32] 展开后 1 个编号在参考索引中缺失: 32",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "95e7e647-cd9e-526d-b653-48dc0d7adfcc"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "95e7e647-cd9e-526d-b653-48dc0d7adfcc",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[28]",
+        "marker_offset": 103,
+        "normalized_labels": [
+          "28"
+        ]
+      },
+      "issue_id": "9be183fb-cf1b-5603-8260-49eb3b6ed462",
+      "message": "引用 [28] 展开后 1 个编号在参考索引中缺失: 28",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[33]",
+        "marker_offset": 106,
+        "normalized_labels": [
+          "33"
+        ]
+      },
+      "issue_id": "a28ecf31-a667-5748-a062-fc921014e2fc",
+      "message": "引用 [33] 展开后 1 个编号在参考索引中缺失: 33",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[34]",
+        "marker_offset": 110,
+        "normalized_labels": [
+          "34"
+        ]
+      },
+      "issue_id": "8816aa70-1656-5452-977c-73db0ad288f3",
+      "message": "引用 [34] 展开后 1 个编号在参考索引中缺失: 34",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[35]",
+        "marker_offset": 115,
+        "normalized_labels": [
+          "35"
+        ]
+      },
+      "issue_id": "4aec0f56-31d6-5e09-bd28-60a0412b0a7d",
+      "message": "引用 [35] 展开后 1 个编号在参考索引中缺失: 35",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[36]",
+        "marker_offset": 120,
+        "normalized_labels": [
+          "36"
+        ]
+      },
+      "issue_id": "626c2ed2-9dbc-59ad-9b5b-c52f7430aa1f",
+      "message": "引用 [36] 展开后 1 个编号在参考索引中缺失: 36",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[37]",
+        "marker_offset": 125,
+        "normalized_labels": [
+          "37"
+        ]
+      },
+      "issue_id": "c96cc211-51c0-5e35-93bf-1ca4be56dcbf",
+      "message": "引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[38]",
+        "marker_offset": 130,
+        "normalized_labels": [
+          "38"
+        ]
+      },
+      "issue_id": "ee1c5f80-56ad-5c7f-bae6-f5762c1fb662",
+      "message": "引用 [38] 展开后 1 个编号在参考索引中缺失: 38",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[39]",
+        "marker_offset": 135,
+        "normalized_labels": [
+          "39"
+        ]
+      },
+      "issue_id": "983309d2-d39d-5f5e-ade2-59395ee9ef74",
+      "message": "引用 [39] 展开后 1 个编号在参考索引中缺失: 39",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[40]",
+        "marker_offset": 140,
+        "normalized_labels": [
+          "40"
+        ]
+      },
+      "issue_id": "fe2f634a-3653-54b3-8f70-e276ed11316e",
+      "message": "引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[41]",
+        "marker_offset": 144,
+        "normalized_labels": [
+          "41"
+        ]
+      },
+      "issue_id": "b28ab873-ac7f-5846-ab57-62da9a21fb58",
+      "message": "引用 [41] 展开后 1 个编号在参考索引中缺失: 41",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[33]",
+        "marker_offset": 190,
+        "normalized_labels": [
+          "33"
+        ]
+      },
+      "issue_id": "a28ecf31-a667-5748-a062-fc921014e2fc",
+      "message": "引用 [33] 展开后 1 个编号在参考索引中缺失: 33",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[34]",
+        "marker_offset": 194,
+        "normalized_labels": [
+          "34"
+        ]
+      },
+      "issue_id": "8816aa70-1656-5452-977c-73db0ad288f3",
+      "message": "引用 [34] 展开后 1 个编号在参考索引中缺失: 34",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[36]",
+        "marker_offset": 432,
+        "normalized_labels": [
+          "36"
+        ]
+      },
+      "issue_id": "626c2ed2-9dbc-59ad-9b5b-c52f7430aa1f",
+      "message": "引用 [36] 展开后 1 个编号在参考索引中缺失: 36",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[37]",
+        "marker_offset": 437,
+        "normalized_labels": [
+          "37"
+        ]
+      },
+      "issue_id": "c96cc211-51c0-5e35-93bf-1ca4be56dcbf",
+      "message": "引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[38]",
+        "marker_offset": 442,
+        "normalized_labels": [
+          "38"
+        ]
+      },
+      "issue_id": "ee1c5f80-56ad-5c7f-bae6-f5762c1fb662",
+      "message": "引用 [38] 展开后 1 个编号在参考索引中缺失: 38",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[39]",
+        "marker_offset": 447,
+        "normalized_labels": [
+          "39"
+        ]
+      },
+      "issue_id": "983309d2-d39d-5f5e-ade2-59395ee9ef74",
+      "message": "引用 [39] 展开后 1 个编号在参考索引中缺失: 39",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[40]",
+        "marker_offset": 452,
+        "normalized_labels": [
+          "40"
+        ]
+      },
+      "issue_id": "fe2f634a-3653-54b3-8f70-e276ed11316e",
+      "message": "引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[41]",
+        "marker_offset": 457,
+        "normalized_labels": [
+          "41"
+        ]
+      },
+      "issue_id": "b28ab873-ac7f-5846-ab57-62da9a21fb58",
+      "message": "引用 [41] 展开后 1 个编号在参考索引中缺失: 41",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[37]",
+        "marker_offset": 814,
+        "normalized_labels": [
+          "37"
+        ]
+      },
+      "issue_id": "c96cc211-51c0-5e35-93bf-1ca4be56dcbf",
+      "message": "引用 [37] 展开后 1 个编号在参考索引中缺失: 37",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[40]",
+        "marker_offset": 897,
+        "normalized_labels": [
+          "40"
+        ]
+      },
+      "issue_id": "fe2f634a-3653-54b3-8f70-e276ed11316e",
+      "message": "引用 [40] 展开后 1 个编号在参考索引中缺失: 40",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[42]",
+        "marker_offset": 1387,
+        "normalized_labels": [
+          "42"
+        ]
+      },
+      "issue_id": "585e7cf0-2041-519f-b4d1-67b8716081db",
+      "message": "引用 [42] 展开后 1 个编号在参考索引中缺失: 42",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[43]",
+        "marker_offset": 1392,
+        "normalized_labels": [
+          "43"
+        ]
+      },
+      "issue_id": "c19dc150-1e55-52bb-b231-748d90d5f168",
+      "message": "引用 [43] 展开后 1 个编号在参考索引中缺失: 43",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[44]",
+        "marker_offset": 1397,
+        "normalized_labels": [
+          "44"
+        ]
+      },
+      "issue_id": "90d15403-ab99-50c5-9aef-26ff3fae1e2f",
+      "message": "引用 [44] 展开后 1 个编号在参考索引中缺失: 44",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[45]",
+        "marker_offset": 1402,
+        "normalized_labels": [
+          "45"
+        ]
+      },
+      "issue_id": "313ff700-3b47-5e87-a733-0db2d4fa4f76",
+      "message": "引用 [45] 展开后 1 个编号在参考索引中缺失: 45",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[46]",
+        "marker_offset": 1407,
+        "normalized_labels": [
+          "46"
+        ]
+      },
+      "issue_id": "8a3754fc-ca92-55b6-bf58-6332f10c65f3",
+      "message": "引用 [46] 展开后 1 个编号在参考索引中缺失: 46",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[47]",
+        "marker_offset": 1412,
+        "normalized_labels": [
+          "47"
+        ]
+      },
+      "issue_id": "56c6ee71-7118-599d-8936-56ade0c0a0fa",
+      "message": "引用 [47] 展开后 1 个编号在参考索引中缺失: 47",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[43]",
+        "marker_offset": 1433,
+        "normalized_labels": [
+          "43"
+        ]
+      },
+      "issue_id": "c19dc150-1e55-52bb-b231-748d90d5f168",
+      "message": "引用 [43] 展开后 1 个编号在参考索引中缺失: 43",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[44]",
+        "marker_offset": 1438,
+        "normalized_labels": [
+          "44"
+        ]
+      },
+      "issue_id": "90d15403-ab99-50c5-9aef-26ff3fae1e2f",
+      "message": "引用 [44] 展开后 1 个编号在参考索引中缺失: 44",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[45]",
+        "marker_offset": 1443,
+        "normalized_labels": [
+          "45"
+        ]
+      },
+      "issue_id": "313ff700-3b47-5e87-a733-0db2d4fa4f76",
+      "message": "引用 [45] 展开后 1 个编号在参考索引中缺失: 45",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[46]",
+        "marker_offset": 1448,
+        "normalized_labels": [
+          "46"
+        ]
+      },
+      "issue_id": "8a3754fc-ca92-55b6-bf58-6332f10c65f3",
+      "message": "引用 [46] 展开后 1 个编号在参考索引中缺失: 46",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[47]",
+        "marker_offset": 1453,
+        "normalized_labels": [
+          "47"
+        ]
+      },
+      "issue_id": "56c6ee71-7118-599d-8936-56ade0c0a0fa",
+      "message": "引用 [47] 展开后 1 个编号在参考索引中缺失: 47",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "5352037c-6f68-5add-b5d6-b87fbc397409"
+      ],
+      "category": "citation_binding",
+      "evidence": {
+        "candidate_ids": [],
+        "evidence_refs": [
+          {
+            "field_path": "text",
+            "object_id": "5352037c-6f68-5add-b5d6-b87fbc397409",
+            "object_type": "block"
+          }
+        ],
+        "marker": "[48]",
+        "marker_offset": 1958,
+        "normalized_labels": [
+          "48"
+        ]
+      },
+      "issue_id": "99ed085c-541a-5e0b-9d50-edb0c4e3eb70",
+      "message": "引用 [48] 展开后 1 个编号在参考索引中缺失: 48",
+      "severity": "warning",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": false,
+      "attempt_count": 28,
+      "completed_pages": 14,
+      "final_revision_id": "778c0ce3dfbf85e87a4a42ebae0a96ce8f52f8c5cb0d230a3f8c5c543bf9133a",
+      "last_code": "candidate_schema_error",
+      "mode": "paged",
+      "repair_applied": false,
+      "session_id": "arxiv-e2e-20260822:2402.16100:mineru",
+      "successful_pages": 0,
+      "total_pages": 14
+    },
+    "binding_count": 0,
+    "canonical_block_count": 108,
+    "issue_count": 87,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 11,
+    "repair_count": 0,
+    "source_block_count": 108,
+    "table_count": 0
+  },
+  "reparse_recommendation": null,
+  "state": "pass_with_warnings"
+}

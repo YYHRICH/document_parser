@@ -1,0 +1,90 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert guitar player. I have a guitar with standard strings E-A-D-G-B-E.\\\\I want you to tell me how I could play the E minor triad on this guitar.\\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in\\ the following format: \\\\ANSWER:\\E string: fret FRET\\A string: fret FRET\\D string: fret FRET\\G string: fret FRET\\B string: fret FRET\\E string: fret FRET\\\\Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each\\ increase in fret corresponds to an increase in half a note.\\\\ \textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF & \texttt{\thead{You are an expert guitar player. I have a special guitar with strings tuned to\\E-C-F-G-B-E instead of the standard E-A-D-G-B-E. Note that what is the standard A string\\ is instead tuned to C, and the standard D string is instead tuned to F. All other strings\\ are the same.\\\\I want you to tell me how I could play the E minor triad on this guitar.\\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in\\ the following format: \\\\ANSWER:\\E string: fret FRET\\C string: fret FRET\\F string: fret FRET\\G string: fret FRET\\B string: fret FRET\\E string: fret FRET\\\\Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each\\ increase in fret corresponds to an increase in half a note.\\\\ \textbf{\{Let's think step by step.\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chords-guitar}
+    Prompts for chord fingering: guitar. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert guitar player. I have a guitar with standard strings E-A-D-G-B-E.\\\\I want you to tell me what notes the following sequences of finger positions corresponds to: \\\\E string: fret 0\\A string: fret 0\\D string: fret 0\\G string: fret 0\\B string: fret 0\\E string: fret 0\\\\Note that fret 0 indicates an open string, and each increase in fret corresponds to an\\ increase in half a note. \\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and format\\ with dash-separated notes in the order of strings E-A-D-G-B-E.\\\\\textbf{\{Let's think step by step.\}}}} \\
+        \midrule
+        CF & \texttt{\thead{You are an expert guitar player. I have a special guitar with strings tuned to\\ E-C-F-G-B-E instead of the standard E-A-D-G-B-E. Note that what is the standard A string\\ is instead tuned to C, and the standard D string is instead tuned to F. All other strings\\ are the same.\\\\I want you to tell me what notes the following sequences of finger positions corresponds to: \\\\E string: fret 0\\C string: fret 0\\F string: fret 0\\G string: fret 0\\B string: fret 0\\E string: fret 0\\\\Note that fret 0 indicates an open string, and each increase in fret corresponds to an\\ increase in half a note. \\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and format\\ with dash-separated notes in the order of strings E-C-F-G-B-E.\\\\\textbf{\{Let's think step by step.\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chords-controls-guitar}
+    CCC prompts for chord fingering: guitar. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert ukulele player. I have a ukulele with standard strings G-C-E-A.\\\\I want you to tell me how I could play the E minor triad on this ukulele.\\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in\\ the following format: \\\\ANSWER:\\G string: fret FRET\\C string: fret FRET\\E string: fret FRET\\A string: fret FRET\\\\Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each\\ increase in fret corresponds to an increase in half a note.\\\\ \textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF & \texttt{\thead{You are an expert ukulele player. I have a special ukulele with strings tuned to F-C-E-A\\ instead of the standard G-C-E-A. Note that what is the standard G string is instead tuned to F.\\ All other strings are the same.\\\\I want you to tell me how I could play the E minor triad on this ukulele.\\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in\\ the following format: \\\\ANSWER:\\F string: fret FRET\\C string: fret FRET\\E string: fret FRET\\A string: fret FRET\\\\Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each\\ increase in fret corresponds to an increase in half a note.\\\\\textbf{\{Let's think step by step.\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chords-ukulele}
+    Prompts for chord fingering: ukulele. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used. 
+    } 
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert ukulele player. I have a ukulele with standard strings G-C-E-A.\\\\I want you to tell me what notes the following sequences of finger positions corresponds to: \\\\G string: fret 0\\C string: fret 0\\E string: fret 0\\A string: fret 0\\\\Note that fret 0 indicates an open string, and each increase in fret corresponds to an\\ increase in half a note. \\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and format\\ with dash-separated notes in the order of strings G-C-E-A.\\\\\textbf{\{Let's think step by step.\}}}} \\
+        \midrule
+        CF & \texttt{\thead{You are an expert ukulele player. I have a special ukulele with strings tuned to F-C-E-A\\ instead of the standard G-C-E-A. Note that what is the standard G string is instead tuned to F.\\ All other strings are the same.\\\\I want you to tell me what notes the following sequences of finger positions corresponds to: \\\\F string: fret 0\\C string: fret 0\\E string: fret 0\\A string: fret 0\\\\Note that fret 0 indicates an open string, and each increase in fret corresponds to an\\ increase in half a note. \\\\Make sure to choose one final answer, which you should start with 'ANSWER:' and format\\ with dash-separated notes in the order of strings F-C-E-A.\\\\\textbf{\{Let's think step by step.\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chords-controls-ukulele}
+    CCC prompts for chord fingering: ukulele. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert musician. What is the second note of the melody of the song 'Twinkle Twinkle\\Little Star' in \textbf{C major}? Make sure to choose one final answer, which you should start with\\ 'ANSWER:' and specify in the following format: NOTE=\{note\}. \\\\\textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF & \texttt{\thead{You are an expert musician. What is the second note of the melody of the song 'Twinkle Twinkle\\Little Star' in \textbf{Db major}? Make sure to choose one final answer, which you should start with\\ 'ANSWER:' and specify in the following format: NOTE=\{note\}. \\\\\textbf{\{Let's think step by step.\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-songs}
+    Prompts for melody retrieval. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used.} 
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert musician. What is the second note of the C major scale? Make sure to\\ choose one final answer, which you should start with 'ANSWER:' and specify in the\\ following format: NOTE=\{note\}. \\\\\textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF & \texttt{\thead{You are an expert musician. What is the second note of the Db major scale? Make sure to\\ choose one final answer, which you should start with 'ANSWER:' and specify in the\\ following format: NOTE=\{note\}. \\\\\textbf{\{Let's think step by step.\}}}}\\       
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-songs-controls}
+    CCC prompts for melody retrieval. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used. 
+    } 
+\end{table*}

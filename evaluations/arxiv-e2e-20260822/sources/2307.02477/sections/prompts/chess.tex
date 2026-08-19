@@ -1,0 +1,31 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are a chess player. Given an opening, determine whether the opening is legal. The \\opening doesn't need to be a good opening. Answer "yes" if all moves are legal. Answer "no"\\ if the opening violates any rules of chess. Is the new opening "1. e4 e6 2. Be2 Bc5" legal? \\\textbf{\{Let's think step by step\}}}} \\
+        \midrule
+        CF & \texttt{\thead{You are a chess player. You are playing a chess variant where the starting positions for\\ knights and bishops are swapped. For each color, the knights are at placed that where \\ bishops used to be and the bishops are now placed at where knights used to be. Given an \\opening, determine whether the opening is legal. The opening doesn't need to be a good\\ opening. Answer "yes" if all moves are legal. Answer "no" if the opening violates any\\ rules of chess. Under the custom variant, is the new opening "1. e4 e6 2. Nfe2 Nc5" legal? \\\textbf{\{Let's think step by step\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chess}
+    Prompts for the chess task. \texttt{\textbf{\{Let's think step by step\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are a chess player. Question: The two bishops on the board should be initially at \\which squares? Answer: \textbf{\{Let's think step by step\}}}} \\
+        \midrule
+        CF & \texttt{\thead{You are a chess player. You are playing a chess variant where the starting positions for\\ knights and bishops are swapped. For each color, the knights are at placed that where \\ bishops used to be and the bishops are now placed at where knights used to be. Question:\\ In this chess variant, the two bishops on the board should be initially at which squares?\\ Answer: \textbf{\{Let's think step by step\}}}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-chess-ccc}
+    CCC prompts for the chess task. \texttt{\textbf{\{Let's think step by step\}}} is added only if 0-shot CoT is used.
+    }
+\end{table*}

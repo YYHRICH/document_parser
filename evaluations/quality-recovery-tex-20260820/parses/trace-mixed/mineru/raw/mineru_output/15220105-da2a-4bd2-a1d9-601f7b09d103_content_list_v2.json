@@ -1,0 +1,392 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "混合内容可追溯测试 TRACE-M-DOC-001 | Source: TEX-MIXED-20260820-V1"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                277,
+                71,
+                717,
+                115
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 身份与固定事实 TRACE-M-SEC-101"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                265,
+                142,
+                729,
+                162
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "记录编号为 MIX-77，生成日期为 2026-08-20，目标通过率为 98.60%，预算为 EUR 12,345.67。数字、百分号、货币和日期均是受保护事实。<sup>1</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                179,
+                899,
+                217
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1.1 执行步骤 TRACE-M-LIST-111"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                99,
+                240,
+                453,
+                256
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. 校验记录 MIX-77 与日期 2026-08-20。"
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                269,
+                455,
+                285
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. 运行安全配置并保留所有参数。"
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                290,
+                401,
+                306
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. 只修复可证明的结构问题。"
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                311,
+                363,
+                328
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1.2 代码与公式 TRACE-M-CODE-121"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                100,
+                350,
+                487,
+                367
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "命令为 calc --profile=gold，命令中的双连字符和等号属于事实。"
+                    }
+                ]
+            },
+            "bbox": [
+                134,
+                380,
+                689,
+                397
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "y = ( a + b ) / 2",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/fbf0a6b1c232a08bb0ab296f49849d726df41d429da914d63e2ec2da6ec2a628.jpg"
+                }
+            },
+            "bbox": [
+                341,
+                414,
+                457,
+                432
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(TRACE-M-MATH-131)"
+                    }
+                ]
+            },
+            "bbox": [
+                692,
+                414,
+                897,
+                431
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "约束为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a + b \\geq 1 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，不得把运算符改写成自然语言。"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                449,
+                515,
+                464
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                494,
+                952,
+                504,
+                963
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-MIX-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                28,
+                302,
+                43
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-MIXED-20260820-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                673,
+                28,
+                895,
+                43
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>1</sup>TRACE-M-FOOT-141：脚注内容只能被定位，不能被猜测。"
+                    }
+                ]
+            },
+            "bbox": [
+                119,
+                914,
+                536,
+                931
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 跨页引用 TRACE-M-REF-201"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                300,
+                72,
+                695,
+                91
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "本页故意重复页眉并延续语义。引用键为 MIX-REF-42，版本为 revision 3.1。质量 Agent 可以合并段落或调整 Markdown，但必须保留引用键和版本号。"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                109,
+                897,
+                146
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-M-QUOTE-211：任何修复都必须能回溯到原始页面和 block。"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                161,
+                717,
+                178
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TRACE-MIX-HEADER"
+                    }
+                ]
+            },
+            "bbox": [
+                100,
+                29,
+                302,
+                42
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "TEX-MIXED-20260820-V1"
+                    }
+                ]
+            },
+            "bbox": [
+                673,
+                29,
+                895,
+                42
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                951,
+                505,
+                963
+            ]
+        }
+    ]
+]

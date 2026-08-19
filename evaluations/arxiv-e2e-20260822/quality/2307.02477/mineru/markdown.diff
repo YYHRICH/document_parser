@@ -1,0 +1,415 @@
+--- parsed.md
++++ optimized.md
+@@ -2,7 +2,7 @@
+ 
+ Zhaofeng Wu<sup>ã</sup> Linlu Qiu<sup>ã</sup> Alexis Ross<sup>ã</sup> Ekin Akyürek<sup>ã</sup> Boyuan Chen<sup>ã</sup> Bailin Wang<sup>ã</sup> Najoung Kim<sup>æ</sup> Jacob Andreas<sup>ã</sup> Yoon Kim<sup>ã</sup> <sup>ã</sup>MIT <sup>æ</sup>Boston University zfw@csail.mit.edu
+ 
+-![](images/4d48c66254cc37e281647b788decf359e459496c476867defad8ef95190af0d0.jpg)  
++![](images/4d48c66254cc37e281647b788decf359e459496c476867defad8ef95190af0d0.jpg)
+ Figure 1: GPT-4’s performance on the default version of various tasks (blue) and counterfactual counterparts (orange). The shown results use 0-shot chain-of-thought prompting (§4; Kojima et al., 2023). GPT-4 consistently and substantially underperforms on counterfactual variants compared to default task instantiations.
+ 
+ ## Abstract
+@@ -119,10 +119,10 @@
+ 
+ Figures 2 and 3 show our results. §C contains the numeric version. We see a consistent pattern where LMs perform substantially worse on the counterfactual task variants, both with and without 0-shot CoT. For most cases, LMs exhibit an above-random counterfactual performance, suggesting some degree of the targeted ability. However, when the CCC accuracy is high, as is usually the case for GPT-4 and in select settings for other models too, the gaps in default vs. counterfactual task performance demonstrate limitations in their abstract capacity to solve the target task. When the CCC accuracy is lower, the failure of counterfactual world comprehension would be a confounder to this conclusion, but often the gaps are so large (sometimes even dropping from near-perfect to near-zero, such as for arithmetic) that they are nonetheless strongly indicative of non-transferable, default-conditionspecific implementations of the original task. The fact that the LMs sometimes cannot evaluate the CCC well under the counterfactual conditions, but can do so under the default conditions (e.g., for arithmetic, programming, drawing, etc.) itself also points to overfitting to the latter.
+ 
+-![](images/4a56d333ec30fa170b244fb4bca5dec027b1882e11a905604c75663ccd3b3085.jpg)  
++![](images/4a56d333ec30fa170b244fb4bca5dec027b1882e11a905604c75663ccd3b3085.jpg)
+ Figure 2: Main results. The blue and orange bars represent the default and counterfactual conditions respectively, either with or without 0-shot chain-of-thought (0-CoT) (except code generation; see §A.2). CCC is the counterfactual comprehension check (§2.1), but when applicable, we report it for the default setting too. Random performance is marked whenever nontrivial. PaLM-2 here is not the largest version (§4). The CCC for code execution/generation are identical. For spatial reasoning, we average the results from all rotation degrees. Counterfactual performance is consistently lower than the default task performance, while CCC is usually high. §C reports numeric results.
+ 
+-![](images/4be9c052b095d486d2cce7b5104c99f84aae4a1fc16cd126679c8443d128c951.jpg)  
++![](images/4be9c052b095d486d2cce7b5104c99f84aae4a1fc16cd126679c8443d128c951.jpg)
+ Figure 3: Main results (continued). The blue and orange bars represent the default and counterfactual conditions respectively, either with or without 0-shot chain-of-thought (0-CoT). CCC is the counterfactual comprehension check (§2.1), but when applicable, we report it for the default setting too. Random performance is marked whenever nontrivial. PaLM-2 here is not the largest version (§4). Counterfactual performance is consistently lower than the default task performance, while CCC is usually high. §C reports numeric results.
+ 
+ ## 5 Analysis
+@@ -139,20 +139,20 @@
+ 
+ The FOLIO dataset (Han et al., 2022) enables another analysis of how proximity to the default conditions affects LM performance, without counterfactual perturbations. This dataset was constructed to mostly follow common sense, with premises and conclusions deemed true in the real world. But this is not always the case, with premises like “John can make meals which are popular at the party,” whose factuality cannot be determined alone.
+ 
+-![](images/13cb8972a7b52d5d6a7b004b6490d5c97397e04720b78fd873c641787740b6cf.jpg)  
++![](images/13cb8972a7b52d5d6a7b004b6490d5c97397e04720b78fd873c641787740b6cf.jpg)
+ (a) Addition accuracy with varying numbers of digits in the operands.
+ 
+-![](images/203d003c69600e03d279c6ceffe792d58662f4bd2c07ffe1609031098eae1cf3.jpg)  
++![](images/203d003c69600e03d279c6ceffe792d58662f4bd2c07ffe1609031098eae1cf3.jpg)
+ (b) Melody note recall accuracy broken down by the index of the note.
+ 
+-![](images/91028c0f9a928be047b7c6762d20c1559ffbd1e222bca4d1c3b34687cf84dfe0.jpg)  
++![](images/91028c0f9a928be047b7c6762d20c1559ffbd1e222bca4d1c3b34687cf84dfe0.jpg)
+ (c) SET identification accuracy when needing to find different numbers of cards in a SET.
+ 
+-![](images/6ef2332d37713fd887200accd7d47759b57e34d3f1e93823120d4cb0cbda9174.jpg)  
++![](images/6ef2332d37713fd887200accd7d47759b57e34d3f1e93823120d4cb0cbda9174.jpg)
+ (d) Fret placement accuracy by chord type. The y-axis averages over all altered tunings.
+ 
+-Figure 4: Investigating the relationship between the default task performance and counterfactual performance, broken down by different factors. Only GPT-4 with 0-shot CoT results are shown. There is a consistent defaultcounterfactual correlation across task variants when varying different factors.  
+-![](images/c25e12777679687c48f233fb1bde22706e6dd178a5315088744619d4f501993e.jpg)  
++Figure 4: Investigating the relationship between the default task performance and counterfactual performance, broken down by different factors. Only GPT-4 with 0-shot CoT results are shown. There is a consistent defaultcounterfactual correlation across task variants when varying different factors.
++![](images/c25e12777679687c48f233fb1bde22706e6dd178a5315088744619d4f501993e.jpg)
+ Figure 5: Logistic regression coefficients of features that predict whether an LM correctly predicts the label of an instance. “Concl. Truth. Match” is a binary feature that is 1 iff the instance label matches the (LM-believed) truthfulness of the conclusion. The 95% confidence intervals are also shown. LMs tend to predict more correctly when there are more true premises, when the instance label matches the conclusion truthfulness, but less correctly with more false and unknown premises.
+ 
+ We evaluate how the distance between the (LMbelieved) real world and the world state described by the premises (occasionally counterfactual to the LM) influences the LM’s performance by training a predictive model given features approximating this distance. For each test instance, we ask the LMs whether the premises and conclusion are true, false, or uncertain. We train a logistic regression model to predict LM correctness on each test instance, using as features the total number of premises in an input, the proportion of the premises that are true/false/uncertain, as encoded by the LM, as well as whether the LM-predicted truthfulness of the conclusion matches the label of the instance.
+@@ -173,7 +173,7 @@
+ 
+ Occasionally, this default-counterfactual correlation trend is reversed. In the spatial reasoning task, for example, GPT-4 achieves the best accuracy under default conditions with 0-shot CoT, but it also suffers from the largest counterfactual performance degradation. PaLM-2 performs worse under default conditions, but is the most robust to counterfactual perturbations. An obvious possible explanation is that these models could be trained on different data, and are hence familiar with different conditions. Nevertheless, McKenzie et al. (2023), who found a similar trend but with respect to pretraining FLOPs and termed it “inverse scaling,” also provided a memorization-based explanation: they observed that when a task contradicts with pretraining texts, similar to how our counterfactual conditions deviate from the default conditions in pretraining, larger LMs tend to rely on the pretraining text and, in turn, fail at the contradictory task.
+ 
+-![](images/b3b7ca9d66bc956b60ea6c5f34467c715c54e111fc8179ffb10f34d9ed4627c4.jpg)  
++![](images/b3b7ca9d66bc956b60ea6c5f34467c715c54e111fc8179ffb10f34d9ed4627c4.jpg)
+ Figure 6: Two-digit addition accuracy when given different numbers of demonstration examples. The defaultcounterfactual gap reduces, but is not eliminated.
+ 
+ ## 5.4 0-Shot Chain-of-Thought Prompting
+@@ -192,7 +192,7 @@
+ 
+ Do humans also perform worse with unfamiliar counterfactual conditions? It is possible that humans may have lower performance under the counterfactual conditions with a fixed time budget, but not necessarily when given ample time to reason and revise. Analogous to the classic competence/performance distinction in linguistics (Chomsky, 1965, §1.1), we hypothesize that humans have the competence to generalize to new task conditions, even though it may sometimes require sufficient execution budget to realize it as robust performance.<sup>12</sup> In fact, there is increasing evidence from cognitive science that human reasoning is scaffolded by rich causal models of the world (Pearl, 1988; Lake et al., 2017; Ullman and Tenenbaum,
+ 
+-![](images/272c24565de538d2c8dac54ae34c4bed3e599cb1862a139358487ace530814f9.jpg)  
++![](images/272c24565de538d2c8dac54ae34c4bed3e599cb1862a139358487ace530814f9.jpg)
+ Figure 7: Visualizations of objects drawn by GPT-4 under the default (upright) and counterfactual conditions: vertical flip (Vflip, i.e. upside-down), rotates 90 degrees (R90), and 180 degrees (R180). In all cases, the CCC (not shown) passes. We show the original output, without flipping/rotating back as in our quantitative evaluation (§A.6). For the counterfactual settings, GPT-4 either does not transform the objects as instructed (e.g., house and penguin) or struggles to draw meaningful objects (e.g., cake and unicorn).
+ 
+ 2020; Wong et al., 2023), and that humans can intervene on these models to perform rapid and flexible counterfactual simulations (Lagnado et al., 2013; Gerstenberg et al., 2017, 2021). However, stepping back, replicating or modeling human intelligence need not be a main goal of LMs in the first place, and human behavior is largely orthogonal to the desiderata we set for these models.
+@@ -631,67 +631,67 @@
+ 
+ Table 1: Prompts for the arithmetic task. {Let’s think step by step, and } is added only if 0-shot CoT is used (and the following e is capitalized without 0-shot CoT). We use the \boxed{result} syntax to wrap results because we found in preliminary experiments that the models tend to use this format even without this specification. The Few-Shot CoT prompt is used for the analysis in §5.5.
+ 
+-Mode Prompt   
+-You are an expert programmer. What does the following code snippet in   
+-Python 3.7 print?   
+-\`\`python   
+-def function(lst):   
+-return sum([lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0])   
+-print([function([4, 88])])   
+-print([function([4, 5, 6, 7, 2, 122])])   
+-print([function([4, 0, 6, 7])])   
+-print([function([4, 4, 6, 8])])   
+-Default   
+-print([list(range(3))])   
+-print([[4, 5, 6].pop(2)])   
+-print(["qrs"[:2]])   
+-print(["qrstu"[4]])   
+-print([list(enumerate("qrstuv"))])   
+-{Let’s think step by step. Write out intermediate results and reasoning   
+-processes as needed. }End the response by saying "The final output is:"   
+-and a unified summary \`\`\`python\`\`\` code block with \*ALL\* the output, in   
+-which each line represents the output of each print statement   
+-You are an expert programmer who can readily adapt to new programming   
+-languages. There is a new programming language, ThonPy, which is identical to   
+-Python 3.7 except all variables of the \`list\`, \`tuple\`, and \`str\` types use   
+-1-based indexing, like in the MATLAB and R languages, where sequence indices   
+-start from 1. That is, index \`n\` represents the \`n\`-th element in a sequence,   
+-NOT the \`n+1\`-th as in 0-based indexing. This change only affects when the   
+-index is non-negative. When the index is negative, the behavior is the same   
+-as Python 3.7. This also affects methods of these classes such as \`index\` and   
+-\`pop\`. The built-in functions \`enumerate\` and \`range\` also use 1-based   
+-indexing: by default, the index of \`enumerate\` starts from 1, and so does the   
+-lower bound of \`range\` when not supplied (the higher bound is unchanged).   
+-For example,   
+-\`\`\`thonpy   
+-assert (7, 8, 9)[1] == 7   
+-assert ["abc", "def", "ghi"][3] == "ghi"   
+-assert "abcde"[4] == "d"   
+-assert "abc"[:2] == "a"   
+-assert [7, 8, 9][1:] == [7, 8, 9][1:5] == [7, 8, 9][1::1] == [7, 8, 9][:4]   
+-== [9, 8, 7][::-1] == [9, 8, 7, 6][3::-1] == [7, 8, 9]   
+-assert list(enumerate([7, 8, 9])) == [(1, 7), (2, 8), (3, 9)]   
+-assert list(range(2)) == [1]   
+-CF assert list(range(2, 4)) == [2, 3]   
+-assert {0: 7, 1: 8, 2: 9}[1] == 8   
+-assert [7, 8, 9].index(8) == 2   
+-What does the following code snippet in ThonPy print?   
+-\`\`\`thonpy   
+-def function(lst):   
+-return sum([lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0])   
+-print([function([4, 88])])   
+-print([function([4, 5, 6, 7, 2, 122])])   
+-print([function([4, 0, 6, 7])])   
+-print([function([4, 4, 6, 8])])   
+-print([list(range(3))])   
+-print([[4, 5, 6].pop(2)])   
+-print(["qrs"[:2]])   
+-print(["qrstu"[4]])   
+-print([list(enumerate("qrstuv"))])   
+-{Let’s think step by step. Write out intermediate results and reasoning   
+-processes as needed. }End the response by saying "The final output is:"   
+-and a unified summary \`\`\`thonpy\`\`\` code block with \*ALL\* the output, in   
+-which each line represents the output of each print statement.  
++Mode Prompt
++You are an expert programmer. What does the following code snippet in
++Python 3.7 print?
++\`\`python
++def function(lst):
++return sum([lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0])
++print([function([4, 88])])
++print([function([4, 5, 6, 7, 2, 122])])
++print([function([4, 0, 6, 7])])
++print([function([4, 4, 6, 8])])
++Default
++print([list(range(3))])
++print([[4, 5, 6].pop(2)])
++print(["qrs"[:2]])
++print(["qrstu"[4]])
++print([list(enumerate("qrstuv"))])
++{Let’s think step by step. Write out intermediate results and reasoning
++processes as needed. }End the response by saying "The final output is:"
++and a unified summary \`\`\`python\`\`\` code block with \*ALL\* the output, in
++which each line represents the output of each print statement
++You are an expert programmer who can readily adapt to new programming
++languages. There is a new programming language, ThonPy, which is identical to
++Python 3.7 except all variables of the \`list\`, \`tuple\`, and \`str\` types use
++1-based indexing, like in the MATLAB and R languages, where sequence indices
++start from 1. That is, index \`n\` represents the \`n\`-th element in a sequence,
++NOT the \`n+1\`-th as in 0-based indexing. This change only affects when the
++index is non-negative. When the index is negative, the behavior is the same
++as Python 3.7. This also affects methods of these classes such as \`index\` and
++\`pop\`. The built-in functions \`enumerate\` and \`range\` also use 1-based
++indexing: by default, the index of \`enumerate\` starts from 1, and so does the
++lower bound of \`range\` when not supplied (the higher bound is unchanged).
++For example,
++\`\`\`thonpy
++assert (7, 8, 9)[1] == 7
++assert ["abc", "def", "ghi"][3] == "ghi"
++assert "abcde"[4] == "d"
++assert "abc"[:2] == "a"
++assert [7, 8, 9][1:] == [7, 8, 9][1:5] == [7, 8, 9][1::1] == [7, 8, 9][:4]
++== [9, 8, 7][::-1] == [9, 8, 7, 6][3::-1] == [7, 8, 9]
++assert list(enumerate([7, 8, 9])) == [(1, 7), (2, 8), (3, 9)]
++assert list(range(2)) == [1]
++CF assert list(range(2, 4)) == [2, 3]
++assert {0: 7, 1: 8, 2: 9}[1] == 8
++assert [7, 8, 9].index(8) == 2
++What does the following code snippet in ThonPy print?
++\`\`\`thonpy
++def function(lst):
++return sum([lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0])
++print([function([4, 88])])
++print([function([4, 5, 6, 7, 2, 122])])
++print([function([4, 0, 6, 7])])
++print([function([4, 4, 6, 8])])
++print([list(range(3))])
++print([[4, 5, 6].pop(2)])
++print(["qrs"[:2]])
++print(["qrstu"[4]])
++print([list(enumerate("qrstuv"))])
++{Let’s think step by step. Write out intermediate results and reasoning
++processes as needed. }End the response by saying "The final output is:"
++and a unified summary \`\`\`thonpy\`\`\` code block with \*ALL\* the output, in
++which each line represents the output of each print statement.
+ Table 2: Prompts for the program execution task. {Let’s think step by step. Write out intermediate results and reasoning processes as needed. } is added only if 0-shot CoT is used. All the print statements wrap the expression in a singleton list for the ease of parsing, so that (a) each output always takes a single line even with line breaks in the middle, and (b) we can distinguish between a string representation of e.g. an integer and the integer type.
+ 
+ ```julia
+@@ -736,7 +736,7 @@
+ Examples:
+ add([4, 2, 6, 7]) ==> 2
+ 11”1
+-```  
++```
+ Table 3: Prompts for the program generation task.
+ 
+ <table><tr><td>Mode</td><td>Prompt</td></tr><tr><td>Default</td><td>You are an expert in linguistics. Your task is to identify the main verb and the main subject of a sentence in English. Show the main verb (a single word) and its subject (also a single word) after the prefix &#x27;Main verb and subject:&#x27;. Sentence: japan had just opened its doors to the world after about 250 years of isolation . {Let&#x27;s think step by step. }</td></tr><tr><td>CF</td><td>You are an expert in linguistics. Imagine a language that is the same as English with the only exception being that it uses the verb-object-subject order instead of the subject-verb-object order. Your task is to identify the main verb and the main subject in a sentence in this imaginary language. Show the main verb (a single word) and its subject (also a single word) after the prefix &#x27;Main verb and subject:&#x27;. Sentence: had just opened its doors japan to the world after about 250 years of isolation . {Let&#x27;s think step by step. }</td></tr><tr><td>CCC</td><td>You are an expert in linguistics. Imagine a language that is the same as English with the only exception being that it uses the verb-subject-object order instead of the subject-verb-object order. Your task is to reconstruct the original sentence in English. You should only use the words in the same form as they appear in the given sentence. Sentence: saw anna john Show the original sentence at the end after the prefix &#x27;Original sentence:&#x27;. {Let&#x27;s think step by step. }</td></tr></table>
+@@ -751,7 +751,7 @@
+ 
+ Table 7: Prompts for the drawing task. {Let’s think step by step.} is added only if 0-shot CoT is used. We use prompt 1 for GPT-4 and prompt 2 for GPT-3.5 and Claude. We chose the prompt based on the best CCC accuracy for each respective model. In our preliminary experiments, we found that switching the prompt hurts CCC accuracy by more than 20% for both GPT-4 and GPT-3.5. Claude does not follow our instructions when using prompt 1, leading to almost 0% CCC’s accuracy.
+ 
+-![](images/3e44c877620ba5a177d0c51e0b9e81dfa8856e239468e409de8b1cd1e43b574b.jpg)  
++![](images/3e44c877620ba5a177d0c51e0b9e81dfa8856e239468e409de8b1cd1e43b574b.jpg)
+ Table 8: Prompts for chord fingering: guitar. {Let’s think step by step.} is added only if 0-shot CoT is used.
+ 
+ <table><tr><td>Mode</td><td>Prompt</td></tr><tr><td></td><td>You are an expert guitar player. I have a guitar with standard strings E-A-D-G-B-E.</td></tr><tr><td></td><td>I want you to tell me what notes the following sequences of finger positions corresponds to:</td></tr><tr><td></td><td>E string: fret 0</td></tr><tr><td></td><td>A string: fret 0</td></tr><tr><td></td><td>D string: fret 0</td></tr><tr><td></td><td>G string: fret 0</td></tr><tr><td>Default</td><td>B string: fret 0</td></tr><tr><td></td><td>E string: fret 0</td></tr><tr><td></td><td>Note that fret 0 indicates an open string, and each increase in fret corresponds to an increase in half a note.</td></tr><tr><td></td><td>Make sure to choose one final answer, which you should start with 'ANSWER:' and format with dash-separated notes in the order of strings E-A-D-G-B-E.</td></tr><tr><td></td><td>{Let's think step by step.} You are an expert guitar player. I have a special guitar with strings tuned to</td></tr><tr><td></td><td>E-C-F-G-B-E instead of the standard E-A-D-G-B-E. Note that what is the standard A string is instead tuned to C, and the standard D string is instead tuned to F. All other strings</td></tr><tr><td></td><td>are the same.</td></tr><tr><td></td><td>I want you to tell me what notes the following sequences of finger positions corresponds to:</td></tr><tr><td></td><td>E string: fret 0</td></tr><tr><td></td><td>C string: fret 0</td></tr><tr><td></td><td>F string: fret 0</td></tr><tr><td>CF</td><td></td></tr><tr><td></td><td>G string: fret 0</td></tr><tr><td></td><td>B string: fret 0 E string: fret 0</td></tr><tr><td></td><td>Note that fret 0 indicates an open string, and each increase in fret corresponds to an</td></tr><tr><td></td><td>increase in half a note. Make sure to choose one final answer, which you should start with 'ANSWER:'and format</td></tr><tr><td></td><td>with dash-separated notes in the order of strings E-C-F-G-B-E. {Let's think step by step.}</td></tr><tr><td></td><td>You are an expert ukulele player. I have a ukulele with standard strings G-C-E-A.</td></tr><tr><td></td><td>I want you to tell me how I could play the E minor triad on this ukulele.</td></tr><tr><td></td><td>Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in the following format:</td></tr><tr><td></td><td>ANSWER:</td></tr><tr><td></td><td>Default G string: fret FRET</td></tr><tr><td></td><td>C string: fret FRET</td></tr><tr><td></td><td>E string: fret FRET</td></tr><tr><td></td><td>A string: fret FRET</td></tr><tr><td></td><td>Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each</td></tr><tr><td></td><td>increase in fret corresponds to an increase in half a note. {Let's think step by step.}</td></tr><tr><td></td><td>You are an expert ukulele player. I have a special ukulele with strings tuned to F-C-E-A instead of the standard G-C-E-A. Note that what is the standard G string is instead tuned to F.</td></tr><tr><td></td><td>All other strings are the same. I want you to tell me how I could play the E minor triad on this ukulele.</td></tr><tr><td></td><td>Make sure to choose one final answer, which you should start with 'ANSWER:' and specify in</td></tr><tr><td></td><td>the following format:</td></tr><tr><td>CF</td><td>ANSWER:</td></tr><tr><td></td><td>F string: fret FRET C string: fret FRET</td></tr><tr><td></td><td>E string: fret FRET</td></tr><tr><td></td><td>A string: fret FRET</td></tr><tr><td></td><td></td></tr><tr><td></td><td>Use fret 0 to indicate an open string and fret X to indicate not playing a string. Each increase in fret corresponds to an increase in half a note.</td></tr><tr><td></td><td>{Let's think step by step.}</td></tr><tr><td></td><td>I want you to tell me what notes the following sequences of finger positions corresponds to:</td></tr><tr><td></td><td>G string: fret 0</td></tr><tr><td></td><td>C string: fret 0</td></tr><tr><td></td><td>E string: fret 0</td></tr><tr><td>Default</td><td>A string: fret 0</td></tr><tr><td></td><td>Note that fret 0 indicates an open string, and each increase in fret corresponds to an increase in half a note.</td></tr><tr><td></td><td>Make sure to choose one final answer, which you should start with 'ANSWER:' and format with dash-separated notes in the order of strings G-C-E-A.</td></tr><tr><td></td><td>{Let's think step by step.}</td></tr><tr><td></td><td>You are an expert ukulele player. I have a special ukulele with strings tuned to F-C-E-A instead of the standard G-C-E-A. Note that what is the standard G string is instead tuned to F.</td></tr><tr><td></td><td>All other strings are the same.</td></tr><tr><td></td><td>I want you to tell me what notes the following sequences of finger positions corresponds to:</td></tr><tr><td></td><td>F string: fret 0</td></tr><tr><td></td><td>C string: fret 0</td></tr><tr><td>CF</td><td>E string: fret 0</td></tr><tr><td></td><td>A string: fret 0</td></tr><tr><td></td><td>Note that fret 0 indicates an open string, and each increase in fret corresponds to an increase in half a note.</td></tr><tr><td></td><td>Make sure to choose one final answer, which you should start with'ANSWER:'and format with dash-separated notes in the order of strings F-C-E-A.</td></tr><tr><td></td><td>{Let's think step by step.}</td></tr><tr><td></td><td></td></tr></table>
+@@ -776,104 +776,104 @@
+ 
+ Table 15: CCC prompts for the chess task. {Let’s think step by step} is added only if 0-shot CoT is used.
+ 
+-Mode Prompt   
+-You will be shown 12 cards. Each card has a figure and a number.   
+-A figure is a combination of a color, a shape, and a fill.   
+-Set of colors are: red , green , blue .   
+-Set of shapes are: squiggle , diamond , oval .   
+-Set of fills are: solid , striped , open .   
+-–THE RULE OF THE GAME–   
+-A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number),   
+-the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT,   
+-e.g. if 2 of the cards have   
+-the same value, and 1 of them has a different value, the set is NOT valid; for example,   
+-(blue, green, blue) is MIXED and does not satisfy any of the rule,   
+-whereas (oval, diamond, squiggle) is all different.   
+-Default   
+-Here is the board:   
+-(2 | green | oval | open) ... [truncated]   
+-You can pick a set by typing the cards in the below format:   
+-First card: CARD1   
+-Second card: CARD2   
+-Third card: CARD3   
+-Now remember the rule and tell me which three cards here constitutes a GAME-SET   
+-in the same format.   
+-I will give you 2 cards as a hint, and you tell me the third one.   
+-First card: (2 | green | oval | open)   
+-Second card: (1 | green | diamond | solid)   
+-{Let’s think step by step.}   
+-You will be shown 12 cards. Each card has a figure and a number.   
+-A figure is a combination of a color, a shape, and a fill.   
+-Set of colors are: red , green , blue .   
+-Set of shapes are: squiggle , diamond , oval .   
+-Set of fills are: solid , striped , open .   
+-–THE RULE OF THE GAME–   
+-(This is not the original SET game. It has a tweaked rule.)   
+-In this version, a GAME-SET is a set of three cards:   
+-- For each figure attribute except the number (color, shape, fill), the three cards   
+-should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards   
+-have the same value, and 1 of them has a different value, the set is NOT valid;   
+-for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas   
+-(oval, diamond, squiggle) is all different.   
+-CF - But only for the number attribute, 2 of the cards should have the same number,   
+-and 1 of them should have a different number in order for the set to be valid.   
+-Here is the board:   
+-(2 | green | oval | open) ... [truncated]   
+-You can pick a set by typing the cards in the below format:   
+-First card: CARD1   
+-Second card: CARD2   
+-Third card: CARD3   
+-Now remember the rule and tell me which three cards here constitutes a GAME-SET   
+-in the same format.   
+-I will give you 2 cards as a hint, and you tell me the third one.   
+-First card: (2 | green | oval | open)   
+-Second card: (1 | green | diamond | solid)   
++Mode Prompt
++You will be shown 12 cards. Each card has a figure and a number.
++A figure is a combination of a color, a shape, and a fill.
++Set of colors are: red , green , blue .
++Set of shapes are: squiggle , diamond , oval .
++Set of fills are: solid , striped , open .
++–THE RULE OF THE GAME–
++A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number),
++the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT,
++e.g. if 2 of the cards have
++the same value, and 1 of them has a different value, the set is NOT valid; for example,
++(blue, green, blue) is MIXED and does not satisfy any of the rule,
++whereas (oval, diamond, squiggle) is all different.
++Default
++Here is the board:
++(2 | green | oval | open) ... [truncated]
++You can pick a set by typing the cards in the below format:
++First card: CARD1
++Second card: CARD2
++Third card: CARD3
++Now remember the rule and tell me which three cards here constitutes a GAME-SET
++in the same format.
++I will give you 2 cards as a hint, and you tell me the third one.
++First card: (2 | green | oval | open)
++Second card: (1 | green | diamond | solid)
+ {Let’s think step by step.}
++You will be shown 12 cards. Each card has a figure and a number.
++A figure is a combination of a color, a shape, and a fill.
++Set of colors are: red , green , blue .
++Set of shapes are: squiggle , diamond , oval .
++Set of fills are: solid , striped , open .
++–THE RULE OF THE GAME–
++(This is not the original SET game. It has a tweaked rule.)
++In this version, a GAME-SET is a set of three cards:
++- For each figure attribute except the number (color, shape, fill), the three cards
++should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards
++have the same value, and 1 of them has a different value, the set is NOT valid;
++for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas
++(oval, diamond, squiggle) is all different.
++CF - But only for the number attribute, 2 of the cards should have the same number,
++and 1 of them should have a different number in order for the set to be valid.
++Here is the board:
++(2 | green | oval | open) ... [truncated]
++You can pick a set by typing the cards in the below format:
++First card: CARD1
++Second card: CARD2
++Third card: CARD3
++Now remember the rule and tell me which three cards here constitutes a GAME-SET
++in the same format.
++I will give you 2 cards as a hint, and you tell me the third one.
++First card: (2 | green | oval | open)
++Second card: (1 | green | diamond | solid)
++{Let’s think step by step.}
+ 
+ Table 16: Prompts for the SET task. {Let’s think step by step} is added only if 0-shot CoT is used.
+ 
+-Mode Prompt   
+-Each card has a figure and a number.   
+-A figure is a combination of a color, a shape, and a fill.   
+-Set of colors are: red , green , blue .   
+-Set of shapes are: squiggle , diamond , oval .   
+-Set of fills are: solid , striped , open .   
+-–THE RULE OF THE GAME–   
+-A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number),   
+-the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT,   
+-e.g. if 2 of the cards have   
+-Default the same value, and 1 of them has a different value, the set is NOT valid; for example,   
+-(blue, green, blue) is MIXED and does not satisfy any of the rule,   
+-whereas (oval, diamond, squiggle) is all different.   
+-I will give you three cards from the board, and you will tell me whether this   
+-constitutes a GAME-SET.   
+-First card: (1 | blue | oval | striped)   
+-Second card: (2 | red | squiggle | striped)   
+-Third card: (3 | green | diamond | striped)   
+-Is this a GAME-SET? {Answer with yes or no in the last line.   
+-Let’s verify rules for each attribute step-by-step:}   
+-Each card has a figure and a number.   
+-A figure is a combination of a color, a shape, and a fill.   
+-Set of colors are: red , green , blue .   
+-Set of shapes are: squiggle , diamond , oval .   
+-Set of fills are: solid , striped , open .   
+-–THE RULE OF THE GAME–   
+-(This is not the original SET game. It has a tweaked rule.)   
+-In this version, a GAME-SET is a set of three cards:   
+-- For each figure attribute except the number (color, shape, fill), the three cards   
+-should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards   
+-have the same value, and 1 of them has a different value, the set is NOT valid;   
+-CF for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas   
+-(oval, diamond, squiggle) is all different.   
+-- But only for the number attribute, 2 of the cards should have the same number,   
+-and 1 of them should have a different number in order for the set to be valid.   
+-I will give you three cards from the board, and you will tell me whether this   
+-constitutes a GAME-SET.   
+-First card: (1 | blue | oval | striped)   
+-Second card: (2 | red | squiggle | striped)   
+-Third card: (3 | green | diamond | striped)   
+-Is this a GAME-SET? {Answer with yes or no in the last line.   
+-Let’s verify rules for each attribute step-by-step:}  
++Mode Prompt
++Each card has a figure and a number.
++A figure is a combination of a color, a shape, and a fill.
++Set of colors are: red , green , blue .
++Set of shapes are: squiggle , diamond , oval .
++Set of fills are: solid , striped , open .
++–THE RULE OF THE GAME–
++A GAME-SET is set of three cards: For each attribute, (color, shape, fill, number),
++the three cards should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT,
++e.g. if 2 of the cards have
++Default the same value, and 1 of them has a different value, the set is NOT valid; for example,
++(blue, green, blue) is MIXED and does not satisfy any of the rule,
++whereas (oval, diamond, squiggle) is all different.
++I will give you three cards from the board, and you will tell me whether this
++constitutes a GAME-SET.
++First card: (1 | blue | oval | striped)
++Second card: (2 | red | squiggle | striped)
++Third card: (3 | green | diamond | striped)
++Is this a GAME-SET? {Answer with yes or no in the last line.
++Let’s verify rules for each attribute step-by-step:}
++Each card has a figure and a number.
++A figure is a combination of a color, a shape, and a fill.
++Set of colors are: red , green , blue .
++Set of shapes are: squiggle , diamond , oval .
++Set of fills are: solid , striped , open .
++–THE RULE OF THE GAME–
++(This is not the original SET game. It has a tweaked rule.)
++In this version, a GAME-SET is a set of three cards:
++- For each figure attribute except the number (color, shape, fill), the three cards
++should either be ALL the SAME or NONE the SAME (=ALL DIFFERENT, e.g. if 2 of the cards
++have the same value, and 1 of them has a different value, the set is NOT valid;
++CF for example, (blue, green, blue) is MIXED and does not satisfy any of the rule, whereas
++(oval, diamond, squiggle) is all different.
++- But only for the number attribute, 2 of the cards should have the same number,
++and 1 of them should have a different number in order for the set to be valid.
++I will give you three cards from the board, and you will tell me whether this
++constitutes a GAME-SET.
++First card: (1 | blue | oval | striped)
++Second card: (2 | red | squiggle | striped)
++Third card: (3 | green | diamond | striped)
++Is this a GAME-SET? {Answer with yes or no in the last line.
++Let’s verify rules for each attribute step-by-step:}
+ Table 17: CCC prompts for the SET experiments. {bold text} is added only if 0-shot CoT is used. Note that we removed the board information for simplicity as it is not required for this CCC test.
+ 
+ <table><tr><td></td><td colspan="10">Tests</td><td colspan="5">CCC</td></tr><tr><td></td><td colspan="5">w/o 0-CoT</td><td colspan="5">w/0-CoT</td><td colspan="5"></td></tr><tr><td>Base</td><td>8</td><td>9</td><td>10</td><td>11</td><td>16</td><td></td><td>9</td><td>10</td><td>11</td><td>16</td><td>8</td><td>9</td><td>10</td><td>11</td><td>16</td></tr><tr><td># instances</td><td colspan="9"></td><td colspan="5">200</td></tr><tr><td>GPT-4</td><td>82.3</td><td>23.4</td><td>100.0</td><td>38.4</td><td>63.0</td><td>60.2</td><td>38.6</td><td>98.2</td><td>56.5</td><td>74.0</td><td>98.0</td><td>90.0</td><td>100.0</td><td>91.0</td><td>100.0</td></tr><tr><td>GPT-3.5</td><td>8.3</td><td>6.6</td><td>100.0</td><td>3.8</td><td>17.7</td><td>12.6</td><td>9.8</td><td>99.0</td><td>2.7</td><td>17.7</td><td>96.5</td><td>77.0</td><td>100.0</td><td>56.0</td><td>95.5</td></tr><tr><td>Claude</td><td>22.3</td><td>0.2</td><td>99.8</td><td>6.6</td><td>32.4</td><td>1.4</td><td>0.9</td><td>98.7</td><td>4.0</td><td>6.6</td><td>64.5</td><td>47.5</td><td>100.0</td><td>41.0</td><td>77.5</td></tr><tr><td>PaLM-2</td><td>6.4</td><td>2.2</td><td>98.7</td><td>3.4</td><td>23.4</td><td>1.1</td><td>0.6</td><td>82.2</td><td>0.5</td><td>1.2</td><td>51.5</td><td>53.5</td><td>100.0</td><td>72.0</td><td>93.5</td></tr></table>

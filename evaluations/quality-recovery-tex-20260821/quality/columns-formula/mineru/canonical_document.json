@@ -1,0 +1,406 @@
+{
+  "blocks": [
+    {
+      "block_id": "ed80739f-c956-5c9c-8474-9255d041dbbe",
+      "content": "双栏公式阅读顺序测试",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          351.0,
+          57.0,
+          647.0,
+          80.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0001"
+      }
+    },
+    {
+      "block_id": "f19a4056-802b-5627-bf68-93a887763293",
+      "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          280.0,
+          84.0,
+          715.0,
+          98.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0002"
+      }
+    },
+    {
+      "block_id": "8bbf123a-4a35-59fd-adf6-be0b7ada563c",
+      "content": "1 左栏 TRACE-C2-LEFT-101",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          102.0,
+          114.0,
+          470.0,
+          133.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0003"
+      }
+    },
+    {
+      "block_id": "7f4dc9eb-d327-5d04-aecd-3245056e2fdc",
+      "content": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          110.0,
+          148.0,
+          494.0,
+          164.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0004"
+      }
+    },
+    {
+      "block_id": "ec709d1a-3177-552d-a627-eb232a6a245b",
+      "content": "1. COLUMN-A1：读取输入。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          100.0,
+          192.0,
+          326.0,
+          206.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0005"
+      }
+    },
+    {
+      "block_id": "584333a7-c374-5473-acc1-a1e29b9b0fab",
+      "content": "2. COLUMN-A2：检查 $p \\leq 1 .$",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          99.0,
+          217.0,
+          336.0,
+          233.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0006"
+      }
+    },
+    {
+      "block_id": "8e6df042-3c7c-5875-8189-06aeff462d0d",
+      "content": "2 右栏 TRACE-C2-RIGHT-201",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          514.0,
+          114.0,
+          902.0,
+          133.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0007"
+      }
+    },
+    {
+      "block_id": "853b33d1-c8b6-5f06-8446-3c18d295606a",
+      "content": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-B2。它们不能插入左栏中间。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          502.0,
+          154.0,
+          917.0,
+          189.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0008"
+      }
+    },
+    {
+      "block_id": "211a1ebe-4b60-5b67-af13-b9c308e1391c",
+      "content": "1. COLUMN-B1：读取第二路输入。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          524.0,
+          217.0,
+          796.0,
+          234.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0009"
+      }
+    },
+    {
+      "block_id": "e0ab57b2-1573-59cc-a4b8-0d0b0835cdba",
+      "content": "1.1 左栏公式 TRACE-C2-EQ-211",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          80.0,
+          253.0,
+          420.0,
+          269.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0010"
+      }
+    },
+    {
+      "block_id": "cfc0c93a-bb5d-5e9a-b064-ff6c1d8a4e01",
+      "content": "$p + q = 1 { \\mathrm { . } }$ $q \\geq 0$ (TRACE-C2-EQ-211)",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          127.0,
+          305.0,
+          494.0,
+          322.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0011"
+      }
+    },
+    {
+      "block_id": "3280f257-d395-502e-bf2c-91de64a34108",
+      "content": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          522.0,
+          260.0,
+          915.0,
+          277.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0012"
+      }
+    },
+    {
+      "block_id": "952b83f3-5068-5d3a-be74-9fd23b95d5f4",
+      "content": "右栏补充约束为 $r \\geq 0$ ，并保留原始关系。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          536.0,
+          305.0,
+          847.0,
+          321.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0013"
+      }
+    },
+    {
+      "block_id": "6a5cba81-86b4-5a8e-8c76-72ef6a2f0223",
+      "content": "3 双栏结论 TRACE-C2-END-301",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          294.0,
+          348.0,
+          702.0,
+          366.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0014"
+      }
+    },
+    {
+      "block_id": "8d6c831a-253e-53d4-9c4b-b35018b73dc9",
+      "content": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括 $p \\leq 1$ $q \\geq 0$ 和 DOI 10.8888/columns.2026。",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 14,
+      "source_locator": {
+        "bbox": [
+          78.0,
+          381.0,
+          919.0,
+          416.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0015"
+      }
+    },
+    {
+      "block_id": "86fa534f-1619-57d7-b324-4d1b66d8f387",
+      "content": "TRACE-C2-HEADER",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 15,
+      "source_locator": {
+        "bbox": [
+          82.0,
+          15.0,
+          252.0,
+          28.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0016"
+      }
+    },
+    {
+      "block_id": "10962fc6-25c3-5967-8424-80fa21348a25",
+      "content": "TEX-COLUMNS-20260821-V1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 16,
+      "source_locator": {
+        "bbox": [
+          684.0,
+          15.0,
+          915.0,
+          28.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0017"
+      }
+    },
+    {
+      "block_id": "3d6822c9-5d2c-54f4-8ab3-93efb1ef1e76",
+      "content": "1",
+      "kind": "page_number",
+      "metadata": {},
+      "order_index": 17,
+      "source_locator": {
+        "bbox": [
+          494.0,
+          965.0,
+          504.0,
+          977.0
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "mineru-content-0018"
+      }
+    }
+  ],
+  "document_id": "622f8218-81cc-40b5-8cff-4cefbc9558f7",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "77ceaf88-6e3d-533b-9b1e-369551d24e29",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "97a49c9c-0b21-5e5d-a628-7142905c2e64",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "77ceaf88-6e3d-533b-9b1e-369551d24e29",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "97a49c9c-0b21-5e5d-a628-7142905c2e64",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "77ceaf88-6e3d-533b-9b1e-369551d24e29",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "97a49c9c-0b21-5e5d-a628-7142905c2e64",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "8e6df042-3c7c-5875-8189-06aeff462d0d",
+      "relation_id": "2bdf43e8-0c51-5a93-b3d6-02d6cf291432",
+      "relation_type": "parent_child",
+      "status": "inferred",
+      "to_id": "e0ab57b2-1573-59cc-a4b8-0d0b0835cdba"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

@@ -1,0 +1,1658 @@
+{
+  "document_id": "ce44e143-766b-48ba-a200-e4dbe7bb4d44",
+  "filename": "table-pages.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 37104,
+  "source_sha256": "9b72f12c59c84357aeca08717de72461d0b5c87b5984ec2198f9680b3a501227",
+  "routing_decision": null,
+  "markdown": "## 跨页网格表格测试\n\nTRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1\n\n## 1 表头与固定事实 TRACE-T-CAP-101\n\n批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21 。\n\n|             | 表 1:       | 汇总表     | 指标           |\n|-------------|------------|---------|--------------|\n| 批次          | 日期         | 精度      | 成本           |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA  | 2026-08-21 | 98.250% | USD 1,125.50 |\n\n## 2 长表 TRACE-T-R03\n\n表 2: 跨页明细\n\n| 标记          | 批次          | 测量值          | 说明       |\n|-------------|-------------|--------------|----------|\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm   | 保留五位小数。  |\n| TRACE-T-R02 | TABLE-BETA  | 4-20 mA      | 保留范围。    |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C        | 运算符是事实。  |\n| TRACE-T-R04 | TABLE-BETA  | 7/16 in      | 保留尺寸。    |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg    | 保留尾随零。   |\n| TRACE-T-R06 | TABLE-BETA  | USD 2,450.00 | 保留货币。    |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005%       | 保留百分号。   |\n| TRACE-T-R08 | TABLE-BETA  | 2026-08-21   | 保留日期。    |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm      | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA  | 3.50 mm      | 跨页后记录。   |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm      | 继续追踪。    |\n| TRACE-T-R12 | TABLE-BETA  | 6.00 mm      | 继续追踪。    |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm     | 继续追踪。    |\n| TRACE-T-R14 | TABLE-BETA  | 9.250 mm     | 继续追踪。    |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm    | 继续追踪。    |\n| TRACE-T-R16 | TABLE-BETA  | 11.500 mm    | 最后一行可追踪。 |\n\n## 3 总结 TRACE-T-END-201\n\n最终结论仍需保留 TABLE-ALPHA 、 TABLE-BETA 、 0.03125 mm 、 USD 2,450.00 和 A+B=C 。",
+  "blocks": [
+    {
+      "id": "7cb88261-02bf-5c98-97be-b53ce888b463",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "跨页网格表格测试",
+      "heading_level": 1,
+      "markdown": "# 跨页网格表格测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          228.776,
+          50.424971400000004,
+          366.4991999999999,
+          67.64037140000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fc8f3947-bae8-5bba-b9ff-25aa884bbf18",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+      "heading_level": null,
+      "markdown": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          180.441,
+          73.52808159999995,
+          414.84062880000005,
+          82.49448159999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "50689c85-721e-5684-9538-cd6f8573135c",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 表头与固定事实 TRACE-T-CAP-101",
+      "heading_level": 1,
+      "markdown": "# 1 表头与固定事实 TRACE-T-CAP-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          161.65699999999998,
+          106.77261420000002,
+          433.61857779999997,
+          121.87916280000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4fd8c181-7d6b-58e6-802f-104ef9b218b1",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21 。",
+      "heading_level": null,
+      "markdown": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.94899999999998,
+          135.95612659999995,
+          440.93159999999995,
+          146.44674440000006
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dbeb344e-629f-5d7b-99a6-a10614932407",
+      "source_block_id": "docling-TableItem-4",
+      "order_index": 4,
+      "kind": "table",
+      "native_type": null,
+      "text": "|   | 表 1: | 汇总表 | 指标 |\n| --- | --- | --- | --- |\n| 批次 | 日期 | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "heading_level": null,
+      "markdown": "|   | 表 1: | 汇总表 | 指标 |\n| --- | --- | --- | --- |\n| 批次 | 日期 | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          165.57433353079594,
+          168.08091649721484,
+          429.1304587346666,
+          268.1681522801607
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "ce687b93-1e5b-5e54-aa3e-60c83f551d7d",
+      "source_block_id": "docling-SectionHeaderItem-5",
+      "order_index": 5,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 长表 TRACE-T-R03",
+      "heading_level": 1,
+      "markdown": "# 2 长表 TRACE-T-R03",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          215.678,
+          304.9846142,
+          379.61169179999996,
+          320.0921628
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "64efaeee-a05c-5081-9822-e57d197970b4",
+      "source_block_id": "docling-TableItem-6",
+      "order_index": 6,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "heading_level": null,
+      "markdown": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          63.95448936436388,
+          369.7504625204782,
+          531.9454871747924,
+          697.6307846463137
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "98b7d7db-8fed-5280-9214-630f7cd2818a",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表 2: 跨页明细",
+      "heading_level": null,
+      "markdown": "表 2: 跨页明细",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          264.985,
+          345.0381266,
+          330.29040000000003,
+          355.5287444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "72691dbd-986c-5d47-876d-dbb345c05b2b",
+      "source_block_id": "docling-SectionHeaderItem-8",
+      "order_index": 8,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 总结 TRACE-T-END-201",
+      "heading_level": 1,
+      "markdown": "# 3 总结 TRACE-T-END-201",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          197.179,
+          724.3266142,
+          398.09719540000015,
+          739.4331628
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e94314c6-5963-5bda-8130-9efe6c335616",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "最终结论仍需保留 TABLE-ALPHA 、 TABLE-BETA 、 0.03125 mm 、 USD 2,450.00 和 A+B=C 。",
+      "heading_level": null,
+      "markdown": "最终结论仍需保留 TABLE-ALPHA 、 TABLE-BETA 、 0.03125 mm 、 USD 2,450.00 和 A+B=C 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          70.94900000000001,
+          753.5101266,
+          497.1206,
+          764.0007444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "dbeb344e-629f-5d7b-99a6-a10614932407",
+      "html": null,
+      "markdown": "|   | 表 1: | 汇总表 | 指标 |\n| --- | --- | --- | --- |\n| 批次 | 日期 | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        165.57433353079594,
+        168.08091649721484,
+        429.1304587346666,
+        268.1681522801607
+      ],
+      "num_rows": 4,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "表 1:",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            269.9669999999999,
+            674.7928880484375,
+            290.9979027999999,
+            664.3022702484375
+          ]
+        },
+        {
+          "text": "汇总表",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            295.421,
+            674.7928880484375,
+            325.3088,
+            664.8302880484375
+          ]
+        },
+        {
+          "text": "指标",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            359.197,
+            656.2198880484375,
+            379.1222,
+            646.2572880484375
+          ]
+        },
+        {
+          "text": "批次",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            172.46699999999998,
+            647.5168880484375,
+            192.3922,
+            637.5542880484375
+          ]
+        },
+        {
+          "text": "日期",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            257.07,
+            647.5168880484375,
+            276.9952,
+            637.5542880484375
+          ]
+        },
+        {
+          "text": "精度",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            331.561,
+            632.7628880484375,
+            351.4862,
+            622.8002880484374
+          ]
+        },
+        {
+          "text": "成本",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            402.883,
+            632.7628880484375,
+            422.8082,
+            622.8002880484374
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            172.46699999999998,
+            608.5778702484375,
+            245.1242418,
+            598.6152702484375
+          ]
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            257.0693992,
+            608.5778702484375,
+            303.55489080000007,
+            598.6152702484375
+          ]
+        },
+        {
+          "text": "99.875%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            315.51001080000003,
+            608.5778702484375,
+            351.4849593999999,
+            598.6152702484375
+          ]
+        },
+        {
+          "text": "USD 2,450.00",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            363.44007939999995,
+            608.5778702484375,
+            422.8072127999998,
+            598.6152702484375
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            172.46699999999998,
+            589.9278702484374,
+            237.37333900000002,
+            579.9652702484375
+          ]
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            257.0693992,
+            589.9278702484374,
+            303.55489080000007,
+            579.9652702484375
+          ]
+        },
+        {
+          "text": "98.250%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            315.51001080000003,
+            589.9278702484374,
+            351.4849594,
+            579.9652702484375
+          ]
+        },
+        {
+          "text": "USD 1,125.50",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            363.4400794,
+            589.9278702484374,
+            422.80721279999983,
+            579.9652702484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "64efaeee-a05c-5081-9822-e57d197970b4",
+      "html": null,
+      "markdown": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        63.95448936436388,
+        369.7504625204782,
+        531.9454871747924,
+        697.6307846463137
+      ],
+      "num_rows": 17,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            69.941,
+            463.65588804843753,
+            89.86619999999999,
+            453.6932880484375
+          ]
+        },
+        {
+          "text": "批次",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            161.267,
+            463.65588804843753,
+            181.19219999999999,
+            453.6932880484375
+          ]
+        },
+        {
+          "text": "测量值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            463.65588804843753,
+            288.14880000000005,
+            453.6932880484375
+          ]
+        },
+        {
+          "text": "说明",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            349.586,
+            463.65588804843753,
+            369.51120000000003,
+            453.6932880484375
+          ]
+        },
+        {
+          "text": "TRACE-T-R01",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.941,
+            439.4708702484375,
+            136.7701208,
+            429.5082702484375
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.2581916,
+            439.4708702484375,
+            233.9154334,
+            429.5082702484375
+          ]
+        },
+        {
+          "text": "0.03125 mm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            439.4708702484375,
+            310.82670540000004,
+            429.5082702484375
+          ]
+        },
+        {
+          "text": "保留五位小数。",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            439.9988880484375,
+            419.3242,
+            430.0362880484375
+          ]
+        },
+        {
+          "text": "TRACE-T-R02",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            420.82087024843753,
+            136.77012079999997,
+            410.8582702484375
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            420.82087024843753,
+            226.1645306,
+            410.8582702484375
+          ]
+        },
+        {
+          "text": "4-20 mA",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            420.82087024843753,
+            297.2745416,
+            410.8582702484375
+          ]
+        },
+        {
+          "text": "保留范围。",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            421.3488880484375,
+            399.399,
+            411.3862880484375
+          ]
+        },
+        {
+          "text": "TRACE-T-R03",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            402.17087024843755,
+            136.77012079999997,
+            392.20827024843754
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            402.17087024843755,
+            233.91543339999998,
+            392.20827024843754
+          ]
+        },
+        {
+          "text": "A+B=C",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            402.17087024843755,
+            295.4743388,
+            392.20827024843754
+          ]
+        },
+        {
+          "text": "运算符是事实。",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            402.69888804843754,
+            419.3242,
+            392.73628804843753
+          ]
+        },
+        {
+          "text": "TRACE-T-R04",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            383.5208702484376,
+            136.77012079999997,
+            373.55827024843757
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            383.5208702484376,
+            226.1645306,
+            373.55827024843757
+          ]
+        },
+        {
+          "text": "7/16 in",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            383.5208702484376,
+            289.8125542,
+            373.55827024843757
+          ]
+        },
+        {
+          "text": "保留尺寸。",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            384.04888804843756,
+            399.399,
+            374.08628804843755
+          ]
+        },
+        {
+          "text": "TRACE-T-R05",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            364.8708702484376,
+            136.77012079999997,
+            354.9082702484376
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            364.8708702484376,
+            233.91543339999998,
+            354.9082702484376
+          ]
+        },
+        {
+          "text": "1.2500 kg",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            364.8708702484376,
+            299.4892666,
+            354.9082702484376
+          ]
+        },
+        {
+          "text": "保留尾随零。",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            365.3988880484376,
+            409.3616,
+            355.4362880484376
+          ]
+        },
+        {
+          "text": "TRACE-T-R06",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            346.2208702484376,
+            136.77012079999997,
+            336.2582702484376
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            346.2208702484376,
+            226.1645306,
+            336.2582702484376
+          ]
+        },
+        {
+          "text": "USD 2,450.00",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            346.2208702484376,
+            317.6281334,
+            336.2582702484376
+          ]
+        },
+        {
+          "text": "保留货币。",
+          "start_row": 6,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            346.7488880484376,
+            399.399,
+            336.7862880484376
+          ]
+        },
+        {
+          "text": "TRACE-T-R07",
+          "start_row": 7,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            327.5708702484376,
+            136.77012079999997,
+            317.60827024843763
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 7,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            327.5708702484376,
+            233.91543339999998,
+            317.60827024843763
+          ]
+        },
+        {
+          "text": "0.005%",
+          "start_row": 7,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            327.5708702484376,
+            289.24771380000004,
+            317.60827024843763
+          ]
+        },
+        {
+          "text": "保留百分号。",
+          "start_row": 7,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            328.09888804843763,
+            409.3616,
+            318.13628804843756
+          ]
+        },
+        {
+          "text": "TRACE-T-R08",
+          "start_row": 8,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            308.9208702484377,
+            136.77012079999997,
+            298.95827024843766
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 8,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            308.9208702484377,
+            226.1645306,
+            298.95827024843766
+          ]
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 8,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            308.9208702484377,
+            304.7464916,
+            298.95827024843766
+          ]
+        },
+        {
+          "text": "保留日期。",
+          "start_row": 8,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            309.44888804843765,
+            399.399,
+            299.4862880484377
+          ]
+        },
+        {
+          "text": "TRACE-T-R09",
+          "start_row": 9,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            290.27087024843763,
+            136.77012079999997,
+            280.3082702484377
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 9,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            290.27087024843763,
+            233.91543339999998,
+            280.3082702484377
+          ]
+        },
+        {
+          "text": "2.25 mm",
+          "start_row": 9,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            290.27087024843763,
+            295.88280540000005,
+            280.3082702484377
+          ]
+        },
+        {
+          "text": "页面边界前记录。",
+          "start_row": 9,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            290.7988880484377,
+            429.2868,
+            280.8362880484376
+          ]
+        },
+        {
+          "text": "TRACE-T-R10",
+          "start_row": 10,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            271.62087024843777,
+            136.77012079999997,
+            261.6582702484377
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 10,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            271.62087024843777,
+            226.1645306,
+            261.6582702484377
+          ]
+        },
+        {
+          "text": "3.50 mm",
+          "start_row": 10,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            271.62087024843777,
+            295.8897402,
+            261.6582702484377
+          ]
+        },
+        {
+          "text": "跨页后记录。",
+          "start_row": 10,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            272.1488880484377,
+            409.3616,
+            262.18628804843775
+          ]
+        },
+        {
+          "text": "TRACE-T-R11",
+          "start_row": 11,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            252.97087024843768,
+            136.77012079999997,
+            243.0082702484376
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 11,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            252.97087024843768,
+            233.91543339999998,
+            243.0082702484376
+          ]
+        },
+        {
+          "text": "4.75 mm",
+          "start_row": 11,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            252.97087024843768,
+            295.88280540000005,
+            243.0082702484376
+          ]
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 11,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            253.4988880484376,
+            399.399,
+            243.53628804843765
+          ]
+        },
+        {
+          "text": "TRACE-T-R12",
+          "start_row": 12,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            234.3208702484377,
+            136.77012079999997,
+            224.35827024843763
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 12,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            234.3208702484377,
+            226.1645306,
+            224.35827024843763
+          ]
+        },
+        {
+          "text": "6.00 mm",
+          "start_row": 12,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            234.3208702484377,
+            295.8897402,
+            224.35827024843763
+          ]
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 12,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            234.84888804843763,
+            399.399,
+            224.88628804843768
+          ]
+        },
+        {
+          "text": "TRACE-T-R13",
+          "start_row": 13,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            215.67087024843772,
+            136.77012079999997,
+            205.70827024843766
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 13,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            215.67087024843772,
+            233.91543339999998,
+            205.70827024843766
+          ]
+        },
+        {
+          "text": "8.125 mm",
+          "start_row": 13,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            215.67087024843772,
+            300.8641054,
+            205.70827024843766
+          ]
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 13,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            216.19888804843765,
+            399.399,
+            206.2362880484377
+          ]
+        },
+        {
+          "text": "TRACE-T-R14",
+          "start_row": 14,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            197.02087024843775,
+            136.77012079999997,
+            187.05827024843768
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 14,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            197.02087024843775,
+            226.1645306,
+            187.05827024843768
+          ]
+        },
+        {
+          "text": "9.250 mm",
+          "start_row": 14,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            197.02087024843775,
+            300.87104020000004,
+            187.05827024843768
+          ]
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 14,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            197.54888804843768,
+            399.399,
+            187.58628804843772
+          ]
+        },
+        {
+          "text": "TRACE-T-R15",
+          "start_row": 15,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            178.37087024843777,
+            136.77012079999997,
+            168.4082702484377
+          ]
+        },
+        {
+          "text": "TABLE-ALPHA",
+          "start_row": 15,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            178.37087024843777,
+            233.91543339999998,
+            168.4082702484377
+          ]
+        },
+        {
+          "text": "10.375 mm",
+          "start_row": 15,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.2540652,
+            178.37087024843777,
+            305.8454054,
+            168.4082702484377
+          ]
+        },
+        {
+          "text": "继续追踪。",
+          "start_row": 15,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            178.8988880484377,
+            399.399,
+            168.93628804843775
+          ]
+        },
+        {
+          "text": "TRACE-T-R16",
+          "start_row": 16,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94099999999997,
+            159.7208702484378,
+            136.77012079999997,
+            149.75827024843773
+          ]
+        },
+        {
+          "text": "TABLE-BETA",
+          "start_row": 16,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            161.25819159999998,
+            159.7208702484378,
+            226.1645306,
+            149.75827024843773
+          ]
+        },
+        {
+          "text": "11.500 mm",
+          "start_row": 16,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            258.26099999999997,
+            159.7208702484378,
+            305.8523402,
+            149.75827024843773
+          ]
+        },
+        {
+          "text": "最后一行可追踪。",
+          "start_row": 16,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            349.58599999999996,
+            160.24888804843772,
+            429.2868,
+            150.28628804843777
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling-local",
+        "table_count": 2,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": 0,
+        "formula_incomplete_count": 0,
+        "formula_placeholder_count": 0
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T04:35:18.509694Z"
+}

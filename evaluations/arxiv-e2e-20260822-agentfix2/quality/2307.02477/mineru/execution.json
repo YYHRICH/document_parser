@@ -1,0 +1,70 @@
+{
+  "session_id": "arxiv-e2e-20260822:2307.02477:mineru",
+  "accepted": false,
+  "final_revision_id": "17a13d0be8f40968fcecd189c7f6179bbb7328350f1c24239d5821db0fcc2534",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "rejected_candidate",
+      "message": "候选未通过确定性校验。",
+      "errors": [
+        "候选改变了事实词元，质量层只允许格式/结构修复。"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [
+        "88f1864d-e1b3-5911-a2ab-ca3335c07df7",
+        "d22c272e-cefa-5d1d-ab85-1b9520fc07ad",
+        "f90a6b05-49ad-5570-9891-688768baf2bd",
+        "1a0a4637-6fad-52c7-9351-3e98e8373b8f",
+        "30dfbb57-4ce0-5bbd-a5f4-e0599544215c",
+        "b70bc9ba-1a10-5895-9e10-90646ffb2673",
+        "d2a104f7-7a1d-5629-acae-23ea8fe95360",
+        "9994a922-c1d7-5781-8ac3-3412a1e96c36",
+        "d3d17c4c-83d9-5b86-8586-2e3bd2e25fac",
+        "7316af08-35a0-523a-9210-feb8a25d4b38",
+        "e51003ea-f73d-5597-b532-d4dcdcb453ce",
+        "6f3d8ff0-ffc6-5baf-90d0-e86dec7748f4",
+        "56afff7b-8511-5cb2-9fb2-1feea5966536",
+        "6b4f0df5-5449-5a0c-8bad-36e115cb92cb",
+        "f281d726-28e7-5178-9ee1-e1532b318946",
+        "a4bf2d90-6d83-5450-8684-44f6947c606a",
+        "a36ef776-7a2f-5337-99d2-fc97d710bd60",
+        "84199f9d-5214-5469-9752-425bd493402b",
+        "084cedb5-b255-579f-9ae3-d1838e5989be",
+        "08a70656-9d18-5b86-a5a6-d8ae695c6224",
+        "5b82ba02-511b-54db-87b1-aed03eccc8d6",
+        "fcb06574-35e5-52ca-8b1e-5728cc0c09fc",
+        "b84be5e3-8c15-5eaa-b382-8b1ff788f0f4",
+        "cab0176d-f7dd-51fa-a6f1-2e29e508e2aa",
+        "44b11a78-e2f0-57f3-af8f-167e46251cda",
+        "605d3ec5-789f-50e2-8a34-2a5e780c982c",
+        "d3ae3f21-9e8d-5dfc-86ec-5847db8f02b1",
+        "be7d78c6-9032-5661-8650-5af1aacc7773",
+        "4857a74e-64fe-53a0-937c-45bc4488cca9"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "17a13d0be8f40968fcecd189c7f6179bbb7328350f1c24239d5821db0fcc2534",
+      "source_content_fingerprint": "sem-v2:6408531acd1fc2ab2b12af618989e34970c5a1cc311d167c1a31166900da4c8d",
+      "candidate_content_fingerprint": "sem-v2:4775fde8089e9319aa604e39bffc0e16750d5e35107179b39d2f350d25cd69c7"
+    },
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError",
+        "reason=malformed_json"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "17a13d0be8f40968fcecd189c7f6179bbb7328350f1c24239d5821db0fcc2534",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

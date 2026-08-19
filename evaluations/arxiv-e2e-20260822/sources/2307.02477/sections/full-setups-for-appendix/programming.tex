@@ -1,0 +1,16 @@
+\subsection{Programming} \label{sec:programming-setup}
+
+We use the HumanEval dataset~\citep{chen2021codex} which has short Python programs and is commonly used to assess the coding ability of LMs~\citepia{bai2022training,xu2022systematic,wang2023far}. It was designed as a code-\emph{generation} dataset, where a model writes a function from a specification and is evaluated against test cases with input-output pairs. Different from our other tasks, we follow prior work~\citep{llama,wang2023far} and (1) use temperature 0.1 when evaluating pass@1 and 0.8 for pass@10, (2) sample 50 responses, and (3) only evaluate without 0-shot CoT. While the original work \cite{chen2021codex} recommended sampling 200 responses, this is very expensive, and we follow \citet{wang2023far} and only sample 50.
+In Figure~\ref{fig:results-1}, we only show the performance on the subset of HumanEval where a 1-based execution of the ground-truth program fails the unit tests. These are the instances that distinguish between 0- and 1-based indexing. We also report results on the full HumanEval dataset in Table~\ref{tab:programming-gen-results}.
+
+We also consider another setup---code \emph{execution}, where we give the LM the ground-truth program and ask the LM for the output of the test cases given the input. We remove four programs in HumanEval that are not compatible with this format (ID: 32, 38, 50, and 53), only for this execution task.
+Because the program would have a different functionality under 1-based indexing, we remove the docstring that is the function description, and also rename the function to the uninformative \texttt{function}, to avoid confusing the LM.
+Some programs also become invalid under 1-based indexing, specifically, those that perform any indexing using \texttt{0}. We remove all test cases that involve indexing with \texttt{0} and programs that do not have test cases left after this removal. 150 programs and 969 test cases remain.
+Some of these test cases may not distinguish between 0- and 1-based indexing.
+So for our main task (i.e., not CCC), we only consider test cases whose outputs are different under 0- vs. 1-based indexing, and there are 113 of them.
+
+Because we use the same prompt to indicate the counterfactual conditions for both code generation and execution, and because we want to maintain comparability with prior work for the former, we only include CCC in the execution setup. We believe they reflect the LMs' understanding of 1-based indexing in the generation setup too.
+We ask the LM for the output of simple tests about 1-based indexing such as \texttt{"qrstu"[4]} and \texttt{"qrs"[:2]}. They do not require sophisticated reasoning under the counterfactual conditions and yet are sufficient to discriminate between the default and the counterfactual conditions.
+We append  5 such checks after each of the 150 programs, totaling 750 CCC.
+
+For the execution task, we do not consider PaLM-2, because it only has a maximum of 1,024 output context length and leads to truncated, unparseable results for most test instances, especially under 0-shot CoT.

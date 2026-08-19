@@ -1,0 +1,151 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "ff136bff2ac7d4f2608a134b0a4ea92b618dcae6c37cff04400cbb023e3a6e35",
+    "input_parsed_document.json": "9b72f12c59c84357aeca08717de72461d0b5c87b5984ec2198f9680b3a501227",
+    "optimized.md": "f64ed3cc0c646e7789cea1f9da3269a26c45499287e2b7c054be17630e6a10aa"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "67ad7461-e27c-49d1-8b97-9b902122bc0d",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "ac81f061-debb-5b7b-9559-3aad852c2c36",
+            "object_type": "block",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "67ad7461-e27c-49d1-8b97-9b902122bc0d",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "unavailable"
+      },
+      "state": "unavailable"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "67ad7461-e27c-49d1-8b97-9b902122bc0d",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability table_grid_reliable = inferred",
+      "capability table_field_binding_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "table_grid_reliable",
+      "table_field_binding_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 2,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 0
+  },
+  "issues": [],
+  "metrics": {
+    "agent": {
+      "accepted": true,
+      "attempt_count": 1,
+      "final_revision_id": "9d0c1e019ea3dbb265f5afbbdcdfa14cb4e05ff00f6d49d7b05fc816223d5177",
+      "last_code": "accepted",
+      "mode": "document",
+      "session_id": "quality-recovery-tex-20260821:table-pages:mineru",
+      "stop_reason": "no_progress"
+    },
+    "binding_count": 72,
+    "canonical_block_count": 12,
+    "issue_count": 0,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 3,
+    "repair_count": 0,
+    "source_block_count": 12,
+    "table_count": 2
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

@@ -1,0 +1,15 @@
+\subsection{Drawing} \label{sec:drawing-setup}
+
+We choose 100 objects from five Emoji\footnote{\url{https://getemoji.com}} categories: activity, travel \& places, animals \& nature, food \& drink, and objects. 
+Since LMs cannot generate images at the pixel level, we use code as an intermediate abstraction for sketch generation. We do our best to select objects that are easy to draw using code, verified by multiple authors. 
+We consider the Processing language for our experiment which supports a variety of shapes and colors and is widely used in visualization. Our initial experiments found this language to achieve the best drawing performance compared to other graphics and image processing frameworks, including TikZ, SVG, and matplotlib. 
+
+For the counterfactual settings, we ask the LMs to draw the same object, but vertically flipped (i.e., upside-down), or rotated by 90\textdegree or 180\textdegree. We also ask the LMs to avoid using any transformation functions such as \texttt{rotate} and \texttt{scale} to avoid shortcuts.
+Before our quantitative evaluation, we flip/rotate back the generated drawing.
+
+We use human evaluation by asking human annotators to determine whether the drawing matches the object. We instruct the annotators to consider orientation as part of correctness and for objects that have a canonical orientation, they must be drawn in that orientation. We average the results over 4 annotators. We also show a breakdown of accuracy depending on whether an object has a canonical orientation or not, as judged by the annotators, in Table~\ref{tab:numbers-drawing-breakdown}. In addition, we consider multi-class classification accuracy using CLIP~\cite{clip} as an automatic metric, where we ask CLIP to classify the drawing into our 100 categories in a 0-shot fashion. We include the CLIP multi-class classification accuracy in Table~\ref{tab:numbers-drawing}.
+We note that the accuracy of the CLIP model for our setup is not guaranteed: first, our generated sketches may be distributionally different from the predominantly photorealistic images in CLIP's training data; also, CLIP might be insensitive to the object's orientation, but that distinguishes between our default and counterfactual settings. Therefore, to verify the reliability of this automatic evaluation, we randomly sample 10 objects for each model and for each default/counterfactual setting, and perform human evaluation on the 240 generated images. We find that CLIP's judgment aligns with human annotators' 84\% of the time, suggesting the reliability of this evaluation.
+
+For this task, we do not consider PaLM-2 due to its limited context length. Our preliminary experiments also found PaLM-2  to struggle in generating parseable Processing code, even in the default setting.
+
+We construct the CCC baseline by requiring the LMs to additionally draw a line at the top of the figure and flip/rotate it as well. A successful flipping/rotation of the line, as judged by the annotators and verified in the generated code if necessary, demonstrates an understanding of the counterfactual world.

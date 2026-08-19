@@ -1,0 +1,9 @@
+\subsection{SET Game}
+
+We synthetically generate SET boards, consisting of 12 cards, each with exactly one 3-card SET that satisfies the game rules in \S\ref{sec:set-setup}. 
+We represent each card with a string representation, e.g., \texttt{(3|open|red|diamond)}. 
+In preliminary experiments, we tried to ask the LMs to find the SET directly, but found that they cannot perform this task well (see Figure~\ref{fig:set-nhints}, ``Number of Cards to Find''$=3$).
+Therefore, in our main evaluation, we expose 2 cards in the SET and ask the LM to identify the missing one that completes the SET.
+
+In the counterfactual setting, we invert the rule for the \emph{number} attribute to require that two cards in the SET should have the same number but the other card should be different.
+For the CCC, we ask the model to verify the validity of a given SET instead of finding it. In each CCC instance, we either give a valid SET from the board, or 3 randomly sampled cards that do not constitute a valid SET. We ask the model to classify whether the given combination is valid or invalid. We note that our counterfactual perturbation ensures that the each SET cannot be simultaneously valid in the default setting and the counterfactual setting, and hence this CCC is discriminative between the two settings.

@@ -1,0 +1,656 @@
+{
+  "schema_name": "WikiHandoff",
+  "schema_version": "1.0",
+  "document_id": "c29d0165-3bb4-40b9-82e5-db9b039f3e36",
+  "quality_state": "manual_review_required",
+  "optimized_markdown": "# 双栏阅读顺序测试\n\nTRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1\n\n## 1 左栏校验 TRACE-C-LEFT-101\n\n左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。\n\n1. LEFT-CHECK-A1：准备输入。\n\n2. LEFT-CHECK-A2：确认 threshold 0.25。\n\n## 1.1 左栏公式 TRACE-C-LEFT-111\n\n左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。\n\n## 2 右栏校验\n\n## TRACE-C-RIGHT-201\n\n右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。\n\n1. RIGHT-CHECK-B1：读取第二路输入。\n\n2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。\n\n## 2.1 右栏结论 TRACE-C-RIGHT-211\n\n右栏结论不能被提前插入左栏中间。\n\n## 3 双栏结束 TRACE-C-END-301\n\n本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+  "chunks": [
+    {
+      "chunk_id": "block:73233c01-1915-56b9-99f6-d30aacadd936",
+      "kind": "heading",
+      "order_index": 0,
+      "content": "双栏阅读顺序测试",
+      "citation_ids": [
+        "block:73233c01-1915-56b9-99f6-d30aacadd936"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:d8de680c-7bec-544c-9fce-b6569d53e330",
+      "kind": "paragraph",
+      "order_index": 1,
+      "content": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+      "citation_ids": [
+        "block:d8de680c-7bec-544c-9fce-b6569d53e330"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f",
+      "kind": "heading",
+      "order_index": 2,
+      "content": "1 左栏校验 TRACE-C-LEFT-101",
+      "citation_ids": [
+        "block:9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:80076a25-b12f-5067-908e-bf1ab74c0265",
+      "kind": "paragraph",
+      "order_index": 3,
+      "content": "左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。",
+      "citation_ids": [
+        "block:80076a25-b12f-5067-908e-bf1ab74c0265"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:65e784d7-a4d3-5de8-98fa-bb2642f59d60",
+      "kind": "paragraph",
+      "order_index": 4,
+      "content": "1. LEFT-CHECK-A1：准备输入。",
+      "citation_ids": [
+        "block:65e784d7-a4d3-5de8-98fa-bb2642f59d60"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:17049a38-eea4-52bd-b6c1-77823801a31e",
+      "kind": "paragraph",
+      "order_index": 5,
+      "content": "2. LEFT-CHECK-A2：确认 threshold 0.25。",
+      "citation_ids": [
+        "block:17049a38-eea4-52bd-b6c1-77823801a31e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f85a8ad6-b303-58a2-9227-58392f7ff424",
+      "kind": "heading",
+      "order_index": 6,
+      "content": "1.1 左栏公式 TRACE-C-LEFT-111",
+      "citation_ids": [
+        "block:f85a8ad6-b303-58a2-9227-58392f7ff424"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:0f02bd21-b058-5f3b-9bc3-ae4a337c489a",
+      "kind": "paragraph",
+      "order_index": 7,
+      "content": "左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。",
+      "citation_ids": [
+        "block:0f02bd21-b058-5f3b-9bc3-ae4a337c489a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:96d96411-b7ef-55e4-ac59-669dd2f4b358",
+      "kind": "heading",
+      "order_index": 8,
+      "content": "2 右栏校验",
+      "citation_ids": [
+        "block:96d96411-b7ef-55e4-ac59-669dd2f4b358"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0",
+      "kind": "heading",
+      "order_index": 9,
+      "content": "TRACE-C-RIGHT-201",
+      "citation_ids": [
+        "block:bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:ec72871c-cb62-54ea-b414-ae08626d71ca",
+      "kind": "paragraph",
+      "order_index": 10,
+      "content": "右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。",
+      "citation_ids": [
+        "block:ec72871c-cb62-54ea-b414-ae08626d71ca"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:66913bfb-69e0-5b09-827b-894082f30105",
+      "kind": "paragraph",
+      "order_index": 11,
+      "content": "1. RIGHT-CHECK-B1：读取第二路输入。",
+      "citation_ids": [
+        "block:66913bfb-69e0-5b09-827b-894082f30105"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f6ddd8e2-df6b-55b3-94a0-10e440ae521e",
+      "kind": "paragraph",
+      "order_index": 12,
+      "content": "2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。",
+      "citation_ids": [
+        "block:f6ddd8e2-df6b-55b3-94a0-10e440ae521e"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:bd6c91b3-fcd0-5d36-84ed-46ba40341188",
+      "kind": "heading",
+      "order_index": 13,
+      "content": "2.1 右栏结论 TRACE-C-RIGHT-211",
+      "citation_ids": [
+        "block:bd6c91b3-fcd0-5d36-84ed-46ba40341188"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:2304c4bb-7017-5861-a1a1-7da293897b9b",
+      "kind": "paragraph",
+      "order_index": 14,
+      "content": "右栏结论不能被提前插入左栏中间。",
+      "citation_ids": [
+        "block:2304c4bb-7017-5861-a1a1-7da293897b9b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5f7568d0-c3ff-54a7-bc0d-d001b34495ca",
+      "kind": "paragraph",
+      "order_index": 15,
+      "content": "TRACE-COLUMNS-HEADER",
+      "citation_ids": [
+        "block:5f7568d0-c3ff-54a7-bc0d-d001b34495ca"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:6673774c-f0f1-5d58-9ad1-1b1d6ea33302",
+      "kind": "paragraph",
+      "order_index": 16,
+      "content": "TEX-COLUMNS-20260820-V1",
+      "citation_ids": [
+        "block:6673774c-f0f1-5d58-9ad1-1b1d6ea33302"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ba970612-7fef-5b27-8631-956ef3bdc4d6",
+      "kind": "page_number",
+      "order_index": 17,
+      "content": "1",
+      "citation_ids": [
+        "block:ba970612-7fef-5b27-8631-956ef3bdc4d6"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:bce05f28-1184-5a4d-9c9c-a7107e0a090c",
+      "kind": "heading",
+      "order_index": 18,
+      "content": "3 双栏结束 TRACE-C-END-301",
+      "citation_ids": [
+        "block:bce05f28-1184-5a4d-9c9c-a7107e0a090c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:780ef4d3-7196-5e84-9002-9bb8252d9d40",
+      "kind": "paragraph",
+      "order_index": 19,
+      "content": "本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+      "citation_ids": [
+        "block:780ef4d3-7196-5e84-9002-9bb8252d9d40"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:9f502c35-bbaf-5a42-b91f-21b1cc8e397f",
+      "kind": "paragraph",
+      "order_index": 20,
+      "content": "TRACE-COLUMNS-HEADER",
+      "citation_ids": [
+        "block:9f502c35-bbaf-5a42-b91f-21b1cc8e397f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c1c7d1a9-57b7-5400-aa92-6671cab5d65c",
+      "kind": "paragraph",
+      "order_index": 21,
+      "content": "TEX-COLUMNS-20260820-V1",
+      "citation_ids": [
+        "block:c1c7d1a9-57b7-5400-aa92-6671cab5d65c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:593a6c74-b75a-5a08-82a9-999d33bca1f9",
+      "kind": "page_number",
+      "order_index": 22,
+      "content": "2",
+      "citation_ids": [
+        "block:593a6c74-b75a-5a08-82a9-999d33bca1f9"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "block:73233c01-1915-56b9-99f6-d30aacadd936",
+      "canonical_block_id": "73233c01-1915-56b9-99f6-d30aacadd936",
+      "source_block_id": "mineru-content-0001",
+      "page_number": 1,
+      "bbox": [
+        378.0,
+        64.0,
+        620.0,
+        87.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d8de680c-7bec-544c-9fce-b6569d53e330",
+      "canonical_block_id": "d8de680c-7bec-544c-9fce-b6569d53e330",
+      "source_block_id": "mineru-content-0002",
+      "page_number": 1,
+      "bbox": [
+        267.0,
+        92.0,
+        729.0,
+        108.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f",
+      "canonical_block_id": "9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f",
+      "source_block_id": "mineru-content-0003",
+      "page_number": 1,
+      "bbox": [
+        90.0,
+        124.0,
+        492.0,
+        145.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:80076a25-b12f-5067-908e-bf1ab74c0265",
+      "canonical_block_id": "80076a25-b12f-5067-908e-bf1ab74c0265",
+      "source_block_id": "mineru-content-0004",
+      "page_number": 1,
+      "bbox": [
+        89.0,
+        162.0,
+        494.0,
+        200.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:65e784d7-a4d3-5de8-98fa-bb2642f59d60",
+      "canonical_block_id": "65e784d7-a4d3-5de8-98fa-bb2642f59d60",
+      "source_block_id": "mineru-content-0005",
+      "page_number": 1,
+      "bbox": [
+        110.0,
+        205.0,
+        396.0,
+        222.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:17049a38-eea4-52bd-b6c1-77823801a31e",
+      "canonical_block_id": "17049a38-eea4-52bd-b6c1-77823801a31e",
+      "source_block_id": "mineru-content-0006",
+      "page_number": 1,
+      "bbox": [
+        110.0,
+        227.0,
+        495.0,
+        243.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f85a8ad6-b303-58a2-9227-58392f7ff424",
+      "canonical_block_id": "f85a8ad6-b303-58a2-9227-58392f7ff424",
+      "source_block_id": "mineru-content-0007",
+      "page_number": 1,
+      "bbox": [
+        90.0,
+        268.0,
+        447.0,
+        286.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0f02bd21-b058-5f3b-9bc3-ae4a337c489a",
+      "canonical_block_id": "0f02bd21-b058-5f3b-9bc3-ae4a337c489a",
+      "source_block_id": "mineru-content-0008",
+      "page_number": 1,
+      "bbox": [
+        87.0,
+        300.0,
+        494.0,
+        338.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:96d96411-b7ef-55e4-ac59-669dd2f4b358",
+      "canonical_block_id": "96d96411-b7ef-55e4-ac59-669dd2f4b358",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        633.0,
+        124.0,
+        776.0,
+        145.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0",
+      "canonical_block_id": "bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0",
+      "source_block_id": "mineru-content-0010",
+      "page_number": 1,
+      "bbox": [
+        583.0,
+        153.0,
+        865.0,
+        172.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ec72871c-cb62-54ea-b414-ae08626d71ca",
+      "canonical_block_id": "ec72871c-cb62-54ea-b414-ae08626d71ca",
+      "source_block_id": "mineru-content-0011",
+      "page_number": 1,
+      "bbox": [
+        502.0,
+        189.0,
+        909.0,
+        227.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:66913bfb-69e0-5b09-827b-894082f30105",
+      "canonical_block_id": "66913bfb-69e0-5b09-827b-894082f30105",
+      "source_block_id": "mineru-content-0012",
+      "page_number": 1,
+      "bbox": [
+        524.0,
+        231.0,
+        877.0,
+        248.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f6ddd8e2-df6b-55b3-94a0-10e440ae521e",
+      "canonical_block_id": "f6ddd8e2-df6b-55b3-94a0-10e440ae521e",
+      "source_block_id": "mineru-content-0013",
+      "page_number": 1,
+      "bbox": [
+        524.0,
+        252.0,
+        991.0,
+        269.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:bd6c91b3-fcd0-5d36-84ed-46ba40341188",
+      "canonical_block_id": "bd6c91b3-fcd0-5d36-84ed-46ba40341188",
+      "source_block_id": "mineru-content-0014",
+      "page_number": 1,
+      "bbox": [
+        502.0,
+        291.0,
+        877.0,
+        309.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:2304c4bb-7017-5861-a1a1-7da293897b9b",
+      "canonical_block_id": "2304c4bb-7017-5861-a1a1-7da293897b9b",
+      "source_block_id": "mineru-content-0015",
+      "page_number": 1,
+      "bbox": [
+        537.0,
+        321.0,
+        831.0,
+        338.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5f7568d0-c3ff-54a7-bc0d-d001b34495ca",
+      "canonical_block_id": "5f7568d0-c3ff-54a7-bc0d-d001b34495ca",
+      "source_block_id": "mineru-content-0016",
+      "page_number": 1,
+      "bbox": [
+        90.0,
+        22.0,
+        349.0,
+        36.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:6673774c-f0f1-5d58-9ad1-1b1d6ea33302",
+      "canonical_block_id": "6673774c-f0f1-5d58-9ad1-1b1d6ea33302",
+      "source_block_id": "mineru-content-0017",
+      "page_number": 1,
+      "bbox": [
+        653.0,
+        22.0,
+        905.0,
+        36.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ba970612-7fef-5b27-8631-956ef3bdc4d6",
+      "canonical_block_id": "ba970612-7fef-5b27-8631-956ef3bdc4d6",
+      "source_block_id": "mineru-content-0018",
+      "page_number": 1,
+      "bbox": [
+        492.0,
+        958.0,
+        505.0,
+        971.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:bce05f28-1184-5a4d-9c9c-a7107e0a090c",
+      "canonical_block_id": "bce05f28-1184-5a4d-9c9c-a7107e0a090c",
+      "source_block_id": "mineru-content-0019",
+      "page_number": 2,
+      "bbox": [
+        300.0,
+        65.0,
+        695.0,
+        83.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:780ef4d3-7196-5e84-9002-9bb8252d9d40",
+      "canonical_block_id": "780ef4d3-7196-5e84-9002-9bb8252d9d40",
+      "source_block_id": "mineru-content-0020",
+      "page_number": 2,
+      "bbox": [
+        89.0,
+        102.0,
+        909.0,
+        139.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:9f502c35-bbaf-5a42-b91f-21b1cc8e397f",
+      "canonical_block_id": "9f502c35-bbaf-5a42-b91f-21b1cc8e397f",
+      "source_block_id": "mineru-content-0021",
+      "page_number": 2,
+      "bbox": [
+        90.0,
+        22.0,
+        347.0,
+        36.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c1c7d1a9-57b7-5400-aa92-6671cab5d65c",
+      "canonical_block_id": "c1c7d1a9-57b7-5400-aa92-6671cab5d65c",
+      "source_block_id": "mineru-content-0022",
+      "page_number": 2,
+      "bbox": [
+        653.0,
+        22.0,
+        905.0,
+        35.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:593a6c74-b75a-5a08-82a9-999d33bca1f9",
+      "canonical_block_id": "593a6c74-b75a-5a08-82a9-999d33bca1f9",
+      "source_block_id": "mineru-content-0023",
+      "page_number": 2,
+      "bbox": [
+        492.0,
+        958.0,
+        505.0,
+        970.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    }
+  ],
+  "warnings": [
+    "info:heading_level_granularity_suspect: 解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
+    "warning:heading_level_missing: 标题层级无法确定: 'TRACE-C-RIGHT-201'"
+  ],
+  "metadata": {
+    "quality_report_contract_version": "1.0",
+    "chunk_count": 23,
+    "citation_count": 23,
+    "table_binding_count": 0
+  }
+}

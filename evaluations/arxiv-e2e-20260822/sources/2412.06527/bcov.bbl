@@ -1,0 +1,1372 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{bcov}{article}{}
+      \name{author}{4}{}{%
+        {{hash=7f2b6701b237c6a044547f18cd182117}{%
+           family={Bershadsky},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=21b5b992a506eb702385c276d949205c}{%
+           family={Cecotti},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=57b7fa7d078fc8433e5da26a52c0b11e}{%
+           family={Ooguri},
+           familyi={O\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=7048e38df35266414e76c17fa7030e08}{%
+           family={Vafa},
+           familyi={V\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \strng{fullhash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \strng{bibnamehash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \strng{authorbibnamehash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \strng{authornamehash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \strng{authorfullhash}{4c40ca6f0858dd4af1e569cf59282d10}
+      \field{labelalpha}{BCOV94}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0010-3616,1432-0916}
+      \field{journaltitle}{Comm. Math. Phys.}
+      \field{number}{2}
+      \field{title}{Kodaira-{S}pencer theory of gravity and exact results for quantum string amplitudes}
+      \field{volume}{165}
+      \field{year}{1994}
+      \field{pages}{311\bibrangedash 427}
+      \range{pages}{117}
+    \endentry
+    \entry{gwalggeo}{article}{}
+      \name{author}{1}{}{%
+        {{hash=40fe9c2a2d3487c51f43070d14af0f66}{%
+           family={Behrend},
+           familyi={B\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \strng{fullhash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \strng{bibnamehash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \strng{authorbibnamehash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \strng{authornamehash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \strng{authorfullhash}{40fe9c2a2d3487c51f43070d14af0f66}
+      \field{labelalpha}{Beh97}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Invent. Math.}
+      \field{number}{3}
+      \field{title}{Gromov-{W}itten invariants in algebraic geometry}
+      \field{volume}{127}
+      \field{year}{1997}
+      \field{pages}{601\bibrangedash 617}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1007/s002220050132
+      \endverb
+    \endentry
+    \entry{intrinsicnc}{article}{}
+      \name{author}{2}{}{%
+        {{hash=40fe9c2a2d3487c51f43070d14af0f66}{%
+           family={Behrend},
+           familyi={B\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c98f04153cad1207ecee6cb98b978eb7}{%
+           family={Fantechi},
+           familyi={F\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{90f3daa7157ae6251cb36bcd04e65426}
+      \strng{fullhash}{90f3daa7157ae6251cb36bcd04e65426}
+      \strng{bibnamehash}{90f3daa7157ae6251cb36bcd04e65426}
+      \strng{authorbibnamehash}{90f3daa7157ae6251cb36bcd04e65426}
+      \strng{authornamehash}{90f3daa7157ae6251cb36bcd04e65426}
+      \strng{authorfullhash}{90f3daa7157ae6251cb36bcd04e65426}
+      \field{labelalpha}{BF97}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Invent. Math.}
+      \field{number}{1}
+      \field{title}{The intrinsic normal cone}
+      \field{volume}{128}
+      \field{year}{1997}
+      \field{pages}{45\bibrangedash 88}
+      \range{pages}{44}
+      \verb{doi}
+      \verb 10.1007/s002220050136
+      \endverb
+    \endentry
+    \entry{orbqmap}{article}{}
+      \name{author}{3}{}{%
+        {{hash=df2d40b607b0313dc5cbe489bc7c3b82}{%
+           family={Cheong},
+           familyi={C\bibinitperiod},
+           given={Daewoong},
+           giveni={D\bibinitperiod}}}%
+        {{hash=839d2458758de37937bc32a8a90d17f8}{%
+           family={Ciocan-Fontanine},
+           familyi={C\bibinithyphendelim F\bibinitperiod},
+           given={Ionuţ},
+           giveni={I\bibinitperiod}}}%
+        {{hash=cf70debd0f0a6501d4962afbbf4a296b}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Bumsig},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \strng{fullhash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \strng{bibnamehash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \strng{authorbibnamehash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \strng{authornamehash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \strng{authorfullhash}{cf722bc30dd28e6abd8358d884c3e87d}
+      \field{labelalpha}{CCK15}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-5831,1432-1807}
+      \field{journaltitle}{Math. Ann.}
+      \field{number}{3-4}
+      \field{title}{Orbifold quasimap theory}
+      \field{volume}{363}
+      \field{year}{2015}
+      \field{pages}{777\bibrangedash 816}
+      \range{pages}{40}
+      \verb{doi}
+      \verb 10.1007/s00208-015-1186-z
+      \endverb
+    \endentry
+    \entry{orbqcohwproj}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d0972acd892a7c1ca7c5f322307155e7}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9da8c2beb1e3d5d38e2ed3753147f2da}{%
+           family={Corti},
+           familyi={C\bibinitperiod},
+           given={Alessio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1b3ff07a01038e9b758fe476fcec37a7}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Yuan-Pin},
+           giveni={Y\bibinithyphendelim P\bibinitperiod}}}%
+        {{hash=57960f2847751855a11f2a8ac12066d3}{%
+           family={Tseng},
+           familyi={T\bibinitperiod},
+           given={Hsian-Hua},
+           giveni={H\bibinithyphendelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \strng{fullhash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \strng{bibnamehash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \strng{authorbibnamehash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \strng{authornamehash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \strng{authorfullhash}{38be0df6f3609102e1e2b4934bbe65d8}
+      \field{labelalpha}{CCLT09}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0001-5962,1871-2509}
+      \field{journaltitle}{Acta Math.}
+      \field{number}{2}
+      \field{title}{The quantum orbifold cohomology of weighted projective spaces}
+      \field{volume}{202}
+      \field{year}{2009}
+      \field{pages}{139\bibrangedash 193}
+      \range{pages}{55}
+      \verb{doi}
+      \verb 10.1007/s11511-009-0035-x
+      \endverb
+    \endentry
+    \entry{qrr}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d0972acd892a7c1ca7c5f322307155e7}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2bde35a52066225ceddc1e119c5a1d64}{%
+           family={Givental},
+           familyi={G\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6317396e3f592248eb72438aad0aede4}
+      \strng{fullhash}{6317396e3f592248eb72438aad0aede4}
+      \strng{bibnamehash}{6317396e3f592248eb72438aad0aede4}
+      \strng{authorbibnamehash}{6317396e3f592248eb72438aad0aede4}
+      \strng{authornamehash}{6317396e3f592248eb72438aad0aede4}
+      \strng{authorfullhash}{6317396e3f592248eb72438aad0aede4}
+      \field{labelalpha}{CG07}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0003-486X,1939-8980}
+      \field{journaltitle}{Ann. of Math. (2)}
+      \field{number}{1}
+      \field{title}{Quantum {R}iemann-{R}och, {L}efschetz and {S}erre}
+      \field{volume}{165}
+      \field{year}{2007}
+      \field{pages}{15\bibrangedash 53}
+      \range{pages}{39}
+      \verb{doi}
+      \verb 10.4007/annals.2007.165.15
+      \endverb
+    \endentry
+    \entry{nmsp3}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=9b2ff509653c13f91240d9e58ca5db7e}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shuai},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{fullhash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{bibnamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authorbibnamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authornamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authorfullhash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \field{extraname}{1}
+      \field{labelalpha}{CGL19}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{BCOV's Feynman rule of quintic $3$-folds}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1810.00394
+      \endverb
+    \endentry
+    \entry{nmsp2}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=9b2ff509653c13f91240d9e58ca5db7e}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shuai},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{fullhash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{bibnamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authorbibnamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authornamehash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \strng{authorfullhash}{9f220de6d1aa3bd9dcfb88818d226421}
+      \field{extraname}{2}
+      \field{labelalpha}{CGL21}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0003-486X,1939-8980}
+      \field{journaltitle}{Ann. of Math. (2)}
+      \field{number}{3}
+      \field{title}{Polynomial structure of {G}romov-{W}itten potential of quintic {$3$}-folds}
+      \field{volume}{194}
+      \field{year}{2021}
+      \field{pages}{585\bibrangedash 645}
+      \range{pages}{61}
+      \verb{doi}
+      \verb 10.4007/annals.2021.194.3.1
+      \endverb
+    \endentry
+    \entry{nmsp}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=9b2ff509653c13f91240d9e58ca5db7e}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shuai},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e74370051c3151ac4cd9a4df60b9889}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Wei-Ping},
+           giveni={W\bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \strng{fullhash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \strng{bibnamehash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \strng{authorbibnamehash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \strng{authornamehash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \strng{authorfullhash}{541be5576ff6ce5e7aa05f152ba8ec37}
+      \field{labelalpha}{CGLL21}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1465-3060,1364-0380}
+      \field{journaltitle}{Geom. Topol.}
+      \field{number}{2}
+      \field{title}{The theory of {$N$}-mixed-spin-{$P$} fields}
+      \field{volume}{25}
+      \field{year}{2021}
+      \field{pages}{775\bibrangedash 811}
+      \range{pages}{37}
+      \verb{doi}
+      \verb 10.2140/gt.2021.25.775
+      \endverb
+    \endentry
+    \entry{msp3}{article}{}
+      \name{author}{2}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{5aa02f0ad08a29d671f78cf50adac730}
+      \strng{fullhash}{5aa02f0ad08a29d671f78cf50adac730}
+      \strng{bibnamehash}{5aa02f0ad08a29d671f78cf50adac730}
+      \strng{authorbibnamehash}{5aa02f0ad08a29d671f78cf50adac730}
+      \strng{authornamehash}{5aa02f0ad08a29d671f78cf50adac730}
+      \strng{authorfullhash}{5aa02f0ad08a29d671f78cf50adac730}
+      \field{labelalpha}{CL20}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1073-7928,1687-0247}
+      \field{journaltitle}{Int. Math. Res. Not. IMRN}
+      \field{number}{20}
+      \field{title}{A vanishing associated with irregular {MSP} fields}
+      \field{year}{2020}
+      \field{pages}{7347\bibrangedash 7396}
+      \range{pages}{50}
+      \verb{doi}
+      \verb 10.1093/imrn/rnaa049
+      \endverb
+    \endentry
+    \entry{mspfermat}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e74370051c3151ac4cd9a4df60b9889}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Wei-Ping},
+           giveni={W\bibinithyphendelim P\bibinitperiod}}}%
+        {{hash=abf8e9e8e7fbb23ff4ab5e6a86135310}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Melissa\bibnamedelima Chiu-Chu},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {International Press of Boston}%
+      }
+      \strng{namehash}{851ba64de56a1c313376f45a6cc82452}
+      \strng{fullhash}{851ba64de56a1c313376f45a6cc82452}
+      \strng{bibnamehash}{851ba64de56a1c313376f45a6cc82452}
+      \strng{authorbibnamehash}{851ba64de56a1c313376f45a6cc82452}
+      \strng{authornamehash}{851ba64de56a1c313376f45a6cc82452}
+      \strng{authorfullhash}{851ba64de56a1c313376f45a6cc82452}
+      \field{extraname}{1}
+      \field{labelalpha}{CLLL19}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2168-0930}
+      \field{journaltitle}{Cambridge Journal of Mathematics}
+      \field{number}{3}
+      \field{title}{Mixed-$\textrm{Spin-P}$ fields of Fermat polynomials}
+      \field{volume}{7}
+      \field{year}{2019}
+      \field{pages}{319\bibrangedash 364}
+      \range{pages}{46}
+      \verb{doi}
+      \verb 10.4310/CJM.2019.v7.n3.a3
+      \endverb
+    \endentry
+    \entry{msp2}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a1b4db68c857204d8e97754bca1358bd}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Huai-Liang},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e74370051c3151ac4cd9a4df60b9889}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Wei-Ping},
+           giveni={W\bibinithyphendelim P\bibinitperiod}}}%
+        {{hash=febfbd512ccfe91d809e3045d2ce8f9c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Chiu-Chu\bibnamedelima Melissa},
+           giveni={C\bibinithyphendelim C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3807ae414d7654f46fa3ff527c002a61}
+      \strng{fullhash}{3807ae414d7654f46fa3ff527c002a61}
+      \strng{bibnamehash}{3807ae414d7654f46fa3ff527c002a61}
+      \strng{authorbibnamehash}{3807ae414d7654f46fa3ff527c002a61}
+      \strng{authornamehash}{3807ae414d7654f46fa3ff527c002a61}
+      \strng{authorfullhash}{3807ae414d7654f46fa3ff527c002a61}
+      \field{extraname}{2}
+      \field{labelalpha}{CLLL22}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0022-040X,1945-743X}
+      \field{journaltitle}{J. Differential Geom.}
+      \field{number}{2}
+      \field{title}{An effective theory of {GW} and {FJRW} invariants of quintic {C}alabi-{Y}au manifolds}
+      \field{volume}{120}
+      \field{year}{2022}
+      \field{pages}{251\bibrangedash 306}
+      \range{pages}{56}
+      \verb{doi}
+      \verb 10.4310/jdg/1645207466
+      \endverb
+    \endentry
+    \entry{cdgp}{incollection}{}
+      \name{author}{4}{}{%
+        {{hash=1e772f4c738ffea7ffc3a7def88691ee}{%
+           family={Candelas},
+           familyi={C\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=51361c9336939687010de4a11684b233}{%
+           family={Ossa},
+           familyi={O\bibinitperiod},
+           given={Xenia\bibnamedelima C.},
+           giveni={X\bibinitperiod\bibinitdelim C\bibinitperiod},
+           prefix={de\bibnamedelima la},
+           prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod}}}%
+        {{hash=57df254bf58f3e5d37e4ea891ffc94ed}{%
+           family={Green},
+           familyi={G\bibinitperiod},
+           given={Paul\bibnamedelima S.},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a7a0737e98f4fad4f47370a20d687876}{%
+           family={Parkes},
+           familyi={P\bibinitperiod},
+           given={Linda},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Int. Press, Hong Kong}%
+      }
+      \strng{namehash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \strng{fullhash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \strng{bibnamehash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \strng{authorbibnamehash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \strng{authornamehash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \strng{authorfullhash}{deb5d9fdcfa7274def5b050d45734bfc}
+      \field{labelalpha}{COGP92}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Essays on mirror manifolds}
+      \field{isbn}{962-7670-01-4}
+      \field{title}{A pair of {C}alabi-{Y}au manifolds as an exactly soluble superconformal theory}
+      \field{year}{1992}
+      \field{pages}{31\bibrangedash 95}
+      \range{pages}{65}
+    \endentry
+    \entry{geomquantgwtheory}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=6ec521f2f23794e508408d93233ac4ed}{%
+           family={Clader},
+           familyi={C\bibinitperiod},
+           given={Emily},
+           giveni={E\bibinitperiod}}}%
+        {{hash=6b4390e741602fbf64a3b04e8e617f3a}{%
+           family={Priddis},
+           familyi={P\bibinitperiod},
+           given={Nathan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=54abfef5f84b92c2527e3e49e5b511f8}{%
+           family={Shoemaker},
+           familyi={S\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Birkhäuser/Springer, Cham}%
+      }
+      \strng{namehash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \strng{fullhash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \strng{bibnamehash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \strng{authorbibnamehash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \strng{authornamehash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \strng{authorfullhash}{e3a258d2be75847be1a7660f6ca7f92b}
+      \field{labelalpha}{CPS18}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{B-model {G}romov-{W}itten theory}
+      \field{isbn}{978-3-319-94219-3; 978-3-319-94220-9}
+      \field{series}{Trends Math.}
+      \field{title}{Geometric quantization with applications to {G}romov-{W}itten theory}
+      \field{year}{2018}
+      \field{pages}{399\bibrangedash 462}
+      \range{pages}{64}
+    \endentry
+    \entry{arnoldgw}{article}{}
+      \name{author}{2}{}{%
+        {{hash=19cb01caeffad3c5c5b07dbad850a9c5}{%
+           family={Fukaya},
+           familyi={F\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f889974059e3a494a4ba80a6c9b81719}{%
+           family={Ono},
+           familyi={O\bibinitperiod},
+           given={Kaoru},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{c2bc496e32ade5358c77166f2c98d617}
+      \strng{fullhash}{c2bc496e32ade5358c77166f2c98d617}
+      \strng{bibnamehash}{c2bc496e32ade5358c77166f2c98d617}
+      \strng{authorbibnamehash}{c2bc496e32ade5358c77166f2c98d617}
+      \strng{authornamehash}{c2bc496e32ade5358c77166f2c98d617}
+      \strng{authorfullhash}{c2bc496e32ade5358c77166f2c98d617}
+      \field{labelalpha}{FO99}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0040-9383}
+      \field{journaltitle}{Topology}
+      \field{number}{5}
+      \field{title}{Arnold conjecture and {G}romov-{W}itten invariant}
+      \field{volume}{38}
+      \field{year}{1999}
+      \field{pages}{933\bibrangedash 1048}
+      \range{pages}{116}
+      \verb{doi}
+      \verb 10.1016/S0040-9383(98)00042-1
+      \endverb
+    \endentry
+    \entry{gwhodge}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6177f9438fea66770294f276931381d6}{%
+           family={Faber},
+           familyi={F\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ea61684906f7898ed707f36f116deb28}{%
+           family={Pandharipande},
+           familyi={P\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \strng{fullhash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \strng{bibnamehash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \strng{authorbibnamehash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \strng{authornamehash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \strng{authorfullhash}{4aff0be845a9d15462f24e212b1d3b5e}
+      \field{labelalpha}{FP00}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Invent. Math.}
+      \field{number}{1}
+      \field{title}{Hodge integrals and {G}romov-{W}itten theory}
+      \field{volume}{139}
+      \field{year}{2000}
+      \field{pages}{173\bibrangedash 199}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1007/s002229900028
+      \endverb
+    \endentry
+    \entry{virasorofanotoric}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=761613632efc6050cb4d3d161ccdb749}{%
+           family={Givental},
+           familyi={G\bibinitperiod},
+           given={Alexander\bibnamedelima B.},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{fullhash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{bibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorbibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authornamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorfullhash}{761613632efc6050cb4d3d161ccdb749}
+      \field{extraname}{1}
+      \field{labelalpha}{Giv01}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1609-3321,1609-4514}
+      \field{journaltitle}{Mosc. Math. J.}
+      \field{note}{Dedicated to the memory of I. G.\ Petrovskii on the occasion of his 100th anniversary}
+      \field{number}{4}
+      \field{title}{Gromov-{W}itten invariants and quantization of quadratic {H}amiltonians}
+      \field{volume}{1}
+      \field{year}{2001}
+      \field{pages}{551\bibrangedash 568\bibrangessep 645}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.17323/1609-4514-2001-1-4-551-568
+      \endverb
+    \endentry
+    \entry{symplfrob}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=761613632efc6050cb4d3d161ccdb749}{%
+           family={Givental},
+           familyi={G\bibinitperiod},
+           given={Alexander\bibnamedelima B.},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Friedr. Vieweg, Wiesbaden}%
+      }
+      \strng{namehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{fullhash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{bibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorbibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authornamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorfullhash}{761613632efc6050cb4d3d161ccdb749}
+      \field{extraname}{2}
+      \field{labelalpha}{Giv04}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Frobenius manifolds}
+      \field{isbn}{3-528-03206-5}
+      \field{series}{Aspects Math.}
+      \field{title}{Symplectic geometry of {F}robenius structures}
+      \field{volume}{E36}
+      \field{year}{2004}
+      \field{pages}{91\bibrangedash 112}
+      \range{pages}{22}
+    \endentry
+    \entry{eqgwinv}{article}{}
+      \name{author}{1}{}{%
+        {{hash=761613632efc6050cb4d3d161ccdb749}{%
+           family={Givental},
+           familyi={G\bibinitperiod},
+           given={Alexander\bibnamedelima B.},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{fullhash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{bibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorbibnamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authornamehash}{761613632efc6050cb4d3d161ccdb749}
+      \strng{authorfullhash}{761613632efc6050cb4d3d161ccdb749}
+      \field{extraname}{3}
+      \field{labelalpha}{Giv96}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1073-7928,1687-0247}
+      \field{journaltitle}{Internat. Math. Res. Notices}
+      \field{number}{13}
+      \field{title}{Equivariant {G}romov-{W}itten invariants}
+      \field{year}{1996}
+      \field{pages}{613\bibrangedash 663}
+      \range{pages}{51}
+      \verb{doi}
+      \verb 10.1155/S1073792896000414
+      \endverb
+    \endentry
+    \entry{genus2logglsm}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=9b2ff509653c13f91240d9e58ca5db7e}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shuai},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0bd11fc66c578676596b37037a419300}{%
+           family={Janda},
+           familyi={J\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b7358bb556d9e0b422debf908310e4db}{%
+           family={Ruan},
+           familyi={R\bibinitperiod},
+           given={Yongbin},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{fullhash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{bibnamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authorbibnamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authornamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authorfullhash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \field{extraname}{1}
+      \field{labelalpha}{GJR17}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{A mirror theorem for genus two Gromov-Witten invariants of quintic threefolds}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1709.07392
+      \endverb
+    \endentry
+    \entry{bcovlogglsm}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=9b2ff509653c13f91240d9e58ca5db7e}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shuai},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0bd11fc66c578676596b37037a419300}{%
+           family={Janda},
+           familyi={J\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b7358bb556d9e0b422debf908310e4db}{%
+           family={Ruan},
+           familyi={R\bibinitperiod},
+           given={Yongbin},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{fullhash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{bibnamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authorbibnamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authornamehash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \strng{authorfullhash}{8ebcddbef271e27c7541d312b4f85d6d}
+      \field{extraname}{2}
+      \field{labelalpha}{GJR18}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Structure of Higher Genus Gromov-Witten Invariants of Quintic 3-folds}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1812.11908
+      \endverb
+    \endentry
+    \entry{hkq}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=c2dbbbbf1631d6176be6f8708471846b}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={M.-x.},
+           giveni={M\bibinithyphendelim x\bibinitperiod}}}%
+        {{hash=0b6307dbdb9f3afc38e9d92d178f3b8d}{%
+           family={Klemm},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2fcb89bc50e81480d8b485f72696bbf7}{%
+           family={Quackenbush},
+           familyi={Q\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer, Berlin}%
+      }
+      \strng{namehash}{b33d68e14fdd87c7508390e449ba7498}
+      \strng{fullhash}{b33d68e14fdd87c7508390e449ba7498}
+      \strng{bibnamehash}{b33d68e14fdd87c7508390e449ba7498}
+      \strng{authorbibnamehash}{b33d68e14fdd87c7508390e449ba7498}
+      \strng{authornamehash}{b33d68e14fdd87c7508390e449ba7498}
+      \strng{authorfullhash}{b33d68e14fdd87c7508390e449ba7498}
+      \field{labelalpha}{HKQ09}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Homological mirror symmetry}
+      \field{isbn}{978-3-540-86374-8}
+      \field{series}{Lecture Notes in Phys.}
+      \field{title}{Topological string theory on compact {C}alabi-{Y}au: modularity and boundary conditions}
+      \field{volume}{757}
+      \field{year}{2009}
+      \field{pages}{45\bibrangedash 102}
+      \range{pages}{58}
+    \endentry
+    \entry{invtauteqns}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4c93142e9fa15510e48c7db2b09a6be0}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Y.-P.},
+           giveni={Y\bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \strng{fullhash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \strng{bibnamehash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \strng{authorbibnamehash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \strng{authornamehash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \strng{authorfullhash}{4c93142e9fa15510e48c7db2b09a6be0}
+      \field{labelalpha}{Lee09}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0894-0347,1088-6834}
+      \field{journaltitle}{J. Amer. Math. Soc.}
+      \field{note}{With an appendix by Y. Iwao and the author}
+      \field{number}{2}
+      \field{title}{Invariance of tautological equations. {II}. {G}romov-{W}itten theory}
+      \field{volume}{22}
+      \field{year}{2009}
+      \field{pages}{331\bibrangedash 352}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1090/S0894-0347-08-00616-4
+      \endverb
+    \endentry
+    \entry{polynomiality}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=21c0eebeefe833b5cedaaec136d3b022}{%
+           family={Lei},
+           familyi={L\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{fullhash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{bibnamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authorbibnamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authornamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authorfullhash}{21c0eebeefe833b5cedaaec136d3b022}
+      \field{extraname}{1}
+      \field{labelalpha}{Lei24}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Higher-genus Gromov-Witten theory of one-parameter Calabi-Yau threefolds I: Polynomiality}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2409.11659
+      \endverb
+    \endentry
+    \entry{foundations}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=21c0eebeefe833b5cedaaec136d3b022}{%
+           family={Lei},
+           familyi={L\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{fullhash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{bibnamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authorbibnamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authornamehash}{21c0eebeefe833b5cedaaec136d3b022}
+      \strng{authorfullhash}{21c0eebeefe833b5cedaaec136d3b022}
+      \field{extraname}{2}
+      \field{labelalpha}{Lei24}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{MSP theory for smooth Calabi-Yau threefolds in weighted $\mathbb{P}^4$}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2409.11660
+      \endverb
+    \endentry
+    \entry{lly}{article}{}
+      \name{author}{3}{}{%
+        {{hash=83e99d522d9e7456fdaee0757b385dcd}{%
+           family={Lian},
+           familyi={L\bibinitperiod},
+           given={Bong\bibnamedelima H.},
+           giveni={B\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=2f1c2ebb3891f3563e1cc29b7372ee81}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Kefeng},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2238b78e6ce727843bf0d4139b9542d3}{%
+           family={Yau},
+           familyi={Y\bibinitperiod},
+           given={Shing-Tung},
+           giveni={S\bibinithyphendelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{309640732dc2ae9a5adbd2df9debbb29}
+      \strng{fullhash}{309640732dc2ae9a5adbd2df9debbb29}
+      \strng{bibnamehash}{309640732dc2ae9a5adbd2df9debbb29}
+      \strng{authorbibnamehash}{309640732dc2ae9a5adbd2df9debbb29}
+      \strng{authornamehash}{309640732dc2ae9a5adbd2df9debbb29}
+      \strng{authorfullhash}{309640732dc2ae9a5adbd2df9debbb29}
+      \field{labelalpha}{LLY97}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1093-6106,1945-0036}
+      \field{journaltitle}{Asian J. Math.}
+      \field{number}{4}
+      \field{title}{Mirror principle. {I}}
+      \field{volume}{1}
+      \field{year}{1997}
+      \field{pages}{729\bibrangedash 763}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.4310/AJM.1997.v1.n4.a5
+      \endverb
+    \endentry
+    \entry{ltgwfoundation}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=499838dc01d408a03e13cf16deb18308}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Gang},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{fullhash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{bibnamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authorbibnamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authornamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authorfullhash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \field{extraname}{1}
+      \field{labelalpha}{LT98}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0894-0347,1088-6834}
+      \field{journaltitle}{J. Amer. Math. Soc.}
+      \field{number}{1}
+      \field{title}{Virtual moduli cycles and {G}romov-{W}itten invariants of algebraic varieties}
+      \field{volume}{11}
+      \field{year}{1998}
+      \field{pages}{119\bibrangedash 174}
+      \range{pages}{56}
+      \verb{doi}
+      \verb 10.1090/S0894-0347-98-00250-1
+      \endverb
+    \endentry
+    \entry{ltsymplectic}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=bc20e54573d2db853852f86802ab83de}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=499838dc01d408a03e13cf16deb18308}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Gang},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Int. Press, Cambridge, MA}%
+      }
+      \strng{namehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{fullhash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{bibnamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authorbibnamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authornamehash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \strng{authorfullhash}{8d0422e6d14f50d91ca16fdcfb8d58e9}
+      \field{extraname}{2}
+      \field{labelalpha}{LT98}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Topics in symplectic {$4$}-manifolds ({I}rvine, {CA}, 1996)}
+      \field{isbn}{1-57146-019-5}
+      \field{series}{First Int. Press Lect. Ser.}
+      \field{title}{Virtual moduli cycles and {G}romov-{W}itten invariants of general symplectic manifolds}
+      \field{volume}{I}
+      \field{year}{1998}
+      \field{pages}{47\bibrangedash 83}
+      \range{pages}{37}
+    \endentry
+    \entry{popagenus1ci}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3153db5f5e88e7722b7fc37ffb8b2408}{%
+           family={Popa},
+           familyi={P\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \strng{fullhash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \strng{bibnamehash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \strng{authorbibnamehash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \strng{authornamehash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \strng{authorfullhash}{3153db5f5e88e7722b7fc37ffb8b2408}
+      \field{labelalpha}{Pop13}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0002-9947,1088-6850}
+      \field{journaltitle}{Trans. Amer. Math. Soc.}
+      \field{number}{3}
+      \field{title}{The genus one {G}romov-{W}itten invariants of {C}alabi-{Y}au complete intersections}
+      \field{volume}{365}
+      \field{year}{2013}
+      \field{pages}{1149\bibrangedash 1181}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1090/S0002-9947-2012-05550-4
+      \endverb
+    \endentry
+    \entry{relationsvia3spin}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2f02afe1e173f227ed429a85728dc4e2}{%
+           family={Pandharipande},
+           familyi={P\bibinitperiod},
+           given={Rahul},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6c9293ce7700384da900b9d8b55ee5c6}{%
+           family={Pixton},
+           familyi={P\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9f7a4f140292b0fbe7740a7e07e83bc6}{%
+           family={Zvonkine},
+           familyi={Z\bibinitperiod},
+           given={Dimitri},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{209919255de73a08c262a613c1537557}
+      \strng{fullhash}{209919255de73a08c262a613c1537557}
+      \strng{bibnamehash}{209919255de73a08c262a613c1537557}
+      \strng{authorbibnamehash}{209919255de73a08c262a613c1537557}
+      \strng{authornamehash}{209919255de73a08c262a613c1537557}
+      \strng{authorfullhash}{209919255de73a08c262a613c1537557}
+      \field{labelalpha}{PPZ15}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0894-0347,1088-6834}
+      \field{journaltitle}{J. Amer. Math. Soc.}
+      \field{number}{1}
+      \field{title}{Relations on {$\overline{\mathcal{M}}_{g,n}$} via {$3$}-spin structures}
+      \field{volume}{28}
+      \field{year}{2015}
+      \field{pages}{279\bibrangedash 309}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1090/S0894-0347-2014-00808-0
+      \endverb
+    \endentry
+    \entry{rtqcoh}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b7358bb556d9e0b422debf908310e4db}{%
+           family={Ruan},
+           familyi={R\bibinitperiod},
+           given={Yongbin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=499838dc01d408a03e13cf16deb18308}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Gang},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{72cc97de470427dff9569422c85484c7}
+      \strng{fullhash}{72cc97de470427dff9569422c85484c7}
+      \strng{bibnamehash}{72cc97de470427dff9569422c85484c7}
+      \strng{authorbibnamehash}{72cc97de470427dff9569422c85484c7}
+      \strng{authornamehash}{72cc97de470427dff9569422c85484c7}
+      \strng{authorfullhash}{72cc97de470427dff9569422c85484c7}
+      \field{labelalpha}{RT95}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0022-040X,1945-743X}
+      \field{journaltitle}{J. Differential Geom.}
+      \field{number}{2}
+      \field{title}{A mathematical theory of quantum cohomology}
+      \field{volume}{42}
+      \field{year}{1995}
+      \field{pages}{259\bibrangedash 367}
+      \range{pages}{109}
+    \endentry
+    \entry{ruanvirtualneighborhoods}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=b7358bb556d9e0b422debf908310e4db}{%
+           family={Ruan},
+           familyi={R\bibinitperiod},
+           given={Yongbin},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7358bb556d9e0b422debf908310e4db}
+      \strng{fullhash}{b7358bb556d9e0b422debf908310e4db}
+      \strng{bibnamehash}{b7358bb556d9e0b422debf908310e4db}
+      \strng{authorbibnamehash}{b7358bb556d9e0b422debf908310e4db}
+      \strng{authornamehash}{b7358bb556d9e0b422debf908310e4db}
+      \strng{authorfullhash}{b7358bb556d9e0b422debf908310e4db}
+      \field{labelalpha}{Rua99}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of 6th {G}ökova {G}eometry-{T}opology {C}onference}
+      \field{issn}{1300-0098,1303-6149}
+      \field{journaltitle}{Turkish J. Math.}
+      \field{number}{1}
+      \field{title}{Virtual neighborhoods and pseudo-holomorphic curves}
+      \field{volume}{23}
+      \field{year}{1999}
+      \field{pages}{161\bibrangedash 231}
+      \range{pages}{71}
+    \endentry
+    \entry{siebertsymplecticgw}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a7536a6bd05a2b6e062dd1b9a1a2395a}{%
+           family={Siebert},
+           familyi={S\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \strng{fullhash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \strng{bibnamehash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \strng{authorbibnamehash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \strng{authornamehash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \strng{authorfullhash}{a7536a6bd05a2b6e062dd1b9a1a2395a}
+      \field{labelalpha}{Sie98}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Gromov-Witten invariants of general symplectic manifolds}
+      \field{year}{1998}
+      \verb{eprint}
+      \verb dg-ga/9608005
+      \endverb
+    \endentry
+    \entry{mirrornonconvex}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2f3ea981fa5a715a69118b48e576a9f5}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \strng{fullhash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \strng{bibnamehash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \strng{authorbibnamehash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \strng{authornamehash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \strng{authorfullhash}{2f3ea981fa5a715a69118b48e576a9f5}
+      \field{labelalpha}{Wan20}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{A mirror theorem for Gromov-Witten theory without convexity}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 1910.14440
+      \endverb
+    \endentry
+    \entry{yy04}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9bf123e267ea465a33de5e171cd3a6c9}{%
+           family={Yamaguchi},
+           familyi={Y\bibinitperiod},
+           given={Satoshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2238b78e6ce727843bf0d4139b9542d3}{%
+           family={Yau},
+           familyi={Y\bibinitperiod},
+           given={Shing-Tung},
+           giveni={S\bibinithyphendelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \strng{fullhash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \strng{bibnamehash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \strng{authorbibnamehash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \strng{authornamehash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \strng{authorfullhash}{78c507f17148b309f0a68ac61d7a8cd4}
+      \field{labelalpha}{YY04}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1126-6708,1029-8479}
+      \field{journaltitle}{J. High Energy Phys.}
+      \field{number}{7}
+      \field{title}{Topological string partition functions as polynomials}
+      \field{year}{2004}
+      \field{pages}{047\bibrangessep 20}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1088/1126-6708/2004/07/047
+      \endverb
+    \endentry
+    \entry{qmapwc}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2ba74e19a950c5a40b85cc136538f42b}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{2ba74e19a950c5a40b85cc136538f42b}
+      \strng{fullhash}{2ba74e19a950c5a40b85cc136538f42b}
+      \strng{bibnamehash}{2ba74e19a950c5a40b85cc136538f42b}
+      \strng{authorbibnamehash}{2ba74e19a950c5a40b85cc136538f42b}
+      \strng{authornamehash}{2ba74e19a950c5a40b85cc136538f42b}
+      \strng{authorfullhash}{2ba74e19a950c5a40b85cc136538f42b}
+      \field{labelalpha}{Zho22}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Invent. Math.}
+      \field{number}{2}
+      \field{title}{Quasimap wall-crossing for {GIT} quotients}
+      \field{volume}{227}
+      \field{year}{2022}
+      \field{pages}{581\bibrangedash 660}
+      \range{pages}{80}
+      \verb{doi}
+      \verb 10.1007/s00222-021-01071-z
+      \endverb
+    \endentry
+    \entry{reducedgenus1}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7495639a121e7e25fab9c3c4aad89a92}{%
+           family={Zinger},
+           familyi={Z\bibinitperiod},
+           given={Aleksey},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{7495639a121e7e25fab9c3c4aad89a92}
+      \strng{fullhash}{7495639a121e7e25fab9c3c4aad89a92}
+      \strng{bibnamehash}{7495639a121e7e25fab9c3c4aad89a92}
+      \strng{authorbibnamehash}{7495639a121e7e25fab9c3c4aad89a92}
+      \strng{authornamehash}{7495639a121e7e25fab9c3c4aad89a92}
+      \strng{authorfullhash}{7495639a121e7e25fab9c3c4aad89a92}
+      \field{labelalpha}{Zin09}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0894-0347,1088-6834}
+      \field{journaltitle}{J. Amer. Math. Soc.}
+      \field{number}{3}
+      \field{title}{The reduced genus 1 {G}romov-{W}itten invariants of {C}alabi-{Y}au hypersurfaces}
+      \field{volume}{22}
+      \field{year}{2009}
+      \field{pages}{691\bibrangedash 737}
+      \range{pages}{47}
+      \verb{doi}
+      \verb 10.1090/S0894-0347-08-00625-5
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

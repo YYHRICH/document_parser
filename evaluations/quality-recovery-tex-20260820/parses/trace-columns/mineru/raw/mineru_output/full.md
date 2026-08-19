@@ -1,0 +1,33 @@
+# 双栏阅读顺序测试
+
+TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1
+
+## 1 左栏校验 TRACE-C-LEFT-101
+
+左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。
+
+1. LEFT-CHECK-A1：准备输入。
+
+2. LEFT-CHECK-A2：确认 threshold 0.25。
+
+## 1.1 左栏公式 TRACE-C-LEFT-111
+
+左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。
+
+## 2 右栏校验
+
+## TRACE-C-RIGHT-201
+
+右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。
+
+1. RIGHT-CHECK-B1：读取第二路输入。
+
+2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。
+
+## 2.1 右栏结论 TRACE-C-RIGHT-211
+
+右栏结论不能被提前插入左栏中间。
+
+## 3 双栏结束 TRACE-C-END-301
+
+本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。

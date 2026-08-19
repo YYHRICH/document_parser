@@ -1,0 +1,1302 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.4662,
+                    "bbox": [
+                        159,
+                        60,
+                        435,
+                        98
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                229,
+                                61,
+                                366,
+                                79
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        229,
+                                        61,
+                                        366,
+                                        79
+                                    ],
+                                    "type": "text",
+                                    "content": "公式符号保真测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                161,
+                                84,
+                                433,
+                                98
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        161,
+                                        84,
+                                        433,
+                                        98
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.944,
+                    "bbox": [
+                        182,
+                        120,
+                        411,
+                        136
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                183,
+                                119,
+                                408,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        183,
+                                        119,
+                                        408,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "1 固定事实 TRACE-F-SEC-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9711,
+                    "bbox": [
+                        59,
+                        151,
+                        535,
+                        183
+                    ],
+                    "index": 5,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                83,
+                                152,
+                                533,
+                                164
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        83,
+                                        152,
+                                        533,
+                                        164
+                                    ],
+                                    "type": "text",
+                                    "content": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                61,
+                                171,
+                                197,
+                                181
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        171,
+                                        197,
+                                        181
+                                    ],
+                                    "type": "text",
+                                    "content": "负号、分数和上下标的保留。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9486,
+                    "bbox": [
+                        59,
+                        201,
+                        266,
+                        216
+                    ],
+                    "index": 6,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                202,
+                                263,
+                                216
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        202,
+                                        263,
+                                        216
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 数学表达式 TRACE-F-EQ-111",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8264,
+                    "bbox": [
+                        138,
+                        256,
+                        211,
+                        291
+                    ],
+                    "index": 7,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                138,
+                                256,
+                                211,
+                                291
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        138,
+                                        256,
+                                        211,
+                                        291
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}",
+                                    "image_path": "adfa232fccdb001ed44d6189415f0f082e531c4e110ef6997d7a1d9861704179.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.7892,
+                    "bbox": [
+                        286,
+                        256,
+                        358,
+                        290
+                    ],
+                    "index": 8,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                286,
+                                256,
+                                358,
+                                290
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        286,
+                                        256,
+                                        358,
+                                        290
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}",
+                                    "image_path": "f9e55720409396f8d0cb73416d9fbd7c3d3b20fdc146af4b8052909a12a091e9.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8738,
+                    "bbox": [
+                        433,
+                        276,
+                        533,
+                        291
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                435,
+                                279,
+                                532,
+                                290
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        435,
+                                        279,
+                                        532,
+                                        290
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-F-EQ-111)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9373,
+                    "bbox": [
+                        59,
+                        303,
+                        244,
+                        321
+                    ],
+                    "index": 11,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                303,
+                                239,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        304,
+                                        117,
+                                        318
+                                    ],
+                                    "type": "text",
+                                    "content": "约束函数为",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        118,
+                                        303,
+                                        173,
+                                        321
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}",
+                                    "score": 0.9217
+                                },
+                                {
+                                    "bbox": [
+                                        174,
+                                        303,
+                                        208,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "，并且",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        208,
+                                        306,
+                                        239,
+                                        317
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "n \\in \\mathbb { N }",
+                                    "score": 0.6308
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        157,
+                        352,
+                        436,
+                        418
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9325,
+                            "bbox": [
+                                196,
+                                340,
+                                397,
+                                353
+                            ],
+                            "index": 12,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        198,
+                                        342,
+                                        395,
+                                        352
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                198,
+                                                342,
+                                                395,
+                                                352
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 符号核对表 TRACE-F-TABLE-121",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9667,
+                            "bbox": [
+                                157,
+                                352,
+                                436,
+                                418
+                            ],
+                            "index": 13,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        157,
+                                        352,
+                                        436,
+                                        418
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                157,
+                                                352,
+                                                436,
+                                                418
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>标记</td><td>条件</td><td>值</td></tr><tr><td>FORMULA-42</td><td>score ≤ 0.875</td><td>EUR 4,321.09</td></tr><tr><td>TRACE-F-TABLE-121</td><td>delta ≥ 0.125</td><td>±0.05</td></tr></table>",
+                                            "image_path": "22520eb0df5bf80d3101572b82b85f67a0e8e77d0e840a1ae4030376e9a47d68.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13,
+                    "score": 0.9667
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9332,
+                    "bbox": [
+                        60,
+                        24,
+                        165,
+                        37
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                26,
+                                163,
+                                37
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        26,
+                                        163,
+                                        37
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-F-HEADER",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9376,
+                    "bbox": [
+                        382,
+                        24,
+                        533,
+                        37
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                384,
+                                27,
+                                532,
+                                37
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        384,
+                                        27,
+                                        532,
+                                        37
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-FORMULA-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8283,
+                    "bbox": [
+                        294,
+                        800,
+                        300,
+                        811
+                    ],
+                    "index": 14,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                801,
+                                300,
+                                811
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        801,
+                                        300,
+                                        811
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.4662,
+                    "bbox": [
+                        159,
+                        60,
+                        435,
+                        98
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                229,
+                                61,
+                                366,
+                                79
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        229,
+                                        61,
+                                        366,
+                                        79
+                                    ],
+                                    "type": "text",
+                                    "content": "公式符号保真测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                161,
+                                84,
+                                433,
+                                98
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        161,
+                                        84,
+                                        433,
+                                        98
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.944,
+                    "bbox": [
+                        182,
+                        120,
+                        411,
+                        136
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                183,
+                                119,
+                                408,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        183,
+                                        119,
+                                        408,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "1 固定事实 TRACE-F-SEC-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9711,
+                    "bbox": [
+                        59,
+                        151,
+                        535,
+                        183
+                    ],
+                    "index": 5,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                83,
+                                152,
+                                533,
+                                164
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        83,
+                                        152,
+                                        533,
+                                        164
+                                    ],
+                                    "type": "text",
+                                    "content": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                61,
+                                171,
+                                197,
+                                181
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        171,
+                                        197,
+                                        181
+                                    ],
+                                    "type": "text",
+                                    "content": "负号、分数和上下标的保留。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        61,
+                        152,
+                        533,
+                        181
+                    ]
+                },
+                {
+                    "score": 0.9486,
+                    "bbox": [
+                        59,
+                        201,
+                        266,
+                        216
+                    ],
+                    "index": 6,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                202,
+                                263,
+                                216
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        202,
+                                        263,
+                                        216
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 数学表达式 TRACE-F-EQ-111",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8264,
+                    "bbox": [
+                        138,
+                        256,
+                        211,
+                        291
+                    ],
+                    "index": 7,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                138,
+                                256,
+                                211,
+                                291
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        138,
+                                        256,
+                                        211,
+                                        291
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}",
+                                    "image_path": "adfa232fccdb001ed44d6189415f0f082e531c4e110ef6997d7a1d9861704179.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.7892,
+                    "bbox": [
+                        286,
+                        256,
+                        358,
+                        290
+                    ],
+                    "index": 8,
+                    "type": "interline_equation",
+                    "lines": [
+                        {
+                            "bbox": [
+                                286,
+                                256,
+                                358,
+                                290
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        286,
+                                        256,
+                                        358,
+                                        290
+                                    ],
+                                    "type": "interline_equation",
+                                    "content": "\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}",
+                                    "image_path": "f9e55720409396f8d0cb73416d9fbd7c3d3b20fdc146af4b8052909a12a091e9.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8738,
+                    "bbox": [
+                        433,
+                        276,
+                        533,
+                        291
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                435,
+                                279,
+                                532,
+                                290
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        435,
+                                        279,
+                                        532,
+                                        290
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-F-EQ-111)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        435,
+                        279,
+                        532,
+                        290
+                    ]
+                },
+                {
+                    "score": 0.9373,
+                    "bbox": [
+                        59,
+                        303,
+                        244,
+                        321
+                    ],
+                    "index": 11,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                303,
+                                239,
+                                321
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        304,
+                                        117,
+                                        318
+                                    ],
+                                    "type": "text",
+                                    "content": "约束函数为",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        118,
+                                        303,
+                                        173,
+                                        321
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}",
+                                    "score": 0.9217
+                                },
+                                {
+                                    "bbox": [
+                                        174,
+                                        303,
+                                        208,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "，并且",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        208,
+                                        306,
+                                        239,
+                                        317
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "n \\in \\mathbb { N }",
+                                    "score": 0.6308
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        61,
+                        303,
+                        239,
+                        321
+                    ]
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        157,
+                        352,
+                        436,
+                        418
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9325,
+                            "bbox": [
+                                196,
+                                340,
+                                397,
+                                353
+                            ],
+                            "index": 12,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        198,
+                                        342,
+                                        395,
+                                        352
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                198,
+                                                342,
+                                                395,
+                                                352
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 符号核对表 TRACE-F-TABLE-121",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9667,
+                            "bbox": [
+                                157,
+                                352,
+                                436,
+                                418
+                            ],
+                            "index": 13,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        157,
+                                        352,
+                                        436,
+                                        418
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                157,
+                                                352,
+                                                436,
+                                                418
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>标记</td><td>条件</td><td>值</td></tr><tr><td>FORMULA-42</td><td>score ≤ 0.875</td><td>EUR 4,321.09</td></tr><tr><td>TRACE-F-TABLE-121</td><td>delta ≥ 0.125</td><td>±0.05</td></tr></table>",
+                                            "image_path": "22520eb0df5bf80d3101572b82b85f67a0e8e77d0e840a1ae4030376e9a47d68.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13,
+                    "score": 0.9667
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.9422,
+                    "bbox": [
+                        180,
+                        61,
+                        412,
+                        77
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                181,
+                                60,
+                                411,
+                                78
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        181,
+                                        60,
+                                        411,
+                                        78
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页结论 TRACE-F-END-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9699,
+                    "bbox": [
+                        60,
+                        92,
+                        534,
+                        123
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                83,
+                                93,
+                                532,
+                                105
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        83,
+                                        93,
+                                        532,
+                                        105
+                                    ],
+                                    "type": "text",
+                                    "content": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                62,
+                                110,
+                                295,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        110,
+                                        295,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "占位符并提示下游，而不是生成未经证实的公式。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 1,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9384,
+                    "bbox": [
+                        60,
+                        25,
+                        165,
+                        36
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                26,
+                                163,
+                                37
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        26,
+                                        163,
+                                        37
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-F-HEADER",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9411,
+                    "bbox": [
+                        382,
+                        25,
+                        533,
+                        36
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                384,
+                                27,
+                                532,
+                                37
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        384,
+                                        27,
+                                        532,
+                                        37
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-FORMULA-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8482,
+                    "bbox": [
+                        293,
+                        800,
+                        301,
+                        810
+                    ],
+                    "index": 5,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                293,
+                                801,
+                                300,
+                                811
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        293,
+                                        801,
+                                        300,
+                                        811
+                                    ],
+                                    "type": "text",
+                                    "content": "2",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.9422,
+                    "bbox": [
+                        180,
+                        61,
+                        412,
+                        77
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                181,
+                                60,
+                                411,
+                                78
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        181,
+                                        60,
+                                        411,
+                                        78
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页结论 TRACE-F-END-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9699,
+                    "bbox": [
+                        60,
+                        92,
+                        534,
+                        123
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                83,
+                                93,
+                                532,
+                                105
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        83,
+                                        93,
+                                        532,
+                                        105
+                                    ],
+                                    "type": "text",
+                                    "content": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                62,
+                                110,
+                                295,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        110,
+                                        295,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "占位符并提示下游，而不是生成未经证实的公式。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        62,
+                        93,
+                        532,
+                        122
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

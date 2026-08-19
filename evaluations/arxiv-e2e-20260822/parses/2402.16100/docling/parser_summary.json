@@ -1,0 +1,10 @@
+{
+  "document": "2402.16100",
+  "parser": "docling",
+  "source_sha256": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+  "blocks": 128,
+  "tables": 0,
+  "warnings": [
+    "docling-local: Markdown 中有 19 个公式未解析，已保留占位符。"
+  ]
+}

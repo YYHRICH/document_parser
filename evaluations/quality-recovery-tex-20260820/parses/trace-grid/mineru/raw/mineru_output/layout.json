@@ -1,0 +1,903 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.4509,
+                    "bbox": [
+                        180,
+                        48,
+                        412,
+                        83
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                228,
+                                49,
+                                367,
+                                68
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        228,
+                                        49,
+                                        367,
+                                        68
+                                    ],
+                                    "type": "text",
+                                    "content": "复杂网格表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                183,
+                                73,
+                                411,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        183,
+                                        73,
+                                        411,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9558,
+                    "bbox": [
+                        180,
+                        106,
+                        413,
+                        122
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                105,
+                                412,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        105,
+                                        412,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 合并表头 TRACE-G-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        180,
+                        162,
+                        414,
+                        253
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9289,
+                            "bbox": [
+                                253,
+                                150,
+                                342,
+                                163
+                            ],
+                            "index": 5,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        151,
+                                        340,
+                                        162
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                151,
+                                                340,
+                                                162
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 网格校验结果",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9741,
+                            "bbox": [
+                                180,
+                                162,
+                                414,
+                                253
+                            ],
+                            "index": 6,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        162,
+                                        414,
+                                        253
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                180,
+                                                162,
+                                                414,
+                                                253
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">验证指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>GRID-A9</td><td>2026-08-20</td><td>99.125%</td><td>USD 1,250.00</td></tr><tr><td>GRID-B4</td><td>2026-08-20</td><td>97.500%</td><td>USD 980.00</td></tr></table>",
+                                            "image_path": "4394d77e2400ef27f7d41f69a26898eaade7f4faa020ba1e9888ff98992f0849.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.8146,
+                            "bbox": [
+                                68,
+                                268,
+                                461,
+                                282
+                            ],
+                            "index": 7,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        270,
+                                        459,
+                                        280
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                270,
+                                                459,
+                                                280
+                                            ],
+                                            "type": "text",
+                                            "content": "最小分辨率为 0.0625 mm。TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6,
+                    "score": 0.9741
+                },
+                {
+                    "score": 0.9512,
+                    "bbox": [
+                        254,
+                        303,
+                        339,
+                        321
+                    ],
+                    "index": 8,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                254,
+                                302,
+                                339,
+                                322
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        302,
+                                        339,
+                                        322
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页明细",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        72,
+                        368,
+                        522,
+                        623
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9308,
+                            "bbox": [
+                                252,
+                                343,
+                                342,
+                                356
+                            ],
+                            "index": 9,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        345,
+                                        339,
+                                        355
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                345,
+                                                339,
+                                                355
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 网格追踪明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9879,
+                            "bbox": [
+                                72,
+                                368,
+                                522,
+                                623
+                            ],
+                            "index": 10,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        368,
+                                        522,
+                                        623
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                72,
+                                                368,
+                                                522,
+                                                623
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-G-R01</td><td>GRID-A9</td><td>0.0625 mm</td><td>保留四位小数。</td></tr><tr><td>TRACE-G-R02</td><td>GRID-B4</td><td>12.500 kg</td><td>保留单位。</td></tr><tr><td>TRACE-G-R03</td><td>GRID-A9</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-G-R04</td><td>GRID-B4</td><td>USD 1,250.00</td><td>保留货币和逗号。</td></tr><tr><td>TRACE-G-R05</td><td>GRID-A9</td><td>1.00e-3</td><td>保留科学计数法。</td></tr><tr><td>TRACE-G-R06</td><td>GRID-B4</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-G-R07</td><td>GRID-A9</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-G-R08</td><td>GRID-B4</td><td>2026-08-20</td><td>保留日期分隔符。</td></tr><tr><td>TRACE-G-R09</td><td>GRID-A9</td><td>A+B=C</td><td>保留运算符。</td></tr><tr><td>TRACE-G-R10</td><td>GRID-B4</td><td>10.000 mm</td><td>保留尾随零。</td></tr><tr><td>TRACE-G-R11</td><td>GRID-A9</td><td>11.125 mm</td><td>跨页后仍可追踪。</td></tr><tr><td>TRACE-G-R12</td><td>GRID-B4</td><td>12.250 mm</td><td>最后一行可追踪。</td></tr></table>",
+                                            "image_path": "a839c262147de5d789d31c0cde2cc2183a91cdf25b50380e8d3c2fd2646b068f.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.7158,
+                            "bbox": [
+                                68,
+                                677,
+                                340,
+                                691
+                            ],
+                            "index": 11,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        678,
+                                        337,
+                                        689
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                678,
+                                                337,
+                                                689
+                                            ],
+                                            "type": "text",
+                                            "content": "报告日期为 2026-08-20，关键批次为 GRID-A9 和 GRID-B4。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "score": 0.9879
+                },
+                {
+                    "score": 0.8897,
+                    "bbox": [
+                        192,
+                        649,
+                        399,
+                        665
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                194,
+                                649,
+                                398,
+                                665
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        194,
+                                        649,
+                                        398,
+                                        665
+                                    ],
+                                    "type": "text",
+                                    "content": "3 汇总 TRACE-G-SUM-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9257,
+                    "bbox": [
+                        49,
+                        13,
+                        164,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                15,
+                                162,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        15,
+                                        162,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-GRID-HEADER",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9322,
+                    "bbox": [
+                        432,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                434,
+                                15,
+                                543,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        434,
+                                        15,
+                                        543,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-GRID-20260820-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8412,
+                    "bbox": [
+                        294,
+                        812,
+                        301,
+                        822
+                    ],
+                    "index": 13,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                813,
+                                300,
+                                823
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        813,
+                                        300,
+                                        823
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.4509,
+                    "bbox": [
+                        180,
+                        48,
+                        412,
+                        83
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                228,
+                                49,
+                                367,
+                                68
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        228,
+                                        49,
+                                        367,
+                                        68
+                                    ],
+                                    "type": "text",
+                                    "content": "复杂网格表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                183,
+                                73,
+                                411,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        183,
+                                        73,
+                                        411,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.9558,
+                    "bbox": [
+                        180,
+                        106,
+                        413,
+                        122
+                    ],
+                    "index": 4,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                105,
+                                412,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        105,
+                                        412,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 合并表头 TRACE-G-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        180,
+                        162,
+                        414,
+                        253
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9289,
+                            "bbox": [
+                                253,
+                                150,
+                                342,
+                                163
+                            ],
+                            "index": 5,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        151,
+                                        340,
+                                        162
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                151,
+                                                340,
+                                                162
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 网格校验结果",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9741,
+                            "bbox": [
+                                180,
+                                162,
+                                414,
+                                253
+                            ],
+                            "index": 6,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        162,
+                                        414,
+                                        253
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                180,
+                                                162,
+                                                414,
+                                                253
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">验证指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>GRID-A9</td><td>2026-08-20</td><td>99.125%</td><td>USD 1,250.00</td></tr><tr><td>GRID-B4</td><td>2026-08-20</td><td>97.500%</td><td>USD 980.00</td></tr></table>",
+                                            "image_path": "4394d77e2400ef27f7d41f69a26898eaade7f4faa020ba1e9888ff98992f0849.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.8146,
+                            "bbox": [
+                                68,
+                                268,
+                                461,
+                                282
+                            ],
+                            "index": 7,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        270,
+                                        459,
+                                        280
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                270,
+                                                459,
+                                                280
+                                            ],
+                                            "type": "text",
+                                            "content": "最小分辨率为 0.0625 mm。TRACE-G-R01 与 TRACE-G-R04 必须分别保留在表格行中。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6,
+                    "score": 0.9741
+                },
+                {
+                    "score": 0.9512,
+                    "bbox": [
+                        254,
+                        303,
+                        339,
+                        321
+                    ],
+                    "index": 8,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                254,
+                                302,
+                                339,
+                                322
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        302,
+                                        339,
+                                        322
+                                    ],
+                                    "type": "text",
+                                    "content": "2 跨页明细",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        72,
+                        368,
+                        522,
+                        623
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.9308,
+                            "bbox": [
+                                252,
+                                343,
+                                342,
+                                356
+                            ],
+                            "index": 9,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        254,
+                                        345,
+                                        339,
+                                        355
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                254,
+                                                345,
+                                                339,
+                                                355
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 网格追踪明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9879,
+                            "bbox": [
+                                72,
+                                368,
+                                522,
+                                623
+                            ],
+                            "index": 10,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        72,
+                                        368,
+                                        522,
+                                        623
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                72,
+                                                368,
+                                                522,
+                                                623
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>追踪标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-G-R01</td><td>GRID-A9</td><td>0.0625 mm</td><td>保留四位小数。</td></tr><tr><td>TRACE-G-R02</td><td>GRID-B4</td><td>12.500 kg</td><td>保留单位。</td></tr><tr><td>TRACE-G-R03</td><td>GRID-A9</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-G-R04</td><td>GRID-B4</td><td>USD 1,250.00</td><td>保留货币和逗号。</td></tr><tr><td>TRACE-G-R05</td><td>GRID-A9</td><td>1.00e-3</td><td>保留科学计数法。</td></tr><tr><td>TRACE-G-R06</td><td>GRID-B4</td><td>7/16 in</td><td>斜线是尺寸事实。</td></tr><tr><td>TRACE-G-R07</td><td>GRID-A9</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-G-R08</td><td>GRID-B4</td><td>2026-08-20</td><td>保留日期分隔符。</td></tr><tr><td>TRACE-G-R09</td><td>GRID-A9</td><td>A+B=C</td><td>保留运算符。</td></tr><tr><td>TRACE-G-R10</td><td>GRID-B4</td><td>10.000 mm</td><td>保留尾随零。</td></tr><tr><td>TRACE-G-R11</td><td>GRID-A9</td><td>11.125 mm</td><td>跨页后仍可追踪。</td></tr><tr><td>TRACE-G-R12</td><td>GRID-B4</td><td>12.250 mm</td><td>最后一行可追踪。</td></tr></table>",
+                                            "image_path": "a839c262147de5d789d31c0cde2cc2183a91cdf25b50380e8d3c2fd2646b068f.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.7158,
+                            "bbox": [
+                                68,
+                                677,
+                                340,
+                                691
+                            ],
+                            "index": 11,
+                            "type": "table_footnote",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        678,
+                                        337,
+                                        689
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                70,
+                                                678,
+                                                337,
+                                                689
+                                            ],
+                                            "type": "text",
+                                            "content": "报告日期为 2026-08-20，关键批次为 GRID-A9 和 GRID-B4。",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "score": 0.9879
+                },
+                {
+                    "score": 0.8897,
+                    "bbox": [
+                        192,
+                        649,
+                        399,
+                        665
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                194,
+                                649,
+                                398,
+                                665
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        194,
+                                        649,
+                                        398,
+                                        665
+                                    ],
+                                    "type": "text",
+                                    "content": "3 汇总 TRACE-G-SUM-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

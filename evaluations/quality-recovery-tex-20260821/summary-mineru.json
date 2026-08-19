@@ -1,0 +1,112 @@
+{
+  "results": [
+    {
+      "document": "formula-token",
+      "parser": "mineru",
+      "accepted": true,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "table-pages",
+      "parser": "mineru",
+      "accepted": true,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 0,
+      "final_state": "manual_review_required",
+      "final_issues": 0,
+      "parsed_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "columns-formula",
+      "parser": "mineru",
+      "accepted": true,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 1,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 7,
+        "total": 7,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

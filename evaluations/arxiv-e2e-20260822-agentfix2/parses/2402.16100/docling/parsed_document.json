@@ -1,0 +1,3660 @@
+{
+  "document_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+  "filename": "2402.16100.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 179386,
+  "source_sha256": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+  "routing_decision": null,
+  "markdown": "## OUJ-FTC-11\n\n## Notes on the Exact RG equation and the Wheeler-DeWitt equation\n\nHideto Kamei 1\n\nField theory group, The Open University of Japan, Chiba 261-8586, Japan\n\nFebruary 25, 2024\n\nIn this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.\n\n## 1 Introduction\n\nHere in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.\n\nNow we outline the structure of this note. In section 2, the setup of the derivation is given. In section 3, the role of the boundary condition in the setup is explained. In section 4, procedure for splitting the bulk action and identifying the boundary action is given. In section 5, derivation of the exact RG equation from the bulk is given. In section 6, interpretation of the equation as the exact RG is given. In section 7, an example to show the validity of the methodology is given. In section 8, discussion on the result and possible future research is given. In section 9, update on research since this note was first written is given.\n\n1 hidetokamei@gmail.com\n\n2 For a review, please refer to [6].\n\n## 2 Deriving the exact RG from the bulk theory\n\nHere we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.\n\nWe assume that the bulk action contains gravity and a scalar field (the extension to including many scalar fields and including other fields is straightforward). We take the parametrization of the 5d metric as,\n\n[[FORMULA_UNAVAILABLE]]\n\nWe will work in the Euclidean signature everywhere in this note. Here we fix the gauge of the metric as N = 1 , N i = 0. We decompose the Ricci scalar using extrinsic curvature,\n\n[[FORMULA_UNAVAILABLE]]\n\nFrom now on we treat the metric as fields and use the condensed notation, h ij ≡ h I , K ij ≡ K I . Further we will use so-called DeWitt's supermetric G IJ ≡ G ijkl ≡ √ h ( 1 2 ( h ik h jl + h il h jk ) -h ij h kl ) and its inverse G IJ for the condensed notation of the action. We can define the conjugate momentum of the metric and the scalar field as π I = δ L /δ∂ r h I , and p = δ L /δ∂ r φ , and construct the Hamiltonian H = π I ∂ r h I + p∂ r φ -L . The equation we wish to solve is the Wheeler-DeWitt equation, which is H Ψ = 0. Analogous to the Shr¨ odinger equation, we simply have to replace momentum π I , p with the derivative δ/δh I , δ/δφ . We wish to proceed following [2] to derive the exact RG equation of the CFT holgraphically. In the classical case, we will get the expression of the radial velocity of the fields (with respect to the 4d action) from Hamilton-Jacobi equation,\n\n[[FORMULA_UNAVAILABLE]]\n\nand in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.\n\n## 3 The role of the boundary condition and the fluctuation\n\nHere in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.\n\nFirst of all, we would like to claim that the boundary value of the bulk fields themselves could be considered as the dynamical fields in the boundary CFT in some cases. The main example we consider in this note is a scalar field in the AdS within the mass range -d 2 / 4 &lt; m 2 &lt; -( d 2 / 4) + 1. In this mass range, it is known, in addition to the standard Dirichlet boundary condition, we can also impose free boundary condition[11],[12],[13],[14],[15], and it is called 'alternative quantization'. Those two different boundary conditions correspond to different CFTs on the boundary, CFT D and CFT F respectively. In the case of free boundary condition, we also need to integrate over the value of the boundary condition of the bulk field, and therefore, the partition function of the CFT F can be obtained by promoting the source in the CFT D to a dynamical field and integrating over it as\n\n[[FORMULA_UNAVAILABLE]]\n\nThis expression can be interpreted as the path integral formally (or statistical partition function if one wishes), where J is now a dynamical field, and weight is exp( -Γ[ J ]), Γ being the generating functional for CFT D . Therefore, in the case of the free boundary condition, the boundary value of the bulk field can be considered as the field in the boundary CFT itself, and we can consider an exact RG with respect to that. 3 In addition, also for other fields, it is known that in the free boundary condition (or equivalently Neumann boundary condition in the classical limit), the bulk fields on the boundary are interpreted as the dynamical fields in the boundary CFT.[16],[17].\n\nAnother example for the free boundary condition is, trailing string in the AdS[18],[19]. We consider a string stretching from the horizon of the black brane to the boundary at the finite radial distance. The endpoint on the boundary is identified as the position of a particle in the CFT. Since the boundary is at the finite radial distance, the fluctuation of the string in the bulk can be transferred to the fluctuation of the endpoint, which is the fluctuation of the particle in the CFT. Therefore, we need to sum over all the possible value of the boundary position of the string, and it is formally the same as the path integral for the position of the particle in the CFT. Therefore, in the case of the trailing string, we also take the free boundary condition, and the boundary condition is promoted to a dynamical field in the boundary. we expect, if we take the boundary at the finite radial distance[2], boundary value of the closed string modes in the bulk might be also identified as the fields of the closed string modes of the boundary theory.\n\n3 Necessity of the free boundary condition was first realized by the necessity of having operator with small conformal dimension, which can't be realized by the naive Dirichlet boundary condition. Later it was realized those two CFTs are connected by an RG flow, by adding relevant perturbation f O 2 , where O is an operator to couple the source. (3.1) was obtained using that relationship.\n\nTherefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.\n\n## 4 The definition of the boundary Wilsonian effective action from the bulk\n\nWhen we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.\n\n[[FORMULA_UNAVAILABLE]]\n\nWe can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.\n\n## 5 Holographic Exact RG at finite radial distance\n\nLet's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].\n\nThe Wheeler-DeWitt equation is,\n\n[[FORMULA_UNAVAILABLE]]\n\nBoth UV and IR wavefunction, Ψ UV and Ψ IR are expected to satisfy the above WDW equation separately. Here we assume that V is a constant (which doesn't depend on φ ), and H matter = ( p 2 / 2) + W ( φ ) -Φ( φ ) R + (1 / 2)( ∂ i φ ) 2 , where W ( φ ) is the φ dependent part of the 5d potential, and its order φ 2 has the coefficient m 2 / 2 which satisfies the bound that we discussed. We assume that H matter is the order of O ( G 0 N ). We further assume that we can expand S = -log Ψ as S = ( S 0 / 16 πG N ) + S 1 + O ( G 1 N ), and suppose S 0 depends only on the metric, and not on the scalar field. By expanding the Wheeler-DeWitt equation for O ( G -1 N ), while still seperating S 0 into the UV part and the IR part with respect to the cutoff, we get\n\n[[FORMULA_UNAVAILABLE]]\n\nNote that the indices of the metric h I are implicitly contracted in the above expression. Strictly speaking, δ 2 S/δh 2 term is order O ( G 0 N ), but we added it for simplicity of the next order [21]. This form of the 5d potential implies that the bulk gravity could be constructed out of the Stochastic Quantization 4 , -∂ r h I = -G IJ ( δS UV /δh J ) + E I a ξ a , where ξ a is the gaussian noise and E is the inverse of the vielbein for G IJ [23]. For O ( G 0 N ), we get\n\n4 Please refer to [22] for an analogous discussion.\n\n[[FORMULA_UNAVAILABLE]]\n\nLet's derive the exact RG equation from the above equation of motion (5.3). We use the right hand side and the left hand side of the equality, and use δS 0 UV /δh + δS 0 IR /δh = 0, because S 0 is classical, purely gravitational part of the action, and the configuration of the metric h should minimize this. (See [2]) Remember that now the scalar field φ is quantized and we can't naively consider its classical trajectory. We have the classical gravity background, and we parameterize the physical scale by the overall factor of the metric. By parameterizing h ij = e 2 a δ ij , ' -a ' can be considered as the parameter for the RG flow.\n\n[[FORMULA_UNAVAILABLE]]\n\nHere we have assumed the behavior of the metric h is determined by the leading order of the action S UV = S 0 UV / 16 πG N , together with (2.3).\n\nThe above expression is a class of the exact RG equation presented in [7],[8],[10]. Please remember, in order to identify the above equation as the exact RG, we needed to identify the boundary value of the bulk field as the dynamical field on the boundary CFT as well. At least it is formally true in some cases of AdS/CFT where we can take free boundary condition, there we integrate over all the possible configuration of the boundary value of the bulk field, and it was treated as a dynamical field on the boundary [15], [14]. Moreover, when we put the boundary at the finite radial distance, the boundary condition of the stochastic string [19], [18] and graviton [2] were identified as the dynamical field on the boundary. However, in order to justify it from the field theory, we would need to show that the effective action can be thought of as a classical action, and that the value of the one-point function can be thought of as the value of the field, and that those fields are the fundamental degree of freedom. We will probably need the discussion about the large N field theory as a classical theory [24], [25], and about the formulation of the gauge theory in terms of Wilson loop [26].\n\nNote that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].\n\n## 6 From the viewpoint of the Exact RG\n\nLet's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,\n\n[[FORMULA_UNAVAILABLE]]\n\nWe now assume that the change of the effective action S 1 is solely due to the change of the field, and the functional form of S 1 doesn't change, as in the regular derivation of the exact RG. We can write down the Wilsonian effective action S 1 ( φ ′ , h ′ ) with respect to the new fields φ ′ , h ′ , and by definition it should satisfy\n\n[[FORMULA_UNAVAILABLE]]\n\nExpanding the left hand side with respect to φ , h , and collecting terms of the order O ( dr ), we get\n\n[[FORMULA_UNAVAILABLE]]\n\nIf we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.\n\n## 7 Example: Flow of the double trace operator\n\nWe then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are\n\n[[FORMULA_UNAVAILABLE]]\n\n[[FORMULA_UNAVAILABLE]]\n\nWe then wish to consider the flow of the double trace operator, which will correspond to the coefficient of the φ 2 term in S = S UV + S IR , since, according to the recipe of [1], the sum of the UV and IR action should be identified as the CFT effective action. We will need to see the bulk equation of motion for the evolution of F = F UV + F IR , and we can compute F UV and F IR respectively from the Schr¨ odinger equation as computed in [3]. Actually, since we restrict the form of the action to the Gaussian, there is no quantum correction to the double trace operator, (because ( δS 2 /δφ 2 ) term will have only constant O ( φ 0 ) term) and therefore we can look at Hamilton-Jacobi equation ( H = z∂ z S UV = (1 / 2 √ h ) p 2 +( √ h/ 2)( z 2 δ ij k i k j φ 2 + m 2 φ 2 )). Then we will get 5\n\nThis equation can be solved by F UV = z∂ z O / O , where O is the Bessel function which solves\n\n[[FORMULA_UNAVAILABLE]]\n\nThe above F UV , for kz ≪ 1, gives\n\n[[FORMULA_UNAVAILABLE]]\n\nNote that the behavior of F UV for small/large z is as expected, because it should follow the conformal scaling with ∆ -, ∆ + . On the other hand, we can also obtain F IR from the condition that the solution will not blow up at z →∞ , and get\n\n[[FORMULA_UNAVAILABLE]]\n\nWhen k ∼ 0, it can be approximated as F IR ∼ -∆ -. Therefore, if the identification of the total bulk action as the CFT effective action (as [1]) is correct, F , sum of F UV and F IR , should give the right coefficient for the double trace operator, and it is\n\n[[FORMULA_UNAVAILABLE]]\n\nBehavior of F at small z , F ∼ z 2 ν , is as expected from the conformal dimention of the coupling of the double trace operator. It is also confirmed that this F ∼ F UV -∆ -follows the same equation as the flow of the coupling of the double trace operator [15]. Here we wish to derive the same equation from a different perspective, from the exact RG flow equation that we have derived. By rewriting (5.4) with respect to S and S IR , and concentrating on φ 2 term, we will get an equation\n\n5 Note that the below result differ from [3] since their definition of F includes √ h as well.\n\n[[FORMULA_UNAVAILABLE]]\n\nwhich is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .\n\n## 8 Discussion\n\nTherefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.\n\nThis result will hopefully give a better understanding on how exact RG is related to the quantized gravity, and in relating the holographic RG and Polchinski RG. Also, we wish that there will be more understanding of Holography in terms of Stochastic Quantization as exact RG, which was only implied here. If this identification is established, we will be able to perform the exact RG in a much simpler way, because many miracles, such as no need of gauge-fixing, no need of putting the cutoff, simplification for large N and natural apperance of supersymmetry so on, happens in the stochastic quantization. Note that the same analysis would be applicable to Horava gravity, since they are constructed out of the stochastic quantization, and the stochastic quantization is equivalent to a class of exact RG. It was explained that the structure of stochastic quantization enables the simpler proof of its renormalizability[23], and we expect that might apply to other general holographic models. Further it was implied that the quantized gravity in the bulk will be written as Langevin equation, which might give more insights into microscopic picture for thermodynamics of spacetime[31], [32].\n\n6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG\n\n## 9 Update on recent research\n\nSince this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].\n\n## Acknowledgements\n\nI would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.\n\n## References\n\n- [1] J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].\n- [2] E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].\n- [3] I. Heemskerk and J. Polchinski, 'Holographic and Wilsonian Renormalization Groups,' arXiv:1010.1264 [hep-th].\n- [4] G. Parisi and Y. s. Wu, 'Perturbation Theory Without Gauge Fixing,' Sci. Sin. 24 , 483 (1981).\n- [5] P.H.Damgaard and H.Huffel, 'STOCHASTIC QUANTIZATION,' SINGAPORE, SINGAPORE: WORLD SCIENTIFIC (1988) 496p ,\n- [6] M. Fukuma, S. Matsuura and T. Sakai, 'Holographic renormalization group,' Prog. Theor. Phys. 109 , 489 (2003) [arXiv:hep-th/0212314].\n- [7] T. R. Morris, 'The Exact renormalization group and approximate solutions,' Int. J. Mod. Phys. A 9 , 2411 (1994) [arXiv:hep-ph/9308265].\n- [8] T. R. Morris, 'A manifestly gauge invariant exact renormalization group,' arXiv:hep-th/9810104.\n- [9] J. I. Latorre and T. R. Morris, 'Exact scheme independence,' JHEP 0011 , 004 (2000) [arXiv:hep-th/0008123].\n- [10] O. J. Rosten, 'Fundamentals of the Exact Renormalization Group,' arXiv:1003.1366 [hepth].\n- [11] I. R. Klebanov and E. Witten, 'AdS/CFT correspondence and symmetry breaking,' Nucl. Phys. B 556 , 89 (1999) [arXiv:hep-th/9905104].\n- [12] W. Mueck and K. S. Viswanathan, 'Regular and irregular boundary conditions in the AdS/CFT correspondence,' Phys. Rev. D 60 , 081901 (1999) [arXiv:hep-th/9906155].\n- [13] E. Witten, 'Multi-trace operators, boundary conditions, and AdS/CFT correspondence,' arXiv:hep-th/0112258.\n- [14] E. Witten, 'SL(2,Z) action on three-dimensional conformal field theories with Abelian symmetry,' arXiv:hep-th/0307041.\n\n- [15] T. Faulkner, H. Liu, M. Rangamani, 'Integrating out geometry: Holographic Wilsonian RG and the membrane paradigm,' [arXiv:1010.4036 [hep-th]].\n- [16] O. Aharony, D. Marolf and M. Rangamani, 'Conformal field theories in anti-de Sitter space,' JHEP 1102 , 041 (2011) [arXiv:1011.6144 [hep-th]].\n- [17] D. Marolf and S. F. Ross, 'Boundary conditions and new dualities: Vector fields in AdS/CFT,' JHEP 0611 , 085 (2006) [arXiv:hep-th/0606113].\n- [18] J. de Boer, V. E. Hubeny, M. Rangamani et al. , 'Brownian motion in AdS/CFT,' JHEP 0907 , 094 (2009). [arXiv:0812.5112 [hep-th]].\n- [19] D. T. Son, D. Teaney, 'Thermal Noise and Stochastic Strings in AdS/CFT,' JHEP 0907 , 021 (2009). [arXiv:0901.2338 [hep-th]].\n- [20] J. Polchinski, 'Renormalization And Effective Lagrangians,' Nucl. Phys. B 231 , 269 (1984).\n- [21] G. Lifschytz, S. D. Mathur and M. Ortiz, 'A Note on the semiclassical approximation in quantum gravity,' Phys. Rev. D 53 , 766 (1996) [arXiv:gr-qc/9412040].\n- [22] T. Nishioka, 'Horava-Lifshitz Holography,' Class. Quant. Grav. 26 , 242001 (2009) [arXiv:0905.0473 [hep-th]].\n- [23] D. Orlando and S. Reffert, 'On the Renormalizability of Horava-Lifshitz-type Gravities,' Class. Quant. Grav. 26 , 155021 (2009) [arXiv:0905.0301 [hep-th]].\n- [24] L. G. Yaffe, 'Large N Limits As Classical Mechanics,' Rev. Mod. Phys. 54 , 407 (1982).\n- [25] J. L. F. Barbon, 'Multitrace AdS/CFT and master field dynamics,' Phys. Lett. B 543 , 283 (2002) [arXiv:hep-th/0206207].\n- [26] Y. Makeenko, 'Large-N gauge theories,' arXiv:hep-th/0001047.\n- [27] J. C. Gaite, 'Stochastic formulation of the renormalization group: Supersymmetric structure and topology of the space of couplings,' J. Phys. A 37 , 10409 (2004) [arXiv:hep-th/0404212].\n- [28] Some implications of renormalization group theoretical ideas to statistics Physica D: Nonlinear Phenomena, Volume 205, Issue 1-4, June 2005, Pages 207-214 Rajaram, S.; Taguchi, Y.h.; Oono, Y.\n- [29] S. Hirano, 'Exact renormalization group and loop equation,' Phys. Rev. D 61 , 125011 (2000) [arXiv:hep-th/9910256].\n\n- [30] G. Lifschytz and V. Periwal, 'Schwinger-Dyson = Wheeler-DeWitt: Gauge theory observables as bulk operators,' JHEP 0004 , 026 (2000) [arXiv:hep-th/0003179].\n- [31] T. Jacobson, 'Thermodynamics of space-time: The Einstein equation of state,' Phys. Rev. Lett. 75 , 1260 (1995) [arXiv:gr-qc/9504004].\n- [32] E. P. Verlinde, 'On the Origin of Gravity and the Laws of Newton,' arXiv:1001.0785 [hep-th].\n- [33] S. J. Sin and Y. Zhou, 'Holographic Wilsonian RG Flow and Sliding Membrane Paradigm,' JHEP 05 , 030 (2011) doi:10.1007/JHEP05(2011)030 [arXiv:1102.4477 [hep-th]].\n- [34] V. Balasubramanian, M. Guica and A. Lawrence, 'Holographic Interpretations of the Renormalization Group,' JHEP 01 , 115 (2013) doi:10.1007/JHEP01(2013)115 [arXiv:1211.1729 [hep-th]].\n- [35] R. G. Leigh, O. Parrikar and A. B. Weiss, 'Exact renormalization group and higherspin holography,' Phys. Rev. D 91 , no.2, 026002 (2015) doi:10.1103/PhysRevD.91.026002 [arXiv:1407.4574 [hep-th]].\n- [36] B. Sathiapalan and H. Sonoda, 'A Holographic form for Wilson's RG,' Nucl. Phys. B 924 , 603-642 (2017) doi:10.1016/j.nuclphysb.2017.09.018 [arXiv:1706.03371 [hep-th]].\n- [37] B. Sathiapalan and H. Sonoda, 'Holographic Wilson's RG,' Nucl. Phys. B 948 , 114767 (2019) doi:10.1016/j.nuclphysb.2019.114767 [arXiv:1902.02486 [hep-th]].\n- [38] B. Sathiapalan, 'Holographic RG and Exact RG in O(N) Model,' Nucl. Phys. B 959 , 115142 (2020) doi:10.1016/j.nuclphysb.2020.115142 [arXiv:2005.10412 [hep-th]].\n- [39] P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Bulk gauge fields and holographic RG from exact RG,' JHEP 23 , 174 (2020) doi:10.1007/JHEP02(2023)174 [arXiv:2201.06240 [hep-th]].\n- [40] P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Aspects of the map from exact RG to holographic RG in AdS and dS,' Mod. Phys. Lett. A 37 , no.37n38, 2250235 (2022) doi:10.1142/S0217732322502352 [arXiv:2301.13605 [hep-th]].\n- [41] P. Dharanipragada and B. Sathiapalan, 'Holographic RG from ERG: Locality and General Coordinate Invariance in the Bulk,' [arXiv:2306.07442 [hep-th]].\n- [42] D. S. Mansi, A. Mauri and A. C. Petkou, 'Stochastic Quantization and AdS/CFT,' Phys. Lett. B 685 , 215-221 (2010) doi:10.1016/j.physletb.2010.01.033 [arXiv:0912.2105 [hep-th]].\n\n- [43] J. H. Oh and D. P. Jatkar, 'Stochastic quantization and holographic Wilsonian renormalization group,' JHEP 11 , 144 (2012) doi:10.1007/JHEP11(2012)144 [arXiv:1209.2242 [hep-th]].\n- [44] D. P. Jatkar and J. H. Oh, 'Stochastic quantization of conformally coupled scalar in AdS,' JHEP 10 , 170 (2013) doi:10.1007/JHEP10(2013)170 [arXiv:1305.2008 [hep-th]].\n- [45] J. H. Oh, 'First-order formalism of holographic Wilsonian renormalization group: Langevin equation,' J. Korean Phys. Soc. 79 , no.10, 903-917 (2021) doi:10.1007/s40042021-00320-x [arXiv:2110.05013 [hep-th]].\n- [46] G. Kim, J. s. Chae, W. Shin and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of scalar theory with generic mass, self-interaction and multiple trace deformation,' Int. J. Mod. Phys. A 38 , no.21, 2350114 (2023) doi:10.1142/S0217751X23501142 [arXiv:2305.18920 [hep-th]].\n- [47] J. H. Lee and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of conformally coupled scalar in AdS 4 ,' J. Korean Phys. Soc. 83 , no.9, 665-674 (2023) doi:10.1007/s40042-023-00926-3 [arXiv:2308.10010 [hep-th]].\n- [48] Y. Hatta and T. Kunihiro, 'Renormalization group method applied to kinetic equations: Roles of initial values and time,' Annals Phys. 298 , 24-57 (2002) doi:10.1006/aphy.2002.6234 [arXiv:hep-th/0108159 [hep-th]].",
+  "blocks": [
+    {
+      "id": "53356a73-e5bd-5aa3-b187-8726f8e7a73c",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "OUJ-FTC-11",
+      "heading_level": 1,
+      "markdown": "# OUJ-FTC-11",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.8398,
+          69.87135999999998,
+          134.9988032222976,
+          80.64299519999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "558e85a8-f054-5e96-99da-a82cfe363697",
+      "source_block_id": "docling-SectionHeaderItem-1",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "Notes on the Exact RG equation and the Wheeler-DeWitt equation",
+      "heading_level": 1,
+      "markdown": "# Notes on the Exact RG equation and the Wheeler-DeWitt equation",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.8398,
+          127.8769426,
+          539.755791480585,
+          164.9493070000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cda7371f-a2bc-561c-a6b8-97467d44ebf1",
+      "source_block_id": "docling-TextItem-2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Hideto Kamei 1",
+      "heading_level": null,
+      "markdown": "Hideto Kamei 1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          253.31964000000002,
+          192.68833000000006,
+          343.86116,
+          209.04089620000002
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b9000df5-6716-5d32-aec7-c75239d25495",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Field theory group, The Open University of Japan, Chiba 261-8586, Japan",
+      "heading_level": null,
+      "markdown": "Field theory group, The Open University of Japan, Chiba 261-8586, Japan",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          219.11974,
+          235.11381000000006,
+          378.3594743945728,
+          278.8809652
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cc1eb8ce-3e79-5c69-bb5e-09a944af718f",
+      "source_block_id": "docling-TextItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "February 25, 2024",
+      "heading_level": null,
+      "markdown": "February 25, 2024",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          243.47990000000001,
+          309.64046,
+          354.2950667480305,
+          324.00100620000006
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7e6816d8-97ae-5fd1-8085-8137b60ffe0f",
+      "source_block_id": "docling-TextItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "In this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.",
+      "heading_level": null,
+      "markdown": "In this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.83989999999994,
+          355.59351000000004,
+          539.7346510284289,
+          431.0406652000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "246cdd3c-5a1d-5fdd-acb1-a50dda2f5b8e",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 Introduction",
+      "heading_level": 1,
+      "markdown": "# 1 Introduction",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.83989999999994,
+          457.9891300000001,
+          193.75908912705336,
+          473.5002054000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bcfc01bc-315b-5e31-9024-21624b7c13f5",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Here in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.",
+      "heading_level": null,
+      "markdown": "Here in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.83989999999994,
+          488.79341000000005,
+          539.681552777882,
+          580.2007652000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5e334617-1a62-5cf0-a6f4-1873f8ec1935",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Now we outline the structure of this note. In section 2, the setup of the derivation is given. In section 3, the role of the boundary condition in the setup is explained. In section 4, procedure for splitting the bulk action and identifying the boundary action is given. In section 5, derivation of the exact RG equation from the bulk is given. In section 6, interpretation of the equation as the exact RG is given. In section 7, an example to show the validity of the methodology is given. In section 8, discussion on the result and possible future research is given. In section 9, update on research since this note was first written is given.",
+      "heading_level": null,
+      "markdown": "Now we outline the structure of this note. In section 2, the setup of the derivation is given. In section 3, the role of the boundary condition in the setup is explained. In section 4, procedure for splitting the bulk action and identifying the boundary action is given. In section 5, derivation of the exact RG equation from the bulk is given. In section 6, interpretation of the equation as the exact RG is given. In section 7, an example to show the validity of the methodology is given. In section 8, discussion on the result and possible future research is given. In section 9, update on research since this note was first written is given.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.84071999999992,
+          584.0734100000001,
+          539.7604620983807,
+          659.6405652000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6844b4e5-a167-5125-bcc9-ef58d13a7d36",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1 hidetokamei@gmail.com",
+      "heading_level": null,
+      "markdown": "1 hidetokamei@gmail.com",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          71.2801,
+          669.3396251,
+          180.25706706421786,
+          680.13066
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "18d87241-1bd6-5d52-8fcc-ae2510a8dec2",
+      "source_block_id": "docling-TextItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2 For a review, please refer to [6].",
+      "heading_level": null,
+      "markdown": "2 For a review, please refer to [6].",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          71.2801,
+          681.6997851,
+          213.8378008813371,
+          692.49082
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b483239b-a3e1-570d-a38d-a1a15a5114c7",
+      "source_block_id": "docling-SectionHeaderItem-11",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 Deriving the exact RG from the bulk theory",
+      "heading_level": 1,
+      "markdown": "# 2 Deriving the exact RG from the bulk theory",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.83979999999997,
+          124.26932,
+          464.8872993572971,
+          139.78039539999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "087c0a6c-dbb6-5ea1-be97-155155607586",
+      "source_block_id": "docling-TextItem-12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Here we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.",
+      "heading_level": null,
+      "markdown": "Here we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.83949999999999,
+          155.07360000000006,
+          539.7415194406399,
+          230.64075519999994
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "72dc77e9-bf93-5cbe-9205-f1222d28bfda",
+      "source_block_id": "docling-TextItem-13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We assume that the bulk action contains gravity and a scalar field (the extension to including many scalar fields and including other fields is straightforward). We take the parametrization of the 5d metric as,",
+      "heading_level": null,
+      "markdown": "We assume that the bulk action contains gravity and a scalar field (the extension to including many scalar fields and including other fields is straightforward). We take the parametrization of the 5d metric as,",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.83959999999996,
+          234.51379999999995,
+          539.6515113087999,
+          278.2809551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c241e8a1-dd39-5507-ba1f-d1fc8b4b8feb",
+      "source_block_id": "docling-FormulaItem-14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          150.71969999999996,
+          292.2224975,
+          539.7431703089916,
+          306.91252749999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e88191b5-58a5-53ba-8860-597d28528f26",
+      "source_block_id": "docling-TextItem-15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We will work in the Euclidean signature everywhere in this note. Here we fix the gauge of the metric as N = 1 , N i = 0. We decompose the Ricci scalar using extrinsic curvature,",
+      "heading_level": null,
+      "markdown": "We will work in the Euclidean signature everywhere in this note. Here we fix the gauge of the metric as N = 1 , N i = 0. We decompose the Ricci scalar using extrinsic curvature,",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.840309999999874,
+          321.99339999999995,
+          539.7345923559678,
+          350.59252749999996
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5bc78d8b-57f5-5af7-b591-78e48c559967",
+      "source_block_id": "docling-FormulaItem-16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          180.84027999999986,
+          360.87329,
+          539.7430203089916,
+          389.35709199999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "541e6933-1a15-5728-ae53-d7f6fc1b0e16",
+      "source_block_id": "docling-TextItem-17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "From now on we treat the metric as fields and use the condensed notation, h ij ≡ h I , K ij ≡ K I . Further we will use so-called DeWitt's supermetric G IJ ≡ G ijkl ≡ √ h ( 1 2 ( h ik h jl + h il h jk ) -h ij h kl ) and its inverse G IJ for the condensed notation of the action. We can define the conjugate momentum of the metric and the scalar field as π I = δ L /δ∂ r h I , and p = δ L /δ∂ r φ , and construct the Hamiltonian H = π I ∂ r h I + p∂ r φ -L . The equation we wish to solve is the Wheeler-DeWitt equation, which is H Ψ = 0. Analogous to the Shr¨ odinger equation, we simply have to replace momentum π I , p with the derivative δ/δh I , δ/δφ . We wish to proceed following [2] to derive the exact RG equation of the CFT holgraphically. In the classical case, we will get the expression of the radial velocity of the fields (with respect to the 4d action) from Hamilton-Jacobi equation,",
+      "heading_level": null,
+      "markdown": "From now on we treat the metric as fields and use the condensed notation, h ij ≡ h I , K ij ≡ K I . Further we will use so-called DeWitt's supermetric G IJ ≡ G ijkl ≡ √ h ( 1 2 ( h ik h jl + h il h jk ) -h ij h kl ) and its inverse G IJ for the condensed notation of the action. We can define the conjugate momentum of the metric and the scalar field as π I = δ L /δ∂ r h I , and p = δ L /δ∂ r φ , and construct the Hamiltonian H = π I ∂ r h I + p∂ r φ -L . The equation we wish to solve is the Wheeler-DeWitt equation, which is H Ψ = 0. Analogous to the Shr¨ odinger equation, we simply have to replace momentum π I , p with the derivative δ/δh I , δ/δφ . We wish to proceed following [2] to derive the exact RG equation of the CFT holgraphically. In the classical case, we will get the expression of the radial velocity of the fields (with respect to the 4d action) from Hamilton-Jacobi equation,",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.83981,
+          398.54221750000005,
+          571.1555116000001,
+          539.0405551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d367b032-270e-5775-bafc-a6af53fe828c",
+      "source_block_id": "docling-FormulaItem-18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          235.31987999999998,
+          564.1534999999999,
+          539.7427203089917,
+          624.0725275
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d1796f7d-c41c-58ce-a2b9-adca03f92dff",
+      "source_block_id": "docling-TextItem-19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "and in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.",
+      "heading_level": null,
+      "markdown": "and in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          57.83985999999999,
+          634.35344,
+          539.742996,
+          678.1205952
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c3090e55-3bba-59a4-aebb-11e7bfe4a76f",
+      "source_block_id": "docling-SectionHeaderItem-20",
+      "order_index": 20,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 The role of the boundary condition and the fluctuation",
+      "heading_level": 1,
+      "markdown": "# 3 The role of the boundary condition and the fluctuation",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.8398,
+          66.18921999999998,
+          539.9589696610759,
+          81.70029539999996
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "797bbdba-f396-570c-91b3-24d03a6edcd6",
+      "source_block_id": "docling-TextItem-21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Here in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.",
+      "heading_level": null,
+      "markdown": "Here in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.83979999999997,
+          97.11379999999997,
+          539.7332166169089,
+          140.7609551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7f5e43bf-c97c-50b4-bbde-d359b302596a",
+      "source_block_id": "docling-TextItem-22",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "First of all, we would like to claim that the boundary value of the bulk fields themselves could be considered as the dynamical fields in the boundary CFT in some cases. The main example we consider in this note is a scalar field in the AdS within the mass range -d 2 / 4 < m 2 < -( d 2 / 4) + 1. In this mass range, it is known, in addition to the standard Dirichlet boundary condition, we can also impose free boundary condition[11],[12],[13],[14],[15], and it is called 'alternative quantization'. Those two different boundary conditions correspond to different CFTs on the boundary, CFT D and CFT F respectively. In the case of free boundary condition, we also need to integrate over the value of the boundary condition of the bulk field, and therefore, the partition function of the CFT F can be obtained by promoting the source in the CFT D to a dynamical field and integrating over it as",
+      "heading_level": null,
+      "markdown": "First of all, we would like to claim that the boundary value of the bulk fields themselves could be considered as the dynamical fields in the boundary CFT in some cases. The main example we consider in this note is a scalar field in the AdS within the mass range -d 2 / 4 < m 2 < -( d 2 / 4) + 1. In this mass range, it is known, in addition to the standard Dirichlet boundary condition, we can also impose free boundary condition[11],[12],[13],[14],[15], and it is called 'alternative quantization'. Those two different boundary conditions correspond to different CFTs on the boundary, CFT D and CFT F respectively. In the case of free boundary condition, we also need to integrate over the value of the boundary condition of the bulk field, and therefore, the partition function of the CFT F can be obtained by promoting the source in the CFT D to a dynamical field and integrating over it as",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.84009999999995,
+          144.7535999999999,
+          539.7421867807489,
+          300.5523274999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "df7c0739-0ff5-5499-88eb-93fad55afd13",
+      "source_block_id": "docling-FormulaItem-23",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          204.48180999999988,
+          310.5616919999997,
+          539.7450903089916,
+          346.4153367999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3fe1d7a6-c204-5ac3-8f5c-16545249a5c9",
+      "source_block_id": "docling-TextItem-24",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "This expression can be interpreted as the path integral formally (or statistical partition function if one wishes), where J is now a dynamical field, and weight is exp( -Γ[ J ]), Γ being the generating functional for CFT D . Therefore, in the case of the free boundary condition, the boundary value of the bulk field can be considered as the field in the boundary CFT itself, and we can consider an exact RG with respect to that. 3 In addition, also for other fields, it is known that in the free boundary condition (or equivalently Neumann boundary condition in the classical limit), the bulk fields on the boundary are interpreted as the dynamical fields in the boundary CFT.[16],[17].",
+      "heading_level": null,
+      "markdown": "This expression can be interpreted as the path integral formally (or statistical partition function if one wishes), where J is now a dynamical field, and weight is exp( -Γ[ J ]), Γ being the generating functional for CFT D . Therefore, in the case of the free boundary condition, the boundary value of the bulk field can be considered as the field in the boundary CFT itself, and we can consider an exact RG with respect to that. 3 In addition, also for other fields, it is known that in the free boundary condition (or equivalently Neumann boundary condition in the classical limit), the bulk fields on the boundary are interpreted as the dynamical fields in the boundary CFT.[16],[17].",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.84122999999994,
+          349.5933999999997,
+          539.77330005056,
+          472.80075519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1ba1aa6e-6a1b-5343-85e1-8bbfd0389355",
+      "source_block_id": "docling-TextItem-25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Another example for the free boundary condition is, trailing string in the AdS[18],[19]. We consider a string stretching from the horizon of the black brane to the boundary at the finite radial distance. The endpoint on the boundary is identified as the position of a particle in the CFT. Since the boundary is at the finite radial distance, the fluctuation of the string in the bulk can be transferred to the fluctuation of the endpoint, which is the fluctuation of the particle in the CFT. Therefore, we need to sum over all the possible value of the boundary position of the string, and it is formally the same as the path integral for the position of the particle in the CFT. Therefore, in the case of the trailing string, we also take the free boundary condition, and the boundary condition is promoted to a dynamical field in the boundary. we expect, if we take the boundary at the finite radial distance[2], boundary value of the closed string modes in the bulk might be also identified as the fields of the closed string modes of the boundary theory.",
+      "heading_level": null,
+      "markdown": "Another example for the free boundary condition is, trailing string in the AdS[18],[19]. We consider a string stretching from the horizon of the black brane to the boundary at the finite radial distance. The endpoint on the boundary is identified as the position of a particle in the CFT. Since the boundary is at the finite radial distance, the fluctuation of the string in the bulk can be transferred to the fluctuation of the endpoint, which is the fluctuation of the particle in the CFT. Therefore, we need to sum over all the possible value of the boundary position of the string, and it is formally the same as the path integral for the position of the particle in the CFT. Therefore, in the case of the trailing string, we also take the free boundary condition, and the boundary condition is promoted to a dynamical field in the boundary. we expect, if we take the boundary at the finite radial distance[2], boundary value of the closed string modes in the bulk might be also identified as the fields of the closed string modes of the boundary theory.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.84110999999996,
+          476.67339999999973,
+          539.6898947023615,
+          631.6807551999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c4514456-6933-5c32-9c1e-4fe8b5bade86",
+      "source_block_id": "docling-TextItem-26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3 Necessity of the free boundary condition was first realized by the necessity of having operator with small conformal dimension, which can't be realized by the naive Dirichlet boundary condition. Later it was realized those two CFTs are connected by an RG flow, by adding relevant perturbation f O 2 , where O is an operator to couple the source. (3.1) was obtained using that relationship.",
+      "heading_level": null,
+      "markdown": "3 Necessity of the free boundary condition was first realized by the necessity of having operator with small conformal dimension, which can't be realized by the naive Dirichlet boundary condition. Later it was realized those two CFTs are connected by an RG flow, by adding relevant perturbation f O 2 , where O is an operator to couple the source. (3.1) was obtained using that relationship.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.83994000000001,
+          642.2196251,
+          539.8884810204559,
+          692.49076
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3c64a7cb-935b-549d-8f5b-706f6fcba05d",
+      "source_block_id": "docling-TextItem-27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Therefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.",
+      "heading_level": null,
+      "markdown": "Therefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          57.84010000000001,
+          101.07359999999994,
+          539.6972423499777,
+          176.64075519999983
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ff721bf6-8967-5e2d-a2b0-5e8c609b908d",
+      "source_block_id": "docling-SectionHeaderItem-28",
+      "order_index": 28,
+      "kind": "heading",
+      "native_type": null,
+      "text": "4 The definition of the boundary Wilsonian effective action from the bulk",
+      "heading_level": 1,
+      "markdown": "# 4 The definition of the boundary Wilsonian effective action from the bulk",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          57.84010000000001,
+          203.58921999999984,
+          539.7345795454038,
+          243.22019539999985
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5215dd98-a4f8-56fe-bc4b-bef01c1bbca4",
+      "source_block_id": "docling-TextItem-29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "When we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.",
+      "heading_level": null,
+      "markdown": "When we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          57.84010000000001,
+          258.51379999999983,
+          539.8001618228739,
+          445.32075519999984
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dbb65eb7-9664-5163-b7bf-1543ad3a8435",
+      "source_block_id": "docling-FormulaItem-30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          177.12026000000006,
+          470.0417919999998,
+          539.7431963089919,
+          566.9755367999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f4cf687e-fa3b-5e41-a7e0-2474ace8b8b4",
+      "source_block_id": "docling-TextItem-31",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.",
+      "heading_level": null,
+      "markdown": "We can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          57.84033600000015,
+          569.7933999999998,
+          539.7596812,
+          693.0007551999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "69b5a214-f300-5bb7-8cb0-b8336dfe584e",
+      "source_block_id": "docling-SectionHeaderItem-32",
+      "order_index": 32,
+      "kind": "heading",
+      "native_type": null,
+      "text": "5 Holographic Exact RG at finite radial distance",
+      "heading_level": 1,
+      "markdown": "# 5 Holographic Exact RG at finite radial distance",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          57.839920000000006,
+          187.8693199999999,
+          483.1901445894053,
+          203.38039539999988
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95f56e19-6851-5bb9-81ca-6d05ec9d5dd3",
+      "source_block_id": "docling-TextItem-33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Let's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].",
+      "heading_level": null,
+      "markdown": "Let's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          57.839920000000006,
+          218.67359999999996,
+          539.6807568815359,
+          294.91252749999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "417312d7-f2ac-5e2c-94a3-adfb921e24af",
+      "source_block_id": "docling-TextItem-34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "The Wheeler-DeWitt equation is,",
+      "heading_level": null,
+      "markdown": "The Wheeler-DeWitt equation is,",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          75.36012000000005,
+          298.1137999999999,
+          246.59983092244505,
+          310.08095519999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1021a62b-4822-51e3-8f21-43087f018686",
+      "source_block_id": "docling-FormulaItem-35",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          126.11992000000005,
+          315.69444,
+          539.7429303089917,
+          358.1755367999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "56cb059d-ae20-5ed1-85ac-22c08c8330c3",
+      "source_block_id": "docling-TextItem-36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Both UV and IR wavefunction, Ψ UV and Ψ IR are expected to satisfy the above WDW equation separately. Here we assume that V is a constant (which doesn't depend on φ ), and H matter = ( p 2 / 2) + W ( φ ) -Φ( φ ) R + (1 / 2)( ∂ i φ ) 2 , where W ( φ ) is the φ dependent part of the 5d potential, and its order φ 2 has the coefficient m 2 / 2 which satisfies the bound that we discussed. We assume that H matter is the order of O ( G 0 N ). We further assume that we can expand S = -log Ψ as S = ( S 0 / 16 πG N ) + S 1 + O ( G 1 N ), and suppose S 0 depends only on the metric, and not on the scalar field. By expanding the Wheeler-DeWitt equation for O ( G -1 N ), while still seperating S 0 into the UV part and the IR part with respect to the cutoff, we get",
+      "heading_level": null,
+      "markdown": "Both UV and IR wavefunction, Ψ UV and Ψ IR are expected to satisfy the above WDW equation separately. Here we assume that V is a constant (which doesn't depend on φ ), and H matter = ( p 2 / 2) + W ( φ ) -Φ( φ ) R + (1 / 2)( ∂ i φ ) 2 , where W ( φ ) is the φ dependent part of the 5d potential, and its order φ 2 has the coefficient m 2 / 2 which satisfies the bound that we discussed. We assume that H matter is the order of O ( G 0 N ). We further assume that we can expand S = -log Ψ as S = ( S 0 / 16 πG N ) + S 1 + O ( G 1 N ), and suppose S 0 depends only on the metric, and not on the scalar field. By expanding the Wheeler-DeWitt equation for O ( G -1 N ), while still seperating S 0 into the UV part and the IR part with respect to the cutoff, we get",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          57.840370000000064,
+          370.4733,
+          539.7619262616319,
+          493.6806651999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "32d6afdf-dfee-5e38-8cc8-bf9e6d39aa2b",
+      "source_block_id": "docling-FormulaItem-37",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          68.4,
+          518.97462,
+          539.7428603089917,
+          563.4008752
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0ef13a1c-bf1c-54dd-a107-e8eac680c0ad",
+      "source_block_id": "docling-TextItem-38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Note that the indices of the metric h I are implicitly contracted in the above expression. Strictly speaking, δ 2 S/δh 2 term is order O ( G 0 N ), but we added it for simplicity of the next order [21]. This form of the 5d potential implies that the bulk gravity could be constructed out of the Stochastic Quantization 4 , -∂ r h I = -G IJ ( δS UV /δh J ) + E I a ξ a , where ξ a is the gaussian noise and E is the inverse of the vielbein for G IJ [23]. For O ( G 0 N ), we get",
+      "heading_level": null,
+      "markdown": "Note that the indices of the metric h I are implicitly contracted in the above expression. Strictly speaking, δ 2 S/δh 2 term is order O ( G 0 N ), but we added it for simplicity of the next order [21]. This form of the 5d potential implies that the bulk gravity could be constructed out of the Stochastic Quantization 4 , -∂ r h I = -G IJ ( δS UV /δh J ) + E I a ξ a , where ξ a is the gaussian noise and E is the inverse of the vielbein for G IJ [23]. For O ( G 0 N ), we get",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          57.84017000000006,
+          565.9424174999999,
+          539.7427944609025,
+          635.477112
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "48d19dd1-602d-503b-9aa6-43c2fcd03ec9",
+      "source_block_id": "docling-TextItem-39",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4 Please refer to [22] for an analogous discussion.",
+      "heading_level": null,
+      "markdown": "4 Please refer to [22] for an analogous discussion.",
+      "anchor": {
+        "page_number": 5,
+        "bbox": [
+          71.2801,
+          637.7796251,
+          281.63719081853634,
+          648.57066
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "96cb482f-4477-5178-9b0f-05e89052131d",
+      "source_block_id": "docling-FormulaItem-40",
+      "order_index": 40,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          80.04012999999998,
+          93.81493,
+          539.7424603089917,
+          167.2553368
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "76d63c53-48fe-5c4e-8024-fe71e293f700",
+      "source_block_id": "docling-TextItem-41",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Let's derive the exact RG equation from the above equation of motion (5.3). We use the right hand side and the left hand side of the equality, and use δS 0 UV /δh + δS 0 IR /δh = 0, because S 0 is classical, purely gravitational part of the action, and the configuration of the metric h should minimize this. (See [2]) Remember that now the scalar field φ is quantized and we can't naively consider its classical trajectory. We have the classical gravity background, and we parameterize the physical scale by the overall factor of the metric. By parameterizing h ij = e 2 a δ ij , ' -a ' can be considered as the parameter for the RG flow.",
+      "heading_level": null,
+      "markdown": "Let's derive the exact RG equation from the above equation of motion (5.3). We use the right hand side and the left hand side of the equality, and use δS 0 UV /δh + δS 0 IR /δh = 0, because S 0 is classical, purely gravitational part of the action, and the configuration of the metric h should minimize this. (See [2]) Remember that now the scalar field φ is quantized and we can't naively consider its classical trajectory. We have the classical gravity background, and we parameterize the physical scale by the overall factor of the metric. By parameterizing h ij = e 2 a δ ij , ' -a ' can be considered as the parameter for the RG flow.",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          57.83960000000002,
+          172.95332000000008,
+          539.6804932559362,
+          288.79671199999996
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4c8b72a5-31d9-5782-a954-fedc9bfe23bb",
+      "source_block_id": "docling-FormulaItem-42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          106.43992600000001,
+          294.02021575,
+          539.7428603089917,
+          330.3352768
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e0f90b3b-23b6-5c26-a400-ee5c8fce3894",
+      "source_block_id": "docling-TextItem-43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Here we have assumed the behavior of the metric h is determined by the leading order of the action S UV = S 0 UV / 16 πG N , together with (2.3).",
+      "heading_level": null,
+      "markdown": "Here we have assumed the behavior of the metric h is determined by the leading order of the action S UV = S 0 UV / 16 πG N , together with (2.3).",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          57.839800000000025,
+          329.91373999999996,
+          539.7343226752002,
+          359.83246749999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5641e2ce-f448-5fe3-88f9-b3e973aabe10",
+      "source_block_id": "docling-TextItem-44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "The above expression is a class of the exact RG equation presented in [7],[8],[10]. Please remember, in order to identify the above equation as the exact RG, we needed to identify the boundary value of the bulk field as the dynamical field on the boundary CFT as well. At least it is formally true in some cases of AdS/CFT where we can take free boundary condition, there we integrate over all the possible configuration of the boundary value of the bulk field, and it was treated as a dynamical field on the boundary [15], [14]. Moreover, when we put the boundary at the finite radial distance, the boundary condition of the stochastic string [19], [18] and graviton [2] were identified as the dynamical field on the boundary. However, in order to justify it from the field theory, we would need to show that the effective action can be thought of as a classical action, and that the value of the one-point function can be thought of as the value of the field, and that those fields are the fundamental degree of freedom. We will probably need the discussion about the large N field theory as a classical theory [24], [25], and about the formulation of the gauge theory in terms of Wilson loop [26].",
+      "heading_level": null,
+      "markdown": "The above expression is a class of the exact RG equation presented in [7],[8],[10]. Please remember, in order to identify the above equation as the exact RG, we needed to identify the boundary value of the bulk field as the dynamical field on the boundary CFT as well. At least it is formally true in some cases of AdS/CFT where we can take free boundary condition, there we integrate over all the possible configuration of the boundary value of the bulk field, and it was treated as a dynamical field on the boundary [15], [14]. Moreover, when we put the boundary at the finite radial distance, the boundary condition of the stochastic string [19], [18] and graviton [2] were identified as the dynamical field on the boundary. However, in order to justify it from the field theory, we would need to show that the effective action can be thought of as a classical action, and that the value of the one-point function can be thought of as the value of the field, and that those fields are the fundamental degree of freedom. We will probably need the discussion about the large N field theory as a classical theory [24], [25], and about the formulation of the gauge theory in terms of Wilson loop [26].",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          57.84001800000004,
+          361.7137399999999,
+          539.759681150848,
+          564.3604952000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f59af97d-0828-578c-87ad-c0da32ade20e",
+      "source_block_id": "docling-TextItem-45",
+      "order_index": 45,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Note that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].",
+      "heading_level": null,
+      "markdown": "Note that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].",
+      "anchor": {
+        "page_number": 6,
+        "bbox": [
+          57.840058,
+          568.2335400000001,
+          539.7252513467138,
+          644.5924675000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "22ea29df-9968-5bad-82d4-d1d3babe08fd",
+      "source_block_id": "docling-SectionHeaderItem-46",
+      "order_index": 46,
+      "kind": "heading",
+      "native_type": null,
+      "text": "6 From the viewpoint of the Exact RG",
+      "heading_level": 1,
+      "markdown": "# 6 From the viewpoint of the Exact RG",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.8398,
+          66.18921999999998,
+          399.9375427173788,
+          81.70029539999996
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0d992acd-8bf9-5286-9d3d-0d69c861f299",
+      "source_block_id": "docling-TextItem-47",
+      "order_index": 47,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Let's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,",
+      "heading_level": null,
+      "markdown": "Let's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.8398,
+          97.11379999999997,
+          539.7016930547203,
+          204.3609551999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2eba7796-82d6-590c-b034-12fa45c7ff0f",
+      "source_block_id": "docling-FormulaItem-48",
+      "order_index": 48,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          225.00041999999996,
+          216.38002574999996,
+          539.7426603089916,
+          278.26879999999994
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "72da0c94-0e3f-54da-b077-a4d46f6f2a86",
+      "source_block_id": "docling-TextItem-49",
+      "order_index": 49,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We now assume that the change of the effective action S 1 is solely due to the change of the field, and the functional form of S 1 doesn't change, as in the regular derivation of the exact RG. We can write down the Wilsonian effective action S 1 ( φ ′ , h ′ ) with respect to the new fields φ ′ , h ′ , and by definition it should satisfy",
+      "heading_level": null,
+      "markdown": "We now assume that the change of the effective action S 1 is solely due to the change of the field, and the functional form of S 1 doesn't change, as in the regular derivation of the exact RG. We can write down the Wilsonian effective action S 1 ( φ ′ , h ′ ) with respect to the new fields φ ′ , h ′ , and by definition it should satisfy",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.840109999999925,
+          288.0200957499999,
+          539.6799437683968,
+          348.36039519999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a460a077-ac4d-5a29-908c-2f3a70eb4e86",
+      "source_block_id": "docling-FormulaItem-50",
+      "order_index": 50,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          175.68081999999987,
+          360.241632,
+          539.7433803089916,
+          396.09527679999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e9bbbf9d-cde0-5002-b279-035c01d2fa4e",
+      "source_block_id": "docling-TextItem-51",
+      "order_index": 51,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Expanding the left hand side with respect to φ , h , and collecting terms of the order O ( dr ), we get",
+      "heading_level": null,
+      "markdown": "Expanding the left hand side with respect to φ , h , and collecting terms of the order O ( dr ), we get",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.84087999999997,
+          399.93465999999995,
+          539.7607562616319,
+          428.0404952
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f40c5739-802d-5f7d-ad28-c029e3b2a9d3",
+      "source_block_id": "docling-FormulaItem-52",
+      "order_index": 52,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          152.16117999999997,
+          428.18025575,
+          539.7425603089918,
+          457.396912
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e426eb8e-f302-5f55-9943-009bdf43bc53",
+      "source_block_id": "docling-TextItem-53",
+      "order_index": 53,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "If we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.",
+      "heading_level": null,
+      "markdown": "If we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.839999999999975,
+          463.7850593,
+          539.6810993620097,
+          557.7604752
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4d661ef8-24f4-5628-a52b-4ad5051b7145",
+      "source_block_id": "docling-SectionHeaderItem-54",
+      "order_index": 54,
+      "kind": "heading",
+      "native_type": null,
+      "text": "7 Example: Flow of the double trace operator",
+      "heading_level": 1,
+      "markdown": "# 7 Example: Flow of the double trace operator",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.840599999999995,
+          584.82924,
+          460.9014875696752,
+          600.3403154
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5294b281-f52c-5f15-bfe6-6ac9b474cffb",
+      "source_block_id": "docling-TextItem-55",
+      "order_index": 55,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are",
+      "heading_level": null,
+      "markdown": "We then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are",
+      "anchor": {
+        "page_number": 7,
+        "bbox": [
+          57.840599999999995,
+          615.63352,
+          539.801462,
+          691.2006752
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "32236edb-f2c0-5918-8944-293b7566dce7",
+      "source_block_id": "docling-FormulaItem-56",
+      "order_index": 56,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          159.47998,
+          103.41494,
+          539.7426303089917,
+          179.6151268000001
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c37637d5-b1f2-5e32-aab6-4540914d7104",
+      "source_block_id": "docling-FormulaItem-57",
+      "order_index": 57,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          173.27992,
+          312.3936,
+          539.7431003089918,
+          340.877222
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ffcdeb9b-629d-5c0b-ba15-623d4542f8fe",
+      "source_block_id": "docling-TextItem-58",
+      "order_index": 58,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "We then wish to consider the flow of the double trace operator, which will correspond to the coefficient of the φ 2 term in S = S UV + S IR , since, according to the recipe of [1], the sum of the UV and IR action should be identified as the CFT effective action. We will need to see the bulk equation of motion for the evolution of F = F UV + F IR , and we can compute F UV and F IR respectively from the Schr¨ odinger equation as computed in [3]. Actually, since we restrict the form of the action to the Gaussian, there is no quantum correction to the double trace operator, (because ( δS 2 /δφ 2 ) term will have only constant O ( φ 0 ) term) and therefore we can look at Hamilton-Jacobi equation ( H = z∂ z S UV = (1 / 2 √ h ) p 2 +( √ h/ 2)( z 2 δ ij k i k j φ 2 + m 2 φ 2 )). Then we will get 5",
+      "heading_level": null,
+      "markdown": "We then wish to consider the flow of the double trace operator, which will correspond to the coefficient of the φ 2 term in S = S UV + S IR , since, according to the recipe of [1], the sum of the UV and IR action should be identified as the CFT effective action. We will need to see the bulk equation of motion for the evolution of F = F UV + F IR , and we can compute F UV and F IR respectively from the Schr¨ odinger equation as computed in [3]. Actually, since we restrict the form of the action to the Gaussian, there is no quantum correction to the double trace operator, (because ( δS 2 /δφ 2 ) term will have only constant O ( φ 0 ) term) and therefore we can look at Hamilton-Jacobi equation ( H = z∂ z S UV = (1 / 2 √ h ) p 2 +( √ h/ 2)( z 2 δ ij k i k j φ 2 + m 2 φ 2 )). Then we will get 5",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          57.83961999999991,
+          174.15340000000015,
+          539.7596133232638,
+          313.3209552
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "90f77d1b-baa7-5cff-b510-094181059d76",
+      "source_block_id": "docling-TextItem-59",
+      "order_index": 59,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "This equation can be solved by F UV = z∂ z O / O , where O is the Bessel function which solves",
+      "heading_level": null,
+      "markdown": "This equation can be solved by F UV = z∂ z O / O , where O is the Bessel function which solves",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          75.36024000000009,
+          343.77475,
+          539.5743585469697,
+          364.517022
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1003f2db-fb24-521d-9fe0-eb3683503c10",
+      "source_block_id": "docling-FormulaItem-60",
+      "order_index": 60,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          210.36128000000014,
+          367.58233750000005,
+          539.7440503089917,
+          389.957222
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "baa58437-03c9-5063-9433-f137c9a08172",
+      "source_block_id": "docling-TextItem-61",
+      "order_index": 61,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "The above F UV , for kz ≪ 1, gives",
+      "heading_level": null,
+      "markdown": "The above F UV , for kz ≪ 1, gives",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          75.36119000000008,
+          394.77475,
+          247.85554724825613,
+          415.517022
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "27bf15ad-e74e-50e9-9e43-77a26ff4bb0b",
+      "source_block_id": "docling-FormulaItem-62",
+      "order_index": 62,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          226.32085000000006,
+          416.18278749999996,
+          539.7426603089916,
+          446.4725275
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dcd08497-41c4-5625-92b0-94abc00c200c",
+      "source_block_id": "docling-TextItem-63",
+      "order_index": 63,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Note that the behavior of F UV for small/large z is as expected, because it should follow the conformal scaling with ∆ -, ∆ + . On the other hand, we can also obtain F IR from the condition that the solution will not blow up at z →∞ , and get",
+      "heading_level": null,
+      "markdown": "Note that the behavior of F UV for small/large z is as expected, because it should follow the conformal scaling with ∆ -, ∆ + . On the other hand, we can also obtain F IR from the condition that the solution will not blow up at z →∞ , and get",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          57.83910999999989,
+          456.27333999999996,
+          539.6797141265665,
+          508.516732
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d6c501d1-1da8-5cc6-ab08-c74781e29c57",
+      "source_block_id": "docling-FormulaItem-64",
+      "order_index": 64,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          233.0387699999999,
+          510.0222975,
+          539.7429603089918,
+          540.4325275
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bcfa6f01-52cb-579c-83ac-9c45ba440690",
+      "source_block_id": "docling-TextItem-65",
+      "order_index": 65,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "When k ∼ 0, it can be approximated as F IR ∼ -∆ -. Therefore, if the identification of the total bulk action as the CFT effective action (as [1]) is correct, F , sum of F UV and F IR , should give the right coefficient for the double trace operator, and it is",
+      "heading_level": null,
+      "markdown": "When k ∼ 0, it can be approximated as F IR ∼ -∆ -. Therefore, if the identification of the total bulk action as the CFT effective action (as [1]) is correct, F , sum of F UV and F IR , should give the right coefficient for the double trace operator, and it is",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          57.84011000000004,
+          549.21494,
+          539.6804743308035,
+          593.2809752
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2ce1fad7-719e-58fe-ba2d-b75b5c316b24",
+      "source_block_id": "docling-FormulaItem-66",
+      "order_index": 66,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          211.80037000000002,
+          602.4225775,
+          539.7431303089917,
+          632.8325275
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6c9438a6-c1ed-5aa6-83b1-ee333a180950",
+      "source_block_id": "docling-TextItem-67",
+      "order_index": 67,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Behavior of F at small z , F ∼ z 2 ν , is as expected from the conformal dimention of the coupling of the double trace operator. It is also confirmed that this F ∼ F UV -∆ -follows the same equation as the flow of the coupling of the double trace operator [15]. Here we wish to derive the same equation from a different perspective, from the exact RG flow equation that we have derived. By rewriting (5.4) with respect to S and S IR , and concentrating on φ 2 term, we will get an equation",
+      "heading_level": null,
+      "markdown": "Behavior of F at small z , F ∼ z 2 ν , is as expected from the conformal dimention of the coupling of the double trace operator. It is also confirmed that this F ∼ F UV -∆ -follows the same equation as the flow of the coupling of the double trace operator [15]. Here we wish to derive the same equation from a different perspective, from the exact RG flow equation that we have derived. By rewriting (5.4) with respect to S and S IR , and concentrating on φ 2 term, we will get an equation",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          57.840059999999994,
+          641.7823275,
+          539.680553463424,
+          679.397012
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "25cca55e-59d0-5f5d-969b-332f0449b0c1",
+      "source_block_id": "docling-TextItem-68",
+      "order_index": 68,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "5 Note that the below result differ from [3] since their definition of F includes √ h as well.",
+      "heading_level": null,
+      "markdown": "5 Note that the below result differ from [3] since their definition of F includes √ h as well.",
+      "anchor": {
+        "page_number": 8,
+        "bbox": [
+          71.2801,
+          673.759034,
+          460.1989837903992,
+          692.49066
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b7bb7f61-534a-5245-bdfa-a685454852f5",
+      "source_block_id": "docling-FormulaItem-69",
+      "order_index": 69,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          231.72026999999997,
+          147.38053574999992,
+          539.7432703089918,
+          169.2771919999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ff286eaf-e088-51f0-b386-ac3ed29f9e09",
+      "source_block_id": "docling-TextItem-70",
+      "order_index": 70,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "which is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .",
+      "heading_level": null,
+      "markdown": "which is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          57.84041000000008,
+          171.15369999999984,
+          539.6901153066242,
+          230.76065519999975
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "809f56cd-786f-53e9-a7b1-3e8a3bfc08cd",
+      "source_block_id": "docling-SectionHeaderItem-71",
+      "order_index": 71,
+      "kind": "heading",
+      "native_type": null,
+      "text": "8 Discussion",
+      "heading_level": 1,
+      "markdown": "# 8 Discussion",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          57.84039000000001,
+          257.8294199999998,
+          175.519622655008,
+          273.3404953999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "24e92c07-db73-5202-8ba3-aad942e24f84",
+      "source_block_id": "docling-TextItem-72",
+      "order_index": 72,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Therefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.",
+      "heading_level": null,
+      "markdown": "Therefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          57.84008000000003,
+          288.6336999999998,
+          539.7273652773888,
+          570.8406551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8c32fb03-53e5-5f30-a58d-a718ed6c677a",
+      "source_block_id": "docling-TextItem-73",
+      "order_index": 73,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "This result will hopefully give a better understanding on how exact RG is related to the quantized gravity, and in relating the holographic RG and Polchinski RG. Also, we wish that there will be more understanding of Holography in terms of Stochastic Quantization as exact RG, which was only implied here. If this identification is established, we will be able to perform the exact RG in a much simpler way, because many miracles, such as no need of gauge-fixing, no need of putting the cutoff, simplification for large N and natural apperance of supersymmetry so on, happens in the stochastic quantization. Note that the same analysis would be applicable to Horava gravity, since they are constructed out of the stochastic quantization, and the stochastic quantization is equivalent to a class of exact RG. It was explained that the structure of stochastic quantization enables the simpler proof of its renormalizability[23], and we expect that might apply to other general holographic models. Further it was implied that the quantized gravity in the bulk will be written as Langevin equation, which might give more insights into microscopic picture for thermodynamics of spacetime[31], [32].",
+      "heading_level": null,
+      "markdown": "This result will hopefully give a better understanding on how exact RG is related to the quantized gravity, and in relating the holographic RG and Polchinski RG. Also, we wish that there will be more understanding of Holography in terms of Stochastic Quantization as exact RG, which was only implied here. If this identification is established, we will be able to perform the exact RG in a much simpler way, because many miracles, such as no need of gauge-fixing, no need of putting the cutoff, simplification for large N and natural apperance of supersymmetry so on, happens in the stochastic quantization. Note that the same analysis would be applicable to Horava gravity, since they are constructed out of the stochastic quantization, and the stochastic quantization is equivalent to a class of exact RG. It was explained that the structure of stochastic quantization enables the simpler proof of its renormalizability[23], and we expect that might apply to other general holographic models. Further it was implied that the quantized gravity in the bulk will be written as Langevin equation, which might give more insights into microscopic picture for thermodynamics of spacetime[31], [32].",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          57.84038000000004,
+          574.7136999999998,
+          539.7824186559486,
+          650.2808551999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2732156c-6601-5984-bad2-59a99cc7786b",
+      "source_block_id": "docling-TextItem-74",
+      "order_index": 74,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG",
+      "heading_level": null,
+      "markdown": "6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG",
+      "anchor": {
+        "page_number": 9,
+        "bbox": [
+          57.83994000000001,
+          660.3396251,
+          539.7411350870509,
+          684.33066
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "22f81e20-ed11-5867-94ea-70a7fbfa5bb6",
+      "source_block_id": "docling-SectionHeaderItem-75",
+      "order_index": 75,
+      "kind": "heading",
+      "native_type": null,
+      "text": "9 Update on recent research",
+      "heading_level": 1,
+      "markdown": "# 9 Update on recent research",
+      "anchor": {
+        "page_number": 10,
+        "bbox": [
+          57.83979999999997,
+          219.54931999999985,
+          310.8789790826762,
+          235.06039539999983
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "65653cf6-f123-5ce3-9e0e-8e7f29a7ad90",
+      "source_block_id": "docling-TextItem-76",
+      "order_index": 76,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Since this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].",
+      "heading_level": null,
+      "markdown": "Since this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].",
+      "anchor": {
+        "page_number": 10,
+        "bbox": [
+          57.83979999999997,
+          250.47349999999983,
+          539.8005496514814,
+          580.2006951999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fa525b79-430b-58e9-8439-307d67ca9105",
+      "source_block_id": "docling-SectionHeaderItem-77",
+      "order_index": 77,
+      "kind": "heading",
+      "native_type": null,
+      "text": "Acknowledgements",
+      "heading_level": 1,
+      "markdown": "# Acknowledgements",
+      "anchor": {
+        "page_number": 10,
+        "bbox": [
+          57.84030999999993,
+          607.2690599999997,
+          219.06622179239054,
+          622.7801353999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "39f667ad-5e97-57c4-90c7-2c9ab8a7e472",
+      "source_block_id": "docling-TextItem-78",
+      "order_index": 78,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "I would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.",
+      "heading_level": null,
+      "markdown": "I would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.",
+      "anchor": {
+        "page_number": 10,
+        "bbox": [
+          57.84030999999993,
+          638.0733399999998,
+          539.5204855642365,
+          666.0006951999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e649006e-055e-5a63-983b-2dae8b106fe4",
+      "source_block_id": "docling-SectionHeaderItem-79",
+      "order_index": 79,
+      "kind": "heading",
+      "native_type": null,
+      "text": "References",
+      "heading_level": 1,
+      "markdown": "# References",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.8398,
+          66.18921999999998,
+          148.62602825426802,
+          81.70029539999996
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6b858cc3-13ac-5aba-9402-4b4880277cd8",
+      "source_block_id": "docling-ListItem-80",
+      "order_index": 80,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].",
+      "heading_level": null,
+      "markdown": "J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.719879999999996,
+          97.11379999999997,
+          539.7253975050243,
+          124.92075519999992
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "77bddcba-6e5e-5c10-ba6b-d442e125ceae",
+      "source_block_id": "docling-ListItem-81",
+      "order_index": 81,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].",
+      "heading_level": null,
+      "markdown": "E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.71998000000001,
+          138.7535999999999,
+          539.6815311981569,
+          166.68095519999986
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42fc368f-923d-5479-9b3a-a1e4a32e3880",
+      "source_block_id": "docling-ListItem-82",
+      "order_index": 82,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "I. Heemskerk and J. Polchinski, 'Holographic and Wilsonian Renormalization Groups,' arXiv:1010.1264 [hep-th].",
+      "heading_level": null,
+      "markdown": "I. Heemskerk and J. Polchinski, 'Holographic and Wilsonian Renormalization Groups,' arXiv:1010.1264 [hep-th].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.720080000000024,
+          180.51379999999983,
+          539.7256518885889,
+          208.44075519999978
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1ffda057-3689-59a9-8b21-9895a4039460",
+      "source_block_id": "docling-ListItem-83",
+      "order_index": 83,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "G. Parisi and Y. s. Wu, 'Perturbation Theory Without Gauge Fixing,' Sci. Sin. 24 , 483 (1981).",
+      "heading_level": null,
+      "markdown": "G. Parisi and Y. s. Wu, 'Perturbation Theory Without Gauge Fixing,' Sci. Sin. 24 , 483 (1981).",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.720180000000056,
+          222.27359999999976,
+          539.7249018073599,
+          250.20095519999973
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "978224d6-8907-5f19-9395-1626b5111e59",
+      "source_block_id": "docling-ListItem-84",
+      "order_index": 84,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P.H.Damgaard and H.Huffel, 'STOCHASTIC QUANTIZATION,' SINGAPORE, SINGAPORE: WORLD SCIENTIFIC (1988) 496p ,",
+      "heading_level": null,
+      "markdown": "P.H.Damgaard and H.Huffel, 'STOCHASTIC QUANTIZATION,' SINGAPORE, SINGAPORE: WORLD SCIENTIFIC (1988) 496p ,",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.72018000000011,
+          264.0337999999997,
+          539.7446399213569,
+          291.84075519999976
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "790811fc-d5b9-5125-b588-0b1ceeac5959",
+      "source_block_id": "docling-ListItem-85",
+      "order_index": 85,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "M. Fukuma, S. Matsuura and T. Sakai, 'Holographic renormalization group,' Prog. Theor. Phys. 109 , 489 (2003) [arXiv:hep-th/0212314].",
+      "heading_level": null,
+      "markdown": "M. Fukuma, S. Matsuura and T. Sakai, 'Holographic renormalization group,' Prog. Theor. Phys. 109 , 489 (2003) [arXiv:hep-th/0212314].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.7201800000002,
+          305.7934999999997,
+          539.6397995069443,
+          333.6008551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "71c6da2d-e899-5fed-9a13-80c93abeb2fa",
+      "source_block_id": "docling-ListItem-86",
+      "order_index": 86,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "T. R. Morris, 'The Exact renormalization group and approximate solutions,' Int. J. Mod. Phys. A 9 , 2411 (1994) [arXiv:hep-ph/9308265].",
+      "heading_level": null,
+      "markdown": "T. R. Morris, 'The Exact renormalization group and approximate solutions,' Int. J. Mod. Phys. A 9 , 2411 (1994) [arXiv:hep-ph/9308265].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.72038000000019,
+          347.5535999999997,
+          539.638659859354,
+          375.36055519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ceb4b77a-7762-5eb7-be43-12a4ffe54def",
+      "source_block_id": "docling-ListItem-87",
+      "order_index": 87,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "T. R. Morris, 'A manifestly gauge invariant exact renormalization group,' arXiv:hep-th/9810104.",
+      "heading_level": null,
+      "markdown": "T. R. Morris, 'A manifestly gauge invariant exact renormalization group,' arXiv:hep-th/9810104.",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.7205000000002,
+          389.3136999999997,
+          539.7264844111362,
+          417.12065519999976
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0b4c5881-6dd5-5c70-a789-b795f8ec6f4d",
+      "source_block_id": "docling-ListItem-88",
+      "order_index": 88,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. I. Latorre and T. R. Morris, 'Exact scheme independence,' JHEP 0011 , 004 (2000) [arXiv:hep-th/0008123].",
+      "heading_level": null,
+      "markdown": "J. I. Latorre and T. R. Morris, 'Exact scheme independence,' JHEP 0011 , 004 (2000) [arXiv:hep-th/0008123].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          63.72060000000019,
+          430.95349999999974,
+          539.8632678077439,
+          458.88085519999976
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c34c5694-9a4b-5104-9d6f-37ebc2e979a7",
+      "source_block_id": "docling-ListItem-89",
+      "order_index": 89,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "O. J. Rosten, 'Fundamentals of the Exact Renormalization Group,' arXiv:1003.1366 [hepth].",
+      "heading_level": null,
+      "markdown": "O. J. Rosten, 'Fundamentals of the Exact Renormalization Group,' arXiv:1003.1366 [hepth].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.84050000000019,
+          472.71369999999973,
+          539.5773354302979,
+          500.64065519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5db1f0c7-8018-5f13-82fb-674fff515c9a",
+      "source_block_id": "docling-ListItem-90",
+      "order_index": 90,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "I. R. Klebanov and E. Witten, 'AdS/CFT correspondence and symmetry breaking,' Nucl. Phys. B 556 , 89 (1999) [arXiv:hep-th/9905104].",
+      "heading_level": null,
+      "markdown": "I. R. Klebanov and E. Witten, 'AdS/CFT correspondence and symmetry breaking,' Nucl. Phys. B 556 , 89 (1999) [arXiv:hep-th/9905104].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.84050000000019,
+          514.4734999999997,
+          539.640311560397,
+          542.4008551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9fdf708e-b6c4-5d42-b42a-705239e27aa1",
+      "source_block_id": "docling-ListItem-91",
+      "order_index": 91,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "W. Mueck and K. S. Viswanathan, 'Regular and irregular boundary conditions in the AdS/CFT correspondence,' Phys. Rev. D 60 , 081901 (1999) [arXiv:hep-th/9906155].",
+      "heading_level": null,
+      "markdown": "W. Mueck and K. S. Viswanathan, 'Regular and irregular boundary conditions in the AdS/CFT correspondence,' Phys. Rev. D 60 , 081901 (1999) [arXiv:hep-th/9906155].",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.84060000000018,
+          556.2336999999998,
+          539.6802567385091,
+          584.0406551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "12132cd5-eb15-5442-867b-c90975204053",
+      "source_block_id": "docling-ListItem-92",
+      "order_index": 92,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "E. Witten, 'Multi-trace operators, boundary conditions, and AdS/CFT correspondence,' arXiv:hep-th/0112258.",
+      "heading_level": null,
+      "markdown": "E. Witten, 'Multi-trace operators, boundary conditions, and AdS/CFT correspondence,' arXiv:hep-th/0112258.",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.841400000000135,
+          597.9937999999997,
+          539.4875094406658,
+          625.8007551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4d9c5e29-074d-5d52-83c7-3ea5a4441a95",
+      "source_block_id": "docling-ListItem-93",
+      "order_index": 93,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "E. Witten, 'SL(2,Z) action on three-dimensional conformal field theories with Abelian symmetry,' arXiv:hep-th/0307041.",
+      "heading_level": null,
+      "markdown": "E. Witten, 'SL(2,Z) action on three-dimensional conformal field theories with Abelian symmetry,' arXiv:hep-th/0307041.",
+      "anchor": {
+        "page_number": 11,
+        "bbox": [
+          57.841400000000135,
+          639.7534999999997,
+          539.6528235517442,
+          667.5604551999998
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "002696e1-6176-52bc-8103-577991b95fbb",
+      "source_block_id": "docling-ListItem-94",
+      "order_index": 94,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "T. Faulkner, H. Liu, M. Rangamani, 'Integrating out geometry: Holographic Wilsonian RG and the membrane paradigm,' [arXiv:1010.4036 [hep-th]].",
+      "heading_level": null,
+      "markdown": "T. Faulkner, H. Liu, M. Rangamani, 'Integrating out geometry: Holographic Wilsonian RG and the membrane paradigm,' [arXiv:1010.4036 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.8398,
+          69.27359999999999,
+          539.6508538144769,
+          97.20095519999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6f8744b2-36f4-5985-84fe-e434169cfde5",
+      "source_block_id": "docling-ListItem-95",
+      "order_index": 95,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "O. Aharony, D. Marolf and M. Rangamani, 'Conformal field theories in anti-de Sitter space,' JHEP 1102 , 041 (2011) [arXiv:1011.6144 [hep-th]].",
+      "heading_level": null,
+      "markdown": "O. Aharony, D. Marolf and M. Rangamani, 'Conformal field theories in anti-de Sitter space,' JHEP 1102 , 041 (2011) [arXiv:1011.6144 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.839800000000025,
+          111.03379999999993,
+          539.6224197227519,
+          138.9611551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dcb78657-170d-5ec6-aea2-cb0a1b97c5bb",
+      "source_block_id": "docling-ListItem-96",
+      "order_index": 96,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D. Marolf and S. F. Ross, 'Boundary conditions and new dualities: Vector fields in AdS/CFT,' JHEP 0611 , 085 (2006) [arXiv:hep-th/0606113].",
+      "heading_level": null,
+      "markdown": "D. Marolf and S. F. Ross, 'Boundary conditions and new dualities: Vector fields in AdS/CFT,' JHEP 0611 , 085 (2006) [arXiv:hep-th/0606113].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.83990000000003,
+          152.79399999999987,
+          539.6514688347647,
+          180.72095519999982
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f19a2565-5029-5bce-8cfb-b7e3f51e95bf",
+      "source_block_id": "docling-ListItem-97",
+      "order_index": 97,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. de Boer, V. E. Hubeny, M. Rangamani et al. , 'Brownian motion in AdS/CFT,' JHEP 0907 , 094 (2009). [arXiv:0812.5112 [hep-th]].",
+      "heading_level": null,
+      "markdown": "J. de Boer, V. E. Hubeny, M. Rangamani et al. , 'Brownian motion in AdS/CFT,' JHEP 0907 , 094 (2009). [arXiv:0812.5112 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84019999999998,
+          194.5537999999998,
+          539.6818897532161,
+          222.36075519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "339e5b07-aa98-52aa-a100-b41d01a41ee2",
+      "source_block_id": "docling-ListItem-98",
+      "order_index": 98,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D. T. Son, D. Teaney, 'Thermal Noise and Stochastic Strings in AdS/CFT,' JHEP 0907 , 021 (2009). [arXiv:0901.2338 [hep-th]].",
+      "heading_level": null,
+      "markdown": "D. T. Son, D. Teaney, 'Thermal Noise and Stochastic Strings in AdS/CFT,' JHEP 0907 , 021 (2009). [arXiv:0901.2338 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84000000000003,
+          236.31389999999976,
+          539.6400592,
+          264.1208551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ea97b30e-5b98-5643-bfb2-27f11a924bae",
+      "source_block_id": "docling-ListItem-99",
+      "order_index": 99,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. Polchinski, 'Renormalization And Effective Lagrangians,' Nucl. Phys. B 231 , 269 (1984).",
+      "heading_level": null,
+      "markdown": "J. Polchinski, 'Renormalization And Effective Lagrangians,' Nucl. Phys. B 231 , 269 (1984).",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84020000000004,
+          278.0735999999997,
+          539.7262282073599,
+          305.88095519999973
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ec4e873-0ee8-56c4-b331-0ed3fd6e9112",
+      "source_block_id": "docling-ListItem-100",
+      "order_index": 100,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "G. Lifschytz, S. D. Mathur and M. Ortiz, 'A Note on the semiclassical approximation in quantum gravity,' Phys. Rev. D 53 , 766 (1996) [arXiv:gr-qc/9412040].",
+      "heading_level": null,
+      "markdown": "G. Lifschytz, S. D. Mathur and M. Ortiz, 'A Note on the semiclassical approximation in quantum gravity,' Phys. Rev. D 53 , 766 (1996) [arXiv:gr-qc/9412040].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.8404000000001,
+          319.8336999999997,
+          539.650221241293,
+          347.64065519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ce85c3bb-7bee-54a4-8497-019358888762",
+      "source_block_id": "docling-ListItem-101",
+      "order_index": 101,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "T. Nishioka, 'Horava-Lifshitz Holography,' Class. Quant. Grav. 26 , 242001 (2009) [arXiv:0905.0473 [hep-th]].",
+      "heading_level": null,
+      "markdown": "T. Nishioka, 'Horava-Lifshitz Holography,' Class. Quant. Grav. 26 , 242001 (2009) [arXiv:0905.0473 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.840200000000095,
+          361.5933999999997,
+          539.862717312,
+          389.4007551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8b33420f-a602-5337-999e-3862241a51bc",
+      "source_block_id": "docling-ListItem-102",
+      "order_index": 102,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D. Orlando and S. Reffert, 'On the Renormalizability of Horava-Lifshitz-type Gravities,' Class. Quant. Grav. 26 , 155021 (2009) [arXiv:0905.0301 [hep-th]].",
+      "heading_level": null,
+      "markdown": "D. Orlando and S. Reffert, 'On the Renormalizability of Horava-Lifshitz-type Gravities,' Class. Quant. Grav. 26 , 155021 (2009) [arXiv:0905.0301 [hep-th]].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84100000000012,
+          403.2335999999997,
+          539.606748356352,
+          431.1609551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d11b7a4b-8611-5d37-b93b-e35d98276959",
+      "source_block_id": "docling-ListItem-103",
+      "order_index": 103,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "L. G. Yaffe, 'Large N Limits As Classical Mechanics,' Rev. Mod. Phys. 54 , 407 (1982).",
+      "heading_level": null,
+      "markdown": "L. G. Yaffe, 'Large N Limits As Classical Mechanics,' Rev. Mod. Phys. 54 , 407 (1982).",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84080000000009,
+          444.9937999999997,
+          532.4394240245759,
+          456.9609551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b1a7f18e-6f75-5eb0-8719-f1507e73a51f",
+      "source_block_id": "docling-ListItem-104",
+      "order_index": 104,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. L. F. Barbon, 'Multitrace AdS/CFT and master field dynamics,' Phys. Lett. B 543 , 283 (2002) [arXiv:hep-th/0206207].",
+      "heading_level": null,
+      "markdown": "J. L. F. Barbon, 'Multitrace AdS/CFT and master field dynamics,' Phys. Lett. B 543 , 283 (2002) [arXiv:hep-th/0206207].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.84060000000011,
+          470.91369999999966,
+          539.6407592,
+          498.7206551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c169d9e4-5d57-5e45-9fd2-805e255dddc2",
+      "source_block_id": "docling-ListItem-105",
+      "order_index": 105,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Y. Makeenko, 'Large-N gauge theories,' arXiv:hep-th/0001047.",
+      "heading_level": null,
+      "markdown": "Y. Makeenko, 'Large-N gauge theories,' arXiv:hep-th/0001047.",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.839900000000114,
+          512.6733999999997,
+          408.23964964684814,
+          524.6405551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f0a3b1e2-76a7-5b67-a015-09744b91cb77",
+      "source_block_id": "docling-ListItem-106",
+      "order_index": 106,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. C. Gaite, 'Stochastic formulation of the renormalization group: Supersymmetric structure and topology of the space of couplings,' J. Phys. A 37 , 10409 (2004) [arXiv:hep-th/0404212].",
+      "heading_level": null,
+      "markdown": "J. C. Gaite, 'Stochastic formulation of the renormalization group: Supersymmetric structure and topology of the space of couplings,' J. Phys. A 37 , 10409 (2004) [arXiv:hep-th/0404212].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.839900000000114,
+          538.4733999999997,
+          539.8616408727039,
+          582.2405551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "91c32655-622d-5c24-acf4-da007163026a",
+      "source_block_id": "docling-ListItem-107",
+      "order_index": 107,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Some implications of renormalization group theoretical ideas to statistics Physica D: Nonlinear Phenomena, Volume 205, Issue 1-4, June 2005, Pages 207-214 Rajaram, S.; Taguchi, Y.h.; Oono, Y.",
+      "heading_level": null,
+      "markdown": "Some implications of renormalization group theoretical ideas to statistics Physica D: Nonlinear Phenomena, Volume 205, Issue 1-4, June 2005, Pages 207-214 Rajaram, S.; Taguchi, Y.h.; Oono, Y.",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.83970000000011,
+          596.0733999999998,
+          539.6966318594049,
+          639.8405551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42c21b69-b1bb-58f3-b793-da48109fcdb3",
+      "source_block_id": "docling-ListItem-108",
+      "order_index": 108,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "S. Hirano, 'Exact renormalization group and loop equation,' Phys. Rev. D 61 , 125011 (2000) [arXiv:hep-th/9910256].",
+      "heading_level": null,
+      "markdown": "S. Hirano, 'Exact renormalization group and loop equation,' Phys. Rev. D 61 , 125011 (2000) [arXiv:hep-th/9910256].",
+      "anchor": {
+        "page_number": 12,
+        "bbox": [
+          57.83970000000011,
+          653.7932999999997,
+          539.8455674076158,
+          681.6006551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "da788ce8-7ab7-5d29-8db6-713df56e56ae",
+      "source_block_id": "docling-ListItem-109",
+      "order_index": 109,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "G. Lifschytz and V. Periwal, 'Schwinger-Dyson = Wheeler-DeWitt: Gauge theory observables as bulk operators,' JHEP 0004 , 026 (2000) [arXiv:hep-th/0003179].",
+      "heading_level": null,
+      "markdown": "G. Lifschytz and V. Periwal, 'Schwinger-Dyson = Wheeler-DeWitt: Gauge theory observables as bulk operators,' JHEP 0004 , 026 (2000) [arXiv:hep-th/0003179].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.8398,
+          69.27359999999999,
+          539.5771346923009,
+          97.20095519999995
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7faad23e-8012-5d24-ae43-a51d49114826",
+      "source_block_id": "docling-ListItem-110",
+      "order_index": 110,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "T. Jacobson, 'Thermodynamics of space-time: The Einstein equation of state,' Phys. Rev. Lett. 75 , 1260 (1995) [arXiv:gr-qc/9504004].",
+      "heading_level": null,
+      "markdown": "T. Jacobson, 'Thermodynamics of space-time: The Einstein equation of state,' Phys. Rev. Lett. 75 , 1260 (1995) [arXiv:gr-qc/9504004].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83989999999997,
+          111.03379999999993,
+          539.6397432436225,
+          138.9611551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "abcb55b7-0215-5aaf-a3d5-c9a428ce1e9a",
+      "source_block_id": "docling-ListItem-111",
+      "order_index": 111,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "E. P. Verlinde, 'On the Origin of Gravity and the Laws of Newton,' arXiv:1001.0785 [hep-th].",
+      "heading_level": null,
+      "markdown": "E. P. Verlinde, 'On the Origin of Gravity and the Laws of Newton,' arXiv:1001.0785 [hep-th].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83989999999994,
+          152.79399999999987,
+          539.8456056522236,
+          180.72095519999982
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ec10623f-ff7a-5ed1-9ddf-d7947fa9f4e2",
+      "source_block_id": "docling-ListItem-112",
+      "order_index": 112,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "S. J. Sin and Y. Zhou, 'Holographic Wilsonian RG Flow and Sliding Membrane Paradigm,' JHEP 05 , 030 (2011) doi:10.1007/JHEP05(2011)030 [arXiv:1102.4477 [hep-th]].",
+      "heading_level": null,
+      "markdown": "S. J. Sin and Y. Zhou, 'Holographic Wilsonian RG Flow and Sliding Membrane Paradigm,' JHEP 05 , 030 (2011) doi:10.1007/JHEP05(2011)030 [arXiv:1102.4477 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83989999999994,
+          194.5537999999998,
+          539.6068513036798,
+          222.36075519999974
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d9960ec9-3384-59af-aaa3-2f5ead3db433",
+      "source_block_id": "docling-ListItem-113",
+      "order_index": 113,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "V. Balasubramanian, M. Guica and A. Lawrence, 'Holographic Interpretations of the Renormalization Group,' JHEP 01 , 115 (2013) doi:10.1007/JHEP01(2013)115 [arXiv:1211.1729 [hep-th]].",
+      "heading_level": null,
+      "markdown": "V. Balasubramanian, M. Guica and A. Lawrence, 'Holographic Interpretations of the Renormalization Group,' JHEP 01 , 115 (2013) doi:10.1007/JHEP01(2013)115 [arXiv:1211.1729 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83979999999991,
+          236.31389999999976,
+          539.9659743911423,
+          280.08105519999975
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "44cca3dd-e9cd-54bb-8556-46dbad1a781f",
+      "source_block_id": "docling-ListItem-114",
+      "order_index": 114,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "R. G. Leigh, O. Parrikar and A. B. Weiss, 'Exact renormalization group and higherspin holography,' Phys. Rev. D 91 , no.2, 026002 (2015) doi:10.1103/PhysRevD.91.026002 [arXiv:1407.4574 [hep-th]].",
+      "heading_level": null,
+      "markdown": "R. G. Leigh, O. Parrikar and A. B. Weiss, 'Exact renormalization group and higherspin holography,' Phys. Rev. D 91 , no.2, 026002 (2015) doi:10.1103/PhysRevD.91.026002 [arXiv:1407.4574 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.839599999999905,
+          293.9138999999997,
+          539.8453362195967,
+          337.6810551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7133167b-7459-5cd3-9bb5-8dc3f67f78fb",
+      "source_block_id": "docling-ListItem-115",
+      "order_index": 115,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "B. Sathiapalan and H. Sonoda, 'A Holographic form for Wilson's RG,' Nucl. Phys. B 924 , 603-642 (2017) doi:10.1016/j.nuclphysb.2017.09.018 [arXiv:1706.03371 [hep-th]].",
+      "heading_level": null,
+      "markdown": "B. Sathiapalan and H. Sonoda, 'A Holographic form for Wilson's RG,' Nucl. Phys. B 924 , 603-642 (2017) doi:10.1016/j.nuclphysb.2017.09.018 [arXiv:1706.03371 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83939999999993,
+          351.63379999999967,
+          539.6395591999999,
+          379.4407551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c235e007-159f-5c44-b92e-0bbd34eba8b4",
+      "source_block_id": "docling-ListItem-116",
+      "order_index": 116,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "B. Sathiapalan and H. Sonoda, 'Holographic Wilson's RG,' Nucl. Phys. B 948 , 114767 (2019) doi:10.1016/j.nuclphysb.2019.114767 [arXiv:1902.02486 [hep-th]].",
+      "heading_level": null,
+      "markdown": "B. Sathiapalan and H. Sonoda, 'Holographic Wilson's RG,' Nucl. Phys. B 948 , 114767 (2019) doi:10.1016/j.nuclphysb.2019.114767 [arXiv:1902.02486 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83869999999996,
+          393.2735999999997,
+          539.8444170076157,
+          421.2009551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "050a162b-3c9a-5735-bf3f-e3ea257483a7",
+      "source_block_id": "docling-ListItem-117",
+      "order_index": 117,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "B. Sathiapalan, 'Holographic RG and Exact RG in O(N) Model,' Nucl. Phys. B 959 , 115142 (2020) doi:10.1016/j.nuclphysb.2020.115142 [arXiv:2005.10412 [hep-th]].",
+      "heading_level": null,
+      "markdown": "B. Sathiapalan, 'Holographic RG and Exact RG in O(N) Model,' Nucl. Phys. B 959 , 115142 (2020) doi:10.1016/j.nuclphysb.2020.115142 [arXiv:2005.10412 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83859999999993,
+          435.0337999999997,
+          539.6383592,
+          462.9611551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9e98dc27-863b-5524-9d23-cc315be935c7",
+      "source_block_id": "docling-ListItem-118",
+      "order_index": 118,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Bulk gauge fields and holographic RG from exact RG,' JHEP 23 , 174 (2020) doi:10.1007/JHEP02(2023)174 [arXiv:2201.06240 [hep-th]].",
+      "heading_level": null,
+      "markdown": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Bulk gauge fields and holographic RG from exact RG,' JHEP 23 , 174 (2020) doi:10.1007/JHEP02(2023)174 [arXiv:2201.06240 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83850000000001,
+          476.7939999999997,
+          539.8440801979906,
+          520.5607551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4cc41db8-1732-5584-a9a2-9b046df83cf8",
+      "source_block_id": "docling-ListItem-119",
+      "order_index": 119,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Aspects of the map from exact RG to holographic RG in AdS and dS,' Mod. Phys. Lett. A 37 , no.37n38, 2250235 (2022) doi:10.1142/S0217732322502352 [arXiv:2301.13605 [hep-th]].",
+      "heading_level": null,
+      "markdown": "P. Dharanipragada, S. Dutta and B. Sathiapalan, 'Aspects of the map from exact RG to holographic RG in AdS and dS,' Mod. Phys. Lett. A 37 , no.37n38, 2250235 (2022) doi:10.1142/S0217732322502352 [arXiv:2301.13605 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.838300000000004,
+          534.3939999999998,
+          539.861739546624,
+          578.1607551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "31a7a9aa-fd73-52e5-a4e3-d5946d719998",
+      "source_block_id": "docling-ListItem-120",
+      "order_index": 120,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P. Dharanipragada and B. Sathiapalan, 'Holographic RG from ERG: Locality and General Coordinate Invariance in the Bulk,' [arXiv:2306.07442 [hep-th]].",
+      "heading_level": null,
+      "markdown": "P. Dharanipragada and B. Sathiapalan, 'Holographic RG from ERG: Locality and General Coordinate Invariance in the Bulk,' [arXiv:2306.07442 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83909999999997,
+          592.1138999999997,
+          539.6386627424766,
+          619.9208551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3c8016c7-832a-5b65-a84c-8586ac5a905b",
+      "source_block_id": "docling-ListItem-121",
+      "order_index": 121,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D. S. Mansi, A. Mauri and A. C. Petkou, 'Stochastic Quantization and AdS/CFT,' Phys. Lett. B 685 , 215-221 (2010) doi:10.1016/j.physletb.2010.01.033 [arXiv:0912.2105 [hep-th]].",
+      "heading_level": null,
+      "markdown": "D. S. Mansi, A. Mauri and A. C. Petkou, 'Stochastic Quantization and AdS/CFT,' Phys. Lett. B 685 , 215-221 (2010) doi:10.1016/j.physletb.2010.01.033 [arXiv:0912.2105 [hep-th]].",
+      "anchor": {
+        "page_number": 13,
+        "bbox": [
+          57.83909999999997,
+          633.8735999999997,
+          539.638795051878,
+          661.6809551999997
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "92f3c380-b7d7-593e-852e-959015ab6881",
+      "source_block_id": "docling-ListItem-122",
+      "order_index": 122,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. H. Oh and D. P. Jatkar, 'Stochastic quantization and holographic Wilsonian renormalization group,' JHEP 11 , 144 (2012) doi:10.1007/JHEP11(2012)144 [arXiv:1209.2242 [hep-th]].",
+      "heading_level": null,
+      "markdown": "J. H. Oh and D. P. Jatkar, 'Stochastic quantization and holographic Wilsonian renormalization group,' JHEP 11 , 144 (2012) doi:10.1007/JHEP11(2012)144 [arXiv:1209.2242 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.8398,
+          69.27359999999999,
+          539.8453287890945,
+          113.04075519999992
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bf948a7f-15a8-5fa9-8122-964b21c1d491",
+      "source_block_id": "docling-ListItem-123",
+      "order_index": 123,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D. P. Jatkar and J. H. Oh, 'Stochastic quantization of conformally coupled scalar in AdS,' JHEP 10 , 170 (2013) doi:10.1007/JHEP10(2013)170 [arXiv:1305.2008 [hep-th]].",
+      "heading_level": null,
+      "markdown": "D. P. Jatkar and J. H. Oh, 'Stochastic quantization of conformally coupled scalar in AdS,' JHEP 10 , 170 (2013) doi:10.1007/JHEP10(2013)170 [arXiv:1305.2008 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.83960000000002,
+          126.99389999999994,
+          539.6049492002817,
+          154.8008551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0968504-2727-5a6f-b9f7-b69ec03af89b",
+      "source_block_id": "docling-ListItem-124",
+      "order_index": 124,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. H. Oh, 'First-order formalism of holographic Wilsonian renormalization group: Langevin equation,' J. Korean Phys. Soc. 79 , no.10, 903-917 (2021) doi:10.1007/s40042021-00320-x [arXiv:2110.05013 [hep-th]].",
+      "heading_level": null,
+      "markdown": "J. H. Oh, 'First-order formalism of holographic Wilsonian renormalization group: Langevin equation,' J. Korean Phys. Soc. 79 , no.10, 903-917 (2021) doi:10.1007/s40042021-00320-x [arXiv:2110.05013 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.83949999999999,
+          168.7535999999999,
+          539.9361283039746,
+          212.40075519999982
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bf46c220-a5f6-56d6-96f8-411ea7f2a447",
+      "source_block_id": "docling-ListItem-125",
+      "order_index": 125,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "G. Kim, J. s. Chae, W. Shin and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of scalar theory with generic mass, self-interaction and multiple trace deformation,' Int. J. Mod. Phys. A 38 , no.21, 2350114 (2023) doi:10.1142/S0217751X23501142 [arXiv:2305.18920 [hep-th]].",
+      "heading_level": null,
+      "markdown": "G. Kim, J. s. Chae, W. Shin and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of scalar theory with generic mass, self-interaction and multiple trace deformation,' Int. J. Mod. Phys. A 38 , no.21, 2350114 (2023) doi:10.1142/S0217751X23501142 [arXiv:2305.18920 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.83930000000001,
+          226.35349999999983,
+          539.8615035665919,
+          285.96045519999984
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d54630f8-1e6c-5091-bc67-9503373f128d",
+      "source_block_id": "docling-ListItem-126",
+      "order_index": 126,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "J. H. Lee and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of conformally coupled scalar in AdS 4 ,' J. Korean Phys. Soc. 83 , no.9, 665-674 (2023) doi:10.1007/s40042-023-00926-3 [arXiv:2308.10010 [hep-th]].",
+      "heading_level": null,
+      "markdown": "J. H. Lee and J. H. Oh, 'Stochastic quantization and holographic Wilsonian renormalization group of conformally coupled scalar in AdS 4 ,' J. Korean Phys. Soc. 83 , no.9, 665-674 (2023) doi:10.1007/s40042-023-00926-3 [arXiv:2308.10010 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.83909999999997,
+          299.9135999999998,
+          539.8444771358717,
+          343.5603551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "66b743ce-6144-5bb4-9557-9fb9849891aa",
+      "source_block_id": "docling-ListItem-127",
+      "order_index": 127,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Y. Hatta and T. Kunihiro, 'Renormalization group method applied to kinetic equations: Roles of initial values and time,' Annals Phys. 298 , 24-57 (2002) doi:10.1006/aphy.2002.6234 [arXiv:hep-th/0108159 [hep-th]].",
+      "heading_level": null,
+      "markdown": "Y. Hatta and T. Kunihiro, 'Renormalization group method applied to kinetic equations: Roles of initial values and time,' Annals Phys. 298 , 24-57 (2002) doi:10.1006/aphy.2002.6234 [arXiv:hep-th/0108159 [hep-th]].",
+      "anchor": {
+        "page_number": 14,
+        "bbox": [
+          57.83889999999997,
+          357.51349999999985,
+          539.8620111472637,
+          401.2806551999999
+        ],
+        "page_width": 612.0,
+        "page_height": 792.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling-local",
+        "table_count": 0,
+        "warning_count": 1,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": 0,
+        "formula_incomplete_count": 19,
+        "formula_placeholder_count": 19
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "docling-local: Markdown 中有 19 个公式未解析，已保留占位符。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T04:57:45.241185Z"
+}

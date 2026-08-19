@@ -1,0 +1,152 @@
+\begin{table*}[t!]
+    \centering
+    \footnotesize
+    \begin{tabular}{lcccccccccccc}
+    \toprule 
+     & \multicolumn{12}{c}{Test Accuracy} \\ \cmidrule(lr){2-13}
+     & \multicolumn{6}{c}{w/o 0-CoT} & \multicolumn{6}{c}{w/ 0-CoT} \\
+     \cmidrule(lr){2-7} \cmidrule(lr){8-13} \\
+     & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- \\
+     \midrule
+     \# instances & \multicolumn{12}{c}{120} \\
+    \midrule
+    GPT-4 & 47.5 & 22.5 & 11.7 & 18.3 & 7.5 & 1.7 & 42.5 & 25.8 & 12.5 & 24.2 & 14.2 & 10.0 \\
+    GPT-3.5 & 30.8 & \phantom{0}4.2 & \phantom{0}5.0 & \phantom{0}5.8 & 3.3 & 1.7 & 30.8 & \phantom{0}5.0 & \phantom{0}5.0 & \phantom{0}0.8 & \phantom{0}1.7 & \phantom{0}1.7 \\
+    Claude & \phantom{0}5.0 & \phantom{0}0.8 & \phantom{0}0.8 & \phantom{0}0.8 & 0.8 & 1.7 & 10.0 & \phantom{0}5.8 & \phantom{0}4.2 & \phantom{0}5.8 & \phantom{0}5.0 & \phantom{0}0.8 \\
+    PaLM-2 & \phantom{0}0.8 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & 0.0 & 0.0 & \phantom{0}0.8 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.8 & \phantom{0}0.8 \\
+    \midrule
+     & \multicolumn{12}{c}{CCC} \\ \cmidrule(lr){2-13} & \multicolumn{6}{c}{w/o 0-CoT} & \multicolumn{6}{c}{w/ 0-CoT} \\
+     \cmidrule(lr){2-7} \cmidrule(lr){8-13} \\
+     & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- \\
+     \midrule
+     \# instances & \multicolumn{12}{c}{18} \\
+    \midrule
+    GPT-4 & 100.0 & 100.0 & 94.4 & 94.4 & 100.0 & 83.3 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\
+    GPT-3.5 & \phantom{0}50.0 & \phantom{0}27.8 & 11.1 & 44.4 & \phantom{0}50.0 & 61.1 & \phantom{0}94.4 & \phantom{0}66.7 & \phantom{0}88.9 & \phantom{0}88.9 & \phantom{0}94.4 & \phantom{0}77.8 \\
+    Claude & \phantom{0}77.8 & \phantom{0}38.9 & 55.6 & 55.6 & \phantom{0}50.0 & 50.0 & 100.0 & \phantom{0}38.9 & \phantom{0}55.6 & \phantom{0}55.6 & \phantom{0}50.0 & \phantom{0}50.0 \\
+    PaLM-2 & \phantom{0}33.3 & \phantom{0}33.3 & 33.3 & 38.9 & \phantom{0}50.0 & 38.9 & \phantom{0}33.3 & \phantom{0}33.3 & \phantom{0}50.0 & \phantom{0}38.9 & \phantom{0}38.9 & \phantom{0}38.9 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Results for the chord fingering task (in accuracy; \%): guitar. Default corresponds to EADGBE. Counterfactuals show the first three strings (the remaining three strings, GBE, are the same).
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \footnotesize
+    \begin{tabular}{lcccccccccccc}
+    \toprule 
+     & \multicolumn{12}{c}{Test Accuracy} \\ \cmidrule(lr){2-13}
+     & \multicolumn{6}{c}{w/o 0-CoT} & \multicolumn{6}{c}{w/ 0-CoT} \\
+     \cmidrule(lr){2-7} \cmidrule(lr){8-13} \\
+     & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- & Default & \textbf{D}AD- & \textbf{F}AD- & E\textbf{B}D- & E\textbf{C}D- & E\textbf{CF}- \\
+     \midrule
+     \# instances & \multicolumn{12}{c}{12} \\
+    \midrule
+    maj triad & 66.7 & 50.0 & 33.3 & 41.7 & \phantom{0}8.3 & \phantom{0}0.0 & 58.3 & 41.7 & \phantom{0}8.3 & 41.7 & \phantom{0}8.3 & \phantom{0}0.0 \\
+    min triad & 58.3 & 33.3 & 25.0 & 41.7 & 25.0 & \phantom{0}0.0 & 58.3 & 25.0 & 16.7 & 25.0 & 16.7 & \phantom{0}8.3 \\
+    5 & 83.3 & 41.7 & 33.3 & 16.7 & \phantom{0}0.0 & \phantom{0}0.0 & 75.0 & 50.0 & 25.0 & 33.3 & 33.3 & 50.0 \\
+    dom7 & 25.0 & 25.0 & 16.7 & \phantom{0}8.3 & 25.0 & \phantom{0}0.0 & 33.3 & 16.7 & \phantom{0}8.3 & 25.0 & 16.7 & \phantom{0}0.0 \\
+    6 & 25.0 & 16.7 & \phantom{0}0.0 & 16.7 & \phantom{0}0.0 & \phantom{0}0.0 & 33.3 & 25.0 & \phantom{0}8.3 & 16.7 & \phantom{0}8.3 & \phantom{0}8.3 \\
+    sus4 & 50.0 & 33.3 & \phantom{0}0.0 & 33.3 & \phantom{0}0.0 & \phantom{0}0.0 & 58.3 & 33.3 & 16.7 & 33.3 & 25.0 & 25.0 \\
+    dim7 & 25.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}8.3 & 16.7 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}8.3 & 16.7 & \phantom{0}0.0 & \phantom{0}0.0 \\
+    aug7 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}0.0 & \phantom{0}8.3 & \phantom{0}0.0 & \phantom{0}0.0 & 16.7 & 16.7 & \phantom{0}0.0 \\
+    sus2 & 58.3 & \phantom{0}0.0 & \phantom{0}8.3 & 16.7 & \phantom{0}0.0 & \phantom{0}0.0 & 58.3 & 50.0 & 16.7 & 25.0 & 16.7 & \phantom{0}8.3 \\
+    min7 & 83.3 & 25.0 & \phantom{0}0.0 & \phantom{0}8.3 & \phantom{0}8.3 & \phantom{0}0.0 & 41.7 & 16.7 & 16.7 & \phantom{0}8.3 & \phantom{0}0.0 & \phantom{0}0.0 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Results broken down by chords for the chord fingering task as analyzed in \S\ref{sec:analysis} (in accuracy; \%): guitar, GPT-4. Default corresponds to EADGBE. Counterfactuals show the first three strings (the remaining three strings, GBE, are the same).
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \footnotesize
+    \begin{tabular}{lcccccccccc}
+    \toprule 
+     & \multicolumn{10}{c}{Test Accuracy} \\ \cmidrule(lr){2-11}
+     & \multicolumn{5}{c}{w/o 0-CoT} & \multicolumn{5}{c}{w/ 0-CoT} \\
+     \cmidrule(lr){2-6} \cmidrule(lr){7-11} \\
+     & Default & \textbf{F}C- & \textbf{A}C- & \textbf{B}C- & \textbf{BE}-& Default & \textbf{F}C- & \textbf{A}C- & \textbf{B}C- & \textbf{BE}- \\
+     \midrule
+     \# instances & \multicolumn{10}{c}{108} \\
+    \midrule
+    GPT-4 & 39.8 & 1.9 & 1.9 & 2.8 & 0.9 & 20.4 & 2.8 & 16.7 & 11.1 & 10.2\\
+    GPT-3.5 & 14.8 & 0.0 & 2.8 & 3.7 & 0.0 & 6.5 & \phantom{0}1.9 & \phantom{0}2.8 & \phantom{0}1.9 & \phantom{0}0.0\\
+    Claude & \phantom{0}0.0 & 1.9 & 0.0 & 0.0 & 0.9 & 6.5 & \phantom{0}0.0 & \phantom{0}2.8 & \phantom{0}1.9 & \phantom{0}2.8\\
+    PaLM-2 & \phantom{0}0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.9 & \phantom{0}0.0 & \phantom{0}1.9 & \phantom{0}0.9 & \phantom{0}0.0\\
+    \midrule
+     & \multicolumn{10}{c}{CCC} \\ \cmidrule(lr){2-11} & \multicolumn{5}{c}{w/o 0-CoT} & \multicolumn{5}{c}{w/ 0-CoT} \\
+     \cmidrule(lr){2-6} \cmidrule(lr){7-11} \\
+      & Default & \textbf{F}C- & \textbf{A}C- & \textbf{B}C- & \textbf{BE}-& Default & \textbf{F}C- & \textbf{A}C- & \textbf{B}C- & \textbf{BE}- \\
+     \midrule
+     \# instances & \multicolumn{10}{c}{12} \\
+    \midrule
+    GPT-4 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 & 100.0\\
+    GPT-3.5 & \phantom{0}33.3 & \phantom{0}41.7 & \phantom{0}91.7 & \phantom{0}41.7 & 100.0 & \phantom{0}91.7 & \phantom{0}83.3 & 100.0 & \phantom{0}75.0 & \phantom{0}75.0 \\
+    Claude & \phantom{0}58.3 & \phantom{0}50.0 & \phantom{0}50.0 & \phantom{0}41.7 & \phantom{0}33.3 & 100.0 & 100.0 & \phantom{0}75.0 & \phantom{0}66.7 & \phantom{0}50.0\\
+    PaLM-2 & \phantom{0}41.7 & \phantom{0}41.7 & \phantom{0}41.7 & \phantom{0}50.0 & \phantom{0}33.3 & \phantom{0}41.7 & \phantom{0}50.0 & \phantom{0}41.7 & \phantom{0}58.3 & \phantom{0}33.3\\
+    \bottomrule
+    \end{tabular}
+    \caption{Results for the chord fingering task (in accuracy; \%): ukulele. Default corresponds to GCEA. Counterfactuals show the first two strings (the remaining two strings, EA, are the same).
+    }
+\end{table*}
+
+
+
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{Tests} & \multicolumn{4}{c}{CCC} \\
+        \cmidrule(lr){2-5}
+        \cmidrule(lr){6-9}
+        & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        \cmidrule(lr){6-7}
+        \cmidrule(lr){8-9} 
+        & Default & CF & Default & CF & Default & CF & Default & CF \\
+        \midrule
+        \# instances & 56 & 1120 & 56 & 1120 & 7 & 140 & 7 & 140 \\
+        \midrule
+        GPT-4 & 48.2 & 20.4 & 64.3 & 44.9 & 100.0 & 87.1 & 100.0 & 94.3\\
+        GPT-3.5 & 17.9 & 17.4 & 44.6 & 21.8 & 100.0 & 70.0 & 100.0 & 95.7\\
+        Claude & 17.9 & 17.2 & 16.1 & 20.1 & 100.0 & 74.3 & 100.0 & 80.7\\
+        PaLM-2 & 28.6 & 19.5 & 19.6 & 19.3 & 100.0 & 48.6 & 100.0 & 47.1\\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    Results for the melody retrieval task (in accuracy; \%). Default corresponds to C major, and CF corresponds to other keys.}
+\end{table*}
+
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{Tests} & \multicolumn{4}{c}{CCC} \\
+        \cmidrule(lr){2-5}
+        \cmidrule(lr){6-9}
+        & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        \cmidrule(lr){6-7}
+        \cmidrule(lr){8-9} 
+        & Default & CF & Default & CF & Default & CF & Default & CF \\
+        \midrule
+        \# instances & 8 & 160 & 8 & 160 & 1 & 20 & 1 & 20 \\
+        \midrule
+        1 & 87.5 & 63.1 & 87.5 & 70.0 & 100.0 & \phantom{0}95.0 & 100.0 & \phantom{0}95.0\\
+        2 & 87.5 & 10.6 & 62.5 & 46.9 & 100.0 & \phantom{0}95.0 & 100.0 & 100.0\\
+        3 & 12.5 & 11.9 & 62.5 & 51.2 & 100.0 & \phantom{0}80.0 & 100.0 & \phantom{0}90.0\\
+        4 & 25.0 & 21.2 & 62.5 & 42.5 & 100.0 & 100.0 & 100.0 & \phantom{0}85.0\\
+        5 & 50.0 & \phantom{0}3.1 & 37.5 & 35.0 & 100.0 & \phantom{0}95.0 & 100.0 & 100.0\\
+        6 & 37.5 & 5.0 & 75.0 & 38.8 & 100.0 & \phantom{0}75.0 & 100.0 & \phantom{0}95.0\\
+        7 & 37.5 & 27.5 & 62.5 & 30.0 & 100.0 & \phantom{0}70.0 & 100.0 & \phantom{0}95.0\\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    Results broken down by \emph{n} for the melody retrieval task as analyzed in \S\ref{sec:analysis} (in accuracy; \%): GPT-4. Default corresponds to C major, and CF corresponds to other keys.}
+\end{table*}

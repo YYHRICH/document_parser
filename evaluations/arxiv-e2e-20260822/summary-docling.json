@@ -1,0 +1,160 @@
+{
+  "results": [
+    {
+      "document": "2412.06527",
+      "parser": "docling",
+      "accepted": false,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 63,
+      "final_state": "manual_review_required",
+      "final_issues": 63,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 6,
+        "total": 6,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "2402.16100",
+      "parser": "docling",
+      "accepted": true,
+      "changed": true,
+      "changed_block_ids": [
+        "22ea29df-9968-5bad-82d4-d1d3babe08fd",
+        "22f81e20-ed11-5867-94ea-70a7fbfa5bb6",
+        "246cdd3c-5a1d-5fdd-acb1-a50dda2f5b8e",
+        "4d661ef8-24f4-5628-a52b-4ad5051b7145",
+        "69b5a214-f300-5bb7-8cb0-b8336dfe584e",
+        "809f56cd-786f-53e9-a7b1-3e8a3bfc08cd",
+        "b483239b-a3e1-570d-a38d-a1a15a5114c7",
+        "c3090e55-3bba-59a4-aebb-11e7bfe4a76f",
+        "e649006e-055e-5a63-983b-2dae8b106fe4",
+        "fa525b79-430b-58e9-8439-307d67ca9105",
+        "ff721bf6-8967-5e2d-a2b0-5e8c609b908d"
+      ],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 5,
+      "final_state": "manual_review_required",
+      "final_issues": 1,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "2405.09649",
+      "parser": "docling",
+      "accepted": false,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "pass_with_warnings",
+      "baseline_issues": 95,
+      "final_state": "pass_with_warnings",
+      "final_issues": 95,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    },
+    {
+      "document": "2307.02477",
+      "parser": "docling",
+      "accepted": false,
+      "changed": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "baseline_state": "manual_review_required",
+      "baseline_issues": 70,
+      "final_state": "manual_review_required",
+      "final_issues": 70,
+      "parsed_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_marker_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "parsed_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      },
+      "optimized_fact_recall": {
+        "found": 5,
+        "total": 5,
+        "rate": 1.0,
+        "missing": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+[
+  {
+    "chunk_id": "block:73233c01-1915-56b9-99f6-d30aacadd936",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "双栏阅读顺序测试",
+    "citation_ids": [
+      "block:73233c01-1915-56b9-99f6-d30aacadd936"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:d8de680c-7bec-544c-9fce-b6569d53e330",
+    "kind": "paragraph",
+    "order_index": 1,
+    "content": "TRACE-C-DOC-001 | Source: TEX-COLUMNS-20260820-V1",
+    "citation_ids": [
+      "block:d8de680c-7bec-544c-9fce-b6569d53e330"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f",
+    "kind": "heading",
+    "order_index": 2,
+    "content": "1 左栏校验 TRACE-C-LEFT-101",
+    "citation_ids": [
+      "block:9fb22a05-1fee-5d7b-a9d3-1f8e090fdd2f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:80076a25-b12f-5067-908e-bf1ab74c0265",
+    "kind": "paragraph",
+    "order_index": 3,
+    "content": "左栏第一项是 LEFT-CHECK-A1，必须先于左栏第二项出现。",
+    "citation_ids": [
+      "block:80076a25-b12f-5067-908e-bf1ab74c0265"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:65e784d7-a4d3-5de8-98fa-bb2642f59d60",
+    "kind": "paragraph",
+    "order_index": 4,
+    "content": "1. LEFT-CHECK-A1：准备输入。",
+    "citation_ids": [
+      "block:65e784d7-a4d3-5de8-98fa-bb2642f59d60"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:17049a38-eea4-52bd-b6c1-77823801a31e",
+    "kind": "paragraph",
+    "order_index": 5,
+    "content": "2. LEFT-CHECK-A2：确认 threshold 0.25。",
+    "citation_ids": [
+      "block:17049a38-eea4-52bd-b6c1-77823801a31e"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f85a8ad6-b303-58a2-9227-58392f7ff424",
+    "kind": "heading",
+    "order_index": 6,
+    "content": "1.1 左栏公式 TRACE-C-LEFT-111",
+    "citation_ids": [
+      "block:f85a8ad6-b303-58a2-9227-58392f7ff424"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:0f02bd21-b058-5f3b-9bc3-ae4a337c489a",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "左栏约束为 p + q = 1，公式编号为 C-LEFT-EQ-1。",
+    "citation_ids": [
+      "block:0f02bd21-b058-5f3b-9bc3-ae4a337c489a"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:96d96411-b7ef-55e4-ac59-669dd2f4b358",
+    "kind": "heading",
+    "order_index": 8,
+    "content": "2 右栏校验",
+    "citation_ids": [
+      "block:96d96411-b7ef-55e4-ac59-669dd2f4b358"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0",
+    "kind": "heading",
+    "order_index": 9,
+    "content": "TRACE-C-RIGHT-201",
+    "citation_ids": [
+      "block:bc0d66e7-f6e7-5f87-acf7-10c8ec8488e0"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:ec72871c-cb62-54ea-b414-ae08626d71ca",
+    "kind": "paragraph",
+    "order_index": 10,
+    "content": "右栏第一项是 RIGHT-CHECK-B1，必须与左栏内容区分。",
+    "citation_ids": [
+      "block:ec72871c-cb62-54ea-b414-ae08626d71ca"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:66913bfb-69e0-5b09-827b-894082f30105",
+    "kind": "paragraph",
+    "order_index": 11,
+    "content": "1. RIGHT-CHECK-B1：读取第二路输入。",
+    "citation_ids": [
+      "block:66913bfb-69e0-5b09-827b-894082f30105"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f6ddd8e2-df6b-55b3-94a0-10e440ae521e",
+    "kind": "paragraph",
+    "order_index": 12,
+    "content": "2. RIGHT-CHECK-B2：保存 DOI 10.7777/columns.2026。",
+    "citation_ids": [
+      "block:f6ddd8e2-df6b-55b3-94a0-10e440ae521e"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:bd6c91b3-fcd0-5d36-84ed-46ba40341188",
+    "kind": "heading",
+    "order_index": 13,
+    "content": "2.1 右栏结论 TRACE-C-RIGHT-211",
+    "citation_ids": [
+      "block:bd6c91b3-fcd0-5d36-84ed-46ba40341188"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:2304c4bb-7017-5861-a1a1-7da293897b9b",
+    "kind": "paragraph",
+    "order_index": 14,
+    "content": "右栏结论不能被提前插入左栏中间。",
+    "citation_ids": [
+      "block:2304c4bb-7017-5861-a1a1-7da293897b9b"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:5f7568d0-c3ff-54a7-bc0d-d001b34495ca",
+    "kind": "paragraph",
+    "order_index": 15,
+    "content": "TRACE-COLUMNS-HEADER",
+    "citation_ids": [
+      "block:5f7568d0-c3ff-54a7-bc0d-d001b34495ca"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:6673774c-f0f1-5d58-9ad1-1b1d6ea33302",
+    "kind": "paragraph",
+    "order_index": 16,
+    "content": "TEX-COLUMNS-20260820-V1",
+    "citation_ids": [
+      "block:6673774c-f0f1-5d58-9ad1-1b1d6ea33302"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:ba970612-7fef-5b27-8631-956ef3bdc4d6",
+    "kind": "page_number",
+    "order_index": 17,
+    "content": "1",
+    "citation_ids": [
+      "block:ba970612-7fef-5b27-8631-956ef3bdc4d6"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:bce05f28-1184-5a4d-9c9c-a7107e0a090c",
+    "kind": "heading",
+    "order_index": 18,
+    "content": "3 双栏结束 TRACE-C-END-301",
+    "citation_ids": [
+      "block:bce05f28-1184-5a4d-9c9c-a7107e0a090c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:780ef4d3-7196-5e84-9002-9bb8252d9d40",
+    "kind": "paragraph",
+    "order_index": 19,
+    "content": "本页用于检查上一页两栏的结束边界。最终结论仍需保留LEFT-CHECK-A1、LEFT-CHECK-A2、RIGHT-CHECK-B1 和 RIGHT-CHECK-B2。",
+    "citation_ids": [
+      "block:780ef4d3-7196-5e84-9002-9bb8252d9d40"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:9f502c35-bbaf-5a42-b91f-21b1cc8e397f",
+    "kind": "paragraph",
+    "order_index": 20,
+    "content": "TRACE-COLUMNS-HEADER",
+    "citation_ids": [
+      "block:9f502c35-bbaf-5a42-b91f-21b1cc8e397f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:c1c7d1a9-57b7-5400-aa92-6671cab5d65c",
+    "kind": "paragraph",
+    "order_index": 21,
+    "content": "TEX-COLUMNS-20260820-V1",
+    "citation_ids": [
+      "block:c1c7d1a9-57b7-5400-aa92-6671cab5d65c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:593a6c74-b75a-5a08-82a9-999d33bca1f9",
+    "kind": "page_number",
+    "order_index": 22,
+    "content": "2",
+    "citation_ids": [
+      "block:593a6c74-b75a-5a08-82a9-999d33bca1f9"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

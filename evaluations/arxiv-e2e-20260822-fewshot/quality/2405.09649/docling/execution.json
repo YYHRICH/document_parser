@@ -1,0 +1,39 @@
+{
+  "session_id": "arxiv-e2e-20260822:2405.09649:docling",
+  "accepted": false,
+  "final_revision_id": "32bd409e5c8138f596558cc9c1396d1e0882c5da542a84727f120c604e03022a",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "32bd409e5c8138f596558cc9c1396d1e0882c5da542a84727f120c604e03022a",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    },
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "32bd409e5c8138f596558cc9c1396d1e0882c5da542a84727f120c604e03022a",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    }
+  ]
+}

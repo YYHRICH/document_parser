@@ -1,0 +1,213 @@
+[
+  {
+    "chunk_id": "block:dcfe7684-6b43-5232-aa0d-6ac2de20ef2b",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "公式符号保真测试TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+    "citation_ids": [
+      "block:dcfe7684-6b43-5232-aa0d-6ac2de20ef2b"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:4604b4a9-2cf5-5813-841d-1aad777ef9d5",
+    "kind": "heading",
+    "order_index": 1,
+    "content": "1 固定事实 TRACE-F-SEC-101",
+    "citation_ids": [
+      "block:4604b4a9-2cf5-5813-841d-1aad777ef9d5"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:70f9ecf6-049b-5326-b4c0-ab9bea02abaa",
+    "kind": "paragraph",
+    "order_index": 2,
+    "content": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正负号、分数和上下标的保留。",
+    "citation_ids": [
+      "block:70f9ecf6-049b-5326-b4c0-ab9bea02abaa"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:94ead6e7-7cc7-5a70-9129-0b857f40747f",
+    "kind": "heading",
+    "order_index": 3,
+    "content": "1.1 数学表达式 TRACE-F-EQ-111",
+    "citation_ids": [
+      "block:94ead6e7-7cc7-5a70-9129-0b857f40747f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:d53b78d1-0930-5dff-987f-6ff920cf4ad8",
+    "kind": "paragraph",
+    "order_index": 4,
+    "content": "$$\n\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}\n$$",
+    "citation_ids": [
+      "block:d53b78d1-0930-5dff-987f-6ff920cf4ad8"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:45ab2352-5b84-5c93-ab75-c712fa210773",
+    "kind": "paragraph",
+    "order_index": 5,
+    "content": "$$\n\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}\n$$",
+    "citation_ids": [
+      "block:45ab2352-5b84-5c93-ab75-c712fa210773"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:1d52d801-434f-57d4-a517-f6ad378b71e5",
+    "kind": "paragraph",
+    "order_index": 6,
+    "content": "(TRACE-F-EQ-111)",
+    "citation_ids": [
+      "block:1d52d801-434f-57d4-a517-f6ad378b71e5"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:3508a699-68a4-587d-b0aa-4ce987dd8a96",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "约束函数为 $\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}$ ，并且 $n \\in \\mathbb { N }$",
+    "citation_ids": [
+      "block:3508a699-68a4-587d-b0aa-4ce987dd8a96"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f6fa0758-c615-5743-83af-fedcd79bb715",
+    "kind": "table",
+    "order_index": 8,
+    "content": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ±0.05 |",
+    "citation_ids": [
+      "block:f6fa0758-c615-5743-83af-fedcd79bb715",
+      "binding:7d86d23f-e767-5f20-812b-1e582e161612",
+      "binding:b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+      "binding:6b5854a0-3d33-5227-a01e-316b6af2d806",
+      "binding:fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+      "binding:d26719c0-f97f-50a2-a2a7-927eef271e25",
+      "binding:4962477a-d46a-5a3f-bdb7-ada9900f9730"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "table_id": "table-001",
+      "table_binding_ids": [
+        "7d86d23f-e767-5f20-812b-1e582e161612",
+        "b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+        "6b5854a0-3d33-5227-a01e-316b6af2d806",
+        "fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+        "d26719c0-f97f-50a2-a2a7-927eef271e25",
+        "4962477a-d46a-5a3f-bdb7-ada9900f9730"
+      ]
+    }
+  },
+  {
+    "chunk_id": "block:e82fae05-c7be-5f9c-bcdd-248085681209",
+    "kind": "paragraph",
+    "order_index": 9,
+    "content": "TRACE-F-HEADER",
+    "citation_ids": [
+      "block:e82fae05-c7be-5f9c-bcdd-248085681209"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9",
+    "kind": "paragraph",
+    "order_index": 10,
+    "content": "TEX-FORMULA-20260821-V1",
+    "citation_ids": [
+      "block:f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:a74f67d1-a42d-58b2-9ca9-82b7837bea9f",
+    "kind": "page_number",
+    "order_index": 11,
+    "content": "1",
+    "citation_ids": [
+      "block:a74f67d1-a42d-58b2-9ca9-82b7837bea9f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:fefdf69d-f923-5382-8228-b343b01091fe",
+    "kind": "heading",
+    "order_index": 12,
+    "content": "2 跨页结论 TRACE-F-END-201",
+    "citation_ids": [
+      "block:fefdf69d-f923-5382-8228-b343b01091fe"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:8007023a-35ea-5449-a854-bdf486f772e6",
+    "kind": "paragraph",
+    "order_index": 13,
+    "content": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。",
+    "citation_ids": [
+      "block:8007023a-35ea-5449-a854-bdf486f772e6"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:5470043c-0218-5d1e-b257-78dee6dfd310",
+    "kind": "paragraph",
+    "order_index": 14,
+    "content": "TRACE-F-HEADER",
+    "citation_ids": [
+      "block:5470043c-0218-5d1e-b257-78dee6dfd310"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:4a4f93ab-8b55-510a-b88a-55ea8eb387aa",
+    "kind": "paragraph",
+    "order_index": 15,
+    "content": "TEX-FORMULA-20260821-V1",
+    "citation_ids": [
+      "block:4a4f93ab-8b55-510a-b88a-55ea8eb387aa"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:2c4db971-3a03-52a4-ae74-59da6c79caee",
+    "kind": "page_number",
+    "order_index": 16,
+    "content": "2",
+    "citation_ids": [
+      "block:2c4db971-3a03-52a4-ae74-59da6c79caee"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

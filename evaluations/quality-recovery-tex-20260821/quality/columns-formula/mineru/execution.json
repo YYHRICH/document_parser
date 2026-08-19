@@ -1,0 +1,21 @@
+{
+  "session_id": "quality-recovery-tex-20260821:columns-formula:mineru",
+  "accepted": true,
+  "final_revision_id": "3c9e829f03d70db0de75153a38719c123a7ddd5f11b5ecd2a488c04db0144a31",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "3c9e829f03d70db0de75153a38719c123a7ddd5f11b5ecd2a488c04db0144a31",
+      "source_content_fingerprint": "sem-v2:a1405fbb8645b428edf833e5cc37cc9ba4849c425fd57c649c88cade19737ea7",
+      "candidate_content_fingerprint": "sem-v2:a1405fbb8645b428edf833e5cc37cc9ba4849c425fd57c649c88cade19737ea7"
+    }
+  ]
+}

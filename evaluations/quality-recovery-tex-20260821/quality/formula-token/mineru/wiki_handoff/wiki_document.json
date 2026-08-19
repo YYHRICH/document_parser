@@ -1,0 +1,809 @@
+{
+  "schema_name": "WikiHandoff",
+  "schema_version": "1.0",
+  "document_id": "7da7878c-1aa3-4b53-a17c-a8b4c0d3937b",
+  "quality_state": "manual_review_required",
+  "optimized_markdown": "# 公式符号保真测试TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1\n\n## 1 固定事实 TRACE-F-SEC-101\n\n记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正负号、分数和上下标的保留。\n\n## 1.1 数学表达式 TRACE-F-EQ-111\n\n$$\n\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}\n$$\n\n$$\n\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}\n$$\n\n(TRACE-F-EQ-111)\n\n约束函数为 $\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}$ ，并且 $n \\in \\mathbb { N }$\n\n表 1: 符号核对表 TRACE-F-TABLE-121\n<table><tr><td>标记</td><td>条件</td><td>值</td></tr><tr><td>FORMULA-42</td><td>score ≤ 0.875</td><td>EUR 4,321.09</td></tr><tr><td>TRACE-F-TABLE-121</td><td>delta ≥ 0.125</td><td>±0.05</td></tr></table>\n\n## 2 跨页结论 TRACE-F-END-201\n\n结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。",
+  "chunks": [
+    {
+      "chunk_id": "block:dcfe7684-6b43-5232-aa0d-6ac2de20ef2b",
+      "kind": "heading",
+      "order_index": 0,
+      "content": "公式符号保真测试TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+      "citation_ids": [
+        "block:dcfe7684-6b43-5232-aa0d-6ac2de20ef2b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:4604b4a9-2cf5-5813-841d-1aad777ef9d5",
+      "kind": "heading",
+      "order_index": 1,
+      "content": "1 固定事实 TRACE-F-SEC-101",
+      "citation_ids": [
+        "block:4604b4a9-2cf5-5813-841d-1aad777ef9d5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:70f9ecf6-049b-5326-b4c0-ab9bea02abaa",
+      "kind": "paragraph",
+      "order_index": 2,
+      "content": "记录编号为 FORMULA-42，日期为 2026-08-21，预算为 EUR 4,321.09。本页测试比较符号、正负号、分数和上下标的保留。",
+      "citation_ids": [
+        "block:70f9ecf6-049b-5326-b4c0-ab9bea02abaa"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:94ead6e7-7cc7-5a70-9129-0b857f40747f",
+      "kind": "heading",
+      "order_index": 3,
+      "content": "1.1 数学表达式 TRACE-F-EQ-111",
+      "citation_ids": [
+        "block:94ead6e7-7cc7-5a70-9129-0b857f40747f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:d53b78d1-0930-5dff-987f-6ff920cf4ad8",
+      "kind": "paragraph",
+      "order_index": 4,
+      "content": "$$\n\\begin{array} { c } { { s c o r e \\leq 0 . 8 7 5 , } } \\\\ { { } } \\\\ { { x \\neq y , } } \\end{array}\n$$",
+      "citation_ids": [
+        "block:d53b78d1-0930-5dff-987f-6ff920cf4ad8"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:45ab2352-5b84-5c93-ab75-c712fa210773",
+      "kind": "paragraph",
+      "order_index": 5,
+      "content": "$$\n\\begin{array} { r } { d e l t a \\geq 0 . 1 2 5 , } \\\\ { z = \\pm 0 . 0 5 } \\end{array}\\tag{1}\n$$",
+      "citation_ids": [
+        "block:45ab2352-5b84-5c93-ab75-c712fa210773"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:1d52d801-434f-57d4-a517-f6ad378b71e5",
+      "kind": "paragraph",
+      "order_index": 6,
+      "content": "(TRACE-F-EQ-111)",
+      "citation_ids": [
+        "block:1d52d801-434f-57d4-a517-f6ad378b71e5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:3508a699-68a4-587d-b0aa-4ce987dd8a96",
+      "kind": "paragraph",
+      "order_index": 7,
+      "content": "约束函数为 $\\begin{array} { r } { f ( t ) = \\frac { t ^ { 2 } + 1 } { t + 1 } } \\end{array}$ ，并且 $n \\in \\mathbb { N }$",
+      "citation_ids": [
+        "block:3508a699-68a4-587d-b0aa-4ce987dd8a96"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f6fa0758-c615-5743-83af-fedcd79bb715",
+      "kind": "table",
+      "order_index": 8,
+      "content": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ±0.05 |",
+      "citation_ids": [
+        "block:f6fa0758-c615-5743-83af-fedcd79bb715",
+        "binding:7d86d23f-e767-5f20-812b-1e582e161612",
+        "binding:b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+        "binding:6b5854a0-3d33-5227-a01e-316b6af2d806",
+        "binding:fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+        "binding:d26719c0-f97f-50a2-a2a7-927eef271e25",
+        "binding:4962477a-d46a-5a3f-bdb7-ada9900f9730"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "table_id": "table-001",
+        "table_binding_ids": [
+          "7d86d23f-e767-5f20-812b-1e582e161612",
+          "b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+          "6b5854a0-3d33-5227-a01e-316b6af2d806",
+          "fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+          "d26719c0-f97f-50a2-a2a7-927eef271e25",
+          "4962477a-d46a-5a3f-bdb7-ada9900f9730"
+        ]
+      }
+    },
+    {
+      "chunk_id": "block:e82fae05-c7be-5f9c-bcdd-248085681209",
+      "kind": "paragraph",
+      "order_index": 9,
+      "content": "TRACE-F-HEADER",
+      "citation_ids": [
+        "block:e82fae05-c7be-5f9c-bcdd-248085681209"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9",
+      "kind": "paragraph",
+      "order_index": 10,
+      "content": "TEX-FORMULA-20260821-V1",
+      "citation_ids": [
+        "block:f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a74f67d1-a42d-58b2-9ca9-82b7837bea9f",
+      "kind": "page_number",
+      "order_index": 11,
+      "content": "1",
+      "citation_ids": [
+        "block:a74f67d1-a42d-58b2-9ca9-82b7837bea9f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:fefdf69d-f923-5382-8228-b343b01091fe",
+      "kind": "heading",
+      "order_index": 12,
+      "content": "2 跨页结论 TRACE-F-END-201",
+      "citation_ids": [
+        "block:fefdf69d-f923-5382-8228-b343b01091fe"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:8007023a-35ea-5449-a854-bdf486f772e6",
+      "kind": "paragraph",
+      "order_index": 13,
+      "content": "结论要求保留 score  0.875、delta  0.125、x = y 和 0.05。任何公式无法解析时必须使用占位符并提示下游，而不是生成未经证实的公式。",
+      "citation_ids": [
+        "block:8007023a-35ea-5449-a854-bdf486f772e6"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:5470043c-0218-5d1e-b257-78dee6dfd310",
+      "kind": "paragraph",
+      "order_index": 14,
+      "content": "TRACE-F-HEADER",
+      "citation_ids": [
+        "block:5470043c-0218-5d1e-b257-78dee6dfd310"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:4a4f93ab-8b55-510a-b88a-55ea8eb387aa",
+      "kind": "paragraph",
+      "order_index": 15,
+      "content": "TEX-FORMULA-20260821-V1",
+      "citation_ids": [
+        "block:4a4f93ab-8b55-510a-b88a-55ea8eb387aa"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:2c4db971-3a03-52a4-ae74-59da6c79caee",
+      "kind": "page_number",
+      "order_index": 16,
+      "content": "2",
+      "citation_ids": [
+        "block:2c4db971-3a03-52a4-ae74-59da6c79caee"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "block:dcfe7684-6b43-5232-aa0d-6ac2de20ef2b",
+      "canonical_block_id": "dcfe7684-6b43-5232-aa0d-6ac2de20ef2b",
+      "source_block_id": "mineru-content-0001",
+      "page_number": 1,
+      "bbox": [
+        267.0,
+        71.0,
+        731.0,
+        116.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4604b4a9-2cf5-5813-841d-1aad777ef9d5",
+      "canonical_block_id": "4604b4a9-2cf5-5813-841d-1aad777ef9d5",
+      "source_block_id": "mineru-content-0002",
+      "page_number": 1,
+      "bbox": [
+        305.0,
+        142.0,
+        690.0,
+        161.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:70f9ecf6-049b-5326-b4c0-ab9bea02abaa",
+      "canonical_block_id": "70f9ecf6-049b-5326-b4c0-ab9bea02abaa",
+      "source_block_id": "mineru-content-0003",
+      "page_number": 1,
+      "bbox": [
+        99.0,
+        179.0,
+        899.0,
+        217.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:94ead6e7-7cc7-5a70-9129-0b857f40747f",
+      "canonical_block_id": "94ead6e7-7cc7-5a70-9129-0b857f40747f",
+      "source_block_id": "mineru-content-0004",
+      "page_number": 1,
+      "bbox": [
+        99.0,
+        239.0,
+        447.0,
+        256.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d53b78d1-0930-5dff-987f-6ff920cf4ad8",
+      "canonical_block_id": "d53b78d1-0930-5dff-987f-6ff920cf4ad8",
+      "source_block_id": "mineru-content-0005",
+      "page_number": 1,
+      "bbox": [
+        231.0,
+        304.0,
+        354.0,
+        346.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:45ab2352-5b84-5c93-ab75-c712fa210773",
+      "canonical_block_id": "45ab2352-5b84-5c93-ab75-c712fa210773",
+      "source_block_id": "mineru-content-0006",
+      "page_number": 1,
+      "bbox": [
+        480.0,
+        304.0,
+        601.0,
+        344.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1d52d801-434f-57d4-a517-f6ad378b71e5",
+      "canonical_block_id": "1d52d801-434f-57d4-a517-f6ad378b71e5",
+      "source_block_id": "mineru-content-0007",
+      "page_number": 1,
+      "bbox": [
+        727.0,
+        328.0,
+        895.0,
+        346.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:3508a699-68a4-587d-b0aa-4ce987dd8a96",
+      "canonical_block_id": "3508a699-68a4-587d-b0aa-4ce987dd8a96",
+      "source_block_id": "mineru-content-0008",
+      "page_number": 1,
+      "bbox": [
+        99.0,
+        360.0,
+        410.0,
+        381.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f6fa0758-c615-5743-83af-fedcd79bb715",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "binding:7d86d23f-e767-5f20-812b-1e582e161612",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "text": "标记",
+            "start_row": 0,
+            "start_col": 0,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c0",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c0",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c0",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "标记"
+        ],
+        "value": "FORMULA-42"
+      }
+    },
+    {
+      "citation_id": "binding:b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "text": "条件",
+            "start_row": 0,
+            "start_col": 1,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c1",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c1",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c1",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "条件"
+        ],
+        "value": "score ≤ 0.875"
+      }
+    },
+    {
+      "citation_id": "binding:6b5854a0-3d33-5227-a01e-316b6af2d806",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "text": "值",
+            "start_row": 0,
+            "start_col": 2,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c2",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c2",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c2",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "值"
+        ],
+        "value": "EUR 4,321.09"
+      }
+    },
+    {
+      "citation_id": "binding:fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "text": "标记",
+            "start_row": 0,
+            "start_col": 0,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c0",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c0",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c0",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "标记"
+        ],
+        "value": "TRACE-F-TABLE-121"
+      }
+    },
+    {
+      "citation_id": "binding:d26719c0-f97f-50a2-a2a7-927eef271e25",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "text": "条件",
+            "start_row": 0,
+            "start_col": 1,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c1",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c1",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c1",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "条件"
+        ],
+        "value": "delta ≥ 0.125"
+      }
+    },
+    {
+      "citation_id": "binding:4962477a-d46a-5a3f-bdb7-ada9900f9730",
+      "canonical_block_id": "f6fa0758-c615-5743-83af-fedcd79bb715",
+      "source_block_id": "mineru-content-0009",
+      "page_number": 1,
+      "bbox": [
+        263.0,
+        418.0,
+        732.0,
+        497.0
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "text": "值",
+            "start_row": 0,
+            "start_col": 2,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c2",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c2",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c2",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "值"
+        ],
+        "value": "±0.05"
+      }
+    },
+    {
+      "citation_id": "block:e82fae05-c7be-5f9c-bcdd-248085681209",
+      "canonical_block_id": "e82fae05-c7be-5f9c-bcdd-248085681209",
+      "source_block_id": "mineru-content-0010",
+      "page_number": 1,
+      "bbox": [
+        100.0,
+        28.0,
+        277.0,
+        43.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9",
+      "canonical_block_id": "f6a6581e-4b3c-5ad9-a7c6-5a7e6db3a1a9",
+      "source_block_id": "mineru-content-0011",
+      "page_number": 1,
+      "bbox": [
+        642.0,
+        28.0,
+        895.0,
+        43.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a74f67d1-a42d-58b2-9ca9-82b7837bea9f",
+      "canonical_block_id": "a74f67d1-a42d-58b2-9ca9-82b7837bea9f",
+      "source_block_id": "mineru-content-0012",
+      "page_number": 1,
+      "bbox": [
+        494.0,
+        951.0,
+        504.0,
+        964.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:fefdf69d-f923-5382-8228-b343b01091fe",
+      "canonical_block_id": "fefdf69d-f923-5382-8228-b343b01091fe",
+      "source_block_id": "mineru-content-0013",
+      "page_number": 2,
+      "bbox": [
+        302.0,
+        72.0,
+        692.0,
+        91.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:8007023a-35ea-5449-a854-bdf486f772e6",
+      "canonical_block_id": "8007023a-35ea-5449-a854-bdf486f772e6",
+      "source_block_id": "mineru-content-0014",
+      "page_number": 2,
+      "bbox": [
+        100.0,
+        109.0,
+        897.0,
+        146.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5470043c-0218-5d1e-b257-78dee6dfd310",
+      "canonical_block_id": "5470043c-0218-5d1e-b257-78dee6dfd310",
+      "source_block_id": "mineru-content-0015",
+      "page_number": 2,
+      "bbox": [
+        100.0,
+        29.0,
+        277.0,
+        42.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4a4f93ab-8b55-510a-b88a-55ea8eb387aa",
+      "canonical_block_id": "4a4f93ab-8b55-510a-b88a-55ea8eb387aa",
+      "source_block_id": "mineru-content-0016",
+      "page_number": 2,
+      "bbox": [
+        642.0,
+        29.0,
+        895.0,
+        42.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:2c4db971-3a03-52a4-ae74-59da6c79caee",
+      "canonical_block_id": "2c4db971-3a03-52a4-ae74-59da6c79caee",
+      "source_block_id": "mineru-content-0017",
+      "page_number": 2,
+      "bbox": [
+        492.0,
+        951.0,
+        505.0,
+        963.0
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    }
+  ],
+  "warnings": [
+    "info:heading_level_granularity_suspect: 解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。"
+  ],
+  "metadata": {
+    "quality_report_contract_version": "1.0",
+    "chunk_count": 17,
+    "citation_count": 23,
+    "table_binding_count": 6
+  }
+}

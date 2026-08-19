@@ -1,0 +1,11 @@
+\subsection{Spatial Reasoning} \label{sec:spatial-task}
+
+A major debate around LMs is whether grounded representations of meaning can be learned from form alone~\citep{bender-koller-2020-climbing, piantadosi2022meaning,mollo2023vector}. Studies have shown that LMs can learn meaningful world representations through text-only training~\citep{abdou-etal-2021-language, li2023emergent, jin2023evidence}.
+In particular, \citet{patel2022mapping} find that LMs learn representations of spatial relations and cardinal directions that can be aligned to grounded conceptual spaces with few-shot demonstrations.
+
+We similarly investigate an understanding of cardinal directions, but instead of evaluating whether a model can \emph{induce} structured conceptual spaces, we ask if it can \emph{apply}  conceptual spaces to reason about the locations of objects. Specifically, we ask an LM for the coordinates of objects whose positions are described using cardinal directions, under a conventional 2D coordinate system (e.g., where \texttt{east} corresponds to $(1, 0)$)
+versus coordinate systems with swapped, rotated, and randomly permuted axes. We expect a robust representation to not be sensitive to such transformations.
+The CCC involves asking the model to directly output the counterfactual cardinal directions.
+
+
+ 

@@ -1,0 +1,240 @@
+{
+  "applied_repairs": [],
+  "artifacts": {
+    "canonical_document.json": "0a9923bdf7d24672869ab2c24f323ab4e43f362ecec3c0a25c9e7b28e508b3b8",
+    "input_parsed_document.json": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+    "optimized.md": "c449be3b92d0b963bfe23c66879386cca7efd0d749b2ead6e490cccd498d494c"
+  },
+  "capability_matrix": {
+    "capability_declaration_valid": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "content_complete": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks",
+            "object_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "heading_structure_evidence": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "heading_tree_reliable": {
+      "evidence": {
+        "reason": "no rule observation for this document"
+      },
+      "state": "unavailable"
+    },
+    "kind_content_consistent": {
+      "evidence": {
+        "evidence_refs": [],
+        "rule_observations": "inferred"
+      },
+      "state": "inferred"
+    },
+    "non_table_relation_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "provenance_reliable": {
+      "evidence": {
+        "evidence_refs": [
+          {
+            "field_path": "blocks[].source_block_id",
+            "object_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+            "object_type": "document",
+            "value_sha256": null
+          }
+        ],
+        "rule_observations": "verified"
+      },
+      "state": "verified"
+    },
+    "reading_order_reliable": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "reference_index_built": {
+      "evidence": {
+        "downgrade_reason": "verified capability requires at least one evidence_ref",
+        "evidence_refs": [],
+        "rule_observations": "verified"
+      },
+      "state": "inferred"
+    },
+    "table_field_binding_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    },
+    "table_grid_reliable": {
+      "evidence": {
+        "applicability": "not_applicable",
+        "reason": "document contains no tables"
+      },
+      "state": "unavailable"
+    }
+  },
+  "contract_version": "1.0",
+  "document_id": "4dad47f2-b05a-48cb-9d5a-ec07b3ddd5cc",
+  "gate_summary": {
+    "blocking_reasons": [
+      "capability non_table_relation_reliable = inferred"
+    ],
+    "capability_blockers": [
+      "non_table_relation_reliable"
+    ],
+    "critical_false_pass": false,
+    "critical_issue_count": 0,
+    "manual_review_issue_count": 1,
+    "reparse_issue_count": 0,
+    "warning_or_info_issue_count": 5
+  },
+  "issues": [
+    {
+      "affected_block_ids": [
+        "c241e8a1-dd39-5507-ba1f-d1fc8b4b8feb",
+        "5bc78d8b-57f5-5af7-b591-78e48c559967",
+        "d367b032-270e-5775-bafc-a6af53fe828c",
+        "df7c0739-0ff5-5499-88eb-93fad55afd13",
+        "dbb65eb7-9664-5163-b7bf-1543ad3a8435",
+        "1021a62b-4822-51e3-8f21-43087f018686",
+        "32d6afdf-dfee-5e38-8cc8-bf9e6d39aa2b",
+        "96cb482f-4477-5178-9b0f-05e89052131d",
+        "4c8b72a5-31d9-5782-a954-fedc9bfe23bb",
+        "2eba7796-82d6-590c-b034-12fa45c7ff0f",
+        "a460a077-ac4d-5a29-908c-2f3a70eb4e86",
+        "f40c5739-802d-5f7d-ad28-c029e3b2a9d3",
+        "32236edb-f2c0-5918-8944-293b7566dce7",
+        "c37637d5-b1f2-5e32-aab6-4540914d7104",
+        "1003f2db-fb24-521d-9fe0-eb3683503c10",
+        "27bf15ad-e74e-50e9-9e43-77a26ff4bb0b",
+        "d6c501d1-1da8-5cc6-ab08-c74781e29c57",
+        "2ce1fad7-719e-58fe-ba2d-b75b5c316b24",
+        "b7bb7f61-534a-5245-bdfa-a685454852f5"
+      ],
+      "category": "content_completeness",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "236655dd-c100-5f15-97a3-c8d68547d4a8",
+      "message": "19 个 block 内容为空。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "53356a73-e5bd-5aa3-b187-8726f8e7a73c",
+        "558e85a8-f054-5e96-99da-a82cfe363697",
+        "246cdd3c-5a1d-5fdd-acb1-a50dda2f5b8e",
+        "b483239b-a3e1-570d-a38d-a1a15a5114c7",
+        "c3090e55-3bba-59a4-aebb-11e7bfe4a76f",
+        "ff721bf6-8967-5e2d-a2b0-5e8c609b908d",
+        "69b5a214-f300-5bb7-8cb0-b8336dfe584e",
+        "22ea29df-9968-5bad-82d4-d1d3babe08fd",
+        "4d661ef8-24f4-5628-a52b-4ad5051b7145",
+        "809f56cd-786f-53e9-a7b1-3e8a3bfc08cd",
+        "22f81e20-ed11-5867-94ea-70a7fbfa5bb6",
+        "fa525b79-430b-58e9-8439-307d67ca9105",
+        "e649006e-055e-5a63-983b-2dae8b106fe4"
+      ],
+      "category": "heading_level_granularity_suspect",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ded9e470-0443-5f87-87fd-f68eddad0ac9",
+      "message": "解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
+      "severity": "info",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "558e85a8-f054-5e96-99da-a82cfe363697"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "8a319696-9150-5b01-969c-2c0ba8707d9c",
+      "message": "标题层级无法确定: 'Notes on the Exact RG equation'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "fa525b79-430b-58e9-8439-307d67ca9105"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "ff8c3d9f-99a5-54a3-8be3-2ba2035532fd",
+      "message": "标题层级无法确定: 'Acknowledgements'",
+      "severity": "warning",
+      "status": "unfixed"
+    },
+    {
+      "affected_block_ids": [
+        "e649006e-055e-5a63-983b-2dae8b106fe4"
+      ],
+      "category": "heading_level_missing",
+      "evidence": {
+        "evidence_refs": []
+      },
+      "issue_id": "bb20f20b-7d01-5892-9dd6-53f91201888c",
+      "message": "标题层级无法确定: 'References'",
+      "severity": "warning",
+      "status": "unfixed"
+    }
+  ],
+  "metrics": {
+    "agent": {
+      "accepted": false,
+      "attempt_count": 2,
+      "final_revision_id": "c3fa77d710ab81ddd6855e530a0f0e80f3c4ac836d6b84c812f680a762c38d2a",
+      "last_code": "candidate_schema_error",
+      "mode": "document",
+      "repair_applied": false,
+      "repairable_issue_count": 4,
+      "session_id": "arxiv-e2e-20260822:2402.16100:docling",
+      "stop_reason": "manual_review"
+    },
+    "binding_count": 0,
+    "canonical_block_count": 128,
+    "issue_count": 5,
+    "quality_pipeline_version": "quality-mvp-0.1.0",
+    "relation_count": 94,
+    "repair_count": 0,
+    "source_block_count": 128,
+    "table_count": 0
+  },
+  "reparse_recommendation": null,
+  "state": "manual_review_required"
+}

@@ -1,0 +1,600 @@
+{
+  "document_id": "70c88c8b-11f3-4e2f-b451-28fca440cf19",
+  "filename": "formula-token.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 42885,
+  "source_sha256": "c80553229b3bd199c5f51fa0302289a0e006d729a200b49af65ae91e502cd7be",
+  "routing_decision": null,
+  "markdown": "## 公式符号保真测试\n\nTRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1\n\n## 1 固定事实 TRACE-F-SEC-101\n\n记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。\n\n## 1.1 数学表达式 TRACE-F-EQ-111\n\n[[FORMULA_UNAVAILABLE]]\n\n̸\n\n约束函数为 f ( t ) = t 2 +1 t +1 ，并且 n ∈ N 。\n\n表 1: 符号核对表 TRACE-F-TABLE-121\n\n| 标记                | 条件            | 值            |\n|-------------------|---------------|--------------|\n| FORMULA-42        | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05       |\n\n## 2 跨页结论 TRACE-F-END-201\n\n̸\n\n结论要求保留 score ≤ 0.875 、 delta ≥ 0.125 、 x = y 和 ± 0.05 。任何公式无法解析时必须使用 占位符并提示下游，而不是生成未经证实的公式。",
+  "blocks": [
+    {
+      "id": "f58e0b56-a446-5a47-8ae6-274964b56290",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "公式符号保真测试",
+      "heading_level": 1,
+      "markdown": "# 公式符号保真测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          228.776,
+          61.76297139999997,
+          366.4991999999999,
+          78.97837140000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b30a8c4f-3e39-584e-9c48-85ce85bf5a2a",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+      "heading_level": null,
+      "markdown": "TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          162.445,
+          86.13514439999994,
+          432.8299639999999,
+          96.09774440000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dc0b270a-e97a-5fec-b027-c5c0c719b371",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 固定事实 TRACE-F-SEC-101",
+      "heading_level": 1,
+      "markdown": "# 1 固定事实 TRACE-F-SEC-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          185.551,
+          121.61061419999999,
+          409.72498559999997,
+          136.71716279999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "64d4254b-bda1-542f-8cb4-ba85fa2ef36b",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。",
+      "heading_level": null,
+      "markdown": "记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999966,
+          152.99208310000006,
+          532.9228234000002,
+          181.51518309999994
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "59ac9654-0c28-5268-8def-09e2ac81b9e3",
+      "source_block_id": "docling-SectionHeaderItem-4",
+      "order_index": 4,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 数学表达式 TRACE-F-EQ-111",
+      "heading_level": 1,
+      "markdown": "# 1.1 数学表达式 TRACE-F-EQ-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          203.12048319999997,
+          264.51254400000005,
+          215.70930880000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15218d8b-7f39-55e4-8406-31efda9010e3",
+      "source_block_id": "docling-FormulaItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          141.851,
+          257.8362654,
+          532.9138298,
+          296.4615208877419
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6dead97f-bd6c-5b26-b682-6ab3c55bbf6c",
+      "source_block_id": "docling-TextItem-6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "̸",
+      "heading_level": null,
+      "markdown": "̸",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          170.308,
+          279.78108469999995,
+          170.308,
+          296.4615208877419
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "faa58a74-f5dc-5ae5-a434-8fafa2e8992c",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "约束函数为 f ( t ) = t 2 +1 t +1 ，并且 n ∈ N 。",
+      "heading_level": null,
+      "markdown": "约束函数为 f ( t ) = t 2 +1 t +1 ，并且 n ∈ N 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.36200000000002,
+          304.6142992,
+          249.4751,
+          325.0345208877419
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2c7d0ee2-5756-5a86-b15f-e927e3d87df1",
+      "source_block_id": "docling-TableItem-8",
+      "order_index": 8,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05 |",
+      "heading_level": null,
+      "markdown": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          158.78622818752623,
+          353.2685153966995,
+          436.38912235017585,
+          418.26509009729494
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "cd00c3e1-b117-5d7c-97af-3b794b6320e1",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表 1: 符号核对表 TRACE-F-TABLE-121",
+      "heading_level": null,
+      "markdown": "表 1: 符号核对表 TRACE-F-TABLE-121",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          199.314,
+          341.9350831,
+          395.97236489999995,
+          353.4223654
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3f4f33bc-a259-512e-9981-688c979abdbf",
+      "source_block_id": "docling-SectionHeaderItem-10",
+      "order_index": 10,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 跨页结论 TRACE-F-END-201",
+      "heading_level": 1,
+      "markdown": "# 2 跨页结论 TRACE-F-END-201",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          183.37,
+          61.919614199999955,
+          411.9195766,
+          77.02616279999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "06c0176d-9fc0-53da-9a7a-383c6acd3952",
+      "source_block_id": "docling-TextItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "̸",
+      "heading_level": null,
+      "markdown": "̸",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          315.14099999999996,
+          95.22008470000003,
+          315.14099999999996,
+          111.90052088774189
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "64126777-36ce-58ad-82e2-536c51a7cde1",
+      "source_block_id": "docling-TextItem-12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "结论要求保留 score ≤ 0.875 、 delta ≥ 0.125 、 x = y 和 ± 0.05 。任何公式无法解析时必须使用 占位符并提示下游，而不是生成未经证实的公式。",
+      "heading_level": null,
+      "markdown": "结论要求保留 score ≤ 0.875 、 delta ≥ 0.125 、 x = y 和 ± 0.05 。任何公式无法解析时必须使用 占位符并提示下游，而不是生成未经证实的公式。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.361999999999966,
+          93.30008310000005,
+          532.9041278000007,
+          121.82318309999994
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "2c7d0ee2-5756-5a86-b15f-e927e3d87df1",
+      "html": null,
+      "markdown": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        158.78622818752623,
+        353.2685153966995,
+        436.38912235017585,
+        418.26509009729494
+      ],
+      "num_rows": 3,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "标记",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            165.19299999999998,
+            481.5919315484375,
+            187.01119999999997,
+            470.6828315484375
+          ]
+        },
+        {
+          "text": "条件",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            287.744,
+            481.5919315484375,
+            309.56219999999996,
+            470.6828315484375
+          ]
+        },
+        {
+          "text": "值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            364.017,
+            481.5919315484375,
+            374.9261,
+            470.6828315484375
+          ]
+        },
+        {
+          "text": "FORMULA-42",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            165.19299999999998,
+            457.91774924843753,
+            236.2548774,
+            447.0086492484375
+          ]
+        },
+        {
+          "text": "score ≤ 0.875",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            287.744,
+            457.91774924843753,
+            352.0619298,
+            439.89549376069556
+          ]
+        },
+        {
+          "text": "EUR 4,321.09",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            364.0073943,
+            457.91774924843753,
+            430.0729038999999,
+            447.0086492484375
+          ]
+        },
+        {
+          "text": "TRACE-F-TABLE-121",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            165.19299999999998,
+            440.30374924843755,
+            275.8003649,
+            429.39464924843753
+          ]
+        },
+        {
+          "text": "delta ≥ 0.125",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            287.7349203,
+            440.30374924843755,
+            351.98592979999995,
+            422.2814937606956
+          ]
+        },
+        {
+          "text": "± 0.05",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            364.017,
+            440.30374924843755,
+            391.8983798,
+            422.2814937606956
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling-local",
+        "table_count": 1,
+        "warning_count": 1,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": 0,
+        "formula_incomplete_count": 1,
+        "formula_placeholder_count": 1
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "docling-local: Markdown 中有 1 个公式未解析，已保留占位符。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-19T04:34:35.222012Z"
+}

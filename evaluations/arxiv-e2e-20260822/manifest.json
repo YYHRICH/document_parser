@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "arxiv-e2e-20260822",
+  "documents": [
+    {
+      "document": "2412.06527",
+      "source_id": "arXiv:2412.06527v1 [math.AG]",
+      "tex": {
+        "path": "sources\\2412.06527.tex",
+        "sha256": "647b19662e28db57b4c269ac7aebf0aabdde4dcaf42f4554b90efbda12aeb10e"
+      },
+      "pdf": {
+        "path": "pdfs\\2412.06527.pdf",
+        "sha256": "01b2c11f1891c09ee26646fd88fbdcffb8e698a3f512f9a1018e743d1e14a9da",
+        "size_bytes": 711012
+      },
+      "pdf_text": {
+        "path": "pdf_text\\2412.06527.txt",
+        "sha256": "7ec07c456600bd3f7250a9f8279ff60128baccce5f4d6477251c478987360bd3",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 6,
+          "total": 6,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "2402.16100",
+      "source_id": "arXiv:2402.16100v1 [hep-th]",
+      "tex": {
+        "path": "sources\\2402.16100.tex",
+        "sha256": "78ae0600d286f8e157f19610dd7471dca309a517708004753f6244e08e434206"
+      },
+      "pdf": {
+        "path": "pdfs\\2402.16100.pdf",
+        "sha256": "367cfc42c034a368cd7a0492ea926444b6bfc3b546733cefd29755e3c5af94a6",
+        "size_bytes": 179386
+      },
+      "pdf_text": {
+        "path": "pdf_text\\2402.16100.txt",
+        "sha256": "37e374430735367a7a39f740a33d0daeb3bb592bbf86c1fa9f956145d74376ad",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "2405.09649",
+      "source_id": "arXiv:2405.09649v1 [physics.bio-ph]",
+      "tex": {
+        "path": "sources\\2405.09649.tex",
+        "sha256": "8b9defc73e8510a2a59984a05f844821d7be5410495dc53c29f6544e1c15e2e9"
+      },
+      "pdf": {
+        "path": "pdfs\\2405.09649.pdf",
+        "sha256": "199958d42a76839cf95dfd90f5f7845122da528ec522ddd2c8e82fcc7c5a8eda",
+        "size_bytes": 1734958
+      },
+      "pdf_text": {
+        "path": "pdf_text\\2405.09649.txt",
+        "sha256": "e975ed67729692718c50653ea6a1dc7d6a13c74c19027eddc2a4fb5a6fd057a9",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    },
+    {
+      "document": "2307.02477",
+      "source_id": "arXiv:2307.02477v3 [cs.CL]",
+      "tex": {
+        "path": "sources\\2307.02477.tex",
+        "sha256": "3887ccb00da84983bd5f5b2be0c0424663131598a4a1b8fb576002f8927727ea"
+      },
+      "pdf": {
+        "path": "pdfs\\2307.02477.pdf",
+        "sha256": "c7e3f360460c7a66c6d1329891aabebf7bff4e1ef4ee67896538d803d5dec75b",
+        "size_bytes": 1639928
+      },
+      "pdf_text": {
+        "path": "pdf_text\\2307.02477.txt",
+        "sha256": "10fc3c199ac8bd25e8141fd30eb624fa16d6c2dbf40af779e0c70b577d4f8dea",
+        "marker_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        },
+        "fact_recall": {
+          "found": 5,
+          "total": 5,
+          "rate": 1.0,
+          "missing": []
+        }
+      }
+    }
+  ]
+}

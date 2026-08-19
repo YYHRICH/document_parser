@@ -1,0 +1,93 @@
+--- parsed.md
++++ optimized.md
+@@ -10,7 +10,7 @@
+ 
+ In this note, in the context of the AdS/CFT correspondence, the holographic derivation of the Wilsonian effective action is proposed. Then, the exact RG equation in the boundary theory is derived from the Wheeler-DeWitt equation of the bulk, following the suggestion of [1],[2], and[3]. The relationship between the exact RG and Stochastic Quantization[4],[5] is briefly discussed.
+ 
+-## 1 Introduction
++### 1 Introduction
+ 
+ Here in this note, we would like to promote Holographic RG to exact RG, which corresponds to quantum gravity in the bulk. By Verlinde et al [1], it was shown that the RG flow equation of the CFT can be derived from classical Equation of motion of the bulk 2 . We generalize the RG flow equation to exact RG, which is derived from Wheeler-Dewitt equation in the bulk. We identify the expression of the boundary action and counterterm is properly subtracted in the derivation.
+ 
+@@ -20,7 +20,7 @@
+ 
+ 2 For a review, please refer to [6].
+ 
+-## 2 Deriving the exact RG from the bulk theory
++### 2 Deriving the exact RG from the bulk theory
+ 
+ Here we wish to derive the exact renormalization group equation (In the form of [7],[8],[9],[10]) of N = 4 SYM from the Wheeler-DeWitt equation in the AdS. Most of the discussion follows from the beautiful paper on the holographic renormalization, [1]. In the paper, the CallanSymanzik type of the RG flow equation was derived from the condition that the Hamiltonian is zero, H = 0, and the Wheeler-DeWitt equation is the quantum extension of H = 0.
+ 
+@@ -38,7 +38,7 @@
+ 
+ and in the quantum case the same equation holds for field redefinition, but we will need a correction term F ( φ ) as in (6.1), which will be consistent with Wheeler-DeWitt equation (5.4) we will derive.
+ 
+-## 3 The role of the boundary condition and the fluctuation
++### 3 The role of the boundary condition and the fluctuation
+ 
+ Here in this section, we would like to explain the role of the boundary condition in terms of the fluctuation in the boundary CFT, in order to motivate the holographic definition of the Wilsonian effective action in the following section.
+ 
+@@ -54,7 +54,7 @@
+ 
+ Therefore, we claimed that, in some cases in the AdS/CFT, free boundary condition naturally arise and the integration over the boundary condition could be formally identified as the path integral in the boundary CFT. The above discussion will not be precise enough, but hopefully enough to motivate the following holographic definition of the Wilsonian effective action.
+ 
+-## 4 The definition of the boundary Wilsonian effective action from the bulk
++### 4 The definition of the boundary Wilsonian effective action from the bulk
+ 
+ When we define the Wilsonian effective action of the CFT side, we observe the CFT side with respect to a particular energy scale. In the context of AdS/CFT, it would be natural to concentrate on a hypersurface in the AdS, which will manifest the physics of the CFT side with respect to a particular energy scale we observe the physics [1]. There the radial coordinate in the AdS is related to the energy scale of the observation in the CFT side. Let's take the hypersurface as r = const . Then, following [3], the total partition function of the bulk, which is also equal to the total partition of the CFT, can be written as the path integral over the fields on this boundary, and fields in the region of larger r than this hypersurface (I denote it as UV, since it corresponds to the UV degree of freedom in the CFT side), and fields in the smaller r region (I denote it as IR). Then, we can separate the expression of the bulk gravity action into UV part and IR part, since there is no cross term in the action for the fields with different r . Note that they are still the function of the Dirichlet boundary condition on the hypersurface.
+ 
+@@ -62,7 +62,7 @@
+ 
+ We can first perform the path integral for the fields of the UV and the IR part, and it will give the result of the second line. We expressed the UV part of the partition function, or wave function as Ψ UV ( r, φ r ) = exp( -S bulk UV ( r, φ )), and IR part of the wave function as Ψ IR ( r, φ r ) = exp( -S bulk IR ( r, φ )). Further, we can define the total low energy effective action as exp( -S ( r, φ r )) ≡ Ψ UV ( r, φ r )Ψ IR ( r, φ r ), which is the function of the boundary condition at r . The last line of (4.1) looks like the expression of the CFT partition function, with respect to the effective field φ r and Wilsonian effective action S ( r, φ r ), and it is tempting to define the Wilsonian effective action at some energy scale, which is determined by r , as simply this S ( r, φ r ), holographically. Indeed, defining this way, we can show this 'Wilsonian effective action' will follow the Exact RG equation with respect to the change of the energy scale, which is the boundary position r in the bulk. This is given by solving the Wheeler-DeWitt equation in the bulk, which is the quantum extension of the condition that the Hamiltonian is zero for the gravity. Also note, that the above definition of the Wilsonian effective action, reduces to the definition of [15] in the bulk classical limit, as it should.
+ 
+-## 5 Holographic Exact RG at finite radial distance
++### 5 Holographic Exact RG at finite radial distance
+ 
+ Let's then derive the exact RG equation from the WDW equation in the bulk following the spirit of [2]. To make a contact with Polchinski type[20] of the Exact RG, let's first consider the regime where we can treat the metric as the classical background, and concentrate on the quantized scalar field in the AdS. This is done by recovering the Newton's constant G N to the Wheeler-DeWitt equation, and expanding it with G N . This is done following [21].
+ 
+@@ -90,7 +90,7 @@
+ 
+ Note that the expression (5.4) can be thought of as a Fokker-Planck equation if we identify -da or -dr as time, and identify probability density as P = exp( -S 1 ), and if S UV is nearly constant with respect to r (In the regime of CFT). It implies that it would be also possible to formulate this exact RG equation as a Langevin equation [27], -∂ a φ = -δS UV /δφ + ξ , or in terms of the boundary CFT, S UV will be replaced by the generating functional Γ[ φ ].
+ 
+-## 6 From the viewpoint of the Exact RG
++### 6 From the viewpoint of the Exact RG
+ 
+ Let's see that the expression we have obtained in the last section is actually the exact RG equation in the field theory. First of all, any RG flow equation are obtained from two steps, coarse-graining the microscopic degree of freedom and rescaling. In the continuum field theory, it is known that the coarse-graining step can be simply performed by redefinition of the field[10]. Therefore, we consider the conformal transformation (scale transformation) of the fields in the CFT, and in addition, we perform extra transformation on scalar field as F ( φ ) dr , which will correspond to the coarse-graining. The transformation of the fields will be then,
+ 
+@@ -106,7 +106,7 @@
+ 
+ If we choose F = -1 2 δS 1 δφ , this expression is precisely what we have obtained from the Wheeler-DeWitt equation in the bulk,(5.4). The form of the field transformation for the coarse graining F is intuitively reasonable, because, if we see it in the form of the Langevin equation in the previous section, this term corresponds to the noise, therefore it will look like it is washing out microscopic degree of freedom, as any RG should. It was interpreted in [27] that this noise term corresponds to the contribution from irrelevant operators.
+ 
+-## 7 Example: Flow of the double trace operator
++### 7 Example: Flow of the double trace operator
+ 
+ We then still consider the alernative quantization, in which the bulk operators are interpreted as the boundary operator at some RG scale. We mostly follow the discussion in [3] and [15]. We assume that the bulk action is of gaussian form, potential containing only mass term. We take gaussian ansatz for S UV and S IR as a function of the boundary value of the fields φ and the coordinate z . (Note that z can be also understood as the scale parameter from the coordinate dependence of the metric, h ij ∼ z -2 δ ij .) The expression of the action for the UV part and the IR part respectively, are
+ 
+@@ -140,7 +140,7 @@
+ 
+ which is the same equation as in [15] up to different definition of F by factor of minus sign. We can see that the derivation of the RG flow equation of the double trace operator naturally arises in our case (summing over UV part and IR part of the action). It still remains to be done what will be the modification of the RG flow equation (7.7) for general k .
+ 
+-## 8 Discussion
++### 8 Discussion
+ 
+ Therefore, we gave the holographic definition of the Wilsonian effective action, and derived the exact RG flow equation from the Wheeler-DeWitt equation in the bulk, when we can take free boundary condition for the bulk scalar field. The fact, that we could derive the exact RG from the quantum evolution of the bulk, could be convinced in light of stochastic quantization, which also realize the holographic setup; Firstly, It was proposed that the exact RG equation is equivalent to Stochastic RG equation, which looks like Langevin equation, where the scale plays the role of 'time'. (See [27] 6 . This RG is basically equivalent to Stochastic Quantization.) and also, in the context of the Stochastic quantization, the noise of the Langevin equation along the 'extra dimension' on the boundary is corresponding to the Quantum fluctuation of the bulk. Summing up those ingredients, we can convince myself that there is a good reason to suspect the quantum evolution of the bulk is related to the 'Stochastic RG', or exact RG of the boundary theory. Partial evidence that the Wheeler-DeWitt equation is related to the exact RG equation also comes from [3], where they use the Schr¨ odinger equation of the bulk to derive the exact RG. Moreover, in the context of the gauge theory of the boundary, the connection between the exact RG and Schwinger-Dyson equation was made [29], and in addition, it was proposed that the Schwinger-Dyson equation of the boundary is related to the Wheeler-DeWitt equation of the string theory [30]. This gauge theory discussion also suggests the relationship between the Wheeler-DeWitt equation and the exact RG.
+ 
+@@ -148,15 +148,15 @@
+ 
+ 6 The apperence of Langevin equation in the context of RG is not limited to Field Theory. See[28], there they also show that Langevin equation appears as the result of RG
+ 
+-## 9 Update on recent research
++### 9 Update on recent research
+ 
+ Since this note was originally written more than 10 years ago, there have been a number of recent studies [33][34],[35],[36],[37],[38],[39],[40][41], that need to be mentioned. Some of them [33][34] view the holographic setting in a similar way by splitting to UV part and IR part, although they are based on standard quantization and consider the gravity action after it is integrated over quantum fluctuation. A series of studies [36],[37],[38],[39],[40],[41] start from the exact RG equation and express transition amplitudes between wave functions of different scale as ∫ D x ( t ) e -S bulk , where x ( t ) denotes fields at different scale t , and regard S bulk as the bulk action. They also mention that some of their derivation corresponds to alternative quantization[37], and the relationship between Holographic exact RG and Stochastic Quantization[40]. The goal of relating the exact RG to the bulk quantum gravity is the same, although they are working on deriving the bulk theory without using explicitly holographic setting. This note is different in working with alternative quantization and using holographic setting, deriving the exact RG equation on the boundary from the evolution of the wave function in the bulk, dealing with the counterterm. There are also a number of studies that relate Stochastic Quantization and Holography[42],[43],[44],[45],[46],[47]. In particular, [43],[44],[45],[46],[47] identify radial evolution in the bulk to Stochastic Quantization, which is the exact RG on the boundary, and also derives the evolution of double trace operator, so they are practically very similar to this note. However, their derivation is different from the one in this note, in particular how to subtract the counterterm. To note, in addition to the research above, we were recently informed that there is another study that mentions the resemblance between the exact RG and Fokker-Planck equation[48].
+ 
+-## Acknowledgements
++### Acknowledgements
+ 
+ I would like to thank Gilad Lifschitz, Akio Sugamoto and So Katagiri for helpful comments, and those who answered my questions on holography and exact RG.
+ 
+-## References
++### References
+ 
+ - [1] J. de Boer, E. P. Verlinde and H. L. Verlinde, 'On the holographic renormalization group,' JHEP 0008 (2000) 003 [arXiv:hep-th/9912012].
+ - [2] E. P. Verlinde and H. L. Verlinde, 'RG-flow, gravity and the cosmological constant,' JHEP 0005 , 034 (2000) [arXiv:hep-th/9912018].

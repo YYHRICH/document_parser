@@ -1,0 +1,2404 @@
+                                               HIGHER GENUS GROMOV-WITTEN THEORY OF
+                                          ONE-PARAMETER CALABI-YAU THREEFOLDS II: FEYNMAN
+                                                    RULE AND ANOMALY EQUATIONS
+arXiv:2412.06527v1 [math.AG] 9 Dec 2024
+
+
+
+
+                                                                                PATRICK LEI
+
+
+                                               Abstract. We prove the Feynman rule conjectured by Bershadsky-Cecotti-
+                                               Ooguri-Vafa [BCOV94] and the anomaly equations conjectured by Yamaguchi-
+                                               Yau [YY04] for the Gromov-Witten theory of the Calabi-Yau threefolds Z6 ⊂
+                                               P(1, 1, 1, 1, 2), Z8 ⊂ P(1, 1, 1, 1, 4), and Z10 ⊂ P(1, 1, 1, 2, 5). These determine
+                                               the generating series Fg of genus g Gromov-Witten invariants recursively from
+                                               the lower-genus Fh<g up to 3g − 3 unknown parameters.
+
+
+
+
+                                                                                 Contents
+                                          1. Introduction                                                                              2
+                                          1.1. Historical overview                                                                     2
+                                          1.2. Setup and past work                                                                     3
+                                          1.3. Feynman rule                                                                            4
+                                          1.4. Anomaly equations                                                                       7
+                                          1.5. Outline                                                                                 7
+                                          1.6. Conventions                                                                             7
+                                          Acknowledgements                                                                             8
+                                          2. MSP [0] and [1] theories                                                                  8
+                                          2.1. The MSP [0, 1] theory                                                                   8
+                                          2.2. The MSP [0] and [1] theories                                                           10
+                                          2.3. Polynomiality of the [1] theory                                                        12
+                                          2.4. Vanishing of the [0] theory                                                            14
+                                          3. The A-model Feynman rule                                                                 17
+                                          3.1. Factorization of the [0] theory                                                        18
+                                          3.2. Polynomiality of the [0] theory and the A theory                                       19
+                                          3.3. Choice of gauge                                                                        24
+                                          4. The B-model Feynman rule                                                                 25
+                                          4.1. B-model geometric quantization                                                         26
+                                          4.2. Factorization of the quantization action                                               27
+                                          4.3. Modification of the A-model quantization                                               28
+                                          4.4. Equality of A-model and B-model potentials                                             30
+                                          5. Anomaly equations                                                                        32
+                                          References                                                                                  34
+
+
+                                          Date: December 10, 2024.
+                                                                                        1
+2                                           PATRICK LEI
+
+
+                                       1. Introduction
+1.1. Historical overview. Despite its origin in theoretical physics as a dual-
+ity between A-model and B-model topological string theories, mirror symmetry
+has sparked significant interest in mathematics, starting with the landmark pa-
+per [COGP92], which gave predictions for the number of genus zero curves of any
+degree on the quintic threefold. Even though their predictions differ from the actual
+numbers of curves, they sparked a significant change in the field of enumerative
+geometry – namely, to consider deformation-invariant virtual counts of curves. The
+first mathematical theory constructed to satisfy this property is Gromov-Witten
+theory (a formalization of A-model invariants), which was developed in symplectic
+topology by various authors [RT95; LT98b; Sie98; FO99; Rua99] and in algebraic
+geometry by Behrend-Fantechi and Li-Tian [BF97; Beh97; LT98a].
+    For physical reasons, a central problem in Gromov-Witten theory is to compute
+the Gromov-Witten invariants of compact Calabi-Yau threefolds. For simplicity,
+we will restrict to the case when h2 = 1 and in particlar to those which arise as
+complete intersections in weighted projective spaces, of which there are 13 examples
+(see [HKQ09, §4] for a complete list). We will list (very incompletely) some historical
+developments in mathematics and physics:
+       • A theorem determining the genus zero invariants generalizing the predictions
+         of [COGP92] was proved by Givental and Lian-Liu-Yau [Giv96; LLY97]
+         for complete intersections in projective space and by Coates-Corti-Lee-
+         Tseng and Wang [CCLT09; Wan20] for complete intersections in weighted
+         projective spaces.
+       • Bershadsky-Cecotti-Ooguri-Vafa [BCOV94] studied the B-model Kodaira-
+         Spencer gravity and predicted that the generating series Fg of genus g
+         Gromov-Witten invariants can be computed recursively using Fh<g by a
+         Feynman rule up to a finite ambiguity. Mathematically, this corresponds to
+         a sum over stable graphs, which index combinatorial strata of the moduli
+         space Mg,n of stable curves.
+       • Yamaguchi-Yau [YY04] studied the B-model theory further and predicted
+         that a normalized generating series Pg of genus g Gromov-Witten invariants
+         is a polynomial in five explicit generators for Z5 ⊂ P4 , Z6 ⊂ P(14 , 2), Z8 ⊂
+         P(14 , 4), and Z10 ⊂ P(13 , 2, 5). They also predicted that these polynomials
+         satisfy differential equations in the generators, which we will refer to as
+         Anomaly Equations.1 These predictions were extended to the other examples
+         by Huang-Klemm-Quackenbush [HKQ09].
+       • In mathematics, exact formulae for the genus 1 invariants were proved for
+         complete intersections in projective spaces by Zinger and Popa [Zin09; Pop13]
+         and for hypersurfaces in weighted projective spaces by the author [Lei24a].
+       • An exact formula for the genus 2 invariants of the quintic was proved
+         by Guo-Janda-Ruan [GJR17] pending the proof of foundational results in
+         logarithmic geometry. This was followed by a proof [GJR18] of the Anomaly
+         Equations and finite generation conjecture, as well as some other results,
+         for the quintic threefold.
+
+    1These are typically referred to as Holomorphic Anomaly Equations in the mathematics
+literature, which is technically inaccurate. In physics, the B-model partition function FgB (t, t̄) has
+an antiholomorphic part, which is governed by the physical Holomorphic Anomaly Equations.
+             FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                  3
+
+
+        • The Feynman rule, Anomaly Equations, and finite generation conjecture
+          were proved independently by Chang-Guo-Li [CGL21; CGL19] using the
+          theory of Mixed-Spin-P (MSP) fields developed in [CLLL19; CLLL22; CL20;
+          CGLL21].2 Using a slight generalization of their approach, the author
+          proved the finite generation conjecture [Lei24a] for hypersurfaces in weighted
+          projective space.
+
+1.2. Setup and past work. Let a = (1, 1, 1, 1, 2), (1, 1, 1, 1, 4), or (1, 1, 1, 2, 5),
+     P5                         k
+k := i=1 ai , and set pk := a1 ···a 5
+                                      . The I-function of Z = Zk ⊂ P(a) is given by
+                                         Qkd
+                             X                  (kH + mz)
+                I(q, z) := z      q d Q5 m=1Qai d
+                             d≥0        i=1   m=1 (ai H + mz)
+
+                                                                 H2         H3
+                           =: I0 (q)z + I1 (q)H + I2 (q)            + I3 (q) 2 ,
+                                                                 z          z
+                                                   kk
+where H = c1 (OP(a) (1)). If we set r :=        a       a
+                                               a1 1 ···a5 5
+                                                              , then I(q, z) has radius of conver-
+        1
+gence   r.
+
+Remark 1.1. In [Giv96] and other work, the I-function differs from ours by a
+               H                              d
+prefactor of q z . In particular, applying zq dq to the usual conventions corresponds
+                      d
+to applying H + zq dz to our I-function.
+   Our choice is natural from the perspective of quasimap theory. There, our I-
+function is obtained by localization on the stacky loop space [CCK15, Proposition
+4.9] and appears in the wall-crossing formula of [Zho22].
+                 d
+   Define D := q dq and define
+                                                        
+                                                  I1 (q)
+                                   I11   := 1 + D         .
+                                                  I0 (q)
+Yamaguchi-Yau [YY04] defined infinitely many generators
+             Dm I11                Dm I0                        1
+   Am :=            ,     Bm :=          ,       Y :=                ,    and      X := 1 − Y.
+              I11                   I0                        1 − rq
+For simplicity, denote A := A1 and B := B1 .
+Remark 1.2. Our generators differ from the generators in [YY04; HKQ09] slightly.
+The variables differ by ψ HKQ = (rq)−1 , and the generators in [HKQ09] are defined
+by
+                             m                                         m
+                 ψ HKQ dψdHKQ    (qI11 )                     ψ HKQ dψdHKQ    I0
+     AHKQ
+       m   :=                             and     BmHKQ
+                                                        :=                      .
+                         qI11                                       I0
+In particular, we have the relations
+                                    
+                          m  
+                         X     m HKQ 
+          Am = (−1)m             Aj                    and                      HKQ
+                                                                     Bm = (−1)m Bm   .
+                         j=0
+                               j
+
+    2A parameter N , which is a positive integer, was introduced in [CGLL21] and the resulting
+theory was originally referred to as N -Mixed-Spin-P (NMSP) fields. In this paper, we will simply
+refer to the theory with arbitrary N as MSP fields.
+4                                         PATRICK LEI
+
+
+Lemma 1.3 ([YY04]). The ring R := Q[A, B, B2 , B3 , Y ] contains all Am and Bm
+for m ≥ 0. In particular, we have the relations
+                    A2 = 2B 2 − 2AB − 4B2 − X(A + 2B + r0 );
+                    B4 = −X(2B3 + (1 + r0 )B2 + r0 B + r1 ),
+where r0 and r1 are given in Table 1.
+
+              Table 1. Values of r0 , r1 , a0,k , and a1,k for different k
+
+                                k    r0        r1     a0,k    a1,k
+                                     13         5      1
+                                6    36        162     2      − 74
+                                     11        105     1
+                                8    32        4096    3      − 11
+                                                                6
+                                      3        189     1
+                                10   10       10000    6      − 17
+                                                                12
+
+
+
+    We now define the generating function
+                                                                     X
+              Fg (Q) := δg,0 a0,k (log Q)3 + δg,1 a1,k log Q +            Ng,d Qd ,
+                                                                      d
+                            1        3                   1
+                                R                             R
+where the values of a0,k =  6 Z
+                                H and a1,k =            c (Z) ∪ H are given in Table 1.
+                                                       − 24
+                                                      Z 2
+This is not quite so well-behaved, so we will normalize it by defining
+                                                  m
+                                        n
+                            (pk Y )g−1 I11
+                                           
+                                                d
+                   Pg,m :=                   Q       Fg (Q)
+                                I02g−2         dQ                I1
+                                                                 I   Q=qe   0
+
+
+for any (g, m) satisfying 2g − 2 + m > 0. These satisfy the recursive relation
+                    Pg,m+1 = (D + (g − 1)(2B + X) − mA)Pg,m
+and therefore can be computed from P0,3 = 1, P1,1 , and Pg≥2 . The main result of
+our previous work [Lei24a] is the following:
+Theorem 1.4. For any (g, m) satisfying 2g − 2 + m > 0, Pg,m ∈ R.
+    We also proved the following exact formula for the genus 1 invariants of Z:
+Theorem 1.5. We have
+                                                    
+                             1               χ(Z)        1
+                    P1,1   =− A+                  − 2 B − X + a1,k .
+                             2                24         12
+For clarity, note that χ(Z6 ) = −204, χ(Z8 ) = −296, and χ(Z10 ) = −288.
+1.3. Feynman rule.
+Definition 1.6. Define the physicists’ propogators by the formulae
+                        Eψ := B1 ,
+                       Eφφ := A1 + 2B1 ,
+                       Eφψ := −B2 ,
+                       Eψψ := −B3 + (B1 − X)B2 − r0 B1 X.
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                            5
+
+
+For a choice of “gauge” G := (c11 , c12 , c2 , c3 ), where c11 , c12 ∈ Q[X]1 , c2 ∈ Q[X]2 ,
+and c3 ∈ Q[X]3 , define
+                           EψG := Eψ + c11 ,
+                           G
+                          Eφφ := Eφφ + c12 ,
+                           G
+                          Eφψ := Eφψ − c12 B1 + c2 ,
+                          G
+                        Eψψ  := Eψψ + c12 B12 − 2c2 B1 + c3 .
+                           I2  I0 
+                           D I +I
+   Define I22   := 1 + D      0
+                              I11
+                                   0
+                                       and I33 := I11 . Let φi = I0 · · · Iii H i for
+i = 0, 1, 2, 3 and let ψ denote the ancestor class on Mg,n .
+Definition 1.7. Define the B-model Gromov-Witten correlators Pg,m,n by
+                       (
+                         (2g + m+ n − 3)nPg,m 2g − 2 + m > 0
+             Pg,m,n :=
+                         (n − 1)! χ(Z)
+                                   24 − 1       (g, m) = (1, 0).
+Here, (2g + m + n − 3)n is the falling Pochhammer symbol.
+   Note that these agree with the GW invariants
+                            (pk Y )m−1                   Z
+                                       φ⊗m
+                                        1 , (φ0 ψ)
+                                                   ⊗n
+                           I02g−2+m+n                    g,m+n
+
+
+whenever (g, m) ̸= (1, 0), in which case the GW invariants is (n − 1)! χ(Z)
+                                                                        24 . Later,
+we will discover the meaning of this term.
+Definition 1.8. Let Gg,ℓ be the set of all stable graphs of genus g and ℓ legs and
+define
+                          B,G
+                                      X       ContB,G
+                                                   Γ
+                         fg,m,n :=                     ,
+                                               |Aut Γ|
+                                        Γ∈Gg,m+n
+where the contribution of a stable graph is defined by the following construction:
+     • At each leg, we place φ1 − EψG φ0 ψ or φ0 ψ;
+     • At each edge, we place the bivector
+                G             G                              G
+       VB,G := Eφφ φ1 ⊗ φ1 + Eφψ (φ1 ⊗ φ0 ψ + φ0 ψ ⊗ φ1 ) + Eψψ φ0 ψ ⊗ φ0 ψ;
+      • At each vertex, we place the linear map
+                              φ1⊗m ⊗ (φ0 ψ)⊗n 7→ Pg,m,n .
+                                                                            B
+   The main result of this paper is the following polynomiality result for fg,m,n .
+Theorem 1.9 (Corollary 4.9). For any g, m, n and any choice of gauge G, we have
+                                  B,G
+                                 fg,m,n ∈ Q[X]3g−3+m .
+   If we specialize to m = n = 0, then Gg,0 contains a leading graph Γ0 with
+exactly one vertex (of genus g) and no edges. This graph contributes Pg , while other
+graphs contribute linear combinations of products of Ph<g,m,n and the propogators.
+Therefore, if we know all Ph<g,m,n , the formula
+                                       X      1
+                           Pg = fgB −               ContB
+                                                        Γ
+                                            |Aut Γ|
+                                        Γ̸=Γ0
+6                                      PATRICK LEI
+
+
+implies that to compute Pg , it suffices to compute fgB ∈ Q[X]3g−3 . Because the
+degree 0 invariant
+                                (−1)g χ(Z) · |B2g | · |B2g−2 |
+                        Ng,0 =
+                                    4g · (2g − 2) · (2g − 2)!
+was already computed by Faber-Pandharipande [FP00], this allows us to fix the
+constant term of fgB as pg−1
+                         k   Ng,0 .
+   We will prove this result by reconstructing it from the A-model. We begin by
+constructing an A-model R-matrix, which will act on the Gromov-Witten potential
+of Z. It is engineered such that its edge contributions match the B-model edge
+contributions as much as possible.
+Definition 1.10. In the basis φ0 , . . . , φ3 of HZ , define the A-model R-matrix by
+                                      0 zEψG z 2 Eφψ        z 3 E1ψ
+                                                       G        G 
+                                                                    2
+                                                       G      2 G 
+                                             0    zE        z  E
+               RA,G (z)−1 := I − 
+                                                      φφ        1φψ  ,
+                                                     0       zEψG 
+                                                                0
+                 G
+where we define E1φψ := −EψG Eφφ
+                              G
+                                 − Eφψ
+                                    G       G
+                                       and E1ψ 2 := −Eψ Eφψ − Eψψ .
+                                                      G G      G
+
+
+    We will now define an A-model Feynman rule.
+Definition 1.11. For a ∈ {0, 1, 2, 3}n and b ∈ Zn≥0 , define
+
+                               A,G
+                                            X        ContA,G
+                                                         Γ
+                              fg,m,n :=                      ,
+                                                     |Aut Γ|
+                                          Γ∈Gg,m+n
+
+where the contribution of a stable graph is defined by the following construction:
+     • At each leg, we place RA,G (z)−1 φa ψ b ;
+     • At each edge, we place the bivector
+                3
+                X φi ⊗ φ3−i − RA (ψ)−1 φi ⊗ RA (ψ ′ )−1 φ3−i
+      VA,G :=
+                i=0
+                                       ψ + ψ′
+           = Eφφ φ1 ⊗ φ1 + Eφψ (φ1 ⊗ φ0 ψ ′ + φ0 ψ ⊗ φ1 ) + Eψψ (φ0 ψ ⊗ φ0 ψ ′ )
+                + Eψ (φ0 ⊗ φ2 + φ2 ⊗ φ0 ) + E1φψ (φ0 ⊗ φ1 ψ ′ + φ1 ψ ⊗ φ0 )
+                + E1ψ2 (φ0 ⊗ φ0 (ψ ′ )2 + φ0 ψ 2 ⊗ φ0 ).
+      • At each vertex, we place the linear map
+                                     (pk Y )g−1  Z
+                                       2g−2+n ⟨−⟩g,n .
+                                      I0
+                                                                             A,G
+   Using the theory of MSP fields, we will prove a polynomiality result for fg,a,b .
+Along the way, we discover that the MSP R-matrix defined in [Lei24a] (see (2.1))
+factors as the product of a matrix RX which satisfies an X-polynomiality property
+and RA,G and obtain a similar degree bound for the level 0 part of the full MSP
+theory.
+Theorem 1.12 (Corollary 3.12). For any choice of gauge G and any g, n such that
+2g − 2 + n > 0, we have
+                                A,G
+                               fg,a,b ∈ Q[X]3g−3+n−P bi .
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                         7
+
+
+  In particular, when we set a = (1m , 0n ) and b = (0m , 1n ), we define
+                      A,G       A,G
+                     fg,m,n := fg,(1m ,0n ),(0m ,1n ) ∈ Q[X]3g−3+m .
+
+
+   Note that the A-model Feynman rule has three extra edge contributions, which
+contain four extra variables compared to the B-model Feynman rule. Remarkably, the
+contributions of the correction term in g = 1, the extra A-model edge contributions,
+and the four extra A-model variables cancel out to yield the following result.
+Theorem 1.13 (Theorem 4.8). The A-model and B-model graph sums satisfy the
+relation
+                     A,G      B,G
+                    fg,m,n = fg,m,n + δg,1 δm,0 (n − 1)!.
+1.4. Anomaly equations. In Section 5, we prove the following anomaly equations:
+Theorem 1.14 (Theorem 5.1). The Pg,m satisfy the differential equations
+                                                                                 !
+                                                 1            X
+                                      − ∂ A Pg =   Pg−1,2 +         Pg1 ,1 Pg2 ,2 ,
+                                                 2          g +g =g
+                                                                  1    2
+
+   (−2 ∂ A + ∂ B + (A + 2B) ∂ B2 − ((B − X)(A + 2B) − B2 − r0 X) ∂ B3 )Pg = 0.
+   The first equation is proved directly by differentiating the B-model Feynman rule,
+while the second is equivalent to a mysterious reduction of generators (Theorem 5.6)
+found by Yamaguchi-Yau [YY04]. In particular, they consider particular v1 , v2 , v3 ∈
+R and conjecture that for all g ≥ 2, Pg ∈ Q[v1 , v2 , v3 , X].
+1.5. Outline. The paper is organized as follows:
+     • In §2, we review the construction of the MSP [0, 1] theory, construct the
+       MSP [0] and [1] theories, and prove polynomiality of the MSP [1] theory.
+     • In §3, we prove the polynomiality of the MSP [0] theory and the A-model
+       graph sum using a bootstrapping argument when G = (0, 0, 0, 0). The
+       A-model Feynman rule for a general gauge (Theorem 1.12) follows as a
+       corollary.
+     • In §4, we rewrite both the A-model Feynman rule and B-model Feynman
+       rule using the formalism of geometric quantization of symplectic linear
+       transformations. We then study the effect of the extra contributions in the
+       A-model and prove Theorem 1.13 by direct computation. The B-model
+       Feynman rule (Theorem 1.9) follows as a corollary.
+     • In §5, we prove Theorem 1.14.
+1.6. Conventions. We will use the following conventions in this paper:
+      • We will ignore the odd cohomology of our target Z. All operators in this
+        paper will preserve the Z/2 grading on cohomology and are the identity on
+        odd classes.
+      • The theory of MSP fields depends on a positive integer N . We will assume
+        that N is an odd prime. Whenever we fix g, n, we will always assume that
+        N ≫ 3g − 3 + n.
+      • We will consider T = (C× )N -equivariant invariants. Our convention is that
+        after equivariant integration, we will specialize our equivariant parameters
+                    α
+        by tα = −ζN   t. At various points in the paper, we will specialize tN = −1.
+      • Whenever we compute using equivariant integration, we will make the
+        substitution q ′ = −q
+                           tN
+                              . Note the specialization tN = −1 makes q ′ = q.
+8                                              PATRICK LEI
+
+
+Acknowledgements. The author is grateful to Chiu-Chu Melissa Liu for all of
+her helpful advice and for proposing this project. The author would like to thank
+Konstantin Aleshkin and Shuai Guo for helpful discussions, and Dimitri Zvonkine for
+his lectures about CohFTs and R-matrix actions at the Simons Center for Geometry
+and Physics in August 2023. The author would also like to thank Shuai Guo for
+his hospitality during the author’s visit to Peking University in July 2024, when
+part of this work was completed. Finally, the author would like to thank Felix
+Janda and Yongbin Ruan for expressing interest in the results of this paper and its
+prequel [Lei24a].
+
+                                    2. MSP [0] and [1] theories
+   In this section, we will define the MSP [0] theory and [1] theory and prove a
+polynomiality property for the [1] theory. We will refer the reader to [PPZ15]
+and [CGL19, §2, Appendix C] for a discussion of CohFTs and R-matrix actions,
+including in the cases when R0 ̸= I and when source and target of the R-matrix are
+different vector spaces or have different pairings.
+
+2.1. The MSP [0, 1] theory. Let N be a positive integer. First, the stack Wg,n,(d,0)
+was constructed in [Lei24b] and MSP invariants were constructed in [Lei24a] for the
+state space
+                                     N
+                                     M                          M
+                 H := H ∗ (Z) ⊕            H ∗ (ptα ) =: HZ ⊕        Hα =: HZ ⊕ H1 .
+                                     α=1                         α
+
+The pairing is given by
+                                    Z
+                                       xy      X −pk
+                        (x, y) :=         N
+                                             +              xy
+                                   Z −t          α
+                                                   N t3α tN     ptα
+                                                     X
+                               =: (x|Z , y|Z )Z,tw +      (x|ptα , y|ptα )ptα ,tw .
+                                                        α
+
+We will now give several bases which we will consider in the rest of the paper.
+                            FN             k/a          k/a
+   (1) We consider Z ⊔ α=1 ptα = (x1 1 + · · · + x5 5 = 0)T ⊂ P(a, 1N ) and let
+                                                    j
+        p = c1 (OP(a,1N ) (1)). Then define ϕj := p for j = 1, . . . N + 3;
+               L there is the natural basis {1, H, H , H } of HZ and {1α }α=1 of
+                                                        2   3                      N
+   (2) Note that
+        H1 := α Hα ;
+   (3) We may normalize the previous        basis3 and consider φb = I0 I11 · · · Ibb H b ,
+                                I2  I1 
+                                 D I +I
+                                    0    0
+        where I22 = 1 + D           I11        and I33 = I11 . We will also consider
+                       N +3
+         1̄α = L− 2 1α .
+   Before we continue, we will define several CohFTs related to C using the MSP
+virtual localization formula [Lei24b, §6]. First, for any smooth projective variety Z,
+the Gromov-Witten CohFT associated to Z is given by
+                                                n
+                                                                                !
+                                     X         Y
+            Z                           d Z           ∗                     vir
+          Ωg,n (τ1 , . . . , τn ) :=   q st∗       evi (τi ) ∩ [Mg,n (Z, d)]     ,
+                                     d∈H2 (Z,Z)          i=1
+
+
+      3This is related to the transformation from flat coordinates to canonical coordinates, see [Lei24a,
+§5]
+            FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                                       9
+
+
+where stZ : Mg,n (Z, d) → Mg,n is the stabilization morphism and τi ∈ H ∗ (Z). In
+the MSP virtual localization formula, the contribution of a vertex at level 0 is given
+by
+
+                    (−tN )−(d+1−g) [Mg,n (Z, d)]vir =: [Mg,n (Z, d)]tw .
+
+Replacing [Mg,n (Z, d)]vir by [Mg,n (Z, d)]tw in the formula for ΩZ , we obtain the
+CohFT ΩZ,tw .
+  We will need to consider a shift of the Gromov-Witten CohFT of Z by the mirror
+map τZ (q) := II10 (q)
+                   (q) H. This is given by the formula
+
+                                              X qd
+                          ΩZ,τ
+                           g,n
+                               Z (q)
+                                     (−) :=         ΩZ      (−, τZ (q)m )
+                                                  m! g,n+m
+                                              d,m
+                                              X
+                                            =     Q(q)d ΩZ
+                                                         g,n+m (−),
+                                                 d
+
+                    I1 (q)
+where Q(q) := qe I0 (q) is the mirror map.
+  For each of the isolated points ptα , we may consider the vertex contribution
+
+     [Mg,n ]α,tw
+                          Q5           ∨
+                                                                         eT (E∨
+                                                           Q
+             p t
+          1−g k α
+                      ·      i=1 eT (Eg,n · (−ai tα )) ·          β̸=α        g,n · (tβ − tα ))
+  := (−1)                                                         Q                               ∩ [Mg,n ].
+                              (−tα )5 · eT (Eg,n · ktα )      ·     β̸=α (tβ   − tα )
+
+These classes define a CohFT Ωptα ,tw , and restricting to the topological part
+                                                                    g−1
+                                                1
+                             [Mg,n ]top =          N (−tα )N +3              [Mg,n ]
+                                                pk
+
+gives the topological part ω ptα ,tw of the CohFT.
+                                                      M
+    In [Lei24a, §2.1], we defined MSP invariants ⟨−⟩g,n using virtual localization,
+whose explicit formula was proved in [Lei24b, §5]. Recall that for any cohomological
+field theory, Givental’s theory [Giv04] considers the fundamental solution of the
+quantum differential equation (or Dubrovin connection), which is given by
+
+                                            X 1  x                  M
+                      SτM (z)x = x +               ea     , ea , τ n        .
+                                            a,n
+                                                n!    z−ψ             0,n+2
+
+
+Here, {ea } is a basis of H and {ea } is its dual basis. We will now restrict to the
+case τ = 0 and abbreviate the fundamental solution to S M (z). We also considered
+the corresponding fundamental solutions S Z := SτZZ (q) where τZ = II10 (q)
+                                                                          (q) H and
+          pt                  Rq                                     1
+S ptα := Sταα , where τα = −tα 0 (L(x) − 1) dxx , where L = (1 + rx) N .
+
+   Finally, we defined the MSP R-matrix by the formula
+                              N                                            N                     
+                 diag{∆ptα (z)}α=1                             diag{S ptα (z)}α=1
+(2.1) S M (z)                                        = R(z)                                                      ,
+                                             1                                             S Z (z)      q7→q ′
+10                                     PATRICK LEI
+
+
+where ∆ptα (z) is the Quantum Riemann-Roch [CG07] operator given by the formula
+                          "                  5
+             ptα
+                            X       B2m     X         1
+           ∆ (z) := exp
+                                2m(2m − 1) i=1 (−ai tα )2m−1
+                            m≥0
+                                                           !      #
+                                  1       X        1
+                           +            +                   z 2m−1 .
+                             (ktα )2m−1     (tβ − tα )2m−1
+                                               β̸=α
+
+Here, the B2k are the Bernoulli numbers.
+   In [Lei24a, §5], we explained how to use the explicit formula for the quantum
+differential equation given in [Lei24a, Lemma 2.18] to compute the entries of R(z)∗
+when the input basis is {1, p, . . . , pN +3 } and the output basis is {φ0 , . . . , φ3 } ∪
+      α=1 . In particular, the entries are elements of R up to some normalization.
+{1̄α }N
+Definition 2.1 ([Lei24a, Theorem 3.6]). Define the local theory by the formula
+                                                N
+                                                M
+                              Ωloc := ΩZ,tw ⊕         ω ptα ,tw
+                                                α=1
+
+and the MSP [0, 1] theory by the formula
+                                     Ω[0,1] := R.Ωloc .
+Remark 2.2. Note that the [0, 1] theory was originally defined using virtual localiza-
+tion. The fixed loci of Wg,n,(d,0) are described using localization graphs Θ whose
+vertices can be partitioned as V = V0 ⊔ V1 ⊔ V∞ . We then only consider those Θ for
+which V∞ = ∅ when defining the [0, 1] theory. In [Lei24a, §3], we proved that it is
+equivalent to the definition we give here. In addition, when N is very large relative
+to g, n, we obtain a simpler formula for the tail contributions at level 0.
+Remark 2.3. In contrast to the usual setting (see [PPZ15] for example), our R(z) =
+R0 + R1 z + · · · does not satisfy R0 = Id. However, we can relate this more general
+case of R-matrix actions to the usual setting via the dilaton flow, for example
+see [CGL19, Appendix C].
+2.2. The MSP [0] and [1] theories. We will now define restricted versions of
+the MSP [0, 1] CohFTs, which we will call the [0] and [1] theories. First, recall
+that [CGL19, §2] gives a definition of the R-matrix action on CohFTs when the
+source and target of R are not the same vector space. In particular, we only need
+that R(−z)∗ R(z) = Id, which in particular implies that R0 is injective.
+Definition 2.4. Define the restricted R-matrices R[0] (z) and R[1] (z) by the formulae
+                                   R[0] (z) = R(z)|HZ ,
+                                   R[1] (z) = R(z)|H1 .
+
+   Because the MSP R-matrix R(z) satisfies R(−z)∗ R(z) = Id, R[0] (z) and R[1] (z)
+satisfy the identities
+                       R[0] (−z)∗ R[0] (z) = IdHZ ,
+                       R[1] (−z)∗ R[1] (z) = IdH1 ,
+                       R[0] (−z)∗ R[1] (z) = R[1] (−z)∗ R[0] (z) = 0.
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                 11
+
+
+Definition 2.5. Define the MSP [0] theory by the formula
+                                      Ω[0] := R[0] .ΩZ,tw
+and the MSP [1] theory by the formula
+                                                    N
+                                                    M
+                                   Ω[1] := R[1] .         ω ptα ,tw .
+                                                    α=1
+
+   Our immediate goal is now to prove a polynomiality result for the MSP [0] theory.
+We will do this by studying the MSP [0, 1] theory and the [1] theory, which is
+similar to the argument used to prove the polynomiality of the [0, 1] theory [Lei24a,
+Theorem 4.1]. We will first describe a bipartite graph decomposition of the [0, 1]
+theory, then prove the polynomiality of the [1] theory. After some work, we will
+apply the polynomiality of the [1] theory and of the [0, 1] theory to deduce the
+polynomiality of the [0] theory.
+                           [0,1]
+Definition 2.6. Define Gg,n to be the set of stable bipartite graphs of total genus
+g and n legs. These are stable graphs with a partition V = V0 ⊔ V1 making the
+graph bipartite.
+Theorem 2.7. There is a decomposition of the MSP [0, 1] theory in terms of stable
+bipartite graphs as
+                                     X O           O
+          Ω[0,1]
+            g,n (τ1 , . . . , τn ) =     Ω[0]
+                                          gv ,nv ⊗   Ω[1]
+                                                      gv ,nv
+                                 Λ∈Gg,n v∈V0                    v∈V1
+                                    [0,1]
+
+                                                                                         
+                                          O      O      O
+                                                           V 01 (ψ, ψ ′ )
+                                                                         
+                                          
+                                            τℓ ⊗   τℓ ⊗                 ,
+                                            v∈V0            v∈V0         e∈E
+                                            ℓ∈Lv            ℓ∈Lv
+
+where we define
+                                 N
+                                X   R[1] (z) − R[1] (−w)
+               V 01 (z, w) :=                            1α ⊗ R[1] (w)1α .
+                                α=1
+                                            z + w
+
+Proof. Recall that the edge contribution in the definition of the MSP [0, 1] theory
+is given by
+                          N +3
+                          X      ϕi ⊗ ϕi − R(z)−1 ϕi ⊗ R(w)−1 ϕi
+             ContE01 =
+                                             z+w
+                          i=1                                                    HZ ⊗H1
+                          N
+                         X   R(−z)∗ R(−w)1α ⊗ 1α
+                      =−
+                                     z+w
+                         α=1                                            HZ ⊗H1
+                          N
+                         X   R[0] (−z)∗ R[1] (−w)1α ⊗ 1α
+                      =−
+                         α=1
+                                         z+w
+                           N
+                          X   R[0] (−z)∗ (R[1] (z) − R[1] (−w))1α⊗1α
+                      =
+                          α=1
+                                                z+w
+                      = (R[0] (−z)∗ ⊗ R[1] (−w)∗ V 01 (z, w)).
+12                                           PATRICK LEI
+
+
+The result then follows from the definition of the R-matrix action as a sum over
+stable graphs.                                                                □
+2.3. Polynomiality of the [1] theory. Recall that we defined the edge contribu-
+tions to the [0, 1] theory by
+                                   N +3
+                                   X      ϕj ⊗ ϕj − R(z)−1 ϕj ⊗ R(w)−1 ϕj
+                   V (z, w) =
+                                   j=0
+                                                      z+w
+                                   X
+                              =:          Vmn z m wn .
+                                   m,n
+
+Lemma 2.8. Let m, n ≥ 0, a = 0, . . . , N + 3, and α, β ∈ {1, . . . , N }. In [Lei24a,
+§5.3], we defined
+                                     −a−m
+                      (Rm )α
+                           a := Lα         (Rm 1̄α , ϕa ).
+Then
+   (1) (Rm )α                              α
+            a is independent of α and (Rm )a ∈ Q[X]m+⌊ Na ;
+                                                         ⌋
+   (2) The V -bivector has the form
+                                XX
+          Vmn |H1 ⊗H1 = L−3 tN         s−m 2−s−n
+                                      Lα   Lβ     (Vmn )αβ;s 1α ⊗ 1β ,
+                                          α,β   s
+
+                       αβ;s
+        where (Vmn )          ∈ Q[X]m+n+1 is independent of α, β.
+Proof. Note that (1) is [Lei24a, Lemma 5.9]. The proof of (2) is the same as [CGL21,
+Lemma C.1].                                                                       □
+Definition 2.9. When ⋆ is either [0], [1], or [0, 1], define
+                              Z     Yn
+                   ⋆
+                  fg,(a,b) :=           ψibi Ω⋆g,n (ϕa1 , . . . , ϕan )
+                                          Mg,n i=1
+
+and the [1] theory with special insertions
+                                 Z    n      m
+    [1]
+                        Pm
+                             a′i
+                                     Y       Y  b′j
+  fg,(a,b)(a′ ,b′ ) := L i=1            ψibi   ψn+j
+                                   Mg,n+m i=1            j=1
+                                 [1]
+                                Ωg,n+m (ϕa1 , . . . , ϕan , R(ψn+1 )ϕ̄a′1 , . . . , R(ψn+m )ϕ̄a′m )
+for a ∈ {0, . . . , N + 3}n , a′ ∈ {1, . . . , N }m , b ∈ Zn≥0 , and b′ ∈ Zm
+                                                                           ≥0 . Here, we define
+          N +3                PN
+        −          a a                a
+ϕ̄a := L 2 L p |H1 = α=1 Lα 1̄α .
+                                                                Pn                   Pn  
+Definition 2.10. For a tuple a ∈ Zn≥0 , define |a| := i=1 ai and Na := i=1 aNi .
+                                                                             
+
+Lemma 2.11. Let N ≫ 3g − 3 + n + m. Define
+                                   |a| + |a′ | + |b| + |b′ | − n − m
+                           c :=                                      .
+                                                   N
+If c ∈ Z, then
+                                           g−1+r
+                                       Y              [1]
+                                                     fg,(a,b),(a′ ,b′ )
+                                       tN
+is a polynomial in X of degree at most 3g − 3 + n + m − |b| − |b′ | +
+                                                                                  a
+                                                                                   N    . Otherwise,
+  [1]
+fg,(a,b),(a′ ,b′ ) = 0.
+               FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                                                13
+
+                             [1]
+Proof. Recall that fg,(a,b),(a′ ,b′ ) is defined as a sum of stable graph contributions,
+where the contribution from any stable graph is computed as follows:
+   (1) At every leg with insertion ϕa ψ b , we place
+                      X                                  N +3 X
+  R[1] (−ψ)∗ ψa ψ b =    La−m
+                           α      (−1)m ψ m+b 1̄α = L− 2        La−m
+                                                                  α   (−1)m ψ m+b 1α ;
+                             α,m                                                        α,m
+                                                                                    ′
+    (2) At every leg with special insertion R(ψ ′ )ϕ̄a′ ψ b , we place
+                                 ′  X ′            ′       N +3 X     ′      ′
+          R[1] (−ψ)∗ R(ψ)ϕ̄a′ ψ b =     Laα 1̄α ψ b = L− 2         Laα 1α ψ b ;
+                                                         α                                    α
+                                                                      4
+    (3) At every edge, we place the bivector
+                                 XX
+        V (z, w)|H1 ⊗H1 = L−3 tN        Lα1+s−c 1−s−d
+                                               Lβ     (Vcd )αβ;s+1 1α ⊗ 1β ;
+                                                 α,β c,d,s
+
+    (4) At every vertex of genus gv with nv legs, we place the map
+                X N +3               X 1         pt ,tw
+                    L 2 (2gv −2+nv )       sts∗ ωgv α,nv +s (−, Tα (ψ)s ),
+                 α                   s
+                                        s!
+          where
+                                                               N +3
+                                   Tα (z) = z(1 − L             2     R(z)−1 1)|ptα
+                                                 ∞
+                                                 X
+                                            =            L−m     α
+                                                          α (Rm )0 (−z)
+                                                                       m+1
+                                                                           1α
+                                                m=1
+
+        was defined in [Lei24a, Theorem 3.6] and sts : Mg,n+s → Mg,n is the mor-
+         phism forgetting the last s marked points. Recall from [Lei24a, Lemma 2.4]
+         that                                        g−1
+                         ptα ,tw      1          N +3
+                        ωg,n      =      N (−tα )          Ωpt
+                                                             g,n .
+                                      pk
+   We will now count the degrees of the contributions at each vertex labeled by ptα .
+Let Lv be the set of ordinary (first n) legs attached to v and L′v be the set of special
+legs attached to v. The factor involving Lα , L, and Y is
+                      Y            Y a′ ′ Y N N 1+s −c Y
+           +3)(gv −1)      aℓ −cℓ
+       L(N
+        α                Lα            Lαℓ         t 2 L 2 Lα f f         L−c
+                                                                            α
+                                                                               ℓ′′
+
+                        ℓ∈Lv                   ℓ′ ∈L′v          f =(e,v)                              ℓ′′ ∈tails
+                                                                 e∈Ev
+
+Using the fact that
+    X            X       X           X
+         cℓ′′ +     cf +   cℓ + bℓ +   b′ℓ′ = 3gv − 3 + nv
+   ℓ′ ∈tails      f =(e,v)              ℓ∈Lv                    ℓ′ ∈L′v
+                   e∈Ev
+
+                                                                            = 3gv − 3 + |Lv | + |L′v | + |Ev |,
+the contribution becomes
+                                                 P                P        ′       P            P            P       P
+                                                   ℓ (aℓ −1)+         ℓ′ (aℓ′ −1)+       sf −         cℓ −       cf − ℓ′′ cℓ′′
+                     |Ev |
+       (tL)N (g−1+     2     ) L3g−3+n
+                                α
+                                       v+                                           f             ℓ          f
+
+                                   P                     P        ′    ′      P
+                                       ℓ (aℓ +bℓ −1)+        ℓ′ (aℓ′ +bℓ′ −1)+
+                     |Ev |                                                          sf
+   = (tL)N (g−1+       2     ) Lα                                               f
+                                                                                         .
+
+   4Note that we reindex the sum from Lemma 2.8.
+14                                                   PATRICK LEI
+
+
+  The remaining tail, edge, and leg contributions contribute a degree in X of at
+most
+               X         j a k
+                             ℓ
+                                    X          1
+                                                       X
+                     cℓ +        +         cf +     +       cℓ′′
+                            N                   2     ′′
+                  ℓ∈Lv                                f =(e,v)                       ℓ ∈tails
+                                                       e∈Ev
+                                            |Ev |   X j aℓ k X      X
+               = 3gv − 3 + nv +                   +         −  bℓ −     b′ℓ′
+                                             2          N           ′ ′
+                                                          ℓ∈Lv                ℓ∈Lv         ℓ ∈Lv
+
+   Note that the end result must be independent of the hours α, so we can sum over
+all α and obtain a multiplicative factor
+                       P                                                                          
+                   1
+                                                      P           ′    ′       P
+                   N       ℓ∈Lv (aℓ +bℓ −1)+            ℓ′ ∈L′v (aℓ′ +bℓ′ −1)+  e∈Ev      s(e,v)
+                 Lα                                                                                    .
+Denote the exponent by cv . Clearly if this is not an integer, the contribution vanishes
+after summing over all α. By our choice of indexing of the edge contributions, we
+see that s(e,v1 ) + s(e,v2 ) = 0 whenever e = (v1 , v2 ). In particular, taking the product
+over all vertices gives an exponent of
+                     X          1
+                         cv = (|a| + |a′ | + |b| + |b′ | − n − m) = c.
+                      v
+                                N
+
+If this is not an integer, the total contribution vanishes.
+    Multiplying the prefactors over all vertices, we obtain a total prefactor
+                                                                |Ev |
+                           P
+                       N        rv                  N (gv −1+           ) = (tL)N c+N (g−1) .
+                                            P
+                   Lα       v
+                                     (tL)   v                     2
+
+
+
+Using the fact that Y = L−N , the prefactor becomes
+                                 −(g−1+c)
+                                   Y
+                                               .
+                                  tN
+  Multiplying the remaining contributions from the tails, edges, and legs, the total
+degree in X is at most
+               X                   |Ev |    X j aℓ k X             X
+                   3gv − 3 + nv +        +            −      bℓ −       b′ℓ′
+                v
+                                    2            N                 ′  ′
+                                           ℓ∈Lv         ℓ∈Lv      ℓ ∈Lv
+                                  jak
+                                                  ′
+            = 3g − 3 + n + m +          − |b| − |b |.
+                                   N
+                                                                           g−1+c
+The desired result follows after applying the normalization factor tYN            . □
+
+2.4. Vanishing of the [0] theory. We will now study the MSP [0] theory. Unfor-
+tunately, we need to factorize the MSP [0] theory to prove the desired polynomiality
+result, but we will prove a vanishing result similar to the first part of Lemma 2.11.
+Definition 2.12. Define the mod-N degrees by deg φj = deg ϕj = j mod N and
+deg ψ = 1.
+Lemma 2.13. R[0] (z) preserves the mod-N degree. If we define j̄ = j mod N ,
+then
+                     R[0] (z)∗ ϕ = c′ q ⌊ N ⌋ φ + O(z j̄−3 )
+                                          j
+                                                j       j,k              j̄
+            FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                               15
+
+
+for j = 0, . . . , N + 3, where we define5
+                 c′j,6 = (1, . . . , 1, −360, −3132, −8532, −11304)
+                 c′j,8 = (1, . . . , 1, −1680, −17488, −48048, −63856)
+                c′j,10 = (1, . . . , 1, −15120, −194640, −605360, −784880).
+Proof. Recall that
+                        zDR[0] (z)∗ = R[0] (z)∗ AM − AZ R[0] (z)∗ ,
+where                                                              
+                                           0
+                                       Z
+                                         I11            0           
+                                      A =                           
+                                                       I22    0     
+                                                              I11   0
+and AM is given by the formulae
+                       AM
+                        j+1,j = 1,                 AM
+                                                    j+N −1,j = cj,k q − δi,4 t
+                                                                              N
+
+and all other entries being zero, where
+                      c′j,6 = (360, 2772, 5400, 2772, 360)
+                      c′j,8 = (1680, 15808, 30560, 15808, 1680)
+                     c′j,10 = (15120, 179520, 410720, 179520, 15120).
+The expression for R[0] ϕj follows directly. The fact that R[0] preserves the mod-N
+degree follows from the fact that
+                          R[0] (z)−1 x = S Z (q ′ , z)(S M (z)−1 x)|Z
+for all x ∈ HZ and the fact that both S Z and S M preserve the mod-N degrees.
+Here, it is helpful to recall that
+                                                
+                               0
+                          1 J1′ 0
+          S Z (z)∗ = I + 
+                                                 
+                                       ′
+                                                 
+                          z        J2 0         
+                                           J1′ 0
+                              0
+                                                                   
+                                                              0
+                        1               0
+                                                     + 1      0
+                                                                    
+                     + 2    J                   0
+                                                                      ,
+                        z     2                       z 3      0   
+                                   J2′
+                                   J ′ J1 − J2     0         J3     0
+                                          1
+                         Ib
+where we define Jb =     I0 ,   J1′   = I11 , and J2′ = J1 + DJ2 .                           □
+                                      1                                       [0]
+Lemma 2.14. Define c :=               N (|a|   + |b| − n). If c ∈
+                                                                / Z, then fg,(a,b) = 0.
+Proof. Recall that Ω[0] = R[0] .ΩZ,tw is defined by a graph sum formula, where the
+vertex, edge and leg contributions are given by the following:
+      • At each leg with insertion ϕa ψ b , we place R[0] (−ψ)∗ ϕa ψ b ;
+      • At each edge, we place the bivector
+                       N +3
+                       X      ϕj ⊗ ϕj − R[0] (−z)∗ ϕj ⊗ R[0] (−w)∗ ϕj
+                                                                      ;
+                       j=0
+                                               z+w
+   5These are in fact the q coefficients of the quantities I , I I , I I I , and I 2 I I .
+                                                            0   0 11  0 11 22     0 11 22
+16                                      PATRICK LEI
+
+                                                                           Z,tw,τ (q ′ )
+      • At each vertex, we place the linear map I0 (q ′ )−(2g−2+n) Ωg,n Z (−).
+Because ϕj ⊗ ϕj has mod-N degree 3 and R[0] preserves the mod-N degree, we see
+that the edge contributions have mod-N degree 2. Then note that for • being either
+“Z” or “Z, tw” the integral
+                                                     
+                             Z            Om
+                                   Ω•g,m    φaj ψ bj 
+                                 Mg,m           j=1
+                   Pm
+vanishes unless j=1 (aj + bj ) = m. Summing over all vertices and edges in an
+arbitrary stable graph, we see that the contribution can only be nonzero if
+                                 Xn
+                                     (āi + b̄i ) = n,
+                                     i=1
+which is equivalent to c ∈ Z.                                                              □
+                                      1
+     We may now assume that c :=      N (|a|   + |b| − n) is an integer.
+Lemma 2.15. Define
+                                   |ā| + |b| − n
+                                    c̄ :=         .
+                                         N
+                                                                          [0]
+If N ≫ 3g − 3 + 3n, we always have c̄ ≥ 0. In addition, if c̄ ̸= 0, then fg,(a,b) = 0.
+
+Proof. Using the assumption that N > 3g − 3 + 3n and the fact that Mg,n is a DM
+stack (hence 3g − 3 + n ≥ 0), we obtain N > 2n. Because all ai , bi ≥ 0 and c̄ is an
+integer, we must have                        
+                                           −n
+                                    c̄ ≥        = 0.
+                                           N
+   The vanishing result is another degree-counting argument. Assume that c̄ > 0.
+         [0]
+Recall fg,(a,b) is a sum of stable graph contributions, where we place
+
+                                     R[0] (−ψ)∗ ϕai ψ bi
+at the i-th leg. In particular, the total degree of the ancestors is at least
+                        |ā| − 3n + |b| = N c̄ − (|b| − n) − 3n + b
+                                        ≥ N − 2n.
+However, the contribution vanishes if
+                        |āv | − 3(nv − |Ev |) + |bv | > 3gv − 3 + nv
+and therefore if
+                                               X
+                           |ā| − 3n + |b| >        (3gv − 3 + nv )
+                                                v
+                                            = 3g − 3 + n − |E|.
+However, by assumption, we see that
+                            |ā| − 3n + |b| ≥ N − 2n
+                                            > 3g − 3 + n
+                                            ≥ 3g − 3 + n − |E|,
+so all graph contributions must vanish.                                                    □
+             FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                       17
+
+                       [0]                                   a
+Corollary 2.16. If fg,(a,b) is nonzero, then c =               N    and
+                             g − 1 + c ≤ 3g − 3 + c + n − |b|.
+Definition 2.17. Define the MSP [0] potential with special insertions by
+                                                                         
+                               Z          n            m
+          [0]                     [0]
+                                         O             O
+         fg,(a,b),(a′ ,b′ ) :=   Ωg,n+m    ϕai ψ bi ,   Ea′j ,b′j (ψn+j ),
+                               Mg,n                   i=1           j=1
+
+where we define
+                                                                              ′
+                                       ′          ′   (R(ψ) − R(−w))ϕ̄a
+                    Ea′ ,b′ (ψ) = L−a · [wb ]                           .
+                                                            ψ+w
+         ′                                                      ′
+Here, [wb ] means that we take the coefficient of wb in the expression.
+  By construction, we have
+                                       N
+                                       X
+                       V 01 (z, w) =         Eab (z)wb ⊗ La R(w)ϕ̄a .
+                                       a=1
+
+Lemma 2.18. If a − m ̸≡ b (mod N ), then (ϕa , Rm ϕ̄b ) = 0. In the case when
+a − m ≡ b (mod N ), then
+                       L−a+m (ϕa , Rm ϕ̄b ) ∈ Q(tN )[X]m+⌊ a ⌋ .
+                                                                          N
+
+
+Proof. Note that
+                                             N
+                                             X
+                         (ϕa , Rm ϕ̄b ) =             L−b           α
+                                                       α (ϕa , Rm 1̄ )
+                                             α=1
+                                             N
+                                             X
+                                        =             L−b
+                                                       α L
+                                                          a−m
+                                                              (Rm )α
+                                                                   a.
+                                             α=1
+
+The result follows by using Lemma 2.8 and the the fact that the total power of the
+roots of unity is a − m − b.                                                    □
+                                                                      [0]
+Lemma 2.19. The [0] potential with special insertions fg,(a,b),(a′ ,b′ ) vanishes unless
+     |a|+|b|+|a′ |+|b′ |−n+m
+c :=            N            ∈ Z.
+Proof. Write
+                                           N
+                                           X +3
+                               Rm ϕ̄b =          (Rm ϕ̄b , ϕs )ϕs .
+                                           s=1
+By the previous lemma, the only nonzero terms are the ones with s ≡ m + b(
+(mod N )), so the mod-N degree of Rm ϕ̄b is 3 − (m + b). This implies that the
+mod-N degree of Eab is 2 − (a + b). Computing the total ancestor degree at all
+vertices as in the proof of Lemma 2.15, we obtain the desired result.       □
+
+                         3. The A-model Feynman rule
+  In order to extract information from the [0] theory, we will extract a part of it
+which satisfies an X-polynomiality property.
+18                                       PATRICK LEI
+
+
+3.1. Factorization of the [0] theory.
+Definition 3.1. Define the CohFT6 ΩA,G by the formula
+                                    ΩA,G = RA,G .ΩZ,tw .
+Also, define the generating function
+                                g−1 Z
+               A,G         −pk Y                       b1
+             fg,(a,b) :=                    ΩA,G                        bn
+                                             g,n (φa1 ψ1 , . . . , φan ψn ).
+                            tN         Mg,n
+
+Remark 3.2. Because the CohFT ΩZ and ΩA have different units, the graph sum
+formula for the RA action will have T = z(1 − I0 ), which by the dilaton equation
+will imply that we place the linear map
+                                        1
+                                             ΩZ
+                                              g,n
+                                    I02g−2+n
+at each vertex.
+Remark 3.3. Because the basis φ0 , . . . , φ3 is not flat, we will need to consider the
+transformation                                                      
+                              I0
+                                  I0 I11                            
+                      Ψ :=                                          
+                                           I0 I11 I22               
+                                                         I0 I112 I22
+from this basis to the flat basis 1, H, H 2 , H 3 . In particular, if we want to compute
+derivatives of RA,G , then we will need the input basis to be the flat basis, and in
+this basis RA,G (z)−1 takes the form
+                                 0 zEψG z 2 Eφψ         z 3 E1ψ
+                                                 G         G 
+                                                                2
+                                                  G       2 G 
+                                     0      zE φφ     z  E 1φψ .
+                      ΨI − 
+                              
+                                                0         zE G 
+                                                               ψ
+                                                           0
+Definition 3.4. Define the matrix
+                                RX (z) := RA (z)−1 · R[0] (z).
+We will consider the input basis of RX to be φ0 , . . . , φ3 and the output basis to be
+ϕ0 , . . . , ϕN +3 .
+                                     X a :=          X a
+Lemma 3.5. The matrix elements (Rm     )j     (ϕj , Rm φ ) of RX satisfy the following
+whenever m < N − 3:
+                                        X a
+   (1) If j ̸≡ m + a (mod N ), then (Rm   )j = 0;
+                         X a
+   (2) If j < N , then (Rm )j ∈ XQ[X]m−1 ;
+                         X a
+   (3) If j ≥ N , then (Rm )j ∈ qQ[X]m ;
+                        ∗ X
+   (4) We have R (−z) C (z) = IdHZ for some C X (z) of the form C(z)
+                  X
+                                                                              
+                                                                           0
+                                                                                , where
+       C(z) has the form
+                                1 z · C1 z 2 · C2 z 3 · C3
+                                                             
+                              0     1       z · C4 z 2 · C5 
+                      C(z) =                                 
+                              0     0          1      z · C6 
+                                0    0          0         1
+          for some C1 , C2 , C4 , C6 ∈ Q[X]1 and C3 , C5 ∈ Q[X]2 .
+     6Note that the unit of this CohFT is φ and not 1.
+                                           0
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                  19
+
+
+Proof. Using the equation
+(3.1)                 zDR[0] (z)∗ = R[0] (z)∗ AM − AZ R[0] (z)∗ .
+Using the definition R[0] (z)∗ = RA (z)∗ RX (z)∗ , we obtain
+          zD(RA (z)∗ RX (z)∗ ) = RA (z)∗ RX (z)∗ AM − AZ RA (z)∗ RX (z)∗ ,
+and multiplying by RA (−z), we obtain
+(3.2)   RX (z)∗ AM = zD(RX (z)∗ ) + RA (−z)[(zD + AZ )RA (z)∗ ]RX (z)∗ .
+Direct computation (here, note that the basis          φ0 , . . . , φ3 is not flat, so we need the
+version of RA with the Ψ) yields
+                                                                        −r1 Xz 4
+                                                                                
+                                           0            0      0
+                                           1            0   −r0 Xz 2       0
+           RA (−z)[(zD + AZ )RA (z)∗ ] = 
+                                                                                
+                                                                                 .
+                                         0             1    −Xz           0     
+                                           0            0      1         −Xz
+Therefore, we can compute RX (z)∗ ϕi from RX (z)∗ ϕ0 . Because R[0] (z)∗ ϕ0 = φ0 +
+O(z N −3 ) and RA (z)∗ φ0 = φ0 , the first entry of RX is 1 + O(z N −3 ).
+   We then note that the matrices AM and RA (−z)[(zD +AZ )RA (z)∗ ] both increase
+the mod-N degree by 1. Therefore, we see that RX preserves the mod-N degree, so
+the vanishing property holds. The degree estimates follow from the explicit formulae
+for AM and RA (−z)[(zD + AZ )RA (z)∗ ]. The final statement is obtained by direct
+computation.                                                                      □
+
+Corollary 3.6. The edge contribution
+                      P3          i
+                                     PN +3 X    ∗      X    ∗ j
+                        i=0 φi ⊗ φ −  j=0 R (−z) ϕj ⊗ R (−w) ϕ
+               VX :=
+                                         z+w
+satisfies the degree bound
+                         Y m1 m2        ⊗2
+                            [z w ]VX ∈ HZ  [X]m1 +m2 +1 .
+                         tN
+                                                                        tN
+Proof. This follows from the lemma and the fact that φj =              pk Y   φ3−j .           □
+
+3.2. Polynomiality of the [0] theory and the A theory. We now prove the
+polynomiality of the [0]-theory. First, we will prove some lemmas about Ea′ ,b′ (z),
+which was introduced in Definition 2.17.
+Lemma 3.7. Recall the definition of Ea′ ,b′ (z) from Definition 2.17. Then
+                                  (ϕa , [z b ]Ea′ ,b′ (z)) = 0
+unless a + a′ + b + b′ ≡ 2 (mod N ).
+Proof. By definition, we have
+                                               ′                   ′
+                (ϕa , [z b ]Ea′ ,b′ (z)) = (−1)b (ϕa , Rb+b′ +1 ϕ̄a )
+                                                ′ X       ′
+                                         = (−1)b      L−a                  α
+                                                        α (ϕa , Rb+b′ +1 1̄ ),
+                                                   α
+                              ′           ′
+which vanishes unless a − a − (b + b + 1) ≡ 0 (mod N ). The result follows from
+the fact that ϕa has mod-N degree 3 − a.                                      □
+20                                                    PATRICK LEI
+
+
+Lemma 3.8. Whenever N ≫ b′′ , then
+           −cE
+           Y            ′′   ′′
+
+             N
+                  · [z b ](φa , RX (−z)∗ Ea′ ,b′ (z)) ∈ Q[X]b′ +b′′ +1 ,
+           t
+                                    a′ +b′ +a′′ +b′′ −N −2
+where we define cE :=                         N            .   If cE ∈
+                                                                     / Z, then the above quantity vanishes.
+
+Proof. The vanishing is a corollary of Lemma 3.5 and Lemma 3.7. The degree
+estimate comes from the following considerations.
+                                                                   ′′   ′
+   Whenever a = 4, . . . , N − 1 and m′ < N − 3, then (φa , [z m ]RX (−z)∗ ϕa ) is
+nonzero only if a = a′′ + m′ . If this is satisfied, then it has degree m′ in X, and
+therefore
+           −cE
+           Y             ′′   ′′
+                   · [z b ](φa , RX (−z)∗ ϕa )(ϕa , Ea′ ,b′ (z)) ∈ Q[X]b′ +b′′ +1 .
+           tN
+
+Here, we use the fact that
+                                  cE                                cE
+                              N Y              b′                        Y
+   [z b ](ϕa , Ea′ ,b′ (z)) =             (−1)    (R     ′   ) α
+                                                     b+b +1 N +3−a ∈            Q[X]b+b′ +1
+                              p k tN                                    tN
+
+by Lemma 2.8 because Na = 0.
+                               
+
+   In the case where a = 0, . . . , 3, then for any m′ < N − 3, the vanishing still holds,
+so we use ϕa = 15 (ϕN +3−a − tN ϕ3−a ) to compute. The ϕN +3−a term contributes an
+element of Q[X]b′ +b′′ +2 , whereas the tN ϕ3−a term contributes
+                                                          cE
+                    b    N                            b′   Y
+                [z ](t ϕ3−a , Ea′ ,b′ (z)) = N (−1)              (Rb+b′ +1 )α
+                                                                            3−a Y.
+                                                           tN
+
+Therefore, we have
+          −cE
+           Y             ′′   ′′
+
+            N
+                   · [z b ](φa , RX (−z)∗ ϕa )(ϕa , Ea′ ,b′ (z)) ∈ Q[X]b′ +b′′ +2 .
+           t
+
+  In the case when a ≥ N , the nonvanishing condition becomes a − N = a′′ + m′ .
+Therefore, Lemma 3.5 implies that
+         −cE
+           Y            ′′   ′′
+
+             N
+                  · [z b ](φa , RX (−z)∗ ϕa )(ϕa , Ea′ ,b′ (z)) ∈ qQ[X]b′ +b′′ +1 .
+           t
+
+   If we sum the contributions from the above procedure, the degree count is too
+                  ′  ′′
+high by 1. The X b +b +2 -coefficient is given by (up to a constant)
+     ′   ′′                X                                                        Y
+[X b +b       +2
+                   ]                (RjX )ai (Ri )N +3−a − Y (RjX )ai (Ri )3−a +      (RX )N +a (Ri )3−a .
+                                                                                    tN j i
+                       i+j=b′ +b′′ +1
+                          j≤b′′
+                           a≤3
+
+
+Note that the MSP quantum connection (3.1) (in particular the value of AM ) implies
+                                        c′
+that [X m+1 ](Rm )j = j,k      m
+                      r · [X ](Rm )j−N and the equation (3.2) for R
+                                                                         X
+                                                                           implies
+       m   −1    X a      ′      m     a            ′
+that [X ](q (Rm )j ) = cj,k · [X ](Rm )j−N , where cj,k was defined in Lemma 2.13.
+            FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                           21
+
+
+This implies that
+                                                               Y
+       [X i+j+1 ]((RjX )ai (Ri )N +3−a − Y (RjX )ai (Ri )3−a + N (RjX )N
+                                                                       i
+                                                                         +a
+                                                                            (Ri )3−a )
+                                                              t
+             ′           ′       
+             c         c
+      = 1 + N +a + N +3−a
+                r           r
+      =0
+for all i + j = b′ + b′′ + 1 and a = 0, 1, 2, 3, where we have used the fact that
+c′N +a + c′N +3−a = −r, which is implied by the fact that I02 I11
+                                                               2
+                                                                  I22 = Y .    □
+
+    We will now put a partial ordering on the set of pairs (g, n) such that (h, m) ≺
+(g, n) if (h, m) < (g, n) in the lexicographic order and 3h + m ≤ 3g + n. We will
+use induction on (h, m) under this ordering and a bootstrapping argument to prove
+both the polynomiality of the [0] theory and of the A theory.
+    We introduce the following statements:
+     (1) Denote by Pg,n the statement “for all a ∈ {0, 1, 2, 3}n and b ∈ Zn≥0 , we
+          have            g−1
+                            Y         [0]
+                                     fg,(a,b) ∈ Q[X]3g−3+n−|b| .”
+                           tN
+     (2) Denote by Qg,s the statement “for all m + n ≤ s, a ∈ {0, . . . , N + 3}m ,
+         (b, b′ ) ∈ Zm+n         ′               n
+                     ≥0 , and a ∈ {1, . . . , N } ,
+                 g−1
+                   Y       [0]
+                         fg,(a,b),(a,b′ ) ∈ Q[X]3g−3+m+2n+⌊ a ⌋−|b|+|b′ | .”
+                  tN                                        N
+
+
+Lemma 3.9. Suppose that Ph,m holds for all (h, m) ≺ (g, n). Then for all (h, m) ≺
+(g, n), we have
+                          A
+                         fh,(a,b) ∈ Q[X]3h−3+m−|b|
+for all a ∈ {0, 1, 2, 3}m .
+                                                                       P
+Proof. First, note that RA preserves degrees, so we must have i (ai + bi ) = n. Now
+define
+                   Z
+       ˜[0]
+       fh,(a,b) :=       (RX .ΩA )h,m (C X (ψ1 )φa1 ψ b1 , . . . , C X (ψm )φam ψ bm ).
+                     Mh,m
+
+By the assumption Ph,m and the fact that C X has nonzero entries only in the top
+four rows, preserves the mod-N degree, and the fact that (ϕj , CℓX φa ) ∈ Q[X]ℓ , we
+see that
+                        h−1
+                         Y       [0]
+                               f˜h,(a,b) ∈ Q[X]3h−3+m−|b| .
+                         tN
+   In the graph sum formula for the action of RX and ΩA , we see there is a graph
+with a single genus h vertex with m insertions (corresponding to the largest stratum
+of Mh,m ). The contribution of this graph is fh,(a,b)
+                                               A
+                                                      . The contribution of any other
+graph will have the form
+                                    m
+                                                            !
+                        O           O            O
+                             A              bi
+                            fgv ,nv    φai ψ ⊗        VX (e) ,
+                              v       i=1             e
+
+where VX (e) was defined in Corollary 3.6.
+22                                                           PATRICK LEI
+
+
+    We will now induct on (h, m). In the base case (h, m) = (0, 3), the leading graph
+is the only graph, so the result follows directly (note here the different normalization
+conventions for f A and f [0] ). Now we assume the result for all (h′ , m′ ) ≺ (h, m).
+Using the graph sum, we now count the degrees of all of the contributions.
+       • The total exponent of tYN is v (gv − 1) + |E| = h − 1 using Corollary 3.6
+                                         P
+         and distributing the factors of Y as in the proof of [Lei24a, Theorem 6.1];
+       • The total degree in X is at most
+                                                     !
+          X                     X              X         X
+               3gv − 3 + nv −         b(e,v) −     bi +      (b(e,v1 ) + b(e,v2 ) + 1)
+              v                                     e∈Ev                 i∈Lv                 e
+                                                    !
+                  X                                                  X
+        =3             gv − |V | + 3|E|                   +m−             bi
+                  v                                                  i
+        = 3h − 3 + m − |b|.                                                                                                □
+
+Lemma 3.10. If Ph,m holds for all (h, m) ≺ (g, n), then Qh,m also holds for all
+(h, s) ≺ (g, n).
+                                                                                          [0]
+Proof. Recall that Ω[0] = RX .ΩA . This implies that fh,(a,b),(a′ ,b′ ) can be written as
+a graph sum, where the contribution of a stable graph Γ is given by the following:
+       • For each ordinary leg ℓ, we insert RX (−ψ)∗ ϕa ψ b . By Lemma 3.5, this in
+         fact becomes
+                                                                                             −⌊ Na ⌋
+             a−mℓ                  mℓ        b+mℓ     X ∗                  b+mℓ          Y
+         (φ            , (−1)            ψ          (Rm   ) ϕa )     ∈ψ                                  Q[X]mℓ +⌊ a ⌋ .
+                                                        ℓ
+                                                                                         tN                         N
+
+
+
+         for a unique mℓ (here, note that the ancestor degree must be at most
+         3gv − 3 + nv < N ).
+       • For each special leg ℓ′ , we insert RX (−ψ)∗ Ea′ ,b′ (ψ). Using Lemma 3.7
+         and Lemma 3.8, this becomes
+                                                                                             cE ′
+                  ′′     ′′         ′′                                          ′′       Y        ℓ
+              ψ b [z b ](φa , RX (−z)∗ Ea′ ,b′ (z)) ∈ ψ b                                             Q[X]b′′ +b′ +1
+                                                                                         tN
+
+         for a unique a′′ , b′′ .
+       • At every edge, we insert the bivector VX .
+     We now consider the total degree of the contributions from a graph Γ.
+                                                      Y
+       • The total exponent of                       tN
+                                                            is given by
+                              X j aℓ k X           X             X
+                               −      +   c Eℓ ′ +   (1 − gv ) +   (−1).
+                                  N     ′          v             e
+                               ℓ                        ℓ
+
+          Using the fact that
+                                     X                         X
+                                              (āℓ + bℓ ) +     (a′′ℓ′ + b′′ℓ′ ) = m + n
+                                         ℓ                      ℓ′
+                FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                            23
+
+
+           by Corollary 3.6, we obtain
+     X                            jak                X a′ ′ + b′ ′ + a′′′ + b′′′ − N − 2
+                                                        ℓ      ℓ      ℓ      ℓ
+           c Eℓ ′ + c + n −                    =
+                                          N                             N
+      ℓ′                                              ′  ℓ
+                                                             |ā| + |b| − |a′ | − |b′ | − m + n
+                                                    +                                           +n
+                                                                               N
+                                                    P             ′′    ′′            ¯
+                                                             ℓ′ (aℓ′ + bℓ′ ) + |ā| + |b| − nN − 2n − m + n
+                                               =
+                                                                                     N
+                                               = 0,
+
+       which implies that the total exponent is −(c + n + h − 1).
+     • The total degree in X is at most
+       X                   X               X          X
+            3gv − 3 + nv −     (bℓ + mℓ ) −    b′′ℓ′ −   m(e,v)
+            v                                   ℓ                         ℓ′           e
+                X              j a k                              X
+                                      ℓ
+                                                X
+           +             mℓ +                 +  (b′′ℓ′ + b′ℓ′ + 1) + (m(e,v1 ) + m(e,v2 ) + 1)
+                                 N
+                    ℓ                               ℓ′                             e
+                                          !
+            X                                                                      jak
+     =                  3gv − 3 + nv          − |b| + |b′ | + |E| + n +
+                v
+                                                                                       N
+                                              jak
+     = 3h − 3 + m + 2n +                                 − |b| + |b′ |.                                       □
+                                              N
+
+Theorem 3.11. For all a, b ∈ {0, . . . , N + 3}n , we have
+                                     g−1+c
+                                 Y                       [0]
+                                                    fg,(a,b) ∈ Q[X]3g−3+n+⌊ a ⌋−|b| .
+                                 tN                                                        N
+
+
+
+Proof. We will induct on (g, n) under the ordering ≺. The base case is (g, n) = (0, 3).
+In this case, there is only one graph with a single vertex. Because dim Mg,n = 0, no
+ancestor insertions are allowed, and so we calculate
+                  0−1+c                 c
+                    Y           [0]        Y       2 2     tN
+                              f0,(a,0) =         I  I
+                                                  0 11 I22    · const · q c
+                   tN                      tN              Y
+                                       = const · X c .
+
+Here, we use the fact that c = Na and the computation of genus-zero three-point
+                                    
+
+functions in [Lei24a, §2.4].
+   We now assume the desired polynomiality result for (h, m) ≺ (g, n). This implies
+Ph,m and thus Qh,m for all (h, m) ≺ (g, n) by Lemma 3.10. We may also assume
+that c = Na by Corollary 2.16.
+                                                                            [0,1]
+   We will now consider the [0, 1] theory. By [Lei24a, Theorem 4.1], fg,(a,b) is a
+                                                                      3g−3+|a|
+polynomial in q of degree at most g − 1 +      By Lemma 2.15, this becomes
+                                                                         N     .
+
+                                         3g − 3 + |a| + n − |a| − |b| + N Na
+                                                                          
+     3g − 3 + |a| + n − |ā| − |b|
+g−1+                               =g−1+
+                  N                                       N
+                                             3g − 3 + n − |b|
+                                   =g−1+c+                    .
+                                                    N
+24                                        PATRICK LEI
+
+
+Because 0 ≤ |b| ≤ 3g − 3 + n and N ≫ 3g − 3 + n, we see that the degree is in fact
+                                       g−1+c
+at most g − 1 + c. Multiplying by tYN         , we see that
+                         g−1+c
+                          Y           [0,1]
+                                    fg,(a,b) ∈ Q[X]g−1+c .
+                          tN
+By Corollary 2.16, this satisfies the desired degree bound.
+   We will now apply the bipartite graph decomposition from Theorem 2.7. There is a
+leading bipartite graph with only a single level 0 vertex. We need to prove the degree
+estimate for the non-leading graphs. Applying Qh,m at level 0 and Lemma 2.11 at
+level 1, we now count the total degree contribution of a bipartite graph Λ.
+      • The total exponent of tYN is
+                        X                            X
+           g−1+c−          (gv − 1 + cv + |L′v |) −      (gv − 1 + cv )
+                           v∈V0                           v∈V1
+                     |a| + |b| − n
+          =g−1+
+                          N
+               X               |av | + |b|v − |a′v | − |b′v | − |Lv | + |Ev |
+                                                                                      
+            −         gv − 1 +                                                 + |Ev |
+                                                      N
+               v∈V0
+                                |av | + |b|v − |a′v | − |b′v | − |Lv | − |Ev |
+               X                                                              
+            −         gv − 1 +
+                                                      N
+               v∈V1
+                            X
+          = g − 1 + |E| −      (gv − 1)
+                             v∈V
+          = 0.
+       • The total degree in X is
+                   X                          ja k                 
+                                                 v
+                        3gv − 3 + nv + |Ev | +      − |bv | + |b′v |
+                                                N
+                  v∈V0
+                          X                   ja k                 
+                                                 v
+                       +       3gv − 3 + nv +       − |bv | − |b′v |
+                                                N
+                            v∈V1
+
+         Because a stable graph describes a codimension |E| stratum in Mg,n , this is
+         at most 3g − 3 + n + Na − |b|.
+                                  
+                                                                                    □
+
+     Applying Lemma 3.9, we obtain the following.
+Corollary 3.12. For all (g, n) such that 2g − 2 + n > 0, all a ∈ {0, 1, 2, 3}n , and
+all b ∈ Zn≥0 , we have
+                                    A
+                                   fg,(a,b) ∈ Q[X]3g−3+n−|b| .
+3.3. Choice of gauge. Note that
+                              RA,G (z)−1 = RA (z)−1 G(z)−1 ,
+where we compute
+                                                z 2 c2   −z 3 (c11 c2 + c3 )
+                                                                            
+                                0        zc11
+                                          0     zc12     −z 2 (c11 c12 + c2 )
+                  G(z)−1
+                               
+                           =I −                                             .
+                                                 0              c11         
+                                                                  0
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                               25
+
+
+Note that this is a symplectic matrix, so we have an equality
+
+                                            ΩA,G = G.ΩA
+
+of CohFTs.
+
+Theorem 3.13. For all (g, n) such that 2g − 2 + n > 0, all a ∈ {0, 1, 2, 3}n , and
+all b ∈ Zn≥0 , we have
+                                  A,G
+                                 fg,(a,b) ∈ Q[X]3g−3+n−|b| .
+
+Proof. We will write the stable graph sum formula for ΩA,G as the G-action on ΩA .
+The contribution of a stable graph Γ is given by the following assignments:
+     • At each leg, we place G(−z)∗ φa ψ b = m G∗m (−ψ)m φa ψ b ;
+                                              P
+     • At each edge, we place
+                              3
+                              X φi ⊗ φi − G(−ψ)∗ φi ⊗ G(−ψ ′ )∗ φi
+                   V G :=
+                              i=1
+                                                         ψ + ψ′
+                                     X
+                            = Y −1             ψ (ψ ′ )b .
+                                             G a
+                                           Vab
+                                     a,b
+
+Here, note that G∗m has degree m in X and Vab has degree a + b + a in X by the
+assumption on the gauge in Definition 1.6.
+   We now compute the total degree of the contribution. The total exponent of tYN
+in the contribution of Γ to ΩA,G
+                             g,n is
+                                           X
+                              −|E| −             (gv − 1) = −(g − 1).
+                                           v∈V
+
+On the other hand, the total degree in X is at most
+                                                                                        !
+                  X                                X                    X
+                            3gv − 3 + nv −               (mℓ + bℓ ) −          m(e,v)
+                   v                              ℓ∈Lv                  e∈Ev
+                       X                            X
+                  +     (m(e,v1 ) + m(e,v2 ) + 1) +   mℓ
+                        e                                         ℓ
+               = 3g − 3 + n − |b|.                                                          □
+
+
+                             4. The B-model Feynman rule
+   In this section, we will define the B-model Feynman rule and prove that it equals
+the A-model Feynman rule. From now on, we will make the specialization tN = −1.
+This makes q ′ = q and makes
+                                       Z
+                  A,G                                 b1
+                 fg,(a,b) = (pk Y )g−1     ΩA,G                        bn
+                                            g,n (φa1 ψ1 , . . . , φan ψn ).
+                                              Mg,n
+
+Convention 4.1. In this section, we will omit all superscripts of G, so E∗∗ stands
+     G
+for E∗∗ , RA stands for RA,G , and so on.
+26                                              PATRICK LEI
+
+
+4.1. B-model geometric quantization. We will first express the physics Feynman
+rule using geometric quantization. Note that the Givental formalism is a type of
+geometric quantization, so we will be able to compare the A-model and B-model
+quantizations.
+   Consider the vector space
+          HS := T ∗ (zH 0 (Z) ⊕ H 2 (Z)) = span{−φ2 z −1 , φ3 z −2 , φ1 , φ0 z}
+with the symplectic form
+                                                                           
+                            1                                       0     I
+                                Resz=0 (f (−z), g(z)) =                       .
+                           pk Y                                    −I     0
+Then define
+                               RB := RA |HS
+                                                                        
+                                         1     −Eψ
+                                      0        1                         
+                                  = −Eφφ −Eφψ
+                                                                          
+                                                                 1        
+                                       E1φψ    E1ψ2             Eψ       1
+                                           
+                                       A B
+                                  =:          .
+                                       C D
+Because HS is a symplectic vector space, we will write elements as
+                       (p, x) := −px φ2 z −1 + py φ3 z −2 + xφ1 + yφ0 z.
+
+Definition 4.2. Following [CPS18], we define the geometric quantization R  bB by
+the Gaussian integral
+                                 Z
+                                     1     ′  ′   ′  ′        ′
+              bB F (ℏ, x) := log
+              R                    e ℏ (Q(x ,p )−x ·p )+F (ℏ,x ) dx′ dp′ .
+                                           R4
+          ′    ′
+Here, Q(x , p ) is defined by the formula
+                                             1
+              Q(x′ , p′ ) := (D−1 x′ ) · p′ − (D−1 Cp′ ) · p′
+                                            2                                      
+                              ′ T      1         ′ 1 ′ T Eφφ                      Eφψ
+                          = (p )                x + (p )                                p′
+                                    −Eψ 1          2          Eφψ                 Eψψ
+and (p′ , x′ ) are coordinates on R4 = R2 × R2 .
+   Following [CPS18, §3.4], a standard argument involving the Fourier transform
+gives us the operator form
+                                                                       !
+                                                    ∂x
+                                   −ℏ ∂ ∂ y )DC T
+                                    2( x                           −1
+                 B                                  ∂       F (ℏ,D    x)
+               Rb F (ℏ, x) = log e                    y
+                                                          e               .
+
+Now define Ẽφφ , Ẽφψ , and Ẽψψ by
+                                                                  
+                                                       Ẽφφ   Ẽφψ
+                                    −DC T :=                         .
+                                                       Ẽφψ   Ẽψψ
+Then if we define
+                                         1     ∂2         ∂2   1    ∂2
+                   V B (∂ x , ∂ x ) :=     Ẽφφ 2 + Ẽφψ      + Ẽψψ 2 ,
+                                         2     ∂x        ∂x ∂y 2    ∂y
+            FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                         27
+
+
+the operator form of the quantization action becomes
+                                                                    
+(4.1)               RbB F (ℏ, x) = log eℏV B (∂ x ,∂ x ) eF (ℏ,D−1 x) .
+
+Definition 4.3. Define the (normalized) Gromov-Witten correlator of Z by the
+formula
+                                (pk Y )g−1              ⊗n Z
+                    Pg,m,n := 2g−2+m+n φ⊗m    1 , (φ0 ψ)   g,m+n
+                               I0
+when (g, m) ̸= (1, 0) and define
+                                                        
+                                                χ(Z)
+                           P1,0,n := (n − 1)!        −1 .
+                                                 24
+Definition 4.4. Define the master B-model Gromov-Witten potential function by
+                                       X         xm y n
+                     P B (ℏ, x, y) :=       ℏg−1        Pg,m,n .
+                                      g,m,n
+                                                 m!n!
+Then, define the master B-model potential function by
+                                                      X
+                                  bB P B (ℏ, x, y) =:
+                 f B (ℏ, x, y) := R                           B
+                                                        ℏg−1 fg,m,n .
+                                                          g,m,n
+
+   By [CPS18, Theorem 10], we can also compute f B by the construction in Defini-
+tion 1.8.
+4.2. Factorization of the quantization action. We will factor the quantization
+action (4.1) into the change of variables and the application of differential operators.
+Observe that D−1 x = (x, y − Eψ x). Then the transformation
+                              F (ℏ, x, y) 7→ F (ℏ, x, y − Eψ x)
+is given by quantizing the matrix
+                                                            
+                                      1     −Eψ
+                                             1
+                               EB := 
+                                                            
+                                                             .
+                                                     1      
+                                                     Eψ     1
+Then we compute
+                              P̃ B := E
+                                      bB P B (ℏ, x, y)
+                                   = P B (ℏ, x, y − Eψ x)
+                                      X          xm y n
+                                   =       ℏg−1         P̃g,m,n ,
+                                     g,m,n
+                                                  m!n!
+where
+                            (pk Y )g−1                                       Z
+              P̃g,m,n :=               (φ1 − Eψ φ0 ψ)⊗m , (φ0 ψ)⊗n                 .
+                           I02g−2+m+n                                        g,m+n
+
+We then compute
+                                                                           
+                                             1             0
+                                           0              1
+                    R̃B := RB (EB )−1
+                                                                            
+                                         =
+                                          −Ẽφφ
+                                                                            ,
+                                                         −Ẽφψ      1       
+                                           −Ẽφψ         −Ẽψψ      0   1
+
+so we see that f B (ℏ, x, y) = R
+                               d̃B P̃ B (ℏ, x, y).
+28                                          PATRICK LEI
+
+
+4.3. Modification of the A-model quantization. Note that in the graph sum
+formula for ΩA , the edge contribution is given by
+
+          VA = VB + Eψ (φ0 ⊗ φ2 + φ2 ⊗ φ0 ) + E1φψ (φ0 ⊗ φ1 ψ ′ + φ1 ψ ⊗ φ0 )
+                  + E1ψ2 (φ0 ⊗ φ0 (ψ ′ )2 + φ0 ψ 2 ⊗ φ0 ).
+
+In order to prove that the A-model and B-model Feynman rules are equivalent, we
+need to analyze the contributions of the three extra terms. We will begin with the
+terms Eψ (φ0 ⊗ φ2 + φ2 ⊗ φ0 ) and study a parallel construction to the modified
+B-model quantization.
+   The parallel construction in the A-model is to consider the matrix7
+                                                       
+                                        0 Eψ
+                                            0
+                          EA := I + z 
+                                                       
+                                                        
+                                                0 Eψ 
+                                                     0
+
+and the factorization
+                                    R̃A (z) := RA (z)EA (z)−1 .
+Recall that matrices are written in the basis φ0 , φ1 , φ2 , φ3 .
+
+Definition 4.5. Define the CohFT
+
+                                            Ω̃Z := EA ΩZ
+
+and the potential
+                                      X ℏg−1                    Z
+                         A                                g−1                  ⊗n
+                      P̃ (ℏ, t) :=               (pk Y )               Ω̃Z
+                                                                         g,n (t   )
+                                      g,n
+                                            n!                  Mg,n
+
+
+for the coordinate
+
+                          t = xφ1 + yφ0 ψ + aφ1 ψ + bφ0 ψ 2 + cφ0 .
+
+Specializing to the case t = (x, 0), we define
+
+                               P̃ A (ℏ, x, y) := P̃ A (ℏ, xφ0 + yφ0 ψ).
+
+Lemma 4.6. We have the identity
+
+                             P̃ A (ℏ, x, y) = P̃ B (ℏ, x, y) − log(1 − y).
+
+Proof. By [Lee09, Theorem 5], the R-matrix action preserves all tautological equa-
+tions on the moduli spaces of curves, in particular the string and dilaton equations,
+so we can apply the dilaton equation to Ω̃Z . We also note that changing P̃ B (ℏ, x, y)
+to P̃ B (ℏ, x, y) is the same as replacing P1,0,n by the actual Gromov-Witten invariant
+                                 1               Z                  χ(Z)
+                                    (φ0 ψ)⊗n           = (n − 1)!        ,
+                                I0n              1,n                 24
+
+     7This should also implicitly have a Ψ−1 on the right, but we will omit it.
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                      29
+
+
+so applying the dilaton equation to both sides (where P̃ denotes either P̃ A or P̃ B )
+yields
+                                                                
+                                             m n
+     ∂                 ∂    X             x  y            χ(Z)
+        P̃ (ℏ, x, y) =                ℏg−1       P̃g,m,n +      y
+     ∂y                ∂y                  m!n!             24
+                             (g,m,n)̸=(1,0,1)
+                     X               xm y n−1            χ(Z)
+                 =           ℏg−1              P̃g,m,n +
+                     g,m,n
+                                    m!(n − 1)!            24
+                     X       xm y n−1                                   χ(Z)
+                 =           ℏg−1       (2g − 2 + m + n − 1)P̃g,m,n−1 +
+                  g,m,n
+                           m!(n  −  1)!                                  24
+                                        
+                        ∂     ∂       ∂         χ(Z)
+                 = 2ℏ     +x     +y        P̃ +      .
+                       ∂ℏ    ∂x      ∂y          24
+Therefore, we only need to prove that P̃ A (ℏ, x, 0) = P̃ B (ℏ, x, 0).
+   We will now consider the graph sum formula for the definition of Ω̃Z . The
+edge contributions are given by Eψ (φ0 ⊗ φ2 + φ2 ⊗ φ0 ). All insertions at legs are
+EA (−ψ)∗ φ1 = φ1 −Eψ φ0 ψ, and each vertex contributes a Gromov-Witten correlator
+of Z. Applying the string equation, dilaton equation, divisor equation, and virtual
+dimension constraints, if the stable graph Γ has at least one edge and one vertex of
+g > 0, then its contribution vanishes. By a similar argument, any vertex with more
+than two edges has vanishing contribution. Therefore, we have a decomposition
+                     P̃ A (ℏ, x, 0) = P A (ℏ, x, −Eψ x) + P1loop (x),
+where the first term comes from the leading graphs with a single genus g vertex
+and the second comes from loops of genus zero vertices, which contribute to the
+genus 1 potential. Every vertex must have at least one φ1 insertion by dimension
+reasons, and the string and dilaton equations imply that there is exactly one φ1
+insertion. Therefore, we use the dilaton equation to remove the −Eψ φ0 ψ insertions
+and compute
+                                    X       xm+n ContΓ
+                P1loop (x) =
+                                            m!n! |Aut Γ|
+                                   Γ loop
+                                  |V |=m
+                                 |L|=m+n
+                                X (m − 1)!           Ym X
+                             =              (Eψ x)m            (−Eψ x)ni
+                               m>0
+                                      m!             i=1 ni ≥0
+                                X 1  Eψ x m
+                             =
+                               m>0
+                                    m 1 + Eψ x
+                                                  
+                                            Eψ x
+                             = − log 1 −
+                                          1 + Eψ x
+                             = log(1 + Eψ x).
+Here, we have used the following combinatorial facts:
+     • There are (m − 1)! ways to arrange m vertices in a loop;
+     • For any partition n = n1 + · · · + nm of the φ0 ψ insertions, the number of
+                                    n!
+       possible assignments is n1 !···n m!
+                                           ;
+30                                                     PATRICK LEI
+
+
+        • Applying the dilaton equation to any vertex with ni insertions of φ0 ψ and
+          one insertion of φ1 produces a factor of n!.
+We conclude that
+
+                       P̃ A (ℏ, x, 0) = P A (ℏ, x, −Eψ x) + log(1 + Eψ x)
+                                               = P B (ℏ, x, −Eψ x)
+                                               = P̃ B (ℏ, x, 0).                                        □
+
+4.4. Equality of A-model and B-model potentials. A direct computation
+yields
+                                   0 0 z 2 Ẽφψ z 3 Ẽψψ
+                                                        
+
+                                     0 z Ẽφφ z 2 Ẽφψ 
+                 R̃A (z)−1 = I − 
+                                 
+                                                         .
+                                           0        0 
+                                                     0
+
+By [Giv01, Proposition 7.3], we see that
+                                         A                     A
+                                                                   (∂ t ,∂ t ) P̃ A (ℏ,x,y)
+                                    ef       (ℏ,x,y)
+                                                       = eℏV                e                 ,
+
+where
+                                                                     ∂2              ∂2
+                    V A (∂ t , ∂ t ) := V B (∂ t , ∂ t ) − Ẽφψ              − Ẽψψ
+                                                                   ∂a ∂c            ∂b ∂c
+                                             B                 extra
+                                         =: V (∂ t , ∂ t ) + V       (∂ t , ∂ t ).
+
+   We will first prove some technical lemmas about the geometric quantization
+formalism. This is
+
+Lemma 4.7. We have the equality
+
+                                                       = e 1−y (a ∂x +b ∂y ) eP̃
+                                A                            c         ∂        ∂     A
+                          eP̃       (ℏ,x,y,a,b,c)                                         (ℏ,x,y)
+                                                                                                    .
+
+Proof. The operator form of the string equation8 is
+                                                    
+             ∂ P̃ A (ℏ,x,y,a,b,c)     ∂     ∂     ∂      A
+               e                  = a    +b    +y     eP̃ (ℏ,x,y,a,b,c) .
+            ∂c                        ∂x    ∂y    ∂v
+
+By virtual dimension reasons, we obtain the initial condition
+
+                                     P̃ A (ℏ, x, y, a, b, 0) = P̃ A (ℏ, x, y).
+
+
+     8If we write φ(z) = P3 tj φ z j , the operator form of the string equation (see [Giv04]) is
+                          i=0 i i
+
+                                                           ∞ X 3
+                                     ∂       1 0 0                      ∂
+                                                                  tj+1
+                                                          X
+                                         D =   (t , t ) +          i        D.
+                                    ∂t00     2            j=0 i=0      ∂tji
+
+Because there are no φ2 or φ3 insertions, the unstable term disappears. We then set t01 = x, t11 = a,
+                                                       A
+t00 = c, t10 = y, and t20 = b. Here, D = eP̃ .
+                    FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                                                                    31
+
+
+The desired result follows from the computation
+
+                              ∂  1−y
+                                    c
+                                      (a ∂x
+                                         ∂     ∂
+                                            +b ∂y ) eP̃ A (ℏ,x,y)
+                                                                  
+            (1 − y)              e
+                              ∂c
+                                                 ∞                 n                 n
+                                            ∂ X 1              c             ∂       ∂
+                                 = (1 − y)                               a       +b         eP̃ (ℏ,x,y)
+                                            ∂c n=0 n! 1 − y                 ∂x       ∂y
+                                    ∞                        n−1                   n
+                                   X        1            c                ∂        ∂        A
+                                 =                                    a       +b         eP̃ (ℏ,x,y)
+                                   n=0
+                                       (n − 1)! 1 − y                    ∂x       ∂y
+                                                   
+                                       ∂        ∂                                       
+                                                         e 1−y (a ∂x +b ∂y ) eP̃ (ℏ,x,y) .
+                                                            c      ∂    ∂       A
+                                 = a       +b                                                                                             □
+                                      ∂x        ∂y
+
+
+Theorem 4.8. We have the equality
+
+
+                                     f A (ℏ, x, y) = f B (ℏ, x, y) − log(1 − y).
+
+Proof. Our goal is to compute the function
+
+                A                         B
+                                              (∂ t ,∂ t )+V extra (∂ t ,∂ t )) P̃ A (ℏ,x,y,a,b,c)
+         ef         (ℏ,x,y)
+                              = eℏ(V                                             e
+                                                                                                         a,b,c=0
+
+                              =e   ℏ(V B (∂ t ,∂ t )+V extra (∂ t ,∂ t ))
+                                                                                 e
+                                                                                      c
+                                                                                     1−y   (a ∂x
+                                                                                              ∂     ∂
+                                                                                                 +b ∂y ) eP̃ A (ℏ,x,y)
+                                                                                                                            a,b,c=0
+                                                                                                             P̃ B (ℏ,x,y)
+                                                                                                         e
+                                                                                 e 1−y (a ∂x +b ∂y )
+                                          B
+                                              (∂ t ,∂ t )+V extra (∂ t ,∂ t ))        c       ∂      ∂
+                              = eℏ(V                                                                                                  .
+                                                                                                              1−y
+                                                                                                                            a,b,c=0
+
+
+                                                                                                        
+                                                                              c              ∂      ∂
+We will first consider the contribution of                                   1−y           a ∂x + b ∂y        and V extra (∂ t , ∂ t ). For
+any function D(x, y), we compute
+
+
+   eℏV (∂ t ,∂ t ) e 1−y (a ∂x +b ∂y ) D(x, y)
+        extra                  c      ∂          ∂
+
+
+
+   X (−ℏ)m                                      m                         n
+                            ∂2              ∂2
+                                                              
+                                                          c       ∂       ∂
+ =                  Ẽφψ          + Ẽψψ                        a     +b          D(x, y)
+   m,n
+        m!n!              ∂a ∂c            ∂b ∂c       1−y        ∂x      ∂y               a,b,c=0
+
+   X (−ℏ)n                                        n                            n
+                           ∂2               ∂2
+                                                                        
+                                                        c        ∂       ∂
+ =                 Ẽ φψ         +  Ẽ ψψ                     a      + b         D(x, y)
+    n
+        (n!)2            ∂a ∂c             ∂b ∂c      1−y       ∂x       ∂y              a,b,c=0
+
+   X (−ℏ)n                               n                        n
+                          ∂             ∂         1        ∂       ∂
+ =                 Ẽφψ       + Ẽψψ                    a     +b           D(x, y)
+    n
+         n!              ∂a            ∂b       1 − y     ∂x      ∂y               a,b,c=0
+
+   X (−ℏ)n
+                                            n
+                            ∂             ∂
+ =                   Ẽφψ       + Ẽψψ            D(x, y).
+    n
+         1−y               ∂x            ∂y
+
+                                                                   
+                                     −ℏ                ∂         ∂
+Now set E extra (∂ t ) :=            1−y          Ẽφψ ∂x + Ẽψψ ∂y   .
+32                                                                     PATRICK LEI
+
+
+     To deal with the contribution of V B (∂ t , ∂ t ), we compute
+               B                                     B
+        e−ℏV       (∂ t ,∂ t )
+                                 (1 − y)eℏV (∂ t ,∂ t )
+                                                                                             
+                                      X (−ℏV B (∂ t , ∂ t ))m           X (−ℏV B (∂ t , ∂ t ))n
+                                  =                          (1 − y)                         
+                                                      m!                         n!
+                                          m≥0                                                                     n≥0
+                                   X X (−ℏV B (∂ t , ∂ t ))ℓ         (ℏV B (∂ t , ∂ t ))m
+                                 =                           (1 − y)
+                                              ℓ!                            m!
+                                      n≥0 ℓ+m=n
+                                   X 1                        n
+                                 =          −, V B (∂ t , ∂ t ) (1 − y)
+                                       n!
+                                   n≥0
+                                                                      
+                                                        ∂           ∂
+                                 = (1 − y) + ℏ Ẽφψ          + Ẽψψ     .
+                                                      ∂x            ∂y
+Dividing by 1 − y, we see that
+                                                     B                                        B
+                       (1 − y)−1 e−ℏV                    (∂ t ,∂ t )
+                                                                       (1 − y)eℏV                 (∂ t ,∂ t )
+                                                                                                                = 1 − E extra (∂ t ),
+or in other words that
+                                 B                                          B                                     X
+                      e−ℏV           (∂ t ,∂ t )
+                                                   (1 − y)−1 eℏV                (∂ t ,∂ t )
+                                                                                              (1 − y) =                 E extra (∂ t )n .
+                                                                                                                  n≥0
+
+     Putting all of this together, we see that
+                                                                                                                        P̃ B (ℏ,x,y)
+          ef A (ℏ,x,y)
+                                  =e     ℏ(V B (∂ t ,∂ t )+V extra (∂ t ,∂ t ))
+                                                                                        e
+                                                                                               c
+                                                                                              1−y   (a ∂x
+                                                                                                       ∂     ∂
+                                                                                                          +b ∂y )e
+                                                                                                                          1−y
+                                                                                                                                       a,b,c=0
+                                         ℏV B (∂ t ,∂ t )                                                       −1 P̃ B (ℏ,x,y)
+                                                              X
+                                                                           extra            n
+                                  =e                                   E           (∂ t ) (1 − y)                  e
+                                                              n≥0
+                                                                 B
+                                                                     (∂ t ,∂ t ) P̃ B (ℏ,x,y)
+                                  = (1 − y)−1 eℏV                                 e
+                                            B
+                                       ef       (ℏ,x,y)
+                                  =                       .
+                                            1−y
+The desired result follows by taking logarithms.                                                                                                 □
+Corollary 4.9 (B-model Feynman rule). For any g, m, n, we have
+                                                            B
+                                                           fg,m,n ∈ Q[X]3g−3+m .
+                                      A        B
+Proof. By Theorem 4.8, we see that fg,m,n  = fg,m,n + δg,1 δm,0 (n − 1)!. The result
+then follows from Corollary 3.12 by choosing a = (1m 0n ) and b = (0n 1m ).       □
+
+                                                         5. Anomaly equations
+     Our goal is to prove the following theorem.
+Theorem 5.1. The Pg,m satisfy the differential equations
+                                                                                                                   !
+                                                                                   1            X
+(5.1)                                                                   − ∂ A Pg =   Pg−1,2 +         Pg1 ,1 Pg2 ,2 ,
+                                                                                   2          g +g =g                     1    2
+
+(5.2)
+    (−2 ∂ A + ∂ B + (A + 2B) ∂ B2 − ((B − X)(A + 2B) − B2 − r0 X) ∂ B3 )Pg = 0.
+           FEYNMAN RULE AND ANOMALY EQUATIONS FOR WEIGHTED P4                         33
+
+
+  In order to prove this, we introduce a smaller ring of modified generators which
+contains the Pg .
+Definition 5.2. Define the modified generators
+                     E1 := Ẽφφ ,       E2 := Ẽφψ ,      E3 := Ẽψψ
+and then set
+                               R̃ := Q[E1 , E2 , E3 , X] ⊂ R.
+Remark 5.3. The ring R̃ is in fact invariant under the choice of gauge. Direct
+computation yields
+                   1 = E1 + c12 ,
+                  EG    0
+
+
+                   2 = E2 + c11 E1 + c11 c12 + c2 ,
+                  EG    0        0
+
+
+                   3 = E3 + 2c11 E2 + c11 E1 + c11 c12 + 2c11 c2 + c3 ,
+                  EG    0         0    2   0    2
+
+so we will write the generators with no superscript and G = 0. Here, recall that
+c11 , c12 , c2 , c3 ∈ Q[X].
+Remark 5.4. Our generators are related to the generators v1 , v2 , and v3 introduced
+in [YY04] by the formulae
+               v1 = −E1 ,       v2 = −E2 ,       and       v3 = E3 − E2 X.
+Lemma 5.5. The ring R̃ is closed under the derivative D.
+Proof. A direct computation yields
+                            DE1 = −X(E1 + r0 ) − E21 + 2E2 ,
+                            DE2 = −XE2 − E1 E2 + E3 ,
+                            DE3 = r1 X − XE3 − E22 .
+                                                                                      □
+Theorem 5.6 (Reduction of generators). Let g > 1. Then Pg ∈ R̃.
+Proof. First, note that by definition, we have Pg = P̃g . We will now prove that all
+P̃g,m ∈ R̃ by induction on the lexicographic order in (g, m). Recall that fg,m
+                                                                           B
+                                                                               can be
+                  B
+computed from P̃h≤g,m,n   by the geometric quantization of RB . The contribution of
+each stable graph to this quantization is given by the following construction:
+      • At each leg, we place φ1 or φ0 ψ;
+      • At every edge, we place the bivector
+          Ẽφφ (φ1 ⊗ φ1 ) + Ẽφψ (φ1 ⊗ φ0 ψ + φ0 ψ ⊗ φ1 ) + Ẽψψ (φ0 ψ ⊗ φ0 ψ)
+         =E1 (φ1 ⊗ φ1 ) + E2 (φ1 ⊗ φ0 ψ + φ0 ψ ⊗ φ1 ) + E3 (φ0 ψ ⊗ φ0 ψ);
+      • At every vertex, we place the linear map φ⊗m
+                                                  1  ⊗ (φ0 ψ)⊗n 7→ P̃g,m,n .
+   The base cases are P̃1,0,1 = χ(Z)
+                                   24 − 1 and P̃0,3 = 1. The dilaton equation implies
+that if P̃g,m ∈ R̃, then P̃g,m,n ∈ R̃ for all n. Now we assume that P̃h,ℓ,n ∈ R̃ for all
+                                   B
+(h, ℓ) < (g, m). Then we know fg,m      ∈ Q[X] by Corollary 4.9. Computing it by the
+stable graph sum, we see
+                        B
+                                           X         1
+                       fg,m = P̃g,m +                      ContΓ .
+                                                   |Aut Γ|
+                                       Γ non-leading
+34                                                            PATRICK LEI
+
+
+By the inductive hypothesis and the formula for the edge contributions, ContΓ ∈ R̃
+for any non-leading Γ. The desired result follows immediately.                  □
+Proof of Theorem 5.1. The second equation (5.2) is equivalent to Theorem 5.6 by
+the results of [YY04], so we only need to prove (5.1). We proceed by differentiating
+the quantization action. By definition, we have
+                                          B                              B
+                                                                             (∂ t ,∂ t ) f B (ℏ,x,y)
+                                     eP       (ℏ,x,y−Eψ x)
+                                                               = e−ℏV                    e                 .
+Applying ∂ being either ∂ A , ∂ B , ∂ B2 , or ∂ B3 , we see that
+                                 B                                               B
+                                                                                     (∂ t ,∂ t ) f B (ℏ,x,y)
+                           eP̃       (ℏ,x,y)
+                                                = −ℏ ∂V B (∂ t , ∂ t )eV                          e
+                                                                                 B
+                                                = −ℏ ∂V B (∂ t , ∂ t )eP̃            (ℏ,x,y)
+                                                                                                  .
+                                                          ′      ′   ′
+Making the change of variables t = (x , y ) := (x, y − Eψ x), we then see that
+                 1       ∂2           ∂2             ∂2
+        V B (∂ t , ∂ t ) =
+                   Eφφ ′2 + Eφψ ′ ′ + Eψψ ′2 =: V B,small (∂ t′ , ∂ t′ ).
+                 2      ∂x          ∂x ∂y           ∂y
+From now on, we will replace x′ by x and y ′ by y for simplicity. We now see that
+                                          B                                                  B
+                                     eP       (ℏ,x,y)
+                                                        = ∂V B,small (∂ t , ∂ t )eP              (ℏ,x,y)
+                                                                                                           .
+                    B,small                         1 ∂2
+     First, ∂ A V             (∂ t , ∂ t ) =        2 ∂x2 ,    so we obtain
+                                                                        2
+                               ℏ ∂2 B
+                                                      
+                       B                            ℏ ∂ B
+           ∂ A P (ℏ, x, y) = −       P (ℏ, x, y) −         P (ℏ, x, y) .
+                               2 ∂x2                2 ∂x
+Setting x = y = 0, we see that
+                                                                           !
+       X                   1  X                     X
+          ℏg−1 ∂ A Pg = −        ℏg−1 Pg−1,2 +           ℏg1 +g2 −1 Pg1 Pg2 .
+                           2                      g ,g >0
+         g≥2                                        g≥2                              1   2
+
+                                              g−1
+Taking the coefficient of ℏ                         on both sides, we obtain (5.1).                            □
+
+                                                              References
+[BCOV94]         M. Bershadsky, S. Cecotti, H. Ooguri, and C. Vafa. “Kodaira-Spencer
+                 theory of gravity and exact results for quantum string amplitudes”. In:
+                 Comm. Math. Phys. 165.2 (1994), pp. 311–427. issn: 0010-3616,1432-
+                 0916.
+[Beh97]          K. Behrend. “Gromov-Witten invariants in algebraic geometry”. In:
+                 Invent. Math. 127.3 (1997), pp. 601–617. issn: 0020-9910,1432-1297.
+                 doi: 10.1007/s002220050132.
+[BF97]           K. Behrend and B. Fantechi. “The intrinsic normal cone”. In: Invent.
+                 Math. 128.1 (1997), pp. 45–88. issn: 0020-9910,1432-1297. doi: 10.100
+                 7/s002220050136.
+[CCK15]          Daewoong Cheong, Ionuţ Ciocan-Fontanine, and Bumsig Kim. “Orb-
+                 ifold quasimap theory”. In: Math. Ann. 363.3-4 (2015), pp. 777–816.
+                 issn: 0025-5831,1432-1807. doi: 10.1007/s00208-015-1186-z.
+[CCLT09]         Tom Coates, Alessio Corti, Yuan-Pin Lee, and Hsian-Hua Tseng. “The
+                 quantum orbifold cohomology of weighted projective spaces”. In: Acta
+                 Math. 202.2 (2009), pp. 139–193. issn: 0001-5962,1871-2509. doi: 10.1
+                 007/s11511-009-0035-x.
+                                  REFERENCES                                   35
+
+
+[CG07]    Tom Coates and Alexander Givental. “Quantum Riemann-Roch, Lef-
+          schetz and Serre”. In: Ann. of Math. (2) 165.1 (2007), pp. 15–53. issn:
+          0003-486X,1939-8980. doi: 10.4007/annals.2007.165.15.
+[CGL19]   Huai-Liang Chang, Shuai Guo, and Jun Li. BCOV’s Feynman rule of
+         quintic 3-folds. 2019. arXiv: 1810.00394.
+[CGL21]   Huai-Liang Chang, Shuai Guo, and Jun Li. “Polynomial structure of
+          Gromov-Witten potential of quintic 3-folds”. In: Ann. of Math. (2)
+         194.3 (2021), pp. 585–645. issn: 0003-486X,1939-8980. doi: 10.4007/a
+          nnals.2021.194.3.1.
+[CGLL21] Huai-Liang Chang, Shuai Guo, Jun Li, and Wei-Ping Li. “The theory
+          of N -mixed-spin-P fields”. In: Geom. Topol. 25.2 (2021), pp. 775–811.
+          issn: 1465-3060,1364-0380. doi: 10.2140/gt.2021.25.775.
+[CL20]    Huai-Liang Chang and Jun Li. “A vanishing associated with irregular
+          MSP fields”. In: Int. Math. Res. Not. IMRN 20 (2020), pp. 7347–7396.
+          issn: 1073-7928,1687-0247. doi: 10.1093/imrn/rnaa049.
+[CLLL19] Huai-Liang Chang, Jun Li, Wei-Ping Li, and Melissa Chiu-Chu Liu.
+         “Mixed-Spin-P fields of Fermat polynomials”. In: Cambridge Journal
+         of Mathematics 7.3 (2019), pp. 319–364. issn: 2168-0930. doi: 10.4310
+         /CJM.2019.v7.n3.a3.
+[CLLL22] Huai-Liang Chang, Jun Li, Wei-Ping Li, and Chiu-Chu Melissa Liu.
+         “An effective theory of GW and FJRW invariants of quintic Calabi-Yau
+          manifolds”. In: J. Differential Geom. 120.2 (2022), pp. 251–306. issn:
+          0022-040X,1945-743X. doi: 10.4310/jdg/1645207466.
+[COGP92] Philip Candelas, Xenia C. de la Ossa, Paul S. Green, and Linda Parkes.
+         “A pair of Calabi-Yau manifolds as an exactly soluble superconformal
+          theory”. In: Essays on mirror manifolds. Int. Press, Hong Kong, 1992,
+          pp. 31–95. isbn: 962-7670-01-4.
+[CPS18]   Emily Clader, Nathan Priddis, and Mark Shoemaker. “Geometric quan-
+          tization with applications to Gromov-Witten theory”. In: B-model
+         Gromov-Witten theory. Trends Math. Birkhäuser/Springer, Cham, 2018,
+          pp. 399–462. isbn: 978-3-319-94219-3; 978-3-319-94220-9.
+[FO99]    Kenji Fukaya and Kaoru Ono. “Arnold conjecture and Gromov-Witten
+          invariant”. In: Topology 38.5 (1999), pp. 933–1048. issn: 0040-9383.
+          doi: 10.1016/S0040-9383(98)00042-1.
+[FP00]    C. Faber and R. Pandharipande. “Hodge integrals and Gromov-Witten
+          theory”. In: Invent. Math. 139.1 (2000), pp. 173–199. issn: 0020-
+          9910,1432-1297. doi: 10.1007/s002229900028.
+[Giv01]   Alexander B. Givental. “Gromov-Witten invariants and quantization of
+          quadratic Hamiltonians”. In: vol. 1. 4. Dedicated to the memory of I. G.
+          Petrovskii on the occasion of his 100th anniversary. 2001, pp. 551–568,
+          645. doi: 10.17323/1609-4514-2001-1-4-551-568.
+[Giv04]   Alexander B. Givental. “Symplectic geometry of Frobenius structures”.
+          In: Frobenius manifolds. Vol. E36. Aspects Math. Friedr. Vieweg, Wies-
+          baden, 2004, pp. 91–112. isbn: 3-528-03206-5.
+[Giv96]   Alexander B. Givental. “Equivariant Gromov-Witten invariants”. In: In-
+         ternat. Math. Res. Notices 13 (1996), pp. 613–663. issn: 1073-7928,1687-
+          0247. doi: 10.1155/S1073792896000414.
+36                                REFERENCES
+
+
+[GJR17]    Shuai Guo, Felix Janda, and Yongbin Ruan. A mirror theorem for
+           genus two Gromov-Witten invariants of quintic threefolds. 2017. arXiv:
+           1709.07392.
+[GJR18]    Shuai Guo, Felix Janda, and Yongbin Ruan. Structure of Higher Genus
+           Gromov-Witten Invariants of Quintic 3-folds. 2018. arXiv: 1812.11908.
+[HKQ09]    M.-x. Huang, A. Klemm, and S. Quackenbush. “Topological string
+           theory on compact Calabi-Yau: modularity and boundary conditions”.
+           In: Homological mirror symmetry. Vol. 757. Lecture Notes in Phys.
+           Springer, Berlin, 2009, pp. 45–102. isbn: 978-3-540-86374-8.
+[Lee09]    Y.-P. Lee. “Invariance of tautological equations. II. Gromov-Witten
+           theory”. In: J. Amer. Math. Soc. 22.2 (2009). With an appendix by
+           Y. Iwao and the author, pp. 331–352. issn: 0894-0347,1088-6834. doi:
+           10.1090/S0894-0347-08-00616-4.
+[Lei24a]   Patrick Lei. Higher-genus Gromov-Witten theory of one-parameter
+           Calabi-Yau threefolds I: Polynomiality. 2024. arXiv: 2409.11659.
+[Lei24b]   Patrick Lei. MSP theory for smooth Calabi-Yau threefolds in weighted
+           P4 . 2024. arXiv: 2409.11660.
+[LLY97]    Bong H. Lian, Kefeng Liu, and Shing-Tung Yau. “Mirror principle. I”.
+           In: Asian J. Math. 1.4 (1997), pp. 729–763. issn: 1093-6106,1945-0036.
+           doi: 10.4310/AJM.1997.v1.n4.a5.
+[LT98a]    Jun Li and Gang Tian. “Virtual moduli cycles and Gromov-Witten
+           invariants of algebraic varieties”. In: J. Amer. Math. Soc. 11.1 (1998),
+           pp. 119–174. issn: 0894-0347,1088-6834. doi: 10.1090/S0894-0347-9
+           8-00250-1.
+[LT98b]    Jun Li and Gang Tian. “Virtual moduli cycles and Gromov-Witten
+           invariants of general symplectic manifolds”. In: Topics in symplectic
+           4-manifolds (Irvine, CA, 1996). Vol. I. First Int. Press Lect. Ser. Int.
+           Press, Cambridge, MA, 1998, pp. 47–83. isbn: 1-57146-019-5.
+[Pop13]    Alexandra Popa. “The genus one Gromov-Witten invariants of Calabi-
+           Yau complete intersections”. In: Trans. Amer. Math. Soc. 365.3 (2013),
+           pp. 1149–1181. issn: 0002-9947,1088-6850. doi: 10.1090/S0002-9947-
+           2012-05550-4.
+[PPZ15]    Rahul Pandharipande, Aaron Pixton, and Dimitri Zvonkine. “Relations
+           on Mg,n via 3-spin structures”. In: J. Amer. Math. Soc. 28.1 (2015),
+           pp. 279–309. issn: 0894-0347,1088-6834. doi: 10.1090/S0894-0347-2
+           014-00808-0.
+[RT95]     Yongbin Ruan and Gang Tian. “A mathematical theory of quantum
+           cohomology”. In: J. Differential Geom. 42.2 (1995), pp. 259–367. issn:
+           0022-040X,1945-743X.
+[Rua99]    Yongbin Ruan. “Virtual neighborhoods and pseudo-holomorphic curves”.
+           In: Proceedings of 6th Gökova Geometry-Topology Conference. Vol. 23.
+           1. 1999, pp. 161–231.
+[Sie98]    Bernd Siebert. Gromov-Witten invariants of general symplectic mani-
+           folds. 1998. arXiv: dg-ga/9608005.
+[Wan20]    Jun Wang. A mirror theorem for Gromov-Witten theory without con-
+           vexity. 2020. arXiv: 1910.14440.
+                                 REFERENCES                                      37
+
+
+[YY04]    Satoshi Yamaguchi and Shing-Tung Yau. “Topological string partition
+          functions as polynomials”. In: J. High Energy Phys. 7 (2004), pp. 047, 20.
+          issn: 1126-6708,1029-8479. doi: 10.1088/1126-6708/2004/07/047.
+[Zho22]   Yang Zhou. “Quasimap wall-crossing for GIT quotients”. In: Invent.
+          Math. 227.2 (2022), pp. 581–660. issn: 0020-9910,1432-1297. doi: 10.1
+          007/s00222-021-01071-z.
+[Zin09]   Aleksey Zinger. “The reduced genus 1 Gromov-Witten invariants of
+          Calabi-Yau hypersurfaces”. In: J. Amer. Math. Soc. 22.3 (2009), pp. 691–
+          737. issn: 0894-0347,1088-6834. doi: 10.1090/S0894-0347-08-00625
+          -5.
+

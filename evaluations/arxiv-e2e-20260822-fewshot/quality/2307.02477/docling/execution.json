@@ -1,0 +1,21 @@
+{
+  "session_id": "arxiv-e2e-20260822:2307.02477:docling",
+  "accepted": true,
+  "final_revision_id": "aee6b743d0fceecdfc670815a2f3b8f00d134bf8e2d8095ed09c1ef767497fde",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "aee6b743d0fceecdfc670815a2f3b8f00d134bf8e2d8095ed09c1ef767497fde",
+      "source_content_fingerprint": "sem-v2:284dfdea8e3a97e557a4c4b371471017d6d9350b9975847389685a31e549c768",
+      "candidate_content_fingerprint": "sem-v2:284dfdea8e3a97e557a4c4b371471017d6d9350b9975847389685a31e549c768"
+    }
+  ]
+}

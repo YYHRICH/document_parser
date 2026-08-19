@@ -1,0 +1,25 @@
+--- parsed.md
++++ optimized.md
+@@ -2,11 +2,11 @@
+ 
+ TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1
+ 
+-## 1 固定事实 TRACE-F-SEC-101
++### 1 固定事实 TRACE-F-SEC-101
+ 
+ 记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。
+ 
+-## 1.1 数学表达式 TRACE-F-EQ-111
++#### 1.1 数学表达式 TRACE-F-EQ-111
+ 
+ [[FORMULA_UNAVAILABLE]]
+ 
+@@ -21,7 +21,7 @@
+ | FORMULA-42        | score ≤ 0.875 | EUR 4,321.09 |
+ | TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05       |
+ 
+-## 2 跨页结论 TRACE-F-END-201
++### 2 跨页结论 TRACE-F-END-201
+ 
+ ̸
+ 

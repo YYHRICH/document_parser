@@ -1,0 +1,18 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Test & \texttt{\thead{You are a mathematician. Assuming that all numbers are in base-11 where the\\digits are "0123456789A", what is 59+37? \textbf{\{Let's think step by step, and \}}end\\the response with the result in "\textbackslash boxed\{result\}".}} \\
+        \midrule
+        CCC & \texttt{\thead{You are a mathematician. Assuming that all numbers are in base-11 where the\\digits are "0123456789A", what is the next number after 11A? Do this by\\counting the few preceding numbers and completing the sequence. End\\the response with the result.}} \\
+        \midrule
+        Few-Shot CoT & \texttt{\thead{You are a mathematician. Assuming that all numbers are in base-11 where the\\digits are "0123456789A", what is 25+68? Let's think step by step, and end\\the response with the result in "\textbackslash boxed\{result\}". We add the ones digits first.\\In base-11, 5+8=12. So the ones digit of the final sum is 2. We need to carry\\over the 1 to the tens place. Then we add the tens digits. In base-11, 2+6=8.\\Since we carried over the 1, 8+1=9. So the tens digit of the final sum is 9.\\Putting the digits of the final sum together, we get \textbackslash boxed\{92\}.\\...[optionally more demonstrations in the same format]...\\You are a mathematician. Assuming that all numbers are in base-11 where the\\digits are "0123456789A", what is 59+37? Let's think step by step, and end\\the response with the result in "\textbackslash boxed\{result\}".}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-math}
+    Prompts for the arithmetic task. \texttt{\textbf{\{Let's think step by step, and \}}} is added only if 0-shot CoT is used (and the following \texttt{e} is capitalized without 0-shot CoT). We use the \texttt{\textbackslash boxed\{result\}} syntax to wrap results because we found in preliminary experiments that the models tend to use this format even without this specification.
+    The Few-Shot CoT prompt is used for the analysis in \S\ref{sec:analysis-icl}.
+    }
+\end{table*}

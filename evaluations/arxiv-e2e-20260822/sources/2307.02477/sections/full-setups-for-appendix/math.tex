@@ -1,0 +1,4 @@
+\subsection{Arithmetic}
+
+We randomly sample 1,000 two-digit addition expressions and evaluate them in bases 8, 9, 10, 11, and 16. Each base is sampled separately---for bases other than base-10, we make sure all expressions evaluate to a different result in that base compared to base-10 so that these expressions discriminate between the bases.
+To ensure the LMs understand these bases, we design the CCC to ask the model what the number following a given number is. We want the model to know when to carry over and when not to, so we take the 100 smallest numbers in the given basis that ends with the maximum digit in that base, and 100 that end with 0.

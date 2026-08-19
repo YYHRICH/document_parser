@@ -1,0 +1,59 @@
+
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{Tests} & \multicolumn{4}{c}{CCC} \\
+        \cmidrule(lr){2-5}
+        \cmidrule(lr){6-9}
+        & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} & \multicolumn{2}{c}{w/o 0-CoT} & \multicolumn{2}{c}{w/ 0-CoT} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        \cmidrule(lr){6-7}
+        \cmidrule(lr){8-9} 
+        & Default & CF & Default & CF & Default & CF & Default & CF \\
+        \midrule
+        \# instances & \multicolumn{4}{c}{113} & \multicolumn{4}{c}{750} \\
+        \midrule
+        GPT-4 & 58.4 & 18.6 & 73.5 & 24.8 & 95.3 & 78.1 & 99.7 & 90.9 \\
+        GPT-3.5 & 39.8 & \phantom{0}9.7 & 54.0 & 10.6 & 97.1 & 21.3 & 94.1 & 25.9 \\
+        Claude & 35.4 & 13.3 & 36.3 & \phantom{0}6.2 & 96.5 & 31.1 & 85.1 & 37.3 \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    Results for the programming execution task (in accuracy; \%).
+    }
+\end{table*}
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{HumanEval (All)} & \multicolumn{4}{c}{HumanEval (Subset)} \\
+        \cmidrule(lr){2-5}
+        \cmidrule(lr){6-9}
+        & \multicolumn{2}{c}{pass@1} & \multicolumn{2}{c}{pass@10} & \multicolumn{2}{c}{pass@1} & \multicolumn{2}{c}{pass@10} \\
+        \cmidrule(lr){2-3}
+        \cmidrule(lr){4-5}
+        \cmidrule(lr){6-7}
+        \cmidrule(lr){8-9}
+        & Default & CF & Default & CF & Default & CF & Default & CF \\
+        \midrule
+        \# instances & \multicolumn{4}{c}{164} & \multicolumn{4}{c}{53} \\
+        \midrule
+        GPT-4 & 87.4 & 68.2 & 95.3 & 83.4 & 82.5 & 40.5 & 93.3 & 64.9 \\
+        GPT-3.5 & 73.8 & 41.8 & 88.4 & 67.6 & 68.9 & 25.1 & 81.0 & 45.8 \\
+        Claude & 53.7 & 39.6 & 78.1 & 64.2 & 47.6 & 15.7 & 74.0 & 41.9 \\
+        PaLM-2 & 27.3 & 20.8 & 55.8 & 42.6 & 29.2 & \phantom{0}7.4 & 55.3 & 21.0 \\
+        \bottomrule
+    \end{tabular}
+    \caption{ \label{tab:programming-gen-results}
+    Results for the programming generation task (in pass@1 and pass@10; \%).
+    We report both the results on the entire HumanEval dataset for comparability with other work, as well as the subset on which evaluating the original program under 1-based indexing would not pass the test cases.
+    Figure~\ref{fig:results-1} only showed the results on this subset.
+    }
+\end{table*}
+
+
+

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "arxiv-e2e-20260822",
+  "documents": {
+    "2412.06527": {
+      "source_id": "arXiv:2412.06527v1 [math.AG]",
+      "markers": ["HIGHER GENUS", "FEYNMAN RULE", "ANOMALY EQUATIONS", "Abstract", "1. Introduction"],
+      "critical_facts": ["Feynman rule", "Anomaly equations", "Calabi-Yau", "Z6", "Z8", "Z10"]
+    },
+    "2402.16100": {
+      "source_id": "arXiv:2402.16100v1 [hep-th]",
+      "markers": ["Notes on", "Exact RG", "Wheeler-DeWitt", "1 Introduction", "2 Deriving the exact RG"],
+      "critical_facts": ["Wheeler-DeWitt", "N = 4 SYM", "H = 0", "HΨ = 0", "AdS"]
+    },
+    "2405.09649": {
+      "source_id": "arXiv:2405.09649v1 [physics.bio-ph]",
+      "markers": ["Challenges and opportunities", "digital twins", "precision medicine", "Precision medicine", "Introduction"],
+      "critical_facts": ["digital twin", "precision medicine", "in-silico framework", "multiscale", "clinical"]
+    },
+    "2307.02477": {
+      "source_id": "arXiv:2307.02477v3 [cs.CL]",
+      "markers": ["Reasoning or Reciting", "Counterfactual Tasks", "Abstract", "1 Introduction", "Figure 1"],
+      "critical_facts": ["GPT-4", "11 tasks", "counterfactual", "base-9", "0-shot"]
+    }
+  }
+}

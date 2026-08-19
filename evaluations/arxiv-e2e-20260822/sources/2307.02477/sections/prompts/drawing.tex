@@ -1,0 +1,18 @@
+
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default 1 & \texttt{\thead{You are an expert programmer and drawer. Imagine an image: there is a line at the top \\ and a house in the middle. Can you try your best to draw this image using the\\ \textasciigrave processing\textasciigrave~language? Please do not use any built-in transformation functions, such as \\ \textasciigrave rotate\textasciigrave and \textasciigrave scale\textasciigrave. Also, avoid defining any custom transformation functions yourself. \\ Do not load any existing images. Please include as many details of the house as \\possible and put everything together in the end. \\\\\textbf{\{Let's think step by step.\}}}} \\
+        \midrule
+        Default 2 & \texttt{\thead{You are an expert programmer and drawer. Imagine an image: there is a line at the top \\ and a house in the middle. Can you try your best to draw the line and the house \\ using the \textasciigrave processing\textasciigrave~language? Please do not use any built-in transformation \\ functions, such as \textasciigrave rotate\textasciigrave, \textasciigrave scale\textasciigrave, and \textasciigrave translate\textasciigrave. Also, avoid defining any \\ custom transformation functions yourself. Do not load any existing images. Please \\ include as  many details of the house as possible and put everything together in the \\ end. \\\\\textbf{\{Let's think step by step.\}}}} \\\midrule
+        CF 1 & \texttt{\thead{You are an expert programmer and drawer. Imagine an image: there is a line at the top \\ and a house in the middle. Can you rotate this image 180 degrees and try your best to \\ draw it using the \textasciigrave processing\textasciigrave~language? Please do not use any built-in transformation \\ functions, such as \textasciigrave rotate\textasciigrave and \textasciigrave scale\textasciigrave. Also, avoid defining any custom transformation \\ functions yourself. Do not load any existing images. Do not draw the original objects. \\ Please include as many details of the house as possible and put everything together \\ in the end. \\\\\textbf{\{Let's think step by step.\}}}} \\    
+        \midrule
+        CF 2 & \texttt{\thead{You are an expert programmer and drawer. Imagine an image: there is a line at the top \\ and a house in the middle. Can you rotate this image 180 degrees and try your best to \\ draw the 180-degree rotated line and the 180-degree rotated house using the \textasciigrave processing\textasciigrave \\ language? Please do not use any built-in transformation functions, such as \textasciigrave rotate\textasciigrave, \\ \textasciigrave scale\textasciigrave, and \textasciigrave translate\textasciigrave. Also, avoid defining any custom transformation functions \\ yourself. Do not load any existing images. Do not draw the original objects. Please \\ include as many details of the house as possible and put everything together in the \\ end. \\\\\textbf{\{Let's think step by step.\}}}} \\    
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-drawing}
+    Prompts for the drawing task. \texttt{\textbf{\{Let's think step by step.\}}} is added only if 0-shot CoT is used. We use prompt 1 for GPT-4 and prompt 2 for GPT-3.5 and Claude. We chose the prompt based on the best CCC accuracy for each respective model. In our preliminary experiments, we found that switching the prompt hurts CCC accuracy by more than 20\% for both GPT-4 and GPT-3.5. Claude does not follow our instructions when using prompt 1, leading to almost 0\% CCC's accuracy.} 
+\end{table*}

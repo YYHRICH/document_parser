@@ -1,0 +1,40 @@
+{
+  "session_id": "quality-recovery-tex-20260819:trace-layout:docling",
+  "accepted": false,
+  "final_revision_id": "ff540c566fb5d71513eee3ae86491223fc65f0a941209ca86dbe6ce49d381a03",
+  "attempts": [
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": false,
+      "changed_block_ids": [
+        "40bac072-6594-493d-bf15-267148fdb92a",
+        "fc17fe1e-d24a-432b-9cd6-2b974a49d064"
+      ],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "a908dcbf9f54949bfb56305d0c5b7c2dff71d8de72818c574225c1e521736f85",
+      "source_content_fingerprint": "sem-v2:884729e6fcc7c13d4ab131e715270d68625ed42c8e99958f0dcd3e90d20a5ec2",
+      "candidate_content_fingerprint": "sem-v2:884729e6fcc7c13d4ab131e715270d68625ed42c8e99958f0dcd3e90d20a5ec2"
+    },
+    {
+      "accepted": false,
+      "code": "rejected_candidate",
+      "message": "候选未通过确定性校验。",
+      "errors": [
+        "页面循环要求 scope=page 且包含第 2 页。"
+      ],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "ff540c566fb5d71513eee3ae86491223fc65f0a941209ca86dbe6ce49d381a03",
+      "source_content_fingerprint": "sem-v2:884729e6fcc7c13d4ab131e715270d68625ed42c8e99958f0dcd3e90d20a5ec2",
+      "candidate_content_fingerprint": "sem-v2:884729e6fcc7c13d4ab131e715270d68625ed42c8e99958f0dcd3e90d20a5ec2"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "quality-recovery-tex-20260820",
+  "documents": {
+    "trace-mixed": {
+      "source_id": "TEX-MIXED-20260820-V1",
+      "markers": [
+        "TRACE-M-DOC-001",
+        "TRACE-M-SEC-101",
+        "TRACE-M-LIST-111",
+        "TRACE-M-CODE-121",
+        "TRACE-M-MATH-131",
+        "TRACE-M-REF-201"
+      ],
+      "critical_facts": [
+        "MIX-77",
+        "2026-08-20",
+        "98.60%",
+        "EUR 12,345.67",
+        "calc --profile=gold",
+        "y = (a+b)/2",
+        "MIX-REF-42"
+      ]
+    },
+    "trace-grid": {
+      "source_id": "TEX-GRID-20260820-V1",
+      "markers": [
+        "TRACE-G-DOC-001",
+        "TRACE-G-CAP-101",
+        "TRACE-G-R01",
+        "TRACE-G-R04",
+        "TRACE-G-R08",
+        "TRACE-G-R12",
+        "TRACE-G-SUM-201"
+      ],
+      "critical_facts": [
+        "GRID-A9",
+        "GRID-B4",
+        "0.0625 mm",
+        "99.125%",
+        "USD 1,250.00",
+        "2026-08-20"
+      ]
+    },
+    "trace-columns": {
+      "source_id": "TEX-COLUMNS-20260820-V1",
+      "markers": [
+        "TRACE-C-DOC-001",
+        "TRACE-C-LEFT-101",
+        "TRACE-C-LEFT-111",
+        "TRACE-C-RIGHT-201",
+        "TRACE-C-RIGHT-211",
+        "TRACE-C-END-301"
+      ],
+      "critical_facts": [
+        "LEFT-CHECK-A1",
+        "LEFT-CHECK-A2",
+        "RIGHT-CHECK-B1",
+        "RIGHT-CHECK-B2",
+        "threshold <= 0.25",
+        "DOI 10.7777/columns.2026"
+      ]
+    }
+  }
+}

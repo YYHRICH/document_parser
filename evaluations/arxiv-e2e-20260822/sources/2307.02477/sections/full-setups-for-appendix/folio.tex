@@ -1,0 +1,7 @@
+\subsection{Natural Language Reasoning with First-Order Logic} \label{sec:setup-folio}
+
+We use the FOLIO dataset~\citep{han2022folio} that contains premises most of which are consistent with common sense and are hence amenable to our counterfactual study. We use the full dataset, combining the training and development sets for a total of 1,204 instances, for the logistic regression analysis in \S\ref{sec:analysis-world-commonness}. But for our counterfactual study, automatically altering the premises to violate common sense is not trivial, so one author manually rewrote the premises of a subset of 81 instances to be counterfactual, and another author verified the rewrite. Considering the analysis in \S\ref{sec:analysis-world-commonness}, we chose this subset by including every instance with premises all of which GPT-4 believes to be true and whose conclusion whose GPT-4-believed truth value matches the entailment label.
+
+We explicitly instruct the model to use no common sense or world knowledge (\S\ref{sec:prompts}), thereby requiring symbolic reasoning. For the CCC, we ask the model if the unaltered or the altered premise is true, when both are presented as options, and expect the latter.
+
+While the FOLIO dataset has a public release, the authors have made subsequent updates which, at the time of this paper, have not been made public. We hence do not release the LM interaction data for this task, and use a fictional example in Table~\ref{tab:prompts-folio}.

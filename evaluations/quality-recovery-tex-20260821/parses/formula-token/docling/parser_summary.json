@@ -1,0 +1,10 @@
+{
+  "document": "formula-token",
+  "parser": "docling",
+  "source_sha256": "c80553229b3bd199c5f51fa0302289a0e006d729a200b49af65ae91e502cd7be",
+  "blocks": 13,
+  "tables": 1,
+  "warnings": [
+    "docling-local: Markdown 中有 1 个公式未解析，已保留占位符。"
+  ]
+}

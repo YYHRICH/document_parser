@@ -1,0 +1,229 @@
+[
+  {
+    "chunk_id": "block:ba4b0dfd-0897-5859-bf4b-cc902a1f7731",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "复杂网格表格测试 TRACE-G-DOC-001 | Source: TEX-GRID-20260820-V1",
+    "citation_ids": [
+      "block:ba4b0dfd-0897-5859-bf4b-cc902a1f7731"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:f6749fbf-d069-5440-8951-8f98db7e66f8",
+    "kind": "heading",
+    "order_index": 1,
+    "content": "1 合并表头 TRACE-G-CAP-101",
+    "citation_ids": [
+      "block:f6749fbf-d069-5440-8951-8f98db7e66f8"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:1711c211-e0e3-5e18-a957-62d19800455d",
+    "kind": "table",
+    "order_index": 2,
+    "content": "| 批次 | 日期 | 验证指标 |   |\n| --- | --- | --- | --- |\n|   |   | 精度 | 成本 |\n| GRID-A9 | 2026-08-20 | 99.125% | USD 1,250.00 |\n| GRID-B4 | 2026-08-20 | 97.500% | USD 980.00 |",
+    "citation_ids": [
+      "block:1711c211-e0e3-5e18-a957-62d19800455d",
+      "binding:ac6a85b0-531a-5871-9285-7e9a98864eca",
+      "binding:739342cc-1eef-547c-9263-1570638267ce",
+      "binding:ea57050f-0380-5b18-ac13-a9a39455f8ba",
+      "binding:ac85f8cb-ff59-56f0-8df7-fca73c352db3",
+      "binding:c0a44bb7-7983-500f-9b2a-cc1696f532a9",
+      "binding:89663456-15ff-524d-ba5e-bb9bc640ed1d",
+      "binding:26a863b0-fb15-53d9-9fde-06a314631969",
+      "binding:22dfe181-cdfd-590d-b3e7-3e28eb6cf9bf"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "table_id": "table-001",
+      "table_binding_ids": [
+        "ac6a85b0-531a-5871-9285-7e9a98864eca",
+        "739342cc-1eef-547c-9263-1570638267ce",
+        "ea57050f-0380-5b18-ac13-a9a39455f8ba",
+        "ac85f8cb-ff59-56f0-8df7-fca73c352db3",
+        "c0a44bb7-7983-500f-9b2a-cc1696f532a9",
+        "89663456-15ff-524d-ba5e-bb9bc640ed1d",
+        "26a863b0-fb15-53d9-9fde-06a314631969",
+        "22dfe181-cdfd-590d-b3e7-3e28eb6cf9bf"
+      ]
+    }
+  },
+  {
+    "chunk_id": "block:43769f3c-8612-5aed-a67a-b241890307e6",
+    "kind": "heading",
+    "order_index": 3,
+    "content": "2 跨页明细",
+    "citation_ids": [
+      "block:43769f3c-8612-5aed-a67a-b241890307e6"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:c616df61-63f3-541c-bac9-ff011a3f3211",
+    "kind": "table",
+    "order_index": 4,
+    "content": "| 追踪标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-G-R01 | GRID-A9 | 0.0625 mm | 保留四位小数。 |\n| TRACE-G-R02 | GRID-B4 | 12.500 kg | 保留单位。 |\n| TRACE-G-R03 | GRID-A9 | 4-20 mA | 保留范围。 |\n| TRACE-G-R04 | GRID-B4 | USD 1,250.00 | 保留货币和逗号。 |\n| TRACE-G-R05 | GRID-A9 | 1.00e-3 | 保留科学计数法。 |\n| TRACE-G-R06 | GRID-B4 | 7/16 in | 斜线是尺寸事实。 |\n| TRACE-G-R07 | GRID-A9 | 0.005% | 保留百分号。 |\n| TRACE-G-R08 | GRID-B4 | 2026-08-20 | 保留日期分隔符。 |\n| TRACE-G-R09 | GRID-A9 | A+B=C | 保留运算符。 |\n| TRACE-G-R10 | GRID-B4 | 10.000 mm | 保留尾随零。 |\n| TRACE-G-R11 | GRID-A9 | 11.125 mm | 跨页后仍可追踪。 |\n| TRACE-G-R12 | GRID-B4 | 12.250 mm | 最后一行可追踪。 |",
+    "citation_ids": [
+      "block:c616df61-63f3-541c-bac9-ff011a3f3211",
+      "binding:f70de787-c149-5e27-b273-bc5eb5f87fd3",
+      "binding:a62e5dbb-ed07-5fc0-b7a9-7e84e3c42283",
+      "binding:7c2228d7-b181-51d3-adcd-773bfd06c399",
+      "binding:3cc48cfc-19b9-56c3-8521-57e9857337fb",
+      "binding:dd4a7cd5-0cef-5275-9073-9ff72a87d28f",
+      "binding:ed4aa889-bb87-5594-b977-0dd8b956fc65",
+      "binding:731a600b-ab2d-5fc5-a8f9-6ff6a3a802d3",
+      "binding:f5a428ab-b802-5e5d-a314-3d2441afd175",
+      "binding:1d4765d1-b836-5f82-8e8f-75eefbd98adc",
+      "binding:c61cad6f-6fe4-5d04-837f-e4fd55561db8",
+      "binding:a333135f-d803-51ae-9175-8185ada08bca",
+      "binding:9710d627-0c7c-54b3-9b02-9bb3cb2501d4",
+      "binding:b67e5d48-5fce-5023-b047-73fa0a1a86aa",
+      "binding:849a0361-d1d5-5e47-8289-1f565d12ed9c",
+      "binding:93bc9a8f-36f0-52b7-92a7-475a001d4459",
+      "binding:4c27cd3a-776c-5a18-b6d8-0f11e18caea0",
+      "binding:97682d74-342e-56c4-983d-141ccc1470dc",
+      "binding:42525e74-75fe-5f0a-b50e-3d98303783fd",
+      "binding:5fb15beb-ab3a-53b6-a7fe-37f8493fee37",
+      "binding:fcda3354-ab50-5645-b502-95c42be09b6d",
+      "binding:c194ff8a-6ec9-5035-91a4-ce4a7da20c7d",
+      "binding:5eaaf7b0-41a7-5397-9549-8d9d23b8614c",
+      "binding:7ab9a2fd-1596-57fa-96d2-33cf4ae3ed2e",
+      "binding:45ba8e55-62be-5d2f-ae7b-e37d9c0431d9",
+      "binding:65f64a2a-6deb-5e35-8b27-276a6d78af53",
+      "binding:acee83f5-e5c0-5673-8efe-860afd399d19",
+      "binding:c13a8837-2566-5dcf-b118-79eb33f7a3bb",
+      "binding:c40a2360-e9c5-5ad9-8b93-f36466c3a844",
+      "binding:1ca7c72c-1abe-5064-a2a9-364867750f2a",
+      "binding:df5095f8-f2fe-5e49-8f8a-6775c109696d",
+      "binding:02738028-c7a6-5318-b495-d7658b68b5b0",
+      "binding:620065f1-1dc0-543b-b431-f74b20336cdf",
+      "binding:09d7afce-d746-5ee9-b7f7-b9d7a3948099",
+      "binding:a4c8f2bc-5a19-59ed-8944-a9d828438da9",
+      "binding:7b7368bb-5c3a-5eae-b496-09e44e35a098",
+      "binding:ccb61312-dc90-5ce4-96e4-4f85c43bf447",
+      "binding:68f7db78-8bc2-52e0-b7ba-7be99008dea1",
+      "binding:fe4f0342-d6c0-54e4-8d09-f66b8e3788f2",
+      "binding:0c1e76dc-5a67-52d2-bc40-91424039124d",
+      "binding:b50a4293-0dfa-50b9-a534-cd6d6b3acf73",
+      "binding:20d292d6-7034-504e-ae55-b9c867d1b9a5",
+      "binding:927cff9b-88f7-58ef-bd1e-0b990013ccb0",
+      "binding:e912060b-e1c5-531c-bd3d-4b3a38211f0d",
+      "binding:d6d6c97a-2fb6-51f6-aaa2-ef39f61f274c",
+      "binding:01287b2a-b5d7-5d23-b80b-795eebfab7ab",
+      "binding:0bc4841a-5c0a-5420-b910-e1f582f74fcc",
+      "binding:160e6a69-f8e1-5a93-99d7-2e023a57613f",
+      "binding:1eac4292-9a28-5d38-94d2-b63058bec1ea"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "table_id": "table-002",
+      "table_binding_ids": [
+        "f70de787-c149-5e27-b273-bc5eb5f87fd3",
+        "a62e5dbb-ed07-5fc0-b7a9-7e84e3c42283",
+        "7c2228d7-b181-51d3-adcd-773bfd06c399",
+        "3cc48cfc-19b9-56c3-8521-57e9857337fb",
+        "dd4a7cd5-0cef-5275-9073-9ff72a87d28f",
+        "ed4aa889-bb87-5594-b977-0dd8b956fc65",
+        "731a600b-ab2d-5fc5-a8f9-6ff6a3a802d3",
+        "f5a428ab-b802-5e5d-a314-3d2441afd175",
+        "1d4765d1-b836-5f82-8e8f-75eefbd98adc",
+        "c61cad6f-6fe4-5d04-837f-e4fd55561db8",
+        "a333135f-d803-51ae-9175-8185ada08bca",
+        "9710d627-0c7c-54b3-9b02-9bb3cb2501d4",
+        "b67e5d48-5fce-5023-b047-73fa0a1a86aa",
+        "849a0361-d1d5-5e47-8289-1f565d12ed9c",
+        "93bc9a8f-36f0-52b7-92a7-475a001d4459",
+        "4c27cd3a-776c-5a18-b6d8-0f11e18caea0",
+        "97682d74-342e-56c4-983d-141ccc1470dc",
+        "42525e74-75fe-5f0a-b50e-3d98303783fd",
+        "5fb15beb-ab3a-53b6-a7fe-37f8493fee37",
+        "fcda3354-ab50-5645-b502-95c42be09b6d",
+        "c194ff8a-6ec9-5035-91a4-ce4a7da20c7d",
+        "5eaaf7b0-41a7-5397-9549-8d9d23b8614c",
+        "7ab9a2fd-1596-57fa-96d2-33cf4ae3ed2e",
+        "45ba8e55-62be-5d2f-ae7b-e37d9c0431d9",
+        "65f64a2a-6deb-5e35-8b27-276a6d78af53",
+        "acee83f5-e5c0-5673-8efe-860afd399d19",
+        "c13a8837-2566-5dcf-b118-79eb33f7a3bb",
+        "c40a2360-e9c5-5ad9-8b93-f36466c3a844",
+        "1ca7c72c-1abe-5064-a2a9-364867750f2a",
+        "df5095f8-f2fe-5e49-8f8a-6775c109696d",
+        "02738028-c7a6-5318-b495-d7658b68b5b0",
+        "620065f1-1dc0-543b-b431-f74b20336cdf",
+        "09d7afce-d746-5ee9-b7f7-b9d7a3948099",
+        "a4c8f2bc-5a19-59ed-8944-a9d828438da9",
+        "7b7368bb-5c3a-5eae-b496-09e44e35a098",
+        "ccb61312-dc90-5ce4-96e4-4f85c43bf447",
+        "68f7db78-8bc2-52e0-b7ba-7be99008dea1",
+        "fe4f0342-d6c0-54e4-8d09-f66b8e3788f2",
+        "0c1e76dc-5a67-52d2-bc40-91424039124d",
+        "b50a4293-0dfa-50b9-a534-cd6d6b3acf73",
+        "20d292d6-7034-504e-ae55-b9c867d1b9a5",
+        "927cff9b-88f7-58ef-bd1e-0b990013ccb0",
+        "e912060b-e1c5-531c-bd3d-4b3a38211f0d",
+        "d6d6c97a-2fb6-51f6-aaa2-ef39f61f274c",
+        "01287b2a-b5d7-5d23-b80b-795eebfab7ab",
+        "0bc4841a-5c0a-5420-b910-e1f582f74fcc",
+        "160e6a69-f8e1-5a93-99d7-2e023a57613f",
+        "1eac4292-9a28-5d38-94d2-b63058bec1ea"
+      ]
+    }
+  },
+  {
+    "chunk_id": "block:7bd67010-bc3a-503f-ba5a-40686ab24432",
+    "kind": "heading",
+    "order_index": 5,
+    "content": "3 汇总 TRACE-G-SUM-201",
+    "citation_ids": [
+      "block:7bd67010-bc3a-503f-ba5a-40686ab24432"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:a22fd7a9-26ca-505d-bcd2-ed1659afc752",
+    "kind": "paragraph",
+    "order_index": 6,
+    "content": "TRACE-GRID-HEADER",
+    "citation_ids": [
+      "block:a22fd7a9-26ca-505d-bcd2-ed1659afc752"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:0d761b85-e79d-5668-bf24-511f719088fc",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "TEX-GRID-20260820-V1",
+    "citation_ids": [
+      "block:0d761b85-e79d-5668-bf24-511f719088fc"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:12c2f6a0-5e51-5a38-afaf-68141c22d0dd",
+    "kind": "page_number",
+    "order_index": 8,
+    "content": "1",
+    "citation_ids": [
+      "block:12c2f6a0-5e51-5a38-afaf-68141c22d0dd"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

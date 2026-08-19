@@ -1,0 +1,703 @@
+{
+  "schema_name": "WikiHandoff",
+  "schema_version": "1.0",
+  "document_id": "70c88c8b-11f3-4e2f-b451-28fca440cf19",
+  "quality_state": "manual_review_required",
+  "optimized_markdown": "## 公式符号保真测试\n\nTRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1\n\n### 1 固定事实 TRACE-F-SEC-101\n\n记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。\n\n#### 1.1 数学表达式 TRACE-F-EQ-111\n\n[[FORMULA_UNAVAILABLE]]\n\n̸\n\n约束函数为 f ( t ) = t 2 +1 t +1 ，并且 n ∈ N 。\n\n表 1: 符号核对表 TRACE-F-TABLE-121\n\n| 标记                | 条件            | 值            |\n|-------------------|---------------|--------------|\n| FORMULA-42        | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05       |\n\n### 2 跨页结论 TRACE-F-END-201\n\n̸\n\n结论要求保留 score ≤ 0.875 、 delta ≥ 0.125 、 x = y 和 ± 0.05 。任何公式无法解析时必须使用 占位符并提示下游，而不是生成未经证实的公式。",
+  "chunks": [
+    {
+      "chunk_id": "block:f364eedd-0da3-5cfa-9cce-287a6b36d71b",
+      "kind": "heading",
+      "order_index": 0,
+      "content": "# 公式符号保真测试",
+      "citation_ids": [
+        "block:f364eedd-0da3-5cfa-9cce-287a6b36d71b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:d27e1bf8-9321-5340-a498-67be63e4a53c",
+      "kind": "paragraph",
+      "order_index": 1,
+      "content": "TRACE-F-DOC-001 | Source: TEX-FORMULA-20260821-V1",
+      "citation_ids": [
+        "block:d27e1bf8-9321-5340-a498-67be63e4a53c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ccd11014-3088-559c-b629-4cb6b3161ea0",
+      "kind": "heading",
+      "order_index": 2,
+      "content": "## 1 固定事实 TRACE-F-SEC-101",
+      "citation_ids": [
+        "block:ccd11014-3088-559c-b629-4cb6b3161ea0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:d3a37c0d-d706-57da-a465-e7c087aefa7d",
+      "kind": "paragraph",
+      "order_index": 3,
+      "content": "记录编号为 FORMULA-42 ，日期为 2026-08-21 ，预算为 EUR 4,321.09 。本页测试比较符号、正 负号、分数和上下标的保留。",
+      "citation_ids": [
+        "block:d3a37c0d-d706-57da-a465-e7c087aefa7d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:64f6984c-9cc5-5342-a7fa-a02dcf0be7a5",
+      "kind": "heading",
+      "order_index": 4,
+      "content": "### 1.1 数学表达式 TRACE-F-EQ-111",
+      "citation_ids": [
+        "block:64f6984c-9cc5-5342-a7fa-a02dcf0be7a5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 3
+      }
+    },
+    {
+      "chunk_id": "block:1c879f92-9473-5de0-94e3-b1cde28430a9",
+      "kind": "paragraph",
+      "order_index": 5,
+      "content": "",
+      "citation_ids": [
+        "block:1c879f92-9473-5de0-94e3-b1cde28430a9"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:d7907bcd-95ad-522d-84ca-9d3c463641db",
+      "kind": "paragraph",
+      "order_index": 6,
+      "content": "̸",
+      "citation_ids": [
+        "block:d7907bcd-95ad-522d-84ca-9d3c463641db"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:35113ead-0415-504e-ba2c-5c9b3a589eff",
+      "kind": "paragraph",
+      "order_index": 7,
+      "content": "约束函数为 f ( t ) = t 2 +1 t +1 ，并且 n ∈ N 。",
+      "citation_ids": [
+        "block:35113ead-0415-504e-ba2c-5c9b3a589eff"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "kind": "table",
+      "order_index": 8,
+      "content": "| 标记 | 条件 | 值 |\n| --- | --- | --- |\n| FORMULA-42 | score ≤ 0.875 | EUR 4,321.09 |\n| TRACE-F-TABLE-121 | delta ≥ 0.125 | ± 0.05 |",
+      "citation_ids": [
+        "block:409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+        "binding:7d86d23f-e767-5f20-812b-1e582e161612",
+        "binding:b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+        "binding:6b5854a0-3d33-5227-a01e-316b6af2d806",
+        "binding:fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+        "binding:d26719c0-f97f-50a2-a2a7-927eef271e25",
+        "binding:4962477a-d46a-5a3f-bdb7-ada9900f9730"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "table_id": "table-001",
+        "table_binding_ids": [
+          "7d86d23f-e767-5f20-812b-1e582e161612",
+          "b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+          "6b5854a0-3d33-5227-a01e-316b6af2d806",
+          "fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+          "d26719c0-f97f-50a2-a2a7-927eef271e25",
+          "4962477a-d46a-5a3f-bdb7-ada9900f9730"
+        ]
+      }
+    },
+    {
+      "chunk_id": "block:43830a20-cf03-564f-a933-18e914aa7246",
+      "kind": "paragraph",
+      "order_index": 9,
+      "content": "表 1: 符号核对表 TRACE-F-TABLE-121",
+      "citation_ids": [
+        "block:43830a20-cf03-564f-a933-18e914aa7246"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ec91fc01-b4c0-5768-b25b-e11a5abc40fc",
+      "kind": "heading",
+      "order_index": 10,
+      "content": "## 2 跨页结论 TRACE-F-END-201",
+      "citation_ids": [
+        "block:ec91fc01-b4c0-5768-b25b-e11a5abc40fc"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:d9258af7-005a-53bb-a8ce-b62e2279ff4a",
+      "kind": "paragraph",
+      "order_index": 11,
+      "content": "̸",
+      "citation_ids": [
+        "block:d9258af7-005a-53bb-a8ce-b62e2279ff4a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c9dee242-5755-5130-b4c2-c9c960e97ac1",
+      "kind": "paragraph",
+      "order_index": 12,
+      "content": "结论要求保留 score ≤ 0.875 、 delta ≥ 0.125 、 x = y 和 ± 0.05 。任何公式无法解析时必须使用 占位符并提示下游，而不是生成未经证实的公式。",
+      "citation_ids": [
+        "block:c9dee242-5755-5130-b4c2-c9c960e97ac1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "block:f364eedd-0da3-5cfa-9cce-287a6b36d71b",
+      "canonical_block_id": "f364eedd-0da3-5cfa-9cce-287a6b36d71b",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "page_number": 1,
+      "bbox": [
+        228.776,
+        61.76297139999997,
+        366.4991999999999,
+        78.97837140000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d27e1bf8-9321-5340-a498-67be63e4a53c",
+      "canonical_block_id": "d27e1bf8-9321-5340-a498-67be63e4a53c",
+      "source_block_id": "docling-TextItem-1",
+      "page_number": 1,
+      "bbox": [
+        162.445,
+        86.13514439999994,
+        432.8299639999999,
+        96.09774440000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ccd11014-3088-559c-b629-4cb6b3161ea0",
+      "canonical_block_id": "ccd11014-3088-559c-b629-4cb6b3161ea0",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "page_number": 1,
+      "bbox": [
+        185.551,
+        121.61061419999999,
+        409.72498559999997,
+        136.71716279999998
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d3a37c0d-d706-57da-a465-e7c087aefa7d",
+      "canonical_block_id": "d3a37c0d-d706-57da-a465-e7c087aefa7d",
+      "source_block_id": "docling-TextItem-3",
+      "page_number": 1,
+      "bbox": [
+        62.361999999999966,
+        152.99208310000006,
+        532.9228234000002,
+        181.51518309999994
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:64f6984c-9cc5-5342-a7fa-a02dcf0be7a5",
+      "canonical_block_id": "64f6984c-9cc5-5342-a7fa-a02dcf0be7a5",
+      "source_block_id": "docling-SectionHeaderItem-4",
+      "page_number": 1,
+      "bbox": [
+        62.362,
+        203.12048319999997,
+        264.51254400000005,
+        215.70930880000003
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:1c879f92-9473-5de0-94e3-b1cde28430a9",
+      "canonical_block_id": "1c879f92-9473-5de0-94e3-b1cde28430a9",
+      "source_block_id": "docling-FormulaItem-5",
+      "page_number": 1,
+      "bbox": [
+        141.851,
+        257.8362654,
+        532.9138298,
+        296.4615208877419
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d7907bcd-95ad-522d-84ca-9d3c463641db",
+      "canonical_block_id": "d7907bcd-95ad-522d-84ca-9d3c463641db",
+      "source_block_id": "docling-TextItem-6",
+      "page_number": 1,
+      "bbox": [
+        170.308,
+        279.78108469999995,
+        170.308,
+        296.4615208877419
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:35113ead-0415-504e-ba2c-5c9b3a589eff",
+      "canonical_block_id": "35113ead-0415-504e-ba2c-5c9b3a589eff",
+      "source_block_id": "docling-TextItem-7",
+      "page_number": 1,
+      "bbox": [
+        62.36200000000002,
+        304.6142992,
+        249.4751,
+        325.0345208877419
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        158.78622818752623,
+        353.2685153966995,
+        436.38912235017585,
+        418.26509009729494
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "binding:7d86d23f-e767-5f20-812b-1e582e161612",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        165.19299999999998,
+        457.91774924843753,
+        236.2548774,
+        447.0086492484375
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "text": "标记",
+            "start_row": 0,
+            "start_col": 0,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c0",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c0",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c0",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "标记"
+        ],
+        "value": "FORMULA-42"
+      }
+    },
+    {
+      "citation_id": "binding:b1c02fcc-0325-5746-94cc-6dc0070bb9f6",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        287.744,
+        457.91774924843753,
+        352.0619298,
+        439.89549376069556
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "text": "条件",
+            "start_row": 0,
+            "start_col": 1,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c1",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c1",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c1",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "条件"
+        ],
+        "value": "score ≤ 0.875"
+      }
+    },
+    {
+      "citation_id": "binding:6b5854a0-3d33-5227-a01e-316b6af2d806",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        364.0073943,
+        457.91774924843753,
+        430.0729038999999,
+        447.0086492484375
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "FORMULA-42",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "text": "值",
+            "start_row": 0,
+            "start_col": 2,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r1c2",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r1c2",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c2",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "值"
+        ],
+        "value": "EUR 4,321.09"
+      }
+    },
+    {
+      "citation_id": "binding:fb8f6e1a-3fdf-57a0-9d91-b1566b1b16ac",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        165.19299999999998,
+        440.30374924843755,
+        275.8003649,
+        429.39464924843753
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c0",
+            "text": "标记",
+            "start_row": 0,
+            "start_col": 0,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c0",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c0",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c0",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "标记"
+        ],
+        "value": "TRACE-F-TABLE-121"
+      }
+    },
+    {
+      "citation_id": "binding:d26719c0-f97f-50a2-a2a7-927eef271e25",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        287.7349203,
+        440.30374924843755,
+        351.98592979999995,
+        422.2814937606956
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c1",
+            "text": "条件",
+            "start_row": 0,
+            "start_col": 1,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c1",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c1",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c1",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "条件"
+        ],
+        "value": "delta ≥ 0.125"
+      }
+    },
+    {
+      "citation_id": "binding:4962477a-d46a-5a3f-bdb7-ada9900f9730",
+      "canonical_block_id": "409a90fb-d4f9-5ffe-a3f6-49a6e8c56b23",
+      "source_block_id": "docling-TableItem-8",
+      "page_number": 1,
+      "bbox": [
+        364.017,
+        440.30374924843755,
+        391.8983798,
+        422.2814937606956
+      ],
+      "table_id": "table-001",
+      "table_cell": null,
+      "provenance_status": "inferred",
+      "evidence": {
+        "row_key": "TRACE-F-TABLE-121",
+        "column_path_segments": [
+          {
+            "cell_id": "table-001:r0c2",
+            "text": "值",
+            "start_row": 0,
+            "start_col": 2,
+            "row_span": 1,
+            "col_span": 1
+          }
+        ],
+        "value_cell": {
+          "cell_id": "table-001:r2c2",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        "refs": [
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r2c2",
+            "field_path": "text"
+          },
+          {
+            "object_type": "cell",
+            "object_id": "table-001:r0c2",
+            "field_path": "text"
+          }
+        ],
+        "column_path": [
+          "值"
+        ],
+        "value": "± 0.05"
+      }
+    },
+    {
+      "citation_id": "block:43830a20-cf03-564f-a933-18e914aa7246",
+      "canonical_block_id": "43830a20-cf03-564f-a933-18e914aa7246",
+      "source_block_id": "docling-TextItem-9",
+      "page_number": 1,
+      "bbox": [
+        199.314,
+        341.9350831,
+        395.97236489999995,
+        353.4223654
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ec91fc01-b4c0-5768-b25b-e11a5abc40fc",
+      "canonical_block_id": "ec91fc01-b4c0-5768-b25b-e11a5abc40fc",
+      "source_block_id": "docling-SectionHeaderItem-10",
+      "page_number": 2,
+      "bbox": [
+        183.37,
+        61.919614199999955,
+        411.9195766,
+        77.02616279999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d9258af7-005a-53bb-a8ce-b62e2279ff4a",
+      "canonical_block_id": "d9258af7-005a-53bb-a8ce-b62e2279ff4a",
+      "source_block_id": "docling-TextItem-11",
+      "page_number": 2,
+      "bbox": [
+        315.14099999999996,
+        95.22008470000003,
+        315.14099999999996,
+        111.90052088774189
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c9dee242-5755-5130-b4c2-c9c960e97ac1",
+      "canonical_block_id": "c9dee242-5755-5130-b4c2-c9c960e97ac1",
+      "source_block_id": "docling-TextItem-12",
+      "page_number": 2,
+      "bbox": [
+        62.361999999999966,
+        93.30008310000005,
+        532.9041278000007,
+        121.82318309999994
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    }
+  ],
+  "warnings": [
+    "info:content_completeness: 1 个 block 内容为空。",
+    "warning:provenance: block bbox 非法: (170.308, 279.78108469999995, 170.308, 296.4615208877419)（要求 r>l 且 bottom>top）。",
+    "warning:provenance: block bbox 非法: (315.14099999999996, 95.22008470000003, 315.14099999999996, 111.90052088774189)（要求 r>l 且 bottom>top）。"
+  ],
+  "metadata": {
+    "quality_report_contract_version": "1.0",
+    "chunk_count": 13,
+    "citation_count": 19,
+    "table_binding_count": 6
+  }
+}

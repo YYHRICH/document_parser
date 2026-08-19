@@ -1,0 +1,38 @@
+
+\section{Introduction} \label{sec:intro}
+
+\blfootnote{We release our code, all synthetically generated data, and LM interactions (prompts and responses) at \url{https://github.com/ZhaofengWu/counterfactual-evaluation}.}
+\hspace{-.7em}
+The striking empirical successes of language models (LMs) suggest 
+that next-word prediction at scale
+may be a viable approach for distilling the knowledge embedded in large-scale text corpora into general-purpose interactive agents. LMs obtain impressive results on various NLP benchmarks~\citepia{gpt4,palm2,claude} and display surprising abilities that suggest a nontrivial understanding of the  world~\citep{bubeck2023sparks}. They have been shown to pass professional exams~\citepia{kung2023performance,nori2023capabilities,terwiesch2023would}, exceed state-of-the-art methods on many traditional benchmarks~\citepia{sun2023chatgpt,sobania-2023-analysis,zhang2023stance,dhingra2023mind}, and surpass human performance on tasks that require seemingly nontrivial reasoning~\citepia{chowdhery2022palm,hoffmann2022training,malinka2023educational,guo2023close}. 
+
+Ideally, we expect a general-purpose LM to be able to \emph{generalize} not only to unseen instances of known tasks, but to new tasks. Humans, for example, can transfer their knowledge to new instances and also flexibly adapt to novel tasks~\citep{singley1989transfer}. To what extent does the performance of current LMs derive from their ability to deploy task-general reasoning skills, versus their ability to recognize and recall specific tasks seen frequently in pre-training?
+
+Past work has focused on instance-level generalization, but this is often complicated by data contamination issues~\citepia{dodge-etal-2021-documenting,magar-schwartz-2022-data}. In this work, we are interested in the models' generalizability to new task variants, which has been less systematically studied for LMs (though see \citet{li-etal-2022-quantifying}, \citet{mishra-etal-2022-cross}, and \citet{wang-etal-2022-super}). 
+
+We propose to measure such task-level generalizability by taking tasks on which LMs perform well, and altering the conditions or rules under which these tasks are performed.
+The general reasoning procedure for these tasks remains the same under the new conditions, but the specific input-output mapping functions are changed.
+We call the new tasks \emph{counterfactual tasks}, as they deviate from the default, generally assumed conditions for these tasks. Figure~\ref{fig:overview} shows examples: in the top left, default arithmetic is performed in base-10, while counterfactual arithmetic is performed in base 9.
+If models implement a general and transferable task-solving procedure, we expect comparable performance on counterfactual and default tasks; if they employ procedures tailored to default task conditions, we expect a drop in the counterfactual performance.
+
+
+We design a suite of 11 counterfactual evaluation tasks to measure an LM's flexibility to adapt to new task variants across multiple categories and domains, as summarized in Figure~\ref{fig:overview}.
+In each, the original task under the default conditions and its counterfactual variants share the same reasoning procedure but differ in their input-output mappings.
+We consider  traditional NLP tasks such as deductive reasoning, non-language tasks that are nonetheless commonly evaluated such as code generation, as well as non-standard tasks such as drawing and spatial reasoning. The latter extralinguistic tasks test whether LMs are able to learn conceptual structures that  mirror the structure of the non-linguistic world, which has been suggested by recent work~\citepia{abdou-etal-2021-language,ilharco-etal-2021-probing,patel2022mapping,li2023implications,bubeck2023sparks,sogaard2023grounding}. 
+
+We  evaluate the performance of GPT-4~\citep{gpt4}, GPT-3.5, Claude~\citep{claude}, and PaLM-2~\citep{palm2} on
+tasks under both
+the default and counterfactual conditions. We observe above-random counterfactual performance for most tasks, indicating some degree of task generalizability. However, the performance on counterfactual task variants consistently and substantially degrades relative to the performance on the default settings.
+This suggests that these models' ability on these tasks is supported at least in part by non-transferable, default-condition-specific behaviors rather than abstract, generalizable reasoning skills.
+
+These results also reveal several surprising relations between model behavior on default and counterfactual tasks (\S\ref{sec:analysis}), including correlations between default and counterfactual performance, varying effectiveness of zero-shot chain-of-thought prompting~\cite{kojima2023large}, and interactions between task- and instance-level frequency effects.
+Overall, we find that small variations on the default instantiations of tasks are challenging for models, and thus the success of existing LMs on standard benchmarks should not be considered as sufficient evidence for their possession of full general capacity for the target task.
+
+
+
+
+
+
+
+

@@ -1,0 +1,3878 @@
+{
+  "blocks": [
+    {
+      "block_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "content": "# Challenges and opportunities for digital twins in precision medicine: a complex systems perspective",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 1
+      },
+      "order_index": 0,
+      "source_locator": {
+        "bbox": [
+          92.921,
+          156.18271249999998,
+          515.9650250000001,
+          198.82536592920349
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-0"
+      }
+    },
+    {
+      "block_id": "758f6a66-c5a3-5152-9a5b-daa9011f986f",
+      "content": "1 , 2 , 3 ∗ 1 4 , 5 , 6",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 1,
+      "source_locator": {
+        "bbox": [
+          274.15999999999997,
+          218.33576859999994,
+          509.1462999999999,
+          227.13274439999998
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-1"
+      }
+    },
+    {
+      "block_id": "cacc0598-5b83-525a-a9f9-cecbcf956eef",
+      "content": "Manlio De Domenico , Luca Allegri , Guido Caldarelli , Valeria d'Andrea 1 , Barbara Di Camillo 2 , 7 , 8 ,Luis M. Rocha 9 , 10 , Jordan Rozum 9 , Riccardo Sbarbati 1 , Francesco Zambelli 1",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 2,
+      "source_locator": {
+        "bbox": [
+          145.462,
+          221.0666238,
+          513.23155,
+          269.24737648849555
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-2"
+      }
+    },
+    {
+      "block_id": "46ec2092-9424-5e5a-9473-fe5522f18fde",
+      "content": "1 Department of Physics and Astronomy 'Galileo Galilei'. University of Padova, Padova, Italy",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 3,
+      "source_locator": {
+        "bbox": [
+          104.08399999999989,
+          292.30760109999994,
+          554.6134528,
+          304.61648732035394
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-3"
+      }
+    },
+    {
+      "block_id": "bd44d869-f4ba-51a9-ad3f-4d71585b8689",
+      "content": "2 Padua Center for Network Medicine, University of Padua.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 4,
+      "source_locator": {
+        "bbox": [
+          188.17599999999987,
+          310.23960109999996,
+          470.51969920000005,
+          322.54948732035393
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-4"
+      }
+    },
+    {
+      "block_id": "01f108fa-9fc3-53e3-b658-ef819ad625af",
+      "content": "3 Padua Neuroscience Center, University of Padua.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 5,
+      "source_locator": {
+        "bbox": [
+          209.27599999999987,
+          328.17260109999995,
+          449.4188432,
+          340.4824873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-5"
+      }
+    },
+    {
+      "block_id": "39200c17-c2d3-58ea-b923-af88de73bbfa",
+      "content": "4 DSMN and ECLT Ca' Foscari University of Venice, Italy.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 6,
+      "source_locator": {
+        "bbox": [
+          188.79099999999988,
+          346.10560109999994,
+          469.90431360000014,
+          358.41448732035394
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-6"
+      }
+    },
+    {
+      "block_id": "6f15a6ec-4d57-5da1-bba2-1b1a4d80c240",
+      "content": "5 Institute of Complex Systems (ISC) CNR unit Sapienza University, Rome, Italy.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 7,
+      "source_locator": {
+        "bbox": [
+          135.3109999999999,
+          364.0386011,
+          523.386488,
+          376.347487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-7"
+      }
+    },
+    {
+      "block_id": "3cf3ef59-bb6c-546c-9dad-47eb4ac2112b",
+      "content": "6 London Institute for Mathematical Sciences, Royal Institution, London, UK.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 8,
+      "source_locator": {
+        "bbox": [
+          144.0739999999999,
+          381.9706011,
+          514.6231648,
+          394.280487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-8"
+      }
+    },
+    {
+      "block_id": "b340989f-1549-562c-9410-d3e4b9f638f0",
+      "content": "7 Department of Information Engineering, University of Padua, Italy",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 9,
+      "source_locator": {
+        "bbox": [
+          167.1049999999999,
+          399.9036011,
+          491.5907792,
+          412.212487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-9"
+      }
+    },
+    {
+      "block_id": "369be9f5-b2c4-56b6-b789-90fc1824d9af",
+      "content": "8",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 10,
+      "source_locator": {
+        "bbox": [
+          119.7809999999999,
+          417.83660110000005,
+          124.0155141299999,
+          424.8741994
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-10"
+      }
+    },
+    {
+      "block_id": "b64b7005-c641-52f7-be20-ed40cf201a72",
+      "content": "Department of Comparative Biomedicine and Food Science, University of Padua, Italy 9 Department of Systems Science and Industrial Eng., Binghamton University, Binghamton, NY, USA.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 11,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          419.88316480000003,
+          575.0514816,
+          448.0784873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-11"
+      }
+    },
+    {
+      "block_id": "99b2088e-3439-5b11-b917-002f6fb13efc",
+      "content": "10 Instituto Gulbenkian de Ciˆ encia, Oeiras, Portugal.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 12,
+      "source_locator": {
+        "bbox": [
+          203.8599999999999,
+          453.7016011000001,
+          454.8339408,
+          466.0114873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-12"
+      }
+    },
+    {
+      "block_id": "b59ee003-eb3b-5a8a-ab38-8d1e8062bdd4",
+      "content": "∗ Corresponding author. E-mail: manlio.dedomenico@unipd.it",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 13,
+      "source_locator": {
+        "bbox": [
+          180.6199999999999,
+          471.6824217000001,
+          478.0760719999999,
+          483.9434873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-13"
+      }
+    },
+    {
+      "block_id": "f2678afe-4148-5b56-87c5-a5489d800b7f",
+      "content": "The adoption of digital twins (DTs) in precision medicine is increasingly viable, propelled by extensive data collection and advancements in artificial intelligence (AI), alongside traditional biomedical methodologies. However, the reliance on black-box predictive models, which utilize large datasets, presents limitations that could impede the broader application of DTs in clinical settings. We argue that hypothesis-driven generative models, particularly multiscale modeling, are essential for boosting the clinical accuracy and relevance of DTs, thereby making a significant impact on healthcare innovation. This paper explores the transformative potential of DTs in healthcare, emphasizing their capability to simulate complex, interdependent biological processes across multiple scales. By integrating generative models with extensive datasets, we propose a scenario-based modeling approach that enables the exploration of diverse therapeutic strategies, thus supporting dynamic clinical decisionmaking. This method not only leverages advancements in data science and big data for improving disease treatment and prevention but also incorporates insights from complex systems and network science, quantitative biology, and digital medicine, promising substantial advancements in patient care.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 14,
+      "source_locator": {
+        "bbox": [
+          106.9339999999999,
+          518.7129120000002,
+          501.9457632,
+          696.8326368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 1,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-14"
+      }
+    },
+    {
+      "block_id": "a1d10cfe-57d0-512f-bd5c-329c5e235276",
+      "content": "## Introduction",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 15,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          340.9683739999999,
+          171.0969758,
+          356.4450185999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-15"
+      }
+    },
+    {
+      "block_id": "0c0f9ecf-fc53-5e1e-ab72-835ccde4ed6b",
+      "content": "Precision medicine aims at delivering diagnostic, prognostic and therapeutic strategies specifically tailored to individuals by explicitly accounting for their genetic information, lifestyle and environment [1], all organised in a network structure[2]. The success of this approach relies on at least two fundamental and non-trivial assumptions. The first assumption is that it is possible to predict, by means of computational, cellular, and organism models and to some level of accuracy, the response of a patient to a specific treatment. The second assumption is that it is possible to use heterogeneous data sources (multiomics, electronic health records, individual and social behavior, and so forth) to build massive databases with enough statistics to allow one to stratify a population with respect to characterizing and distinctive features of clinical interest [3].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 16,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          381.3481647999999,
+          531.2134224000001,
+          606.803487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-16"
+      }
+    },
+    {
+      "block_id": "2f6984fb-e676-56a5-812d-627ac59c4b6b",
+      "content": "It is not surprising that the field of precision medicine is growing [4, 5], attracting the interest of national health systems for investments [6] and of scholars spanning a wide range of disciplines, from molecular biology to computer science, medicine, physics, and engineering. Nevertheless, precision medicine, with its revolutionary promises, is usually associated with clinical genomics [7] and multiomics [8], with a strong focus on the idea that combining those heterogeneous, multi-scale sources of data will lead to timely predictions about individual medical outcomes. More recently, the attention shifted to the possibility of integrating such molecular data with traditional [9, 10, 11] and non-traditional [12] data sources of clinical relevance into a multiscale predictive modeling methodology known as a digital twin , that allows for testing therapeutic strategies in-silico with the ultimate goal of maximizing successful treatments and outcomes.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 17,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          620.4511648,
+          531.2134224000001,
+          702.444487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 2,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-17"
+      }
+    },
+    {
+      "block_id": "625596ee-895e-560c-b70b-655f916a69fb",
+      "content": "The first pioneering precursors of digital twins for personalized medicine came out in the early 2000', proposing the idea of models of the human body for specific patients to improve clinical practices. They pointed out challenges that are still actual, such as the need of a structure for multiple sources data integration [13] and the importance of having solid mathematical models able to describe the system at the desired level of precision [14]. In the last years medical digital twins (MDT) have experienced a huge increase of interest, with the birth of many programmes devoted to them [15, 16]. Some of the most significant successes in the field are the 'artificial pancreas' or ARCHIMEDES program on diabetes [17], or mechanistic models of the heart used for cardiovascular disease monitoring and prevention [18, 19]. Recent works emphasize the potentiality of having a comprehensive model for the human body that could help to understand what could be the possible consequences of a perturbation, for example caused by a viral infection [20], or the influence of specific drugs [21, 22], on a specific patient. About the actual implementation of these models, network and complex systems are starting to be considered [15] after more than one decade from first proposals [], while approached based on AI and ML are widely adopted despite some limitations and critical aspects [23]. Given the broad spectrum of definitions and applications, it is important to set the operational definition that will be adopted throughout this paper:",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 18,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          280.4061647999999,
+          531.2134224000004,
+          673.234487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 3,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-18"
+      }
+    },
+    {
+      "block_id": "0729df44-b434-54ea-a6fe-e88df075cf72",
+      "content": "A digital twin is an in-silico framework which can be used to replicate a biological cell, sub-system, organ or a whole organism with a transparent predictive model of their relevant causal mechanisms which responds in the same manner to interventions.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 19,
+      "source_locator": {
+        "bbox": [
+          92.341,
+          117.946912,
+          516.5473615999998,
+          172.0326368000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 4,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-19"
+      }
+    },
+    {
+      "block_id": "e278a2f1-6089-5c3e-8d81-63c4e035616c",
+      "content": "Broadly speaking, a digital twin exchanges data with its real-world counterpart, synchronizing inputs and outputs, and together, they operate synergistically, with the digital twin informing, controlling, aiding, and augmenting the original system.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 20,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          199.61316479999994,
+          531.2134224,
+          257.6954873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 4,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-20"
+      }
+    },
+    {
+      "block_id": "c230071d-bd0b-5871-9f62-c4c5316a6aa1",
+      "content": "In fact, in the recent years the interest on digital twins exploded well beyond medicine, due to the increasing accessibility to memories, computational power and massive data gathering. Primarily utilized to simulate the intricate infrastructural configurations, they have been also applied to cities [24] and products [25], leveraging contemporary technologies such as data analytics, IoT-driven physical modeling[26], machine learning and artificial intelligence. For instance, in the case of cities [27], it has been argued that it can be far more efficient to consider the emerging behaviour arising from the intricate web of relationships, processes and correlations that characterize a complex adaptive system [28, 29, 30], rather than reproducing a mere copy of it.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 21,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          271.34416479999993,
+          531.2134224000001,
+          472.8884873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 4,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-21"
+      }
+    },
+    {
+      "block_id": "105d88ee-a737-5721-bbc3-8bd15d4aa986",
+      "content": "The comparison with current methodological advances and challenges in other fields, allows us to highlight the existing challenges in the case of precision medicine. Despite promising opportunities to create a digital copy of every individual to allow for personalized analysis and test individual-specific therapeutic strategies [21, 31, 15] there are some caveats that might be considered.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 22,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          486.5371648000001,
+          531.2134224000001,
+          592.4404873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 4,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-22"
+      }
+    },
+    {
+      "block_id": "11f60611-52fc-5ccf-8278-69f2025e9a21",
+      "content": "On the one hand, if digital twins must be designed to be a perfect replica of an individual, then the amount of required data vastly overcomes our present, and even the future, possibilities. The gigantic number of intervening functional units, from biomolecules to cells, makes any analytical or computational approach impossible. Even in the ideal case that a perfectly functioning computational framework was technologically accessible, the nonlinear dynamics of interacting biological units leads to emergent phenomena that cannot be simply simulated or predicted, a landmark feature of complex systems [32, 33]. In fact, recent advances in predictive biology are based on building models of increasing complexity to reproduce the most salient characteristics of complex biological processes in engineered and natural populations [34].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 23,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          606.0881648000002,
+          531.2134224,
+          688.0814873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 4,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-23"
+      }
+    },
+    {
+      "block_id": "02b6f09d-2f40-58a1-a29f-c0bd334ab6e9",
+      "content": "On the other hand, human patients have their own dynamical response to internal dysfunctions or differentiated coupling to the environment, including individual histories of hostmicrobiome and host-pathogen interactions, that might jeopardize any predictive model. Even more widely, the full individual exposome includes all past exposure to specific multi-scale environmental factors, such as diet and reactions to stressful biochemical or social conditions [35, 36]. While the causal mechanisms in multiomic regulation can be partially reconstructed and accounted for, the full individual exposome is almost impossible to replicate or reproduce with a digital twin.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 24,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          232.5861647999999,
+          531.2134224000001,
+          410.220487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 5,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-24"
+      }
+    },
+    {
+      "block_id": "99c1adac-c75a-5e77-b72f-f2efc8d8c6e9",
+      "content": "We have made great strides in capturing the exposome via collection of new types of data, such as mobile devices [37] and social media [12], However, even in the most ideal cases, unknown factors such as the level of disease progression and unmeasured lifestyle changes can lead to a broad set of distinct outcomes that make the design of digital twins very sensitive to the quantity and accuracy of input data. This technology may struggle to adapt and accurately predict these dynamic changes, leading to sub-optimal personalized treatment recommendations.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 25,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          423.8681648,
+          531.2134224000001,
+          577.592487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 5,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-25"
+      }
+    },
+    {
+      "block_id": "00d74c65-f9ed-5045-beec-7a6a5afcc88c",
+      "content": "The aforementioned potential issues can dramatically hinder the purpose of digital twins, suggesting that only methods based on advanced statistical data analysis, such as the one based on machine learning, are viable. However, this is not the case, since such methods provide predictive models that (i) do not easily generalize to situations and conditions for which they have not been trained for, and (ii) might recommend solutions that are clinically sub-optimal when retrieving multiple outcomes which are similarly ranked by the algorithm (Fig. 1).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 26,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          591.2411648000001,
+          531.2134224000004,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 5,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-26"
+      }
+    },
+    {
+      "block_id": "7b68b71d-416c-5a72-863f-fea35a2a7f38",
+      "content": "Therefore, a more comprehensive approach based on methods capturing the essential features of complex interconnected and interdependent systems [38, 39] at many scales is needed. This approach needs to: (i) reduce the dimensionality of the problem of interest, by identifying the key biological, clinical and environmental variables to use for an adequate description on short time scales; (ii) characterize under which conditions a complex adaptive system like the human body (or even a cell line) can be simulated by a digital twin in terms of separated components and/or sub-systems; (iii) provide a transparent computational framework for testing actionable intervention strategies based on what-if scenarios and clinically relevant, modelinformed, data-driven and evidence-based questions.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 27,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          136.94416479999995,
+          531.2134224000002,
+          338.48948732035393
+        ],
+        "bbox_granularity": "block",
+        "page_number": 6,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-27"
+      }
+    },
+    {
+      "block_id": "28147918-bf44-5530-a6c0-690aa3fee4c0",
+      "content": "In short, this calls for more holistic and quantitative approach based on the complex adaptive nature of every patient rather than a mere replica of their salient aspects for statistical analysis.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 28,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          352.13716479999994,
+          531.2102335999997,
+          386.31048732035396
+        ],
+        "bbox_granularity": "block",
+        "page_number": 6,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-28"
+      }
+    },
+    {
+      "block_id": "545348c9-7dca-5dc8-96a6-2ed512ee94a7",
+      "content": "## Multiscale modeling in health and disease: from genes to systems",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 29,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          412.699374,
+          531.208713,
+          450.09401859999997
+        ],
+        "bbox_granularity": "block",
+        "page_number": 6,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-29"
+      }
+    },
+    {
+      "block_id": "ac16cfcc-54c3-50c0-854f-1149985468f1",
+      "content": "Accounting for the multiscale nature of biological systems is of paramount importance for designing effective digital twins. The recent progresses in study of complex systems, especially the ones with interconnected and interdependent structure, dynamics and function, provide a promising ground for figuring out and illustrating how diverse functional units and sub-systems interact at different scales. Indeed, in addition to extracting multiscale molecular details from large omics datasets (e.g., transcriptomic, genomic, metabolomic, and microbiomic), we can now extract large-scale human behavior data of biomedical relevance from social media, mobile devices and electronic health records, including new patient-stratification principles and unknown disease correlations [12, 37, 9, 40, 41, 11, 42]. Accordingly, the holistic integration and analysis of such multiscale data sources constitutes a novel opportunity to further improve personalization by including the exposome in the study of multilevel human complexity in disease [41, 43], and used to inform more accurate models for predictive purposes in biomedicine [44, 34, 42, 45, 46].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 30,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          474.99716479999995,
+          531.2134224000001,
+          700.452487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 6,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-30"
+      }
+    },
+    {
+      "block_id": "f00e75f9-82f6-584a-8330-bab820f516dc",
+      "content": "![<bound method FloatingItem.caption_text of PictureItem(self_ref='#/pictures/0', parent=RefItem(cref='#/body'), children=[RefItem(cref='#/texts/38'), RefItem(cref='#/texts/39'), RefItem(cref='#/texts/40'), RefItem(cref='#/texts/41'), RefItem(cref='#/texts/42'), RefItem(cref='#/texts/43'), RefItem(cref='#/texts/44'), RefItem(cref='#/texts/45'), RefItem(cref='#/texts/46'), RefItem(cref='#/texts/47'), RefItem(cref='#/texts/48'), RefItem(cref='#/texts/49'), RefItem(cref='#/texts/50'), RefItem(cref='#/texts/51'), RefItem(cref='#/texts/52'), RefItem(cref='#/texts/53'), RefItem(cref='#/texts/54'), RefItem(cref='#/texts/55'), RefItem(cref='#/texts/56'), RefItem(cref='#/texts/57'), RefItem(cref='#/texts/58')], content_layer=<ContentLayer.BODY: 'body'>, meta=None, label=<DocItemLabel.PICTURE: 'picture'>, prov=[ProvenanceItem(page_no=7, bbox=BoundingBox(l=125.64728546142578, t=680.2538375854492, r=483.3542785644531, b=395.84307861328125, coord_origin=<CoordOrigin.BOTTOMLEFT: 'BOTTOMLEFT'>), charspan=(0, 0))], source=[], comments=[], captions=[RefItem(cref='#/texts/38')], references=[], footnotes=[], image=None, annotations=[])>]()",
+      "kind": "image",
+      "metadata": {},
+      "order_index": 31,
+      "source_locator": {
+        "bbox": [
+          125.64728546142578,
+          111.74616241455078,
+          483.3542785644531,
+          396.15692138671875
+        ],
+        "bbox_granularity": "block",
+        "page_number": 7,
+        "provenance_status": "verified",
+        "source_block_id": "docling-PictureItem-31"
+      }
+    },
+    {
+      "block_id": "9008eca4-96cb-5cc8-8f73-393e1fc541f0",
+      "content": "Figure 1: Precision medicine standard approach for digital twins. The framework relies on using large-scale heterogeneous data sources (pre-clinical, clinical, environmental, lifestyle, etc.). This massive database should be used by sophisticated computational models (such as deep learning), while relying solely on statistical data analysis to construct a series of digitalized instances - the digital twins - of a patient, which will then be used to test one or more therapeutic strategies for clinical decision-making. Human body design by Freepick and osteocytes from Servier Medical Art under CC-BY AS license.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 32,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          427.29591200000004,
+          531.2134224000001,
+          524.6994873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 7,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-32"
+      }
+    },
+    {
+      "block_id": "c95b1c10-c5b9-5779-8c13-5e7a4f60e87e",
+      "content": "At the lowest scale, gene regulatory networks are systems of interacting genes and their regulatory elements within a cell controlling the level of gene expression. Usually, in those networks the nodes represent genes and edges represent regulatory interactions between them, and they describe the timing, spatial distribution, and intensity of gene expression, thereby orchestrating various cellular processes such as development, differentiation, and response to environmental stimuli [47, 48, 49, 50]. A protein-protein interaction (PPI) network captures distinct types of interactions (e.g., physical contacts) between proteins in a cell. In PPI networks, nodes represent individual proteins, and edges encode interactions between them: they can be transient, like in signal transduction, or more stable, such as in the formation of protein complexes [51, 52]. PPI networks provide insights into cellular processes, functional associations, and the modular organization of proteins, and analyzing the structure and dynamics of PPI networks helps uncover the underlying principles of cellular organization and function [53, 54, 55, 56, 57, 58, 59, 45]. Metabolic networks [60, 61, 42] map out the biochemical reactions occurring within an organism, detailing how individual metabolites are synthesized, degraded, and interconverted [62]. These networks are either composed of nodes representing metabolites and edges indicating the enzymatic reactions facilitating the transformation from one metabolite to another or bipartite networks where nodes are chemical species on one side and reactions on the other. In this latter representation, the web of metabolic interactions is more intricately woven, while in the former it is more straightforward. Beyond individual reactions, these networks highlight the interconnected nature of metabolic pathways, revealing redundancies, feedback loops, and regulatory mechanisms that maintain cellular homeostasis.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 33,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          618.2161648000001,
+          531.2134224000001,
+          700.2094873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 7,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-33"
+      }
+    },
+    {
+      "block_id": "1e1a7b69-dd1b-52a0-810d-de89b08e619e",
+      "content": "Intracellular networks have time-evolving states that describe which genes are active, which proteins are present (or phosphorylated, oxidized, ubiquitinated, etc.), the concentrations of metabolites, and so on. State evolution is often studied using ODE models, which can be fit to match experimental state and kinetic data [63]. In many cases, the available data is insufficient to fully constrain the parameters of an ODE model, or, which is often the case, the underlying biological dynamics is of a threshold nature [64]. In these cases, a discrete causal model, such as Boolean networks (or multistate automata networks more generally), may be appropriate [65, 66]. In a Boolean network, the state of each node in the intracellular network is binarized: a gene is either active or inactive, and the active form of a protein is either above some unspecified threshold of abundance or below it. The binarized states change in time according to logical (Boolean) update functions, i.e., each network node is an automaton [67]. The causal effect of various interventions (e.g. drugs) can be evaluated by manipulating the states of individual nodes and observing the resulting dynamics. Since Boolean automata can be grouped to model variables with more than two states, the approach is widely applicable to model cellular components with various levels of activation, e.g. proportion of cells that enter apoptosis in breast cancer cell lines [68]. A common application of these models is to study the effects of combinatorial drug interventions, particularly in the context of cancer [68, 69]. To serve as a component of a digital twin, Boolean networks must reconcile their discrete time steps with physical time. This is often done by updating node states asynchronously according to tunable node transition rates, essentially treating the dynamics as a continuous Markov process [70]. This approach has been applied, for example, to suggest personalized drug therapies for prostate cancer patients using personalized Boolean network models [71]. This discrete dynamics approach has also been used to infer important dynamical pathways in multilayer networks, tying molecular factors (from multiomics, brain and retinal imaging data) to clinical phenotype (from patient data) in multiple sclerosis [46]. This is an exciting avenue that allows complex regulatory dynamics to be studied on static multilayer networks obtained from heterogeneous data sources, whereby each node can integrate incoming signals differently-going well beyond the typical analysis via spreading or information dynamics on networks.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 34,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          519.5101648,
+          531.2134224000005,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 8,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-34"
+      }
+    },
+    {
+      "block_id": "5ebbfa82-074c-5667-9af9-d8ecee947543",
+      "content": "It is important to note that automata network models can typically be greatly simplified by reducing dynamically redundant interactions [67], due to the ubiquity of canalized dynamics in biology [72, 73]. This results in scalable causal models capable of uncovering actionable interventions, conditioned on different input assumptions, in a transparent manner [67, 64, 74]. Boolean networks are especially amenable to causal analysis because they can be converted to simplified causal representations (according to Boolean minimization criteria) [67, 64, 75, 76], standing in stark contrast to the black-box predictions of traditional machine learning methods or tallying the outputs of Monte Carlo simulations of large dynamical models (including nonsimplified Boolean Networks.)",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 35,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          591.2411648000001,
+          531.2134224000004,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 9,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-35"
+      }
+    },
+    {
+      "block_id": "e1afc895-68d6-54e1-85fe-bfbc55c74eb2",
+      "content": "Thus, automata network models-whose parameters can be inferred and validated from perturbation experiment, multiomics, and exposome data-are ideal components to consider for the top level of digital twins, as they synthesize the large-scale underlying data into simplified, explainable, causal networks amenable investigate actionable interventions. Indeed, these features show how this modeling approach directly responds to the digital twin approach needs identified in the introduction: dimensionality reduction, scalable modularity, and transparency.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 36,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          208.67516479999983,
+          531.2134224000001,
+          338.48948732035393
+        ],
+        "bbox_granularity": "block",
+        "page_number": 10,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-36"
+      }
+    },
+    {
+      "block_id": "98433df6-b846-59ed-b3d9-170d9a8f0832",
+      "content": "Whether discrete or continuous, the dynamics of intracellular networks can be coupled with each other and with physical processes to produce whole-cell models, which attempt to describe the whole genome, proteome, and metabolome of a cell over the course of its life cycle in a finegrained dynamical model [77], as was first demonstrated in the human pathogen Mycoplasma genitalium [78]. More recent efforts have been focused on identifying minimal genomes [79] or modeling organisms with larger genomes, such as E. Coli [80]. Currently, the biomedical application of such detailed models is limited by the enormous effort required to construct them. Fortunately, it is often the case that only specific processes need to be incorporated to build a medically relevant digital twin. Narrowing the focus of the model at the cellular level makes model construction and personalization more feasible, lowers computational barriers, and facilitates embedding these models into multicellular models, e.g. [81].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 37,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          352.13716479999994,
+          531.2160688000002,
+          601.503487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 10,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-37"
+      }
+    },
+    {
+      "block_id": "a0a1ef58-76ca-56c8-b4a3-982311b87730",
+      "content": "An interesting focus is given by single cell data analysis. Indeed, tissues are complex multiagent systems made of multiple subpopulations of cells that, even of the same type, exhibit different system state and expression profiles and that are spatially and temporally organized and able to communicate and interact with each other and to orchestrate self-assembly and response to stimuli as a whole. This is fundamental in many biological contexts, such as early embryonic development and tumor etiology, where different cells are characterized by distinctive genetic mutations and/or expression profiles. These differences are regulated by cell-to-cell communication and underlie complex dynamic responses characterizing healthy and pathological tissue development [82]. An example of how the interaction between cells can be modelled to describe emergent behaviors is provided by agent-based models applied to study the interaction dynamics between immune and tumor cells in human cancer. Coupling a discrete agent-based model with a continuous partial differential equations-based model, these models capture essential components of the tumor microenvironment and are able to reproduce its main characteristics. Each tumor is characterized by a specific and unique tumor microenvironment, emphasizing the need for specialized and personalized studies of each cancer scenario. Recently, a model of colon cancer has been proposed that can be informed with patient transcriptomic data [83]. It would be interesting to extend the model by informing it through methods that infer cellular communication [84, 85, 86, 87]. This would have the advantage of characterizing the tumor environment more specifically by defining the probability of an agent's action in response to received communication.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 38,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          615.1511648000001,
+          531.2134224000002,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 10,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-38"
+      }
+    },
+    {
+      "block_id": "b4e9dfe3-4fc5-577d-9f8c-2fc0f3bd2cfa",
+      "content": "At the tissue scale, neural, cardiovascular, and respiratory systems are a few examples of systems that need to be considered. However, system dysfunctions, such as cancer, should also be incorporated. Several studies have focused on examining neural connections within an organism's brain, commonly referred to as the connectome [88]. Whether investigating the intricate networks within the human brain or the simpler wiring maps of organisms like C. elegans or Drosophila Melanogaster , the objective remains consistent: elucidating the interconnections and organization of neurons and regions at the mesoscale. Functional imaging techniques are utilized to explore the relationship between activity in specific brain areas [89]. The analytical and computational tools from network theory allow to build maps of structural and functional connections, revealing characteristics of complex networks-such as small-world topology, highly connected hubs, and modularity-that manifest at both the whole-brain and cellular scales [90, 91, 92].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 39,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          495.59916480000004,
+          531.2134224000004,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 11,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-39"
+      }
+    },
+    {
+      "block_id": "f96fbf36-cca7-5a9b-95f8-02cb5bad89dd",
+      "content": "The human brain is an emblematic case study for the design of ambitious computational models towards digital twins. Nevertheless, despite the aforementioned significant advancements, the explicit goal of building a realistic computer simulation of the brain within a few years has not met expectations [93].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 40,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          184.76516479999987,
+          531.2134224000001,
+          266.7584873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 12,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-40"
+      }
+    },
+    {
+      "block_id": "85f18633-cd40-5321-8640-59a0f485cbd4",
+      "content": "Overall, the aforementioned sub-systems are part of a broader complex, adaptive, interdependent system of systems which are organized in hierarchies of increasing complexity with modular organization [94]. This is a fact well recognized since at least half a century, summarized in the Jacob's statement that 'every object that biology studies is a system of systems' [95]. Such sub-systems exchange information (e.g., in terms of electrical, chemical and electrochemical signals) to regulate each other and operate out of equilibrium [96, 97, 98].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 41,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          280.4061647999999,
+          531.2134224000004,
+          410.220487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 12,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-41"
+      }
+    },
+    {
+      "block_id": "ffb24506-295a-5989-873f-5a3184d8404d",
+      "content": "Consequently, considering any sub-system in isolation from the other ones provides an incomplete representation of each sub-system, leading to inaccurate models and predictions of biological processes. A partial solution to this problem comes from the statistical physics of multilayer systems, allowing one to describe each scale by a level of organization, whereas each level (i.e., at the same scale) can be characterized by multiple contexts, namely layers [99, 39]. Levels can be interdependent with each other [38, 100] while being characterized by different contexts. In the case of biological systems [101], this is reflected in the distinct type of interactions among the same set of biomolecules or the distinct channels available for cell-cell communication, as well as in the interdependence between distinct systems such as the cardiovascular and nervous ones (Fig. 2).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 42,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          423.8681648,
+          531.2178288000001,
+          649.323487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 12,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-42"
+      }
+    },
+    {
+      "block_id": "95106b6a-b5c2-587c-97d0-01b2adb5d625",
+      "content": "This web of interconnections and interdependencies involving diverse and heterogeneous functional biological units across scales play a pivotal role in human health, and it is plausible to associate their dysfunction to disease states [102, 103].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 43,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          662.9721648000001,
+          531.2134224,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 12,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-43"
+      }
+    },
+    {
+      "block_id": "f7da4b09-a4dc-566a-be58-7cae3190e0a7",
+      "content": "![<bound method FloatingItem.caption_text of PictureItem(self_ref='#/pictures/1', parent=RefItem(cref='#/body'), children=[RefItem(cref='#/texts/76'), RefItem(cref='#/texts/77'), RefItem(cref='#/texts/78'), RefItem(cref='#/texts/79'), RefItem(cref='#/texts/80'), RefItem(cref='#/texts/81'), RefItem(cref='#/texts/82'), RefItem(cref='#/texts/83'), RefItem(cref='#/texts/84'), RefItem(cref='#/texts/85'), RefItem(cref='#/texts/86'), RefItem(cref='#/texts/87'), RefItem(cref='#/texts/88'), RefItem(cref='#/texts/89'), RefItem(cref='#/texts/90'), RefItem(cref='#/texts/91'), RefItem(cref='#/texts/92'), RefItem(cref='#/texts/93'), RefItem(cref='#/texts/94'), RefItem(cref='#/texts/95'), RefItem(cref='#/texts/96'), RefItem(cref='#/texts/97'), RefItem(cref='#/texts/98'), RefItem(cref='#/texts/99'), RefItem(cref='#/texts/100'), RefItem(cref='#/texts/101'), RefItem(cref='#/texts/102'), RefItem(cref='#/texts/103'), RefItem(cref='#/texts/104'), RefItem(cref='#/texts/105'), RefItem(cref='#/texts/106'), RefItem(cref='#/texts/107'), RefItem(cref='#/texts/108'), RefItem(cref='#/texts/109'), RefItem(cref='#/texts/110'), RefItem(cref='#/texts/111'), RefItem(cref='#/texts/112'), RefItem(cref='#/texts/113'), RefItem(cref='#/texts/114')], content_layer=<ContentLayer.BODY: 'body'>, meta=None, label=<DocItemLabel.PICTURE: 'picture'>, prov=[ProvenanceItem(page_no=13, bbox=BoundingBox(l=80.39070892333984, t=680.2109832763672, r=487.4992980957031, b=426.9455261230469, coord_origin=<CoordOrigin.BOTTOMLEFT: 'BOTTOMLEFT'>), charspan=(0, 0))], source=[], comments=[], captions=[RefItem(cref='#/texts/76')], references=[], footnotes=[], image=None, annotations=[])>]()",
+      "kind": "image",
+      "metadata": {},
+      "order_index": 44,
+      "source_locator": {
+        "bbox": [
+          80.39070892333984,
+          111.78901672363281,
+          487.4992980957031,
+          365.0544738769531
+        ],
+        "bbox_granularity": "block",
+        "page_number": 13,
+        "provenance_status": "verified",
+        "source_block_id": "docling-PictureItem-44"
+      }
+    },
+    {
+      "block_id": "61605791-7769-5408-abf4-36304e271b2d",
+      "content": "Figure 2: Multiscale and network modeling for digital twins. (A) Once the potential source of a dysfunction is identified, multiple biological systems might be involved, across different spatial and temporal scales. Treatments, e.g., being based either on mRNA therapy or on classical drugs, usually target biological units at a specific scale. However, their effects might propagate to other units at the same scale or across scales due to the presence of interactions and interdependencies among biomolecules and functional sub-systems such as cells. (B) A multiscale illustration of the interdependent sub-systems related to the function of distinct organs. Each scale can be simulated by a specialized digital twin, or their multiscale integration can be simulated by a more complex, but still specialized, digital twin. The effects of distinct treatments can be analyzed on several distinct instances of the digital twins using model-informed and data-driven search. Human body design by Freepick and osteocytes from Servier Medical Art under CC-BY AS license.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 45,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          394.08691200000004,
+          531.2134224000002,
+          563.7194873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 13,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-45"
+      }
+    },
+    {
+      "block_id": "6bba9a05-570c-5851-888e-97a4287f3296",
+      "content": "## Challenges in multiscale modeling",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 46,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          622.1563740000001,
+          327.7915466000001,
+          637.6330186000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 13,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-46"
+      }
+    },
+    {
+      "block_id": "5b2cd677-f7cf-56cc-9611-9b64ea206aae",
+      "content": "Multiscale modeling of biological systems presents formidable challenges, primarily due to the intricate and redundant networks of interactions and interdependent processes taking place and unfolding across different scales, from molecular (microscopic) to organismic (macroscopic) levels. These systems are characterized by dynamic processes that operate far from equilibrium, exchanging various types of signals - e.g., chemical, electrochemical, and more - thereby creating a complex ecosystem of interlinked dynamical processes [34]. Such complexity poses significant difficulties in developing models that are both significant and coherent, avoiding extremes like reductionism, which assumes that sufficient computational power can simulate an entire organism, or oversimplification, which relies excessively on abundant data to sidestep the need for intricate modeling.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 47,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          662.5361648000002,
+          531.2134224000001,
+          696.7094873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 13,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-47"
+      }
+    },
+    {
+      "block_id": "2f04df58-8a21-54f3-8638-db34817e75dc",
+      "content": "Moreover, biological systems are inherently adaptive, adjusting dynamically to environmental changes [104]. This adaptiveness is crucial for accurately simulating the impact of external factors such as therapeutic interventions or changes in environmental conditions like pollution [105] or alterations in food sources [106, 107]. Responses to these changes start at the cellular level, influencing gene and protein expressions (or lack of, that can even trigger the insurgence of cancer [108]), and extend to higher biological structures through complex signaling pathways involving ligands and receptors. Such adaptive complexity must be integrated into models to accurately reflect the biological response to external stimuli within the spatial and temporal scale of interest.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 48,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          304.3171647999999,
+          531.2134224000004,
+          505.86148732035406
+        ],
+        "bbox_granularity": "block",
+        "page_number": 14,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-48"
+      }
+    },
+    {
+      "block_id": "f74f47ba-3c85-504f-9b7b-7d4d524d7e87",
+      "content": "In the broader context of precision medicine, integrating digital twins that reflect these multiscale and adaptive features poses even additional challenges. The models often employed are predominantly phenomenological, focusing more on observed phenomena rather than the underlying mechanisms, an approach resulting in a significant gap in our mechanistic understanding, which is essential for bridging various biological scales effectively. Drawing again a parallel with urban system digital twins might offer new perspectives and strategies: cities face similar multiscale integration challenges [27] and require a similar framework for addressing the complex interplay of different components within a living system, potentially guiding the development of more effective biomedical models.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 49,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          519.5101648,
+          531.2134224000001,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 14,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-49"
+      }
+    },
+    {
+      "block_id": "997b88d8-310a-5e38-9f92-a73478d67113",
+      "content": "By critically analyzing these challenges through the lens of complexity science, we can better understand and possibly overcome the hurdles in creating cohesive and predictive multiscale models that are crucial for the future of biomedical research and therapeutic development. In the case of interconnected systems at a given scale, one can introduce a suitable object named multilayer adjacency tensor M iα jβ ( t ) , to operationally encode all the interactions at time t between a biological unit i (e.g., a single protein or a protein complex) in a layer α (e.g., a class of biological processes or a pathway) and another biological unit j (e.g., another protein or a metabolite). The framework is so general that it allows to include also cross-layer structural interactions, if any. In fact, due to the high number of interacting units (such as biomolecules, cells, etc), biological modeling often assumes such deterministic processes, such as that reactions occur at constant rates, compartmental interactions are fully-mixed or mean-field approximations apply. Therefore, even at some good level of approximation, the dynamics of some quantity x ( t ) of interest - e.g., the concentration of metabolites or the population of some species (e.g., cancer cells, bacteria, etc) - might be described by multilayer differential equations [109, 39] like",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 50,
+      "source_locator": {
+        "bbox": [
+          77.66899999999987,
+          136.94416479999995,
+          531.2134224000002,
+          458.0414873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 15,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-50"
+      }
+    },
+    {
+      "block_id": "ef744331-4ccc-5ba6-bc8d-106ffdd5e23d",
+      "content": "",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 51,
+      "source_locator": {
+        "bbox": [
+          147.38700000000006,
+          474.9823151999999,
+          531.2127632000002,
+          504.85969191671467
+        ],
+        "bbox_granularity": "block",
+        "page_number": 15,
+        "provenance_status": "verified",
+        "source_block_id": "docling-FormulaItem-51"
+      }
+    },
+    {
+      "block_id": "268f8d4b-2a73-57a5-960f-222720063347",
+      "content": "where f jβ ( · ) is a function only of the variable x jβ ( t ) corresponding to a specific unit j in a specific context or layer β , whereas g jβ ( · ) is a function accounting for the interactions between pairs of units, i.e., for the effects due to the intervening networks.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 52,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          518.9363152,
+          531.2174400000001,
+          577.5924873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 15,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-52"
+      }
+    },
+    {
+      "block_id": "c65c24d7-abf5-5237-89fc-9b1eee37ffc0",
+      "content": "It is remarkable how such a simplified deterministic framework can allow to model some response to clinical treatment triggered by basic chemical reactions, as well as that the value of PH, the actions of cells that can be triggered and even the production of proteins that can be stimulated by acting on specific part of DNA or by specific mRNA targets [110, 111]. In the light of these simple arguments, it might be tempting to rely only on such deterministic approaches - based on sets of differential equations, such as Eq. (1), or on agent-based modeling to predict the behavior of a therapeutic intervention. After all, if we have systematic cause-effect relations linking interventions to biological and clinical outcomes, it would be enough to calibrate our models on the specific features of a patient to determine their response to treatments and potentially cure a disease.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 53,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          591.2411648,
+          531.2134224000001,
+          697.144487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 15,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-53"
+      }
+    },
+    {
+      "block_id": "fa040b83-c724-5d08-9d25-31261051e24c",
+      "content": "However, in complex and variable environments such as a living organism, adaptiveness, randomness and biological noise might affect the model outcomes. Adaptiveness can be still reflected by such simplified models: if we indicate with u jβ ( t ) some external input signal or control applied to a biological system and with Θ the set of parameters that dynamically change based on the system's states or external inputs, then a more general model at a given scale could be formalized as",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 54,
+      "source_locator": {
+        "bbox": [
+          77.66899999999993,
+          232.5861647999999,
+          531.2168352,
+          362.39948732035396
+        ],
+        "bbox_granularity": "block",
+        "page_number": 16,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-54"
+      }
+    },
+    {
+      "block_id": "95b8e990-6836-5aaa-b196-57109b7d572f",
+      "content": "",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 55,
+      "source_locator": {
+        "bbox": [
+          125.16900000000015,
+          399.5843152,
+          531.2127632000002,
+          491.1395474213257
+        ],
+        "bbox_granularity": "block",
+        "page_number": 16,
+        "provenance_status": "verified",
+        "source_block_id": "docling-FormulaItem-55"
+      }
+    },
+    {
+      "block_id": "ff109bef-0640-516e-952a-34ee53158118",
+      "content": "which is much more complicated than Eq. (1), but it can be still managed from a computational point of view.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 56,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          505.0721648,
+          531.2134224000002,
+          539.244487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 16,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-56"
+      }
+    },
+    {
+      "block_id": "8cddf4d6-1717-5b87-9fd2-32baee7c9181",
+      "content": "Noise can be inherent to one or more aspects of the involved systems - e.g., biochemical and electrochemical variability - or being linked to specific mechanisms altered by internal or external perturbations, such as virus-host interactions, environmental changes, so forth and so on. Accordingly, including the effects of noise depends on the scale and impact of the biological process being modeled. For instance, including DNA replication errors for the analysis of shortterm effects of a therapeutic drug might not add relevant biological or clinical insights, while adding complexity to the model. Another emblematic case is the use of discretized structures, such as networks, to model processes that are manifestly continuous (e.g., in space): in such conditions, using complex networks will introduce a level of sophistication that is not necessary to gain insights about a biological process.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 57,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          552.8921648,
+          531.2134224000001,
+          706.6164873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 16,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-57"
+      }
+    },
+    {
+      "block_id": "907ea0a2-3fe3-5db4-9802-ae36f18ed5de",
+      "content": "These noise sources introduce an additional level of stochasticity that cannot be easily taken into account by statistical models, even the most sophisticated ones based on machine learning. Nevertheless, what it usually assumed to be a bug might be a feature: as for other complex systems in nature, stochasticity is indeed structured and can lead to self-organized behaviors and processes [112, 113, 114]. The theory of nonlinear dynamical systems and the statistical physics of complex networks provide suitable theoretical and computational frameworks to model such complex biological phenomena [98], and should be considered as essential ingredients to design reliable digital twins, either specialized or not, for any living organism.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 58,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          184.76516479999987,
+          531.2134224000002,
+          362.39948732035396
+        ],
+        "bbox_granularity": "block",
+        "page_number": 17,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-58"
+      }
+    },
+    {
+      "block_id": "c2e080fe-0636-55b7-af10-61cb4c281d8c",
+      "content": "Nevertheless, the most important obstacle to describe realistic biological systems relies on incorporating multiple dynamic processes across the multiple intervening scales, primarily due to the diverse nature of the laws governing these processes at each scale. One significant technical challenges is effectively bridging these scales. This involves not just scaling up or down the processes, but also ensuring that interactions between scales are accurately captured. This might involve developing intermediate models or using scale-bridging techniques like homogenization or coarse-graining, which themselves can introduce approximation errors or require simplifications that might affect model accuracy. While some models are based on fundamental laws - such as reaction-diffusion processes for chemical networks - other models are genuinely phenomenological: reconciling dynamics of so different nature is challenging, since the latter class of models might not be suitable to capture novel phenomenology. This problem can only be partially solved by developing more fundamental models, since biological processes are characterized by emergent phenomena that cannot be directly deduced even from having full knowledge about their units and their interactions [28, 29, 30, 32]. To this aim, one needs to account, simultaneously, for the evolution of the system according to dynamics similar to the one in Eq. (2) and the fact that the underlying mechanisms can change while satisfying the constraints imposed by physics and chemistry, requiring meta-dynamical models [115].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 59,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          376.04816479999994,
+          531.2134224000004,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 17,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-59"
+      }
+    },
+    {
+      "block_id": "803c8ba1-1b9e-522c-8eb5-31cee595d34f",
+      "content": "Additionally, multiscale models often require extensive parameterization, which can be difficult when experimental data are scarce at certain scales: therefore, validating these models across all scales can be exceptionally challenging, especially when direct observations or experiments at certain scales are not feasible or provide, at best, indirect measurements (such as correlations) about the phenomenon of interest that require an adequate inferential framework [116].",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 60,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          184.76516479999987,
+          531.2134224000002,
+          314.5794873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 18,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-60"
+      }
+    },
+    {
+      "block_id": "cd9dedb4-45df-5c6b-a847-dfe587a4d738",
+      "content": "Furthermore, such models should be able to propagate perturbations from one scale to another to realistically mimic the behavior of a living organism. As previously discussed, the possibility that a perturbation at the lowest scale (e.g., a random mutation or a mRNA intervention) can alter biological processes at larger scales is a mandatory feature for any reliable design of a digital twin.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 61,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          328.2271647999999,
+          531.2134224000004,
+          434.130487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 18,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-61"
+      }
+    },
+    {
+      "block_id": "d5f9686c-55c5-5c7c-a486-9bad19e40910",
+      "content": "## Discussion and outlooks",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 62,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          460.520374,
+          253.69646500000005,
+          475.9970186
+        ],
+        "bbox_granularity": "block",
+        "page_number": 18,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-62"
+      }
+    },
+    {
+      "block_id": "2a5d5b13-537d-54a0-940e-bbd30478b8f4",
+      "content": "Innovative approaches for model integration within digital twins have a huge transformative potential for applications to precision medicine, enabling a synergy between generative modeling, advanced AI and machine learning techniques, and traditional biomedical insights. The fusion of these techniques, rather than the choice of a specific one, is expected to facilitate the development of new frameworks for multiscale modeling, which are pivotal in capturing the intricate dynamics of pathogenesis in humans. Through these frameworks, the overarching goal is to resolve the previously identified challenges, significantly enhancing the accuracy and clinical relevance of digital twins beyond inductive modelling via advanced statistics.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 63,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          500.8991648,
+          531.2134224000002,
+          678.534487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 18,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-63"
+      }
+    },
+    {
+      "block_id": "bf74db90-661f-54bf-9539-66d9c3909d7d",
+      "content": "On the one hand, the integration of mechanistic models into digital twins also addresses the challenges of parameter indeterminacy and overfitting, which are prevalent in systems characterized by vast parameter spaces. By constraining these spaces, e.g. via the coarse-grained dynamics afforded by multiscale automata network models that synthesize large-scale data about biological mechanisms, digital twins not only gain in robustness and explainability but also offer a more reliable foundation for the simulation of therapeutic outcomes, thereby increasing their utility in clinical practice.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 64,
+      "source_locator": {
+        "bbox": [
+          95.228,
+          692.1821648,
+          531.2102336,
+          702.444487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 18,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-64"
+      }
+    },
+    {
+      "block_id": "7ea47a05-e8fa-53d8-83cb-16218e894937",
+      "content": "On the other hand, it is also worth discussing what is missing in current technologies and techniques developed for the same aim. For instance, a critical advantage of digital twins over state-of-the-art non-computational models, such as organoids [117], is their capability to simulate complex, interdependent processes across multiple biological scales effectively, while providing explanatory and causal understanding and control at relatively small costs. While organoids can be engineered with all the power of modern synthetic biology [118] to recapitulate features of the function and responses of complex biological mechanisms of the corresponding in vivo target, they have important limitations. Certainly, reproducibility is a major bottleneck [119], where digital twins can excel, especially if built under an open-source framework. Additionally, organoids do not yet capture the entire physiological repertoire of cell types, even the behavior that is relevant for a particular disease. This means, for instance, that the response to drugs or other interventions need to be studied for organoids per se, separately from the in vivo target. Related to this problem, is the relatively limited range of heterogeneity in response, which one needs to develop true personalized twins [119]. Finally, while organoids are more direct analogues of biomolecular mechanisms, they cannot incorporate simultaneously the multiple scales and historical information about patients, including the microbiome and exposome, which are major factors in complex diseases such as cancer, depression and many chronic diseases. This is where the comprehensive multiscale network- and data-driven digital twin approach is particularly crucial. Many complex diseases unfold across various multiomic subsystems and exposome history. Modular computational architectures that can synthesize and integrate multiple subsystems as separate network layers or agent-based models are well within the realm of possibility. They might require a robust non-specialized digital twin, effectively integrating different specialized ones, to accommodate complex interactions and interdependency of biological and exposome processes. while non-specialized may not allow individual patient precision, such approach could still increase precision to specific cohorts rather than the whole population. For diseases with more circumscribed features, however, specialized digital twins might offer a targeted and streamlined alternative, allowing for precise intervention strategies and outcome predictions that might perform as well or better than those based on organoids.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 65,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          256.49616479999986,
+          531.2162144,
+          697.1444873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 19,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-65"
+      }
+    },
+    {
+      "block_id": "8b3014c6-cc88-579b-a559-8bdffea5d0d0",
+      "content": "Another remarkable advantage of digital twins is that they allow a scenario-based modeling approach for actionable interventions - akin to strategies routinely used in epidemic modeling for policy decision-making [120] - that enhances their applicability and safety in clinical settings. This method avoids the standard pitfalls of an oracle-like predictive model by allowing for the exploration - via direct simulation - of multiple clinical scenarios, thereby providing a robust tool for decision support in personalized medicine. The integration with massive data sets about disease or treatment progressions, providing a reliable statistical samples that can be stratified to approximate the characterizing features of a patient, will be crucial to validate the output of models.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 66,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          328.2271647999999,
+          531.2134224000002,
+          529.772487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 20,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-66"
+      }
+    },
+    {
+      "block_id": "8cad95d1-ca94-506c-af84-0edcbc5c66aa",
+      "content": "Therefore, the expected output of such a machinery, model-informed and data-driven, would not just be a yes/no decision about the adoption of a therapeutic strategy or an intervention, but a whole spectrum of alternatives where advantages and disadvantages in adopting each plausible strategy are outlined to inform human decision-making.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 67,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          543.4201648000001,
+          531.2134224000002,
+          625.4134873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 20,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-67"
+      }
+    },
+    {
+      "block_id": "e1065bb6-dcf0-5529-80b2-af5786e148bc",
+      "content": "## References and Notes",
+      "kind": "heading",
+      "metadata": {
+        "heading_level": 2
+      },
+      "order_index": 68,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          108.93837399999995,
+          235.12104840000006,
+          124.41501860000005
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-SectionHeaderItem-68"
+      }
+    },
+    {
+      "block_id": "2345fedc-cc06-5abe-b2f5-2fb8aca8fe96",
+      "content": "Mirnezami, R., Nicholson, J. & Darzi, A. Preparing for precision medicine. N Engl J Med 366 , 489-491 (2012).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 69,
+      "source_locator": {
+        "bbox": [
+          89.624,
+          149.11492639999994,
+          531.2136000000002,
+          183.50963679999995
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-69"
+      }
+    },
+    {
+      "block_id": "c1207282-9893-58bd-9b4d-5ee6865232bb",
+      "content": "Barab´ asi, A.-L., Gulbahce, N. & Loscalzo, J. Network medicine: a network-based approach to human disease. Nature reviews genetics 12 , 56-68 (2011).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 70,
+      "source_locator": {
+        "bbox": [
+          89.62399999999997,
+          207.1011648,
+          531.2083936000002,
+          241.29363680000006
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-70"
+      }
+    },
+    {
+      "block_id": "fd9fd840-019a-58c8-bf16-57fd3d72bd21",
+      "content": "K¨ onig, I. R., Fuchs, O., Hansen, G., von Mutius, E. & Kopp, M. V. What is precision medicine? European respiratory journal 50 (2017).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 71,
+      "source_locator": {
+        "bbox": [
+          89.62399999999997,
+          264.8851648000001,
+          531.2087568000004,
+          299.07663680000013
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-71"
+      }
+    },
+    {
+      "block_id": "63a747ab-df3c-503e-85ab-3ca565160200",
+      "content": "Collins, F. S. & Varmus, H. A new initiative on precision medicine. New England journal of medicine 372 , 793-795 (2015).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 72,
+      "source_locator": {
+        "bbox": [
+          89.62399999999997,
+          322.46492640000014,
+          531.2109312,
+          356.85963680000015
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-72"
+      }
+    },
+    {
+      "block_id": "6479981a-f58a-54e6-a151-4f82f31938e7",
+      "content": "Lu, C. Y., Terry, V. & Thomas, D. M. Precision medicine: affording the successes of science. NPJ Precision Oncology 7 , 3 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 73,
+      "source_locator": {
+        "bbox": [
+          89.62399999999997,
+          380.45116480000013,
+          531.2132224000002,
+          414.64363680000014
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-73"
+      }
+    },
+    {
+      "block_id": "743dc9e2-ee9a-5c51-acaa-edb0ca2340a7",
+      "content": "Wong, E. et al. The singapore national precision medicine strategy. Nature Genetics 55 , 178-186 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 74,
+      "source_locator": {
+        "bbox": [
+          89.62399999999997,
+          437.7679120000002,
+          531.2127999999999,
+          472.40748732035416
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-74"
+      }
+    },
+    {
+      "block_id": "97b54da9-e14f-5d19-a79a-8c1e243963f4",
+      "content": "Ashley, E. A. Towards precision medicine. Nature Reviews Genetics 17 , 507-522 (2016).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 75,
+      "source_locator": {
+        "bbox": [
+          89.62399999999991,
+          495.5519120000002,
+          531.2069951999999,
+          506.29963680000014
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-75"
+      }
+    },
+    {
+      "block_id": "24631358-e557-583b-93d0-72e8ac19af63",
+      "content": "Chen, R. & Snyder, M. Promise of personalized omics to precision medicine. Wiley Interdisciplinary Reviews: Systems Biology and Medicine 5 , 73-82 (2013).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 76,
+      "source_locator": {
+        "bbox": [
+          89.62399999999991,
+          529.6879264000002,
+          531.2127983999999,
+          564.0826368000002
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-76"
+      }
+    },
+    {
+      "block_id": "326b4691-846a-57be-aa47-d0c3d05ebe04",
+      "content": "Hoffman, J. M., Flynn, A. J., Juskewitch, J. E. & Freimuth, R. R. Biomedical data science and informatics challenges to implementing pharmacogenomics with electronic health records. Annual Review of Biomedical Data Science 3 , 289-314 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 77,
+      "source_locator": {
+        "bbox": [
+          89.62399999999991,
+          587.6741648000002,
+          531.2132224000002,
+          645.7766368000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 21,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-77"
+      }
+    },
+    {
+      "block_id": "a665df63-0bfb-531e-9509-b94ee69150d4",
+      "content": "Venkatesh, K. P., Brito, G. & Kamel Boulos, M. N. Health digital twins in life science and health care innovation. Annual Review of Pharmacology and Toxicology 64 , 159-170 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 78,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          113.03416479999999,
+          531.2138223999999,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-78"
+      }
+    },
+    {
+      "block_id": "4799508d-dd1a-5808-99fc-65ca544f1ee8",
+      "content": "Jensen, P. B., Jensen, L. J. & Brunak, S. Mining electronic health records: towards better research applications and clinical care. Nature Reviews Genetics 13 , 395-405 (2012).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 79,
+      "source_locator": {
+        "bbox": [
+          83.64699999999998,
+          194.72816479999994,
+          531.2138223999999,
+          228.91963679999992
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-79"
+      }
+    },
+    {
+      "block_id": "53ad46e9-e649-5f8b-9dcb-5c9f86912428",
+      "content": "Correia, R. B., Wood, I. B., Bollen, J. & Rocha, L. M. Mining social media data for biomedical signals and health-related behavior. Annual review of biomedical data science 3 , 433-458 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 80,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          252.51116479999996,
+          531.2138224000003,
+          310.6136368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-80"
+      }
+    },
+    {
+      "block_id": "32fcd4d4-4f31-5312-a02b-4164e66ca82b",
+      "content": "Hucka, M. et al. The systems biology markup language (sbml): a medium for representation and exchange of biochemical network models. Bioinformatics 19 , 524-531 (2003).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 81,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          334.0019264,
+          531.2121263999999,
+          392.28748732035405
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-81"
+      }
+    },
+    {
+      "block_id": "75957919-4829-59f1-bba8-f51b88141499",
+      "content": "Hunter, P. J. & Borg, T. K. Integration from proteins to organs: the physiome project. Nature reviews Molecular cell biology 4 , 237-243 (2003).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 82,
+      "source_locator": {
+        "bbox": [
+          83.64699999999992,
+          415.8981648,
+          531.2138223999998,
+          450.0906368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-82"
+      }
+    },
+    {
+      "block_id": "a0dd5df9-7a41-514e-a8ec-d21d8f8c0ba2",
+      "content": "Bj¨ ornsson, B. et al. Digital twins to personalize medicine. Genome medicine 12 , 1-4 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 83,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          473.21591200000006,
+          531.2124128000002,
+          507.85448732035405
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-83"
+      }
+    },
+    {
+      "block_id": "65a6f530-02e8-5516-a31e-4f0564872bfd",
+      "content": "Erol, T., Mendi, A. F. & Do˘ gan, D. The digital twin revolution in healthcare. In 2020 4th international symposium on multidisciplinary studies and innovative technologies (ISMSIT) , 1-7 (IEEE, 2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 84,
+      "source_locator": {
+        "bbox": [
+          83.64699999999992,
+          531.2619264,
+          531.2124000000001,
+          589.5484873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-84"
+      }
+    },
+    {
+      "block_id": "d3b4ffc9-0850-5562-b38b-4e80d2cdb809",
+      "content": "Eddy, D. M. & Schlessinger, L. Validation of the archimedes diabetes model. Diabetes Care 26 , 3102-3110 (2003). URL http://dx.doi.org/10.2337/diacare. 26.11.3102 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 85,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          612.9559264000001,
+          531.2130799999995,
+          671.241487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 22,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-85"
+      }
+    },
+    {
+      "block_id": "cf4ad552-6f9a-5376-ab0e-b85f1e920880",
+      "content": "Corral-Acero, J. et al. The 'digital twin' to enable the vision of precision cardiology. European Heart Journal 41 , 4556-4564 (2020). URL http://dx.doi.org/10. 1093/eurheartj/ehaa159 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 86,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2125199999998,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-86"
+      }
+    },
+    {
+      "block_id": "dd41f9ca-8106-5a9f-b6a5-18155d130495",
+      "content": "Coorey, G., Figtree, G. A., Fletcher, D. F. & Redfern, J. The health digital twin: advancing precision cardiovascular medicine. Nature Reviews Cardiology 18 , 803-804 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 87,
+      "source_locator": {
+        "bbox": [
+          83.64699999999996,
+          194.72816479999994,
+          531.2138224000003,
+          228.91963679999992
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-87"
+      }
+    },
+    {
+      "block_id": "b0a8622d-bade-57d9-8c84-830c2535fad9",
+      "content": "Laubenbacher, R., Sluka, J. P. & Glazier, J. A. Using digital twins in viral infection. Science 371 , 1105-1106 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 88,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          252.51116479999996,
+          531.2138224000003,
+          286.7026368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-88"
+      }
+    },
+    {
+      "block_id": "9460f598-9d3f-50e8-b3bb-152fce3db655",
+      "content": "Laubenbacher, R., Mehrad, B., Shmulevich, I. & Trayanova, N. Digital twins in medicine. Nature Computational Science 4 , 184-191 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 89,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          310.2941648,
+          531.2138224,
+          344.4866368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-89"
+      }
+    },
+    {
+      "block_id": "a9b57792-d265-52ff-850d-80092f0917e9",
+      "content": "Kamel Boulos, M. N. & Zhang, P. Digital twins: From personalised medicine to precision public health. Journal of Personalized Medicine 11 , 745 (2021). URL http://dx. doi.org/10.3390/jpm11080745 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 90,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          368.07816479999997,
+          531.2138223999999,
+          426.16048732035404
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-90"
+      }
+    },
+    {
+      "block_id": "550b99fb-227c-5c84-b340-a9853c66bac9",
+      "content": "Matheny, M. E., Whicher, D. & Thadaney Israni, S. Artificial intelligence in health care: A report from the national academy of medicine. JAMA 323 , 509 (2020). URL http://dx.doi.org/10.1001/jama.2019.21579 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 91,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          449.7711648,
+          531.2138223999999,
+          507.85448732035405
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-91"
+      }
+    },
+    {
+      "block_id": "33f8dc54-7f54-5951-96eb-ae7a7a14ef07",
+      "content": "Batty, M. Inventing future cities (The MIT Press, Boston, USA, 2018).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 92,
+      "source_locator": {
+        "bbox": [
+          83.64699999999988,
+          531.2619264,
+          447.74684480000013,
+          541.727487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-92"
+      }
+    },
+    {
+      "block_id": "2fa498a2-3d7e-5fc1-891e-b00232c4dd5f",
+      "content": "Grieves, M. W. Product lifecycle management: the new paradigm for enterprises. International Journal of Product Development 2 , 71-84 (2005). URL https://ideas. repec.org/a/ids/ijpdev/v2y2005i1-2p71-84.html .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 93,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          565.1349264,
+          531.2128863999999,
+          623.421487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-93"
+      }
+    },
+    {
+      "block_id": "12b23054-bf0d-5648-82bd-b37c2fa9561b",
+      "content": "Niederer, S. A., Sacks, M. S., Girolami, M. & Willcox, K. Scaling digital twins from the artisanal to the industrial. Nature Computational Science 1 , 313-320 (2021). URL https://doi.org/10.1038/s43588-021-00072-5 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 94,
+      "source_locator": {
+        "bbox": [
+          83.64699999999988,
+          647.0321648,
+          531.2151247999998,
+          705.114487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 23,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-94"
+      }
+    },
+    {
+      "block_id": "46327430-78f4-5149-bf9b-3d7d58731b85",
+      "content": "Caldarelli, G. et al. The role of complexity for digital twins of cities. Nature Computational Science 3 , 374-381 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 95,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2118624000002,
+          147.22563679999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-95"
+      }
+    },
+    {
+      "block_id": "4b7e469e-6447-5290-b377-0079cc058c2c",
+      "content": "Gell-Mann, M. Complex adaptive systems. In SANTA FE INSTITUTE STUDIES IN THE SCIENCES OF COMPLEXITY-PROCEEDINGS VOLUME-, vol. 19, 17-17 (ADDISON-WESLEY PUBLISHING CO, 1994).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 96,
+      "source_locator": {
+        "bbox": [
+          83.64700000000006,
+          169.6739263999999,
+          531.2182560000001,
+          227.96048732035388
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-96"
+      }
+    },
+    {
+      "block_id": "70afbb96-ee45-5303-8986-64c8c54349a2",
+      "content": "Holland, J. H. Complex adaptive systems and spontaneous emergence. In Complexity and Industrial Clusters: Dynamics and Models in Theory and Practice , 25-34 (Springer, 2002).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 97,
+      "source_locator": {
+        "bbox": [
+          83.64700000000009,
+          250.42792639999982,
+          531.2180672000002,
+          308.7144873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-97"
+      }
+    },
+    {
+      "block_id": "1f671f49-8f12-594c-be70-149922d2995d",
+      "content": "Holland, J. H. Studying complex adaptive systems. Journal of systems science and complexity 19 , 1-8 (2006).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 98,
+      "source_locator": {
+        "bbox": [
+          83.64700000000009,
+          331.1809263999999,
+          531.2175728000004,
+          365.5766367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-98"
+      }
+    },
+    {
+      "block_id": "1e17e381-4e8f-5963-bd5f-71baa6b86ed4",
+      "content": "Kamel Boulos, M. N. & Zhang, P. Digital twins: from personalised medicine to precision public health. Journal of personalized medicine 11 , 745 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 99,
+      "source_locator": {
+        "bbox": [
+          83.64700000000015,
+          388.2281647999999,
+          531.2138224,
+          422.4196367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-99"
+      }
+    },
+    {
+      "block_id": "46df6ea4-4c1f-510f-8373-0ca5b33ac132",
+      "content": "Artime, O. & De Domenico, M. From the origin of life to pandemics: Emergent phenomena in complex systems (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 100,
+      "source_locator": {
+        "bbox": [
+          83.64700000000016,
+          445.0711647999999,
+          531.2138223999999,
+          479.24348732035395
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-100"
+      }
+    },
+    {
+      "block_id": "b8d0aa7e-0b6c-5359-84e8-f5c636c8b0d5",
+      "content": "Rosen, R. On complex systems. European Journal of Operational Research 30 , 129-134 (1987).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 101,
+      "source_locator": {
+        "bbox": [
+          83.64700000000016,
+          501.447912,
+          531.2081440000003,
+          536.087487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-101"
+      }
+    },
+    {
+      "block_id": "32c0a455-87e0-58d2-a542-c7d1e7bd0352",
+      "content": "Lopatkin, A. J. & Collins, J. J. Predictive biology: modelling, understanding and harnessing microbial complexity. Nature Reviews Microbiology 18 , 507-520 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 102,
+      "source_locator": {
+        "bbox": [
+          83.64700000000015,
+          558.7581647999999,
+          531.2138224,
+          592.9496368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-102"
+      }
+    },
+    {
+      "block_id": "33b2d3a3-623f-5e55-af6b-a0ed636b11d5",
+      "content": "Vermeulen, R., Schymanski, E. L., Barab´ asi, A.-L. & Miller, G. W. The exposome and health: Where chemistry meets biology. Science 367 , 392-396 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 103,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          615.6011647999999,
+          531.2161232000004,
+          649.7926367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-103"
+      }
+    },
+    {
+      "block_id": "e58bf9fe-9f4f-586f-af4e-d2234779192e",
+      "content": "Vineis, P. et al. What is new in the exposome? Environment international 143 , 105887 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 104,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          671.977912,
+          531.2128112000003,
+          706.6164873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 24,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-104"
+      }
+    },
+    {
+      "block_id": "a12c7035-3d68-545c-9a0b-018a90a62212",
+      "content": "Steinhubl, S. R., Muse, E. D. & Topol, E. J. The emerging field of mobile health. Science translational medicine 7 , 283rv3-283rv3 (2015).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 105,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2131808,
+          147.22563679999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-105"
+      }
+    },
+    {
+      "block_id": "debfab0d-ef2c-55e9-84c6-bd182780c818",
+      "content": "Buldyrev, S. V., Parshani, R., Paul, G., Stanley, H. E. & Havlin, S. Catastrophic cascade of failures in interdependent networks. Nature 464 , 1025-1028 (2010).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 106,
+      "source_locator": {
+        "bbox": [
+          83.64699999999999,
+          170.8171648,
+          531.2138224000004,
+          205.00963679999995
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-106"
+      }
+    },
+    {
+      "block_id": "70e68393-f615-5bfa-8dfe-be4f13e427aa",
+      "content": "De Domenico, M. More is different in real-world multilayer networks. Nature Physics 19 , 1247-1262 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 107,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          228.39792639999996,
+          531.2144367999999,
+          262.79263679999997
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-107"
+      }
+    },
+    {
+      "block_id": "775880da-1d9d-5eaf-b3fa-301a0717b46b",
+      "content": "S´ anchez-Valle, J. et al. Prevalence and differences in the co-administration of drugs known to interact: an analysis of three distinct and large populations. BMC medicine 22 , 166 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 108,
+      "source_locator": {
+        "bbox": [
+          83.6469999999999,
+          286.1809264,
+          531.2132991999999,
+          344.467487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-108"
+      }
+    },
+    {
+      "block_id": "99f70d0a-67ae-51d1-b81a-773b309018ad",
+      "content": "Dolley, S. Big data's role in precision public health. Frontiers in public health 6 , 297813 (2018).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 109,
+      "source_locator": {
+        "bbox": [
+          83.64699999999992,
+          367.611912,
+          531.2148720000001,
+          402.250487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-109"
+      }
+    },
+    {
+      "block_id": "358ed408-01ad-5d11-93d9-bb24c5b5618e",
+      "content": "N´ u˜ nez-Carpintero, I. et al. Rare disease research workflow using multilayer networks elucidates the molecular determinants of severity in congenital myasthenic syndromes. Nature Communications 15 , 1227 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 110,
+      "source_locator": {
+        "bbox": [
+          83.64699999999986,
+          425.6579264,
+          531.2131919999998,
+          483.9636368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-110"
+      }
+    },
+    {
+      "block_id": "fc921937-a834-5e24-b9bf-5ffc251b03c1",
+      "content": "Pescosolido, B. A. et al. The social symbiome framework1: Linking genes-to-global cultures in public health using network science. In Handbook of applied system science , 25-48 (Routledge, 2016).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 111,
+      "source_locator": {
+        "bbox": [
+          83.64699999999985,
+          507.3519264,
+          531.2166239999998,
+          565.637487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-111"
+      }
+    },
+    {
+      "block_id": "6d4e3131-dba4-5544-b6d0-4657aced52e3",
+      "content": "Walpole, J., Papin, J. A. & Peirce, S. M. Multiscale computational models of complex biological systems. Annual review of biomedical engineering 15 , 137-154 (2013).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 112,
+      "source_locator": {
+        "bbox": [
+          83.6469999999998,
+          589.2481648,
+          531.2138223999997,
+          623.4406368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-112"
+      }
+    },
+    {
+      "block_id": "e548dae0-7ad3-51d0-8aea-38a57332762f",
+      "content": "Correia, R. B. et al. The conserved transcriptional program of metazoan male germ cells uncovers ancient origins of human infertility. eLife In Press. Biorxiv: 2022.03.02.482557 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 113,
+      "source_locator": {
+        "bbox": [
+          83.64699999999982,
+          646.8289264,
+          531.2142319999996,
+          705.114487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 25,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-113"
+      }
+    },
+    {
+      "block_id": "2b1ea9b3-c028-567b-b342-31e79aae189a",
+      "content": "Kennedy, K. E. et al. Multiscale networks in multiple sclerosis. PLOS Computational Biology 20 , e1010980 (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 114,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2074192000001,
+          147.22563679999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-114"
+      }
+    },
+    {
+      "block_id": "c873db47-6c94-522f-93cc-909fc3db3bb5",
+      "content": "Thattai, M. & Van Oudenaarden, A. Intrinsic noise in gene regulatory networks. Proceedings of the National Academy of Sciences 98 , 8614-8619 (2001).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 115,
+      "source_locator": {
+        "bbox": [
+          83.64700000000002,
+          169.6739263999999,
+          531.2128976,
+          204.0696367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-115"
+      }
+    },
+    {
+      "block_id": "7392f7d7-b1e6-53f0-9678-81b7da1abb89",
+      "content": "Levine, M. & Davidson, E. H. Gene regulatory networks for development. Proceedings of the National Academy of Sciences 102 , 4936-4942 (2005).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 116,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          226.51692639999987,
+          531.2130608000002,
+          260.9126368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-116"
+      }
+    },
+    {
+      "block_id": "bbe6acbc-d401-5a78-9684-1e6a8ad61d03",
+      "content": "Davidson, E. & Levin, M. Gene regulatory networks. Proceedings of the National Academy of Sciences 102 , 4935-4935 (2005).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 117,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          283.3609264,
+          531.2171696000001,
+          317.7556368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-117"
+      }
+    },
+    {
+      "block_id": "e7f67619-7d00-592c-b3f0-d2863a957ecc",
+      "content": "Karlebach, G. & Shamir, R. Modelling and analysis of gene regulatory networks. Nature reviews Molecular cell biology 9 , 770-780 (2008).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 118,
+      "source_locator": {
+        "bbox": [
+          83.64700000000002,
+          340.2039264,
+          531.2132032000001,
+          374.5986368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-118"
+      }
+    },
+    {
+      "block_id": "418173d2-057d-51b1-8bbc-1b62407dd1de",
+      "content": "Vazquez, A., Flammini, A., Maritan, A. & Vespignani, A. Global protein function prediction from protein-protein interaction networks. Nature biotechnology 21 , 697-700 (2003).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 119,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          397.2501648,
+          531.2147072000002,
+          455.33348732035404
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-119"
+      }
+    },
+    {
+      "block_id": "d11fddd6-34ec-5b6e-a63b-fd2152608c4c",
+      "content": "Szklarczyk, D. et al. String v10: protein-protein interaction networks, integrated over the tree of life. Nucleic acids research 43 , D447-D452 (2015).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 120,
+      "source_locator": {
+        "bbox": [
+          83.64700000000009,
+          477.80092640000004,
+          531.2161472,
+          512.1956368000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-120"
+      }
+    },
+    {
+      "block_id": "d233b1e7-b4b6-5b50-95c4-31955772e5c4",
+      "content": "Han, J.-D. J. et al. Evidence for dynamically organized modularity in the yeast proteinprotein interaction network. Nature 430 , 88-93 (2004).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 121,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          534.6439264,
+          531.2173856,
+          569.0396368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-121"
+      }
+    },
+    {
+      "block_id": "8d611dd1-3dcb-54bd-a0dd-92c45ec7b2fc",
+      "content": "Han, J.-D. J., Dupuy, D., Bertin, N., Cusick, M. E. & Vidal, M. Effect of sampling on topology predictions of protein-protein interaction networks. Nature biotechnology 23 , 839-844 (2005).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 122,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          591.6901648,
+          531.2138224000005,
+          649.773487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-122"
+      }
+    },
+    {
+      "block_id": "fc27c709-9947-52ff-98c4-6eb381a6d7ae",
+      "content": "Stelzl, U. et al. A human protein-protein interaction network: a resource for annotating the proteome. Cell 122 , 957-968 (2005).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 123,
+      "source_locator": {
+        "bbox": [
+          83.64700000000003,
+          672.2409264,
+          531.2163727999999,
+          706.6356368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 26,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-123"
+      }
+    },
+    {
+      "block_id": "1df54aa3-58a7-5964-8828-d7fd25bcd9b6",
+      "content": "Deeds, E. J., Ashenberg, O. & Shakhnovich, E. I. A simple physical model for scaling in protein-protein interaction networks. Proceedings of the National Academy of Sciences 103 , 311-316 (2006).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 124,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          113.03416479999999,
+          531.2138224000003,
+          171.1366367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-124"
+      }
+    },
+    {
+      "block_id": "9e6b54a8-7334-51fa-a238-332df0443698",
+      "content": "Stelzl, U. & Wanker, E. E. The value of high quality protein-protein interaction networks for systems biology. Current opinion in chemical biology 10 , 551-558 (2006).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 125,
+      "source_locator": {
+        "bbox": [
+          83.64699999999996,
+          194.72816479999994,
+          531.2138223999998,
+          228.91963679999992
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-125"
+      }
+    },
+    {
+      "block_id": "8f1e27e5-76a2-558f-99f1-647616b00fd8",
+      "content": "Dittrich, M. T., Klau, G. W., Rosenwald, A., Dandekar, T. & M¨ uller, T. Identifying functional modules in protein-protein interaction networks: an integrated exact approach. Bioinformatics 24 , i223-i231 (2008).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 126,
+      "source_locator": {
+        "bbox": [
+          83.64699999999999,
+          252.45116480000002,
+          531.2090256,
+          310.6136368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-126"
+      }
+    },
+    {
+      "block_id": "a10811fc-c6d6-5f4b-b283-2305705510a0",
+      "content": "Nepusz, T., Yu, H. & Paccanaro, A. Detecting overlapping protein complexes in proteinprotein interaction networks. Nature methods 9 , 471-472 (2012).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 127,
+      "source_locator": {
+        "bbox": [
+          83.64699999999999,
+          334.2051648,
+          531.2138224000001,
+          368.3966368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-127"
+      }
+    },
+    {
+      "block_id": "b2060a8f-5f9e-58f8-895b-79ea67ea41bd",
+      "content": "Jeong, H., Tombor, B., Albert, R., Oltvai, Z. N. & Barab´ asi, A.-L. The large-scale organization of metabolic networks. Nature 407 , 651-654 (2000).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 128,
+      "source_locator": {
+        "bbox": [
+          83.64699999999996,
+          391.9881648,
+          531.2110048000001,
+          426.1796368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-128"
+      }
+    },
+    {
+      "block_id": "1f505da0-44bc-50f5-8658-88acc82b9450",
+      "content": "Liu, Y.-Y., Slotine, J.-J. & Barab´ asi, A.-L. Observability of complex systems. Proceedings of the National Academy of Sciences 110 , 2460-2465 (2013).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 129,
+      "source_locator": {
+        "bbox": [
+          83.64699999999988,
+          449.56792640000003,
+          531.2128240000001,
+          483.9636368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-129"
+      }
+    },
+    {
+      "block_id": "7390fa52-412e-5e2c-9203-8c2e887fa41b",
+      "content": "Guimera, R. & Nunes Amaral, L. A. Functional cartography of complex metabolic networks. nature 433 , 895-900 (2005).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 130,
+      "source_locator": {
+        "bbox": [
+          83.64699999999996,
+          507.5551648,
+          531.2138224,
+          541.7466368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-130"
+      }
+    },
+    {
+      "block_id": "d5830734-7cbb-5654-858c-34f36792b257",
+      "content": "Mackey, M. C., Santill´ an, M., Tyran-Kami´ nska, M. & Zeron, E. S. Simple Mathematical Models of Gene Regulatory Dynamics . Lecture Notes on Mathematical Modelling in the Life Sciences (Springer International Publishing, Cham, 2016).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 131,
+      "source_locator": {
+        "bbox": [
+          83.64699999999995,
+          565.1349264,
+          531.2161920000002,
+          623.421487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-131"
+      }
+    },
+    {
+      "block_id": "40315c29-be56-5ee0-9df3-203e58c262a8",
+      "content": "Gates, A. J., Brattig Correia, R., Wang, X. & Rocha, L. M. The effective graph reveals redundancy, canalization, and control pathways in biochemical regulation and signaling. Proceedings of the National Academy of Sciences 118 , e2022598118 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 132,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          647.0321648,
+          531.2138224000004,
+          705.1336368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 27,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-132"
+      }
+    },
+    {
+      "block_id": "1fe271bd-dd84-555e-bd5b-022ed35e574f",
+      "content": "Schwab, J. D., K¨ uhlwein, S. D., Ikonomi, N., K¨ uhl, M. & Kestler, H. A. Concepts in Boolean network modeling: What do they all mean? Computational and Structural Biotechnology Journal 18 , 571-582 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 133,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          113.03416479999999,
+          531.2124975999999,
+          171.1366367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-133"
+      }
+    },
+    {
+      "block_id": "26364d04-89da-57c3-b55e-0901ba28bd5b",
+      "content": "Rozum, J. C., Campbell, C., Newby, E., Nasrollahi, F. S. F. & Albert, R. Boolean Networks as Predictive Models of Emergent Biological Behaviors. Elements in the Structure and Dynamics of Complex Networks (2024).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 134,
+      "source_locator": {
+        "bbox": [
+          83.64700000000002,
+          192.95016479999992,
+          531.2175072,
+          251.03248732035388
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-134"
+      }
+    },
+    {
+      "block_id": "414adc8c-25cd-5764-ac18-2065bef74580",
+      "content": "Marques-Pita, M. & Rocha, L. M. Canalization and control in automata networks: body segmentation in drosophila melanogaster. PloS one 8 , e55946 (2013).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 135,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          272.8651647999999,
+          531.2138224000003,
+          307.0576367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-135"
+      }
+    },
+    {
+      "block_id": "17bf0cc4-ac08-508a-b2bf-3022d83db17e",
+      "content": "G´ omez Tejeda Za˜ nudo, J. et al. Cell Line-Specific Network Models of ER+ Breast Cancer Identify Potential PI3K α Inhibitor Resistance Mechanisms and Drug Combinations. Cancer Research 81 , 4603-4617 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 136,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          328.6679263999999,
+          531.2109008000001,
+          386.9726367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-136"
+      }
+    },
+    {
+      "block_id": "d81c0be0-57b9-5b58-905b-58902a45f23e",
+      "content": "Folkesson, E., Sakshaug, B. C., Hoel, A. D., Klinkenberg, G. & Flobak, ˚ A. Synergistic effects of complex drug combinations in colorectal cancer cells predicted by logical modelling. Frontiers in Systems Biology 3 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 137,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          406.92816479999993,
+          531.2115136000001,
+          466.8886368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-137"
+      }
+    },
+    {
+      "block_id": "eceafa04-939c-5d47-b353-f4258a64d36d",
+      "content": "Calzone, L., No¨ el, V ., Barillot, E., Kroemer, G. & Stoll, G. Modeling signaling pathways in biology with MaBoSS: From one single cell to a dynamic population of heterogeneous interacting cells. Computational and Structural Biotechnology Journal 20 , 5661-5671 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 138,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          488.7021648,
+          531.2084111999999,
+          570.695487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-138"
+      }
+    },
+    {
+      "block_id": "0ada942a-1c81-5d00-90fd-0740d8efb395",
+      "content": "Montagud, A. et al. Patient-specific Boolean models of signalling networks guide personalised treatments. eLife 11 , e72626 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 139,
+      "source_locator": {
+        "bbox": [
+          83.64700000000009,
+          592.3249264,
+          531.2099136,
+          626.7206368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-139"
+      }
+    },
+    {
+      "block_id": "90e5ddec-790e-5bd8-b39e-a1cc2e637f3e",
+      "content": "Manicka, S., Marques-Pita, M. & Rocha, L. M. Effective connectivity determines the critical dynamics of biochemical networks. Journal of the Royal Society Interface 19 , 20210659 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 140,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          648.5341648,
+          531.2138224000004,
+          706.6164873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 28,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-140"
+      }
+    },
+    {
+      "block_id": "cc17fdbe-5222-5552-a85a-c5f2ea23393d",
+      "content": "Costa, F. X., Rozum, J. C., Marcus, A. M. & Rocha, L. M. Effective connectivity and bias entropy improve prediction of dynamical regime in automata networks. Entropy 25 , 374 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 141,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          113.03416479999999,
+          531.2138224000003,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-141"
+      }
+    },
+    {
+      "block_id": "c6404fbf-6a80-565c-b780-94597818b650",
+      "content": "Rocha, L. M. On the feasibility of dynamical analysis of network models of biochemical regulation. Bioinformatics 38 , 3674-3675 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 142,
+      "source_locator": {
+        "bbox": [
+          83.64700000000003,
+          194.72816479999994,
+          531.2138224,
+          228.91963679999992
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-142"
+      }
+    },
+    {
+      "block_id": "a5c5cc52-4b75-587e-90cc-26924625418b",
+      "content": "Rozum, J. C., Deritei, D., Park, K. H., G´ omez Tejeda Za˜ nudo, J. & Albert, R. Pystablemotifs: Python library for attractor identification and control in Boolean networks. Bioinformatics 38 , 1465-1466 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 143,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          252.51116479999996,
+          531.2117872000002,
+          310.6136368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-143"
+      }
+    },
+    {
+      "block_id": "02116099-2a3d-5dbc-8d02-5abd99e0393c",
+      "content": "Beneˇ s, N. et al. AEON.py: Python library for attractor analysis in asynchronous Boolean networks. Bioinformatics 38 , 4978-4980 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 144,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          334.0019264,
+          531.2071152,
+          368.3966368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-144"
+      }
+    },
+    {
+      "block_id": "e9683673-bab6-5df6-be72-a4f6ece0df7c",
+      "content": "Bhat, N. G. & Balaji, S. Whole-Cell Modeling and Simulation: A Brief Survey. New Generation Computing 38 , 259-281 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 145,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          391.7849264,
+          531.2130176,
+          426.1796368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-145"
+      }
+    },
+    {
+      "block_id": "17771291-58dd-5b40-911a-c515bc250c03",
+      "content": "Karr, J. R. et al. AWhole-Cell Computational Model Predicts Phenotype from Genotype. Cell 150 , 389-401 (2012).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 146,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          449.56792640000003,
+          531.2155791999999,
+          483.9636368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-146"
+      }
+    },
+    {
+      "block_id": "69ab0f9f-b75b-5129-a5a5-ac34d0c7749f",
+      "content": "Rees-Garbutt, J. et al. Designing minimal genomes using whole-cell models. Nature Communications 11 , 836 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 147,
+      "source_locator": {
+        "bbox": [
+          83.64700000000002,
+          507.3519264,
+          531.2132032000001,
+          541.7466368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-147"
+      }
+    },
+    {
+      "block_id": "a97e0c7a-724c-5685-997b-fcc892dda697",
+      "content": "Sun, G., Ahn-Horst, T. A. & Covert, M. W. The E. coli Whole-Cell Modeling Project. EcoSal Plus 9 , eESP-0001-2020 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 148,
+      "source_locator": {
+        "bbox": [
+          83.64700000000008,
+          565.3381648,
+          531.2138224,
+          599.5296367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-148"
+      }
+    },
+    {
+      "block_id": "2eb3060a-9522-5b6b-98d8-a13f69827ec6",
+      "content": "Ponce-de-Leon, M. et al. PhysiBoSS 2.0: A sustainable integration of stochastic Boolean and agent-based modelling frameworks. npj Systems Biology and Applications 9 , 1-12 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 149,
+      "source_locator": {
+        "bbox": [
+          83.64700000000008,
+          622.9179263999999,
+          531.2174912000003,
+          681.204487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 29,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-149"
+      }
+    },
+    {
+      "block_id": "9dc3be9e-7845-5006-8685-a72e74ebf4c8",
+      "content": "Shalek, A. K. et al. Single-cell rna-seq reveals dynamic paracrine control of cellular variation. Nature 510 , 363-369 (2014). URL https://www.nature.com/ articles/nature13437 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 150,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2157808,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-150"
+      }
+    },
+    {
+      "block_id": "bf9c67c0-b44e-5bc1-a44e-3ec35dec4202",
+      "content": "Cesaro, G. et al. Mast: a hybrid multi-agent spatio-temporal model of tumor microenvironment informed using a data-driven approach. Bioinformatics Advances 2 , vbac092 (2022). URL https://academic.oup.com/bioinformaticsadvances/ article/2/1/vbac092/6873756 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 151,
+      "source_locator": {
+        "bbox": [
+          83.64699999999996,
+          194.11092639999993,
+          531.2170688000001,
+          276.30748732035397
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-151"
+      }
+    },
+    {
+      "block_id": "5562e5d8-e3ef-54fe-9902-281aee872edf",
+      "content": "Baruzzo, G., Cesaro, G. & Di Camillo, B. Identify, quantify and characterize cellular communication from single-cell rna sequencing data with scseqcomm. Bioinformatics 38 , 1920-1929 (2022). URL https://academic.oup.com/ bioinformatics/article/38/7/1920/6511439 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 152,
+      "source_locator": {
+        "bbox": [
+          83.64700000000002,
+          299.50416479999996,
+          531.2138224,
+          381.497487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-152"
+      }
+    },
+    {
+      "block_id": "fc78114b-86aa-5689-94aa-9fb7bf8aff9a",
+      "content": "Kumar, M. P. et al. Analysis of single-cell rna-seq identifies cell-cell communication associated with tumor characteristics. Cell reports 25 , 1458-1468 (2018). URL https: //www.cell.com/cell-reports/pdf/S2211-1247(18)31636-X.pdf .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 153,
+      "source_locator": {
+        "bbox": [
+          83.64699999999999,
+          404.49092640000003,
+          531.2166175999998,
+          462.77748732035406
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-153"
+      }
+    },
+    {
+      "block_id": "76e823c5-6543-5548-9d09-4714826e4ff4",
+      "content": "Puram, S. V. et al. Single-cell transcriptomic analysis of primary and metastatic tumor ecosystems in head and neck cancer. Cell 171 , 1611-1624 (2017). URL https:// www.cell.com/cell/pdf/S0092-8674(17)31270-9.pdf .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 154,
+      "source_locator": {
+        "bbox": [
+          83.64700000000005,
+          485.77092640000006,
+          531.2129600000001,
+          544.0574873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-154"
+      }
+    },
+    {
+      "block_id": "299796cf-278f-5531-8d35-dcd580fac982",
+      "content": "Zhang, Q. et al. Landscape and dynamics of single immune cells in hepatocellular carcinoma. Cell 179 , 829-845 (2019). URL https://www.cell.com/cell/pdf/ S0092-8674(19)31119-5.pdf .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 155,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          567.0509264000001,
+          531.2135999999997,
+          625.3374873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-155"
+      }
+    },
+    {
+      "block_id": "4f8ae2e0-35ab-5e5d-b9a6-13742e51402f",
+      "content": "Sporns, O., Tononi, G. & K¨ otter, R. The Human Connectome: A Structural Description of the Human Brain. PLoS Comput. Biol. 1 , e42 (2005). URL http://dx.plos. org/10.1371/journal.pcbi.0010042 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 156,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          648.5341648000001,
+          531.2128,
+          706.616487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 30,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-156"
+      }
+    },
+    {
+      "block_id": "510f9481-f1a3-5cd1-8365-6958bbc85871",
+      "content": "Bullmore, E. & Sporns, O. Complex brain networks: graph theoretical analysis of structural and functional systems. Nat. Rev. Neurosci. 10 , 186-198 (2009). URL https://www.nature.com/articles/nrn2575 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 157,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          113.03416479999999,
+          531.2147008,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-157"
+      }
+    },
+    {
+      "block_id": "dc2d98f2-e27d-50c3-ae42-420426e93a45",
+      "content": "Sporns, O., Tononi, G. & Edelman, G. M. Theoretical neuroanatomy and the connectivity of the cerebral cortex. Behav. Brain Res. 135 , 69-74 (2002). URL https://www. sciencedirect.com/science/article/pii/S0166432802001572 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 158,
+      "source_locator": {
+        "bbox": [
+          83.64699999999993,
+          193.7881647999999,
+          531.2138224000001,
+          251.87048732035385
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-158"
+      }
+    },
+    {
+      "block_id": "5b0df3da-0655-50e1-818b-b97329cca017",
+      "content": "Sporns, O., Chialvo, D. R., Kaiser, M. & Hilgetag, C. C. Organization, development and function of complex brain networks. Trends Cogn. Sci. 8 , 418-425 (2004).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 159,
+      "source_locator": {
+        "bbox": [
+          83.64699999999982,
+          274.5411647999998,
+          531.2138224,
+          308.73363679999983
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-159"
+      }
+    },
+    {
+      "block_id": "0f4a01c1-c6fe-55c7-b9f8-236b1dd2d131",
+      "content": "Chialvo, D. R. Emergent complex neural dynamics. Nat. Phys. 6 , 744-750 (2010). URL https://doi.org/10.1038/nphys1803 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 160,
+      "source_locator": {
+        "bbox": [
+          83.64699999999982,
+          330.9179119999999,
+          531.2134159999998,
+          365.55748732035386
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-160"
+      }
+    },
+    {
+      "block_id": "c51d01b2-db59-5ab0-b602-67aa12169274",
+      "content": "Siva, N. What happened to the Human Brain Project? Lancet 402 , 1408-1409 (2023). URL https://doi.org/10.1016/S0140-6736(23)02346-2 .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 161,
+      "source_locator": {
+        "bbox": [
+          83.64699999999982,
+          387.7619119999999,
+          531.2144,
+          422.4004873203539
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-161"
+      }
+    },
+    {
+      "block_id": "9756c03c-0faa-5359-8684-2450d1fd4d26",
+      "content": "Wagner, G. P., Pavlicev, M. & Cheverud, J. M. The road to modularity. Nature Reviews Genetics 8 , 921-931 (2007).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 162,
+      "source_locator": {
+        "bbox": [
+          83.64699999999988,
+          444.8679263999999,
+          531.2098207999999,
+          479.2626367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-162"
+      }
+    },
+    {
+      "block_id": "6a42aa6a-17ce-54f4-920c-cd1dd6de92db",
+      "content": "Jacob, F. The logic of living systems: A history of heredity (Allen Lane. First edition, 1974).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 163,
+      "source_locator": {
+        "bbox": [
+          83.64699999999995,
+          501.7109263999999,
+          531.2089696,
+          536.0874873203538
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-163"
+      }
+    },
+    {
+      "block_id": "bb9b17ca-8255-5cd3-895b-c529dbaa2876",
+      "content": "Haken, H. Cooperative phenomena in systems far from thermal equilibrium and in nonphysical systems. Reviews of modern physics 47 , 67 (1975).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 164,
+      "source_locator": {
+        "bbox": [
+          83.64699999999998,
+          558.7581647999999,
+          531.2138223999998,
+          592.9496367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-164"
+      }
+    },
+    {
+      "block_id": "309767eb-33ca-5e18-a1dc-53adb78da2a8",
+      "content": "Ritort, F. Nonequilibrium fluctuations in small systems: From physics to biology. Advances in chemical physics 137 , 31 (2008).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 165,
+      "source_locator": {
+        "bbox": [
+          83.64699999999999,
+          615.3979263999998,
+          531.2123088000002,
+          649.7926367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-165"
+      }
+    },
+    {
+      "block_id": "0d79f139-7465-5de6-ac68-b0e54540272e",
+      "content": "Fang, X., Kruse, K., Lu, T. & Wang, J. Nonequilibrium physics in biology. Reviews of Modern Physics 91 , 045004 (2019).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 166,
+      "source_locator": {
+        "bbox": [
+          83.6470000000001,
+          672.2409263999998,
+          531.2149120000001,
+          706.6356367999998
+        ],
+        "bbox_granularity": "block",
+        "page_number": 31,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-166"
+      }
+    },
+    {
+      "block_id": "5cdc7b20-bebe-5948-b29d-a31d9ad03c4b",
+      "content": "De Domenico, M. et al. Mathematical formulation of multilayer networks. Physical Review X 3 , 041022 (2013).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 167,
+      "source_locator": {
+        "bbox": [
+          83.647,
+          112.83092639999995,
+          531.2127088000001,
+          147.22563679999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-167"
+      }
+    },
+    {
+      "block_id": "11e549d4-8bb5-5ed2-a14a-52bd2211d641",
+      "content": "Gao, J., Buldyrev, S. V., Stanley, H. E. & Havlin, S. Networks formed from interdependent networks. Nature physics 8 , 40-48 (2012).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 168,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          170.8171648,
+          531.2134224000002,
+          205.00963679999995
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-168"
+      }
+    },
+    {
+      "block_id": "3916bc8a-2f14-54ab-8179-3cf17a176c03",
+      "content": "De Domenico, M. Multilayer network modeling of integrated biological systems. comment on' network science of biological systems at different scales: A review' by gosak et al. Physics of Life Reviews 24 , 149-152 (2018).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 169,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          228.6011648,
+          531.2134224,
+          286.7026368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-169"
+      }
+    },
+    {
+      "block_id": "8051a64d-8563-54e9-be9e-58e33c5fdd83",
+      "content": "Greene, J. A. & Loscalzo, J. Putting the patient back together-social medicine, network medicine, and the limits of reductionism (2017).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 170,
+      "source_locator": {
+        "bbox": [
+          77.66899999999995,
+          310.2941648,
+          531.2134224,
+          344.467487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-170"
+      }
+    },
+    {
+      "block_id": "c125df4a-6b6e-58b5-939b-c69a44747a6c",
+      "content": "Halu, A., De Domenico, M., Arenas, A. & Sharma, A. The multiplex network of human diseases. NPJ systems biology and applications 5 , 15 (2019).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 171,
+      "source_locator": {
+        "bbox": [
+          77.66899999999995,
+          368.07816479999997,
+          531.2134223999999,
+          402.2696368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-171"
+      }
+    },
+    {
+      "block_id": "cdca7dd8-4a21-5aa5-94d5-b96ff09627eb",
+      "content": "Freeman, W. J., Kozma, R. & Werbos, P. J. Biocomplexity: adaptive behavior in complex stochastic dynamical systems. Biosystems 59 , 109-123 (2001).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 172,
+      "source_locator": {
+        "bbox": [
+          77.66899999999998,
+          425.8611648,
+          531.2134224000001,
+          460.0526368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-172"
+      }
+    },
+    {
+      "block_id": "62e56e47-d66e-5baf-b02a-b7150d8ab4ee",
+      "content": "Fuller, R. et al. Pollution and health: a progress update. The Lancet Planetary Health 6 , e535-e547 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 173,
+      "source_locator": {
+        "bbox": [
+          77.66899999999993,
+          483.17791200000005,
+          531.2127999999998,
+          517.8174873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-173"
+      }
+    },
+    {
+      "block_id": "49a48fa0-d51c-5eb0-a940-94c97960489f",
+      "content": "van der Laan, L. J., Bosker, T. & Peijnenburg, W. J. Deciphering potential implications of dietary microplastics for human health. Nature Reviews Gastroenterology & Hepatology 20 , 340-341 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 174,
+      "source_locator": {
+        "bbox": [
+          77.6689999999998,
+          541.4281648,
+          531.2145088000002,
+          599.5296367999999
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-174"
+      }
+    },
+    {
+      "block_id": "0b12229f-79f4-596f-8258-c1262d8103f1",
+      "content": "Al Mamun, A., Prasetya, T. A. E., Dewi, I. R. & Ahmad, M. Microplastics in human food chains: Food becoming a threat to health safety. Science of the Total Environment 858 , 159834 (2023).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 175,
+      "source_locator": {
+        "bbox": [
+          77.66899999999983,
+          623.1211648,
+          531.2134224000001,
+          681.2236368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 32,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-175"
+      }
+    },
+    {
+      "block_id": "d2fd2ced-2181-5f3d-9f6b-b462e6ef4369",
+      "content": "Parreno, V. et al. Transient loss of polycomb components induces an epigenetic cancer fate. Nature (2024). URL http://dx.doi.org/10.1038/ s41586-024-07328-w .",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 176,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          112.83092639999995,
+          531.2131199999997,
+          171.11748732035392
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-176"
+      }
+    },
+    {
+      "block_id": "6755a8df-a6b9-5c7a-85bf-f513ba3632bf",
+      "content": "De Domenico, M., Granell, C., Porter, M. A. & Arenas, A. The physics of spreading processes in multilayer networks. Nature Physics 12 , 901-906 (2016).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 177,
+      "source_locator": {
+        "bbox": [
+          77.66900000000001,
+          194.72816479999994,
+          531.2134224000005,
+          228.91963679999992
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-177"
+      }
+    },
+    {
+      "block_id": "59a8d6d3-b3d8-5ab8-b991-ee798b4936c7",
+      "content": "Kowalski, P. S., Rudra, A., Miao, L. & Anderson, D. G. Delivering the messenger: advances in technologies for therapeutic mrna delivery. Molecular Therapy 27 , 710-728 (2019).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 178,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          252.51116479999996,
+          531.2134224000002,
+          310.594487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-178"
+      }
+    },
+    {
+      "block_id": "89b9fedb-2860-59d5-a5e2-9264d651b472",
+      "content": "Rohner, E., Yang, R., Foo, K. S., Goedel, A. & Chien, K. R. Unlocking the promise of mrna therapeutics. Nature biotechnology 40 , 1586-1600 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 179,
+      "source_locator": {
+        "bbox": [
+          77.66900000000003,
+          334.2051648,
+          531.2134224000001,
+          368.3966368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-179"
+      }
+    },
+    {
+      "block_id": "0114939b-df73-598c-9390-6d6f8323d207",
+      "content": "Nicolis, G. & Prigogine, I. Self-organization in nonequilibrium systems: from dissipative structures to order through fluctuations. Berichte der Bunsengesellschaft f¨ ur physikalische Chemie (1977).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 180,
+      "source_locator": {
+        "bbox": [
+          77.66900000000001,
+          391.9881648,
+          531.2134223999997,
+          450.07148732035404
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-180"
+      }
+    },
+    {
+      "block_id": "99d61a98-4388-5332-8eb6-9211aeb18227",
+      "content": "Heylighen, F. et al. The science of self-organization and adaptivity. The encyclopedia of life support systems 5 , 253-280 (2001).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 181,
+      "source_locator": {
+        "bbox": [
+          77.66899999999997,
+          473.47892640000003,
+          531.2145392000001,
+          507.87363680000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-181"
+      }
+    },
+    {
+      "block_id": "1551a325-192c-5354-912e-42671a7f05e3",
+      "content": "Camazine, S. et al. Self-organization in biological systems. In Self-Organization in Biological Systems (Princeton university press, 2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 182,
+      "source_locator": {
+        "bbox": [
+          77.66900000000001,
+          531.2619264,
+          531.2166976,
+          565.637487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-182"
+      }
+    },
+    {
+      "block_id": "1d94834c-6f49-5778-81a8-ab05f3237808",
+      "content": "Bagley, R. J. et al. Modeling adaptive biological systems. Biosystems 23 , 113-137 (1989).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 183,
+      "source_locator": {
+        "bbox": [
+          77.66900000000003,
+          588.781912,
+          531.2082288000003,
+          623.421487320354
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-183"
+      }
+    },
+    {
+      "block_id": "e06ed1c2-47e3-58e2-abea-94e7f4a50200",
+      "content": "Peel, L., Peixoto, T. P. & De Domenico, M. Statistical inference links data and theory in network science. Nature Communications 13 , 6794 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 184,
+      "source_locator": {
+        "bbox": [
+          77.66900000000008,
+          647.0321648,
+          531.2134224000004,
+          681.2236368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 33,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-184"
+      }
+    },
+    {
+      "block_id": "c9d7d57e-df88-5e4c-82d6-f5c56358f755",
+      "content": "Corr` o, C., Novellasdemunt, L. & Li, V. S. A brief history of organoids. American Journal of Physiology-Cell Physiology 319 , C151-C165 (2020).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 185,
+      "source_locator": {
+        "bbox": [
+          77.669,
+          112.83092639999995,
+          531.2095600000002,
+          147.22563679999996
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-185"
+      }
+    },
+    {
+      "block_id": "cb0ebe03-8340-53de-a951-097b113866d1",
+      "content": "Hofer, M. & Lutolf, M. P. Engineering organoids. Nature Reviews Materials 6 , 402-420 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 186,
+      "source_locator": {
+        "bbox": [
+          77.66900000000004,
+          170.350912,
+          531.2092480000002,
+          204.99048732035396
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-186"
+      }
+    },
+    {
+      "block_id": "6dac780e-7e85-51d4-b3f9-92ba5f04ca59",
+      "content": "Zhao, Z. et al. Organoids. Nature Reviews Methods Primers 2 , 94 (2022).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 187,
+      "source_locator": {
+        "bbox": [
+          77.66899999999997,
+          228.13491199999999,
+          463.1559632,
+          238.8826368
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-187"
+      }
+    },
+    {
+      "block_id": "5ca9a9c9-6426-5942-8daa-75cf4750c6bb",
+      "content": "Hofman, J. M. et al. Integrating explanation and prediction in computational social science. Nature 595 , 181-188 (2021).",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 188,
+      "source_locator": {
+        "bbox": [
+          77.66899999999993,
+          262.2709264,
+          531.2162655999999,
+          296.6656368000001
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-ListItem-188"
+      }
+    },
+    {
+      "block_id": "2d45462e-6064-5a33-8514-12c6128a5945",
+      "content": "Author contributions. M.D.D. designed the research. M.D.D., L.A., G.C, V.dA., B.dC., L.R., J.R, R.S and F.Z wrote the manuscript.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 189,
+      "source_locator": {
+        "bbox": [
+          77.66899999999991,
+          327.3129120000001,
+          531.2147904000003,
+          361.9514873203541
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-189"
+      }
+    },
+    {
+      "block_id": "3bdebf6f-4a9a-5d6a-a15b-2334f5955cb6",
+      "content": "Competing interests. The authors declare no competing interests.",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 190,
+      "source_locator": {
+        "bbox": [
+          77.66899999999991,
+          392.6179120000001,
+          403.50664320000004,
+          403.36563680000006
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-190"
+      }
+    },
+    {
+      "block_id": "b15874cb-90b8-524a-80ba-26692fa89ac6",
+      "content": "Correspondence. Correspondence should be sent to manlio.dedomenico@unipd.it",
+      "kind": "paragraph",
+      "metadata": {},
+      "order_index": 191,
+      "source_locator": {
+        "bbox": [
+          77.66899999999993,
+          434.0129120000001,
+          526.9311199999996,
+          444.76063680000004
+        ],
+        "bbox_granularity": "block",
+        "page_number": 34,
+        "provenance_status": "verified",
+        "source_block_id": "docling-TextItem-191"
+      }
+    }
+  ],
+  "document_id": "02da7c51-be98-40ff-a7f3-84792ad64462",
+  "metadata": {
+    "quality_pipeline_version": "quality-mvp-0.1.0"
+  },
+  "relations": [
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "30d848fd-9958-5cb4-bc9d-291b39a61aac",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "30d848fd-9958-5cb4-bc9d-291b39a61aac",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "30d848fd-9958-5cb4-bc9d-291b39a61aac",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "relation_id": "9589a84f-45f3-5266-a32b-14893744f6e6",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "a1d10cfe-57d0-512f-bd5c-329c5e235276"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "c05a3458-fb53-528e-a674-c5fea9120614",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "c05a3458-fb53-528e-a674-c5fea9120614",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "c05a3458-fb53-528e-a674-c5fea9120614",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "relation_id": "96489501-c048-52b3-8037-6aa16031d224",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "545348c9-7dca-5dc8-96a6-2ed512ee94a7"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "992f738a-105c-5e2a-9e49-7b421d0e5646",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "992f738a-105c-5e2a-9e49-7b421d0e5646",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "992f738a-105c-5e2a-9e49-7b421d0e5646",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "relation_id": "fc9554ab-267d-589e-9e09-142455a39b13",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "6bba9a05-570c-5851-888e-97a4287f3296"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "5ccad51c-9d42-5069-9bc5-8bb2825e536b",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "5ccad51c-9d42-5069-9bc5-8bb2825e536b",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "5ccad51c-9d42-5069-9bc5-8bb2825e536b",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "relation_id": "310991fe-376e-50f0-934c-2aeb725fa010",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "d5f9686c-55c5-5c7c-a486-9bad19e40910"
+    },
+    {
+      "evidence": {
+        "refs": [
+          {
+            "field_path": "heading_level",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "heading_level",
+            "object_id": "460393fc-0c61-5ad0-bd51-69d62b367ce0",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "order_index",
+            "object_id": "460393fc-0c61-5ad0-bd51-69d62b367ce0",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "9a524917-638c-56b7-8795-ef6fbad30af8",
+            "object_type": "block"
+          },
+          {
+            "field_path": "source_block_id",
+            "object_id": "460393fc-0c61-5ad0-bd51-69d62b367ce0",
+            "object_type": "block"
+          }
+        ]
+      },
+      "from_id": "3f09ffe2-f70e-556b-a832-387fba1c72df",
+      "relation_id": "37058d82-96ae-58f6-8fb0-d9ecd1073982",
+      "relation_type": "parent_child",
+      "status": "verified",
+      "to_id": "e1065bb6-dcf0-5529-80b2-af5786e148bc"
+    }
+  ],
+  "schema_name": "CanonicalDocument",
+  "schema_version": "1.0",
+  "table_bindings": []
+}

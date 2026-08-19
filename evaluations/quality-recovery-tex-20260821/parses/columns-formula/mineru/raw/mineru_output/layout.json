@@ -1,0 +1,1449 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.7447,
+                    "bbox": [
+                        209,
+                        48,
+                        385,
+                        68
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                212,
+                                51,
+                                382,
+                                66
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        212,
+                                        51,
+                                        382,
+                                        66
+                                    ],
+                                    "type": "text",
+                                    "content": "双栏公式阅读顺序测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.4544,
+                    "bbox": [
+                        167,
+                        71,
+                        426,
+                        83
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                169,
+                                73,
+                                425,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        169,
+                                        73,
+                                        425,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9412,
+                    "bbox": [
+                        61,
+                        96,
+                        280,
+                        112
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                96,
+                                279,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        96,
+                                        279,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "1 左栏 TRACE-C2-LEFT-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.7197,
+                    "bbox": [
+                        66,
+                        125,
+                        294,
+                        138
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                126,
+                                292,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        126,
+                                        292,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.7346,
+                    "bbox": [
+                        60,
+                        162,
+                        194,
+                        174
+                    ],
+                    "index": 7,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                62,
+                                162,
+                                190,
+                                173
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        162,
+                                        190,
+                                        173
+                                    ],
+                                    "type": "text",
+                                    "content": "1. COLUMN-A1：读取输入。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8463,
+                    "bbox": [
+                        59,
+                        183,
+                        200,
+                        196
+                    ],
+                    "index": 8,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                184,
+                                195,
+                                196
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        184,
+                                        166,
+                                        194
+                                    ],
+                                    "type": "text",
+                                    "content": "2. COLUMN-A2：检查",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        167,
+                                        184,
+                                        195,
+                                        196
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p \\leq 1 .",
+                                    "score": 0.6136
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9413,
+                    "bbox": [
+                        306,
+                        96,
+                        537,
+                        112
+                    ],
+                    "index": 9,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                307,
+                                97,
+                                537,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        307,
+                                        97,
+                                        537,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "2 右栏 TRACE-C2-RIGHT-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.904,
+                    "bbox": [
+                        299,
+                        130,
+                        546,
+                        159
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                132,
+                                543,
+                                142
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        132,
+                                        543,
+                                        142
+                                    ],
+                                    "type": "text",
+                                    "content": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                147,
+                                428,
+                                158
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        147,
+                                        428,
+                                        158
+                                    ],
+                                    "type": "text",
+                                    "content": "B2。它们不能插入左栏中间。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8722,
+                    "bbox": [
+                        312,
+                        183,
+                        474,
+                        197
+                    ],
+                    "index": 11,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                314,
+                                185,
+                                471,
+                                195
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        314,
+                                        185,
+                                        471,
+                                        195
+                                    ],
+                                    "type": "text",
+                                    "content": "1. COLUMN-B1：读取第二路输入。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9323,
+                    "bbox": [
+                        48,
+                        213,
+                        250,
+                        227
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                213,
+                                248,
+                                227
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        213,
+                                        248,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 左栏公式 TRACE-C2-EQ-211",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.745,
+                    "bbox": [
+                        76,
+                        257,
+                        294,
+                        271
+                    ],
+                    "index": 13,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                78,
+                                258,
+                                292,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        78,
+                                        259,
+                                        122,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p + q = 1 { \\mathrm { . } }",
+                                    "score": 0.5205
+                                },
+                                {
+                                    "bbox": [
+                                        142,
+                                        258,
+                                        169,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "q \\geq 0",
+                                    "score": 0.5823
+                                },
+                                {
+                                    "bbox": [
+                                        198,
+                                        259,
+                                        292,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-C2-EQ-211)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9125,
+                    "bbox": [
+                        311,
+                        219,
+                        545,
+                        233
+                    ],
+                    "index": 14,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                313,
+                                220,
+                                543,
+                                233
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        313,
+                                        220,
+                                        543,
+                                        233
+                                    ],
+                                    "type": "text",
+                                    "content": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8974,
+                    "bbox": [
+                        319,
+                        257,
+                        504,
+                        270
+                    ],
+                    "index": 15,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                258,
+                                502,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        259,
+                                        392,
+                                        269
+                                    ],
+                                    "type": "text",
+                                    "content": "右栏补充约束为",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        393,
+                                        258,
+                                        420,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "r \\geq 0",
+                                    "score": 0.4886
+                                },
+                                {
+                                    "bbox": [
+                                        420,
+                                        259,
+                                        502,
+                                        269
+                                    ],
+                                    "type": "text",
+                                    "content": "，并保留原始关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9469,
+                    "bbox": [
+                        175,
+                        293,
+                        418,
+                        308
+                    ],
+                    "index": 16,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                176,
+                                293,
+                                416,
+                                309
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        293,
+                                        416,
+                                        309
+                                    ],
+                                    "type": "text",
+                                    "content": "3 双栏结论 TRACE-C2-END-301",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9626,
+                    "bbox": [
+                        47,
+                        321,
+                        547,
+                        350
+                    ],
+                    "index": 17,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                321,
+                                541,
+                                333
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        321,
+                                        515,
+                                        333
+                                    ],
+                                    "type": "text",
+                                    "content": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        515,
+                                        322,
+                                        541,
+                                        333
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p \\leq 1",
+                                    "score": 0.5771
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                49,
+                                338,
+                                212,
+                                349
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        338,
+                                        74,
+                                        349
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "q \\geq 0",
+                                    "score": 0.5608
+                                },
+                                {
+                                    "bbox": [
+                                        76,
+                                        338,
+                                        212,
+                                        349
+                                    ],
+                                    "type": "text",
+                                    "content": "和 DOI 10.8888/columns.2026。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.927,
+                    "bbox": [
+                        49,
+                        13,
+                        150,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                15,
+                                148,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        15,
+                                        148,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-C2-HEADER",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9337,
+                    "bbox": [
+                        407,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                409,
+                                15,
+                                544,
+                                25
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        409,
+                                        15,
+                                        544,
+                                        25
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-COLUMNS-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8428,
+                    "bbox": [
+                        294,
+                        812,
+                        300,
+                        822
+                    ],
+                    "index": 18,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                813,
+                                300,
+                                823
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        813,
+                                        300,
+                                        823
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.7447,
+                    "bbox": [
+                        209,
+                        48,
+                        385,
+                        68
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                212,
+                                51,
+                                382,
+                                66
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        212,
+                                        51,
+                                        382,
+                                        66
+                                    ],
+                                    "type": "text",
+                                    "content": "双栏公式阅读顺序测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.4544,
+                    "bbox": [
+                        167,
+                        71,
+                        426,
+                        83
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                169,
+                                73,
+                                425,
+                                84
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        169,
+                                        73,
+                                        425,
+                                        84
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-C2-DOC-001 | Source: TEX-COLUMNS-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        169,
+                        73,
+                        425,
+                        84
+                    ]
+                },
+                {
+                    "score": 0.9412,
+                    "bbox": [
+                        61,
+                        96,
+                        280,
+                        112
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                96,
+                                279,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        96,
+                                        279,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "1 左栏 TRACE-C2-LEFT-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.7197,
+                    "bbox": [
+                        66,
+                        125,
+                        294,
+                        138
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                126,
+                                292,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        126,
+                                        292,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "左栏第一项为 COLUMN-A1，第二项为 COLUMN-",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        70,
+                        126,
+                        292,
+                        137
+                    ]
+                },
+                {
+                    "score": 0.7346,
+                    "bbox": [
+                        60,
+                        162,
+                        194,
+                        174
+                    ],
+                    "index": 7,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                62,
+                                162,
+                                190,
+                                173
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        162,
+                                        190,
+                                        173
+                                    ],
+                                    "type": "text",
+                                    "content": "1. COLUMN-A1：读取输入。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        62,
+                        162,
+                        190,
+                        173
+                    ]
+                },
+                {
+                    "score": 0.8463,
+                    "bbox": [
+                        59,
+                        183,
+                        200,
+                        196
+                    ],
+                    "index": 8,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                61,
+                                184,
+                                195,
+                                196
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        184,
+                                        166,
+                                        194
+                                    ],
+                                    "type": "text",
+                                    "content": "2. COLUMN-A2：检查",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        167,
+                                        184,
+                                        195,
+                                        196
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p \\leq 1 .",
+                                    "score": 0.6136
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        61,
+                        184,
+                        195,
+                        196
+                    ]
+                },
+                {
+                    "score": 0.9413,
+                    "bbox": [
+                        306,
+                        96,
+                        537,
+                        112
+                    ],
+                    "index": 9,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                307,
+                                97,
+                                537,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        307,
+                                        97,
+                                        537,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "2 右栏 TRACE-C2-RIGHT-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.904,
+                    "bbox": [
+                        299,
+                        130,
+                        546,
+                        159
+                    ],
+                    "index": 10,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                132,
+                                543,
+                                142
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        132,
+                                        543,
+                                        142
+                                    ],
+                                    "type": "text",
+                                    "content": "右栏第一项为 COLUMN-B1，第二项为 COLUMN-",
+                                    "score": 1.0
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                302,
+                                147,
+                                428,
+                                158
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        302,
+                                        147,
+                                        428,
+                                        158
+                                    ],
+                                    "type": "text",
+                                    "content": "B2。它们不能插入左栏中间。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        302,
+                        132,
+                        543,
+                        158
+                    ]
+                },
+                {
+                    "score": 0.8722,
+                    "bbox": [
+                        312,
+                        183,
+                        474,
+                        197
+                    ],
+                    "index": 11,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                314,
+                                185,
+                                471,
+                                195
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        314,
+                                        185,
+                                        471,
+                                        195
+                                    ],
+                                    "type": "text",
+                                    "content": "1. COLUMN-B1：读取第二路输入。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        314,
+                        185,
+                        471,
+                        195
+                    ]
+                },
+                {
+                    "score": 0.9323,
+                    "bbox": [
+                        48,
+                        213,
+                        250,
+                        227
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                213,
+                                248,
+                                227
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        213,
+                                        248,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": "1.1 左栏公式 TRACE-C2-EQ-211",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.745,
+                    "bbox": [
+                        76,
+                        257,
+                        294,
+                        271
+                    ],
+                    "index": 13,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                78,
+                                258,
+                                292,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        78,
+                                        259,
+                                        122,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p + q = 1 { \\mathrm { . } }",
+                                    "score": 0.5205
+                                },
+                                {
+                                    "bbox": [
+                                        142,
+                                        258,
+                                        169,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "q \\geq 0",
+                                    "score": 0.5823
+                                },
+                                {
+                                    "bbox": [
+                                        198,
+                                        259,
+                                        292,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "(TRACE-C2-EQ-211)",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        78,
+                        258,
+                        292,
+                        270
+                    ]
+                },
+                {
+                    "score": 0.9125,
+                    "bbox": [
+                        311,
+                        219,
+                        545,
+                        233
+                    ],
+                    "index": 14,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                313,
+                                220,
+                                543,
+                                233
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        313,
+                                        220,
+                                        543,
+                                        233
+                                    ],
+                                    "type": "text",
+                                    "content": "2. COLUMN-B2：保存 DOI 10.8888/columns.2026。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        313,
+                        220,
+                        543,
+                        233
+                    ]
+                },
+                {
+                    "score": 0.8974,
+                    "bbox": [
+                        319,
+                        257,
+                        504,
+                        270
+                    ],
+                    "index": 15,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                322,
+                                258,
+                                502,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        322,
+                                        259,
+                                        392,
+                                        269
+                                    ],
+                                    "type": "text",
+                                    "content": "右栏补充约束为",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        393,
+                                        258,
+                                        420,
+                                        270
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "r \\geq 0",
+                                    "score": 0.4886
+                                },
+                                {
+                                    "bbox": [
+                                        420,
+                                        259,
+                                        502,
+                                        269
+                                    ],
+                                    "type": "text",
+                                    "content": "，并保留原始关系。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        322,
+                        258,
+                        502,
+                        270
+                    ]
+                },
+                {
+                    "score": 0.9469,
+                    "bbox": [
+                        175,
+                        293,
+                        418,
+                        308
+                    ],
+                    "index": 16,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                176,
+                                293,
+                                416,
+                                309
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        176,
+                                        293,
+                                        416,
+                                        309
+                                    ],
+                                    "type": "text",
+                                    "content": "3 双栏结论 TRACE-C2-END-301",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9626,
+                    "bbox": [
+                        47,
+                        321,
+                        547,
+                        350
+                    ],
+                    "index": 17,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                321,
+                                541,
+                                333
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        321,
+                                        515,
+                                        333
+                                    ],
+                                    "type": "text",
+                                    "content": "最终顺序应为 COLUMN-A1、COLUMN-A2、左栏公式、COLUMN-B1、COLUMN-B2。公式事实包括",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        515,
+                                        322,
+                                        541,
+                                        333
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "p \\leq 1",
+                                    "score": 0.5771
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                49,
+                                338,
+                                212,
+                                349
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        338,
+                                        74,
+                                        349
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "q \\geq 0",
+                                    "score": 0.5608
+                                },
+                                {
+                                    "bbox": [
+                                        76,
+                                        338,
+                                        212,
+                                        349
+                                    ],
+                                    "type": "text",
+                                    "content": "和 DOI 10.8888/columns.2026。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        49,
+                        321,
+                        541,
+                        349
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

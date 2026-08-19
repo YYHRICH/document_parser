@@ -1,0 +1,23 @@
+\subsection{Music}
+
+\subsubsection{Playing Chords on Instruments}
+
+We measure LMs' abilities to give correct fret placements for ukulele and guitar chords in an existing database\footnote{\url{https://github.com/tombatossals/chords-db}}\footnote{We heuristically filter out incorrect datapoints by filtering out chords that either have the wrong number of notes or lack the root note.}. We include the following kinds of chords from the database: sus2 (suspended second chord), sus4 (suspended fourth chord), min triad (minor triad), maj triad (major triad), dim7 (diminished seventh chord), aug7 (augmented seventh chord), maj7 (major seventh chord), min7 (minor seventh chord), dom7 (dominant seventh chord), 5 (fifth interval), and 6 (sixth chord).
+
+In the counterfactual setting, we instruct LMs to provide fret placements for a ``special'' ukulele or guitar where one of the strings is altered. We experiment with perturbations of different sizes: For guitar, we experiment with one-string changes by one note (\emph{E\textbf{A}DGBE} $\rightarrow$ \emph{E\textbf{B}DGBE}; \emph{\textbf{E}ADGBE} $\rightarrow$ \emph{\textbf{F}ADGBE}), one-string changes by two notes ($\rightarrow$ \emph{E\textbf{C}DGBE}), and two string changes ($\rightarrow$ \emph{E\textbf{CF}GBE}). We also experiment with a one-string change that corresponds to a common alternate tuning of a guitar called drop-D tuning ($\rightarrow$ \emph{\textbf{D}ADGBE}). For ukulele, we experiment with one-string changes by one note (\emph{\textbf{G}CEA} $\rightarrow$ \emph{\textbf{F}CEA}; $\rightarrow$ \emph{\textbf{A}CEA}), one-string change by two notes ($\rightarrow$ \emph{\textbf{B}CEA}), and two-string changes by two notes ($\rightarrow$ \emph{\textbf{BE}EA}).
+The generated fret placements for a chord are considered \emph{correct} if all and only the notes in the corresponding chord (\eg \emph{C, E, G} for a C major triad) are produced, irrespective of order. 
+
+As the CCC, we assess LMs' understanding of the given instrument's strings by asking them to identify what notes a given sequence of frets corresponds to; for the CCC, the sequences are either all fret 0, all fret 1, or all fret 2. We compute CCC accuracy at the fret level (as opposed to the sequence level).
+
+\subsubsection{Retrieving Notes of Famous Melodies}
+
+For 8 famous melodies, we prompt LMs to retrieve the $n$-th note in the melody, where $n$ is between 1 and 7 (inclusive). In the counterfactual setting, we prompt the LM to do the same but in a different key. The list of melodies and keys we experiment with is below. 
+
+We use \emph{C Major} as the key for songs as the default condition given its popularity for famous melodies like children's songs. We use other keys as the counterfactual keys.\footnote{We note that some songs may have multiple canonical keys (\eg ``Twinkle Twinkle Little Star'' is also frequently performed in keys like G major or D Major.) In some initial exploration, we validated that C Major was at least one of the canonical keys for the melodies chosen, both by verifying that popular sheet music for these songs was written in C Major, and by asking GPT-3.5 to generate the melodies in an unspecified key and verifying that the generated key was C Major.
+}
+
+As the CCC, we assess LMs' understanding of the given keys by asking them to retrieve the $n$-th note of the scale of the given key.
+
+\paragraph{Melodies:} Twinkle Twinkle Little Star, Mary Had a Little Lamb, Happy Birthday to You, Somewhere Over the Rainbow, Row Row Row Your Boat, Old Macdonald Had a Farm, Itsy Bitsy Spider, London Bridge is Falling Down.
+
+\paragraph{Counterfactual Keys:} B\# major, C\# major, Db major, D major, D\# major, Eb major, Fb major, E major, E\# major, F major, F\# major, Gb major, G major, G\# major, Ab major, A major, A\# major, Bb major, Cb major, B major.

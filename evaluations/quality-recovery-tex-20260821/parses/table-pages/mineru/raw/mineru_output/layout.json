@@ -1,0 +1,947 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "score": 0.7112,
+                    "bbox": [
+                        226,
+                        48,
+                        369,
+                        68
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                228,
+                                50,
+                                366,
+                                68
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        228,
+                                        50,
+                                        366,
+                                        68
+                                    ],
+                                    "type": "text",
+                                    "content": "跨页网格表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.5601,
+                    "bbox": [
+                        178,
+                        71,
+                        416,
+                        83
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                73,
+                                414,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        73,
+                                        414,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9581,
+                    "bbox": [
+                        159,
+                        105,
+                        434,
+                        122
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                159,
+                                105,
+                                433,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        159,
+                                        105,
+                                        433,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 表头与固定事实 TRACE-T-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8759,
+                    "bbox": [
+                        67,
+                        134,
+                        437,
+                        147
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                69,
+                                135,
+                                435,
+                                146
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        69,
+                                        135,
+                                        435,
+                                        146
+                                    ],
+                                    "type": "text",
+                                    "content": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        164,
+                        176,
+                        429,
+                        268
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.8933,
+                            "bbox": [
+                                268,
+                                165,
+                                326,
+                                177
+                            ],
+                            "index": 7,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        268,
+                                        166,
+                                        326,
+                                        178
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                268,
+                                                166,
+                                                326,
+                                                178
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 汇总表",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9714,
+                            "bbox": [
+                                164,
+                                176,
+                                429,
+                                268
+                            ],
+                            "index": 8,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        164,
+                                        176,
+                                        429,
+                                        268
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                164,
+                                                176,
+                                                429,
+                                                268
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>TABLE-ALPHA</td><td>2026-08-21</td><td>99.875%</td><td>USD 2,450.00</td></tr><tr><td>TABLE-BETA</td><td>2026-08-21</td><td>98.250%</td><td>USD 1,125.50</td></tr></table>",
+                                            "image_path": "4684e5d42c6a46e6985e79d482c4d2e029ad7f58f252d1bc858e41aebb132f56.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8,
+                    "score": 0.9714
+                },
+                {
+                    "score": 0.9562,
+                    "bbox": [
+                        213,
+                        304,
+                        381,
+                        320
+                    ],
+                    "index": 9,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                213,
+                                304,
+                                380,
+                                320
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        213,
+                                        304,
+                                        380,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "2 长表 TRACE-T-R03",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        63,
+                        368,
+                        532,
+                        698
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.8315,
+                            "bbox": [
+                                263,
+                                343,
+                                332,
+                                356
+                            ],
+                            "index": 10,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        263,
+                                        344,
+                                        330,
+                                        356
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                263,
+                                                344,
+                                                330,
+                                                356
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 跨页明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9884,
+                            "bbox": [
+                                63,
+                                368,
+                                532,
+                                698
+                            ],
+                            "index": 11,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        368,
+                                        532,
+                                        698
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                63,
+                                                368,
+                                                532,
+                                                698
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-T-R01</td><td>TABLE-ALPHA</td><td>0.03125 mm</td><td>保留五位小数。</td></tr><tr><td>TRACE-T-R02</td><td>TABLE-BETA</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-T-R03</td><td>TABLE-ALPHA</td><td>A+B=C</td><td>运算符是事实。</td></tr><tr><td>TRACE-T-R04</td><td>TABLE-BETA</td><td>7/16 in</td><td>保留尺寸。</td></tr><tr><td>TRACE-T-R05</td><td>TABLE-ALPHA</td><td>1.2500 kg</td><td>保留尾随零。</td></tr><tr><td>TRACE-T-R06</td><td>TABLE-BETA</td><td>USD 2,450.00</td><td>保留货币。</td></tr><tr><td>TRACE-T-R07</td><td>TABLE-ALPHA</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-T-R08</td><td>TABLE-BETA</td><td>2026-08-21</td><td>保留日期。</td></tr><tr><td>TRACE-T-R09</td><td>TABLE-ALPHA</td><td>2.25 mm</td><td>页面边界前记录。</td></tr><tr><td>TRACE-T-R10</td><td>TABLE-BETA</td><td>3.50 mm</td><td>跨页后记录。</td></tr><tr><td>TRACE-T-R11</td><td>TABLE-ALPHA</td><td>4.75 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R12</td><td>TABLE-BETA</td><td>6.00 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R13</td><td>TABLE-ALPHA</td><td>8.125 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R14</td><td>TABLE-BETA</td><td>9.250 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R15</td><td>TABLE-ALPHA</td><td>10.375 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R16</td><td>TABLE-BETA</td><td>11.500 mm</td><td>最后一行可追踪。</td></tr></table>",
+                                            "image_path": "f6451e0388ea07b12a9a39e6fff0c9c99c324d6d766c22e41c8ac86de246321d.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11,
+                    "score": 0.9884
+                },
+                {
+                    "score": 0.9342,
+                    "bbox": [
+                        194,
+                        724,
+                        399,
+                        739
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                195,
+                                723,
+                                397,
+                                740
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        195,
+                                        723,
+                                        397,
+                                        740
+                                    ],
+                                    "type": "text",
+                                    "content": "3 总结 TRACE-T-END-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9033,
+                    "bbox": [
+                        68,
+                        752,
+                        493,
+                        765
+                    ],
+                    "index": 13,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                753,
+                                491,
+                                764
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        753,
+                                        491,
+                                        764
+                                    ],
+                                    "type": "text",
+                                    "content": "最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                595,
+                841
+            ],
+            "discarded_blocks": [
+                {
+                    "score": 0.9302,
+                    "bbox": [
+                        49,
+                        13,
+                        145,
+                        24
+                    ],
+                    "index": 1,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                15,
+                                143,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        15,
+                                        143,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-T-HEADER",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.9392,
+                    "bbox": [
+                        424,
+                        13,
+                        545,
+                        24
+                    ],
+                    "index": 2,
+                    "type": "header",
+                    "lines": [
+                        {
+                            "bbox": [
+                                426,
+                                15,
+                                543,
+                                24
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        426,
+                                        15,
+                                        543,
+                                        24
+                                    ],
+                                    "type": "text",
+                                    "content": "TEX-TABLE-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "score": 0.8444,
+                    "bbox": [
+                        294,
+                        812,
+                        300,
+                        822
+                    ],
+                    "index": 14,
+                    "type": "page_number",
+                    "lines": [
+                        {
+                            "bbox": [
+                                294,
+                                813,
+                                300,
+                                823
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        294,
+                                        813,
+                                        300,
+                                        823
+                                    ],
+                                    "type": "text",
+                                    "content": "1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "score": 0.7112,
+                    "bbox": [
+                        226,
+                        48,
+                        369,
+                        68
+                    ],
+                    "index": 3,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                228,
+                                50,
+                                366,
+                                68
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        228,
+                                        50,
+                                        366,
+                                        68
+                                    ],
+                                    "type": "text",
+                                    "content": "跨页网格表格测试",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 1
+                },
+                {
+                    "score": 0.5601,
+                    "bbox": [
+                        178,
+                        71,
+                        416,
+                        83
+                    ],
+                    "index": 4,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                180,
+                                73,
+                                414,
+                                83
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        180,
+                                        73,
+                                        414,
+                                        83
+                                    ],
+                                    "type": "text",
+                                    "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        180,
+                        73,
+                        414,
+                        83
+                    ]
+                },
+                {
+                    "score": 0.9581,
+                    "bbox": [
+                        159,
+                        105,
+                        434,
+                        122
+                    ],
+                    "index": 5,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                159,
+                                105,
+                                433,
+                                122
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        159,
+                                        105,
+                                        433,
+                                        122
+                                    ],
+                                    "type": "text",
+                                    "content": "1 表头与固定事实 TRACE-T-CAP-101",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.8759,
+                    "bbox": [
+                        67,
+                        134,
+                        437,
+                        147
+                    ],
+                    "index": 6,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                69,
+                                135,
+                                435,
+                                146
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        69,
+                                        135,
+                                        435,
+                                        146
+                                    ],
+                                    "type": "text",
+                                    "content": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        69,
+                        135,
+                        435,
+                        146
+                    ]
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        164,
+                        176,
+                        429,
+                        268
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.8933,
+                            "bbox": [
+                                268,
+                                165,
+                                326,
+                                177
+                            ],
+                            "index": 7,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        268,
+                                        166,
+                                        326,
+                                        178
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                268,
+                                                166,
+                                                326,
+                                                178
+                                            ],
+                                            "type": "text",
+                                            "content": "表 1: 汇总表",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9714,
+                            "bbox": [
+                                164,
+                                176,
+                                429,
+                                268
+                            ],
+                            "index": 8,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        164,
+                                        176,
+                                        429,
+                                        268
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                164,
+                                                176,
+                                                429,
+                                                268
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\">批次</td><td rowspan=\"2\">日期</td><td colspan=\"2\">指标</td></tr><tr><td>精度</td><td>成本</td></tr><tr><td>TABLE-ALPHA</td><td>2026-08-21</td><td>99.875%</td><td>USD 2,450.00</td></tr><tr><td>TABLE-BETA</td><td>2026-08-21</td><td>98.250%</td><td>USD 1,125.50</td></tr></table>",
+                                            "image_path": "4684e5d42c6a46e6985e79d482c4d2e029ad7f58f252d1bc858e41aebb132f56.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8,
+                    "score": 0.9714
+                },
+                {
+                    "score": 0.9562,
+                    "bbox": [
+                        213,
+                        304,
+                        381,
+                        320
+                    ],
+                    "index": 9,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                213,
+                                304,
+                                380,
+                                320
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        213,
+                                        304,
+                                        380,
+                                        320
+                                    ],
+                                    "type": "text",
+                                    "content": "2 长表 TRACE-T-R03",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        63,
+                        368,
+                        532,
+                        698
+                    ],
+                    "blocks": [
+                        {
+                            "score": 0.8315,
+                            "bbox": [
+                                263,
+                                343,
+                                332,
+                                356
+                            ],
+                            "index": 10,
+                            "type": "table_caption",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        263,
+                                        344,
+                                        330,
+                                        356
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                263,
+                                                344,
+                                                330,
+                                                356
+                                            ],
+                                            "type": "text",
+                                            "content": "表 2: 跨页明细",
+                                            "score": 1.0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "score": 0.9884,
+                            "bbox": [
+                                63,
+                                368,
+                                532,
+                                698
+                            ],
+                            "index": 11,
+                            "type": "table_body",
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        368,
+                                        532,
+                                        698
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                63,
+                                                368,
+                                                532,
+                                                698
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>标记</td><td>批次</td><td>测量值</td><td>说明</td></tr><tr><td>TRACE-T-R01</td><td>TABLE-ALPHA</td><td>0.03125 mm</td><td>保留五位小数。</td></tr><tr><td>TRACE-T-R02</td><td>TABLE-BETA</td><td>4-20 mA</td><td>保留范围。</td></tr><tr><td>TRACE-T-R03</td><td>TABLE-ALPHA</td><td>A+B=C</td><td>运算符是事实。</td></tr><tr><td>TRACE-T-R04</td><td>TABLE-BETA</td><td>7/16 in</td><td>保留尺寸。</td></tr><tr><td>TRACE-T-R05</td><td>TABLE-ALPHA</td><td>1.2500 kg</td><td>保留尾随零。</td></tr><tr><td>TRACE-T-R06</td><td>TABLE-BETA</td><td>USD 2,450.00</td><td>保留货币。</td></tr><tr><td>TRACE-T-R07</td><td>TABLE-ALPHA</td><td>0.005%</td><td>保留百分号。</td></tr><tr><td>TRACE-T-R08</td><td>TABLE-BETA</td><td>2026-08-21</td><td>保留日期。</td></tr><tr><td>TRACE-T-R09</td><td>TABLE-ALPHA</td><td>2.25 mm</td><td>页面边界前记录。</td></tr><tr><td>TRACE-T-R10</td><td>TABLE-BETA</td><td>3.50 mm</td><td>跨页后记录。</td></tr><tr><td>TRACE-T-R11</td><td>TABLE-ALPHA</td><td>4.75 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R12</td><td>TABLE-BETA</td><td>6.00 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R13</td><td>TABLE-ALPHA</td><td>8.125 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R14</td><td>TABLE-BETA</td><td>9.250 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R15</td><td>TABLE-ALPHA</td><td>10.375 mm</td><td>继续追踪。</td></tr><tr><td>TRACE-T-R16</td><td>TABLE-BETA</td><td>11.500 mm</td><td>最后一行可追踪。</td></tr></table>",
+                                            "image_path": "f6451e0388ea07b12a9a39e6fff0c9c99c324d6d766c22e41c8ac86de246321d.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11,
+                    "score": 0.9884
+                },
+                {
+                    "score": 0.9342,
+                    "bbox": [
+                        194,
+                        724,
+                        399,
+                        739
+                    ],
+                    "index": 12,
+                    "type": "title",
+                    "lines": [
+                        {
+                            "bbox": [
+                                195,
+                                723,
+                                397,
+                                740
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        195,
+                                        723,
+                                        397,
+                                        740
+                                    ],
+                                    "type": "text",
+                                    "content": "3 总结 TRACE-T-END-201",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "level": 2
+                },
+                {
+                    "score": 0.9033,
+                    "bbox": [
+                        68,
+                        752,
+                        493,
+                        765
+                    ],
+                    "index": 13,
+                    "type": "text",
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                753,
+                                491,
+                                764
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        753,
+                                        491,
+                                        764
+                                    ],
+                                    "type": "text",
+                                    "content": "最终结论仍需保留 TABLE-ALPHA、TABLE-BETA、0.03125 mm、USD 2,450.00 和 A+B=C。",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "bbox_fs": [
+                        70,
+                        753,
+                        491,
+                        764
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "3.4.4"
+}

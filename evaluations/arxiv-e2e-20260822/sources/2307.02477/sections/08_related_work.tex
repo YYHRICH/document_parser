@@ -1,0 +1,15 @@
+\section{Related Work}
+
+\paragraph{Evaluating Conceptual Structures in LMs.}
+Much prior work has investigated the extent to which LMs acquire a grounded understanding of the world through text-only training~\citepia{piantadosi2022meaning,zhang-etal-2020-language-embeddings, ilharco-etal-2021-probing, li-etal-2021-implicit}. These studies have generally found that conceptual structures of certain concepts (e.g., color, size)  often plausibly mirror those of the grounded world~\citep{abdou-etal-2021-language, patel2022mapping,mollo2023vector}. As in our study, these studies are a test of  generalization---such structures would not manifest if the concepts were memorized in a one-hot-like manner. But our evaluation differs in that it targets the \emph{reasoning} process instead of the generalization to new concepts or conceptual structures~\citep{kondo2023probing}. While prior work identified that the latter is embedded in LMs, we found that they do not fully learn the former.
+
+\paragraph{Causal Analysis.}
+Our counterfactual perturbations can be informally viewed as interventions under a causal inference framework~\citep{pearl_2009}. This relationship has been explored in machine learning and NLP for commonsense reasoning~\citep{kıcıman2023causal}, interpretability~\citep{elazar-etal-2021-amnesic,geiger2021causal,geiger22a}, spurious correlation detection~\citep{veitch2021counterfactual,eisenstein-2022-informativeness}, fairness~\citep{kusner2017counterfactual,nabi18fair}, etc.
+Under this perspective, the failure  of generalization to counterfactual worlds that we observe in LMs can be viewed as a failure to robustly learn the causal effects of world states on our evaluated tasks.
+
+
+\paragraph{Counterfactual Evaluation.}
+``Counterfactuals'' is an informally-used term in NLP and has been used to refer to different types of perturbations. One line of work concerns counterfactuals to a certain event or situation that is still licensed in a default world model~\citepia{qin-etal-2019-counterfactual,qin-etal-2020-back,yang-etal-2020-semeval,frohberg-binder-2022-crass}, in contrast to our counterfactual world states that deviate from the default. 
+\citet{qin-etal-2019-counterfactual} and \citet{frohberg-binder-2022-crass} found that GPT-3 and earlier models struggle with consistently reasoning under this type of counterfactual conditions, while \citet{kıcıman2023causal} observed more recent LMs to achieve higher counterfactual reasoning accuracy.
+Another body of work examines the robustness of model predictions using counterfactual data~\citep{Kaushik2020Learning,kaushik2021explaining,gardner-etal-2020-evaluating}.
+More similar to our study, \citet{li2023counterfactual} showed that while the LMs they investigated seem to be able to perform some reasoning in counterfactual worlds, this is largely affected by superficial lexical cues. Our results reveal that more recent LMs still exhibit such difficulties.

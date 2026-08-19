@@ -1,0 +1,272 @@
+[
+  {
+    "chunk_id": "block:f2c822b0-a967-50f9-bcdc-ef9ce83cec51",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "# 跨页网格表格测试",
+    "citation_ids": [
+      "block:f2c822b0-a967-50f9-bcdc-ef9ce83cec51"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:26c2931f-444d-5460-bfbd-6cd09bd85636",
+    "kind": "paragraph",
+    "order_index": 1,
+    "content": "TRACE-T-DOC-001 | Source: TEX-TABLE-20260821-V1",
+    "citation_ids": [
+      "block:26c2931f-444d-5460-bfbd-6cd09bd85636"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:ca964a0f-71df-5e4a-8d57-0ff797ad941f",
+    "kind": "heading",
+    "order_index": 2,
+    "content": "## 1 表头与固定事实 TRACE-T-CAP-101",
+    "citation_ids": [
+      "block:ca964a0f-71df-5e4a-8d57-0ff797ad941f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:ba45b770-075f-575f-bf0a-c92c2c9b8001",
+    "kind": "paragraph",
+    "order_index": 3,
+    "content": "批次 TABLE-ALPHA 和 TABLE-BETA 必须保持可追溯，报告日期为 2026-08-21 。",
+    "citation_ids": [
+      "block:ba45b770-075f-575f-bf0a-c92c2c9b8001"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:cd7cf623-6899-50ae-b682-be5b3acab30c",
+    "kind": "table",
+    "order_index": 4,
+    "content": "|   | 表 1: | 汇总表 | 指标 |\n| --- | --- | --- | --- |\n| 批次 | 日期 | 精度 | 成本 |\n| TABLE-ALPHA | 2026-08-21 | 99.875% | USD 2,450.00 |\n| TABLE-BETA | 2026-08-21 | 98.250% | USD 1,125.50 |",
+    "citation_ids": [
+      "block:cd7cf623-6899-50ae-b682-be5b3acab30c",
+      "binding:753dafb2-863d-513a-8da0-cec76e9505f2",
+      "binding:5c8e2b78-c588-583a-8cac-16955bdefa61",
+      "binding:486549f4-faae-56f6-916c-d6258ccdcdf3",
+      "binding:47180518-dde6-573e-8a31-2fbd3e6ef38b",
+      "binding:e3c0372a-9f97-5821-b0ba-95bc4b4faf4c",
+      "binding:d21ae9bb-3d86-5552-a0d4-20f4b0c39b09",
+      "binding:ae0c4cd9-0659-555e-b213-57795c894f2a",
+      "binding:8d38b37b-189b-5a55-95f7-39a7e40b2da1"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "table_id": "table-001",
+      "table_binding_ids": [
+        "753dafb2-863d-513a-8da0-cec76e9505f2",
+        "5c8e2b78-c588-583a-8cac-16955bdefa61",
+        "486549f4-faae-56f6-916c-d6258ccdcdf3",
+        "47180518-dde6-573e-8a31-2fbd3e6ef38b",
+        "e3c0372a-9f97-5821-b0ba-95bc4b4faf4c",
+        "d21ae9bb-3d86-5552-a0d4-20f4b0c39b09",
+        "ae0c4cd9-0659-555e-b213-57795c894f2a",
+        "8d38b37b-189b-5a55-95f7-39a7e40b2da1"
+      ]
+    }
+  },
+  {
+    "chunk_id": "block:22e83d10-e530-5c0c-af55-265a18c3904d",
+    "kind": "heading",
+    "order_index": 5,
+    "content": "## 2 长表 TRACE-T-R03",
+    "citation_ids": [
+      "block:22e83d10-e530-5c0c-af55-265a18c3904d"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:c6a4ee13-9c46-5fc7-acb3-9dcdd539e2c4",
+    "kind": "table",
+    "order_index": 6,
+    "content": "| 标记 | 批次 | 测量值 | 说明 |\n| --- | --- | --- | --- |\n| TRACE-T-R01 | TABLE-ALPHA | 0.03125 mm | 保留五位小数。 |\n| TRACE-T-R02 | TABLE-BETA | 4-20 mA | 保留范围。 |\n| TRACE-T-R03 | TABLE-ALPHA | A+B=C | 运算符是事实。 |\n| TRACE-T-R04 | TABLE-BETA | 7/16 in | 保留尺寸。 |\n| TRACE-T-R05 | TABLE-ALPHA | 1.2500 kg | 保留尾随零。 |\n| TRACE-T-R06 | TABLE-BETA | USD 2,450.00 | 保留货币。 |\n| TRACE-T-R07 | TABLE-ALPHA | 0.005% | 保留百分号。 |\n| TRACE-T-R08 | TABLE-BETA | 2026-08-21 | 保留日期。 |\n| TRACE-T-R09 | TABLE-ALPHA | 2.25 mm | 页面边界前记录。 |\n| TRACE-T-R10 | TABLE-BETA | 3.50 mm | 跨页后记录。 |\n| TRACE-T-R11 | TABLE-ALPHA | 4.75 mm | 继续追踪。 |\n| TRACE-T-R12 | TABLE-BETA | 6.00 mm | 继续追踪。 |\n| TRACE-T-R13 | TABLE-ALPHA | 8.125 mm | 继续追踪。 |\n| TRACE-T-R14 | TABLE-BETA | 9.250 mm | 继续追踪。 |\n| TRACE-T-R15 | TABLE-ALPHA | 10.375 mm | 继续追踪。 |\n| TRACE-T-R16 | TABLE-BETA | 11.500 mm | 最后一行可追踪。 |",
+    "citation_ids": [
+      "block:c6a4ee13-9c46-5fc7-acb3-9dcdd539e2c4",
+      "binding:1b7ebf73-6b75-5b77-ab7d-2471e41e1fc0",
+      "binding:eb960f16-ebbb-5f16-856e-a3ab64811a8e",
+      "binding:dd3eeac7-e0c8-5d8a-a05d-6059683cadfe",
+      "binding:ea80afad-2495-5f85-bebd-1df93a13d729",
+      "binding:ad902782-57f3-5a26-a9a8-8a2d9307546b",
+      "binding:4f2cc470-661f-5e41-8172-f8c8aa848ef6",
+      "binding:353e22c2-3963-57f6-a0fb-eb029b1af592",
+      "binding:296bfed3-cc52-57d5-8467-c74a698cf2dd",
+      "binding:ec77679f-ca32-553b-98c1-1e6fec0c0342",
+      "binding:9782803b-03a1-5b2a-b2a7-921d804fa8f3",
+      "binding:b5d21c8c-318b-5726-90e0-73c02a24028e",
+      "binding:ea1ac5ef-53e8-5b3d-aa93-06840563e74a",
+      "binding:e1682491-15bb-57c0-9d2d-5a6ae28fe847",
+      "binding:8836ee64-14ab-5c49-92a4-a8cad6b49b37",
+      "binding:5532d381-a291-56df-b99d-461724bee41c",
+      "binding:b883b88f-d326-5986-9e16-0cdca4f7997c",
+      "binding:35feefa1-3981-58d7-b158-5320bbf84c16",
+      "binding:8399951c-e5f4-5c6f-a90a-cc2e5eaf9431",
+      "binding:0b6197c4-5e80-51dc-910c-0e6628b43050",
+      "binding:178682e3-ab3c-5aab-b2a5-44763a0bd73d",
+      "binding:669253d2-b5f9-5274-b05b-a3f0225cf81e",
+      "binding:44beb1af-ad9f-5615-b7b4-dfc876e02806",
+      "binding:9fe852ec-9ccb-5d20-8dfd-a04f87115aa0",
+      "binding:32f004b9-69a6-5086-94a4-e1f93ec7fd81",
+      "binding:b597890b-eaad-5be9-9411-1726cd54524f",
+      "binding:9f205963-801d-515b-9865-5cb270fdca6f",
+      "binding:8af881f9-887f-54b2-b6f2-2285f9982c13",
+      "binding:535dea1a-85a2-5c2a-bdc6-36f46070dbdb",
+      "binding:24396172-99f6-5ac3-a112-6b119f7ddf8f",
+      "binding:6e0466c9-4ed6-5f9f-9315-fc8437ad23df",
+      "binding:e9c34702-b4fa-5dd8-ae87-4ec4e053535e",
+      "binding:994a4f37-e12c-5b2b-8a71-5c82e6dba8c1",
+      "binding:1530e8c3-e8a2-52f6-bdae-2e14746fd5c3",
+      "binding:7ff6489f-15a3-5538-acc4-ce288d459b54",
+      "binding:c4258cb0-9020-591f-9a5f-387fe36e077c",
+      "binding:3a53f008-2650-504b-879d-d370bb33cfc9",
+      "binding:bcde5d5a-0052-5f12-befa-16dce45dff13",
+      "binding:d917b562-b35d-523d-9d3c-fbf920debb35",
+      "binding:f49775cd-d797-580a-863f-b46fbfefb73a",
+      "binding:5bc45404-0dfc-573e-9f43-034d917f8d89",
+      "binding:42797ced-a7a3-5180-9ea1-442761017685",
+      "binding:fb3a4212-da57-5f96-b2fc-20b0456a4486",
+      "binding:37f47d63-53e1-5d32-ad18-e264695c60e0",
+      "binding:b19dd1fa-78fe-5fba-8ca7-bbf9480dd196",
+      "binding:83e580a4-d581-5cef-b758-be37d3525c1a",
+      "binding:5ad81e3c-6ec4-5b1e-832b-c398d4fef32d",
+      "binding:d3a3dc58-45c1-5da3-8711-a9b877a3d0bd",
+      "binding:2b734b07-d9cc-5439-bea3-4f1f9324a002",
+      "binding:c1b1e5e4-0bb4-5554-b131-8e2383b7fa70",
+      "binding:7486865a-a1e3-5c21-8ee5-1c296fe7dfe0",
+      "binding:7bb17374-ffa8-528c-8239-64ada4676ef4",
+      "binding:1d7b4b79-aacf-558b-b991-2c25b9597bd1",
+      "binding:23ace681-067e-5681-8769-ed33f99c4f45",
+      "binding:99ea31b1-a1f2-5173-b1fc-f38292fa18d5",
+      "binding:c3a86c04-b45d-53b1-9676-5141d40e359c",
+      "binding:ad3af655-35fc-5e71-9148-896a24a3a058",
+      "binding:0a733898-e560-5fea-818a-acb9368a7eb9",
+      "binding:fa1260b3-55f7-5e56-9698-f5b65e8719d8",
+      "binding:401dabaf-4150-58f8-a0c8-f6ac7beb0e1e",
+      "binding:7306b156-c452-502b-b97f-d6dff8ddae09",
+      "binding:582d7e57-b814-550a-a471-767f1c459a5e",
+      "binding:887c6fa1-1866-5ffd-9d61-59ac76023774",
+      "binding:aa9a7d00-e474-5ca1-a557-16aaf89c5180",
+      "binding:f7f21495-7de6-53f0-95e7-5da275a1e755"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "table_id": "table-002",
+      "table_binding_ids": [
+        "1b7ebf73-6b75-5b77-ab7d-2471e41e1fc0",
+        "eb960f16-ebbb-5f16-856e-a3ab64811a8e",
+        "dd3eeac7-e0c8-5d8a-a05d-6059683cadfe",
+        "ea80afad-2495-5f85-bebd-1df93a13d729",
+        "ad902782-57f3-5a26-a9a8-8a2d9307546b",
+        "4f2cc470-661f-5e41-8172-f8c8aa848ef6",
+        "353e22c2-3963-57f6-a0fb-eb029b1af592",
+        "296bfed3-cc52-57d5-8467-c74a698cf2dd",
+        "ec77679f-ca32-553b-98c1-1e6fec0c0342",
+        "9782803b-03a1-5b2a-b2a7-921d804fa8f3",
+        "b5d21c8c-318b-5726-90e0-73c02a24028e",
+        "ea1ac5ef-53e8-5b3d-aa93-06840563e74a",
+        "e1682491-15bb-57c0-9d2d-5a6ae28fe847",
+        "8836ee64-14ab-5c49-92a4-a8cad6b49b37",
+        "5532d381-a291-56df-b99d-461724bee41c",
+        "b883b88f-d326-5986-9e16-0cdca4f7997c",
+        "35feefa1-3981-58d7-b158-5320bbf84c16",
+        "8399951c-e5f4-5c6f-a90a-cc2e5eaf9431",
+        "0b6197c4-5e80-51dc-910c-0e6628b43050",
+        "178682e3-ab3c-5aab-b2a5-44763a0bd73d",
+        "669253d2-b5f9-5274-b05b-a3f0225cf81e",
+        "44beb1af-ad9f-5615-b7b4-dfc876e02806",
+        "9fe852ec-9ccb-5d20-8dfd-a04f87115aa0",
+        "32f004b9-69a6-5086-94a4-e1f93ec7fd81",
+        "b597890b-eaad-5be9-9411-1726cd54524f",
+        "9f205963-801d-515b-9865-5cb270fdca6f",
+        "8af881f9-887f-54b2-b6f2-2285f9982c13",
+        "535dea1a-85a2-5c2a-bdc6-36f46070dbdb",
+        "24396172-99f6-5ac3-a112-6b119f7ddf8f",
+        "6e0466c9-4ed6-5f9f-9315-fc8437ad23df",
+        "e9c34702-b4fa-5dd8-ae87-4ec4e053535e",
+        "994a4f37-e12c-5b2b-8a71-5c82e6dba8c1",
+        "1530e8c3-e8a2-52f6-bdae-2e14746fd5c3",
+        "7ff6489f-15a3-5538-acc4-ce288d459b54",
+        "c4258cb0-9020-591f-9a5f-387fe36e077c",
+        "3a53f008-2650-504b-879d-d370bb33cfc9",
+        "bcde5d5a-0052-5f12-befa-16dce45dff13",
+        "d917b562-b35d-523d-9d3c-fbf920debb35",
+        "f49775cd-d797-580a-863f-b46fbfefb73a",
+        "5bc45404-0dfc-573e-9f43-034d917f8d89",
+        "42797ced-a7a3-5180-9ea1-442761017685",
+        "fb3a4212-da57-5f96-b2fc-20b0456a4486",
+        "37f47d63-53e1-5d32-ad18-e264695c60e0",
+        "b19dd1fa-78fe-5fba-8ca7-bbf9480dd196",
+        "83e580a4-d581-5cef-b758-be37d3525c1a",
+        "5ad81e3c-6ec4-5b1e-832b-c398d4fef32d",
+        "d3a3dc58-45c1-5da3-8711-a9b877a3d0bd",
+        "2b734b07-d9cc-5439-bea3-4f1f9324a002",
+        "c1b1e5e4-0bb4-5554-b131-8e2383b7fa70",
+        "7486865a-a1e3-5c21-8ee5-1c296fe7dfe0",
+        "7bb17374-ffa8-528c-8239-64ada4676ef4",
+        "1d7b4b79-aacf-558b-b991-2c25b9597bd1",
+        "23ace681-067e-5681-8769-ed33f99c4f45",
+        "99ea31b1-a1f2-5173-b1fc-f38292fa18d5",
+        "c3a86c04-b45d-53b1-9676-5141d40e359c",
+        "ad3af655-35fc-5e71-9148-896a24a3a058",
+        "0a733898-e560-5fea-818a-acb9368a7eb9",
+        "fa1260b3-55f7-5e56-9698-f5b65e8719d8",
+        "401dabaf-4150-58f8-a0c8-f6ac7beb0e1e",
+        "7306b156-c452-502b-b97f-d6dff8ddae09",
+        "582d7e57-b814-550a-a471-767f1c459a5e",
+        "887c6fa1-1866-5ffd-9d61-59ac76023774",
+        "aa9a7d00-e474-5ca1-a557-16aaf89c5180",
+        "f7f21495-7de6-53f0-95e7-5da275a1e755"
+      ]
+    }
+  },
+  {
+    "chunk_id": "block:e143f2c8-fd0d-587a-9240-195fcb57cb62",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "表 2: 跨页明细",
+    "citation_ids": [
+      "block:e143f2c8-fd0d-587a-9240-195fcb57cb62"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:ef357c03-e16f-54ad-805a-ce1f678db30b",
+    "kind": "heading",
+    "order_index": 8,
+    "content": "## 3 总结 TRACE-T-END-201",
+    "citation_ids": [
+      "block:ef357c03-e16f-54ad-805a-ce1f678db30b"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:966fb729-2236-5616-a301-5df957cd3001",
+    "kind": "paragraph",
+    "order_index": 9,
+    "content": "最终结论仍需保留 TABLE-ALPHA 、 TABLE-BETA 、 0.03125 mm 、 USD 2,450.00 和 A+B=C 。",
+    "citation_ids": [
+      "block:966fb729-2236-5616-a301-5df957cd3001"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

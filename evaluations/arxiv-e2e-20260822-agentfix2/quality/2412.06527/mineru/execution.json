@@ -1,0 +1,38 @@
+{
+  "session_id": "arxiv-e2e-20260822:2412.06527:mineru",
+  "accepted": false,
+  "final_revision_id": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+  "attempts": [
+    {
+      "accepted": false,
+      "code": "candidate_schema_error",
+      "message": "Agent 输出不符合候选 Schema，保留原 revision 并转人工复核。",
+      "errors": [
+        "quality.agent.agno_adapter.CandidateSchemaError",
+        "reason=trailing_text"
+      ],
+      "no_progress": false,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+      "source_content_fingerprint": "",
+      "candidate_content_fingerprint": ""
+    },
+    {
+      "accepted": true,
+      "code": "accepted",
+      "message": "候选通过确定性校验。",
+      "errors": [],
+      "no_progress": true,
+      "changed_block_ids": [],
+      "changed_table_ids": [],
+      "changed_relation_keys": [],
+      "changed_asset_paths": [],
+      "base_revision": "384f6a6ca4f1b3c844462f8ab73d7025940013d9b46fdbec55d7716d77d36f33",
+      "source_content_fingerprint": "sem-v2:b0e155bfa9da8a1696cd0de4e75a9b801d4097ccde01eda0a4c8e3b3fea657dc",
+      "candidate_content_fingerprint": "sem-v2:b0e155bfa9da8a1696cd0de4e75a9b801d4097ccde01eda0a4c8e3b3fea657dc"
+    }
+  ]
+}

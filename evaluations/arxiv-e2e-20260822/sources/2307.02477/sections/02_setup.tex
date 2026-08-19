@@ -1,0 +1,39 @@
+\section{Counterfactual Tasks} \label{sec:counterfactual-eval}
+
+We informally conceptualize each task as a function $f_w : X \to Y $ that maps an \textbf{input} $x \in X$ under a \textbf{world model} $w \in W$ to an \textbf{output} $y \in Y$. World models encapsulate the conditions under which function evaluation takes place. For example, in Python programming, $w$ might specify assumptions of Python such as indexing and operator precedence; in arithmetic, $w$ could represent the set of conditions required for an arithmetic operation, such as the number base. 
+We refer to the set of assumed default conditions, including but not limited to the base's being 10, as the \textbf{default world}, or $w^{\text{default}}$. Intuitively, for any task, $w^{\text{default}}$ corresponds to the set of conditions underlying the majority of task instances in text corpora.\footnote{This data-generating process can be described by the following generative model, $P(y \, | \, x, w)P(x \, | \, w)P(w)$. From the perspective of causal inference, our counterfactual framework can be informally seen as performing  a $\operatorname{do}$-operator on this graph \cite{pearl_2009}.}
+
+Traditional evaluations of machine learning models assess how closely a model's learned hypothesis $h$ estimates $f_w$ by independently sampling training and test sets from the population distribution $\mathcal{D}_{f_{w}}$, and only exposing the model to the training set for learning $h$. However, 
+in datasets of scraped web text, these
+evaluations are subject to potential data contamination issues~\citepia{gpt3,dodge-etal-2021-documenting,magar-schwartz-2022-data}.
+These issues may be more severe in recent LMs: the ever-growing pretraining datasets potentially expose the models to more evaluation instances, and the increasing sizes of recent LMs give them more ability to memorize these instances~\citep{carlini21extracting,magar-schwartz-2022-data}.
+
+We hence consider another dimension of generalization: generalization to new task variants in \textbf{counterfactual worlds} $w^\text{cf}$, instead of new inputs $x$.
+This allows us to measure the extent to which a model's $f_{w^\text{default}}$ performance is specific to $w^{\text{default}}$ or attributable to a general implementation of the task $f$.\footnote{This setup is reminiscent of intensional models of natural language semantics~(\citealp[\S12]{kratzer1998semantics}; \citealp{von2011intensional}), where $f$ is analogous to the denotation function $\sv{\cdot}$, $x$ to its input, and $y$ to its output. By default, the denotation is evaluated under the real world, extensionally, but when a different possible world is specified instead, we expect a competent system to adjust the evaluation accordingly.} 
+For arithmetic, a possible $w^{\text{cf}}$ would be one that was the same as $w^{\text{default}}$ but assumed a base other than base-10. We expect a model with general arithmetic ability to perform similarly in other bases.
+
+We emphasize that our goal is not to find counterfactual world models that are completely outside the realm of human experience. Base-9 addition, for example, is not a novel concept. Nor do we aim to guarantee that counterfactual world models are unobserved in a pretraining corpus.
+Instead, counterfactuals are simply defined as variations on the \emph{default} conditions for a task. %
+
+
+
+Concretely, we assess an LM's task performance with 0-shot prompting. We specify the task $f$, the test instance $x$, and the world model $w$ in a prompt, parse the LM's output, and compare it to the ground-truth label. We denote the LM's implementation of $f_w$ for a given instance $x$ to be, 
+\begin{align*}
+    h(f, w, x) = \argmax_{y'}\, P_\text{LM}\big(y' \, | \, & \operatorname{prompt}_{f}(f, x), \\[-.7em] & \operatorname{prompt}_{w}(w)\big),
+\end{align*}
+where the $\argmax$ is computed with an approximate decoding procedure and $\operatorname{prompt}_f$ and $\operatorname{prompt}_w$ are prompt templates that describe tasks and world models respectively.
+For each task, we devise one or more $w^{\text{cf}}$ that deviate from the default world (i.e., the default task conditions).
+We evaluate both $h(f, w^{\text{default}}, x)$ and $h(f, w^{\text{cf}}, x)$ via task-specific metrics. If we control $f_w(x)$ to be similarly hard between $w^{\text{default}}$ and $w^{\text{cf}}$, we can attribute the performance difference to an LM overfitting to the default instantiation of the task.
+
+
+
+
+
+\subsection{Counterfactual Comprehension Check} \label{subsec:ccc}
+One potential confounder is that an LM may be failing at a particular counterfactual task by failing to understand the prompt component that specifies the counterfactual conditions, i.e., $\operatorname{prompt}_w(w^{\text{cf}})$. That is, an LM might still be reasoning in $w^{\text{default}}$ and completely \emph{ignore} the instructions. While this would still be a failure of the LM, it does not necessarily represent a failure to perform the counterfactual task variant. We control for this by designing task-specific \textbf{counterfactual comprehension checks} (\textbf{CCC}s) that test an LM's surface understanding of the specified counterfactual world.
+
+For each (default, counterfactual) task pair,
+we introduce another control task $g_w$ with input $x'$ and output $y'$ that is much simpler than $f_w$ but still allows for the discrimination of $w^{\text{default}}$ from $w^{\text{cf}}$ (i.e., $g_{w^{\text{cf}}}(x') \ne g_{w^{\text{default}}}(x')$).
+A high performance of $P_\text{LM}(y'\, |\, \operatorname{prompt}_g(g, x'), \operatorname{prompt}_w(w^{\text{cf}}))$ would indicate that  $\operatorname{prompt}_w$ is effective at making the LM perform a task in $w^{\text{cf}}$.
+In the arithmetic example, for a base-9 counterfactual world, we use the same $\operatorname{prompt}_w(\texttt{base-9})$ to specify the counterfactual world, and check that it facilitates an understanding of $w=\texttt{base-9}$ by asking what the next integer after $x'$ is. If, for example, it consistently carries over digits greater than 8 and does not carry over otherwise, this would show the effectiveness of $\operatorname{prompt}_w(\texttt{base-9})$. Our CCC designs are heuristic: as with control tasks in the probing literature \citep{hewitt2019designing},
+we rely on intuition to craft a $g_w$ that is ``simpler'' than $f_w$.\footnote{In this formulation, LM queries for CCC are separate from the main task queries. For some tasks, it is more natural to query about the task and CCC jointly in the same prompt, i.e., $P_{\text{LM}}(y, y' | \operatorname{prompt}_f(f, x), \operatorname{prompt}_g(g, x'), \operatorname{prompt}_w(w^{\text{cf}}))$. We use this formulation instead for those tasks.}

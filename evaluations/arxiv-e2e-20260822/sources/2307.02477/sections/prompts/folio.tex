@@ -1,0 +1,15 @@
+\begin{table*}[t!]
+    \centering
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Test & \texttt{\thead{Consider the following premises: "All corgis are reptiles. All reptiles are plants."\\Assuming no other commonsense or world knowledge, is the sentence "All corgis are\\plants." necessarily true, necessarily false, or neither? \textbf{\{Let's think step by step, }\\\textbf{and \}}end the response with either "necessarily true", "necessarily false", or "neither".}} \\
+        \midrule
+        CCC & \texttt{\thead{Consider the following premises: "All corgis are reptiles. All reptiles are plants."\\Assuming no other commonsense or world knowledge, which sentence between (a) "All\\corgis are reptiles." and (b) "All corgis are mammals." is definitely true? Answer just\\"(a)" or "(b)" and nothing else. You MUST choose one and only one, so DO NOT say neither\\or both.}} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\label{tab:prompts-folio}
+    Prompts for the natural language reasoning task. \texttt{\textbf{\{Let's think step by step, and \}}} is added only if 0-shot CoT is used (and the following \texttt{e} is capitalized without 0-shot CoT). We only use a made-up example here rather than one in the dataset due to the non-publicness of the dataset~(\S\ref{sec:setup-folio}). Default and counterfactual tasks share the same test template, but the instances themselves are changed to be counterfactual. For the CCC, we separate each changed premise in an instance into a separate prompt. The default statement and the counterfactual statement are matched to (a) and (b) randomly. We do not distinguish between CCC with or without 0-shot CoT.
+    }
+\end{table*}

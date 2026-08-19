@@ -1,0 +1,28 @@
+\begin{table*}[t!]
+    \centering
+    \scalebox{0.85}{
+    \begin{tabular}{cl}
+        \toprule
+        Mode & Prompt \\
+        \midrule
+        Default & \texttt{\thead{You are an expert in linguistics. Your task is to identify the main verb and the main subject \\ of a sentence in English.   Show the main verb (a single word) and its subject (also a single word) after \\ the prefix `Main verb and subject: '.  \\ Sentence:  japan had just opened its doors to the world after about 250 years of isolation . \\ 
+        \textbf{\{Let's think step by step. \}}
+        }}  \\
+        \midrule
+        CF & \texttt{\thead{You are an expert in linguistics. Imagine a language that is the same as English with the only \\ exception being that it uses the verb-object-subject order instead of the subject-verb-object order. \\ Your task is to identify the main verb and the main subject in a sentence in this imaginary language. \\ Show the main verb (a single word) and its subject (also a single word) after the prefix \\ `Main verb and subject: '. \\ Sentence: had just opened its doors japan to the world after about 250 years of isolation . \\ 
+        \textbf{\{Let's think step by step. \}}
+        }}  \\
+        \midrule
+        CCC & \texttt{\thead{You are an expert in linguistics. Imagine a language that is the same as English with the only \\ exception being that it uses the verb-subject-object order instead of the subject-verb-object order. \\ Your task is to reconstruct the original sentence in English. You should  only use the words in the same \\ form as they appear in the given sentence. \\ 
+        Sentence: saw anna john \\
+        Show the original sentence at the end after the prefix `Original sentence: '.   \\  
+        \textbf{\{Let's think step by step. \}}  
+        }} \\
+        \bottomrule 
+    \end{tabular}
+    }
+    \label{prompt:word_order_raw}
+    \caption{
+    Prompts for the basic syntactic reasoning task. \texttt{\textbf{\{Let's think step by step. \}}} is added only if 0-shot CoT is used. 
+    }
+\end{table*}
