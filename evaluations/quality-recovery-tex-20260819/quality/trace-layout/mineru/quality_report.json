@@ -1,7 +1,7 @@
 {
   "applied_repairs": [],
   "artifacts": {
-    "canonical_document.json": "004e9a3c2224458e31972839d3d495ca2e44e14e856b121e7f84805ea9220858",
+    "canonical_document.json": "749f55bb3619e981d4b92b24ad433370b383aa9f24d29d2001e6349cb7ed1b14",
     "input_parsed_document.json": "772a00657b9e741bc09a51ec21dc519fb5b12b76113326d089f58f02fb0f7778",
     "optimized.md": "594a67c664acf6fb57a41769e82c8c6934a6814be2b7d4c272d288416a036929"
   },
@@ -41,13 +41,13 @@
         "evidence_refs": [
           {
             "field_path": "heading_level",
-            "object_id": "59d0aac7-bb66-4753-b652-d7bdfee44b96",
+            "object_id": "388d02a2-ae8a-52f0-b533-edf78c4b3d5b",
             "object_type": "block",
             "value_sha256": null
           },
           {
             "field_path": "heading_level",
-            "object_id": "5e393a35-a5dc-4e0d-9f1c-06ed226cec03",
+            "object_id": "f1800092-5559-5c46-a430-1d868a14b8bb",
             "object_type": "block",
             "value_sha256": null
           }
@@ -132,18 +132,18 @@
   "issues": [
     {
       "affected_block_ids": [
-        "79506d89-b3ac-4b11-a96b-54766f643aff",
-        "5e393a35-a5dc-4e0d-9f1c-06ed226cec03",
-        "fa197754-ed34-498e-bc2d-8d2c9aceff44",
-        "59d0aac7-bb66-4753-b652-d7bdfee44b96",
-        "94462fd0-6d75-4209-9e20-99b908d6bec5",
-        "627733b4-1798-4ea1-bf67-e586aa806bd8"
+        "26cc7c62-b52f-54e6-94b0-e4f5dc5834ad",
+        "388d02a2-ae8a-52f0-b533-edf78c4b3d5b",
+        "2ab42668-13ef-548e-8048-e9c15cc7cf34",
+        "f1800092-5559-5c46-a430-1d868a14b8bb",
+        "3ab0226c-584f-5933-98de-a2b1a0500342",
+        "8b705919-3291-5a06-8e3a-ca07f914b687"
       ],
       "category": "heading_level_granularity_suspect",
       "evidence": {
         "evidence_refs": []
       },
-      "issue_id": "fc733af6-9c6e-5c72-971f-aa3dd74e433d",
+      "issue_id": "b1241f39-20e0-55d9-8746-ac27f3e7bac5",
       "message": "解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
       "severity": "info",
       "status": "unfixed"
@@ -153,7 +153,7 @@
     "agent": {
       "accepted": true,
       "attempt_count": 1,
-      "final_revision_id": "39bb5f7f63dbdb78daeeb21d5b9666cd442786bf83fef3ab168eca314918544d",
+      "final_revision_id": "da0e66758af654e966fa7b8bf75e3434aceeadb631e2347b7e811396d2a4b4c5",
       "last_code": "accepted",
       "mode": "document",
       "session_id": "quality-recovery-tex-20260819:trace-layout:mineru",

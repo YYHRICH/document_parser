@@ -1,7 +1,7 @@
 {
   "applied_repairs": [],
   "artifacts": {
-    "canonical_document.json": "a8440179be175799ffb12b2a109894e550e2047b2d84ea6713a5b1cc12479d40",
+    "canonical_document.json": "5b2d5ea9dbec970afd5e030d84b7372aa8753acc0d4d8f7c72efeaefe1426f12",
     "input_parsed_document.json": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
     "optimized.md": "2e0f74e94530203a874f2fc3c0ee07fcf3e6dc4160ced88c651c9aafefbdfb44"
   },
@@ -41,7 +41,7 @@
         "evidence_refs": [
           {
             "field_path": "heading_level",
-            "object_id": "ea02d96f-7fcc-4e70-898e-9f1ff00c850f",
+            "object_id": "8948dfab-a110-5a02-ad00-36236df2d1af",
             "object_type": "block",
             "value_sha256": null
           }
@@ -153,7 +153,7 @@
     "agent": {
       "accepted": true,
       "attempt_count": 1,
-      "final_revision_id": "1486ea356b184fe6f262a46cef9c31a7b1fdef3547f438b5ecc18e0dbfdb7423",
+      "final_revision_id": "7cbc4476cc9c1a1b2a5229a9cded5ce7a1ae6afa126929e361ce50d217f2fb54",
       "last_code": "accepted",
       "mode": "document",
       "session_id": "quality-recovery-tex-20260819:trace-tables:mineru",

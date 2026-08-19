@@ -25,6 +25,7 @@ from quality.models_internal import (
     RepairProposal,
     RuleResult,
 )
+from quality.wiki_handoff import build_wiki_handoff, write_wiki_handoff
 
 __all__ = [
     "QualityAgentNotConfigured",
@@ -47,4 +48,6 @@ __all__ = [
     "RelationCandidate",
     "RepairProposal",
     "RuleResult",
+    "build_wiki_handoff",
+    "write_wiki_handoff",
 ]

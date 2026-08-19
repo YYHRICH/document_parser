@@ -1,7 +1,7 @@
 {
   "applied_repairs": [],
   "artifacts": {
-    "canonical_document.json": "18d05fcb460e28ea125062825b1d7e34af1ad32826891171e9454e335935d338",
+    "canonical_document.json": "1614a370fdf690ea8815f49969538c8ac5a592b38c2663064d8c5f7132c85f13",
     "input_parsed_document.json": "48adb053a32727d39fe075e7adc015a85c0a3a1bc3abde25a7348da7fdfeb714",
     "optimized.md": "4c5bf0434b81f5ba6d245338a1eeee7af1ba3a01b8363d269bee44058d582a6f"
   },
@@ -49,7 +49,7 @@
         "evidence_refs": [
           {
             "field_path": "heading_level",
-            "object_id": "17dff6fc-06a2-4584-ad3f-9c636e8f0492",
+            "object_id": "dc4d2f23-da09-5be6-bbec-37d2b23a0dc7",
             "object_type": "block",
             "value_sha256": null
           }
@@ -147,7 +147,7 @@
     "agent": {
       "accepted": true,
       "attempt_count": 1,
-      "final_revision_id": "562d0a4e4c589707b51a51b7eabf124d2240fe98b63fbe445b4f6b87fd33a111",
+      "final_revision_id": "ce11d9a5eff96c5e4a03dccc017b80b3b9d6610ca8c23ba0a7cffc9863dbad7d",
       "last_code": "accepted",
       "mode": "document",
       "session_id": "quality-recovery-tex-20260819:trace-tables:docling",

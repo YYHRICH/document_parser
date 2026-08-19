@@ -1,0 +1,304 @@
+[
+  {
+    "chunk_id": "block:aa9a2314-0506-55f4-a305-2215ba4155ff",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "可追溯结构测试报告",
+    "citation_ids": [
+      "block:aa9a2314-0506-55f4-a305-2215ba4155ff"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:4d51c198-522c-53df-83bb-73f098b2a87c",
+    "kind": "heading",
+    "order_index": 1,
+    "content": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+    "citation_ids": [
+      "block:4d51c198-522c-53df-83bb-73f098b2a87c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:c25607a1-5387-5e5d-a48d-dcd912e96b5f",
+    "kind": "heading",
+    "order_index": 2,
+    "content": "1 范围与身份 TRACE-S-SEC-101",
+    "citation_ids": [
+      "block:c25607a1-5387-5e5d-a48d-dcd912e96b5f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:aeac2aeb-ed82-52ea-afc2-2c44d401c83d",
+    "kind": "heading",
+    "order_index": 3,
+    "content": "1.1 固定事实 TRACE-S-PARA-111",
+    "citation_ids": [
+      "block:aeac2aeb-ed82-52ea-afc2-2c44d401c83d"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:a036e8ac-a214-55e4-a50d-3a2e383c3e82",
+    "kind": "paragraph",
+    "order_index": 4,
+    "content": "本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+    "citation_ids": [
+      "block:a036e8ac-a214-55e4-a50d-3a2e383c3e82"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:56412090-45c6-5031-a3f4-05f5f76de448",
+    "kind": "paragraph",
+    "order_index": 5,
+    "content": "安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。",
+    "citation_ids": [
+      "block:56412090-45c6-5031-a3f4-05f5f76de448"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:3d3bc903-93c4-5de0-9753-c99ae57389db",
+    "kind": "heading",
+    "order_index": 6,
+    "content": "1.1.1 有序步骤 TRACE-S-LIST-121",
+    "citation_ids": [
+      "block:3d3bc903-93c4-5de0-9753-c99ae57389db"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:5e2976e9-ff99-5ce4-81c7-d44a57d63bc8",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "1. 校验 Source ID，不得生成新的事实。",
+    "citation_ids": [
+      "block:5e2976e9-ff99-5ce4-81c7-d44a57d63bc8"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:5ebb9abb-f511-5713-9e18-252259e96c72",
+    "kind": "paragraph",
+    "order_index": 8,
+    "content": "2. 保留日期 2026-08-19 与编号 TR-2026-08。",
+    "citation_ids": [
+      "block:5ebb9abb-f511-5713-9e18-252259e96c72"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:a6ddc13e-75a1-51b9-987b-f77927445b49",
+    "kind": "paragraph",
+    "order_index": 9,
+    "content": "3. 只允许调整可证明的 Markdown 格式或结构。",
+    "citation_ids": [
+      "block:a6ddc13e-75a1-51b9-987b-f77927445b49"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:4bdb0e8a-396e-575b-8ed2-93a642fc5ace",
+    "kind": "heading",
+    "order_index": 10,
+    "content": "1.2 代码与公式 TRACE-S-CODE-131",
+    "citation_ids": [
+      "block:4bdb0e8a-396e-575b-8ed2-93a642fc5ace"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:11dad156-63ed-52c8-bdc4-9742c0ae9b67",
+    "kind": "paragraph",
+    "order_index": 11,
+    "content": "内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。",
+    "citation_ids": [
+      "block:11dad156-63ed-52c8-bdc4-9742c0ae9b67"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f0b99c17-8a93-5208-9f65-52666c811ad5",
+    "kind": "paragraph",
+    "order_index": 12,
+    "content": "$$\nE = m c ^ { 2 }\n$$",
+    "citation_ids": [
+      "block:f0b99c17-8a93-5208-9f65-52666c811ad5"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:8023ebfa-fa48-5e8e-8f41-8298814e42b9",
+    "kind": "paragraph",
+    "order_index": 13,
+    "content": "(TRACE-S-MATH-141)",
+    "citation_ids": [
+      "block:8023ebfa-fa48-5e8e-8f41-8298814e42b9"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:9535e055-2e5d-5b52-8f8f-3e06bd921a09",
+    "kind": "paragraph",
+    "order_index": 14,
+    "content": "并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。",
+    "citation_ids": [
+      "block:9535e055-2e5d-5b52-8f8f-3e06bd921a09"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:1c2a8594-c151-57a1-b8c4-a1d8288abab2",
+    "kind": "paragraph",
+    "order_index": 15,
+    "content": "TRACE-RUNNING-HEADER-S",
+    "citation_ids": [
+      "block:1c2a8594-c151-57a1-b8c4-a1d8288abab2"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:2cf01f74-d999-51be-b65a-5fffb5d0f132",
+    "kind": "paragraph",
+    "order_index": 16,
+    "content": "TEX-STRUCT-20260819-V1",
+    "citation_ids": [
+      "block:2cf01f74-d999-51be-b65a-5fffb5d0f132"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:9c6c12a1-0fb4-5bf7-a398-ba271b78db21",
+    "kind": "page_number",
+    "order_index": 17,
+    "content": "1",
+    "citation_ids": [
+      "block:9c6c12a1-0fb4-5bf7-a398-ba271b78db21"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:da0c1726-5945-55ca-9859-d153ef36caf8",
+    "kind": "heading",
+    "order_index": 18,
+    "content": "2 跨页语义 TRACE-S-SEC-201",
+    "citation_ids": [
+      "block:da0c1726-5945-55ca-9859-d153ef36caf8"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:be1f91ca-270b-586a-bc57-2fde4ead5af7",
+    "kind": "paragraph",
+    "order_index": 19,
+    "content": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+    "citation_ids": [
+      "block:be1f91ca-270b-586a-bc57-2fde4ead5af7"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:c3bb159a-d65b-50e2-89c7-0249de9b330f",
+    "kind": "heading",
+    "order_index": 20,
+    "content": "2.1 引用 TRACE-S-REF-211",
+    "citation_ids": [
+      "block:c3bb159a-d65b-50e2-89c7-0249de9b330f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:f2335a24-02cf-5eb2-9535-a0487c6ed24f",
+    "kind": "paragraph",
+    "order_index": 21,
+    "content": "引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。",
+    "citation_ids": [
+      "block:f2335a24-02cf-5eb2-9535-a0487c6ed24f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:645c96d9-e77a-52c7-bba6-f8172d7b18a8",
+    "kind": "paragraph",
+    "order_index": 22,
+    "content": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+    "citation_ids": [
+      "block:645c96d9-e77a-52c7-bba6-f8172d7b18a8"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:8499b213-9f17-55c8-8ae1-15bb677cbb84",
+    "kind": "paragraph",
+    "order_index": 23,
+    "content": "TRACE-RUNNING-HEADER-S",
+    "citation_ids": [
+      "block:8499b213-9f17-55c8-8ae1-15bb677cbb84"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:b0d0d060-8a17-59a8-85e2-184ef3749468",
+    "kind": "paragraph",
+    "order_index": 24,
+    "content": "TEX-STRUCT-20260819-V1",
+    "citation_ids": [
+      "block:b0d0d060-8a17-59a8-85e2-184ef3749468"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:2b65ab2e-9794-5146-8b82-bfe468bb70ca",
+    "kind": "page_number",
+    "order_index": 25,
+    "content": "2",
+    "citation_ids": [
+      "block:2b65ab2e-9794-5146-8b82-bfe468bb70ca"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

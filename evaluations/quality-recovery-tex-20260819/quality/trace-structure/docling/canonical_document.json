@@ -1,7 +1,7 @@
 {
   "blocks": [
     {
-      "block_id": "5388a776-36a2-5495-8f54-6a58381a0149",
+      "block_id": "f2424b8f-15fb-5cbe-818c-b90984a163e5",
       "content": "# 可追溯结构测试报告",
       "kind": "heading",
       "metadata": {
@@ -22,7 +22,7 @@
       }
     },
     {
-      "block_id": "8f7c108d-e795-5763-9a76-e90bc69f7b2a",
+      "block_id": "477c5dad-1823-51d5-9a34-cac9af6fadf1",
       "content": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
       "kind": "paragraph",
       "metadata": {},
@@ -41,7 +41,7 @@
       }
     },
     {
-      "block_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
+      "block_id": "ee241523-5bfd-52f7-961b-bf05e7a01179",
       "content": "## 1 范围与身份 TRACE-S-SEC-101",
       "kind": "heading",
       "metadata": {
@@ -62,7 +62,7 @@
       }
     },
     {
-      "block_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5",
+      "block_id": "4d9951c4-8ada-5fd6-b181-00fc3121dd51",
       "content": "### 1.1 固定事实 TRACE-S-PARA-111",
       "kind": "heading",
       "metadata": {
@@ -83,7 +83,7 @@
       }
     },
     {
-      "block_id": "5950c282-4f85-599a-bf43-6a6cfc40d837",
+      "block_id": "24065735-5897-5f4b-b425-bf5b9ff02c4c",
       "content": "本报告生成日期为 2026-08-19 ，批次编号为 TR-2026-08 。验收率固定为 99.75% ，预算为 CNY 。以上数字、标点和货币单位均不得被质量恢复过程改写。",
       "kind": "paragraph",
       "metadata": {},
@@ -102,7 +102,7 @@
       }
     },
     {
-      "block_id": "4bf95477-0003-5e26-a054-ff445eb69cd4",
+      "block_id": "cfe5d23e-77ba-57db-be14-40b7f14d20b8",
       "content": "12,345.67",
       "kind": "paragraph",
       "metadata": {},
@@ -121,7 +121,7 @@
       }
     },
     {
-      "block_id": "379a0a55-8f3b-58ac-972d-46b29be08606",
+      "block_id": "239144b2-f803-58d0-9884-e2de7963534d",
       "content": "安全端点为 https://example.test/api?v=2&mode=safe 。短横线、斜线、问号、等号和与号 都是事实的一部分。",
       "kind": "paragraph",
       "metadata": {},
@@ -140,7 +140,7 @@
       }
     },
     {
-      "block_id": "d338f7a2-b9f5-5980-8e5f-8b8223a47a00",
+      "block_id": "e8c15fed-aad8-52c1-bc07-8174c9a2b394",
       "content": "#### 1.1.1 有序步骤 TRACE-S-LIST-121",
       "kind": "heading",
       "metadata": {
@@ -161,7 +161,7 @@
       }
     },
     {
-      "block_id": "d908ad24-eec4-50b6-a45f-5ae71f4b9ef2",
+      "block_id": "24ddf666-4313-50e7-ab19-673f1703983b",
       "content": "校验 Source ID ，不得生成新的事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -180,7 +180,7 @@
       }
     },
     {
-      "block_id": "df9aa368-1374-5fae-81bc-a429c515a112",
+      "block_id": "f35452c9-7d17-505c-ae33-0e0c2561b81f",
       "content": "保留日期 2026-08-19 与编号 TR-2026-08 。",
       "kind": "paragraph",
       "metadata": {},
@@ -199,7 +199,7 @@
       }
     },
     {
-      "block_id": "59e5699c-6837-5ee8-a318-5a00e17aa7ef",
+      "block_id": "cc88fc7a-0658-5e06-9a00-97faffb13a6d",
       "content": "只允许调整可证明的 Markdown 格式或结构。",
       "kind": "paragraph",
       "metadata": {},
@@ -218,7 +218,7 @@
       }
     },
     {
-      "block_id": "0e69f7ae-7a06-5250-9c2e-9ae5ff6c624d",
+      "block_id": "7bca9b64-bea6-59cf-98cb-f26f1dcf640d",
       "content": "### 1.2 代码与公式 TRACE-S-CODE-131",
       "kind": "heading",
       "metadata": {
@@ -239,7 +239,7 @@
       }
     },
     {
-      "block_id": "b4bcdc82-6527-5236-a7dc-9c8c3453f231",
+      "block_id": "d2697a9d-82c6-52ec-9883-e49b58f8a01b",
       "content": "内联代码为 x = a+b ，命令为 python -m quality.check --mode=safe 符和等号不得改变。",
       "kind": "paragraph",
       "metadata": {},
@@ -258,7 +258,7 @@
       }
     },
     {
-      "block_id": "a77ca0ca-7733-5349-ab73-279e6b7892a2",
+      "block_id": "f1963497-e10c-5209-b031-333b3a3fb6ef",
       "content": "",
       "kind": "paragraph",
       "metadata": {},
@@ -277,7 +277,7 @@
       }
     },
     {
-      "block_id": "255b4b83-7664-5f05-97da-3a55b6aea10d",
+      "block_id": "0cc7e066-5a49-51fc-aa91-8e82c197e418",
       "content": "。代码中的加号、连字",
       "kind": "paragraph",
       "metadata": {},
@@ -296,7 +296,7 @@
       }
     },
     {
-      "block_id": "55baf3a7-79d0-54c9-be20-59a9cf9084d5",
+      "block_id": "a1fafa9d-7b7a-5a67-9f5f-2f3b12f682be",
       "content": "(TRACE-S-MATH-141)",
       "kind": "paragraph",
       "metadata": {},
@@ -315,7 +315,7 @@
       }
     },
     {
-      "block_id": "56315179-b87d-50d8-953f-4a122637c242",
+      "block_id": "c787f26d-0c1b-5333-bd78-a4d0a28f868a",
       "content": "并定义约束 a + b ≥ 10 、误差 ϵ < 0 . 005 。公式运算符属于受保护事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -334,7 +334,7 @@
       }
     },
     {
-      "block_id": "0ce65965-3730-5562-9537-a2e71374ee0c",
+      "block_id": "614774b6-47a4-58fb-827b-e6a3ce64ea2b",
       "content": "## 2 跨页语义 TRACE-S-SEC-201",
       "kind": "heading",
       "metadata": {
@@ -355,7 +355,7 @@
       }
     },
     {
-      "block_id": "4b934069-3f2a-5e9b-95ff-993d5d5d91b7",
+      "block_id": "5b67ecf4-f2a5-51ff-a027-c05df9dc0edd",
       "content": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确 结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -374,7 +374,7 @@
       }
     },
     {
-      "block_id": "d6b4ebbc-a9a8-5bd7-a1d7-62908352fb33",
+      "block_id": "98733a6f-205d-5b0f-bb74-d360f996414b",
       "content": "### 2.1 引用 TRACE-S-REF-211",
       "kind": "heading",
       "metadata": {
@@ -395,7 +395,7 @@
       }
     },
     {
-      "block_id": "dd95561d-fe7b-5008-82d8-4ca72a28c3c8",
+      "block_id": "6a812f7c-0685-5717-83a3-b04b910891a0",
       "content": "引用条目： Quality Recovery Protocol, revision 2.2, archive key QR-0819-A 。引用键、版本号 与 archive key 都必须原样保留。",
       "kind": "paragraph",
       "metadata": {},
@@ -414,7 +414,7 @@
       }
     },
     {
-      "block_id": "8fbaf72d-c517-560b-b17b-96f33a3a123e",
+      "block_id": "e3a328c9-737b-53bd-b572-6a98769612dc",
       "content": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
       "kind": "paragraph",
       "metadata": {},
@@ -443,246 +443,246 @@
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "5388a776-36a2-5495-8f54-6a58381a0149",
-      "relation_id": "549005b2-4871-508c-aec4-ab6c7dab544f",
+      "from_id": "f2424b8f-15fb-5cbe-818c-b90984a163e5",
+      "relation_id": "410b0be5-6449-5a98-bb25-fe16b21d4e12",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b"
+      "to_id": "ee241523-5bfd-52f7-961b-bf05e7a01179"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
-      "relation_id": "7f2e9fe8-16cb-56d6-841c-9c454f906826",
+      "from_id": "ee241523-5bfd-52f7-961b-bf05e7a01179",
+      "relation_id": "4d729eab-2b95-5725-9415-ff437323f405",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5"
+      "to_id": "4d9951c4-8ada-5fd6-b181-00fc3121dd51"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_id": "24d334ed-decc-5abe-9500-a8647fcd18d5",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_id": "24d334ed-decc-5abe-9500-a8647fcd18d5",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "e8717164-0849-4464-9596-fa1937c6e485",
+            "object_id": "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "a9967438-be83-4e1e-827c-19a432ec9521",
+            "object_id": "24d334ed-decc-5abe-9500-a8647fcd18d5",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "0b2e3a08-9631-50f0-a85b-26eee210a9d5",
-      "relation_id": "46fa6537-e318-53c7-a4cf-457f09c1a0c7",
+      "from_id": "4d9951c4-8ada-5fd6-b181-00fc3121dd51",
+      "relation_id": "83bb4f59-d3f0-51be-bc19-b4b911c849bd",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "d338f7a2-b9f5-5980-8e5f-8b8223a47a00"
+      "to_id": "e8c15fed-aad8-52c1-bc07-8174c9a2b394"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_id": "27aa4811-fb20-585b-ae8f-43e81a7284bf",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_id": "27aa4811-fb20-585b-ae8f-43e81a7284bf",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "ffca310b-e52c-4b9a-898b-676f2c34127e",
+            "object_id": "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "05425346-9c6f-46e4-9f2f-d01353b6c673",
+            "object_id": "27aa4811-fb20-585b-ae8f-43e81a7284bf",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "e1d70c27-0387-5f5b-bb46-7b155e12c94b",
-      "relation_id": "037dba18-9675-5b00-aeb9-d2906d917968",
+      "from_id": "ee241523-5bfd-52f7-961b-bf05e7a01179",
+      "relation_id": "7e9424cd-d1ad-576c-a065-08d01e99d4b4",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "0e69f7ae-7a06-5250-9c2e-9ae5ff6c624d"
+      "to_id": "7bca9b64-bea6-59cf-98cb-f26f1dcf640d"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "ced609e2-ca61-4723-8cfb-03f122af60e9",
+            "object_id": "7645a6ba-3ff9-55ce-a7c7-6b2111bd648a",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "5388a776-36a2-5495-8f54-6a58381a0149",
-      "relation_id": "32308599-d76a-5253-ab46-99afb1c0b765",
+      "from_id": "f2424b8f-15fb-5cbe-818c-b90984a163e5",
+      "relation_id": "e5710df2-6acf-5602-8cc4-f0bba545f493",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "0ce65965-3730-5562-9537-a2e71374ee0c"
+      "to_id": "614774b6-47a4-58fb-827b-e6a3ce64ea2b"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_id": "074b8c6c-7948-5856-a555-3775e9e4b0ef",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_id": "074b8c6c-7948-5856-a555-3775e9e4b0ef",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "d42162c0-431e-482d-b04f-92dc5780c296",
+            "object_id": "e8dc2c26-d660-538a-8628-8e86f04ff156",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "c1cc2e39-2418-47f3-8bce-f482f66da112",
+            "object_id": "074b8c6c-7948-5856-a555-3775e9e4b0ef",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "0ce65965-3730-5562-9537-a2e71374ee0c",
-      "relation_id": "5eee96d1-7a52-565b-9fae-de4737414c7c",
+      "from_id": "614774b6-47a4-58fb-827b-e6a3ce64ea2b",
+      "relation_id": "95bd9136-5a5b-5337-ab72-80eaba5e3426",
       "relation_type": "parent_child",
       "status": "verified",
-      "to_id": "d6b4ebbc-a9a8-5bd7-a1d7-62908352fb33"
+      "to_id": "98733a6f-205d-5b0f-bb74-d360f996414b"
     }
   ],
   "schema_name": "CanonicalDocument",

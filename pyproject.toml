@@ -43,6 +43,7 @@ packages = [
   "document_parser.core",
   "document_parser.parsers",
   "document_parser.parsers.markitdown",
+  "document_parser.parsers.normalization",
   "quality",
   "quality.agent",
   "quality.agent.skills",
@@ -61,6 +62,7 @@ document_parser = "."
 "document_parser.core" = "core"
 "document_parser.parsers" = "parsers"
 "document_parser.parsers.markitdown" = "parsers/markitdown"
+"document_parser.parsers.normalization" = "parsers/normalization"
 
 [tool.setuptools.package-data]
 "quality.agent.skills" = ["*.md"]

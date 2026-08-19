@@ -1,0 +1,802 @@
+{
+  "document_id": "1b6170f1-c2b5-4d49-add3-0455245f56a5",
+  "filename": "trace-structure.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 63587,
+  "source_sha256": "af09fd940ead6e680646cf2c41250df5bd9b3dcc3222a206fcf191c3623a41f0",
+  "routing_decision": null,
+  "markdown": "# 可追溯结构测试报告\n\n# TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1\n\n## 1 范围与身份 TRACE-S-SEC-101\n\n## 1.1 固定事实 TRACE-S-PARA-111\n\n本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。\n\n安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。\n\n## 1.1.1 有序步骤 TRACE-S-LIST-121\n\n1. 校验 Source ID，不得生成新的事实。\n\n2. 保留日期 2026-08-19 与编号 TR-2026-08。\n\n3. 只允许调整可证明的 Markdown 格式或结构。\n\n## 1.2 代码与公式 TRACE-S-CODE-131\n\n内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。\n\n$$\nE = m c ^ { 2 }\n$$\n\n(TRACE-S-MATH-141)\n\n并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。\n\n## 2 跨页语义 TRACE-S-SEC-201\n\n本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。\n\n## 2.1 引用 TRACE-S-REF-211\n\n引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。\n\n可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+  "blocks": [
+    {
+      "id": "43e5b499-e4fe-5ffe-a238-f728cc2d8099",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "可追溯结构测试报告",
+      "heading_level": 1,
+      "markdown": "可追溯结构测试报告",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          366.0,
+          71.0,
+          630.0,
+          93.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "abc46af1-5387-547a-8beb-0fd8deb7506c",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+      "heading_level": 1,
+      "markdown": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          277.0,
+          104.0,
+          719.0,
+          120.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 范围与身份 TRACE-S-SEC-101",
+      "heading_level": 2,
+      "markdown": "1 范围与身份 TRACE-S-SEC-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          295.0,
+          147.0,
+          700.0,
+          166.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 固定事实 TRACE-S-PARA-111",
+      "heading_level": 2,
+      "markdown": "1.1 固定事实 TRACE-S-PARA-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          184.0,
+          457.0,
+          200.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a92c2dfa-4ef5-5b63-ba50-e51f3b1e7e2a",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+      "heading_level": null,
+      "markdown": "本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          215.0,
+          897.0,
+          252.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "363823b8-e752-5495-ab77-45cdb1885342",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。",
+      "heading_level": null,
+      "markdown": "安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          256.0,
+          897.0,
+          293.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "17a2a66c-24ec-5ba5-9254-116414351f44",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1.1 有序步骤 TRACE-S-LIST-121",
+      "heading_level": 2,
+      "markdown": "1.1.1 有序步骤 TRACE-S-LIST-121",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          316.0,
+          433.0,
+          331.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b348d8d5-c957-51e2-a9d2-a386f3ba8679",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 校验 Source ID，不得生成新的事实。",
+      "heading_level": null,
+      "markdown": "1. 校验 Source ID，不得生成新的事实。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          346.0,
+          448.0,
+          361.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "87eb9569-b483-52a4-87b9-89806eff102f",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 保留日期 2026-08-19 与编号 TR-2026-08。",
+      "heading_level": null,
+      "markdown": "2. 保留日期 2026-08-19 与编号 TR-2026-08。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          367.0,
+          487.0,
+          382.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3c5a9712-af9a-54f2-a151-855a818d4955",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 只允许调整可证明的 Markdown 格式或结构。",
+      "heading_level": null,
+      "markdown": "3. 只允许调整可证明的 Markdown 格式或结构。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          121.0,
+          387.0,
+          514.0,
+          404.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "97a1a154-cd05-5509-8da1-bc31fb751a04",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.2 代码与公式 TRACE-S-CODE-131",
+      "heading_level": 2,
+      "markdown": "1.2 代码与公式 TRACE-S-CODE-131",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          426.0,
+          478.0,
+          442.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2323ad8d-95a8-53cb-b120-b534d2bc0b74",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。",
+      "heading_level": null,
+      "markdown": "内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          457.0,
+          897.0,
+          493.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2108cc23-466e-552a-897b-32a9d6021f40",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "$$\nE = m c ^ { 2 }\n$$",
+      "heading_level": null,
+      "markdown": "$$\nE = m c ^ { 2 }\n$$",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          363.0,
+          518.0,
+          442.0,
+          535.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3d17db94-7e25-5241-b453-6af869be758d",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "(TRACE-S-MATH-141)",
+      "heading_level": null,
+      "markdown": "(TRACE-S-MATH-141)",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          699.0,
+          520.0,
+          895.0,
+          536.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8ad44863-0e66-57cf-ba24-32fb3068c85d",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。",
+      "heading_level": null,
+      "markdown": "并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          136.0,
+          548.0,
+          705.0,
+          564.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f193db22-2bc1-586a-a8d7-9c71d7d0deda",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-RUNNING-HEADER-S",
+      "heading_level": null,
+      "markdown": "TRACE-RUNNING-HEADER-S",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          28.0,
+          369.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fad8cc8f-1c60-5fd5-8236-55f0e2ee0a39",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-STRUCT-20260819-V1",
+      "heading_level": null,
+      "markdown": "TEX-STRUCT-20260819-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          660.0,
+          28.0,
+          895.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bbe3d5e8-175f-57fc-9cce-be850364064c",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          494.0,
+          951.0,
+          504.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "72b255e0-fe4c-5395-9ee3-37c265eff50f",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2 跨页语义 TRACE-S-SEC-201",
+      "heading_level": 2,
+      "markdown": "2 跨页语义 TRACE-S-SEC-201",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          307.0,
+          72.0,
+          689.0,
+          91.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f1d08805-b8bd-5df9-a80b-7569eaf4f544",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+      "heading_level": null,
+      "markdown": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          108.0,
+          897.0,
+          147.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "56c0fefd-3965-55b5-8a34-8ab7a30b8d01",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2.1 引用 TRACE-S-REF-211",
+      "heading_level": 2,
+      "markdown": "2.1 引用 TRACE-S-REF-211",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          99.0,
+          168.0,
+          398.0,
+          185.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3e34207b-0d5d-5074-8b38-49abb49c71af",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。",
+      "heading_level": null,
+      "markdown": "引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          199.0,
+          897.0,
+          236.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "86ba2da9-7783-5105-9d96-3461749fa844",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+      "heading_level": null,
+      "markdown": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          146.0,
+          254.0,
+          838.0,
+          271.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c2304be7-4167-5ab4-bc4e-8fc69db767ff",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-RUNNING-HEADER-S",
+      "heading_level": null,
+      "markdown": "TRACE-RUNNING-HEADER-S",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          28.0,
+          369.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c127d306-6419-5f52-ac8a-c67c696cad61",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TEX-STRUCT-20260819-V1",
+      "heading_level": null,
+      "markdown": "TEX-STRUCT-20260819-V1",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          660.0,
+          28.0,
+          895.0,
+          42.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bf67432c-1796-56cc-9cdd-2b71d7ace669",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          951.0,
+          505.0,
+          963.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "markdown_only",
+      "reason": "表格未提供 cells 网格，只有 markdown。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-18T18:19:31.128985Z"
+}

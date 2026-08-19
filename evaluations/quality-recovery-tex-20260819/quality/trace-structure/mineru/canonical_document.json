@@ -1,7 +1,7 @@
 {
   "blocks": [
     {
-      "block_id": "c5e68de0-1197-53d0-a83b-48f31339a472",
+      "block_id": "aa9a2314-0506-55f4-a305-2215ba4155ff",
       "content": "可追溯结构测试报告",
       "kind": "heading",
       "metadata": {
@@ -22,7 +22,7 @@
       }
     },
     {
-      "block_id": "2632f5b5-a295-5917-9beb-1d46ed94635f",
+      "block_id": "4d51c198-522c-53df-83bb-73f098b2a87c",
       "content": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
       "kind": "heading",
       "metadata": {
@@ -43,7 +43,7 @@
       }
     },
     {
-      "block_id": "3c44ce3c-ee55-5cd0-a9be-c534affd465b",
+      "block_id": "c25607a1-5387-5e5d-a48d-dcd912e96b5f",
       "content": "1 范围与身份 TRACE-S-SEC-101",
       "kind": "heading",
       "metadata": {
@@ -64,7 +64,7 @@
       }
     },
     {
-      "block_id": "87106cf3-9f0d-522a-b744-45a14cbba032",
+      "block_id": "aeac2aeb-ed82-52ea-afc2-2c44d401c83d",
       "content": "1.1 固定事实 TRACE-S-PARA-111",
       "kind": "heading",
       "metadata": {
@@ -85,7 +85,7 @@
       }
     },
     {
-      "block_id": "ae218024-14cf-55a6-954d-b6c1641a03f1",
+      "block_id": "a036e8ac-a214-55e4-a50d-3a2e383c3e82",
       "content": "本报告生成日期为 2026-08-19，批次编号为 TR-2026-08。验收率固定为 99.75%，预算为 CNY12,345.67。以上数字、标点和货币单位均不得被质量恢复过程改写。",
       "kind": "paragraph",
       "metadata": {},
@@ -104,7 +104,7 @@
       }
     },
     {
-      "block_id": "fc62cb63-3977-59c0-aa89-619f9246d4a4",
+      "block_id": "56412090-45c6-5031-a3f4-05f5f76de448",
       "content": "安全端点为 https://example.test/api?v=2&mode=safe。短横线、斜线、问号、等号和与号都是事实的一部分。",
       "kind": "paragraph",
       "metadata": {},
@@ -123,7 +123,7 @@
       }
     },
     {
-      "block_id": "9af7351b-80c3-54d7-b77f-e3db01466eec",
+      "block_id": "3d3bc903-93c4-5de0-9753-c99ae57389db",
       "content": "1.1.1 有序步骤 TRACE-S-LIST-121",
       "kind": "heading",
       "metadata": {
@@ -144,7 +144,7 @@
       }
     },
     {
-      "block_id": "0d43aad0-f13a-5d34-b449-9cb3ff80b580",
+      "block_id": "5e2976e9-ff99-5ce4-81c7-d44a57d63bc8",
       "content": "1. 校验 Source ID，不得生成新的事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -163,7 +163,7 @@
       }
     },
     {
-      "block_id": "7bc84249-9d8f-5ce0-bfb4-e9b1d7ab1d4c",
+      "block_id": "5ebb9abb-f511-5713-9e18-252259e96c72",
       "content": "2. 保留日期 2026-08-19 与编号 TR-2026-08。",
       "kind": "paragraph",
       "metadata": {},
@@ -182,7 +182,7 @@
       }
     },
     {
-      "block_id": "7d6fbb02-3a3a-5e8c-a342-36a4a6d8db7b",
+      "block_id": "a6ddc13e-75a1-51b9-987b-f77927445b49",
       "content": "3. 只允许调整可证明的 Markdown 格式或结构。",
       "kind": "paragraph",
       "metadata": {},
@@ -201,7 +201,7 @@
       }
     },
     {
-      "block_id": "5f21cd79-14ed-5167-81c8-73871198de7c",
+      "block_id": "4bdb0e8a-396e-575b-8ed2-93a642fc5ace",
       "content": "1.2 代码与公式 TRACE-S-CODE-131",
       "kind": "heading",
       "metadata": {
@@ -222,7 +222,7 @@
       }
     },
     {
-      "block_id": "4f6f7186-adf3-5233-baaa-6b6edc69a25f",
+      "block_id": "11dad156-63ed-52c8-bdc4-9742c0ae9b67",
       "content": "内联代码为 $\\texttt { x } = \\texttt { a } + \\texttt { b }$ ，命令为 python -m quality.check --mode=safe。代码中的加号、连字符和等号不得改变。",
       "kind": "paragraph",
       "metadata": {},
@@ -241,7 +241,7 @@
       }
     },
     {
-      "block_id": "79bc5bb5-fe71-50c7-9f32-cc2746adf586",
+      "block_id": "f0b99c17-8a93-5208-9f65-52666c811ad5",
       "content": "$$\nE = m c ^ { 2 }\n$$",
       "kind": "paragraph",
       "metadata": {},
@@ -260,7 +260,7 @@
       }
     },
     {
-      "block_id": "33fd9373-5f1a-5212-8840-efcfd002d375",
+      "block_id": "8023ebfa-fa48-5e8e-8f41-8298814e42b9",
       "content": "(TRACE-S-MATH-141)",
       "kind": "paragraph",
       "metadata": {},
@@ -279,7 +279,7 @@
       }
     },
     {
-      "block_id": "7c39ca60-d695-526d-97b2-e49fa4120afe",
+      "block_id": "9535e055-2e5d-5b52-8f8f-3e06bd921a09",
       "content": "并定义约束 $a + b \\geq 1 0$ 、误差 $\\epsilon < 0 . 0 0 5$ 。公式运算符属于受保护事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -298,7 +298,7 @@
       }
     },
     {
-      "block_id": "1144b8e4-d8f5-59d1-b452-1c15006a85f1",
+      "block_id": "1c2a8594-c151-57a1-b8c4-a1d8288abab2",
       "content": "TRACE-RUNNING-HEADER-S",
       "kind": "paragraph",
       "metadata": {},
@@ -317,7 +317,7 @@
       }
     },
     {
-      "block_id": "8685faef-671f-590a-8945-c576256c8665",
+      "block_id": "2cf01f74-d999-51be-b65a-5fffb5d0f132",
       "content": "TEX-STRUCT-20260819-V1",
       "kind": "paragraph",
       "metadata": {},
@@ -336,7 +336,7 @@
       }
     },
     {
-      "block_id": "9b5f23a2-9edd-5dd7-abe6-ca4b75241f3c",
+      "block_id": "9c6c12a1-0fb4-5bf7-a398-ba271b78db21",
       "content": "1",
       "kind": "page_number",
       "metadata": {},
@@ -355,7 +355,7 @@
       }
     },
     {
-      "block_id": "b4581b93-7457-5291-8170-b0fca9405503",
+      "block_id": "da0c1726-5945-55ca-9859-d153ef36caf8",
       "content": "2 跨页语义 TRACE-S-SEC-201",
       "kind": "heading",
       "metadata": {
@@ -376,7 +376,7 @@
       }
     },
     {
-      "block_id": "b789513e-f58c-546d-b0ca-5b4dd5d83173",
+      "block_id": "be1f91ca-270b-586a-bc57-2fde4ead5af7",
       "content": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
       "kind": "paragraph",
       "metadata": {},
@@ -395,7 +395,7 @@
       }
     },
     {
-      "block_id": "2e5f26ea-ef0c-5f6e-9051-50fd1e6301b4",
+      "block_id": "c3bb159a-d65b-50e2-89c7-0249de9b330f",
       "content": "2.1 引用 TRACE-S-REF-211",
       "kind": "heading",
       "metadata": {
@@ -416,7 +416,7 @@
       }
     },
     {
-      "block_id": "bb879fd4-8888-5818-b402-7bb3b0b723bc",
+      "block_id": "f2335a24-02cf-5eb2-9535-a0487c6ed24f",
       "content": "引用条目：Quality Recovery Protocol, revision 2.2, archive key QR-0819-A。引用键、版本号与 archive key 都必须原样保留。",
       "kind": "paragraph",
       "metadata": {},
@@ -435,7 +435,7 @@
       }
     },
     {
-      "block_id": "d274df7e-b034-5568-b9d7-311a81ebec2b",
+      "block_id": "645c96d9-e77a-52c7-bba6-f8172d7b18a8",
       "content": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
       "kind": "paragraph",
       "metadata": {},
@@ -454,7 +454,7 @@
       }
     },
     {
-      "block_id": "9f9ed74c-8e86-5901-a35c-f0897801dea9",
+      "block_id": "8499b213-9f17-55c8-8ae1-15bb677cbb84",
       "content": "TRACE-RUNNING-HEADER-S",
       "kind": "paragraph",
       "metadata": {},
@@ -473,7 +473,7 @@
       }
     },
     {
-      "block_id": "590bc8cf-3812-50c7-8ff3-8f791e6129d7",
+      "block_id": "b0d0d060-8a17-59a8-85e2-184ef3749468",
       "content": "TEX-STRUCT-20260819-V1",
       "kind": "paragraph",
       "metadata": {},
@@ -492,7 +492,7 @@
       }
     },
     {
-      "block_id": "1e9786e8-3d33-5ecc-8b1e-933be09b71e6",
+      "block_id": "2b65ab2e-9794-5146-8b82-bfe468bb70ca",
       "content": "2",
       "kind": "page_number",
       "metadata": {},
@@ -521,164 +521,164 @@
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "3c44ce3c-ee55-5cd0-a9be-c534affd465b",
-      "relation_id": "43afb194-72ab-51ad-b870-02350e5e1d4d",
+      "from_id": "c25607a1-5387-5e5d-a48d-dcd912e96b5f",
+      "relation_id": "800b6a63-bfec-58db-99bc-dc13f50e02cd",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "87106cf3-9f0d-522a-b744-45a14cbba032"
+      "to_id": "aeac2aeb-ed82-52ea-afc2-2c44d401c83d"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "050635ad-6013-484d-910f-8949df4d4fa5",
+            "object_id": "17a2a66c-24ec-5ba5-9254-116414351f44",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "050635ad-6013-484d-910f-8949df4d4fa5",
+            "object_id": "17a2a66c-24ec-5ba5-9254-116414351f44",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "050635ad-6013-484d-910f-8949df4d4fa5",
+            "object_id": "17a2a66c-24ec-5ba5-9254-116414351f44",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "87106cf3-9f0d-522a-b744-45a14cbba032",
-      "relation_id": "872d4c26-4a1e-52b7-8a2a-9df2abc29fb7",
+      "from_id": "aeac2aeb-ed82-52ea-afc2-2c44d401c83d",
+      "relation_id": "8f1f7043-18a9-54ff-b838-57c1754c9024",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "9af7351b-80c3-54d7-b77f-e3db01466eec"
+      "to_id": "3d3bc903-93c4-5de0-9753-c99ae57389db"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "5d221215-5872-4d19-a79d-c3329245dde1",
+            "object_id": "97a1a154-cd05-5509-8da1-bc31fb751a04",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "5d221215-5872-4d19-a79d-c3329245dde1",
+            "object_id": "97a1a154-cd05-5509-8da1-bc31fb751a04",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "5d221215-5872-4d19-a79d-c3329245dde1",
+            "object_id": "97a1a154-cd05-5509-8da1-bc31fb751a04",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "3c44ce3c-ee55-5cd0-a9be-c534affd465b",
-      "relation_id": "dc814d0a-9ae4-5937-bc3a-7de6fa19a724",
+      "from_id": "c25607a1-5387-5e5d-a48d-dcd912e96b5f",
+      "relation_id": "cb9ce2b5-b866-561e-ba8f-b18733447ba1",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "5f21cd79-14ed-5167-81c8-73871198de7c"
+      "to_id": "4bdb0e8a-396e-575b-8ed2-93a642fc5ace"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "7a8fa16b-b182-4426-8a94-9d16276fdec1",
+            "object_id": "72b255e0-fe4c-5395-9ee3-37c265eff50f",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "18418a12-ad41-4783-b2a6-d5a85a17ba70",
+            "object_id": "56c0fefd-3965-55b5-8a34-8ab7a30b8d01",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "7a8fa16b-b182-4426-8a94-9d16276fdec1",
+            "object_id": "72b255e0-fe4c-5395-9ee3-37c265eff50f",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "18418a12-ad41-4783-b2a6-d5a85a17ba70",
+            "object_id": "56c0fefd-3965-55b5-8a34-8ab7a30b8d01",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "7a8fa16b-b182-4426-8a94-9d16276fdec1",
+            "object_id": "72b255e0-fe4c-5395-9ee3-37c265eff50f",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "18418a12-ad41-4783-b2a6-d5a85a17ba70",
+            "object_id": "56c0fefd-3965-55b5-8a34-8ab7a30b8d01",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "b4581b93-7457-5291-8170-b0fca9405503",
-      "relation_id": "2e95d03a-f54f-5060-b8aa-b8789edd4603",
+      "from_id": "da0c1726-5945-55ca-9859-d153ef36caf8",
+      "relation_id": "2e871355-9d3a-5f39-8427-98bc71d55a02",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "2e5f26ea-ef0c-5f6e-9051-50fd1e6301b4"
+      "to_id": "c3bb159a-d65b-50e2-89c7-0249de9b330f"
     }
   ],
   "schema_name": "CanonicalDocument",

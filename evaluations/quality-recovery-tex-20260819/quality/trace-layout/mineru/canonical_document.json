@@ -1,7 +1,7 @@
 {
   "blocks": [
     {
-      "block_id": "8860ae67-786b-52b1-b2b7-761896ce3cfc",
+      "block_id": "0df418dd-8180-5468-920c-c0064831fc75",
       "content": "双栏与对象关系测试 TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
       "kind": "heading",
       "metadata": {
@@ -22,7 +22,7 @@
       }
     },
     {
-      "block_id": "16fc2f0e-97c9-5fc3-9997-bbb73a8b5783",
+      "block_id": "63ed8e6c-2ac8-5428-bf18-9d58a1960257",
       "content": "1 左栏起点 TRACE-L-COL-A01",
       "kind": "heading",
       "metadata": {
@@ -43,7 +43,7 @@
       }
     },
     {
-      "block_id": "54ede985-f6eb-5c6a-9178-59dff1159f32",
+      "block_id": "011f888c-4fb9-5269-84ca-20e48aaa7dba",
       "content": "阅读顺序声明为 READ-A-B-C-D。A 段必须先于B 段，随后进入右栏的 C 段与 D 段。本段包含条件$\\alpha \\leq \\beta + 0 . 0 5$ ，不等号与小数必须保留。",
       "kind": "paragraph",
       "metadata": {},
@@ -62,7 +62,7 @@
       }
     },
     {
-      "block_id": "c263c8c1-24da-5942-aedd-d29eb0c37e23",
+      "block_id": "36c4154b-f767-522f-a44b-64dbb65c61b1",
       "content": "1.1 对象说明",
       "kind": "heading",
       "metadata": {
@@ -83,7 +83,7 @@
       }
     },
     {
-      "block_id": "f8c08025-a353-5e9b-945e-4363f0d3a95c",
+      "block_id": "a3920d0e-69df-5280-b3bd-040bd44c88c3",
       "content": "下面的框模拟独立图形对象。它不携带外部资源，但图注与对象必须保持邻接关系。",
       "kind": "paragraph",
       "metadata": {},
@@ -102,7 +102,7 @@
       }
     },
     {
-      "block_id": "c417eb46-2c24-571a-a9d6-eefd1e6aaa27",
+      "block_id": "3c4bffa7-de60-57cd-b8f1-d00a4787e5f2",
       "content": "TRACE-L-FIG-101Figure checksum 7F3A-91C2Flow: INPUT VERIFY OUTPUT图 1：验证流程 TRACE-L-CAP-111",
       "kind": "paragraph",
       "metadata": {},
@@ -121,7 +121,7 @@
       }
     },
     {
-      "block_id": "d6d2e081-d6db-53f5-8ee9-b208ad1dcec3",
+      "block_id": "6ecfee71-cfdd-5005-9b78-793df359996f",
       "content": "对象校验使用固定 checksum，不得把字符 F、A、C与数字混淆。",
       "kind": "paragraph",
       "metadata": {},
@@ -140,7 +140,7 @@
       }
     },
     {
-      "block_id": "1e493f69-afb7-51c6-a966-01f6fdf7ff19",
+      "block_id": "a9ee7631-081f-513a-8199-b9d832c39e64",
       "content": "2 右栏起点 TRACE-L-COL-B01",
       "kind": "heading",
       "metadata": {
@@ -161,7 +161,7 @@
       }
     },
     {
-      "block_id": "9ddd5efe-82da-5436-a6e7-a14d696afe08",
+      "block_id": "e88dc79e-f6a4-5414-aee4-16494247fb12",
       "content": "C 段延续阅读顺序。这里包含脚注引用<sup>1</sup>，脚注标记应与脚注正文建立关系，而不是并入相邻标题。",
       "kind": "paragraph",
       "metadata": {},
@@ -180,7 +180,7 @@
       }
     },
     {
-      "block_id": "285111a9-1ca5-5122-8d18-c6115cba5e14",
+      "block_id": "af934f8e-608a-532b-9337-63a4198117e4",
       "content": "2.1 约束公式",
       "kind": "heading",
       "metadata": {
@@ -201,7 +201,7 @@
       }
     },
     {
-      "block_id": "7335daa2-551d-5822-8476-8a2332e3d3ec",
+      "block_id": "5f47468d-7b27-59a4-8da7-e2e8ed1ac007",
       "content": "$$\n\\alpha \\leq \\beta + 0 . 0 5\n$$",
       "kind": "paragraph",
       "metadata": {},
@@ -220,7 +220,7 @@
       }
     },
     {
-      "block_id": "6fafb47a-0632-553e-8368-46965059010e",
+      "block_id": "abf2166b-4975-5230-be78-1574bfcd0699",
       "content": "(TRACE-L-EQ-131)",
       "kind": "paragraph",
       "metadata": {},
@@ -239,7 +239,7 @@
       }
     },
     {
-      "block_id": "e3d371e2-dd0e-54a7-bb93-9038dedab80d",
+      "block_id": "656d28bd-92f6-537b-8d72-f63df2d964f5",
       "content": "D 段完成 READ-A-B-C-D。页面底部的 Page tokenPL-42 是重复页脚事实，可标记为版面噪声，但不得擅自改写其字符。",
       "kind": "paragraph",
       "metadata": {},
@@ -258,7 +258,7 @@
       }
     },
     {
-      "block_id": "fa78d16e-d5d5-566d-8f4e-e0f3a105e49a",
+      "block_id": "8d8a3643-9ee5-5367-bc3a-756d49de8b7a",
       "content": "1",
       "kind": "page_number",
       "metadata": {},
@@ -277,7 +277,7 @@
       }
     },
     {
-      "block_id": "7d76dd8b-a513-5b78-8a64-8fa60345ce50",
+      "block_id": "63ff3ca0-c842-5211-9263-ec085bb5bb10",
       "content": "TRACE-RUNNING-HEADER-L",
       "kind": "paragraph",
       "metadata": {},
@@ -296,7 +296,7 @@
       }
     },
     {
-      "block_id": "2f7fa816-91ce-5ae6-b2d9-213fc8d307bd",
+      "block_id": "b9231325-bf71-5915-a71c-73583e5c918d",
       "content": "TEX-LAYOUT-20260819-V1",
       "kind": "paragraph",
       "metadata": {},
@@ -315,7 +315,7 @@
       }
     },
     {
-      "block_id": "107d8d16-867c-5031-a8de-5bc6c514b776",
+      "block_id": "f90a096e-0355-5573-a2ad-6326ea6c38e5",
       "content": "<sup>1</sup>TRACE-L-FOOT-121：脚注事实为 footnote-value-19.25。",
       "kind": "paragraph",
       "metadata": {},
@@ -334,7 +334,7 @@
       }
     },
     {
-      "block_id": "700b547f-ccdc-53c9-bed8-04fd913a3ac8",
+      "block_id": "a6a79fb3-b467-5006-9079-3f74e5ea4b80",
       "content": "Page token PL-42",
       "kind": "footer",
       "metadata": {},
@@ -353,7 +353,7 @@
       }
     },
     {
-      "block_id": "66babb5a-74d5-5ed9-b74a-91f7edbf0cf3",
+      "block_id": "4467905b-f1cd-50eb-a6d7-b30b537ef275",
       "content": "3 引用与附录 TRACE-L-REF-201",
       "kind": "heading",
       "metadata": {
@@ -374,7 +374,7 @@
       }
     },
     {
-      "block_id": "a3706e3a-2bd0-5060-a749-5a6215d4bc5a",
+      "block_id": "0a603a50-9e27-5ea0-b083-b330541af2f5",
       "content": "正式引用：Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819。",
       "kind": "paragraph",
       "metadata": {},
@@ -393,7 +393,7 @@
       }
     },
     {
-      "block_id": "f04562b5-b829-5b64-8376-bcdd2d72f14b",
+      "block_id": "b7dfa21f-0d9b-5f2e-a303-7fbc72bb9050",
       "content": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
       "kind": "paragraph",
       "metadata": {},
@@ -412,7 +412,7 @@
       }
     },
     {
-      "block_id": "93fcf7ab-387d-5c74-ad14-40083c5bf814",
+      "block_id": "b2a4e1ff-e098-534a-a9c6-558bab561ba1",
       "content": "本页再次出现运行页眉与 Page token PL-42，用于检测重复页眉页脚的解析行为。",
       "kind": "paragraph",
       "metadata": {},
@@ -431,7 +431,7 @@
       }
     },
     {
-      "block_id": "1a8935fe-98f4-5fba-a877-2c567ee64c4a",
+      "block_id": "ee66b915-3e8c-561d-8509-d71999a7c777",
       "content": "TRACE-RUNNING-HEADER-L",
       "kind": "paragraph",
       "metadata": {},
@@ -450,7 +450,7 @@
       }
     },
     {
-      "block_id": "544c9334-57b6-5f13-8663-19641ef19cbf",
+      "block_id": "0e38d2c5-872c-52fe-86b1-3d254aeb3957",
       "content": "TEX-LAYOUT-20260819-V1",
       "kind": "paragraph",
       "metadata": {},
@@ -469,7 +469,7 @@
       }
     },
     {
-      "block_id": "57a6740a-c926-5e01-bd06-f7699156042d",
+      "block_id": "182200d8-a49e-5db4-acd3-d77b6b0b31ca",
       "content": "Page token PL-42",
       "kind": "footer",
       "metadata": {},
@@ -488,7 +488,7 @@
       }
     },
     {
-      "block_id": "e1144ed8-091c-5448-b779-a4bf81b9358c",
+      "block_id": "7be41f5f-1bd4-511c-8c32-6cdcae7d0df0",
       "content": "2",
       "kind": "page_number",
       "metadata": {},
@@ -517,82 +517,82 @@
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "5e393a35-a5dc-4e0d-9f1c-06ed226cec03",
+            "object_id": "388d02a2-ae8a-52f0-b533-edf78c4b3d5b",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "fa197754-ed34-498e-bc2d-8d2c9aceff44",
+            "object_id": "2ab42668-13ef-548e-8048-e9c15cc7cf34",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "5e393a35-a5dc-4e0d-9f1c-06ed226cec03",
+            "object_id": "388d02a2-ae8a-52f0-b533-edf78c4b3d5b",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "fa197754-ed34-498e-bc2d-8d2c9aceff44",
+            "object_id": "2ab42668-13ef-548e-8048-e9c15cc7cf34",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "5e393a35-a5dc-4e0d-9f1c-06ed226cec03",
+            "object_id": "388d02a2-ae8a-52f0-b533-edf78c4b3d5b",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "fa197754-ed34-498e-bc2d-8d2c9aceff44",
+            "object_id": "2ab42668-13ef-548e-8048-e9c15cc7cf34",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "16fc2f0e-97c9-5fc3-9997-bbb73a8b5783",
-      "relation_id": "be4d8108-ab03-5ebe-9735-6110deddc34d",
+      "from_id": "63ed8e6c-2ac8-5428-bf18-9d58a1960257",
+      "relation_id": "01309758-96ad-57d4-bc4d-e17865f5d0d9",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "c263c8c1-24da-5942-aedd-d29eb0c37e23"
+      "to_id": "36c4154b-f767-522f-a44b-64dbb65c61b1"
     },
     {
       "evidence": {
         "refs": [
           {
             "field_path": "heading_level",
-            "object_id": "59d0aac7-bb66-4753-b652-d7bdfee44b96",
+            "object_id": "f1800092-5559-5c46-a430-1d868a14b8bb",
             "object_type": "block"
           },
           {
             "field_path": "heading_level",
-            "object_id": "94462fd0-6d75-4209-9e20-99b908d6bec5",
+            "object_id": "3ab0226c-584f-5933-98de-a2b1a0500342",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "59d0aac7-bb66-4753-b652-d7bdfee44b96",
+            "object_id": "f1800092-5559-5c46-a430-1d868a14b8bb",
             "object_type": "block"
           },
           {
             "field_path": "order_index",
-            "object_id": "94462fd0-6d75-4209-9e20-99b908d6bec5",
+            "object_id": "3ab0226c-584f-5933-98de-a2b1a0500342",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "59d0aac7-bb66-4753-b652-d7bdfee44b96",
+            "object_id": "f1800092-5559-5c46-a430-1d868a14b8bb",
             "object_type": "block"
           },
           {
             "field_path": "source_block_id",
-            "object_id": "94462fd0-6d75-4209-9e20-99b908d6bec5",
+            "object_id": "3ab0226c-584f-5933-98de-a2b1a0500342",
             "object_type": "block"
           }
         ]
       },
-      "from_id": "1e493f69-afb7-51c6-a966-01f6fdf7ff19",
-      "relation_id": "8778beb0-25dc-5706-87ce-0f94ac15df6b",
+      "from_id": "a9ee7631-081f-513a-8199-b9d832c39e64",
+      "relation_id": "514ac08b-e722-5db7-92e2-0a114cb11ed0",
       "relation_type": "parent_child",
       "status": "inferred",
-      "to_id": "285111a9-1ca5-5122-8d18-c6115cba5e14"
+      "to_id": "af934f8e-608a-532b-9337-63a4198117e4"
     }
   ],
   "schema_name": "CanonicalDocument",

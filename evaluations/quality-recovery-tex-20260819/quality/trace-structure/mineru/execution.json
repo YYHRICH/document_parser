@@ -1,7 +1,7 @@
 {
   "session_id": "quality-recovery-tex-20260819:trace-structure:mineru",
   "accepted": true,
-  "final_revision_id": "78eb31e7956e6c578a080f1070c68f3beeffcff0bdb02aada240db9e11e5c7af",
+  "final_revision_id": "ca89fbc82afa9f6d3ea8617dbcd533e9907dcb8b422a912587f7819a989a4a40",
   "attempts": [
     {
       "accepted": true,
@@ -13,7 +13,7 @@
       "changed_table_ids": [],
       "changed_relation_keys": [],
       "changed_asset_paths": [],
-      "base_revision": "78eb31e7956e6c578a080f1070c68f3beeffcff0bdb02aada240db9e11e5c7af",
+      "base_revision": "ca89fbc82afa9f6d3ea8617dbcd533e9907dcb8b422a912587f7819a989a4a40",
       "source_content_fingerprint": "sem-v2:1683335831e742bab7b391588432e51502e363107ed244e69d6bcdb2fb9a8ce2",
       "candidate_content_fingerprint": "sem-v2:1683335831e742bab7b391588432e51502e363107ed244e69d6bcdb2fb9a8ce2"
     }

@@ -139,8 +139,10 @@ def repair_all() -> None:
                 / parser_name
                 / "parsed_document.json"
             )
+            normalized_path = parsed_path.with_name("normalized_document.json")
+            input_path = normalized_path if normalized_path.exists() else parsed_path
             parsed = ParsedDocument.model_validate_json(
-                parsed_path.read_text(encoding="utf-8")
+                input_path.read_text(encoding="utf-8")
             )
             output_dir = EVAL_ROOT / "quality" / document_name / parser_name
             session_id = f"{spec['evaluation_id']}:{document_name}:{parser_name}"

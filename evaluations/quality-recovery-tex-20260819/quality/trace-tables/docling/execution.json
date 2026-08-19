@@ -1,7 +1,7 @@
 {
   "session_id": "quality-recovery-tex-20260819:trace-tables:docling",
   "accepted": true,
-  "final_revision_id": "562d0a4e4c589707b51a51b7eabf124d2240fe98b63fbe445b4f6b87fd33a111",
+  "final_revision_id": "ce11d9a5eff96c5e4a03dccc017b80b3b9d6610ca8c23ba0a7cffc9863dbad7d",
   "attempts": [
     {
       "accepted": true,
@@ -10,14 +10,14 @@
       "errors": [],
       "no_progress": false,
       "changed_block_ids": [
-        "98ef799b-0f96-4fa0-ab58-a1f96a43a5fb",
-        "1ad5f248-4616-4ffd-acc0-1e3952dde506",
-        "c30b5b5b-f147-4ab3-b059-058b1bb57d7a"
+        "491b6d30-d7da-57a0-b587-efd65b8bd34a",
+        "06691733-3205-587f-8514-2cc75f6f132d",
+        "d60c13da-4d67-528e-91fa-99d3e61d8b41"
       ],
       "changed_table_ids": [],
       "changed_relation_keys": [],
       "changed_asset_paths": [],
-      "base_revision": "5a71da1768fc9d06176d224a5f2bd2c3fda1f4b1932c321199441ce78fab5a2f",
+      "base_revision": "0401ca56dab3fc7c4acd20e03e481c47c5e55e0375f06f0b7c62b4f54babdc9f",
       "source_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be",
       "candidate_content_fingerprint": "sem-v2:642328c68803243e387c15b0af34d421ae17690efdfaa18452436791409b77be"
     }

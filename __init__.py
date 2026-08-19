@@ -38,6 +38,9 @@ from .core.contracts import (
     SourceAnchor,
     TableCell,
     TableFieldBinding,
+    WikiCitation,
+    WikiChunk,
+    WikiHandoff,
 )
 from .core.gateway import DocumentParserGateway
 from .core.package_loader import (
@@ -89,5 +92,8 @@ __all__ = [
     "SourceAnchor",
     "TableCell",
     "TableFieldBinding",
+    "WikiCitation",
+    "WikiChunk",
+    "WikiHandoff",
     "load_document_package",
 ]

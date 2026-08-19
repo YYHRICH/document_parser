@@ -1,0 +1,243 @@
+[
+  {
+    "chunk_id": "block:f4517cf4-9abf-5363-b4ac-eee0cbc46710",
+    "kind": "heading",
+    "order_index": 0,
+    "content": "# 双栏与对象关系测试",
+    "citation_ids": [
+      "block:f4517cf4-9abf-5363-b4ac-eee0cbc46710"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 1
+    }
+  },
+  {
+    "chunk_id": "block:ff0b7bdf-2a3a-5caf-b1b8-1374c22bd1db",
+    "kind": "paragraph",
+    "order_index": 1,
+    "content": "TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
+    "citation_ids": [
+      "block:ff0b7bdf-2a3a-5caf-b1b8-1374c22bd1db"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:b7cded3b-de39-5e04-8249-b994cf3e01dc",
+    "kind": "heading",
+    "order_index": 2,
+    "content": "## 1 左栏起点 TRACE-L-COL-A01 2 右栏起点 TRACE-L-COL-B01",
+    "citation_ids": [
+      "block:b7cded3b-de39-5e04-8249-b994cf3e01dc"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:b26c20f9-58be-5ec0-9dc0-d37e87c66d86",
+    "kind": "paragraph",
+    "order_index": 3,
+    "content": "阅读顺序声明为 READ-A-B-C-D 。 A 段必须先于 B 段，随后进入右栏的 C 段与 D 段。本段包含条件 α ≤ β +0 . 05 ，不等号与小数必须保留。",
+    "citation_ids": [
+      "block:b26c20f9-58be-5ec0-9dc0-d37e87c66d86"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:a8cd9fb9-daa9-5558-9b22-271f7706df36",
+    "kind": "heading",
+    "order_index": 4,
+    "content": "### 1.1 对象说明",
+    "citation_ids": [
+      "block:a8cd9fb9-daa9-5558-9b22-271f7706df36"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 3
+    }
+  },
+  {
+    "chunk_id": "block:21dffa51-af3b-5bf2-9454-c85e3ae41449",
+    "kind": "paragraph",
+    "order_index": 5,
+    "content": "下面的框模拟独立图形对象。 它不携带外部资源， 但 图注与对象必须保持邻接关系。",
+    "citation_ids": [
+      "block:21dffa51-af3b-5bf2-9454-c85e3ae41449"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:eee493e3-dce1-5bf8-afda-f563487b8e42",
+    "kind": "paragraph",
+    "order_index": 6,
+    "content": "TRACE-L-FIG-101",
+    "citation_ids": [
+      "block:eee493e3-dce1-5bf8-afda-f563487b8e42"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:b9030588-59f7-5df7-ba32-388dd9f4c202",
+    "kind": "paragraph",
+    "order_index": 7,
+    "content": "Figure checksum 7F3A-91C2",
+    "citation_ids": [
+      "block:b9030588-59f7-5df7-ba32-388dd9f4c202"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f0285f1d-726b-5003-9a1d-c9f6214af213",
+    "kind": "paragraph",
+    "order_index": 8,
+    "content": "图 1 ：验证流程 TRACE-L-CAP-111",
+    "citation_ids": [
+      "block:f0285f1d-726b-5003-9a1d-c9f6214af213"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f17bf106-b228-5e02-96c9-508859f7e378",
+    "kind": "paragraph",
+    "order_index": 9,
+    "content": "Flow: INPUT → VERIFY → OUTPUT",
+    "citation_ids": [
+      "block:f17bf106-b228-5e02-96c9-508859f7e378"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:ace557aa-4df4-5169-adb1-358c57b88b33",
+    "kind": "paragraph",
+    "order_index": 10,
+    "content": "对象校验使用固定 checksum ，不得把字符 F 、 A 、 C 与数字混淆。",
+    "citation_ids": [
+      "block:ace557aa-4df4-5169-adb1-358c57b88b33"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:8d561067-d4db-5d40-88df-4d5dfedd127f",
+    "kind": "paragraph",
+    "order_index": 11,
+    "content": "1 TRACE-L-FOOT-121 ：脚注事实为 footnote-value-19.25 。",
+    "citation_ids": [
+      "block:8d561067-d4db-5d40-88df-4d5dfedd127f"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:cf2cdb08-5576-5e2e-9b24-1b3930c27773",
+    "kind": "paragraph",
+    "order_index": 12,
+    "content": "C 段延续阅读顺序。这里包含脚注引用 1 ，脚注标记 应与脚注正文建立关系，而不是并入相邻标题。",
+    "citation_ids": [
+      "block:cf2cdb08-5576-5e2e-9b24-1b3930c27773"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:f1f36cce-7cf8-5cb9-b18f-26a2524a9a1a",
+    "kind": "heading",
+    "order_index": 13,
+    "content": "### 2.1 约束公式",
+    "citation_ids": [
+      "block:f1f36cce-7cf8-5cb9-b18f-26a2524a9a1a"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 3
+    }
+  },
+  {
+    "chunk_id": "block:5fc5041b-482b-5407-857c-4d40d567c885",
+    "kind": "paragraph",
+    "order_index": 14,
+    "content": "α ≤ β +0 . 05",
+    "citation_ids": [
+      "block:5fc5041b-482b-5407-857c-4d40d567c885"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:80d9bba0-8681-5f26-b86c-4ef5a902f08c",
+    "kind": "paragraph",
+    "order_index": 15,
+    "content": "(TRACE-L-EQ-131)",
+    "citation_ids": [
+      "block:80d9bba0-8681-5f26-b86c-4ef5a902f08c"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:178b4486-4117-52de-8b51-e86d793a3d76",
+    "kind": "paragraph",
+    "order_index": 16,
+    "content": "D 段完成 READ-A-B-C-D 。页面底部的 Page token PL-42 是重复页脚事实，可标记为版面噪声，但不得擅 自改写其字符。",
+    "citation_ids": [
+      "block:178b4486-4117-52de-8b51-e86d793a3d76"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:233d0f54-e4e6-55ed-8b9e-544baf94bf27",
+    "kind": "heading",
+    "order_index": 17,
+    "content": "## 3 引用与附录 TRACE-L-REF-201",
+    "citation_ids": [
+      "block:233d0f54-e4e6-55ed-8b9e-544baf94bf27"
+    ],
+    "evidence_status": "verified",
+    "metadata": {
+      "heading_level": 2
+    }
+  },
+  {
+    "chunk_id": "block:e53bfb1d-90dd-5d17-8daa-fff376caceb3",
+    "kind": "paragraph",
+    "order_index": 18,
+    "content": "正式引用： Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819 。",
+    "citation_ids": [
+      "block:e53bfb1d-90dd-5d17-8daa-fff376caceb3"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:52071080-720f-5668-bb70-01f521f67724",
+    "kind": "paragraph",
+    "order_index": 19,
+    "content": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
+    "citation_ids": [
+      "block:52071080-720f-5668-bb70-01f521f67724"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  },
+  {
+    "chunk_id": "block:effade2b-d13c-598b-98c9-31496f304dee",
+    "kind": "paragraph",
+    "order_index": 20,
+    "content": "本页再次出现运行页眉与 Page token PL-42 ，用于检测重复页眉页脚的解析行为。",
+    "citation_ids": [
+      "block:effade2b-d13c-598b-98c9-31496f304dee"
+    ],
+    "evidence_status": "verified",
+    "metadata": {}
+  }
+]

@@ -1,0 +1,628 @@
+{
+  "schema_name": "WikiHandoff",
+  "schema_version": "1.0",
+  "document_id": "11fd2c67-3ab2-47b7-a465-e3f2dcea15cb",
+  "quality_state": "pass",
+  "optimized_markdown": "## 可追溯结构测试报告\n\nTRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1\n\n### 1 范围与身份 TRACE-S-SEC-101\n\n#### 1.1 固定事实 TRACE-S-PARA-111\n\n本报告生成日期为 2026-08-19 ，批次编号为 TR-2026-08 。验收率固定为 99.75% ，预算为 CNY 。以上数字、标点和货币单位均不得被质量恢复过程改写。\n\n12,345.67\n\n安全端点为 https://example.test/api?v=2&amp;mode=safe 。短横线、斜线、问号、等号和与号 都是事实的一部分。\n\n##### 1.1.1 有序步骤 TRACE-S-LIST-121\n\n1. 校验 Source ID ，不得生成新的事实。\n2. 保留日期 2026-08-19 与编号 TR-2026-08 。\n3. 只允许调整可证明的 Markdown 格式或结构。\n\n#### 1.2 代码与公式 TRACE-S-CODE-131\n\n内联代码为 x = a+b ，命令为 python -m quality.check --mode=safe 符和等号不得改变。\n\n<!-- formula-not-decoded -->\n\n。代码中的加号、连字\n\n(TRACE-S-MATH-141)\n\n并定义约束 a + b ≥ 10 、误差 ϵ &lt; 0 . 005 。公式运算符属于受保护事实。\n\n### 2 跨页语义 TRACE-S-SEC-201\n\n本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确 结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。\n\n#### 2.1 引用 TRACE-S-REF-211\n\n引用条目： Quality Recovery Protocol, revision 2.2, archive key QR-0819-A 。引用键、版本号 与 archive key 都必须原样保留。\n\n可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+  "chunks": [
+    {
+      "chunk_id": "block:f2424b8f-15fb-5cbe-818c-b90984a163e5",
+      "kind": "heading",
+      "order_index": 0,
+      "content": "# 可追溯结构测试报告",
+      "citation_ids": [
+        "block:f2424b8f-15fb-5cbe-818c-b90984a163e5"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 1
+      }
+    },
+    {
+      "chunk_id": "block:477c5dad-1823-51d5-9a34-cac9af6fadf1",
+      "kind": "paragraph",
+      "order_index": 1,
+      "content": "TRACE-S-DOC-001 | Source: TEX-STRUCT-20260819-V1",
+      "citation_ids": [
+        "block:477c5dad-1823-51d5-9a34-cac9af6fadf1"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:ee241523-5bfd-52f7-961b-bf05e7a01179",
+      "kind": "heading",
+      "order_index": 2,
+      "content": "## 1 范围与身份 TRACE-S-SEC-101",
+      "citation_ids": [
+        "block:ee241523-5bfd-52f7-961b-bf05e7a01179"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:4d9951c4-8ada-5fd6-b181-00fc3121dd51",
+      "kind": "heading",
+      "order_index": 3,
+      "content": "### 1.1 固定事实 TRACE-S-PARA-111",
+      "citation_ids": [
+        "block:4d9951c4-8ada-5fd6-b181-00fc3121dd51"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 3
+      }
+    },
+    {
+      "chunk_id": "block:24065735-5897-5f4b-b425-bf5b9ff02c4c",
+      "kind": "paragraph",
+      "order_index": 4,
+      "content": "本报告生成日期为 2026-08-19 ，批次编号为 TR-2026-08 。验收率固定为 99.75% ，预算为 CNY 。以上数字、标点和货币单位均不得被质量恢复过程改写。",
+      "citation_ids": [
+        "block:24065735-5897-5f4b-b425-bf5b9ff02c4c"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:cfe5d23e-77ba-57db-be14-40b7f14d20b8",
+      "kind": "paragraph",
+      "order_index": 5,
+      "content": "12,345.67",
+      "citation_ids": [
+        "block:cfe5d23e-77ba-57db-be14-40b7f14d20b8"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:239144b2-f803-58d0-9884-e2de7963534d",
+      "kind": "paragraph",
+      "order_index": 6,
+      "content": "安全端点为 https://example.test/api?v=2&mode=safe 。短横线、斜线、问号、等号和与号 都是事实的一部分。",
+      "citation_ids": [
+        "block:239144b2-f803-58d0-9884-e2de7963534d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e8c15fed-aad8-52c1-bc07-8174c9a2b394",
+      "kind": "heading",
+      "order_index": 7,
+      "content": "#### 1.1.1 有序步骤 TRACE-S-LIST-121",
+      "citation_ids": [
+        "block:e8c15fed-aad8-52c1-bc07-8174c9a2b394"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 4
+      }
+    },
+    {
+      "chunk_id": "block:24ddf666-4313-50e7-ab19-673f1703983b",
+      "kind": "paragraph",
+      "order_index": 8,
+      "content": "校验 Source ID ，不得生成新的事实。",
+      "citation_ids": [
+        "block:24ddf666-4313-50e7-ab19-673f1703983b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f35452c9-7d17-505c-ae33-0e0c2561b81f",
+      "kind": "paragraph",
+      "order_index": 9,
+      "content": "保留日期 2026-08-19 与编号 TR-2026-08 。",
+      "citation_ids": [
+        "block:f35452c9-7d17-505c-ae33-0e0c2561b81f"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:cc88fc7a-0658-5e06-9a00-97faffb13a6d",
+      "kind": "paragraph",
+      "order_index": 10,
+      "content": "只允许调整可证明的 Markdown 格式或结构。",
+      "citation_ids": [
+        "block:cc88fc7a-0658-5e06-9a00-97faffb13a6d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:7bca9b64-bea6-59cf-98cb-f26f1dcf640d",
+      "kind": "heading",
+      "order_index": 11,
+      "content": "### 1.2 代码与公式 TRACE-S-CODE-131",
+      "citation_ids": [
+        "block:7bca9b64-bea6-59cf-98cb-f26f1dcf640d"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 3
+      }
+    },
+    {
+      "chunk_id": "block:d2697a9d-82c6-52ec-9883-e49b58f8a01b",
+      "kind": "paragraph",
+      "order_index": 12,
+      "content": "内联代码为 x = a+b ，命令为 python -m quality.check --mode=safe 符和等号不得改变。",
+      "citation_ids": [
+        "block:d2697a9d-82c6-52ec-9883-e49b58f8a01b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:f1963497-e10c-5209-b031-333b3a3fb6ef",
+      "kind": "paragraph",
+      "order_index": 13,
+      "content": "",
+      "citation_ids": [
+        "block:f1963497-e10c-5209-b031-333b3a3fb6ef"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:0cc7e066-5a49-51fc-aa91-8e82c197e418",
+      "kind": "paragraph",
+      "order_index": 14,
+      "content": "。代码中的加号、连字",
+      "citation_ids": [
+        "block:0cc7e066-5a49-51fc-aa91-8e82c197e418"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:a1fafa9d-7b7a-5a67-9f5f-2f3b12f682be",
+      "kind": "paragraph",
+      "order_index": 15,
+      "content": "(TRACE-S-MATH-141)",
+      "citation_ids": [
+        "block:a1fafa9d-7b7a-5a67-9f5f-2f3b12f682be"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:c787f26d-0c1b-5333-bd78-a4d0a28f868a",
+      "kind": "paragraph",
+      "order_index": 16,
+      "content": "并定义约束 a + b ≥ 10 、误差 ϵ < 0 . 005 。公式运算符属于受保护事实。",
+      "citation_ids": [
+        "block:c787f26d-0c1b-5333-bd78-a4d0a28f868a"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:614774b6-47a4-58fb-827b-e6a3ce64ea2b",
+      "kind": "heading",
+      "order_index": 17,
+      "content": "## 2 跨页语义 TRACE-S-SEC-201",
+      "citation_ids": [
+        "block:614774b6-47a4-58fb-827b-e6a3ce64ea2b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 2
+      }
+    },
+    {
+      "chunk_id": "block:5b67ecf4-f2a5-51ff-a027-c05df9dc0edd",
+      "kind": "paragraph",
+      "order_index": 18,
+      "content": "本页用于观察解析器是否重复页眉、打乱标题层级或把上一页尾部与本页首段错误合并。明确 结论是：结构修复可以改变 Markdown 标记，但不能修改任何可见事实。",
+      "citation_ids": [
+        "block:5b67ecf4-f2a5-51ff-a027-c05df9dc0edd"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:98733a6f-205d-5b0f-bb74-d360f996414b",
+      "kind": "heading",
+      "order_index": 19,
+      "content": "### 2.1 引用 TRACE-S-REF-211",
+      "citation_ids": [
+        "block:98733a6f-205d-5b0f-bb74-d360f996414b"
+      ],
+      "evidence_status": "verified",
+      "metadata": {
+        "heading_level": 3
+      }
+    },
+    {
+      "chunk_id": "block:6a812f7c-0685-5717-83a3-b04b910891a0",
+      "kind": "paragraph",
+      "order_index": 20,
+      "content": "引用条目： Quality Recovery Protocol, revision 2.2, archive key QR-0819-A 。引用键、版本号 与 archive key 都必须原样保留。",
+      "citation_ids": [
+        "block:6a812f7c-0685-5717-83a3-b04b910891a0"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    },
+    {
+      "chunk_id": "block:e3a328c9-737b-53bd-b572-6a98769612dc",
+      "kind": "paragraph",
+      "order_index": 21,
+      "content": "可审计输出必须能从 optimized Markdown 回溯到 ParsedDocument 的稳定来源字段。",
+      "citation_ids": [
+        "block:e3a328c9-737b-53bd-b572-6a98769612dc"
+      ],
+      "evidence_status": "verified",
+      "metadata": {}
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "block:f2424b8f-15fb-5cbe-818c-b90984a163e5",
+      "canonical_block_id": "f2424b8f-15fb-5cbe-818c-b90984a163e5",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "page_number": 1,
+      "bbox": [
+        220.168,
+        61.69597139999996,
+        375.1065999999999,
+        78.91137140000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:477c5dad-1823-51d5-9a34-cac9af6fadf1",
+      "canonical_block_id": "477c5dad-1823-51d5-9a34-cac9af6fadf1",
+      "source_block_id": "docling-TextItem-1",
+      "page_number": 1,
+      "bbox": [
+        167.91400000000002,
+        90.05314439999995,
+        427.3699917999998,
+        100.01574440000002
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:ee241523-5bfd-52f7-961b-bf05e7a01179",
+      "canonical_block_id": "ee241523-5bfd-52f7-961b-bf05e7a01179",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "page_number": 1,
+      "bbox": [
+        178.966,
+        125.52861419999999,
+        416.32394339999996,
+        140.6351628
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:4d9951c4-8ada-5fd6-b181-00fc3121dd51",
+      "canonical_block_id": "4d9951c4-8ada-5fd6-b181-00fc3121dd51",
+      "source_block_id": "docling-SectionHeaderItem-3",
+      "page_number": 1,
+      "bbox": [
+        62.362,
+        156.52948319999996,
+        271.07614880000006,
+        169.11830880000002
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:24065735-5897-5f4b-b425-bf5b9ff02c4c",
+      "canonical_block_id": "24065735-5897-5f4b-b425-bf5b9ff02c4c",
+      "source_block_id": "docling-TextItem-4",
+      "page_number": 1,
+      "bbox": [
+        84.18,
+        182.09408310000003,
+        532.9130202,
+        210.61718310000003
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:cfe5d23e-77ba-57db-be14-40b7f14d20b8",
+      "canonical_block_id": "cfe5d23e-77ba-57db-be14-40b7f14d20b8",
+      "source_block_id": "docling-TextItem-5",
+      "page_number": 1,
+      "bbox": [
+        62.36200000000002,
+        200.28626540000005,
+        106.60930960000003,
+        211.19536540000001
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:239144b2-f803-58d0-9884-e2de7963534d",
+      "canonical_block_id": "239144b2-f803-58d0-9884-e2de7963534d",
+      "source_block_id": "docling-TextItem-6",
+      "page_number": 1,
+      "bbox": [
+        62.361999999999966,
+        217.3220831,
+        532.9214169000004,
+        245.84518309999999
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e8c15fed-aad8-52c1-bc07-8174c9a2b394",
+      "canonical_block_id": "e8c15fed-aad8-52c1-bc07-8174c9a2b394",
+      "source_block_id": "docling-SectionHeaderItem-7",
+      "page_number": 1,
+      "bbox": [
+        62.362,
+        267.8310831,
+        257.78772879999997,
+        279.31836540000006
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:24ddf666-4313-50e7-ab19-673f1703983b",
+      "canonical_block_id": "24ddf666-4313-50e7-ab19-673f1703983b",
+      "source_block_id": "docling-ListItem-8",
+      "page_number": 1,
+      "bbox": [
+        75.693,
+        292.49808310000003,
+        271.631,
+        303.9853654
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f35452c9-7d17-505c-ae33-0e0c2561b81f",
+      "canonical_block_id": "f35452c9-7d17-505c-ae33-0e0c2561b81f",
+      "source_block_id": "docling-ListItem-9",
+      "page_number": 1,
+      "bbox": [
+        75.693,
+        310.11208309999995,
+        294.60609999999997,
+        321.5993654
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:cc88fc7a-0658-5e06-9a00-97faffb13a6d",
+      "canonical_block_id": "cc88fc7a-0658-5e06-9a00-97faffb13a6d",
+      "source_block_id": "docling-ListItem-10",
+      "page_number": 1,
+      "bbox": [
+        75.693,
+        327.7260831,
+        311.1876,
+        339.2133654
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:7bca9b64-bea6-59cf-98cb-f26f1dcf640d",
+      "canonical_block_id": "7bca9b64-bea6-59cf-98cb-f26f1dcf640d",
+      "source_block_id": "docling-SectionHeaderItem-11",
+      "page_number": 1,
+      "bbox": [
+        62.362,
+        360.24048319999997,
+        283.55717760000005,
+        372.8293088
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:d2697a9d-82c6-52ec-9883-e49b58f8a01b",
+      "canonical_block_id": "d2697a9d-82c6-52ec-9883-e49b58f8a01b",
+      "source_block_id": "docling-TextItem-12",
+      "page_number": 1,
+      "bbox": [
+        62.361999999999966,
+        385.8050831,
+        427.37171250000046,
+        414.3281831
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:f1963497-e10c-5209-b031-333b3a3fb6ef",
+      "canonical_block_id": "f1963497-e10c-5209-b031-333b3a3fb6ef",
+      "source_block_id": "docling-FormulaItem-13",
+      "page_number": 1,
+      "bbox": [
+        219.388,
+        438.07042169999994,
+        261.1471231,
+        450.10082070345817
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:0cc7e066-5a49-51fc-aa91-8e82c197e418",
+      "canonical_block_id": "0cc7e066-5a49-51fc-aa91-8e82c197e418",
+      "source_block_id": "docling-TextItem-14",
+      "page_number": 1,
+      "bbox": [
+        427.371,
+        385.8050831,
+        532.9165425000002,
+        396.7141831
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:a1fafa9d-7b7a-5a67-9f5f-2f3b12f682be",
+      "canonical_block_id": "a1fafa9d-7b7a-5a67-9f5f-2f3b12f682be",
+      "source_block_id": "docling-TextItem-15",
+      "page_number": 1,
+      "bbox": [
+        418.673,
+        439.22526539999996,
+        532.9243643999998,
+        450.1343654
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:c787f26d-0c1b-5333-bd78-a4d0a28f868a",
+      "canonical_block_id": "c787f26d-0c1b-5333-bd78-a4d0a28f868a",
+      "source_block_id": "docling-TextItem-16",
+      "page_number": 1,
+      "bbox": [
+        84.17999999999995,
+        462.73708309999995,
+        424.50440000000015,
+        481.3375208877419
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:614774b6-47a4-58fb-827b-e6a3ce64ea2b",
+      "canonical_block_id": "614774b6-47a4-58fb-827b-e6a3ce64ea2b",
+      "source_block_id": "docling-SectionHeaderItem-17",
+      "page_number": 2,
+      "bbox": [
+        186.139,
+        61.919614199999955,
+        409.1365972,
+        77.02616279999995
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:5b67ecf4-f2a5-51ff-a027-c05df9dc0edd",
+      "canonical_block_id": "5b67ecf4-f2a5-51ff-a027-c05df9dc0edd",
+      "source_block_id": "docling-TextItem-18",
+      "page_number": 2,
+      "bbox": [
+        62.36200000000001,
+        93.30008310000005,
+        532.9040103000004,
+        122.40136540000003
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:98733a6f-205d-5b0f-bb74-d360f996414b",
+      "canonical_block_id": "98733a6f-205d-5b0f-bb74-d360f996414b",
+      "source_block_id": "docling-SectionHeaderItem-19",
+      "page_number": 2,
+      "bbox": [
+        62.362,
+        143.42848319999996,
+        236.05876800000001,
+        156.01730880000002
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:6a812f7c-0685-5717-83a3-b04b910891a0",
+      "canonical_block_id": "6a812f7c-0685-5717-83a3-b04b910891a0",
+      "source_block_id": "docling-TextItem-20",
+      "page_number": 2,
+      "bbox": [
+        62.36200000000002,
+        168.9940831,
+        532.9052547000001,
+        198.09436540000002
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    },
+    {
+      "citation_id": "block:e3a328c9-737b-53bd-b572-6a98769612dc",
+      "canonical_block_id": "e3a328c9-737b-53bd-b572-6a98769612dc",
+      "source_block_id": "docling-TextItem-21",
+      "page_number": 2,
+      "bbox": [
+        89.635,
+        216.1770831,
+        504.30080000000015,
+        227.66436540000007
+      ],
+      "table_id": null,
+      "table_cell": null,
+      "provenance_status": "verified",
+      "evidence": {}
+    }
+  ],
+  "warnings": [
+    "info:content_completeness: 1 个 block 内容为空。"
+  ],
+  "metadata": {
+    "quality_report_contract_version": "1.0",
+    "chunk_count": 22,
+    "citation_count": 22,
+    "table_binding_count": 0
+  }
+}

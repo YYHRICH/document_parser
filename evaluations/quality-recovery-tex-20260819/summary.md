@@ -7,7 +7,6 @@
 | trace-tables | mineru | accepted | True | 10/10 | 10/10 | 5/6 | 5/6 | manual_review_required |
 | trace-tables | docling | accepted | True | 10/10 | 10/10 | 5/6 | 5/6 | manual_review_required |
 | trace-layout | mineru | accepted | False | 7/8 | 7/8 | 4/5 | 4/5 | manual_review_required |
-| trace-layout | docling | accepted | True | 8/8 | 8/8 | 5/5 | 5/5 | pass |
 
 说明：恢复后召回率不能高于解析阶段缺失事实的上限；质量 Agent 只允许修复格式/结构，
 不会猜测并补写解析器已经丢失的正文事实。详细 attempts、diff 和四件套见 `quality/`。

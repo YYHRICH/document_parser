@@ -1,0 +1,140 @@
+{
+  "results": [
+    {
+      "document": "trace-layout",
+      "parser": "docling",
+      "blocks_before": 21,
+      "blocks_after": 21,
+      "tables_before": 0,
+      "tables_after": 0,
+      "warnings_before": 0,
+      "warnings_after": 0,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": []
+    },
+    {
+      "document": "trace-layout",
+      "parser": "mineru",
+      "blocks_before": 26,
+      "blocks_after": 26,
+      "tables_before": 0,
+      "tables_after": 0,
+      "warnings_before": 0,
+      "warnings_after": 0,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": []
+    },
+    {
+      "document": "trace-structure",
+      "parser": "docling",
+      "blocks_before": 22,
+      "blocks_after": 22,
+      "tables_before": 0,
+      "tables_after": 0,
+      "warnings_before": 0,
+      "warnings_after": 0,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": []
+    },
+    {
+      "document": "trace-structure",
+      "parser": "mineru",
+      "blocks_before": 26,
+      "blocks_after": 26,
+      "tables_before": 0,
+      "tables_after": 0,
+      "warnings_before": 0,
+      "warnings_after": 0,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": []
+    },
+    {
+      "document": "trace-tables",
+      "parser": "docling",
+      "blocks_before": 13,
+      "blocks_after": 13,
+      "tables_before": 3,
+      "tables_after": 3,
+      "warnings_before": 0,
+      "warnings_after": 0,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling",
+        "table_count": 3,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": []
+    },
+    {
+      "document": "trace-tables",
+      "parser": "mineru",
+      "blocks_before": 14,
+      "blocks_after": 14,
+      "tables_before": 3,
+      "tables_after": 3,
+      "warnings_before": 0,
+      "warnings_after": 3,
+      "markdown_changed": false,
+      "stable_ids_repeatable": true,
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "mineru",
+        "table_count": 3,
+        "warning_count": 3,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      },
+      "warnings": [
+        "mineru:table-001: 网格占位冲突: (1, 0)。",
+        "mineru:table-001: 网格占位冲突: (1, 1)。",
+        "mineru:table-001: 数据网格存在 2 个未占位槽位。"
+      ]
+    }
+  ]
+}

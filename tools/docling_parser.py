@@ -48,6 +48,7 @@ from document_parser.core.contracts import (  # noqa: E402
     SourceAnchor,
     TableCell,
 )
+from document_parser.parsers.normalization import normalize_parsed_document  # noqa: E402
 
 DOCLING_VERSION = getattr(docling, "__version__", "unknown")
 
@@ -195,7 +196,7 @@ def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocu
         )
 
     source_bytes = source.read_bytes()
-    return ParsedDocument(
+    document = ParsedDocument(
         document_id=uuid4(),
         filename=source.name,
         file_type=file_type,
@@ -229,6 +230,7 @@ def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocu
         },
         warnings=[],
     )
+    return normalize_parsed_document(document, parser_label="docling-local")
 
 
 def _grid_to_markdown(grid) -> str:

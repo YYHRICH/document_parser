@@ -1,7 +1,7 @@
 {
   "applied_repairs": [],
   "artifacts": {
-    "canonical_document.json": "c4f51e77c08570d6af4636deea7efd37bfd2a371333ed486658d3431a139145e",
+    "canonical_document.json": "dfe23cc1ee3efbafbe5ac1dbb209ea685123f157e9ee7577dec567657dd61593",
     "input_parsed_document.json": "af09fd940ead6e680646cf2c41250df5bd9b3dcc3222a206fcf191c3623a41f0",
     "optimized.md": "de31a3f215c52bc1aa13d443317b9b69dfd0aaa910ccb3004bf9e1f38b65e1f6"
   },
@@ -41,19 +41,19 @@
         "evidence_refs": [
           {
             "field_path": "heading_level",
-            "object_id": "7a8fa16b-b182-4426-8a94-9d16276fdec1",
+            "object_id": "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
             "object_type": "block",
             "value_sha256": null
           },
           {
             "field_path": "heading_level",
-            "object_id": "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
+            "object_id": "72b255e0-fe4c-5395-9ee3-37c265eff50f",
             "object_type": "block",
             "value_sha256": null
           },
           {
             "field_path": "heading_level",
-            "object_id": "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
+            "object_id": "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
             "object_type": "block",
             "value_sha256": null
           }
@@ -138,33 +138,33 @@
   "issues": [
     {
       "affected_block_ids": [
-        "0263fa4a-9e62-44e0-8204-8501947cf032",
-        "ff30e458-4ecc-4baa-b99e-1ad72f110fb6",
-        "999fbb6d-a7e9-46d7-adef-c51ca8c3a4e0",
-        "f6bed0b9-b4f6-4e6a-8c1e-80130aa92ecf",
-        "050635ad-6013-484d-910f-8949df4d4fa5",
-        "5d221215-5872-4d19-a79d-c3329245dde1",
-        "7a8fa16b-b182-4426-8a94-9d16276fdec1",
-        "18418a12-ad41-4783-b2a6-d5a85a17ba70"
+        "43e5b499-e4fe-5ffe-a238-f728cc2d8099",
+        "abc46af1-5387-547a-8beb-0fd8deb7506c",
+        "fd3113a1-1dec-56c7-89a1-ab04b5e3c79a",
+        "262aec68-46e8-5ca3-af9a-bb1df5c88f2c",
+        "17a2a66c-24ec-5ba5-9254-116414351f44",
+        "97a1a154-cd05-5509-8da1-bc31fb751a04",
+        "72b255e0-fe4c-5395-9ee3-37c265eff50f",
+        "56c0fefd-3965-55b5-8a34-8ab7a30b8d01"
       ],
       "category": "heading_level_granularity_suspect",
       "evidence": {
         "evidence_refs": []
       },
-      "issue_id": "c05e16a7-b7ee-5aca-8102-a2856e0225e6",
+      "issue_id": "b62379c1-1089-5f59-8786-b8902952f827",
       "message": "解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
       "severity": "info",
       "status": "unfixed"
     },
     {
       "affected_block_ids": [
-        "ff30e458-4ecc-4baa-b99e-1ad72f110fb6"
+        "abc46af1-5387-547a-8beb-0fd8deb7506c"
       ],
       "category": "heading_level_missing",
       "evidence": {
         "evidence_refs": []
       },
-      "issue_id": "197f7467-cd8e-5e82-b330-0e2e45b6a06a",
+      "issue_id": "e4086786-7bba-5b6c-a5bf-f9804f0848ad",
       "message": "标题层级无法确定: 'TRACE-S-DOC-001 | Source: TEX-'",
       "severity": "warning",
       "status": "unfixed"
@@ -174,7 +174,7 @@
     "agent": {
       "accepted": true,
       "attempt_count": 1,
-      "final_revision_id": "78eb31e7956e6c578a080f1070c68f3beeffcff0bdb02aada240db9e11e5c7af",
+      "final_revision_id": "ca89fbc82afa9f6d3ea8617dbcd533e9907dcb8b422a912587f7819a989a4a40",
       "last_code": "accepted",
       "mode": "document",
       "session_id": "quality-recovery-tex-20260819:trace-structure:mineru",

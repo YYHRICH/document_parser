@@ -1,7 +1,7 @@
 {
   "session_id": "quality-recovery-tex-20260819:trace-structure:docling",
   "accepted": true,
-  "final_revision_id": "f267c93a0b430f25b3e29699d6b78359f3d888305879aac6920b2951b3ca037f",
+  "final_revision_id": "de2cd455ab5930bd1778a96e83be8214fb73093047a5427aad830eca20bfa87b",
   "attempts": [
     {
       "accepted": true,
@@ -10,17 +10,17 @@
       "errors": [],
       "no_progress": false,
       "changed_block_ids": [
-        "ffca310b-e52c-4b9a-898b-676f2c34127e",
-        "e8717164-0849-4464-9596-fa1937c6e485",
-        "a9967438-be83-4e1e-827c-19a432ec9521",
-        "05425346-9c6f-46e4-9f2f-d01353b6c673",
-        "d42162c0-431e-482d-b04f-92dc5780c296",
-        "c1cc2e39-2418-47f3-8bce-f482f66da112"
+        "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
+        "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
+        "24d334ed-decc-5abe-9500-a8647fcd18d5",
+        "27aa4811-fb20-585b-ae8f-43e81a7284bf",
+        "e8dc2c26-d660-538a-8628-8e86f04ff156",
+        "074b8c6c-7948-5856-a555-3775e9e4b0ef"
       ],
       "changed_table_ids": [],
       "changed_relation_keys": [],
       "changed_asset_paths": [],
-      "base_revision": "5c9c49c36206864852e1d2ed7c583b1d66554f006ce670271200e4a614d4cc6d",
+      "base_revision": "8c73930dfcbdaa6dedf1ad37ef2c31d0ac4f72e1ac69b7fcd8e737bca78886c3",
       "source_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3",
       "candidate_content_fingerprint": "sem-v2:f82cb730b8129cea4a96c742b466408d6226ac722ad01e7b3c8983c6120f09f3"
     }

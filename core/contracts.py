@@ -648,3 +648,59 @@ class QualityPackage(BaseModel):
         if self.document_id != self.quality_report.document_id:
             raise ValueError("QualityPackage 与 QualityReport 的 document_id 不一致。")
         return self
+
+
+class WikiCitation(BaseModel):
+    """Wiki 知识块回指质量层最终证据的位置。"""
+
+    citation_id: str
+    canonical_block_id: str
+    source_block_id: str
+    page_number: int | None = Field(default=None, ge=1)
+    bbox: tuple[float, float, float, float] | None = None
+    table_id: str | None = None
+    table_cell: str | None = None
+    provenance_status: QualityCapabilityState
+    evidence: dict[str, Any] = Field(default_factory=dict)
+
+
+class WikiChunk(BaseModel):
+    """交给 Wiki 索引层的最小可追溯知识块。"""
+
+    chunk_id: str
+    kind: str
+    order_index: int = Field(ge=0)
+    content: str
+    citation_ids: list[str] = Field(default_factory=list)
+    evidence_status: QualityCapabilityState
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class WikiHandoff(BaseModel):
+    """质量 Agent 完成后交给 Wiki 系统的稳定交接协议。"""
+
+    schema_name: str = "WikiHandoff"
+    schema_version: str = "1.0"
+    document_id: UUID
+    quality_state: QualityState
+    optimized_markdown: str
+    chunks: list[WikiChunk] = Field(default_factory=list)
+    citations: list[WikiCitation] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_references(self) -> "WikiHandoff":
+        chunk_ids = {chunk.chunk_id for chunk in self.chunks}
+        citation_ids = {citation.citation_id for citation in self.citations}
+        if len(chunk_ids) != len(self.chunks):
+            raise ValueError("WikiHandoff 的 chunk_id 不能重复。")
+        if len(citation_ids) != len(self.citations):
+            raise ValueError("WikiHandoff 的 citation_id 不能重复。")
+        for chunk in self.chunks:
+            missing = set(chunk.citation_ids) - citation_ids
+            if missing:
+                raise ValueError(
+                    f"WikiChunk {chunk.chunk_id} 引用了不存在的 citation: {sorted(missing)}"
+                )
+        return self

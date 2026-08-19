@@ -38,6 +38,10 @@ from document_parser.core.contracts import (
     RoutingMode,
     SourceAnchor,
 )
+from document_parser.parsers.normalization import (
+    normalize_parsed_document,
+    parse_html_table_cells,
+)
 
 BASE_URL = "https://mineru.net/api/v4"
 
@@ -447,72 +451,8 @@ def _markdown_heading_level(text: str) -> int | None:
 
 
 def _table_html_to_cells(html: str) -> list[TableCell]:
-    """解析 MinerU 的 ``table_body`` HTML（带 rowspan/colspan）为 TableCell 网格。"""
-    from html.parser import HTMLParser
-
-    class _GridParser(HTMLParser):
-        def __init__(self) -> None:
-            super().__init__(convert_charrefs=True)
-            self.rows: list[list[dict]] = []
-            self.current_row: list[dict] | None = None
-            self.current_cell: dict | None = None
-            self._cell_text: list[str] = []
-            self._cell_header = False
-
-        def handle_starttag(self, tag: str, attrs) -> None:
-            attr_map = dict(attrs)
-            if tag == "tr":
-                self.current_row = []
-            elif tag in ("td", "th"):
-                self.current_cell = {
-                    "rowspan": int(attr_map.get("rowspan", "1") or "1"),
-                    "colspan": int(attr_map.get("colspan", "1") or "1"),
-                    "text": "",
-                }
-                self._cell_text = []
-                self._cell_header = tag == "th"
-
-        def handle_data(self, data: str) -> None:
-            if self.current_cell is not None:
-                self._cell_text.append(data)
-
-        def handle_endtag(self, tag: str) -> None:
-            if tag in ("td", "th") and self.current_cell is not None:
-                self.current_cell["text"] = "".join(self._cell_text).strip()
-                self.current_cell["header"] = self._cell_header
-                if self.current_row is not None:
-                    self.current_row.append(self.current_cell)
-                self.current_cell = None
-            elif tag == "tr":
-                if self.current_row:
-                    self.rows.append(self.current_row)
-                self.current_row = None
-
-    parser = _GridParser()
-    try:
-        parser.feed(html)
-    except Exception:
-        return []
-
-    cells: list[TableCell] = []
-    for row_idx, row in enumerate(parser.rows):
-        col_idx = 0
-        for raw in row:
-            # 占位推进：colspan>1 时后续格要跳过已占用的列
-            cells.append(
-                TableCell(
-                    text=raw["text"],
-                    start_row=row_idx,
-                    start_col=col_idx,
-                    row_span=max(1, raw["rowspan"]),
-                    col_span=max(1, raw["colspan"]),
-                    column_header=raw["header"] or row_idx == 0,
-                    row_header=False,
-                    bbox=None,
-                )
-            )
-            col_idx += max(1, raw["colspan"])
-    return cells
+    """解析 MinerU HTML，并正确跳过 rowspan 已占用的网格槽位。"""
+    return parse_html_table_cells(html)
 
 
 def _cells_to_markdown(cells: list[TableCell]) -> str:
@@ -651,7 +591,7 @@ def parse_pdf(
             "enable_table": enable_table,
         },
     )
-    return ParsedDocument(
+    document = ParsedDocument(
         document_id=uuid4(),
         filename=source.name,
         file_type=file_type,
@@ -665,6 +605,7 @@ def parse_pdf(
         capabilities=capabilities,
         warnings=[],
     )
+    return normalize_parsed_document(document, parser_label="mineru-cloud")
 
 
 def _sha256(data: bytes) -> str:

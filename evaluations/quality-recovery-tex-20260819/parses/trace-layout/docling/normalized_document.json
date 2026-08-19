@@ -1,0 +1,658 @@
+{
+  "document_id": "eef847d5-3bda-4122-8b60-3d180e76b463",
+  "filename": "trace-layout.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 59771,
+  "source_sha256": "772a00657b9e741bc09a51ec21dc519fb5b12b76113326d089f58f02fb0f7778",
+  "routing_decision": null,
+  "markdown": "## 双栏与对象关系测试\n\nTRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1\n\n## 1 左栏起点 TRACE-L-COL-A01 2 右栏起点 TRACE-L-COL-B01\n\n阅读顺序声明为 READ-A-B-C-D 。 A 段必须先于 B 段，随后进入右栏的 C 段与 D 段。本段包含条件 α ≤ β +0 . 05 ，不等号与小数必须保留。\n\n## 1.1 对象说明\n\n下面的框模拟独立图形对象。 它不携带外部资源， 但 图注与对象必须保持邻接关系。\n\nTRACE-L-FIG-101\n\nFigure checksum 7F3A-91C2\n\n图 1 ：验证流程 TRACE-L-CAP-111\n\nFlow: INPUT → VERIFY → OUTPUT\n\n对象校验使用固定 checksum ，不得把字符 F 、 A 、 C 与数字混淆。\n\n1 TRACE-L-FOOT-121 ：脚注事实为 footnote-value-19.25 。\n\nC 段延续阅读顺序。这里包含脚注引用 1 ，脚注标记 应与脚注正文建立关系，而不是并入相邻标题。\n\n## 2.1 约束公式\n\nα ≤ β +0 . 05\n\n(TRACE-L-EQ-131)\n\nD 段完成 READ-A-B-C-D 。页面底部的 Page token PL-42 是重复页脚事实，可标记为版面噪声，但不得擅 自改写其字符。\n\n## 3 引用与附录 TRACE-L-REF-201\n\n正式引用： Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819 。\n\n图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。\n\n本页再次出现运行页眉与 Page token PL-42 ，用于检测重复页眉页脚的解析行为。",
+  "blocks": [
+    {
+      "id": "d3ecb2ac-c375-5ace-aeb7-3d4483c1958d",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "双栏与对象关系测试",
+      "heading_level": 1,
+      "markdown": "# 双栏与对象关系测试",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          220.168,
+          50.424971400000004,
+          375.1065999999999,
+          67.64037140000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "11c897ce-ca22-5500-b1c4-89216af34d98",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
+      "heading_level": null,
+      "markdown": "TRACE-L-DOC-001 | Source: TEX-LAYOUT-20260819-V1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          176.792,
+          73.52808159999995,
+          418.49027840000014,
+          82.49448159999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "620a2441-3c10-5fb1-b9f4-423b16e5ea60",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1 左栏起点 TRACE-L-COL-A01 2 右栏起点 TRACE-L-COL-B01",
+      "heading_level": 1,
+      "markdown": "# 1 左栏起点 TRACE-L-COL-A01 2 右栏起点 TRACE-L-COL-B01",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.784,
+          97.6776142,
+          538.1473486,
+          112.78416279999999
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "239f3784-7640-5585-899b-aed25400115f",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "阅读顺序声明为 READ-A-B-C-D 。 A 段必须先于 B 段，随后进入右栏的 C 段与 D 段。本段包含条件 α ≤ β +0 . 05 ，不等号与小数必须保留。",
+      "heading_level": null,
+      "markdown": "阅读顺序声明为 READ-A-B-C-D 。 A 段必须先于 B 段，随后进入右栏的 C 段与 D 段。本段包含条件 α ≤ β +0 . 05 ，不等号与小数必须保留。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          126.86112660000003,
+          292.6499834000001,
+          174.93074524903227
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e2d1b001-5d01-5bcb-b26b-e7e511abc741",
+      "source_block_id": "docling-SectionHeaderItem-4",
+      "order_index": 4,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1.1 对象说明",
+      "heading_level": 1,
+      "markdown": "# 1.1 对象说明",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          187.48248320000005,
+          128.00279999999998,
+          200.0713088
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d1ab3b7b-539b-5e17-b4ac-d85f9c7d0cb6",
+      "source_block_id": "docling-TextItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "下面的框模拟独立图形对象。 它不携带外部资源， 但 图注与对象必须保持邻接关系。",
+      "heading_level": null,
+      "markdown": "下面的框模拟独立图形对象。 它不携带外部资源， 但 图注与对象必须保持邻接关系。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          211.17612659999998,
+          292.6567004000001,
+          236.68072659999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ee4c5523-616c-50e5-ad9d-33a78d476817",
+      "source_block_id": "docling-TextItem-6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "TRACE-L-FIG-101",
+      "heading_level": null,
+      "markdown": "TRACE-L-FIG-101",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          129.469,
+          244.87614440000004,
+          214.2108756,
+          254.8387444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a0a6c4ae-4022-5e37-aa9a-03f6d69e485c",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Figure checksum 7F3A-91C2",
+      "heading_level": null,
+      "markdown": "Figure checksum 7F3A-91C2",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          109.125,
+          263.4071444,
+          234.55413400000003,
+          273.36974440000006
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1060caf8-574e-5033-808d-b0c1ede92706",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "图 1 ：验证流程 TRACE-L-CAP-111",
+      "heading_level": null,
+      "markdown": "图 1 ：验证流程 TRACE-L-CAP-111",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          98.737,
+          291.2338624,
+          244.9520048,
+          300.6754816
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c26a0b9b-63fa-5f66-9ead-b611952cd189",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Flow: INPUT → VERIFY → OUTPUT",
+      "heading_level": null,
+      "markdown": "Flow: INPUT → VERIFY → OUTPUT",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          83.287,
+          278.94814440000005,
+          260.3933278,
+          295.40674524903227
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f2e72a54-c1b0-57c1-a4a8-8d813afe2204",
+      "source_block_id": "docling-TextItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "对象校验使用固定 checksum ，不得把字符 F 、 A 、 C 与数字混淆。",
+      "heading_level": null,
+      "markdown": "对象校验使用固定 checksum ，不得把字符 F 、 A 、 C 与数字混淆。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          311.0221266,
+          292.6559972,
+          336.52572660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1bcdcfd3-3689-5b58-b119-d09f4d5c0441",
+      "source_block_id": "docling-TextItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1 TRACE-L-FOOT-121 ：脚注事实为 footnote-value-19.25 。",
+      "heading_level": null,
+      "markdown": "1 TRACE-L-FOOT-121 ：脚注事实为 footnote-value-19.25 。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          61.219,
+          783.1900544,
+          279.8691,
+          792.3671994
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1aa7a6a2-e061-5953-bf87-cab262676e3f",
+      "source_block_id": "docling-TextItem-12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "C 段延续阅读顺序。这里包含脚注引用 1 ，脚注标记 应与脚注正文建立关系，而不是并入相邻标题。",
+      "heading_level": null,
+      "markdown": "C 段延续阅读顺序。这里包含脚注引用 1 ，脚注标记 应与脚注正文建立关系，而不是并入相邻标题。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.619,
+          133.37611719999995,
+          544.2605628000001,
+          159.5587266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ab913ae3-5270-53a2-aebb-1d0c28518926",
+      "source_block_id": "docling-SectionHeaderItem-13",
+      "order_index": 13,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2.1 约束公式",
+      "heading_level": 1,
+      "markdown": "# 2.1 约束公式",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.619,
+          200.48648319999995,
+          379.5988,
+          213.07530880000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bbdf76e5-76b6-5c2f-b863-d4af76525e8c",
+      "source_block_id": "docling-TextItem-14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "α ≤ β +0 . 05",
+      "heading_level": null,
+      "markdown": "α ≤ β +0 . 05",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          351.012,
+          260.2605442,
+          406.7536,
+          275.49374524903226
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "977e8318-9e24-544a-8d4d-a07965f8afad",
+      "source_block_id": "docling-TextItem-15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "(TRACE-L-EQ-131)",
+      "heading_level": null,
+      "markdown": "(TRACE-L-EQ-131)",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          455.1460000000001,
+          259.03514440000004,
+          544.2520429999998,
+          268.9977444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7953fbe8-164f-576b-bc28-65f0d217589b",
+      "source_block_id": "docling-TextItem-16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "D 段完成 READ-A-B-C-D 。页面底部的 Page token PL-42 是重复页脚事实，可标记为版面噪声，但不得擅 自改写其字符。",
+      "heading_level": null,
+      "markdown": "D 段完成 READ-A-B-C-D 。页面底部的 Page token PL-42 是重复页脚事实，可标记为版面噪声，但不得擅 自改写其字符。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          302.619,
+          295.48012660000006,
+          544.2560881999999,
+          336.52572660000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a35c75f0-e901-575d-982a-48fb0472762e",
+      "source_block_id": "docling-SectionHeaderItem-17",
+      "order_index": 17,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3 引用与附录 TRACE-L-REF-201",
+      "heading_level": 1,
+      "markdown": "# 3 引用与附录 TRACE-L-REF-201",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          177.826,
+          50.35661419999997,
+          417.46398919999996,
+          65.46316279999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3065d03d-b0f9-565c-9b6d-4d216f8595e9",
+      "source_block_id": "docling-TextItem-18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "正式引用： Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819 。",
+      "heading_level": null,
+      "markdown": "正式引用： Doe, J. (2026), Traceable Layout Recovery, DOI 10.5555/trace.2026.0819 。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.94899999999998,
+          79.54012660000001,
+          449.4596,
+          90.0307444
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a39f1923-a396-50d7-abe4-0a381704a7b3",
+      "source_block_id": "docling-TextItem-19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
+      "heading_level": null,
+      "markdown": "图、图注、脚注、公式与引用必须通过已有对象和来源证据建立关系。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          75.93,
+          105.04412660000003,
+          384.7706000000001,
+          115.00672659999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5674a61c-344d-52fc-b25b-6085ec94f24a",
+      "source_block_id": "docling-TextItem-20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页再次出现运行页眉与 Page token PL-42 ，用于检测重复页眉页脚的解析行为。",
+      "heading_level": null,
+      "markdown": "本页再次出现运行页眉与 Page token PL-42 ，用于检测重复页眉页脚的解析行为。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.949,
+          130.54812660000005,
+          430.83820000000014,
+          141.03874440000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {
+      "normalization": {
+        "version": "normalization-v1",
+        "parser": "docling",
+        "table_count": 0,
+        "warning_count": 0,
+        "merged_fragment_count": 0,
+        "reordered_page_count": 0,
+        "stable_block_id_version": "uuid5-source-v1"
+      }
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-18T18:18:57.891405Z"
+}

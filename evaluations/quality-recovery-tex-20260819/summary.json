@@ -66,12 +66,12 @@
       ],
       "changed": true,
       "changed_block_ids": [
-        "05425346-9c6f-46e4-9f2f-d01353b6c673",
-        "a9967438-be83-4e1e-827c-19a432ec9521",
-        "c1cc2e39-2418-47f3-8bce-f482f66da112",
-        "d42162c0-431e-482d-b04f-92dc5780c296",
-        "e8717164-0849-4464-9596-fa1937c6e485",
-        "ffca310b-e52c-4b9a-898b-676f2c34127e"
+        "074b8c6c-7948-5856-a555-3775e9e4b0ef",
+        "24d334ed-decc-5abe-9500-a8647fcd18d5",
+        "27aa4811-fb20-585b-ae8f-43e81a7284bf",
+        "2e12844a-055c-51e9-a3de-ccaa51ae56f9",
+        "8f6d3a98-c0d2-5d08-9118-9f1c9e431daa",
+        "e8dc2c26-d660-538a-8628-8e86f04ff156"
       ],
       "changed_table_ids": [],
       "changed_relation_keys": [],
@@ -181,9 +181,9 @@
       ],
       "changed": true,
       "changed_block_ids": [
-        "1ad5f248-4616-4ffd-acc0-1e3952dde506",
-        "98ef799b-0f96-4fa0-ab58-a1f96a43a5fb",
-        "c30b5b5b-f147-4ab3-b059-058b1bb57d7a"
+        "06691733-3205-587f-8514-2cc75f6f132d",
+        "491b6d30-d7da-57a0-b587-efd65b8bd34a",
+        "d60c13da-4d67-528e-91fa-99d3e61d8b41"
       ],
       "changed_table_ids": [],
       "changed_relation_keys": [],
@@ -276,58 +276,6 @@
         "missing": [
           "alpha <= beta + 0.05"
         ]
-      }
-    },
-    {
-      "document": "trace-layout",
-      "parser": "docling",
-      "session_id": "quality-recovery-tex-20260819:trace-layout:docling",
-      "agent_accepted": true,
-      "attempt_codes": [
-        "accepted"
-      ],
-      "attempt_no_progress": [
-        false
-      ],
-      "changed": true,
-      "changed_block_ids": [
-        "139ee20f-be10-4896-8450-5f3830c53539",
-        "40bac072-6594-493d-bf15-267148fdb92a",
-        "d04e5341-94b1-48ab-8c33-fa7617e116f3",
-        "fc17fe1e-d24a-432b-9cd6-2b974a49d064"
-      ],
-      "changed_table_ids": [],
-      "changed_relation_keys": [],
-      "changed_asset_paths": [],
-      "baseline_state": "manual_review_required",
-      "baseline_issues": 1,
-      "final_state": "pass",
-      "final_issues": 0,
-      "blocks": 21,
-      "tables": 0,
-      "parsed_marker_recall": {
-        "found": 8,
-        "total": 8,
-        "rate": 1.0,
-        "missing": []
-      },
-      "optimized_marker_recall": {
-        "found": 8,
-        "total": 8,
-        "rate": 1.0,
-        "missing": []
-      },
-      "parsed_fact_recall": {
-        "found": 5,
-        "total": 5,
-        "rate": 1.0,
-        "missing": []
-      },
-      "optimized_fact_recall": {
-        "found": 5,
-        "total": 5,
-        "rate": 1.0,
-        "missing": []
       }
     }
   ]
