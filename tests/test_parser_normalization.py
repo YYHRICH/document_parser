@@ -121,6 +121,10 @@ def test_document_normalization_preserves_markdown_and_records_provenance():
         "merged_fragment_count": 0,
         "reordered_page_count": 0,
         "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": 0,
+        "formula_incomplete_count": 0,
+        "formula_placeholder_count": 0,
     }
 
     repeated = normalize_parsed_document(document, parser_label="fixture")

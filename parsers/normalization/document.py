@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from document_parser.core.contracts import (
@@ -12,6 +13,7 @@ from document_parser.core.contracts import (
 )
 
 from .tables import cells_to_markdown, normalize_table_cells
+from .formulas import normalize_formula_evidence
 
 
 def _norm_text(value: str | None) -> str:
@@ -251,6 +253,7 @@ def normalize_parsed_document(
     document: ParsedDocument,
     *,
     parser_label: str,
+    source_path: Path | None = None,
 ) -> ParsedDocument:
     """归一 blocks 顺序和表格逻辑网格，保留正文与根 Markdown 原值。"""
 
@@ -271,6 +274,15 @@ def normalize_parsed_document(
         parser_label=parser_label,
     )
     warnings = list(document.warnings)
+    formula_result = normalize_formula_evidence(
+        blocks,
+        document.markdown,
+        parser_label=parser_label,
+        source_path=source_path,
+    )
+    blocks = formula_result.blocks
+    markdown = formula_result.markdown
+    warnings.extend(formula_result.warnings)
     tables: list[ParsedTable] = []
     table_warnings: list[str] = []
     for table in document.tables:
@@ -297,7 +309,7 @@ def normalize_parsed_document(
         )
     warnings.extend(table_warnings)
     blocks, tables, merge_warnings, markdown = _merge_adjacent_table_fragments(
-        blocks, tables, document.markdown
+        blocks, tables, markdown
     )
     warnings.extend(merge_warnings)
     blocks, reading_order_warnings = _reorder_two_column_pages(blocks)
@@ -307,10 +319,17 @@ def normalize_parsed_document(
         "version": "normalization-v1",
         "parser": parser_label,
         "table_count": len(tables),
-        "warning_count": len(table_warnings) + len(merge_warnings) + len(reading_order_warnings),
+        "warning_count": len(formula_result.warnings)
+        + len(table_warnings)
+        + len(merge_warnings)
+        + len(reading_order_warnings),
         "merged_fragment_count": len(merge_warnings),
         "reordered_page_count": len(reading_order_warnings),
         "stable_block_id_version": "uuid5-source-v1",
+        "formula_token_guard_version": "formula-token-guard-v1",
+        "formula_recovered_count": formula_result.recovered_count,
+        "formula_incomplete_count": formula_result.incomplete_count,
+        "formula_placeholder_count": formula_result.placeholder_count,
     }
     provenance = document.provenance.model_copy(update={"parameters": parameters})
     assets = [

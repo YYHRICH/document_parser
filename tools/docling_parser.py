@@ -230,7 +230,7 @@ def parse_pdf(source: Path, *, file_type: str = "application/pdf") -> ParsedDocu
         },
         warnings=[],
     )
-    return normalize_parsed_document(document, parser_label="docling-local")
+    return normalize_parsed_document(document, parser_label="docling-local", source_path=source)
 
 
 def _grid_to_markdown(grid) -> str:

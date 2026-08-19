@@ -359,16 +359,24 @@ def _content_list_to_blocks(content_list: list[dict]) -> tuple[list[DocumentBloc
             )
             continue
 
-        if kind in {"formula", "interline_equation"}:
+        if kind in {"formula", "interline_equation", "equation_interline"}:
+            formula_metadata = {
+                "native_type": kind,
+                "math_content": item.get("math_content"),
+                "math_type": item.get("math_type"),
+                "image_source": item.get("img_path") or item.get("image_source"),
+            }
             blocks.append(
                 DocumentBlock(
                     id=uuid4(),
                     source_block_id=source_block_id,
                     order_index=order_index,
                     kind=BlockKind.FORMULA,
+                    native_type=kind,
                     text=text,
                     markdown=text,
                     anchor=anchor,
+                    metadata={key: value for key, value in formula_metadata.items() if value is not None},
                 )
             )
             continue
@@ -605,7 +613,7 @@ def parse_pdf(
         capabilities=capabilities,
         warnings=[],
     )
-    return normalize_parsed_document(document, parser_label="mineru-cloud")
+    return normalize_parsed_document(document, parser_label="mineru-cloud", source_path=source)
 
 
 def _sha256(data: bytes) -> str:

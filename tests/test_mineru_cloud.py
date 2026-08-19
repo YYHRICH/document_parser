@@ -35,3 +35,25 @@ def test_non_empty_table_image_path_is_preserved():
     )
 
     assert tables[0].image_path == "images/table-1.jpg"
+
+
+def test_formula_native_metadata_is_preserved():
+    blocks, tables = _content_list_to_blocks(
+        [
+            {
+                "type": "equation_interline",
+                "text": "x <= 1",
+                "math_content": "x \\leq 1",
+                "math_type": "latex",
+                "image_source": "images/formula.png",
+                "bbox": [10, 20, 100, 40],
+                "page_idx": 0,
+            }
+        ]
+    )
+
+    assert not tables
+    assert blocks[0].kind.value == "formula"
+    assert blocks[0].native_type == "equation_interline"
+    assert blocks[0].metadata["math_content"] == "x \\leq 1"
+    assert blocks[0].metadata["math_type"] == "latex"
