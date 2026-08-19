@@ -62,3 +62,14 @@ priority: specialist
 ## 6. 输出检查
 
 检查每个 cell 的事实词元多重集、span 合法性、行列索引、header 角色和表格页码；确认 Markdown 渲染有表头分隔线，且表格前后有明确换行。
+
+
+## 7. 输出 few-shot
+
+表格布局问题只输出统一候选 JSON，不输出表格 Markdown。若已有 table <table-id> 的 cell 2 需要从缺口位置恢复到第 1 行第 1 列，且正文指纹为 <sha256>，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","scope":"page","scope_pages":[4],"lineage":["<current-revision>"],"operations":[{"operation":"update_table_cell_layout","table_id":"<table-id>","cell_layout_patches":[{"cell_index":2,"start_row":1,"start_col":1,"row_span":1,"col_span":1,"expected_text_sha256":"<sha256>"}]}],"affected_ids":[],"evidence_refs":[{"object_type":"table","object_id":"<table-id>","field_path":"cells[2].grid"}],"change_kind":"structure","reasoning":"只修复 cell 网格坐标，不携带或改写单元格正文。","confidence":0.9}
+~~~
+
+如果列映射、span 或跨页归属有多个同样合理的解释，规范输出是 operations: []、change_kind: "none"，并在 reasoning 中说明冲突证据。

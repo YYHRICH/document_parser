@@ -45,4 +45,14 @@ priority: specialist
 
 ## 6. 输出检查
 
-验证标题文本和编号的事实词元不变；检查标题树没有产生不合理的层级跳跃、循环或章节错配；`affected_ids` 只包含实际调整的标题/边界 block。
+验证标题文本和编号的事实词元不变；检查标题树没有产生不合理的层级跳跃、循环或章节错配；affected_ids 只包含实际调整的标题/边界 block。
+
+## 7. 输出 few-shot
+
+当已有标题 block <heading-id> 的当前层级为 3，而前后编号标题树证明它应为 2 时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","scope":"page","scope_pages":[2],"lineage":["<current-revision>"],"operations":[{"operation":"update_heading_level","block_id":"<heading-id>","heading_level":2}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<heading-id>","field_path":"heading_level"}],"change_kind":"structure","reasoning":"依据前后编号标题树调整已有标题层级，不修改标题文字和编号。","confidence":0.95}
+~~~
+
+如果只有视觉样式、没有标题树或编号证据，不提交层级 Patch，返回合法 no-op 候选并说明需要人工复核。

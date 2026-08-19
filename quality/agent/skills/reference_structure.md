@@ -47,3 +47,11 @@ priority: specialist
 ## 6. 输出检查
 
 确保所有 marker 和参考文献文本的事实词元不变；证据引用必须指向实际 marker、label 或 relation 字段；不把 `confidence` 当作唯一性证明。
+
+## 7. 输出 few-shot
+
+当正文 marker block 和参考文献 block 的唯一对应关系已有证据时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[{"operation":"upsert_relation","relation":{"action":"upsert","relation_type":"reference_of","from_id":"<marker-block>","to_id":"<reference-block>","marker_key":"ref-1"}}],"affected_ids":[],"affected_relation_keys":[],"evidence_refs":[{"object_type":"block","object_id":"<marker-block>","field_path":"reference_marker"},{"object_type":"block","object_id":"<reference-block>","field_path":"label"}],"change_kind":"structure","reasoning":"依据正文 marker、参考文献 label 和页内唯一性建立已有对象之间的关系，不修改引用文本。","confidence":0.9}
+~~~

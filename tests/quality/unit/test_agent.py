@@ -2,11 +2,12 @@
 
 from pathlib import Path
 from hashlib import sha256
+import json
 from uuid import uuid4
 
 import pytest
 
-from document_parser.core.contracts import AssetKind, DocumentAsset, ParsedDocument, SourceAnchor
+from document_parser.core.contracts import AssetKind, BlockKind, DocumentAsset, ParsedDocument, SourceAnchor
 from quality import (
     RepairExecution,
     run_quality,
@@ -32,7 +33,8 @@ from quality.agent import (
     render_skills,
 )
 from quality.agent.context import DocumentContextBuilder
-from quality.agent.agno_adapter import CandidateSchemaError
+from quality.agent.agno_adapter import CandidateSchemaError, _decode_candidate_content
+from quality.agent.deterministic import build_deterministic_candidate
 from quality.agent.index import DocumentIndex
 from quality.agent.deepseek import (
     DeepSeekConfig,
@@ -593,7 +595,7 @@ def test_run_repair_commits_fake_candidate_and_preserves_hashes():
     execution = run_repair(
         document,
         agent=FakeRepairAgent([candidate]),
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
 
     assert execution.accepted
@@ -610,7 +612,7 @@ def test_run_repair_rejects_bad_candidate_and_falls_back():
     execution = run_repair(
         document,
         agent=FakeRepairAgent([candidate]),
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
 
     assert not execution.accepted
@@ -722,7 +724,7 @@ def test_run_repair_factory_receives_the_runtime_toolbox():
     execution = run_repair(
         document,
         agent_factory=factory,
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
 
     assert execution.accepted
@@ -758,11 +760,101 @@ def test_paged_repair_emits_page_progress_and_requires_page_scope():
         ),
     )
 
-    assert execution.accepted
+    assert not execution.accepted
     assert len(execution.attempts) == 5
-    completed = [event for event in events if event.stage == "page" and event.status == "completed"]
-    assert [event.page_number for event in completed] == [1, 2, 3, 4, 5]
-    assert completed[-1].completed_pages == completed[-1].total_pages == 5
+    manual_review = [
+        event
+        for event in events
+        if event.stage == "page" and event.status == "manual_review"
+    ]
+    assert [event.page_number for event in manual_review] == [1, 2, 3, 4, 5]
+    assert manual_review[-1].completed_pages == manual_review[-1].total_pages == 5
+
+
+def test_deterministic_prepass_builds_only_numbered_heading_operations():
+    document = _load()
+    first, second = document.blocks[:2]
+    first = first.model_copy(
+        update={
+            "kind": BlockKind.HEADING,
+            "markdown": "## 1 引言",
+            "text": "1 引言",
+            "heading_level": 2,
+            "anchor": first.anchor.model_copy(update={"page_number": 1}),
+        }
+    )
+    second = second.model_copy(
+        update={
+            "kind": BlockKind.HEADING,
+            "markdown": "## 1.1 背景",
+            "text": "1.1 背景",
+            "heading_level": None,
+            "anchor": second.anchor.model_copy(update={"page_number": 1}),
+        }
+    )
+    document = document.model_copy(update={"blocks": [first, second, *document.blocks[2:]]})
+    revision = InMemoryRevisionStore().open(document)
+
+    candidate = build_deterministic_candidate(revision, 1)
+
+    assert candidate is not None
+    assert candidate.scope == "page"
+    assert candidate.scope_pages == [1]
+    assert [operation.heading_level for operation in candidate.operations] == [1, 2]
+    assert all(operation.operation == "update_heading_level" for operation in candidate.operations)
+
+
+def test_deterministic_prepass_can_finish_a_page_without_llm_call():
+    document = _load()
+    first, second = document.blocks[:2]
+    first = first.model_copy(
+        update={
+            "kind": BlockKind.HEADING,
+            "markdown": "## 1 引言",
+            "text": "1 引言",
+            "heading_level": 2,
+            "anchor": first.anchor.model_copy(update={"page_number": 1}),
+        }
+    )
+    second = second.model_copy(
+        update={
+            "kind": BlockKind.HEADING,
+            "markdown": "## 1.1 背景",
+            "text": "1.1 背景",
+            "heading_level": 2,
+            "anchor": second.anchor.model_copy(update={"page_number": 1}),
+        }
+    )
+    document = document.model_copy(
+        update={
+            "blocks": [first, second],
+            "tables": [],
+            "assets": [],
+            "relations": [],
+            "markdown": "## 1 引言\n## 1.1 背景\n",
+        }
+    )
+
+    class UnexpectedAgent:
+        calls = 0
+
+        def run(self, context, *, feedback=None):
+            self.calls += 1
+            raise AssertionError("规则已覆盖的页不应调用 Agent")
+
+    agent = UnexpectedAgent()
+    execution = run_repair(
+        document,
+        agent=agent,
+        agent_config=RepairAgentConfig(max_rounds=1, mode="paged"),
+    )
+
+    assert agent.calls == 0, "; ".join(
+        f"{attempt.code}: {attempt.errors}" for attempt in execution.attempts
+    )
+    assert execution.accepted
+    assert execution.package.quality_report.metrics["agent"]["llm_call_count"] == 0
+    assert execution.package.quality_report.metrics["agent"]["deterministic_repairs"] == 1
 
 
 def test_run_quality_repair_requires_explicit_agent():
@@ -780,13 +872,14 @@ def test_public_detailed_repair_preserves_compatible_package_entrypoint():
     package = run_quality_repair(
         document,
         agent=FakeRepairAgent([candidate]),
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
     execution = run_quality_repair_detailed(
         document,
         agent=FakeRepairAgent([candidate]),
         agent_config=RepairAgentConfig(
             max_rounds=1,
+            mode="document",
             session_id="qa-observability-session",
         ),
     )
@@ -829,6 +922,7 @@ def test_public_detailed_repair_classifies_and_redacts_agent_errors(
         agent=FailingAgent(),
         agent_config=RepairAgentConfig(
             max_rounds=1,
+            mode="document",
             session_id="qa-redaction-session",
         ),
     )
@@ -849,7 +943,7 @@ def test_public_detailed_repair_classifies_candidate_schema_errors():
     execution = run_quality_repair_detailed(
         document,
         agent=InvalidCandidateAgent(),
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
 
     assert not execution.accepted
@@ -880,7 +974,7 @@ def test_schema_error_retries_with_feedback_and_can_recover():
     execution = run_quality_repair_detailed(
         document,
         agent=agent,
-        agent_config=RepairAgentConfig(max_rounds=2),
+        agent_config=RepairAgentConfig(max_rounds=2, mode="document"),
     )
 
     assert execution.accepted
@@ -890,6 +984,58 @@ def test_schema_error_retries_with_feedback_and_can_recover():
         "accepted",
     ]
     assert execution.attempts[0].no_progress is False
+
+
+def test_candidate_decoder_accepts_one_json_object_and_json_fence():
+    payload = {
+        "base_revision": "revision-1",
+        "lineage": ["revision-1"],
+        "operations": [],
+        "affected_ids": [],
+        "evidence_refs": [],
+        "change_kind": "none",
+        "reasoning": "没有明确可安全修复的问题。",
+    }
+    fence = chr(96) * 3
+
+    decoded = _decode_candidate_content(json.dumps(payload, ensure_ascii=False))
+    fenced = _decode_candidate_content(
+        fence + "json\n"
+        + json.dumps(payload, ensure_ascii=False)
+        + "\n" + fence
+    )
+
+    assert decoded.base_revision == "revision-1"
+    assert fenced.lineage == ["revision-1"]
+
+
+@pytest.mark.parametrize(
+    ("content", "reason"),
+    [
+        (
+            '{"base_revision":"revision-1"}{"base_revision":"revision-1"}',
+            "multiple_json_objects",
+        ),
+        (
+            '{"base_revision":"revision-1"}说明文字',
+            "trailing_text",
+        ),
+        ('{"base_revision":', "malformed_json"),
+    ],
+)
+def test_candidate_decoder_rejects_non_single_json_response(content, reason):
+    with pytest.raises(CandidateSchemaError) as exc_info:
+        _decode_candidate_content(content)
+
+    assert exc_info.value.reason == reason
+
+
+def test_candidate_decoder_classifies_non_string_content_without_logging_body():
+    with pytest.raises(CandidateSchemaError) as exc_info:
+        _decode_candidate_content(None)
+
+    assert exc_info.value.reason == "non_string_content"
+    assert "NoneType" not in str(exc_info.value)
 
 
 def test_public_detailed_repair_contains_redacted_validator_failures():
@@ -917,7 +1063,7 @@ def test_public_detailed_repair_contains_redacted_validator_failures():
     execution = run_quality_repair_detailed(
         document,
         agent_factory=factory,
-        agent_config=RepairAgentConfig(max_rounds=1),
+        agent_config=RepairAgentConfig(max_rounds=1, mode="document"),
     )
 
     assert not execution.accepted
@@ -984,6 +1130,23 @@ def test_prompt_template_keeps_output_contract_when_context_is_truncated():
     assert "[context truncated]" in prompt
 
 
+def test_prompt_contains_repair_few_shot_patterns_with_current_revision():
+    document = _load()
+    revision = InMemoryRevisionStore().open(document)
+    context = DocumentContextBuilder().build(revision)
+
+    prompt = context.to_prompt(max_chars=12000)
+
+    assert "<few_shot_examples>" in prompt
+    assert '<example name="heading_patch">' in prompt
+    assert '<example name="formula_parser_loss_noop">' in prompt
+    assert '<example name="table_layout_only">' in prompt
+    assert '<example name="schema_retry">' in prompt
+    assert prompt.count(revision.revision_id) >= 5
+    assert "update_table_cell_layout" in prompt
+    assert "不能猜测或伪造公式" in prompt
+
+
 def test_context_builder_applies_configured_max_context_chars():
     document = _load()
     revision = InMemoryRevisionStore().open(document)
@@ -1020,6 +1183,7 @@ def test_skill_playbooks_follow_standard_contract():
             assert field in skill
         for section in ("## 1.", "## 2.", "## 4.", "## 5."):
             assert section in skill
+        assert "few-shot" in skill
 
     rendered = render_skills(("document_quality_repair", "table_structure"))
     assert '<quality_skill id="document_quality_repair">' in rendered
@@ -1178,6 +1342,7 @@ def test_quality_diagnostics_are_injected_into_agent_prompt():
     prompt = context.to_prompt()
 
     assert "<quality_diagnostics>" in prompt
+    assert "最多包含 8 个 operations" in prompt
     assert diagnostics["quality_state"] in prompt
     assert diagnostics["issues"]
     assert diagnostics["issues"][0]["category"] in prompt

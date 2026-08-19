@@ -45,3 +45,13 @@ priority: specialist
 ## 6. 输出检查
 
 确认 asset/公式 ID、资源路径、公式文本、页码、bbox 和 provenance 均未改变，只发生必要的顺序或边界变化。
+
+## 7. 输出 few-shot
+
+当已有公式 block <formula-id> 只有 [[FORMULA_UNAVAILABLE]]，且输入没有 native_formula 或其他可验证来源时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[],"affected_ids":[],"evidence_refs":[],"change_kind":"none","reasoning":"这是解析器能力边界，输入没有可验证公式内容；不猜测公式，保留占位符并交给下游标记。","confidence":0.99}
+~~~
+
+只有在已有 asset、caption 和 block 的顺序证据唯一时，才输出 move_block 或 update_asset_references；不得借此改写公式、alt 文本或资源路径。

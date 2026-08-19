@@ -9,13 +9,17 @@ from typing import Any
 
 from quality.agent.models import CandidateValidation
 
-PROMPT_VERSION = "quality-repair-v2"
+PROMPT_VERSION = "quality-repair-v3-few-shot"
 
 DEFAULT_REPAIR_INSTRUCTIONS: tuple[str, ...] = (
     "你是单文档质量修复 Agent，只修复 Markdown 的格式或结构，不改变事实内容。",
     "先阅读 document_index 了解全篇结构，再按稳定 ID 使用只读工具查看必要证据。",
     "先使用只读工具查看必要证据，再提交 RepairedDocumentCandidate。",
     "优先输出最小范围的 operations；block_markdown 仅用于兼容旧候选。",
+    "单个候选最多提交 8 个 operations；问题较多时按页或局部分批，只提交当前证据最充分的一小批。",
+    "不要在一次工具调用中提交整篇标题或表格修复，保持候选 JSON 紧凑，避免工具参数截断。",
+    "单个候选最多提交 8 个 operations；问题较多时按页或局部分批，只提交当前证据最充分的一小批。",
+    "不要在一次工具调用中提交整篇标题或表格修复，保持候选 JSON 紧凑，避免工具参数截断。",
     "表格只提交 update_table_cell_layout 的 cell_layout_patches，不要提交单元格正文；宿主会保留原文本。",
     "不要主动提交整篇 repaired_markdown；根 Markdown 由宿主根据 block operations 投影生成。",
     "不要直接调用 commit_revision；候选必须先经过本地验证。",
@@ -25,6 +29,47 @@ DEFAULT_REPAIR_INSTRUCTIONS: tuple[str, ...] = (
     "如果没有明确可修问题，返回 repaired_markdown=null、change_kind=none、空 operations 和空 affected_ids，并说明原因。",
     "所有回答必须是符合 schema 的合法 json 对象。",
 )
+
+
+def _render_few_shot_examples(revision_id: str) -> str:
+    """渲染面向真实修复场景的紧凑 few-shot。"""
+
+    return (
+        "示例中的 ID 仅用于说明格式；实际输出必须替换为上下文中已有的稳定 ID。\n"
+        '<example name="heading_patch">\n'
+        'input: quality_diagnostics={"issues":[{"category":"heading_level_mismatch","page":2,"block_id":"example-heading-id"}]}\n'
+        'block_summary={"id":"example-heading-id","kind":"heading","markdown":"### 2 方法","heading_level":3}\n'
+        "output: {"
+        f'"base_revision":"{revision_id}","scope":"page","scope_pages":[2],'
+        '"operations":[{"operation":"update_heading_level","block_id":"example-heading-id","heading_level":2}],'
+        '"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"example-heading-id","field_path":"heading_level"}],'
+        '"change_kind":"structure","reasoning":"只按已有编号和标题证据修复层级，不改标题文字。","confidence":0.95}\n'
+        "</example>\n"
+        '<example name="formula_parser_loss_noop">\n'
+        'input: quality_diagnostics={"issues":[{"category":"formula_placeholder","page":3,"block_id":"example-formula-id"}]}\n'
+        'block_summary={"id":"example-formula-id","markdown":"[[FORMULA_UNAVAILABLE]]","native_formula":null}\n'
+        "output: {"
+        f'"base_revision":"{revision_id}","lineage":["{revision_id}"],'
+        '"operations":[],"affected_ids":[],"evidence_refs":[],"change_kind":"none",'
+        '"reasoning":"解析器没有提供可验证的原始公式，不能猜测或伪造公式；保留占位符并交给下游标记。","confidence":0.99}\n'
+        "</example>\n"
+        '<example name="table_layout_only">\n'
+        'input: quality_diagnostics={"issues":[{"category":"table_grid_gap","page":4,"table_id":"example-table-id","cell_index":2}]}\n'
+        'table_summary={"id":"example-table-id","cell_index":2,"text_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}\n'
+        "output: {"
+        f'"base_revision":"{revision_id}","lineage":["{revision_id}"],'
+        '"operations":[{"operation":"update_table_cell_layout","table_id":"example-table-id","cell_layout_patches":[{"cell_index":2,"start_row":1,"start_col":1,"row_span":1,"col_span":1,"expected_text_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}]}],'
+        '"affected_ids":[],"evidence_refs":[{"object_type":"table","object_id":"example-table-id","field_path":"cells[2].grid"}],'
+        '"change_kind":"structure","reasoning":"只修复表格网格坐标，保留宿主中的单元格正文。","confidence":0.9}\n'
+        "</example>\n"
+        '<example name="schema_retry">\n'
+        'input: validation_feedback={"code":"candidate_schema_error","errors":["候选 lineage 必须包含 base_revision"]}\n'
+        "output: {"
+        f'"base_revision":"{revision_id}","lineage":["{revision_id}"],'
+        '"operations":[],"affected_ids":[],"evidence_refs":[],"change_kind":"none",'
+        '"reasoning":"已按验证反馈补齐当前 revision 的 base_revision 和 lineage；没有其他可安全修复的问题。","confidence":0.99}\n'
+        "</example>"
+    )
 
 
 def render_repair_prompt(
@@ -68,6 +113,8 @@ def render_repair_prompt(
         "候选的 base_revision 必须等于当前 revision，lineage 必须包含该 revision。\n"
         "只能改变格式或结构，不能改变事实内容。\n"
         "operations 只能作用于已有 block/table ID，且必须带 evidence_refs。\n"
+        "单个候选最多包含 8 个 operations；问题较多时按页或局部分批提交。\n"
+        "单个候选最多包含 8 个 operations；问题较多时按页或局部分批提交。\n"
         "affected 声明字段可以为空，宿主会从实际 Patch 自动推导。\n"
         "</task>\n"
         f"<document_id>{document_id}</document_id>\n"
@@ -78,17 +125,9 @@ def render_repair_prompt(
         "<quality_diagnostics>\n"
         f"{diagnostics_text}\n"
         "</quality_diagnostics>\n"
-        "<json_examples>\n"
-        f'{{"base_revision":"{revision_id}","lineage":["{revision_id}"],'
-        '"operations":[],"affected_ids":[],"evidence_refs":[],'
-        '"change_kind":"none","reasoning":"没有明确可安全修复的问题"}\n'
-        f'{{"base_revision":"{revision_id}","lineage":["{revision_id}"],'
-        '"operations":[{"operation":"update_heading_level",'
-        '"block_id":"EXISTING_BLOCK_UUID","heading_level":2}],'
-        '"affected_ids":[],"evidence_refs":[{"object_type":"block",'
-        '"object_id":"EXISTING_BLOCK_UUID","field_path":"heading_level"}],'
-        '"change_kind":"structure","reasoning":"依据编号层级修复标题"}\n'
-        "</json_examples>\n"
+        "<few_shot_examples>\n"
+        f"{_render_few_shot_examples(revision_id)}\n"
+        "</few_shot_examples>\n"
         "<context>\n<document_index>\n"
         f"{document_index}\n"
         "</document_index>\n<block_summaries>\n"

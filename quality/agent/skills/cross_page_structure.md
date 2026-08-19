@@ -54,3 +54,12 @@ priority: specialist
 ## 6. 输出检查
 
 检查跨页对象的所有 page/bbox/source 信息保持；确认 Patch 不会把不同章节、不同表格或不同脚注错误合并。
+
+## 7. 输出 few-shot
+
+当上一页末尾 block 和下一页开头 block 的顺序、章节和 bbox 证据唯一时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","scope":"page","scope_pages":[5,6],"lineage":["<current-revision>"],"operations":[{"operation":"move_block","block_id":"<next-page-block>","before_block_id":"<following-block>"}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<next-page-block>","field_path":"source_anchor.page_number"},{"object_type":"block","object_id":"<following-block>","field_path":"order_index"}],"change_kind":"structure","reasoning":"使用两页的 source anchor、bbox 和段落连续性恢复已有 block 顺序，不拼接或补写缺失正文。","confidence":0.88}
+~~~
+跨页证据不足时必须 no-op，并在 reasoning 中列出缺失页或冲突对象。

@@ -70,23 +70,93 @@ class QualityToolbox:
             relation_overrides=self.current_revision.relation_overrides,
         )
         report = package.quality_report
+        reference_blocks_available = any(
+            getattr(block.kind, "value", block.kind) == "reference"
+            for block in self.current_revision.document.blocks
+        )
         return {
             "revision_id": self.current_revision.revision_id,
             "quality_state": report.state.value,
             "blocking_reasons": list(report.gate_summary.blocking_reasons),
             "capability_blockers": list(report.gate_summary.capability_blockers),
             "issues": [
-                {
-                    "issue_id": issue.issue_id,
-                    "category": issue.category,
-                    "severity": issue.severity.value,
-                    "message": issue.message,
-                    "affected_block_ids": list(issue.affected_block_ids),
-                    "evidence_refs": issue.evidence.get("evidence_refs", []),
-                }
+                self._diagnostic_issue(issue, reference_blocks_available)
                 for issue in report.issues
             ],
         }
+
+    @staticmethod
+    def _diagnostic_issue(issue, reference_blocks_available: bool) -> dict[str, Any]:
+        category = issue.category
+        if category in {
+            "content_completeness",
+            "provenance",
+            "reference_structure",
+            "evidence_availability",
+        }:
+            repairability = "parser_limited"
+        elif category == "citation_binding" and not reference_blocks_available:
+            repairability = "parser_limited"
+        elif category in {
+            "heading_level_missing",
+            "heading_level_granularity_suspect",
+            "heading_parent_missing",
+            "reading_order_conflict",
+            "table_grid",
+            "table_header_structure",
+            "table_field_binding",
+            "cross_page_table",
+            "column_drift",
+            "citation_binding",
+        }:
+            repairability = "repairable"
+        else:
+            repairability = "manual_review"
+        return {
+            "issue_id": issue.issue_id,
+            "category": category,
+            "severity": issue.severity.value,
+            "message": issue.message,
+            "affected_block_ids": list(issue.affected_block_ids),
+            "evidence_refs": issue.evidence.get("evidence_refs", []),
+            "repairability": repairability,
+            "agent_action": (
+                "attempt_patch"
+                if repairability == "repairable"
+                else "preserve_and_report"
+            ),
+        }
+
+    def repairable_issue_count(self, page_number: int | None = None) -> int:
+        diagnostics = self.get_quality_diagnostics()
+        if page_number is None:
+            return sum(
+                issue.get("repairability") == "repairable"
+                for issue in diagnostics.get("issues", [])
+            )
+
+        document = self.current_revision.document
+        page_object_ids = {
+            str(block.id)
+            for block in document.blocks
+            if block.anchor.page_number == page_number
+        }
+        page_object_ids.update(
+            table.table_id
+            for table in document.tables
+            if table.page_number == page_number
+        )
+        return sum(
+            issue.get("repairability") == "repairable"
+            and bool(
+                page_object_ids.intersection(issue.get("affected_block_ids", []))
+                or page_object_ids.intersection(
+                    ref.get("object_id", "")
+                    for ref in issue.get("evidence_refs", [])
+                )
+            )
+            for issue in diagnostics.get("issues", [])
+        )
 
     def validate_candidate(self, candidate: RepairedDocumentCandidate | dict[str, Any]) -> dict[str, Any]:
         parsed = self._parse_candidate(candidate)

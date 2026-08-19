@@ -12,6 +12,7 @@ from pydantic import ValidationError
 
 from quality.agent.agno_adapter import CandidateSchemaError
 from quality.agent.context import DocumentAgentContext, DocumentContextBuilder
+from quality.agent.deterministic import build_deterministic_candidate
 from quality.agent.index import DocumentIndex
 from quality.agent.models import CandidateValidation, RepairedDocumentCandidate
 from quality.agent.revision import document_digest
@@ -56,10 +57,14 @@ ProgressCallback = Callable[[RepairProgressEvent], None]
 class RepairAgentConfig:
     max_rounds: int = 3
     max_context_chars: int = 12000
-    mode: Literal["document", "paged"] = "document"
+    # Production-safe default: keep context and candidate scope page-local.
+    # Whole-document mode remains available as an explicit opt-in for tests
+    # and specialized workflows.
+    mode: Literal["document", "paged"] = "paged"
     max_pages: int | None = None
     progress_callback: ProgressCallback | None = None
     session_id: str | None = None
+    enable_deterministic_prepass: bool = True
 
 
 @dataclass(frozen=True)
@@ -69,6 +74,7 @@ class RepairExecution:
     final_revision_id: str
     accepted: bool
     session_id: str
+    repair_applied: bool = False
 
 
 def run_repair(
@@ -130,6 +136,8 @@ def _run_document_repair(
     feedback: CandidateValidation | None = None
     accepted = False
     accepted_no_progress = False
+    no_progress_manual_review = False
+    repairable_issue_count = 0
     _emit(runtime_config, "document", "started", None, 0, 0, "开始整篇文档修复")
 
     for round_index in range(runtime_config.max_rounds):
@@ -176,11 +184,22 @@ def _run_document_repair(
             break
         attempts.append(validation)
         if validation.accepted:
+            if validation.no_progress:
+                repairable_issue_count = toolbox.repairable_issue_count()
+                if repairable_issue_count:
+                    if round_index + 1 < runtime_config.max_rounds:
+                        feedback = _no_progress_feedback(
+                            validation, repairable_issue_count
+                        )
+                        continue
+                    no_progress_manual_review = True
+                    break
+                accepted = True
+                accepted_no_progress = True
+                break
             accepted = True
-            accepted_no_progress = validation.no_progress
-            if not validation.no_progress:
-                toolbox.commit_revision(candidate)
-                revision = toolbox.current_revision
+            toolbox.commit_revision(candidate)
+            revision = toolbox.current_revision
             break
         if validation.no_progress:
             break
@@ -213,10 +232,14 @@ def _run_document_repair(
             "attempt_count": len(attempts),
             "mode": "document",
             "stop_reason": (
+                "no_progress_manual_review"
+                if no_progress_manual_review
+                else
                 "no_progress"
                 if accepted_no_progress
                 else "committed" if accepted else "manual_review"
             ),
+            "repairable_issue_count": repairable_issue_count,
         },
     )
 
@@ -251,6 +274,9 @@ def _run_paged_repair(
     attempts: list[CandidateValidation] = []
     completed = 0
     successful_pages = 0
+    deterministic_repairs = 0
+    deterministic_attempts = 0
+    llm_calls = 0
 
     for page_number in pages:
         feedback: CandidateValidation | None = None
@@ -264,59 +290,97 @@ def _run_paged_repair(
             total_pages,
             f"开始处理第 {page_number} 页",
         )
-        for round_index in range(runtime_config.max_rounds):
+        if runtime_config.enable_deterministic_prepass:
             revision = toolbox.current_revision
-            context = context_builder.build_page(
-                revision,
-                page_number,
-                feedback,
-                max_context_chars=runtime_config.max_context_chars,
-                quality_diagnostics=toolbox.get_quality_diagnostics(),
-            )
-            try:
-                candidate = agent.run(context, feedback=feedback)
-            except CandidateSchemaError as exc:
-                validation = _candidate_schema_error_validation(revision, exc)
-                attempts.append(validation)
-                toolbox.rollback_revision(validation.message)
-                feedback = validation
-                if round_index + 1 < runtime_config.max_rounds:
-                    continue
-                break
-            except Exception as exc:
-                validation = _agent_error_validation(revision, exc)
-                attempts.append(validation)
-                toolbox.rollback_revision(validation.message)
-                break
+            rule_candidate = build_deterministic_candidate(revision, page_number)
+            if rule_candidate is not None:
+                deterministic_attempts += 1
+                try:
+                    rule_validation = CandidateValidation.model_validate(
+                        toolbox.validate_candidate_for_page(rule_candidate, page_number)
+                    )
+                except Exception as exc:
+                    rule_validation = _validator_error_validation(revision, exc)
+                    toolbox.rollback_revision(rule_validation.message)
+                attempts.append(rule_validation)
+                if rule_validation.accepted and not rule_validation.no_progress:
+                    toolbox.commit_revision(rule_candidate)
+                    deterministic_repairs += 1
+                    page_accepted = (
+                        toolbox.repairable_issue_count(page_number) == 0
+                    )
 
-            try:
-                candidate = RepairedDocumentCandidate.model_validate(candidate)
-            except ValidationError as exc:
-                validation = _candidate_schema_error_validation(revision, exc)
-                attempts.append(validation)
-                toolbox.rollback_revision(validation.message)
-                feedback = validation
-                if round_index + 1 < runtime_config.max_rounds:
-                    continue
-                break
-            try:
-                validation = CandidateValidation.model_validate(
-                    toolbox.validate_candidate_for_page(candidate, page_number)
+        # Parser-limited/manual-review issues on this page do not benefit from
+        # an LLM. If no deterministic repair remains applicable, finish the
+        # page as a safe no-op instead of spending a model call.
+        if not page_accepted and toolbox.repairable_issue_count(page_number) == 0:
+            page_accepted = True
+
+        if not page_accepted:
+            for round_index in range(runtime_config.max_rounds):
+                llm_calls += 1
+                revision = toolbox.current_revision
+                context = context_builder.build_page(
+                    revision,
+                    page_number,
+                    feedback,
+                    max_context_chars=runtime_config.max_context_chars,
+                    quality_diagnostics=toolbox.get_quality_diagnostics(),
                 )
-            except Exception as exc:
-                validation = _validator_error_validation(revision, exc)
+                try:
+                    candidate = agent.run(context, feedback=feedback)
+                except CandidateSchemaError as exc:
+                    validation = _candidate_schema_error_validation(revision, exc)
+                    attempts.append(validation)
+                    toolbox.rollback_revision(validation.message)
+                    feedback = validation
+                    if round_index + 1 < runtime_config.max_rounds:
+                        continue
+                    break
+                except Exception as exc:
+                    validation = _agent_error_validation(revision, exc)
+                    attempts.append(validation)
+                    toolbox.rollback_revision(validation.message)
+                    break
+
+                try:
+                    candidate = RepairedDocumentCandidate.model_validate(candidate)
+                except ValidationError as exc:
+                    validation = _candidate_schema_error_validation(revision, exc)
+                    attempts.append(validation)
+                    toolbox.rollback_revision(validation.message)
+                    feedback = validation
+                    if round_index + 1 < runtime_config.max_rounds:
+                        continue
+                    break
+                try:
+                    validation = CandidateValidation.model_validate(
+                        toolbox.validate_candidate_for_page(candidate, page_number)
+                    )
+                except Exception as exc:
+                    validation = _validator_error_validation(revision, exc)
+                    attempts.append(validation)
+                    toolbox.rollback_revision(validation.message)
+                    break
                 attempts.append(validation)
-                toolbox.rollback_revision(validation.message)
-                break
-            attempts.append(validation)
-            if validation.accepted:
-                if not validation.no_progress:
+                if validation.accepted:
+                    if validation.no_progress:
+                        repairable_issue_count = toolbox.repairable_issue_count(page_number)
+                        if repairable_issue_count:
+                            if round_index + 1 < runtime_config.max_rounds:
+                                feedback = _no_progress_feedback(
+                                    validation, repairable_issue_count
+                                )
+                                continue
+                            break
+                        page_accepted = True
+                        break
                     toolbox.commit_revision(candidate)
-                page_accepted = True
-                break
-            if validation.no_progress:
-                break
-            feedback = validation
+                    page_accepted = True
+                    break
+                if validation.no_progress:
+                    break
+                feedback = validation
 
         completed += 1
         if page_accepted:
@@ -356,6 +420,9 @@ def _run_paged_repair(
             "total_pages": total_pages,
             "completed_pages": completed,
             "successful_pages": successful_pages,
+            "deterministic_attempts": deterministic_attempts,
+            "deterministic_repairs": deterministic_repairs,
+            "llm_call_count": llm_calls,
         },
     )
 
@@ -375,6 +442,10 @@ def _finish_execution(
             **dict(agent_metrics),
             "session_id": session_id,
             "accepted": accepted,
+            "repair_applied": any(
+                attempt.accepted and not attempt.no_progress
+                for attempt in attempts
+            ),
             "final_revision_id": revision.revision_id,
             "last_code": attempts[-1].code if attempts else "not_run",
         }
@@ -391,6 +462,31 @@ def _finish_execution(
         final_revision_id=revision.revision_id,
         accepted=accepted,
         session_id=session_id,
+        repair_applied=bool(
+            any(attempt.accepted and not attempt.no_progress for attempt in attempts)
+        ),
+    )
+
+
+def _no_progress_feedback(
+    validation: CandidateValidation,
+    repairable_issue_count: int,
+) -> CandidateValidation:
+    """把合法但无变化的候选转成下一轮的明确重试反馈。"""
+
+    return validation.model_copy(
+        update={
+            "accepted": False,
+            "code": "no_progress_with_repairable_issues",
+            "message": (
+                "候选 Schema 合法，但没有产生任何结构变化；"
+                f"当前仍有 {repairable_issue_count} 个可尝试修复的问题。"
+                "请只针对有证据的问题提交最小 operations，"
+                "不要再次返回空 operations。"
+            ),
+            "errors": ["no_progress_with_repairable_issues"],
+            "no_progress": True,
+        }
     )
 
 
@@ -427,11 +523,14 @@ def _failure_validation(
     no_progress: bool = True,
 ) -> CandidateValidation:
     exception_type = f"{type(exc).__module__}.{type(exc).__name__}"
+    errors = [exception_type]
+    if isinstance(exc, CandidateSchemaError):
+        errors.append(f"reason={exc.reason}")
     return CandidateValidation(
         accepted=False,
         code=code,
         message=message,
-        errors=[exception_type],
+        errors=errors,
         no_progress=no_progress,
         base_revision=revision.revision_id,
         source_content_fingerprint="",

@@ -95,3 +95,78 @@ priority: primary
 ## 6. 与工具和 Validator 的边界
 
 你可以调用只读上下文工具获取证据，也可以调用候选验证和差异工具获取反馈；你不能调用 commit、rollback、写文件或任意脚本。最终是否接受由本地 Validator、质量规则和 runtime 决定。
+
+
+## 7. 候选输出协议与 few-shot
+
+专项 Skill 只负责判断问题类型；最终候选必须遵守本节的统一 JSON 协议。只返回一个 JSON 对象，不要返回 Markdown 围栏、解释性段落或第二个候选。
+
+### 7.1 固定字段规则
+
+- base_revision 必须逐字等于当前上下文中的 revision；
+- lineage 必须包含 base_revision，重试时仍使用当前 revision；
+- 有操作时使用 operations，每个操作只能引用输入中已有的稳定 ID，并至少有一个对应的 evidence_refs；
+- 单个候选最多包含 8 个 operations；问题较多时按页或局部分批，只提交证据最充分的一小批；
+- 不要在一次工具调用中提交整篇标题或表格修复，保持候选 JSON 紧凑，避免工具参数截断；
+- 单个候选最多包含 8 个 operations；问题较多时按页或局部分批，只提交证据最充分的一小批；
+- 不要在一次工具调用中提交整篇标题或表格修复，保持候选 JSON 紧凑，避免工具参数截断；
+- affected_ids、affected_relation_keys 和 affected_asset_paths 可以先留空，由宿主按实际 Patch 规范化；
+- page scope 必须同时给出 scope: "page" 和非空 scope_pages；
+- 公式、正文事实或解析器没有提供证据时，必须输出安全 no-op，不能用 update_block_markdown 猜测性补写；
+- 表格结构问题优先使用 update_table_cell_layout，不要在 cell_layout_patches 中携带或改写正文。
+
+### 7.2 示例一：有证据的最小标题 Patch
+
+输入证据：
+
+~~~text
+quality_diagnostics: {"issues":[{"category":"heading_level_mismatch","page":2,"block_id":"<heading-id>"}]}
+block: {"id":"<heading-id>","kind":"heading","markdown":"### 2 方法","heading_level":3}
+document_index: 前后同级编号标题均为二级，当前标题应为二级。
+~~~
+
+规范输出：
+
+~~~json
+{"base_revision":"<current-revision>","scope":"page","scope_pages":[2],"operations":[{"operation":"update_heading_level","block_id":"<heading-id>","heading_level":2}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<heading-id>","field_path":"heading_level"}],"change_kind":"structure","reasoning":"依据前后编号标题树将已有标题从三级调整为二级，不修改标题文字。","confidence":0.95}
+~~~
+
+### 7.3 示例二：解析器丢失公式时安全停止
+
+输入证据：
+
+~~~text
+quality_diagnostics: {"issues":[{"category":"formula_placeholder","page":3,"block_id":"<formula-id>"}]}
+block: {"id":"<formula-id>","markdown":"[[FORMULA_UNAVAILABLE]]","native_formula":null}
+~~~
+
+规范输出：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[],"affected_ids":[],"evidence_refs":[],"change_kind":"none","reasoning":"输入没有提供可验证的原始公式，质量层不能猜测公式；保留占位符并交给下游标记。","confidence":0.99}
+~~~
+
+### 7.4 示例三：只修表格布局，不改事实文本
+
+输入证据：
+
+~~~text
+quality_diagnostics: {"issues":[{"category":"table_grid_gap","page":4,"table_id":"<table-id>","cell_index":2}]}
+cell: {"cell_index":2,"text_sha256":"<sha256>","bbox":[100,200,180,230]}
+~~~
+
+规范输出：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[{"operation":"update_table_cell_layout","table_id":"<table-id>","cell_layout_patches":[{"cell_index":2,"start_row":1,"start_col":1,"row_span":1,"col_span":1,"expected_text_sha256":"<sha256>"}]}],"affected_ids":[],"evidence_refs":[{"object_type":"table","object_id":"<table-id>","field_path":"cells[2].grid"}],"change_kind":"structure","reasoning":"只按 bbox 和邻近网格修复已有 cell 的坐标，正文由宿主从当前 revision 保留。","confidence":0.9}
+~~~
+
+### 7.5 示例四：Validator 重试
+
+如果上一轮反馈为 candidate_schema_error，例如“lineage 必须包含 base_revision”，不要重新分析整篇文档；只修正候选协议：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[],"affected_ids":[],"evidence_refs":[],"change_kind":"none","reasoning":"已按 Validator 反馈补齐当前 revision 的 base_revision 和 lineage；没有其他可安全修复的问题。","confidence":0.99}
+~~~
+
+任何示例中的 <...> 都是占位说明，实际输出必须替换为上下文中真实存在的 ID、revision、页码和指纹。

@@ -39,3 +39,12 @@ priority: specialist
 ## 5. 输出检查
 
 确认事实词元、代码字符、URL、公式和引用标记不变；运行差异检查后，确保只发生必要的格式变化，并验证第二次应用同一 Patch 不再产生新变化。
+
+## 6. 输出 few-shot
+
+当已有 block 的正文事实不变，只缺少 Markdown 段落边界时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[{"operation":"update_block_markdown","block_id":"<block-id>","markdown":"原有正文\\n\\n下一段"}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<block-id>","field_path":"markdown"}],"change_kind":"format","reasoning":"只补充已由相邻 block 证实的段落边界，不改变正文词元。","confidence":0.9}
+~~~
+如果无法确认换行位置，输出合法 no-op，不要重写整段 Markdown。

@@ -57,3 +57,12 @@ priority: specialist
 ## 6. 输出检查
 
 删除前确认重复指纹、保留对象、影响关系和 evidence_refs；删除后检查文档仍有稳定顺序，且没有把原本真实出现两次的正文误判成重复。
+
+## 7. 输出 few-shot
+
+只有当两个 block 的事实文本、来源指纹和结构角色都完全重复，并且其中一个明确是重复解析产物时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","lineage":["<current-revision>"],"operations":[{"operation":"remove_block","block_id":"<duplicate-block>"}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<duplicate-block>","field_path":"content_fingerprint"},{"object_type":"block","object_id":"<kept-block>","field_path":"content_fingerprint"}],"change_kind":"structure","reasoning":"两个已有 block 的正文和 provenance 指纹完全相同，且 duplicate block 没有独立来源关系；删除重复解析产物，不删除真实重复出现的内容。","confidence":0.97}
+~~~
+无法证明是重复解析产物时输出 no-op，不凭语义相似删除 block。

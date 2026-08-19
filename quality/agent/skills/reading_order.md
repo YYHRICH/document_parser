@@ -60,3 +60,11 @@ priority: specialist
 ## 6. 输出检查
 
 确认移动前后每个 block 的文本、ID、页码、bbox 和 provenance 不变；`affected_ids` 必须包括被移动 block 以及顺序边界涉及的对象，并用 page/block 的 bbox 和相邻结构填充 `evidence_refs`。
+
+## 7. 输出 few-shot
+
+当 bbox 和相邻标题唯一证明 block B 应位于 block A 之前时，规范输出为：
+
+~~~json
+{"base_revision":"<current-revision>","scope":"page","scope_pages":[1,2],"lineage":["<current-revision>"],"operations":[{"operation":"move_block","block_id":"<block-b>","before_block_id":"<block-a>"}],"affected_ids":[],"evidence_refs":[{"object_type":"block","object_id":"<block-b>","field_path":"order_index"},{"object_type":"block","object_id":"<block-a>","field_path":"order_index"}],"change_kind":"structure","reasoning":"依据相邻页 bbox 和章节连续性恢复已有 block 的阅读顺序，不改 block 文本。","confidence":0.92}
+~~~
