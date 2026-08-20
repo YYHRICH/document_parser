@@ -9,6 +9,7 @@ mineru[all]>=3.4,<4
 rapidocr>=3,<4
 onnxruntime>=1.18,<2
 pillow>=10,<12
+pypdfium2>=4,<5
 pywin32>=306; platform_system == "Windows"
 
 # Dev tooling and parser fixtures

@@ -34,9 +34,19 @@ class CapabilityRegistry:
 
     @classmethod
     def from_settings(cls, settings: RoutingSettings) -> "CapabilityRegistry":
-        del settings
         parsers = build_parser_registry()
-        return cls(parser.capability for parser in parsers.values())
+        capabilities: list[ParserCapability] = []
+        for parser in parsers.values():
+            capability = parser.capability
+            if parser.PARSER_ID == MINERU_ID and settings.mineru_api_token is not None:
+                capability = capability.model_copy(
+                    update={
+                        "available": True,
+                        "unavailable_reason": None,
+                    }
+                )
+            capabilities.append(capability)
+        return cls(capabilities)
 
     def get(self, parser_id: str) -> ParserCapability:
         try:

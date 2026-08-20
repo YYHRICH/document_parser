@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from uuid import UUID
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -7,8 +8,27 @@ sys.path.insert(0, str(PROJECT_ROOT.parent))
 
 from document_parser import DocumentParserGateway, ParseRequest  # noqa: E402
 from document_parser.core.contracts import DocumentSignals, RoutingDecision, RoutingMode  # noqa: E402
+from document_parser.normalizers import ParserNormalizationBundle  # noqa: E402
+from document_parser.parsers.base import BaseParserAdapter  # noqa: E402
 
 from document_parser.parsers.registry import build_parser_registry, get_parser  # noqa: E402
+
+
+class EmptyFallbackAdapter(BaseParserAdapter):
+    PARSER_ID = "fake-empty"
+    DISPLAY_NAME = "Fake Empty"
+    NATIVE_FORMATS = {".md"}
+
+    def normalize(self, request, signals):
+        return ParserNormalizationBundle.from_minimal_markdown(
+            document_id=UUID("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"),
+            filename=request.filename,
+            file_type=request.file_type,
+            markdown="",
+            parser_id=self.PARSER_ID,
+            parser_version="test",
+            warnings=["fake parser returned no normalized content"],
+        )
 
 
 def test_gateway_lists_registered_parsers() -> None:
@@ -76,3 +96,41 @@ def test_gateway_consumes_external_routing_decision() -> None:
     assert parsed.provenance.routing_mode == RoutingMode.AUTO
     assert parsed.provenance.requested_parser_id is None
     assert parsed.provenance.parameters["route_profile"] == "quality_first"
+
+
+def test_gateway_executes_automatic_fallback_when_selected_parser_returns_empty() -> None:
+    class FakeRouter:
+        def route_request(self, request: ParseRequest) -> RoutingDecision:
+            signals = DocumentSignals(
+                extension=".md",
+                size_bytes=len(request.content),
+                has_text_layer=True,
+            )
+            return RoutingDecision(
+                mode=RoutingMode.AUTO,
+                selected_parser_id="fake-empty",
+                reason="test route",
+                signals=signals,
+                parser_options={"route_profile": "quality_first", "allow_cloud": True},
+                fallback_parser_ids=["docling"],
+                allow_automatic_fallback=True,
+            )
+
+    gateway = DocumentParserGateway(router=FakeRouter())
+    gateway._adapters["fake-empty"] = EmptyFallbackAdapter()
+    request = ParseRequest(
+        filename="sample.md",
+        file_type="text/markdown",
+        content=b"# Title\n\nBody.",
+        parser_id=None,
+        options={},
+    )
+
+    parsed = gateway.parse(request)
+
+    assert parsed.provenance.parser_id == "docling"
+    assert parsed.routing_decision is not None
+    assert parsed.routing_decision.selected_parser_id == "docling"
+    assert parsed.provenance.parameters["routing_initial_parser_id"] == "fake-empty"
+    assert parsed.provenance.fallback_history[0].parser_id == "fake-empty"
+    assert parsed.markdown == "# Title\n\nBody."

@@ -3,12 +3,18 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import time
 from importlib.util import find_spec
 from typing import Any
 
-from ...core.contracts import DocumentSignals, ParseRequest, ParserNativeResult
+from ...core.contracts import (
+    DocumentSignals,
+    ParseRequest,
+    ParserCapability,
+    ParserNativeResult,
+)
 from ...normalizers import ParserNormalizationBundle, make_stable_document_id
 from ..base import BaseParserAdapter
 
@@ -22,7 +28,23 @@ class OcrParser(BaseParserAdapter):
     NATIVE_FORMATS = {".pdf", ".jpg", ".jpeg", ".png"}
     MODEL_VERSIONS = ["ocr"]
     DEFAULT_MODEL_VERSION = "ocr"
-    UNAVAILABLE_REASON = "OCR 适配器骨架已创建，尚未接入实际实现。"
+    UNAVAILABLE_REASON = "OCR adapter requires RapidOCR for direct image parsing."
+
+    @property
+    def capability(self) -> ParserCapability:
+        available = find_spec("rapidocr") is not None
+        return ParserCapability(
+            parser_id=self.PARSER_ID,
+            provider=self.PROVIDER,
+            display_name=self.DISPLAY_NAME,
+            formats=self.NATIVE_FORMATS,
+            model_versions=self.MODEL_VERSIONS,
+            default_model_version=self.DEFAULT_MODEL_VERSION,
+            requires_network=False,
+            requires_gpu=False,
+            available=available,
+            unavailable_reason=None if available else self.UNAVAILABLE_REASON,
+        )
 
     def build_native_result(
         self,
@@ -32,7 +54,7 @@ class OcrParser(BaseParserAdapter):
         sidecar_result = self._build_native_result_from_options(request, signals)
         if sidecar_result is not None:
             return sidecar_result
-        if signals.extension in {".jpg", ".jpeg", ".png"} and find_spec("rapidocr") is not None:
+        if signals.extension in {".jpg", ".jpeg", ".png", ".pdf"} and find_spec("rapidocr") is not None:
             return self._build_with_rapidocr(request, signals)
         return self._build_placeholder_native_result(request, signals)
 
@@ -54,53 +76,68 @@ class OcrParser(BaseParserAdapter):
             parser_id=self.PARSER_ID,
             parser_version=parser_version,
         )
-        result = RapidOCR()(request.content)
-        raw_items = result.to_json()
-        width, height = Image.open(__import__("io").BytesIO(request.content)).size
+        engine = RapidOCR()
+        page_images = self._ocr_page_images(request, signals)
 
         blocks: list[dict[str, Any]] = []
         ocr_spans: list[dict[str, Any]] = []
+        raw_pages: list[dict[str, Any]] = []
+        pages: dict[str, dict[str, Any]] = {}
         lines: list[str] = []
-        for index, item in enumerate(raw_items):
-            text = str(item.get("txt") or "").strip()
-            bbox = self._rect_from_polygon(item.get("box"))
-            score = item.get("score")
-            if not text or bbox is None:
-                continue
-            lines.append(text)
-            block = {
-                "id": f"rapidocr-line-{index:04d}",
-                "type": "ocr_line",
-                "text": text,
-                "page_number": 1,
-                "bbox": bbox,
-                "page_width": width,
-                "page_height": height,
-                "coordinate_system": "top_left_pixel",
-                "bbox_granularity": "line",
-                "provenance_status": "available",
+        for page_number, image_bytes, width, height in page_images:
+            result = engine(image_bytes)
+            raw_items = result.to_json()
+            if not isinstance(raw_items, list):
+                raw_items = []
+            pages[str(page_number)] = {
+                "page_no": page_number,
+                "size": {"width": width, "height": height},
             }
-            blocks.append(block)
-            ocr_spans.append(
-                {
-                    "level": "line",
+            raw_pages.append({"page_number": page_number, "items": raw_items})
+            if lines:
+                lines.append("")
+            for item in raw_items:
+                if not isinstance(item, dict):
+                    continue
+                text = str(item.get("txt") or item.get("text") or "").strip()
+                bbox = self._rect_from_polygon(item.get("box") or item.get("bbox"))
+                score = item.get("score") or item.get("confidence")
+                if not text or bbox is None:
+                    continue
+                order_index = len(blocks)
+                lines.append(text)
+                block = {
+                    "id": f"rapidocr-p{page_number:04d}-line-{order_index:04d}",
+                    "type": "ocr_line",
                     "text": text,
+                    "page_number": page_number,
                     "bbox": bbox,
-                    "confidence": score if isinstance(score, (int, float)) else None,
-                    "page_number": 1,
+                    "page_width": width,
+                    "page_height": height,
+                    "coordinate_system": "top_left_pixel",
+                    "bbox_granularity": "line",
+                    "provenance_status": "available",
                 }
-            )
+                blocks.append(block)
+                ocr_spans.append(
+                    {
+                        "level": "line",
+                        "text": text,
+                        "bbox": bbox,
+                        "confidence": score if isinstance(score, (int, float)) else None,
+                        "page_number": page_number,
+                        "page_width": width,
+                        "page_height": height,
+                        "coordinate_system": "top_left_pixel",
+                    }
+                )
 
         markdown = "\n".join(lines)
         payload = {
             "blocks": blocks,
             "ocr_spans": ocr_spans,
-            "raw": raw_items,
-            "image": {
-                "width": width,
-                "height": height,
-                "coordinate_system": "top_left_pixel",
-            },
+            "raw_pages": raw_pages,
+            "pages": pages,
         }
         native_files = {
             "native/ocr_result.json": json.dumps(
@@ -139,6 +176,45 @@ class OcrParser(BaseParserAdapter):
                 f"RapidOCR 实际调用完成，识别 {len(ocr_spans)} 个文本行，耗时 {int((time.perf_counter() - started) * 1000)} ms。"
             ],
         )
+
+    def _ocr_page_images(
+        self,
+        request: ParseRequest,
+        signals: DocumentSignals,
+    ) -> list[tuple[int, bytes, int, int]]:
+        from PIL import Image
+
+        if signals.extension == ".pdf":
+            if find_spec("pypdfium2") is None:
+                raise RuntimeError("PDF OCR requires pypdfium2 to render pages.")
+            import pypdfium2 as pdfium
+
+            scale = float(request.options.get("ocr_pdf_scale", 2.0))
+            max_pages = int(request.options.get("ocr_max_pages", 20))
+            document = pdfium.PdfDocument(request.content)
+            page_images: list[tuple[int, bytes, int, int]] = []
+            try:
+                for page_index in range(min(len(document), max_pages)):
+                    image = document[page_index].render(scale=scale).to_pil()
+                    page_images.append(
+                        (
+                            page_index + 1,
+                            self._image_to_png_bytes(image),
+                            int(image.width),
+                            int(image.height),
+                        )
+                    )
+            finally:
+                document.close()
+            return page_images
+
+        image = Image.open(io.BytesIO(request.content))
+        return [(1, request.content, int(image.width), int(image.height))]
+
+    def _image_to_png_bytes(self, image: Any) -> bytes:
+        with io.BytesIO() as buffer:
+            image.save(buffer, format="PNG")
+            return buffer.getvalue()
 
     def _rect_from_polygon(self, value: Any) -> list[float] | None:
         if not isinstance(value, list) or not value:

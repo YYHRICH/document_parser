@@ -55,7 +55,8 @@ class MinerUParser(BaseParserAdapter):
         dependency_available = (
             self._has_cloud_token()
             or find_spec("magic_pdf") is not None
-            or find_spec("mineru") is not None
+            or shutil.which("mineru") is not None
+            or shutil.which("mineru.cmd") is not None
         )
         return ParserCapability(
             parser_id=self.PARSER_ID,
@@ -157,26 +158,6 @@ class MinerUParser(BaseParserAdapter):
             source_path.write_bytes(request.content)
 
             route_options = self._mineru_route_options(request, signals)
-            form_data = api_client.build_parse_request_form_data(
-                lang_list=[route_options["lang"]],
-                backend=route_options["backend"],
-                parse_method=route_options["method"],
-                formula_enable=route_options["formula_enable"],
-                table_enable=route_options["table_enable"],
-                server_url=route_options["server_url"],
-                start_page_id=route_options["start_page_id"],
-                end_page_id=route_options["end_page_id"],
-                effort=route_options["effort"],
-                image_analysis=route_options["image_analysis"],
-                return_md=True,
-                return_middle_json=True,
-                return_model_output=True,
-                return_content_list=True,
-                return_images=True,
-                response_format_zip=True,
-                return_original_file=True,
-                client_side_output_generation=False,
-            )
             headers = {
                 "Accept": "application/json",
                 "User-Agent": "document_parser/parse-integration",
@@ -185,14 +166,14 @@ class MinerUParser(BaseParserAdapter):
                 headers["Authorization"] = f"Bearer {token}"
 
             try:
-                task_info = self._submit_mineru_task(
+                task_info = self._submit_mineru_batch_task(
                     httpx=httpx,
                     base_url=base_url,
                     source_path=source_path,
-                    form_data=form_data,
+                    route_options=route_options,
                     headers=headers,
                 )
-                self._wait_for_mineru_task(
+                result_url = self._wait_for_mineru_batch_result(
                     httpx=httpx,
                     task_info=task_info,
                     headers=headers,
@@ -200,7 +181,7 @@ class MinerUParser(BaseParserAdapter):
                 )
                 zip_path = self._download_mineru_result(
                     httpx=httpx,
-                    task_info=task_info,
+                    result_url=result_url,
                     headers=headers,
                     timeout_seconds=float(route_options["download_timeout_seconds"]),
                 )
@@ -276,11 +257,18 @@ class MinerUParser(BaseParserAdapter):
             except (TypeError, ValueError):
                 return default
 
+        is_ocr = as_bool(
+            options.get("is_ocr", options.get("mineru_is_ocr")),
+            needs_ocr or method.lower() == "ocr",
+        )
+
         return {
             "backend": backend,
             "method": method,
+            "is_ocr": is_ocr,
             "effort": effort,
             "lang": lang,
+            "model_version": str(options.get("model_version") or options.get("mineru_model_version") or "vlm"),
             "server_url": server_url,
             "formula_enable": as_bool(options.get("enable_formula"), True),
             "table_enable": as_bool(options.get("enable_table"), True),
@@ -296,69 +284,99 @@ class MinerUParser(BaseParserAdapter):
             ),
         }
 
-    def _submit_mineru_task(
+    def _submit_mineru_batch_task(
         self,
         *,
         httpx: Any,
         base_url: str,
         source_path: Path,
-        form_data: dict[str, str | list[str]],
+        route_options: dict[str, Any],
         headers: dict[str, str],
     ) -> dict[str, str]:
-        task_url = f"{base_url}/tasks"
-        mime_type = (
-            "application/pdf"
-            if source_path.suffix.lower() == ".pdf"
-            else "application/octet-stream"
-        )
+        task_url = f"{base_url}/file-urls/batch"
+        body = {
+            "enable_formula": bool(route_options["formula_enable"]),
+            "enable_table": bool(route_options["table_enable"]),
+            "language": route_options["lang"],
+            "model_version": route_options["model_version"],
+            "files": [
+                {
+                    "name": source_path.name,
+                    "is_ocr": bool(route_options["is_ocr"]),
+                    "data_id": hashlib.sha256(source_path.read_bytes()).hexdigest()[:16],
+                }
+            ],
+        }
         with httpx.Client(timeout=60.0, follow_redirects=True, headers=headers) as client:
-            with source_path.open("rb") as handle:
-                response = client.post(
-                    task_url,
-                    data=form_data,
-                    files=[("files", (source_path.name, handle, mime_type))],
+            response = client.post(task_url, json=body)
+            payload = self._mineru_json_payload(response, context="create upload URL")
+            data = payload.get("data") if isinstance(payload, dict) else None
+            if not isinstance(data, dict):
+                raise RuntimeError("MinerU API returned an invalid upload URL payload")
+            batch_id = data.get("batch_id")
+            file_urls = data.get("file_urls")
+            if not isinstance(batch_id, str) or not batch_id:
+                raise RuntimeError("MinerU API did not return batch_id")
+            if (
+                not isinstance(file_urls, list)
+                or not file_urls
+                or not isinstance(file_urls[0], str)
+            ):
+                raise RuntimeError("MinerU API did not return a file upload URL")
+        with httpx.Client(timeout=60.0, follow_redirects=True) as upload_client:
+            upload_response = upload_client.put(file_urls[0], content=source_path.read_bytes())
+            if upload_response.status_code not in {200, 201, 204}:
+                raise RuntimeError(
+                    "MinerU file upload failed: "
+                    f"{upload_response.status_code} {upload_response.text.strip()}"
                 )
-        if response.status_code != 202:
-            raise RuntimeError(
-                f"MinerU task submission failed: {response.status_code} {response.text.strip()}"
-            )
-        payload = response.json()
-        task_id = payload.get("task_id")
-        status_url = payload.get("status_url")
-        result_url = payload.get("result_url")
-        if not all(isinstance(value, str) and value for value in (task_id, status_url, result_url)):
-            raise RuntimeError("MinerU API returned an invalid task payload")
         return {
-            "task_id": task_id,
-            "status_url": status_url,
-            "result_url": result_url,
+            "task_id": batch_id,
+            "status_url": f"{base_url}/extract-results/batch/{batch_id}",
         }
 
-    def _wait_for_mineru_task(
+    def _wait_for_mineru_batch_result(
         self,
         *,
         httpx: Any,
         task_info: dict[str, str],
         headers: dict[str, str],
         timeout_seconds: float,
-    ) -> None:
+    ) -> str:
         deadline = time.perf_counter() + timeout_seconds
         with httpx.Client(timeout=30.0, follow_redirects=True, headers=headers) as client:
             while time.perf_counter() < deadline:
                 response = client.get(task_info["status_url"])
-                if response.status_code != 200:
-                    raise RuntimeError(
-                        f"MinerU task status query failed: {response.status_code} {response.text.strip()}"
-                    )
-                payload = response.json()
-                status = payload.get("status")
-                if status in {"pending", "processing"}:
+                payload = self._mineru_json_payload(response, context="query batch result")
+                data = payload.get("data") if isinstance(payload, dict) else None
+                if not isinstance(data, dict):
+                    raise RuntimeError("MinerU API returned an invalid batch result payload")
+                results = data.get("extract_result") or data.get("extract_results")
+                if not isinstance(results, list) or not results:
                     time.sleep(1.0)
                     continue
-                if status == "completed":
-                    return
+                first = results[0]
+                if not isinstance(first, dict):
+                    raise RuntimeError("MinerU API returned an invalid file result payload")
+                status = str(first.get("state") or first.get("status") or "").lower()
+                if status in {
+                    "waiting-file",
+                    "pending",
+                    "running",
+                    "processing",
+                    "waiting",
+                    "queued",
+                    "converting",
+                }:
+                    time.sleep(1.0)
+                    continue
+                if status in {"done", "completed", "success"}:
+                    result_url = first.get("full_zip_url") or first.get("zip_url") or first.get("result_url")
+                    if not isinstance(result_url, str) or not result_url:
+                        raise RuntimeError("MinerU batch completed without full_zip_url")
+                    return result_url
                 raise RuntimeError(
-                    f"MinerU task {task_info['task_id']} failed: {json.dumps(payload, ensure_ascii=False)}"
+                    f"MinerU task {task_info['task_id']} failed: {json.dumps(first, ensure_ascii=False)}"
                 )
         raise RuntimeError(f"Timed out waiting for MinerU task {task_info['task_id']}")
 
@@ -366,7 +384,7 @@ class MinerUParser(BaseParserAdapter):
         self,
         *,
         httpx: Any,
-        task_info: dict[str, str],
+        result_url: str,
         headers: dict[str, str],
         timeout_seconds: float,
     ) -> Path:
@@ -375,7 +393,7 @@ class MinerUParser(BaseParserAdapter):
         result_path = Path(result_file)
         try:
             with httpx.Client(timeout=timeout_seconds, follow_redirects=True, headers=headers) as client:
-                with client.stream("GET", task_info["result_url"]) as response:
+                with client.stream("GET", result_url) as response:
                     if response.status_code != 200:
                         raise RuntimeError(
                             f"MinerU result download failed: {response.status_code} {response.text.strip()}"
@@ -390,6 +408,20 @@ class MinerUParser(BaseParserAdapter):
             result_path.unlink(missing_ok=True)
             raise
         return result_path
+
+    def _mineru_json_payload(self, response: Any, *, context: str) -> dict[str, Any]:
+        if response.status_code != 200:
+            raise RuntimeError(
+                f"MinerU {context} failed: {response.status_code} {response.text.strip()}"
+            )
+        payload = response.json()
+        if not isinstance(payload, dict):
+            raise RuntimeError(f"MinerU {context} returned a non-object payload")
+        code = payload.get("code")
+        if code not in {None, 0, "0", 200, "200"}:
+            message = payload.get("msg") or payload.get("message") or payload
+            raise RuntimeError(f"MinerU {context} failed: {message}")
+        return payload
 
     def _build_with_mineru_cli(
         self,

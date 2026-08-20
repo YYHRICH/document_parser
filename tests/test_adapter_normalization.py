@@ -328,24 +328,26 @@ def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> N
     )
     signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=True)
 
-    def fake_submit(*, base_url, source_path, form_data, headers, httpx):
+    def fake_submit(*, base_url, source_path, route_options, headers, httpx):
         assert base_url == "https://mineru.net/api/v4"
         assert source_path.exists()
-        assert form_data["backend"] == "pipeline"
+        assert route_options["backend"] == "pipeline"
+        assert route_options["is_ocr"] is False
+        assert route_options["model_version"] == "vlm"
         assert headers["Authorization"] == "Bearer test-token"
         return {
             "task_id": "task-1",
             "status_url": "https://mineru.example/tasks/task-1",
-            "result_url": "https://mineru.example/tasks/task-1/result",
         }
 
     def fake_wait(*, httpx, task_info, headers, timeout_seconds):
         assert task_info["task_id"] == "task-1"
         assert headers["Authorization"] == "Bearer test-token"
         assert timeout_seconds > 0
+        return "https://mineru.example/tasks/task-1/result.zip"
 
-    def fake_download(*, httpx, task_info, headers, timeout_seconds):
-        assert task_info["task_id"] == "task-1"
+    def fake_download(*, httpx, result_url, headers, timeout_seconds):
+        assert result_url == "https://mineru.example/tasks/task-1/result.zip"
         assert headers["Authorization"] == "Bearer test-token"
         zip_path = tmp_path / "mineru-cloud-result.zip"
         with zipfile.ZipFile(zip_path, "w") as archive:
@@ -376,8 +378,8 @@ def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> N
             archive.writestr("images/table.png", b"fake-png-bytes")
         return zip_path
 
-    monkeypatch.setattr(adapter, "_submit_mineru_task", fake_submit)
-    monkeypatch.setattr(adapter, "_wait_for_mineru_task", fake_wait)
+    monkeypatch.setattr(adapter, "_submit_mineru_batch_task", fake_submit)
+    monkeypatch.setattr(adapter, "_wait_for_mineru_batch_result", fake_wait)
     monkeypatch.setattr(adapter, "_download_mineru_result", fake_download)
 
     bundle = adapter.normalize(request, signals)
@@ -389,3 +391,71 @@ def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> N
     assert parsed.assets[0].path == "mineru/images/table.png"
     assert "mineru_api_token" not in parsed.provenance.parameters
     assert "mineru_api_token" not in parsed.routing_decision.parser_options
+
+
+def test_mineru_cloud_wait_treats_waiting_file_as_pending() -> None:
+    adapter = MinerUParser()
+    responses = [
+        {
+            "code": 0,
+            "data": {
+                "extract_result": [
+                    {
+                        "data_id": "data-1",
+                        "file_name": "paper.pdf",
+                        "state": "waiting-file",
+                        "err_msg": "",
+                    }
+                ]
+            },
+        },
+        {
+            "code": 0,
+            "data": {
+                "extract_result": [
+                    {
+                        "data_id": "data-1",
+                        "file_name": "paper.pdf",
+                        "state": "done",
+                        "full_zip_url": "https://mineru.example/result.zip",
+                    }
+                ]
+            },
+        },
+    ]
+
+    class FakeResponse:
+        status_code = 200
+        text = ""
+
+        def __init__(self, payload):
+            self._payload = payload
+
+        def json(self):
+            return self._payload
+
+    class FakeClient:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, tb):
+            return False
+
+        def get(self, url):
+            return FakeResponse(responses.pop(0))
+
+    class FakeHttpx:
+        Client = FakeClient
+
+    result_url = adapter._wait_for_mineru_batch_result(
+        httpx=FakeHttpx,
+        task_info={"task_id": "task-1", "status_url": "https://mineru.example/status"},
+        headers={"Authorization": "Bearer test-token"},
+        timeout_seconds=5,
+    )
+
+    assert result_url == "https://mineru.example/result.zip"
+    assert responses == []

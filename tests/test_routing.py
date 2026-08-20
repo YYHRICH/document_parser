@@ -25,6 +25,22 @@ def test_router_prefers_mineru_for_pdf() -> None:
     assert decision.parser_options["language"] == "ch"
 
 
+def test_router_skips_mineru_for_pdf_without_cloud_token(monkeypatch) -> None:
+    monkeypatch.delenv("MINERU_API_TOKEN", raising=False)
+    router = ModelRouter.from_environment(mineru_api_token=None)
+    decision = router.route(
+        DocumentSignals(
+            extension=".pdf",
+            size_bytes=1024,
+            has_text_layer=True,
+            language_hint="zh",
+        )
+    )
+
+    assert decision.selected_parser_id == "docling"
+    assert "mineru" in decision.unavailable_reasons
+
+
 def test_router_uses_markitdown_for_plain_text() -> None:
     router = ModelRouter.from_environment()
     decision = router.route(

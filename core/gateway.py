@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import mimetypes
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .contracts import ParsedDocument, ParseRequest, ParserCapability
+from .contracts import FallbackAttempt, ParsedDocument, ParseRequest, ParserCapability, RoutingDecision
 from .converter import DocumentConverter, LegacyOfficeConverter
 from .inspector import SimpleSourceInspector
 from ..routing import ModelRouter
@@ -82,19 +83,98 @@ class DocumentParserGateway:
             if self._router and use_router
             else None
         )
-        effective_request = request
         if routing_decision is not None:
+            return self._parse_auto_route(request, original_signals, routing_decision)
+
+        return self._parse_with_parser(request, original_signals, routing_decision=None)
+
+    def _parse_auto_route(
+        self,
+        request: ParseRequest,
+        original_signals: Any,
+        routing_decision: RoutingDecision,
+    ) -> GatewayParseResult:
+        candidate_parser_ids = [
+            routing_decision.selected_parser_id,
+            *routing_decision.fallback_parser_ids,
+        ]
+        attempts: list[FallbackAttempt] = []
+        original_selected_parser_id = routing_decision.selected_parser_id
+        last_result: GatewayParseResult | None = None
+
+        for index, parser_id in enumerate(candidate_parser_ids):
+            candidate_decision = routing_decision.model_copy(
+                update={
+                    "selected_parser_id": parser_id,
+                    "fallback_parser_ids": candidate_parser_ids[index + 1 :],
+                    "allow_automatic_fallback": bool(candidate_parser_ids[index + 1 :]),
+                    "parser_options": self._parser_options_for_routed_candidate(
+                        routing_decision,
+                        parser_id,
+                    ),
+                }
+            )
             effective_request = request.model_copy(
                 update={
-                    "parser_id": routing_decision.selected_parser_id,
+                    "parser_id": parser_id,
                     "options": {
                         **request.options,
-                        **routing_decision.parser_options,
-                        "_routing_decision": routing_decision.model_dump(mode="json"),
+                        **candidate_decision.parser_options,
+                        "_routing_decision": candidate_decision.model_dump(mode="json"),
                     },
                 }
             )
+            started = time.perf_counter()
+            try:
+                result = self._parse_with_parser(
+                    effective_request,
+                    original_signals,
+                    routing_decision=candidate_decision,
+                )
+            except Exception as error:
+                attempts.append(
+                    FallbackAttempt(
+                        parser_id=parser_id,
+                        status="failed",
+                        reason=str(error),
+                        duration_ms=int((time.perf_counter() - started) * 1000),
+                    )
+                )
+                continue
 
+            if self._is_fallback_needed(result.document):
+                last_result = result
+                attempts.append(
+                    FallbackAttempt(
+                        parser_id=parser_id,
+                        status="failed",
+                        reason=self._fallback_reason(result.document),
+                        duration_ms=int((time.perf_counter() - started) * 1000),
+                    )
+                )
+                continue
+
+            return self._with_fallback_history(
+                result,
+                attempts=attempts,
+                original_selected_parser_id=original_selected_parser_id,
+            )
+
+        if last_result is not None:
+            return self._with_fallback_history(
+                last_result,
+                attempts=attempts,
+                original_selected_parser_id=original_selected_parser_id,
+            )
+        raise ValueError("No routed parser produced a usable result.")
+
+    def _parse_with_parser(
+        self,
+        effective_request: ParseRequest,
+        original_signals: Any,
+        *,
+        routing_decision: RoutingDecision | None,
+    ) -> GatewayParseResult:
         parser = self._select_parser(effective_request.parser_id)
         if parser.PARSER_ID != self.PARSER_ID:
             if hasattr(parser, "normalize"):
@@ -175,8 +255,8 @@ class DocumentParserGateway:
             document=self._attach_routing_metadata(
                 parsed.model_copy(
                     update={
-                        "filename": request.filename,
-                        "file_type": request.file_type,
+                        "filename": effective_request.filename,
+                        "file_type": effective_request.file_type,
                         "provenance": provenance,
                     }
                 ),
@@ -209,6 +289,90 @@ class DocumentParserGateway:
 
     def close(self) -> None:
         """MarkItDown 当前无持久资源；保留生命周期接口供以后升级。"""
+
+    def _parser_options_for_routed_candidate(
+        self,
+        routing_decision: RoutingDecision,
+        parser_id: str,
+    ) -> dict[str, Any]:
+        if parser_id == routing_decision.selected_parser_id:
+            return routing_decision.parser_options
+        if self._router is None or not hasattr(self._router, "route"):
+            return {
+                "route_profile": routing_decision.parser_options.get("route_profile"),
+                "allow_cloud": routing_decision.parser_options.get("allow_cloud"),
+            }
+        decision = self._router.route(
+            routing_decision.signals,
+            requested_parser_id=parser_id,
+            profile=routing_decision.parser_options.get("route_profile"),
+            allow_cloud=routing_decision.parser_options.get("allow_cloud"),
+            libreoffice_available=routing_decision.parser_options.get("libreoffice_available"),
+        )
+        return decision.parser_options
+
+    def _is_fallback_needed(self, document: ParsedDocument) -> bool:
+        if document.markdown.strip() or document.blocks or document.tables or document.ocr_spans:
+            return False
+        if document.native_artifacts:
+            return False
+        return document.routing_decision is not None and document.routing_decision.allow_automatic_fallback
+
+    def _fallback_reason(self, document: ParsedDocument) -> str:
+        warning = next(
+            (
+                item
+                for item in document.warnings
+                if "failed" in item.lower()
+                or "尚未接入" in item
+                or "placeholder" in item.lower()
+                or "未提供" in item
+            ),
+            None,
+        )
+        return warning or "Parser returned no normalized content or native artifacts."
+
+    def _with_fallback_history(
+        self,
+        result: GatewayParseResult,
+        *,
+        attempts: list[FallbackAttempt],
+        original_selected_parser_id: str,
+    ) -> GatewayParseResult:
+        if not attempts:
+            return result
+        document = result.document
+        provenance = document.provenance.model_copy(
+            update={
+                "fallback_history": [
+                    *attempts,
+                    *document.provenance.fallback_history,
+                ],
+                "parameters": {
+                    **document.provenance.parameters,
+                    "routing_initial_parser_id": original_selected_parser_id,
+                },
+            }
+        )
+        warnings = [
+            *document.warnings,
+            (
+                "Automatic fallback executed: "
+                + " -> ".join(
+                    [attempt.parser_id for attempt in attempts]
+                    + [document.provenance.parser_id]
+                )
+            ),
+        ]
+        return GatewayParseResult(
+            document=document.model_copy(
+                update={
+                    "provenance": provenance,
+                    "warnings": warnings,
+                }
+            ),
+            native_files=result.native_files,
+        )
 
     def _attach_routing_metadata(
         self,
