@@ -1,0 +1,2386 @@
+{
+  "document_id": "e023461d-5f4c-41a9-b760-826d5ce4f755",
+  "filename": "technical_report_references_ambiguous.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 126101,
+  "source_sha256": "bbbaa41d1250f8cd07ea5babac9b8a4bf5d1d95b82b064e26ec7ae2e84a9bf27",
+  "routing_decision": null,
+  "markdown": "研发效能组 评估报告草案\n\n文档解析服务的版面恢复评估报告\n\n评估对象：parser-gateway2.4.0 日期：2026年7月28日\n\n摘要\n\n本报告总结 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自 parser-gateway\n\n份脱敏业务文档，覆盖 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页 1,200 6\n\n表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语\n\n义线索 [2]；本次结果也支持这一判断。\n\n背景\n\n知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用\n\n关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 份、设备台账 份、技术 480 360\n\n说明书 份；扫描件占比分别为 18%、42%、9%。 360\n\n文档族 样本数 平均页数 扫描占比\n\n采购合同 480 7.2 18%\n\n设备台账 360 3.8 42%\n\n技术说明书 360 11.6 9%\n\n评估样本构成 Table 1:\n\nObservations\n\n区域检测\n\n区域检测器宏平均F1为0.93。页眉中出现项目编号时，约4.1%的样本被误判为正文首句；Zhang\n\netal.,2024的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是\n\n期刊扩展版。\n\n阅读顺序\n\n双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 提出的图模型 2024\n\n可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。\n\n表格与脚注\n\n表格字段 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏 F1\n\n等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份\n\n高度相似，当前界面未提供消歧提示。\n\n1\n\n研发效能组 评估报告草案\n\n重要结论\n\n版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。 1.\n\n续页应显式继承表头并保留“续表”标记。 2.\n\n引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。 3.\n\n2\n\n研发效能组 评估报告草案\n\n错误样例与复核记录\n\n编号 原文片段 系统输出 复核意见\n\n新建表 3，首行作为表头 应继承上一页列名 “表3（续）”位于页首，列 R-01\n\n名缺失\n\n“见 2024” 绑定 正文没有 后缀， R-02 Zhang et al., Zhang 2024a a/b\n\n存在两条候选\n\n页脚“资料来源：项目组整 识别为参考文献 属于来源说明 R-03\n\n理”\n\n右栏脚注编号 绑定左栏正文 先恢复栏内阅读顺 R-04 7\n\n序\n\n图注跨页 图注截断 保留图注并建立图- R-05\n\n注关系\n\nImplementation notes\n\n线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线\n\n聚类；引用则增加候选集合字段并把unresolved状态传给质量层。王、陈的版面恢复研究也建议在\n\n低置信度时保留多候选 [1]，但未覆盖跨语言文献。\n\n待办事项\n\n优先级 工作项 负责人 截止日期\n\n保存引用原文和候选集合 解析服务 P0 2026-08-21\n\n增加续表表头继承规则 版面算法 P1 2026-08-28\n\n双栏脚注加入栏级排序特征 平台 P1 OCR 2026-09-04\n\n标注界面增加作者年消歧提示 数据工具 P2 2026-09-11\n\n3\n\n研发效能组 评估报告草案\n\n附录：评估口径\n\n页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 以单元格边界和文本归属同 F1\n\n时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manual\n\nreview。\n\n标题是否由编号、字体、前后空白和语义共同支持？ 1.\n\n表格是否跨页，下一页是否有“续表”或重复列名？ 2.\n\n引用字符串是否含页码、版本或 后缀？ 3. a/b\n\n多候选均合理时是否保留 unresolved？ 4.\n\nReferences\n\n王伟, 陈晨. 面向复杂版面的文档结构恢复 中文信息学报, 1. [J]. 2023, 37(6):45–58.\n\nDOI:10.1000/cip.2023.3706.\n\n2. Zhang,Y.,Liu,H.Layout-awarereadingorderrecoveryforenterprisedocuments[J].InformationPro-\n\ncessingLetters,2024,189:106–118. DOI:10.1000/ipl.2024.189106.\n\n3. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evalua-\n\ntion[R].arXiv:2407.01921,2024.（与文献[2]作者年相同，正文未区分a/b）\n\n赵敏, 周海. 表格字段绑定的来源约束与安全降级 软件学报, 4. [J]. 2025, 36(8):1771–1787.\n\nDOI:10.1000/js.2025.3608.\n\n赵敏, 周海. 脚注锚点驱动的跨页表格解析 软件学报, 5. [J]. 2024, 35(12):2890–2904.\n\nDOI:10.1000/js.2024.3512.\n\n6. Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng.\n\n2024:88–97. DOI:10.1000/doceng.2024.88.\n\n4",
+  "blocks": [
+    {
+      "id": "fc1221c1-9e1b-46ff-a2fb-db832b7834e6",
+      "source_block_id": "pdfplumber-p1-l0",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组 评估报告草案",
+      "heading_level": null,
+      "markdown": "研发效能组 评估报告草案",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          26.01208310000004,
+          532.9136,
+          36.92118310000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "研发效能组 评估报告草案"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2c34a09a-485d-44e8-9f13-bd27e1f9e068",
+      "source_block_id": "pdfplumber-p1-l1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档解析服务的版面恢复评估报告",
+      "heading_level": null,
+      "markdown": "文档解析服务的版面恢复评估报告",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          168.522,
+          63.75597140000002,
+          426.7529999999999,
+          80.97137139999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文档解析服务的版面恢复评估报告"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "07fb9977-4d01-445b-8497-961d5a12f10b",
+      "source_block_id": "pdfplumber-p1-l2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估对象：parser-gateway2.4.0 日期：2026年7月28日",
+      "heading_level": null,
+      "markdown": "评估对象：parser-gateway2.4.0 日期：2026年7月28日",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          163.371,
+          85.92612660000009,
+          431.9046000000001,
+          96.576146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "评估对象：parser-gateway2.4.0 日期：2026年7月28日"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9fd565ef-e613-4d63-8bf8-29591035a407",
+      "source_block_id": "pdfplumber-p1-l3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "摘要",
+      "heading_level": null,
+      "markdown": "摘要",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          153.36761420000005,
+          91.0544,
+          167.7138142
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "摘要"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1adf8b0e-5812-4598-89d4-3dda6c23b17f",
+      "source_block_id": "pdfplumber-p1-l4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本报告总结 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自 parser-gateway",
+      "heading_level": null,
+      "markdown": "本报告总结 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自 parser-gateway",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          186.8650831,
+          532.9121868000002,
+          198.52691100000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "本报告总结 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自 parser-gateway"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c1a150f3-64d5-466d-ac71-2dd664fdeba6",
+      "source_block_id": "pdfplumber-p1-l5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "份脱敏业务文档，覆盖 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页 1,200 6",
+      "heading_level": null,
+      "markdown": "份脱敏业务文档，覆盖 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页 1,200 6",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999995,
+          200.41408309999997,
+          532.9069924000001,
+          212.07591100000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "份脱敏业务文档，覆盖 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页 1,200 6"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a76711e0-a192-4e9e-aa3c-f29d0d2e04b1",
+      "source_block_id": "pdfplumber-p1-l6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语",
+      "heading_level": null,
+      "markdown": "表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999995,
+          213.96408310000004,
+          532.9042103000003,
+          224.8731831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "23e40296-4318-44ab-9641-569a1dd85955",
+      "source_block_id": "pdfplumber-p1-l7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "义线索 [2]；本次结果也支持这一判断。",
+      "heading_level": null,
+      "markdown": "义线索 [2]；本次结果也支持这一判断。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999995,
+          227.51308310000002,
+          252.06729999999996,
+          239.17491100000007
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "义线索 [2]；本次结果也支持这一判断。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c74ec6e9-34b2-4a06-83b8-be832b4371b4",
+      "source_block_id": "pdfplumber-p1-l8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "背景",
+      "heading_level": null,
+      "markdown": "背景",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          266.2776142,
+          91.0544,
+          280.62381419999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "背景"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c4f4c049-f737-44f0-afd6-b9b3bc9d3c1d",
+      "source_block_id": "pdfplumber-p1-l9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用",
+      "heading_level": null,
+      "markdown": "知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          299.7750831000001,
+          532.9042103000003,
+          310.68418310000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4cab1a14-e730-4cfa-bd31-e2fe97fbb792",
+      "source_block_id": "pdfplumber-p1-l10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 份、设备台账 份、技术 480 360",
+      "heading_level": null,
+      "markdown": "关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 份、设备台账 份、技术 480 360",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          313.32408310000005,
+          532.9065819,
+          324.9859110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 份、设备台账 份、技术 480 360"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f79447a0-1665-4a20-8832-cc18f202b76e",
+      "source_block_id": "pdfplumber-p1-l11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "说明书 份；扫描件占比分别为 18%、42%、9%。 360",
+      "heading_level": null,
+      "markdown": "说明书 份；扫描件占比分别为 18%、42%、9%。 360",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.36200000000002,
+          326.8740831,
+          323.63710000000003,
+          338.535911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "说明书 份；扫描件占比分别为 18%、42%、9%。 360"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e9eb58b1-8a84-4f24-b7dc-01e7e6482f10",
+      "source_block_id": "pdfplumber-p1-l12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档族 样本数 平均页数 扫描占比",
+      "heading_level": null,
+      "markdown": "文档族 样本数 平均页数 扫描占比",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          170.989,
+          353.7111266,
+          424.2767174,
+          363.6737266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文档族 样本数 平均页数 扫描占比"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3ab3ccd1-ea43-413f-9721-154d32b7d4d7",
+      "source_block_id": "pdfplumber-p1-l13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "采购合同 480 7.2 18%",
+      "heading_level": null,
+      "markdown": "采购合同 480 7.2 18%",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          170.989,
+          372.1511266,
+          424.27549139999996,
+          382.801146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "采购合同 480 7.2 18%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "975ea475-cd43-46ad-9f40-c756fabab59a",
+      "source_block_id": "pdfplumber-p1-l14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备台账 360 3.8 42%",
+      "heading_level": null,
+      "markdown": "设备台账 360 3.8 42%",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          170.98899999999998,
+          384.1061266,
+          424.27549139999996,
+          394.756146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "设备台账 360 3.8 42%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15b9d2ba-59ad-40a8-8bd0-e9c0d68a94a0",
+      "source_block_id": "pdfplumber-p1-l15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "技术说明书 360 11.6 9%",
+      "heading_level": null,
+      "markdown": "技术说明书 360 11.6 9%",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          170.98899999999998,
+          396.06112659999997,
+          424.27153419999996,
+          406.711146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "技术说明书 360 11.6 9%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e65386fe-55a3-4e08-8017-df36a4a20482",
+      "source_block_id": "pdfplumber-p1-l16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估样本构成 Table 1:",
+      "heading_level": null,
+      "markdown": "评估样本构成 Table 1:",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          243.786,
+          421.8780831,
+          351.4896,
+          433.539911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "评估样本构成 Table 1:"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15af8f02-9236-49c9-abee-ff44afc70dc4",
+      "source_block_id": "pdfplumber-p1-l17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Observations",
+      "heading_level": null,
+      "markdown": "Observations",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          473.630502,
+          154.04856420000002,
+          487.976702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Observations"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3428234d-bd98-4d10-be29-ee5acb139d29",
+      "source_block_id": "pdfplumber-p1-l18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "区域检测",
+      "heading_level": null,
+      "markdown": "区域检测",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          505.6384832,
+          110.1828,
+          517.5936832
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "区域检测"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b142f5c5-98e0-4bc0-8fa5-9e2bd65b7018",
+      "source_block_id": "pdfplumber-p1-l19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "区域检测器宏平均F1为0.93。页眉中出现项目编号时，约4.1%的样本被误判为正文首句；Zhang",
+      "heading_level": null,
+      "markdown": "区域检测器宏平均F1为0.93。页眉中出现项目编号时，约4.1%的样本被误判为正文首句；Zhang",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          532.5570831,
+          532.9082985,
+          544.2189109999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "区域检测器宏平均F1为0.93。页眉中出现项目编号时，约4.1%的样本被误判为正文首句；Zhang"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4786ff4e-9255-4a5d-9fb4-d8037e61085e",
+      "source_block_id": "pdfplumber-p1-l20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "etal.,2024的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是",
+      "heading_level": null,
+      "markdown": "etal.,2024的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999966,
+          546.1060831,
+          532.9236175000002,
+          557.7679109999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "etal.,2024的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "407347dd-1ee4-486b-8d3a-00e9488d502a",
+      "source_block_id": "pdfplumber-p1-l21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "期刊扩展版。",
+      "heading_level": null,
+      "markdown": "期刊扩展版。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999966,
+          559.6550831,
+          127.81659999999997,
+          570.5641831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "期刊扩展版。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b44e48ad-c27f-4f79-9ded-30678442d8c5",
+      "source_block_id": "pdfplumber-p1-l22",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "阅读顺序",
+      "heading_level": null,
+      "markdown": "阅读顺序",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          595.0744832,
+          110.1828,
+          607.0296832
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "阅读顺序"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "889f8cdd-dbdf-4343-a4c0-42c13242cdc8",
+      "source_block_id": "pdfplumber-p1-l23",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 提出的图模型 2024",
+      "heading_level": null,
+      "markdown": "双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 提出的图模型 2024",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          621.9920831000001,
+          532.9047819,
+          633.6539110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 提出的图模型 2024"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "551becaa-5231-4b5b-be89-d50d98a3f652",
+      "source_block_id": "pdfplumber-p1-l24",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。",
+      "heading_level": null,
+      "markdown": "可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999966,
+          635.5420831,
+          422.3623000000001,
+          646.4511831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0a531a4-9a3f-4d59-b3f7-26019b814034",
+      "source_block_id": "pdfplumber-p1-l25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格与脚注",
+      "heading_level": null,
+      "markdown": "表格与脚注",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          670.9614832,
+          122.138,
+          682.9166832
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格与脚注"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "af9040fc-6c99-48ad-98c4-0bf8c24ae33e",
+      "source_block_id": "pdfplumber-p1-l26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格字段 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏 F1",
+      "heading_level": null,
+      "markdown": "表格字段 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏 F1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.362,
+          697.8790831,
+          532.9049468000002,
+          709.540911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格字段 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏 F1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e23abe89-ad78-412d-8d5c-858f1dae7d96",
+      "source_block_id": "pdfplumber-p1-l27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份",
+      "heading_level": null,
+      "markdown": "等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.361999999999995,
+          711.4280831,
+          532.9073276,
+          723.089911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "46315a70-c11f-4b05-ba9b-ccf51c289253",
+      "source_block_id": "pdfplumber-p1-l28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "高度相似，当前界面未提供消歧提示。",
+      "heading_level": null,
+      "markdown": "高度相似，当前界面未提供消歧提示。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          62.36200000000008,
+          724.9780830999999,
+          247.81670000000003,
+          735.8871830999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "高度相似，当前界面未提供消歧提示。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c766c00a-4497-4a62-a11b-300dc30877b9",
+      "source_block_id": "pdfplumber-p1-l29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          294.60400000000004,
+          802.789811,
+          300.66945960000004,
+          813.6989110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "938c6f48-aaf8-4f4e-91ba-8e0058fac583",
+      "source_block_id": "pdfplumber-p2-l30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组 评估报告草案",
+      "heading_level": null,
+      "markdown": "研发效能组 评估报告草案",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.362,
+          26.01208310000004,
+          532.9136,
+          36.92118310000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "研发效能组 评估报告草案"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7a333d05-b153-402a-b717-39abc81bef9f",
+      "source_block_id": "pdfplumber-p2-l31",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "重要结论",
+      "heading_level": null,
+      "markdown": "重要结论",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.362,
+          63.799614200000065,
+          119.7468,
+          78.14581420000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "重要结论"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c86ae27e-a2bb-48cf-bc4a-70150e1c2579",
+      "source_block_id": "pdfplumber-p2-l32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。 1.",
+      "heading_level": null,
+      "markdown": "版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。 1.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          75.082,
+          97.29708310000001,
+          471.4535000000002,
+          108.95891100000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9c5c8f09-4996-42d2-8377-b95126e09704",
+      "source_block_id": "pdfplumber-p2-l33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "续页应显式继承表头并保留“续表”标记。 2.",
+      "heading_level": null,
+      "markdown": "续页应显式继承表头并保留“续表”标记。 2.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          75.082,
+          119.81308309999997,
+          296.9079,
+          131.47491100000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "续页应显式继承表头并保留“续表”标记。 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "028c61c4-8f11-4c98-a591-135124a20685",
+      "source_block_id": "pdfplumber-p2-l34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。 3.",
+      "heading_level": null,
+      "markdown": "引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。 3.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          75.082,
+          142.32908310000005,
+          493.27170000000024,
+          153.9909110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。 3."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f8356bb6-d3aa-49a0-96cf-5f5883229b82",
+      "source_block_id": "pdfplumber-p2-l35",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          294.60400000000004,
+          802.789811,
+          300.66945960000004,
+          813.6989110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0d9fbf9c-b37a-46a2-835f-9e235a87d5de",
+      "source_block_id": "pdfplumber-p3-l36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组 评估报告草案",
+      "heading_level": null,
+      "markdown": "研发效能组 评估报告草案",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.362,
+          26.01208310000004,
+          532.9136,
+          36.92118310000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "研发效能组 评估报告草案"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b0f1fd9b-d79b-409a-a735-6e30d7c9789e",
+      "source_block_id": "pdfplumber-p3-l37",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "错误样例与复核记录",
+      "heading_level": null,
+      "markdown": "错误样例与复核记录",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.362,
+          63.85561419999999,
+          191.4778,
+          78.20181419999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "错误样例与复核记录"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "818cac12-cacd-47ea-8f78-4150732df9cf",
+      "source_block_id": "pdfplumber-p3-l38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "编号 原文片段 系统输出 复核意见",
+      "heading_level": null,
+      "markdown": "编号 原文片段 系统输出 复核意见",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32300000000001,
+          107.26508309999997,
+          455.48040000000003,
+          118.17418309999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "编号 原文片段 系统输出 复核意见"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bb78596e-68c8-47d9-b508-9bd883e67eba",
+      "source_block_id": "pdfplumber-p3-l39",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "新建表 3，首行作为表头 应继承上一页列名 “表3（续）”位于页首，列 R-01",
+      "heading_level": null,
+      "markdown": "新建表 3，首行作为表头 应继承上一页列名 “表3（续）”位于页首，列 R-01",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32300000000001,
+          127.30008309999994,
+          499.10951070000004,
+          138.9619110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "新建表 3，首行作为表头 应继承上一页列名 “表3（续）”位于页首，列 R-01"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3fa938b2-c1e3-4173-b603-0a28f7dd388f",
+      "source_block_id": "pdfplumber-p3-l40",
+      "order_index": 40,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "名缺失",
+      "heading_level": null,
+      "markdown": "名缺失",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          149.772,
+          140.84908310000003,
+          182.49929999999998,
+          151.7581831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "名缺失"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "594c7f54-026d-4ae2-9102-eb60b8ca29a2",
+      "source_block_id": "pdfplumber-p3-l41",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "“见 2024” 绑定 正文没有 后缀， R-02 Zhang et al., Zhang 2024a a/b",
+      "heading_level": null,
+      "markdown": "“见 2024” 绑定 正文没有 后缀， R-02 Zhang et al., Zhang 2024a a/b",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32300000000001,
+          154.3980831,
+          513.8319369,
+          166.05991100000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "“见 2024” 绑定 正文没有 后缀， R-02 Zhang et al., Zhang 2024a a/b"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c20bf879-eb2c-40c4-9bb8-89a00874207b",
+      "source_block_id": "pdfplumber-p3-l42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "存在两条候选",
+      "heading_level": null,
+      "markdown": "存在两条候选",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          411.844,
+          167.9470831,
+          477.2986,
+          178.85618309999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "存在两条候选"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ce9cc098-8d28-4e0d-b0dc-6d16d351004b",
+      "source_block_id": "pdfplumber-p3-l43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "页脚“资料来源：项目组整 识别为参考文献 属于来源说明 R-03",
+      "heading_level": null,
+      "markdown": "页脚“资料来源：项目组整 识别为参考文献 属于来源说明 R-03",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32299999999998,
+          181.49708309999994,
+          477.2986,
+          193.158911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "页脚“资料来源：项目组整 识别为参考文献 属于来源说明 R-03"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "21eaa0d4-98f7-4065-901a-80c8224989ec",
+      "source_block_id": "pdfplumber-p3-l44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "理”",
+      "heading_level": null,
+      "markdown": "理”",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          149.772,
+          195.04608310000003,
+          171.59019999999998,
+          205.9551831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "理”"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "30ae3412-1068-4bf5-a363-a4cdecdcf193",
+      "source_block_id": "pdfplumber-p3-l45",
+      "order_index": 45,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "右栏脚注编号 绑定左栏正文 先恢复栏内阅读顺 R-04 7",
+      "heading_level": null,
+      "markdown": "右栏脚注编号 绑定左栏正文 先恢复栏内阅读顺 R-04 7",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32299999999998,
+          208.5950831,
+          505.9458966,
+          220.25691100000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "右栏脚注编号 绑定左栏正文 先恢复栏内阅读顺 R-04 7"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d7d9e7ae-d574-4848-8c5e-9fb55cc4635b",
+      "source_block_id": "pdfplumber-p3-l46",
+      "order_index": 46,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "序",
+      "heading_level": null,
+      "markdown": "序",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          411.844,
+          222.1440831,
+          422.7531,
+          233.05318309999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "序"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6a38693b-b497-4a37-9174-e0edcbda4157",
+      "source_block_id": "pdfplumber-p3-l47",
+      "order_index": 47,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "图注跨页 图注截断 保留图注并建立图- R-05",
+      "heading_level": null,
+      "markdown": "图注跨页 图注截断 保留图注并建立图- R-05",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          89.32299999999998,
+          235.69308309999997,
+          505.9527303,
+          247.35491100000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "图注跨页 图注截断 保留图注并建立图- R-05"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e4a54d7d-9581-48c3-8052-d223a80c2dcc",
+      "source_block_id": "pdfplumber-p3-l48",
+      "order_index": 48,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "注关系",
+      "heading_level": null,
+      "markdown": "注关系",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          411.844,
+          249.24308309999992,
+          444.5713,
+          260.1521830999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "注关系"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6dbf59da-6197-4d42-9346-71aff136d467",
+      "source_block_id": "pdfplumber-p3-l49",
+      "order_index": 49,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Implementation notes",
+      "heading_level": null,
+      "markdown": "Implementation notes",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.362,
+          296.1975020000001,
+          210.61563080000002,
+          310.54370200000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Implementation notes"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "05452478-5d23-4b86-b82d-07094ee2e5d1",
+      "source_block_id": "pdfplumber-p3-l50",
+      "order_index": 50,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线",
+      "heading_level": null,
+      "markdown": "线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.362,
+          328.7050831,
+          532.9128752,
+          340.366911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d10750be-6c29-4e61-a522-43682875475e",
+      "source_block_id": "pdfplumber-p3-l51",
+      "order_index": 51,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "聚类；引用则增加候选集合字段并把unresolved状态传给质量层。王、陈的版面恢复研究也建议在",
+      "heading_level": null,
+      "markdown": "聚类；引用则增加候选集合字段并把unresolved状态传给质量层。王、陈的版面恢复研究也建议在",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.36200000000002,
+          342.2540831,
+          532.9153802,
+          353.915911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "聚类；引用则增加候选集合字段并把unresolved状态传给质量层。王、陈的版面恢复研究也建议在"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e6f5f467-83e6-43d9-b869-7a0e8eea2666",
+      "source_block_id": "pdfplumber-p3-l52",
+      "order_index": 52,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "低置信度时保留多候选 [1]，但未覆盖跨语言文献。",
+      "heading_level": null,
+      "markdown": "低置信度时保留多候选 [1]，但未覆盖跨语言文献。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.36200000000002,
+          355.8040831,
+          306.61310000000003,
+          367.465911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "低置信度时保留多候选 [1]，但未覆盖跨语言文献。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7eb0fcea-8905-423e-809b-ce95bd0dc385",
+      "source_block_id": "pdfplumber-p3-l53",
+      "order_index": 53,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "待办事项",
+      "heading_level": null,
+      "markdown": "待办事项",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.362,
+          394.5686142,
+          119.7468,
+          408.9148142
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "待办事项"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5e2090ae-0f10-42ee-82cc-6b51734bac99",
+      "source_block_id": "pdfplumber-p3-l54",
+      "order_index": 54,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "优先级 工作项 负责人 截止日期",
+      "heading_level": null,
+      "markdown": "优先级 工作项 负责人 截止日期",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          64.355,
+          431.0040831,
+          472.85240000000005,
+          441.9131831
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "优先级 工作项 负责人 截止日期"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a6c49b9b-c0a3-41eb-9cb2-8dd3c0add8e7",
+      "source_block_id": "pdfplumber-p3-l55",
+      "order_index": 55,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "保存引用原文和候选集合 解析服务 P0 2026-08-21",
+      "heading_level": null,
+      "markdown": "保存引用原文和候选集合 解析服务 P0 2026-08-21",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          64.355,
+          451.0390831,
+          485.0051374,
+          462.700911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "保存引用原文和候选集合 解析服务 P0 2026-08-21"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "928798fd-079d-434e-a1ec-f79768244557",
+      "source_block_id": "pdfplumber-p3-l56",
+      "order_index": 56,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "增加续表表头继承规则 版面算法 P1 2026-08-28",
+      "heading_level": null,
+      "markdown": "增加续表表头继承规则 版面算法 P1 2026-08-28",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          64.35500000000002,
+          464.5880831,
+          485.0051374,
+          476.249911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "增加续表表头继承规则 版面算法 P1 2026-08-28"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8ee4bb0b-e03e-4a7a-9a13-e2a3a8ffa831",
+      "source_block_id": "pdfplumber-p3-l57",
+      "order_index": 57,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "双栏脚注加入栏级排序特征 平台 P1 OCR 2026-09-04",
+      "heading_level": null,
+      "markdown": "双栏脚注加入栏级排序特征 平台 P1 OCR 2026-09-04",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          64.35500000000002,
+          478.1370831,
+          485.0051374,
+          489.798911
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "双栏脚注加入栏级排序特征 平台 P1 OCR 2026-09-04"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b8547772-238e-49ba-8658-994eb2b110bd",
+      "source_block_id": "pdfplumber-p3-l58",
+      "order_index": 58,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "标注界面增加作者年消歧提示 数据工具 P2 2026-09-11",
+      "heading_level": null,
+      "markdown": "标注界面增加作者年消歧提示 数据工具 P2 2026-09-11",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          64.35500000000002,
+          491.68608309999996,
+          484.19786400000004,
+          503.34791099999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "标注界面增加作者年消歧提示 数据工具 P2 2026-09-11"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8ff26da5-18fd-4032-848e-1cbc16ef2def",
+      "source_block_id": "pdfplumber-p3-l59",
+      "order_index": 59,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          294.60400000000004,
+          802.789811,
+          300.66945960000004,
+          813.6989110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "3"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cdcf7ac6-62d1-482f-aa72-7436bec81b9e",
+      "source_block_id": "pdfplumber-p4-l60",
+      "order_index": 60,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组 评估报告草案",
+      "heading_level": null,
+      "markdown": "研发效能组 评估报告草案",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.362,
+          26.01208310000004,
+          532.9136,
+          36.92118310000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "研发效能组 评估报告草案"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "57866e46-ec6d-43b4-879a-4fb2362877fb",
+      "source_block_id": "pdfplumber-p4-l61",
+      "order_index": 61,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "附录：评估口径",
+      "heading_level": null,
+      "markdown": "附录：评估口径",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.362,
+          63.687614199999985,
+          162.7854,
+          78.03381419999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "附录：评估口径"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ccd592ab-4da8-4d76-a4d3-8e412e4a2a29",
+      "source_block_id": "pdfplumber-p4-l62",
+      "order_index": 62,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 以单元格边界和文本归属同 F1",
+      "heading_level": null,
+      "markdown": "页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 以单元格边界和文本归属同 F1",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.362,
+          97.18508310000004,
+          532.904201,
+          108.84691100000009
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 以单元格边界和文本归属同 F1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c484998a-c6d2-494e-94a4-6df67d79906a",
+      "source_block_id": "pdfplumber-p4-l63",
+      "order_index": 63,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manual",
+      "heading_level": null,
+      "markdown": "时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manual",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.36200000000002,
+          110.73408310000002,
+          532.9049388999999,
+          122.39591100000007
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manual"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "aeb5f2d9-f808-427e-be3e-dce426e92a8c",
+      "source_block_id": "pdfplumber-p4-l64",
+      "order_index": 64,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "review。",
+      "heading_level": null,
+      "markdown": "review。",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.36200000000002,
+          124.28408309999998,
+          104.79510000000002,
+          135.94591100000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "review。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e86208ff-f177-45fa-9831-6cb1362e8986",
+      "source_block_id": "pdfplumber-p4-l65",
+      "order_index": 65,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "标题是否由编号、字体、前后空白和语义共同支持？ 1.",
+      "heading_level": null,
+      "markdown": "标题是否由编号、字体、前后空白和语义共同支持？ 1.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.082,
+          153.7730831,
+          340.54429999999996,
+          165.43491100000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "标题是否由编号、字体、前后空白和语义共同支持？ 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "db52e588-a057-4d06-bc03-9906275be3f4",
+      "source_block_id": "pdfplumber-p4-l66",
+      "order_index": 66,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格是否跨页，下一页是否有“续表”或重复列名？ 2.",
+      "heading_level": null,
+      "markdown": "表格是否跨页，下一页是否有“续表”或重复列名？ 2.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.082,
+          176.28908309999997,
+          340.54429999999996,
+          187.95091100000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格是否跨页，下一页是否有“续表”或重复列名？ 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15f4fe3f-d6da-4767-a633-bb2a1e8ace2c",
+      "source_block_id": "pdfplumber-p4-l67",
+      "order_index": 67,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "引用字符串是否含页码、版本或 后缀？ 3. a/b",
+      "heading_level": null,
+      "markdown": "引用字符串是否含页码、版本或 后缀？ 3. a/b",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.082,
+          198.80408310000007,
+          296.3163,
+          210.46591100000012
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "引用字符串是否含页码、版本或 后缀？ 3. a/b"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ac0455e0-eff8-4fc3-8582-d58f0b9923f6",
+      "source_block_id": "pdfplumber-p4-l68",
+      "order_index": 68,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "多候选均合理时是否保留 unresolved？ 4.",
+      "heading_level": null,
+      "markdown": "多候选均合理时是否保留 unresolved？ 4.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.082,
+          221.32008310000003,
+          276.9431,
+          232.98191100000008
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "多候选均合理时是否保留 unresolved？ 4."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8d4f60e6-8148-41e6-9527-98b8adcd8ac7",
+      "source_block_id": "pdfplumber-p4-l69",
+      "order_index": 69,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "References",
+      "heading_level": null,
+      "markdown": "References",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          62.362,
+          261.07450200000005,
+          139.7023642,
+          275.420702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "References"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6af71bac-963f-44fd-8df6-0187137b5f37",
+      "source_block_id": "pdfplumber-p4-l70",
+      "order_index": 70,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "王伟, 陈晨. 面向复杂版面的文档结构恢复 中文信息学报, 1. [J]. 2023, 37(6):45–58.",
+      "heading_level": null,
+      "markdown": "王伟, 陈晨. 面向复杂版面的文档结构恢复 中文信息学报, 1. [J]. 2023, 37(6):45–58.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          291.8051266,
+          532.9010454,
+          302.4551459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "王伟, 陈晨. 面向复杂版面的文档结构恢复 中文信息学报, 1. [J]. 2023, 37(6):45–58."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "71393b35-4158-4729-bfab-d445ac5711cc",
+      "source_block_id": "pdfplumber-p4-l71",
+      "order_index": 71,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "DOI:10.1000/cip.2023.3706.",
+      "heading_level": null,
+      "markdown": "DOI:10.1000/cip.2023.3706.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.63499999999993,
+          304.447546,
+          214.2472008,
+          314.41014599999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "DOI:10.1000/cip.2023.3706."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c1f18b0e-2e5c-4851-a9d2-2524adaece22",
+      "source_block_id": "pdfplumber-p4-l72",
+      "order_index": 72,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. Zhang,Y.,Liu,H.Layout-awarereadingorderrecoveryforenterprisedocuments[J].InformationPro-",
+      "heading_level": null,
+      "markdown": "2. Zhang,Y.,Liu,H.Layout-awarereadingorderrecoveryforenterprisedocuments[J].InformationPro-",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          321.384546,
+          532.8611113999999,
+          331.347146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2. Zhang,Y.,Liu,H.Layout-awarereadingorderrecoveryforenterprisedocuments[J].InformationPro-"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "825b5311-7be6-4699-acb2-1268c17d226f",
+      "source_block_id": "pdfplumber-p4-l73",
+      "order_index": 73,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "cessingLetters,2024,189:106–118. DOI:10.1000/ipl.2024.189106.",
+      "heading_level": null,
+      "markdown": "cessingLetters,2024,189:106–118. DOI:10.1000/ipl.2024.189106.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.635,
+          333.339546,
+          386.65995640000006,
+          343.302146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "cessingLetters,2024,189:106–118. DOI:10.1000/ipl.2024.189106."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7aff2493-ec3f-4c68-a238-7e55a13a8741",
+      "source_block_id": "pdfplumber-p4-l74",
+      "order_index": 74,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evalua-",
+      "heading_level": null,
+      "markdown": "3. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evalua-",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          350.275546,
+          532.8511487999998,
+          360.23814600000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "3. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evalua-"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c4f79a64-b375-4976-9c81-a794831a4350",
+      "source_block_id": "pdfplumber-p4-l75",
+      "order_index": 75,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "tion[R].arXiv:2407.01921,2024.（与文献[2]作者年相同，正文未区分a/b）",
+      "heading_level": null,
+      "markdown": "tion[R].arXiv:2407.01921,2024.（与文献[2]作者年相同，正文未区分a/b）",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.635,
+          361.5431266,
+          425.1636,
+          372.193146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "tion[R].arXiv:2407.01921,2024.（与文献[2]作者年相同，正文未区分a/b）"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d3b90b54-f67b-4b7c-9a52-2a6e1f6f659b",
+      "source_block_id": "pdfplumber-p4-l76",
+      "order_index": 76,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "赵敏, 周海. 表格字段绑定的来源约束与安全降级 软件学报, 4. [J]. 2025, 36(8):1771–1787.",
+      "heading_level": null,
+      "markdown": "赵敏, 周海. 表格字段绑定的来源约束与安全降级 软件学报, 4. [J]. 2025, 36(8):1771–1787.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          378.4801266,
+          532.8854912,
+          389.130146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "赵敏, 周海. 表格字段绑定的来源约束与安全降级 软件学报, 4. [J]. 2025, 36(8):1771–1787."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c55ac040-a39f-49cb-832c-d135a7b610fa",
+      "source_block_id": "pdfplumber-p4-l77",
+      "order_index": 77,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "DOI:10.1000/js.2025.3608.",
+      "heading_level": null,
+      "markdown": "DOI:10.1000/js.2025.3608.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.63499999999993,
+          391.122546,
+          208.7079952,
+          401.085146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "DOI:10.1000/js.2025.3608."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "76c3b2df-ce50-4d53-a25f-10fbbc357271",
+      "source_block_id": "pdfplumber-p4-l78",
+      "order_index": 78,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "赵敏, 周海. 脚注锚点驱动的跨页表格解析 软件学报, 5. [J]. 2024, 35(12):2890–2904.",
+      "heading_level": null,
+      "markdown": "赵敏, 周海. 脚注锚点驱动的跨页表格解析 软件学报, 5. [J]. 2024, 35(12):2890–2904.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          407.3721266,
+          532.8919336,
+          418.022146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "赵敏, 周海. 脚注锚点驱动的跨页表格解析 软件学报, 5. [J]. 2024, 35(12):2890–2904."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "11b889a0-acf8-4b37-b52a-dedc7dbb091e",
+      "source_block_id": "pdfplumber-p4-l79",
+      "order_index": 79,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "DOI:10.1000/js.2024.3512.",
+      "heading_level": null,
+      "markdown": "DOI:10.1000/js.2024.3512.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.63499999999993,
+          420.014546,
+          208.7079952,
+          429.977146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "DOI:10.1000/js.2024.3512."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cbbd5752-90a2-4c65-ac08-087f7bdac4b5",
+      "source_block_id": "pdfplumber-p4-l80",
+      "order_index": 80,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "6. Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng.",
+      "heading_level": null,
+      "markdown": "6. Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          75.872,
+          436.95054600000003,
+          532.8511487999998,
+          446.91314600000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "6. Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6380cb7d-042e-4241-971d-4c864812ac6a",
+      "source_block_id": "pdfplumber-p4-l81",
+      "order_index": 81,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2024:88–97. DOI:10.1000/doceng.2024.88.",
+      "heading_level": null,
+      "markdown": "2024:88–97. DOI:10.1000/doceng.2024.88.",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          89.635,
+          448.905546,
+          282.1921328,
+          458.868146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2024:88–97. DOI:10.1000/doceng.2024.88."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c97c79d7-847c-467e-a90b-f9954f34c984",
+      "source_block_id": "pdfplumber-p4-l82",
+      "order_index": 82,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4",
+      "heading_level": null,
+      "markdown": "4",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          294.60400000000004,
+          802.789811,
+          300.66945960000004,
+          813.6989110000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "4"
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.7,
+    "layout": 0.6,
+    "reading_order": 0.6,
+    "table": 0.5,
+    "overall": 0.6
+  },
+  "provenance": {
+    "parser_id": "pdfplumber-fallback",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "pdfplumber",
+    "version": "0.11",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "本地兜底解析（pdfplumber），表格结构语义不可靠。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "line",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "rowcol_only",
+      "reason": "pdfplumber 启发式网格：无 span/header 语义，全部按 span=1。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本地兜底解析器无 OCR 能力。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:21:54.738144Z"
+}

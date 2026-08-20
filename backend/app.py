@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import sys
 from pathlib import Path
 from typing import Annotated
 
@@ -23,6 +24,14 @@ from .schemas import (
     package_path_text,
 )
 from .storage import ApiStorage
+
+try:
+    from quality import run_quality
+except ModuleNotFoundError:
+    package_root = Path(__file__).resolve().parents[1]
+    if str(package_root) not in sys.path:
+        sys.path.insert(0, str(package_root))
+    from quality import run_quality
 
 
 def create_app(
@@ -85,6 +94,7 @@ def create_app(
                 source_content=content,
                 native_files=result.native_files,
             )
+            storage.write_quality_package(parse_id, run_quality(result.document))
         except Exception as error:
             raise HTTPException(status_code=500, detail=str(error)) from error
         return ParseJobResponse(
@@ -184,6 +194,7 @@ def create_app(
                 source_content=content,
                 native_files=result.native_files,
             )
+            storage.write_quality_package(new_parse_id, run_quality(result.document))
         except Exception as error:
             raise HTTPException(status_code=500, detail=str(error)) from error
         return ParseJobResponse(

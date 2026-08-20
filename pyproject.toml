@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-parser"
+version = "0.0.0"
+description = "Document parser and quality layer"
+requires-python = ">=3.11"
+
+[tool.setuptools]
+packages = [
+  "document_parser",
+  "document_parser.core",
+  "document_parser.parsers",
+  "document_parser.parsers.markitdown",
+  "quality",
+  "quality.builders",
+  "quality.evidence",
+  "quality.gates",
+  "quality.llm",
+  "quality.packaging",
+  "quality.repairs",
+  "quality.rules",
+  "tools",
+]
+
+[tool.setuptools.package-dir]
+document_parser = "."
+"document_parser.core" = "core"
+"document_parser.parsers" = "parsers"
+"document_parser.parsers.markitdown" = "parsers/markitdown"

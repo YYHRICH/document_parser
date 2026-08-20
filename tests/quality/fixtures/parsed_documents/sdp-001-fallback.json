@@ -1,0 +1,2358 @@
+{
+  "document_id": "321e512d-627e-4a79-9531-d52dca482744",
+  "filename": "knowledge_base_article.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 108841,
+  "source_sha256": "7e18d821dc80d1b98d1037b1347a45536f47614f26765efcb4eeb3e557d52528",
+  "routing_decision": null,
+  "markdown": "KnowledgeBaseOperations KB-MIG-2026\n\n企业知识库迁移指南\n\nKnowledge Base Migration Guide\n\n文档编号 负责人 KB-MIG-2026 KnowledgePlatformTeam\n\n版本 生效日期 2.3 2026-08-17\n\n适用范围 内部产品、运维与支持团队 状态 Approved\n\n摘要 / Executive summary\n\n本文说明如何把产品手册、故障复盘、FAQ和服务公告迁移到统一的LLMwiki知识库。迁移不只是复制文件，还\n\n需要保留标题层级、表格字段、引用来源、版本号和原文定位。\n\nThis guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service no-\n\ntices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval\n\nanswersremainauditable.\n\n迁移范围与成功标准 1.\n\n只接收经过授权的产品、运维和公开技术材料； •\n\n每个文档必须保留原始文件名、版本、发布日期和责任团队； •\n\n表格中的金额、阈值、单位和枚举值不得被改写； •\n\n低置信度的扫描页、复杂表格和不确定引用进入人工复核； •\n\n迁移后用户可以通过章节、版本和产品名称检索到原文。 •\n\n文档生命周期 2.\n\n收集Collect\n\n解析Parse\n\n复核Review\n\n发布Publish\n\n角色与责任 3.\n\n角色 输入 责任\n\n内容负责人 原始文档、版本说明 确认内容合法、更新日期和废弃版本\n\n解析负责人 文件与解析结果 检查正文、表格、标题和来源定位\n\n审核人 确认问题、修复记录和发布状态 QualityPackage\n\n1\n\nKnowledgeBaseOperations KB-MIG-2026\n\n标准操作流程 4.\n\n序号 阶段 操作 输出\n\n登记 记录sample_id、文件摘要、来源许可 manifest记录 1\n\n和版本\n\n预检 判断文件类型、是否扫描、是否包含 2 RoutingDecision\n\n表格和图片\n\n解析 运行候选解析器并保存原生结果 3 ParsedDocument\n\n质量处理 恢复标题、表格字段和引用关系 4 QualityPackage\n\n发布 由内容负责人确认后建立版本索引 可检索页面 5\n\n复盘 记录失败原因、人工修改和重新解析 运行报告 6\n\n建议\n\n推荐命名和元数据 5.\n\n文件名使用稳定的业务名称，不使用本机临时路径：\n\nproduct-area_document-topic_version_date.ext\n\npayments_api-rate-limit_v2.3_2026-08-17.pdf\n\n必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生\n\n新记录，不能静默覆盖旧文件。\n\n命令行示例 6.\n\n# inspect one uploaded document\n\nllmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\\n\n--mode auto --quality strict --output task-result/\n\n# publish only after the quality gate passes\n\nllmwiki publish task-result/ --visibility internal\n\n双语检索说明 7. / Retrieval notes\n\n中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如“限流/ratelimit”、“服\n\n务等级协议/SLA”。数字、单位、版本号和代码标识符必须按原样保存。\n\n2\n\nKnowledgeBaseOperations KB-MIG-2026\n\n常见问题与处理策略 8.\n\n问题 处理策略 状态\n\n扫描页只有图片 使用 OCR，保留页码和置信度；低置信度进 review\n\n入人工复核\n\n表格跨页且没有重复表头 尝试恢复续接键；无法唯一判断时不绑定字段 review\n\n文档出现旧版本链接 保留链接并标记目标版本，不自动替换为当前 warning\n\n版本\n\n正文引用目标不唯一 生成reference_of候选关系，状态设为man- review\n\nual_review_required\n\n同一文件多次上传 通过版本和文件摘要区分，禁止覆盖既有结果 pass\n\n发布前检查清单 9.\n\n正文和标题顺序与原文件一致； •\n\n表格列名、单位、合并表头和数值均可回溯； •\n\n引用关系有明确目标和来源证据； •\n\n质量报告、修复记录和重新解析建议齐全； •\n\n页面展示不暴露本机路径、临时文件或敏感信息。 •\n\n变更记录 10.\n\n版本 日期 修改人 说明\n\n初始迁移流程 2.1 2026-06-03 PlatformTeam\n\n增加引用和版本字段 2.2 2026-07-11 SearchTeam\n\n增加质量门和人工复核策略 2.3 2026-08-17 Knowledge Platform\n\nTeam\n\nSource: internalsyntheticfixture;allnamesandvaluesarefictional.\n\n3",
+  "blocks": [
+    {
+      "id": "9bca9ebe-db35-4735-8397-b22972a6656a",
+      "source_block_id": "pdfplumber-p1-l0",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "KnowledgeBaseOperations KB-MIG-2026",
+      "heading_level": null,
+      "markdown": "KnowledgeBaseOperations KB-MIG-2026",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2493738,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "KnowledgeBaseOperations KB-MIG-2026"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "53fc7622-c7a0-439a-bade-58a48edd1e30",
+      "source_block_id": "pdfplumber-p1-l1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "企业知识库迁移指南",
+      "heading_level": null,
+      "markdown": "企业知识库迁移指南",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          50.26160980000009,
+          248.2842,
+          72.17940980000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "企业知识库迁移指南"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4362d5c9-65bb-4cb9-b384-6b109032ebc4",
+      "source_block_id": "pdfplumber-p1-l2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Knowledge Base Migration Guide",
+      "heading_level": null,
+      "markdown": "Knowledge Base Migration Guide",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          74.79739400000005,
+          243.20982459999996,
+          87.74879399999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Knowledge Base Migration Guide"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0a0c2312-f6a6-4de1-ab3b-799d3e0ecbb7",
+      "source_block_id": "pdfplumber-p1-l3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档编号 负责人 KB-MIG-2026 KnowledgePlatformTeam",
+      "heading_level": null,
+      "markdown": "文档编号 负责人 KB-MIG-2026 KnowledgePlatformTeam",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.016,
+          128.43812660000003,
+          495.89050460000004,
+          139.08814599999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文档编号 负责人 KB-MIG-2026 KnowledgePlatformTeam"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d9cd2911-f546-45c2-bf83-1bf0011329cf",
+      "source_block_id": "pdfplumber-p1-l4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "版本 生效日期 2.3 2026-08-17",
+      "heading_level": null,
+      "markdown": "版本 生效日期 2.3 2026-08-17",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01600000000002,
+          140.39312660000007,
+          430.56573640000005,
+          151.04314599999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "版本 生效日期 2.3 2026-08-17"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3588229f-fc8f-4e92-ac53-b5dbfa7984ff",
+      "source_block_id": "pdfplumber-p1-l5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "适用范围 内部产品、运维与支持团队 状态 Approved",
+      "heading_level": null,
+      "markdown": "适用范围 内部产品、运维与支持团队 状态 Approved",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01600000000002,
+          152.3491266000001,
+          422.256928,
+          162.999146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "适用范围 内部产品、运维与支持团队 状态 Approved"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "89171243-5fdd-4bf1-87fd-944629612635",
+      "source_block_id": "pdfplumber-p1-l6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "摘要 / Executive summary",
+      "heading_level": null,
+      "markdown": "摘要 / Executive summary",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          206.7876142,
+          226.4179976,
+          222.12370199999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "摘要 / Executive summary"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c239f261-f373-4957-8252-1b612a5d25bb",
+      "source_block_id": "pdfplumber-p1-l7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本文说明如何把产品手册、故障复盘、FAQ和服务公告迁移到统一的LLMwiki知识库。迁移不只是复制文件，还",
+      "heading_level": null,
+      "markdown": "本文说明如何把产品手册、故障复盘、FAQ和服务公告迁移到统一的LLMwiki知识库。迁移不只是复制文件，还",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          238.37512660000004,
+          544.2473268,
+          249.02514599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "本文说明如何把产品手册、故障复盘、FAQ和服务公告迁移到统一的LLMwiki知识库。迁移不只是复制文件，还"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "03a13dcd-d242-404c-8a4c-acbbbe3d6607",
+      "source_block_id": "pdfplumber-p1-l8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "需要保留标题层级、表格字段、引用来源、版本号和原文定位。",
+      "heading_level": null,
+      "markdown": "需要保留标题层级、表格字段、引用来源、版本号和原文定位。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          250.33012660000009,
+          329.9768000000001,
+          260.29272660000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "需要保留标题层级、表格字段、引用来源、版本号和原文定位。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e367b4de-53d9-49c8-868a-78f3f7167f68",
+      "source_block_id": "pdfplumber-p1-l9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service no-",
+      "heading_level": null,
+      "markdown": "This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service no-",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          266.95854600000007,
+          544.1826625999997,
+          276.921146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "This guide defines a repeatable migration process for product manuals, incident reports, FAQs, and service no-"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "301335fe-c6d7-44d7-a5ae-69acff918fdb",
+      "source_block_id": "pdfplumber-p1-l10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "tices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval",
+      "heading_level": null,
+      "markdown": "tices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          278.913546,
+          544.1926251999997,
+          288.87614599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "tices. It preserves headings, table semantics, citations, version metadata, and source locations so that retrieval"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "79ec7f99-2d4d-4dd1-b858-a50dfbab48c9",
+      "source_block_id": "pdfplumber-p1-l11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "answersremainauditable.",
+      "heading_level": null,
+      "markdown": "answersremainauditable.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          290.86854600000004,
+          167.28754200000003,
+          300.831146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "answersremainauditable."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e940f842-1137-4f83-b303-e20cae0dcc17",
+      "source_block_id": "pdfplumber-p1-l12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "迁移范围与成功标准 1.",
+      "heading_level": null,
+      "markdown": "迁移范围与成功标准 1.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          326.41461419999996,
+          197.41879999999998,
+          341.750702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "迁移范围与成功标准 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e65ef5d3-3300-4216-b184-f5a280e0e0f8",
+      "source_block_id": "pdfplumber-p1-l13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "只接收经过授权的产品、运维和公开技术材料； •",
+      "heading_level": null,
+      "markdown": "只接收经过授权的产品、运维和公开技术材料； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          358.0031266,
+          285.1446,
+          368.653146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "只接收经过授权的产品、运维和公开技术材料； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15f0cf69-11e5-4acd-9dec-32811350f1d4",
+      "source_block_id": "pdfplumber-p1-l14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "每个文档必须保留原始文件名、版本、发布日期和责任团队； •",
+      "heading_level": null,
+      "markdown": "每个文档必须保留原始文件名、版本、发布日期和责任团队； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          377.9281266,
+          344.9202000000001,
+          388.578146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "每个文档必须保留原始文件名、版本、发布日期和责任团队； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9b2cbac3-5df9-4872-91ef-0c030623e468",
+      "source_block_id": "pdfplumber-p1-l15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格中的金额、阈值、单位和枚举值不得被改写； •",
+      "heading_level": null,
+      "markdown": "表格中的金额、阈值、单位和枚举值不得被改写； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          397.8531266,
+          295.1072000000001,
+          408.503146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格中的金额、阈值、单位和枚举值不得被改写； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "78c6f9e4-7730-41a7-940b-214fd17f09fc",
+      "source_block_id": "pdfplumber-p1-l16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "低置信度的扫描页、复杂表格和不确定引用进入人工复核； •",
+      "heading_level": null,
+      "markdown": "低置信度的扫描页、复杂表格和不确定引用进入人工复核； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          417.7791266,
+          334.9576000000001,
+          428.429146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "低置信度的扫描页、复杂表格和不确定引用进入人工复核； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ad50f5aa-3d24-46ed-bfab-c1e0148abd57",
+      "source_block_id": "pdfplumber-p1-l17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "迁移后用户可以通过章节、版本和产品名称检索到原文。 •",
+      "heading_level": null,
+      "markdown": "迁移后用户可以通过章节、版本和产品名称检索到原文。 •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          437.7041266,
+          324.99500000000006,
+          448.354146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "迁移后用户可以通过章节、版本和产品名称检索到原文。 •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0da26ac7-161c-45e2-82a1-8f160ca68194",
+      "source_block_id": "pdfplumber-p1-l18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档生命周期 2.",
+      "heading_level": null,
+      "markdown": "文档生命周期 2.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          473.93761420000004,
+          154.3802,
+          489.273702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文档生命周期 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ec0ddd3-7126-402b-b5a1-60f4be61a81c",
+      "source_block_id": "pdfplumber-p1-l19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "收集Collect",
+      "heading_level": null,
+      "markdown": "收集Collect",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          278.81500000000005,
+          515.5255058,
+          316.4592472000001,
+          522.8689171999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "收集Collect"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2b4ea25d-4be9-4444-ae72-e9de6ccb4144",
+      "source_block_id": "pdfplumber-p1-l20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "解析Parse",
+      "heading_level": null,
+      "markdown": "解析Parse",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          281.16200000000003,
+          558.0735058,
+          314.11985360000006,
+          565.4169172
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "解析Parse"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6aee060e-1ce8-42ae-a99a-d4e601ccf567",
+      "source_block_id": "pdfplumber-p1-l21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "复核Review",
+      "heading_level": null,
+      "markdown": "复核Review",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          278.617,
+          600.5385057999999,
+          316.6587538,
+          607.8819172
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "复核Review"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f9c776a0-8f3e-4bce-a58b-22a90d31e48c",
+      "source_block_id": "pdfplumber-p1-l22",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发布Publish",
+      "heading_level": null,
+      "markdown": "发布Publish",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          278.13500000000005,
+          643.0865057999999,
+          317.13913820000005,
+          650.4299172
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "发布Publish"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9c2b28d7-d21f-469b-b686-182af871d29b",
+      "source_block_id": "pdfplumber-p1-l23",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "角色与责任 3.",
+      "heading_level": null,
+      "markdown": "角色与责任 3.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          688.6176142,
+          140.034,
+          703.953702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "角色与责任 3."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "835391cf-6f8d-4e36-be59-3c378e5df43b",
+      "source_block_id": "pdfplumber-p1-l24",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "角色 输入 责任",
+      "heading_level": null,
+      "markdown": "角色 输入 责任",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.016,
+          722.7731266000001,
+          302.0142,
+          732.7357266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "角色 输入 责任"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7304c62e-2ede-45f3-97e6-6b75755dbcd9",
+      "source_block_id": "pdfplumber-p1-l25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "内容负责人 原始文档、版本说明 确认内容合法、更新日期和废弃版本",
+      "heading_level": null,
+      "markdown": "内容负责人 原始文档、版本说明 确认内容合法、更新日期和废弃版本",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.016,
+          739.7351266000001,
+          441.49060000000003,
+          749.6977266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "内容负责人 原始文档、版本说明 确认内容合法、更新日期和废弃版本"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "17e2fccf-52da-461a-8013-7a87b98c7d1f",
+      "source_block_id": "pdfplumber-p1-l26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "解析负责人 文件与解析结果 检查正文、表格、标题和来源定位",
+      "heading_level": null,
+      "markdown": "解析负责人 文件与解析结果 检查正文、表格、标题和来源定位",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01599999999999,
+          751.6901266,
+          431.52799999999996,
+          761.6527266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "解析负责人 文件与解析结果 检查正文、表格、标题和来源定位"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ad7d20a3-cae5-49d8-bba1-d3be09652e29",
+      "source_block_id": "pdfplumber-p1-l27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "审核人 确认问题、修复记录和发布状态 QualityPackage",
+      "heading_level": null,
+      "markdown": "审核人 确认问题、修复记录和发布状态 QualityPackage",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.01599999999999,
+          763.6451266000001,
+          421.5654,
+          774.295146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "审核人 确认问题、修复记录和发布状态 QualityPackage"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5a39eb34-2f81-4551-ace4-fe4280eefb85",
+      "source_block_id": "pdfplumber-p1-l28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2c265c0a-d04c-41b3-bbca-b442491c905a",
+      "source_block_id": "pdfplumber-p2-l29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "KnowledgeBaseOperations KB-MIG-2026",
+      "heading_level": null,
+      "markdown": "KnowledgeBaseOperations KB-MIG-2026",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2493738,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "KnowledgeBaseOperations KB-MIG-2026"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "362b05f7-fd79-4d0d-b98b-cb96741932e9",
+      "source_block_id": "pdfplumber-p2-l30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "标准操作流程 4.",
+      "heading_level": null,
+      "markdown": "标准操作流程 4.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          50.580614200000014,
+          154.3802,
+          65.91670199999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "标准操作流程 4."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "758dd1e4-8527-4fb3-be75-eebdb2c2d934",
+      "source_block_id": "pdfplumber-p2-l31",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "序号 阶段 操作 输出",
+      "heading_level": null,
+      "markdown": "序号 阶段 操作 输出",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.818,
+          91.7091266000001,
+          415.6662,
+          101.67172660000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "序号 阶段 操作 输出"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8ddea2cd-daa1-402e-b097-83011168edb8",
+      "source_block_id": "pdfplumber-p2-l32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "登记 记录sample_id、文件摘要、来源许可 manifest记录 1",
+      "heading_level": null,
+      "markdown": "登记 记录sample_id、文件摘要、来源许可 manifest记录 1",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.818,
+          108.6711266000001,
+          456.0862,
+          119.321146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "登记 记录sample_id、文件摘要、来源许可 manifest记录 1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1ce786dd-744f-4ce1-8082-ea389a5dd5d7",
+      "source_block_id": "pdfplumber-p2-l33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "和版本",
+      "heading_level": null,
+      "markdown": "和版本",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          227.34699999999998,
+          120.62612660000002,
+          257.23479999999995,
+          130.58872659999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "和版本"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fa4efff6-4442-4a4c-a256-8a03bb85b85f",
+      "source_block_id": "pdfplumber-p2-l34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "预检 判断文件类型、是否扫描、是否包含 2 RoutingDecision",
+      "heading_level": null,
+      "markdown": "预检 判断文件类型、是否扫描、是否包含 2 RoutingDecision",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.81799999999998,
+          132.58112660000006,
+          468.268728,
+          143.23114599999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "预检 判断文件类型、是否扫描、是否包含 2 RoutingDecision"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "697cce51-c154-452c-bcfa-a737c42d4f6e",
+      "source_block_id": "pdfplumber-p2-l35",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格和图片",
+      "heading_level": null,
+      "markdown": "表格和图片",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          227.34699999999998,
+          144.53712660000008,
+          277.15999999999997,
+          154.49972660000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格和图片"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7f2d3b01-d3f1-4213-964b-4137bb4bc36e",
+      "source_block_id": "pdfplumber-p2-l36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "解析 运行候选解析器并保存原生结果 3 ParsedDocument",
+      "heading_level": null,
+      "markdown": "解析 运行候选解析器并保存原生结果 3 ParsedDocument",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.81799999999998,
+          156.4921266,
+          472.70208499999995,
+          167.1421459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "解析 运行候选解析器并保存原生结果 3 ParsedDocument"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "54bd71c6-7e34-4a80-82f7-cdce7dc409be",
+      "source_block_id": "pdfplumber-p2-l37",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "质量处理 恢复标题、表格字段和引用关系 4 QualityPackage",
+      "heading_level": null,
+      "markdown": "质量处理 恢复标题、表格字段和引用关系 4 QualityPackage",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.81799999999998,
+          168.44712660000005,
+          465.5090878,
+          179.09714599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "质量处理 恢复标题、表格字段和引用关系 4 QualityPackage"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a123594e-6ac5-4d06-9b1e-d712959195a3",
+      "source_block_id": "pdfplumber-p2-l38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发布 由内容负责人确认后建立版本索引 可检索页面 5",
+      "heading_level": null,
+      "markdown": "发布 由内容负责人确认后建立版本索引 可检索页面 5",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.81799999999998,
+          180.4021266000001,
+          445.5478652,
+          191.052146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "发布 由内容负责人确认后建立版本索引 可检索页面 5"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3f40ad17-d08d-49e7-9680-2c4b4a4fea3b",
+      "source_block_id": "pdfplumber-p2-l39",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "复盘 记录失败原因、人工修改和重新解析 运行报告 6",
+      "heading_level": null,
+      "markdown": "复盘 记录失败原因、人工修改和重新解析 运行报告 6",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          91.81799999999998,
+          192.35712660000002,
+          435.59139999999996,
+          203.00714599999992
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "复盘 记录失败原因、人工修改和重新解析 运行报告 6"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e47718ca-87f1-46ee-881d-2909645092e4",
+      "source_block_id": "pdfplumber-p2-l40",
+      "order_index": 40,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "建议",
+      "heading_level": null,
+      "markdown": "建议",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          227.34699999999998,
+          204.31212660000006,
+          247.2722,
+          214.2747266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "建议"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "80e3cfd2-7d1b-4d93-a148-fba131a632f8",
+      "source_block_id": "pdfplumber-p2-l41",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "推荐命名和元数据 5.",
+      "heading_level": null,
+      "markdown": "推荐命名和元数据 5.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          245.07861419999995,
+          183.0726,
+          260.4147019999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "推荐命名和元数据 5."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "985af37e-7912-4cfd-a26c-7e06cea99104",
+      "source_block_id": "pdfplumber-p2-l42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文件名使用稳定的业务名称，不使用本机临时路径：",
+      "heading_level": null,
+      "markdown": "文件名使用稳定的业务名称，不使用本机临时路径：",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          276.6661266000001,
+          280.1638000000001,
+          286.62872660000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文件名使用稳定的业务名称，不使用本机临时路径："
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0680658d-96fb-4191-9ebd-4271c4fdeef7",
+      "source_block_id": "pdfplumber-p2-l43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "product-area_document-topic_version_date.ext",
+      "heading_level": null,
+      "markdown": "product-area_document-topic_version_date.ext",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          301.38409720000004,
+          281.16006000000016,
+          311.3466972
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "product-area_document-topic_version_date.ext"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fdea74ac-f3d6-4989-9f78-d1d8fae83024",
+      "source_block_id": "pdfplumber-p2-l44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "payments_api-rate-limit_v2.3_2026-08-17.pdf",
+      "heading_level": null,
+      "markdown": "payments_api-rate-limit_v2.3_2026-08-17.pdf",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          313.3390972000001,
+          275.92969500000015,
+          323.30169720000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "payments_api-rate-limit_v2.3_2026-08-17.pdf"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e5628b25-ae3f-47d6-9295-4fdab9bc4d87",
+      "source_block_id": "pdfplumber-p2-l45",
+      "order_index": 45,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生",
+      "heading_level": null,
+      "markdown": "必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          336.4421266,
+          544.2524008000003,
+          346.4047266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "必须填写：产品线、文档类型、负责人、发布日期、生效日期、废弃日期、可见范围和来源许可。版本升级时产生"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e7d5fffe-0f6d-481f-8f4e-a4601a9cf5cc",
+      "source_block_id": "pdfplumber-p2-l46",
+      "order_index": 46,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "新记录，不能静默覆盖旧文件。",
+      "heading_level": null,
+      "markdown": "新记录，不能静默覆盖旧文件。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          348.3971266,
+          190.50039999999998,
+          358.3597266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "新记录，不能静默覆盖旧文件。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e0b812b5-6243-44f9-af32-49f67ca2fb8b",
+      "source_block_id": "pdfplumber-p2-l47",
+      "order_index": 47,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "命令行示例 6.",
+      "heading_level": null,
+      "markdown": "命令行示例 6.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          384.6316142,
+          140.034,
+          399.967702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "命令行示例 6."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a373581c-866c-4323-9d2b-f4500400bbab",
+      "source_block_id": "pdfplumber-p2-l48",
+      "order_index": 48,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "# inspect one uploaded document",
+      "heading_level": null,
+      "markdown": "# inspect one uploaded document",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          417.0260972,
+          213.1553524000001,
+          426.9886972
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "# inspect one uploaded document"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cdaa10be-a14e-466b-a4a7-f3b58d61f0c6",
+      "source_block_id": "pdfplumber-p2-l49",
+      "order_index": 49,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\",
+      "heading_level": null,
+      "markdown": "llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          428.98109719999997,
+          338.68411240000023,
+          438.9436972
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "llmwiki parse upload/payments_api-rate-limit_v2.3.pdf \\"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bac5d155-3a6b-424e-bf21-55ad32278da6",
+      "source_block_id": "pdfplumber-p2-l50",
+      "order_index": 50,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "--mode auto --quality strict --output task-result/",
+      "heading_level": null,
+      "markdown": "--mode auto --quality strict --output task-result/",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          61.484,
+          440.93609719999995,
+          323.0022500000002,
+          450.89869719999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "--mode auto --quality strict --output task-result/"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "601b127b-0097-4469-96ca-22d7f030a364",
+      "source_block_id": "pdfplumber-p2-l51",
+      "order_index": 51,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "# publish only after the quality gate passes",
+      "heading_level": null,
+      "markdown": "# publish only after the quality gate passes",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          464.84709719999995,
+          281.15009740000016,
+          474.80969719999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "# publish only after the quality gate passes"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3fd43c0b-3373-4a19-acf3-2e0e40119628",
+      "source_block_id": "pdfplumber-p2-l52",
+      "order_index": 52,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "llmwiki publish task-result/ --visibility internal",
+      "heading_level": null,
+      "markdown": "llmwiki publish task-result/ --visibility internal",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          476.80209719999993,
+          312.5322874000002,
+          486.76469719999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "llmwiki publish task-result/ --visibility internal"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5d48a656-183b-42f8-9893-ba2037344a50",
+      "source_block_id": "pdfplumber-p2-l53",
+      "order_index": 53,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "双语检索说明 7. / Retrieval notes",
+      "heading_level": null,
+      "markdown": "双语检索说明 7. / Retrieval notes",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          512.2286142,
+          269.1760488,
+          527.564702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "双语检索说明 7. / Retrieval notes"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "90792c5f-08d0-4bd7-abe4-cb843dbe12e9",
+      "source_block_id": "pdfplumber-p2-l54",
+      "order_index": 54,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如“限流/ratelimit”、“服",
+      "heading_level": null,
+      "markdown": "中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如“限流/ratelimit”、“服",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          543.8171265999999,
+          544.2537724,
+          554.467146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "中文标题和英文标题可以出现在同一个文档中。索引应同时保留原文和规范化别名，例如“限流/ratelimit”、“服"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95afbd19-c8a1-415c-984c-16f8cd3aeac2",
+      "source_block_id": "pdfplumber-p2-l55",
+      "order_index": 55,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "务等级协议/SLA”。数字、单位、版本号和代码标识符必须按原样保存。",
+      "heading_level": null,
+      "markdown": "务等级协议/SLA”。数字、单位、版本号和代码标识符必须按原样保存。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          555.7721266,
+          372.0646626000001,
+          566.422146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "务等级协议/SLA”。数字、单位、版本号和代码标识符必须按原样保存。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7c3bcea5-b54d-43bc-832f-55f55cf7c169",
+      "source_block_id": "pdfplumber-p2-l56",
+      "order_index": 56,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "936a85f7-d03c-4040-8def-5c0a032c3f8b",
+      "source_block_id": "pdfplumber-p3-l57",
+      "order_index": 57,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "KnowledgeBaseOperations KB-MIG-2026",
+      "heading_level": null,
+      "markdown": "KnowledgeBaseOperations KB-MIG-2026",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2493738,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "KnowledgeBaseOperations KB-MIG-2026"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ee282c51-1dee-4db6-a7d9-f0ab28cedc76",
+      "source_block_id": "pdfplumber-p3-l58",
+      "order_index": 58,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "常见问题与处理策略 8.",
+      "heading_level": null,
+      "markdown": "常见问题与处理策略 8.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          50.580614200000014,
+          197.41879999999998,
+          65.91670199999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "常见问题与处理策略 8."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4cb1328f-a5cf-4b2a-a1fb-82772c42f531",
+      "source_block_id": "pdfplumber-p3-l59",
+      "order_index": 59,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "问题 处理策略 状态",
+      "heading_level": null,
+      "markdown": "问题 处理策略 状态",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14099999999999,
+          91.7091266000001,
+          442.02020000000005,
+          101.67172660000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "问题 处理策略 状态"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d538f803-0eb5-45cd-8926-1c853eaf66ce",
+      "source_block_id": "pdfplumber-p3-l60",
+      "order_index": 60,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "扫描页只有图片 使用 OCR，保留页码和置信度；低置信度进 review",
+      "heading_level": null,
+      "markdown": "扫描页只有图片 使用 OCR，保留页码和置信度；低置信度进 review",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14099999999999,
+          108.6711266000001,
+          450.8769514,
+          119.321146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "扫描页只有图片 使用 OCR，保留页码和置信度；低置信度进 review"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "15692327-fff1-4caf-bb3e-8d3663f1c6ea",
+      "source_block_id": "pdfplumber-p3-l61",
+      "order_index": 61,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "入人工复核",
+      "heading_level": null,
+      "markdown": "入人工复核",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          219.685,
+          120.62612660000002,
+          269.498,
+          130.58872659999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "入人工复核"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1ce9e74e-2635-47c4-aef4-f6a298099bfa",
+      "source_block_id": "pdfplumber-p3-l62",
+      "order_index": 62,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格跨页且没有重复表头 尝试恢复续接键；无法唯一判断时不绑定字段 review",
+      "heading_level": null,
+      "markdown": "表格跨页且没有重复表头 尝试恢复续接键；无法唯一判断时不绑定字段 review",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14100000000002,
+          132.58112660000006,
+          450.8769514,
+          143.23114599999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格跨页且没有重复表头 尝试恢复续接键；无法唯一判断时不绑定字段 review"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a6a5a111-8190-479d-86f9-ae38a3b7b761",
+      "source_block_id": "pdfplumber-p3-l63",
+      "order_index": 63,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "文档出现旧版本链接 保留链接并标记目标版本，不自动替换为当前 warning",
+      "heading_level": null,
+      "markdown": "文档出现旧版本链接 保留链接并标记目标版本，不自动替换为当前 warning",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14100000000002,
+          144.53712660000008,
+          456.9740626,
+          155.18714599999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "文档出现旧版本链接 保留链接并标记目标版本，不自动替换为当前 warning"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8a3375e6-51fb-4576-85bf-6d46809a6430",
+      "source_block_id": "pdfplumber-p3-l64",
+      "order_index": 64,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "版本",
+      "heading_level": null,
+      "markdown": "版本",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          219.68500000000003,
+          156.4921266,
+          239.61020000000005,
+          166.45472659999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "版本"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0718ac74-0e6d-4691-a148-32181a6f019c",
+      "source_block_id": "pdfplumber-p3-l65",
+      "order_index": 65,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "正文引用目标不唯一 生成reference_of候选关系，状态设为man- review",
+      "heading_level": null,
+      "markdown": "正文引用目标不唯一 生成reference_of候选关系，状态设为man- review",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14100000000002,
+          168.44712660000005,
+          450.8769514,
+          179.09714599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "正文引用目标不唯一 生成reference_of候选关系，状态设为man- review"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e20296a1-8380-437e-ab16-628e009eccc3",
+      "source_block_id": "pdfplumber-p3-l66",
+      "order_index": 66,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "ual_review_required",
+      "heading_level": null,
+      "markdown": "ual_review_required",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          219.68500000000003,
+          181.08954600000004,
+          309.37828780000007,
+          191.052146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "ual_review_required"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b263cc2d-cc8d-4ad9-97fb-8c0c5cbcacdb",
+      "source_block_id": "pdfplumber-p3-l67",
+      "order_index": 67,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "同一文件多次上传 通过版本和文件摘要区分，禁止覆盖既有结果 pass",
+      "heading_level": null,
+      "markdown": "同一文件多次上传 通过版本和文件摘要区分，禁止覆盖既有结果 pass",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          88.14100000000002,
+          192.35712660000002,
+          443.1360112,
+          203.00714599999992
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "同一文件多次上传 通过版本和文件摘要区分，禁止覆盖既有结果 pass"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7f5507d3-b254-44e1-82ea-5a8be88794ff",
+      "source_block_id": "pdfplumber-p3-l68",
+      "order_index": 68,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发布前检查清单 9.",
+      "heading_level": null,
+      "markdown": "发布前检查清单 9.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          233.12361420000002,
+          168.7264,
+          248.459702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "发布前检查清单 9."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6864bda4-4481-4f46-ba72-f009dd41f99d",
+      "source_block_id": "pdfplumber-p3-l69",
+      "order_index": 69,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "正文和标题顺序与原文件一致； •",
+      "heading_level": null,
+      "markdown": "正文和标题顺序与原文件一致； •",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          264.71112660000006,
+          215.4064,
+          275.36114599999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "正文和标题顺序与原文件一致； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "de40ed15-86a8-40d5-9843-3618be7e645a",
+      "source_block_id": "pdfplumber-p3-l70",
+      "order_index": 70,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格列名、单位、合并表头和数值均可回溯； •",
+      "heading_level": null,
+      "markdown": "表格列名、单位、合并表头和数值均可回溯； •",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          284.6361266,
+          275.1820000000001,
+          295.2861459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "表格列名、单位、合并表头和数值均可回溯； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a2ad55c9-1f5d-4a51-8919-3e3b5a7ed4ed",
+      "source_block_id": "pdfplumber-p3-l71",
+      "order_index": 71,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "引用关系有明确目标和来源证据； •",
+      "heading_level": null,
+      "markdown": "引用关系有明确目标和来源证据； •",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          304.56212660000006,
+          225.369,
+          315.21214599999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "引用关系有明确目标和来源证据； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c31abdc5-7d7a-4e88-bb8d-da14596638ec",
+      "source_block_id": "pdfplumber-p3-l72",
+      "order_index": 72,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "质量报告、修复记录和重新解析建议齐全； •",
+      "heading_level": null,
+      "markdown": "质量报告、修复记录和重新解析建议齐全； •",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          324.4871266,
+          265.2194,
+          335.13714600000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "质量报告、修复记录和重新解析建议齐全； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6416c3e7-bb6b-4424-baa6-7fb0c9ffc78f",
+      "source_block_id": "pdfplumber-p3-l73",
+      "order_index": 73,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "页面展示不暴露本机路径、临时文件或敏感信息。 •",
+      "heading_level": null,
+      "markdown": "页面展示不暴露本机路径、临时文件或敏感信息。 •",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          67.461,
+          344.4121266,
+          295.1072000000001,
+          355.06214600000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "页面展示不暴露本机路径、临时文件或敏感信息。 •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f96244d6-9488-409c-87af-b78cd62c29ee",
+      "source_block_id": "pdfplumber-p3-l74",
+      "order_index": 74,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "变更记录 10.",
+      "heading_level": null,
+      "markdown": "变更记录 10.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          380.64661420000004,
+          133.66580000000002,
+          395.982702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "变更记录 10."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "167d7663-4004-4326-ab28-c84437535f74",
+      "source_block_id": "pdfplumber-p3-l75",
+      "order_index": 75,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "版本 日期 修改人 说明",
+      "heading_level": null,
+      "markdown": "版本 日期 修改人 说明",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          53.016,
+          414.7451266,
+          328.6762,
+          424.7077266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "版本 日期 修改人 说明"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5a671e9a-ba2d-4829-b1d5-4b0ef737df6b",
+      "source_block_id": "pdfplumber-p3-l76",
+      "order_index": 76,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "初始迁移流程 2.1 2026-06-03 PlatformTeam",
+      "heading_level": null,
+      "markdown": "初始迁移流程 2.1 2026-06-03 PlatformTeam",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          53.016,
+          431.7071266,
+          368.5266,
+          442.357146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "初始迁移流程 2.1 2026-06-03 PlatformTeam"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7f3e6f59-b111-4500-9ad1-139e898bc7b5",
+      "source_block_id": "pdfplumber-p3-l77",
+      "order_index": 77,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "增加引用和版本字段 2.2 2026-07-11 SearchTeam",
+      "heading_level": null,
+      "markdown": "增加引用和版本字段 2.2 2026-07-11 SearchTeam",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          53.01599999999996,
+          443.66212659999997,
+          398.4144,
+          454.312146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "增加引用和版本字段 2.2 2026-07-11 SearchTeam"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4d9cd4c9-8010-4306-9920-f5aa5675bcea",
+      "source_block_id": "pdfplumber-p3-l78",
+      "order_index": 78,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "增加质量门和人工复核策略 2.3 2026-08-17 Knowledge Platform",
+      "heading_level": null,
+      "markdown": "增加质量门和人工复核策略 2.3 2026-08-17 Knowledge Platform",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          53.015999999999934,
+          455.61712659999995,
+          428.3021999999999,
+          466.26714599999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "增加质量门和人工复核策略 2.3 2026-08-17 Knowledge Platform"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c3d63212-6436-4a15-abeb-55ca353ee531",
+      "source_block_id": "pdfplumber-p3-l79",
+      "order_index": 79,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Team",
+      "heading_level": null,
+      "markdown": "Team",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          197.04899999999992,
+          468.25954599999994,
+          221.41751959999993,
+          478.22214599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Team"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6bc25d78-24f6-4cae-95f0-d865f38857e5",
+      "source_block_id": "pdfplumber-p3-l80",
+      "order_index": 80,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Source: internalsyntheticfixture;allnamesandvaluesarefictional.",
+      "heading_level": null,
+      "markdown": "Source: internalsyntheticfixture;allnamesandvaluesarefictional.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          783.782544,
+          319.4511168000001,
+          792.7489439999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Source: internalsyntheticfixture;allnamesandvaluesarefictional."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ddc08d8e-962b-4408-94e8-4f46ea0f86a5",
+      "source_block_id": "pdfplumber-p3-l81",
+      "order_index": 81,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "3"
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.7,
+    "layout": 0.6,
+    "reading_order": 0.6,
+    "table": 0.5,
+    "overall": 0.6
+  },
+  "provenance": {
+    "parser_id": "pdfplumber-fallback",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "pdfplumber",
+    "version": "0.11",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "本地兜底解析（pdfplumber），表格结构语义不可靠。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "line",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "rowcol_only",
+      "reason": "pdfplumber 启发式网格：无 span/header 语义，全部按 span=1。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本地兜底解析器无 OCR 能力。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:21:54.082507Z"
+}

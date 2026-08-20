@@ -1,4 +1,0 @@
-{"sample_id":"sdp-004","expected_state":"pass","must_produce":["table_field_binding"],"expected_column_paths":[["训练集","准确率"],["训练集","召回率"],["测试集","准确率"],["测试集","召回率"]],"forbidden":["invented_cell_bbox","flattened_header_path"]}
-{"sample_id":"sdp-005","expected_state":"manual_review_required","must_produce":["ambiguous_cross_page_table_issue"],"forbidden":["verified_binding_for_ambiguous_row_003"]}
-{"sample_id":"sdp-006","expected_state":"pass","must_produce":["parent_child","reference_of"],"expected_reference_ids":["1","2"]}
-{"sample_id":"sdp-007","expected_state":"manual_review_required","must_produce":["heading_ambiguity_issue","duplicate_reference_issue"],"forbidden":["verified_reference_1","forced_heading_hierarchy"]}

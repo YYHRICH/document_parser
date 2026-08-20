@@ -59,11 +59,16 @@ def test_parse_api_creates_package_and_serves_artifact(tmp_path: Path) -> None:
     assert body["document"]["schema_version"] == "2.2"
     assert body["native_artifact_count"] >= 1
     assert (tmp_path / parse_id / "parsed_document.json").is_file()
+    assert (tmp_path / parse_id / "quality_package.json").is_file()
     assert (tmp_path / parse_id / "native" / "mineru_result.json").is_file()
 
     read_response = client.get(f"/api/parses/{parse_id}")
     assert read_response.status_code == 200
     assert read_response.json()["document"]["filename"] == "paper.pdf"
+
+    quality_response = client.get(f"/api/parses/{parse_id}/quality-package")
+    assert quality_response.status_code == 200
+    assert quality_response.json()["quality_package"]["document_id"] == body["document"]["document_id"]
 
     artifact_response = client.get(f"/api/parses/{parse_id}/artifacts/native/mineru_result.json")
     assert artifact_response.status_code == 200

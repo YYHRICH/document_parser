@@ -1,0 +1,2190 @@
+{
+  "document_id": "f27fbba0-6084-4913-bea4-48f40d6e9b02",
+  "filename": "incident_postmortem.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 108153,
+  "source_sha256": "057b36d0aa14f158aa9083925695ab7870b6b9c5f58359c6590a63a17c4f5735",
+  "routing_decision": null,
+  "markdown": "ReliabilityEngineering INC-2026-0714\n\n网关延迟事故复盘 API\n\nAPI Gateway Latency Incident Review\n\n事故编号 影响服务 INC-2026-0714 payments-api\n\n发生时间 严重级别 2026-07-1409:12–10:03 SEV-2\n\n负责人 当前状态 ReliabilityEngineering Closedwithfollow-up\n\n摘要 / Executive summary\n\n2026年7月14日，支付API在流量高峰期间出现P95延迟升高和间歇性502。根因是限流配置发布后，边缘缓\n\n存键包含了高基数字段，导致缓存命中率从91%降到38%，同时连接池被慢请求耗尽。回滚配置后，延迟在11\n\n分钟内恢复。\n\nOn14July2026,thepaymentsAPIexperiencedelevatedP95latencyandintermittent502responses. Arate-limit\n\nconfiguration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting\n\ntheconnectionpoolunderpeaktraffic.\n\n影响范围 1.\n\n09:12–10:03期间，约8.7%的支付预检查请求超过2秒； •\n\n约1.2%请求返回502，重试请求未产生重复扣款； •\n\n订单写入和对账任务没有数据丢失； •\n\n受影响客户主要集中在东亚区域的高峰流量租户。 •\n\n关键时间线 2.\n\n时间 事件 证据与决定\n\n配置变更提交 将tenant_id加入边缘缓存键；评审通过 08:45\n\nP95超过1.8s latency_p95告警触发 09:12\n\n502开始上升 值班工程师建立事故频道 09:18\n\n发现缓存命中率下降 对比变更前后的cache_hit_ratio 09:31\n\n回滚配置 限流规则恢复到2026-07-13版本 09:42\n\n服务恢复 P95回到420ms，进入观察期 10:03\n\n1\n\nReliabilityEngineering INC-2026-0714\n\n技术背景 3.\n\n请求经过CDN、边缘限流器、API网关和payments-api。原有缓存键只包含路径和请求方法；变更后加入tenant_id，\n\n导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：\n\n×L C =min(C , R )\n\neffective pool inflight p95\n\n在事故期间，R =185req/s，L =2.4s，所需并发约为444，超过连接池上限320。\n\ninflight p95\n\n根因分析 4.\n\n直接原因 现？\n\n高基数tenant_id被加入缓存键，缓存复用率下降；慢请 变更模板把缓存键当作普通字符串； 1.\n\n求占用连接，触发排队和超时。\n\n评审清单没有“基数”和“复用率”字段； 2.\n\n预发布流量没有模拟长尾租户； 3.\n\n促成因素\n\n回滚需要人工执行，没有自动策略。 4.\n\n配置评审只检查了限流语义，没有检查缓存键基数。压\n\n测样本使用了 个租户，未覆盖生产环境的 个 5 38,000\n\n结论 租户。\n\n代码本身没有错误，系统性风险来自配置、压测和门禁\n\n之间的缺口。\n\n未触发的保护\n\n缓存命中率有监控但没有发布门禁；连接池告警阈值设\n\n置为90%，无法提前发现趋势。为什么没有在发布前发\n\n缓解措施 5.\n\n回滚缓存键变更并清理高基数缓存项； 1.\n\n临时将连接池上限从320调整到480，并限制重试次数； 2.\n\n为受影响租户打开降级响应，返回可重试的错误码； 3.\n\n在发布频道固定附带命中率、P95和连接池利用率。 4.\n\n2\n\nReliabilityEngineering INC-2026-0714\n\n监控和证据 6.\n\n指标 事故前 峰值 恢复目标\n\nP95latency 420ms 2,400ms <500ms\n\nCachehitratio 91% 38% >85%\n\nConnectionpool 62% 99% <75%\n\nHTTP502ratio 0.08% 1.20% <0.10%\n\n后续行动项 7.\n\n行动 负责人 截止日期 ID\n\n为缓存键增加基数估算和命中率预估 A1 EdgeTeam 2026-07-28\n\n压测加入长尾租户和真实比例 A2 Performance 2026-08-04\n\n将cache_hit_ratio纳入发布门禁 A3 ReleaseEng 2026-08-11\n\n实现连接池趋势告警和自动回滚 A4 Reliability 2026-08-18\n\n更新配置评审模板与培训材料 A5 PlatformTeam 2026-08-21\n\n复盘结论 8.\n\n本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延\n\n迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。\n\nSyntheticincidentreport. Names,identifiersandmeasurementsarefictional.\n\n3",
+  "blocks": [
+    {
+      "id": "a4a9dce1-6c28-46b1-abcb-1469fff27c40",
+      "source_block_id": "pdfplumber-p1-l0",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "ReliabilityEngineering INC-2026-0714",
+      "heading_level": null,
+      "markdown": "ReliabilityEngineering INC-2026-0714",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2373335999999,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "ReliabilityEngineering INC-2026-0714"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e8c445bb-1ee1-4124-aa9e-a3c28c0f17a1",
+      "source_block_id": "pdfplumber-p1-l1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "网关延迟事故复盘 API",
+      "heading_level": null,
+      "markdown": "网关延迟事故复盘 API",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          50.175609800000075,
+          268.9924,
+          73.60573800000009
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "网关延迟事故复盘 API"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "75bdf0c3-7270-4be4-b93c-a54331d49ed5",
+      "source_block_id": "pdfplumber-p1-l2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "API Gateway Latency Incident Review",
+      "heading_level": null,
+      "markdown": "API Gateway Latency Incident Review",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          74.71139400000004,
+          270.56318139999996,
+          87.66279399999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "API Gateway Latency Incident Review"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "befd91af-c896-4111-97d5-9f56e5744c69",
+      "source_block_id": "pdfplumber-p1-l3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "事故编号 影响服务 INC-2026-0714 payments-api",
+      "heading_level": null,
+      "markdown": "事故编号 影响服务 INC-2026-0714 payments-api",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.001,
+          125.51812660000007,
+          447.4655252,
+          136.16814599999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "事故编号 影响服务 INC-2026-0714 payments-api"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bb93754d-4137-4ee3-bee0-7120c29a2a23",
+      "source_block_id": "pdfplumber-p1-l4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发生时间 严重级别 2026-07-1409:12–10:03 SEV-2",
+      "heading_level": null,
+      "markdown": "发生时间 严重级别 2026-07-1409:12–10:03 SEV-2",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.00100000000003,
+          137.4731266000001,
+          415.913971,
+          148.12314600000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "发生时间 严重级别 2026-07-1409:12–10:03 SEV-2"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "422410ee-4100-4c2c-8f0f-1150f2eee6e6",
+      "source_block_id": "pdfplumber-p1-l5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "负责人 当前状态 ReliabilityEngineering Closedwithfollow-up",
+      "heading_level": null,
+      "markdown": "负责人 当前状态 ReliabilityEngineering Closedwithfollow-up",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.00100000000003,
+          149.42812660000004,
+          481.77671960000004,
+          160.07814599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "负责人 当前状态 ReliabilityEngineering Closedwithfollow-up"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a2143866-543c-4465-b337-d0012f748532",
+      "source_block_id": "pdfplumber-p1-l6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "摘要 / Executive summary",
+      "heading_level": null,
+      "markdown": "摘要 / Executive summary",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          184.0246142000001,
+          226.4179976,
+          199.36070200000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "摘要 / Executive summary"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "59ebf2b2-853c-41ef-892d-29bb30d22738",
+      "source_block_id": "pdfplumber-p1-l7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2026年7月14日，支付API在流量高峰期间出现P95延迟升高和间歇性502。根因是限流配置发布后，边缘缓",
+      "heading_level": null,
+      "markdown": "2026年7月14日，支付API在流量高峰期间出现P95延迟升高和间歇性502。根因是限流配置发布后，边缘缓",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          215.6131266000001,
+          544.2544782,
+          226.263146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2026年7月14日，支付API在流量高峰期间出现P95延迟升高和间歇性502。根因是限流配置发布后，边缘缓"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a3ffabfb-33b4-4a5b-9d82-8ac5d74e1b34",
+      "source_block_id": "pdfplumber-p1-l8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "存键包含了高基数字段，导致缓存命中率从91%降到38%，同时连接池被慢请求耗尽。回滚配置后，延迟在11",
+      "heading_level": null,
+      "markdown": "存键包含了高基数字段，导致缓存命中率从91%降到38%，同时连接池被慢请求耗尽。回滚配置后，延迟在11",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          227.56812660000014,
+          544.2511787999999,
+          238.21814600000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "存键包含了高基数字段，导致缓存命中率从91%降到38%，同时连接池被慢请求耗尽。回滚配置后，延迟在11"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f5e1ddbd-dfd6-4ba6-9558-c74219435c40",
+      "source_block_id": "pdfplumber-p1-l9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "分钟内恢复。",
+      "heading_level": null,
+      "markdown": "分钟内恢复。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          239.52312660000007,
+          110.79959999999994,
+          249.48572660000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "分钟内恢复。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c8bf9d3b-fc1d-44ee-97f7-5281462d17da",
+      "source_block_id": "pdfplumber-p1-l10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "On14July2026,thepaymentsAPIexperiencedelevatedP95latencyandintermittent502responses. Arate-limit",
+      "heading_level": null,
+      "markdown": "On14July2026,thepaymentsAPIexperiencedelevatedP95latencyandintermittent502responses. Arate-limit",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          256.1505460000001,
+          544.1826625999997,
+          266.11314600000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "On14July2026,thepaymentsAPIexperiencedelevatedP95latencyandintermittent502responses. Arate-limit"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5adc107f-572c-49d4-93b6-ec76fd0c3773",
+      "source_block_id": "pdfplumber-p1-l11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting",
+      "heading_level": null,
+      "markdown": "configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          268.105546,
+          544.1627373999996,
+          278.06814599999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "73cdfb3f-e944-4be4-aa97-a8b99c60a8a5",
+      "source_block_id": "pdfplumber-p1-l12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "theconnectionpoolunderpeaktraffic.",
+      "heading_level": null,
+      "markdown": "theconnectionpoolunderpeaktraffic.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          280.06054600000004,
+          219.75059360000003,
+          290.023146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "theconnectionpoolunderpeaktraffic."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b3ee6433-dbcf-4aab-9881-8939b34f8bf1",
+      "source_block_id": "pdfplumber-p1-l13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "影响范围 1.",
+      "heading_level": null,
+      "markdown": "影响范围 1.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          315.60761420000006,
+          125.68779999999994,
+          330.94370200000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "影响范围 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bcffc5eb-2109-4116-81f5-08fec5d68e17",
+      "source_block_id": "pdfplumber-p1-l14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "09:12–10:03期间，约8.7%的支付预检查请求超过2秒； •",
+      "heading_level": null,
+      "markdown": "09:12–10:03期间，约8.7%的支付预检查请求超过2秒； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          347.1951266,
+          332.82320000000004,
+          357.845146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "09:12–10:03期间，约8.7%的支付预检查请求超过2秒； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "20ef61cd-a7b8-4b95-9a6f-02136a9acbc0",
+      "source_block_id": "pdfplumber-p1-l15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "约1.2%请求返回502，重试请求未产生重复扣款； •",
+      "heading_level": null,
+      "markdown": "约1.2%请求返回502，重试请求未产生重复扣款； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          367.12112659999997,
+          302.8908,
+          377.771146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "约1.2%请求返回502，重试请求未产生重复扣款； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "aaa4b67d-d7ff-4fe2-a54d-95c9bb660878",
+      "source_block_id": "pdfplumber-p1-l16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "订单写入和对账任务没有数据丢失； •",
+      "heading_level": null,
+      "markdown": "订单写入和对账任务没有数据丢失； •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          387.0461266,
+          235.3316,
+          397.696146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "订单写入和对账任务没有数据丢失； •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f95d9b3d-1919-482f-9f33-701d227d5c1f",
+      "source_block_id": "pdfplumber-p1-l17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "受影响客户主要集中在东亚区域的高峰流量租户。 •",
+      "heading_level": null,
+      "markdown": "受影响客户主要集中在东亚区域的高峰流量租户。 •",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          406.9711266,
+          295.1072000000001,
+          417.621146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "受影响客户主要集中在东亚区域的高峰流量租户。 •"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "03051691-7554-4c90-a140-2f979b15fd76",
+      "source_block_id": "pdfplumber-p1-l18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "关键时间线 2.",
+      "heading_level": null,
+      "markdown": "关键时间线 2.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          443.2056142,
+          140.034,
+          458.541702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "关键时间线 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "04e46ccc-1567-489d-9628-d3b00b2950e1",
+      "source_block_id": "pdfplumber-p1-l19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "时间 事件 证据与决定",
+      "heading_level": null,
+      "markdown": "时间 事件 证据与决定",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.998,
+          484.4461266,
+          343.815,
+          494.4087266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "时间 事件 证据与决定"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42014229-4dcb-483b-809c-c4a713295a88",
+      "source_block_id": "pdfplumber-p1-l20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "配置变更提交 将tenant_id加入边缘缓存键；评审通过 08:45",
+      "heading_level": null,
+      "markdown": "配置变更提交 将tenant_id加入边缘缓存键；评审通过 08:45",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.998,
+          501.4081266,
+          470.0462,
+          512.0581460000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "配置变更提交 将tenant_id加入边缘缓存键；评审通过 08:45"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4253cd55-630b-4b1a-9ab5-70db96f90279",
+      "source_block_id": "pdfplumber-p1-l21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P95超过1.8s latency_p95告警触发 09:12",
+      "heading_level": null,
+      "markdown": "P95超过1.8s latency_p95告警触发 09:12",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.99799999999999,
+          513.3631266,
+          390.3504,
+          524.013146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "P95超过1.8s latency_p95告警触发 09:12"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "152275d7-05ad-4614-93d3-b775badae252",
+      "source_block_id": "pdfplumber-p1-l22",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "502开始上升 值班工程师建立事故频道 09:18",
+      "heading_level": null,
+      "markdown": "502开始上升 值班工程师建立事故频道 09:18",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.99799999999999,
+          525.3181265999999,
+          403.59059999999994,
+          535.9681459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "502开始上升 值班工程师建立事故频道 09:18"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a0bc665a-2cdc-41a0-ae85-8ef556bffa49",
+      "source_block_id": "pdfplumber-p1-l23",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发现缓存命中率下降 对比变更前后的cache_hit_ratio 09:31",
+      "heading_level": null,
+      "markdown": "发现缓存命中率下降 对比变更前后的cache_hit_ratio 09:31",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.99799999999999,
+          537.2731266,
+          434.06539060000006,
+          547.923146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "发现缓存命中率下降 对比变更前后的cache_hit_ratio 09:31"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95dd22f4-e454-45c6-8839-88c1b1ac2670",
+      "source_block_id": "pdfplumber-p1-l24",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "回滚配置 限流规则恢复到2026-07-13版本 09:42",
+      "heading_level": null,
+      "markdown": "回滚配置 限流规则恢复到2026-07-13版本 09:42",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.99799999999999,
+          549.2281266,
+          440.1632,
+          559.878146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "回滚配置 限流规则恢复到2026-07-13版本 09:42"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1a21f625-d6b2-4d75-9f12-553ca6d3e8db",
+      "source_block_id": "pdfplumber-p1-l25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "服务恢复 P95回到420ms，进入观察期 10:03",
+      "heading_level": null,
+      "markdown": "服务恢复 P95回到420ms，进入观察期 10:03",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          65.99799999999999,
+          561.1831265999999,
+          429.6366,
+          571.8331459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "服务恢复 P95回到420ms，进入观察期 10:03"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e0a5160c-f46b-4cff-9402-1750b9088e5e",
+      "source_block_id": "pdfplumber-p1-l26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "109731ff-0d1e-4cf9-b5f4-b1cc7536ccd5",
+      "source_block_id": "pdfplumber-p2-l27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "ReliabilityEngineering INC-2026-0714",
+      "heading_level": null,
+      "markdown": "ReliabilityEngineering INC-2026-0714",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2373335999999,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "ReliabilityEngineering INC-2026-0714"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1a51cf9a-2d99-4cb5-87be-21a5e8902540",
+      "source_block_id": "pdfplumber-p2-l28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "技术背景 3.",
+      "heading_level": null,
+      "markdown": "技术背景 3.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          50.30061420000004,
+          125.6878,
+          65.63670200000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "技术背景 3."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1df973b7-a9ee-4260-8685-e96d4ee703ee",
+      "source_block_id": "pdfplumber-p2-l29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "请求经过CDN、边缘限流器、API网关和payments-api。原有缓存键只包含路径和请求方法；变更后加入tenant_id，",
+      "heading_level": null,
+      "markdown": "请求经过CDN、边缘限流器、API网关和payments-api。原有缓存键只包含路径和请求方法；变更后加入tenant_id，",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          81.88812660000008,
+          551.4516,
+          92.53814599999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "请求经过CDN、边缘限流器、API网关和payments-api。原有缓存键只包含路径和请求方法；变更后加入tenant_id，"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "30662e9d-47fc-4bea-a4f0-3cf710a9fd5e",
+      "source_block_id": "pdfplumber-p2-l30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
+      "heading_level": null,
+      "markdown": "导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          93.8431266,
+          379.7898000000002,
+          103.80572659999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束："
+      },
+      "metadata": {}
+    },
+    {
+      "id": "358882e1-e218-4274-a848-148bb322b83b",
+      "source_block_id": "pdfplumber-p2-l31",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "×L C =min(C , R )",
+      "heading_level": null,
+      "markdown": "×L C =min(C , R )",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          208.88100000000006,
+          114.35640000000001,
+          386.3854888,
+          126.41114599999992
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "×L C =min(C , R )"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a0d36cf5-aecd-4f31-9e0a-7bb9d5c1cf2e",
+      "source_block_id": "pdfplumber-p2-l32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "effective pool inflight p95",
+      "heading_level": null,
+      "markdown": "effective pool inflight p95",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          216.00200000000007,
+          120.19311719999996,
+          382.01518440000007,
+          127.16691719999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "effective pool inflight p95"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5673fbb8-6e62-4296-b1b5-9824b497175d",
+      "source_block_id": "pdfplumber-p2-l33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "在事故期间，R =185req/s，L =2.4s，所需并发约为444，超过连接池上限320。",
+      "heading_level": null,
+      "markdown": "在事故期间，R =185req/s，L =2.4s，所需并发约为444，超过连接池上限320。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          137.67912660000002,
+          462.84060000000005,
+          148.32914599999992
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "在事故期间，R =185req/s，L =2.4s，所需并发约为444，超过连接池上限320。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "50ccff2a-dc54-4600-a235-6d14c7e5b4e8",
+      "source_block_id": "pdfplumber-p2-l34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "inflight p95",
+      "heading_level": null,
+      "markdown": "inflight p95",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          118.36400000000006,
+          142.1101172,
+          230.39118440000004,
+          149.08391719999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "inflight p95"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0a8ee0c7-c55a-4eeb-84b3-40c7e7f3944c",
+      "source_block_id": "pdfplumber-p2-l35",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "根因分析 4.",
+      "heading_level": null,
+      "markdown": "根因分析 4.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          173.91361419999998,
+          125.68780000000005,
+          189.24970199999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "根因分析 4."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6b17b4ed-fb60-419a-8745-91fbf9c38155",
+      "source_block_id": "pdfplumber-p2-l36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "直接原因 现？",
+      "heading_level": null,
+      "markdown": "直接原因 现？",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          201.5891266000001,
+          322.54420000000005,
+          211.55172660000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "直接原因 现？"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8a994170-5d14-443f-85c6-fdfc75cc99b7",
+      "source_block_id": "pdfplumber-p2-l37",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "高基数tenant_id被加入缓存键，缓存复用率下降；慢请 变更模板把缓存键当作普通字符串； 1.",
+      "heading_level": null,
+      "markdown": "高基数tenant_id被加入缓存键，缓存复用率下降；慢请 变更模板把缓存键当作普通字符串； 1.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          217.52912660000004,
+          474.0196,
+          228.17914599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "高基数tenant_id被加入缓存键，缓存复用率下降；慢请 变更模板把缓存键当作普通字符串； 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5c2d6737-cf16-4538-9cea-07e7c728ee8b",
+      "source_block_id": "pdfplumber-p2-l38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "求占用连接，触发排队和超时。",
+      "heading_level": null,
+      "markdown": "求占用连接，触发排队和超时。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          229.48412660000008,
+          190.50040000000004,
+          239.44672660000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "求占用连接，触发排队和超时。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "291a2e67-ad18-4ef8-8368-6868f09c09c8",
+      "source_block_id": "pdfplumber-p2-l39",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评审清单没有“基数”和“复用率”字段； 2.",
+      "heading_level": null,
+      "markdown": "评审清单没有“基数”和“复用率”字段； 2.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          233.46912659999998,
+          503.9074,
+          244.1191459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "评审清单没有“基数”和“复用率”字段； 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4382f150-bfef-4a85-9693-dc44558be3e2",
+      "source_block_id": "pdfplumber-p2-l40",
+      "order_index": 40,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "预发布流量没有模拟长尾租户； 3.",
+      "heading_level": null,
+      "markdown": "预发布流量没有模拟长尾租户； 3.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          249.4101266,
+          454.0944,
+          260.0601459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "预发布流量没有模拟长尾租户； 3."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3f9355a1-9d1d-4cd5-86a6-a99059a5873f",
+      "source_block_id": "pdfplumber-p2-l41",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "促成因素",
+      "heading_level": null,
+      "markdown": "促成因素",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          259.5981266000001,
+          90.87440000000005,
+          269.56072660000007
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "促成因素"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d1803ac9-6dd1-4aac-84f7-a16bc6b7b021",
+      "source_block_id": "pdfplumber-p2-l42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "回滚需要人工执行，没有自动策略。 4.",
+      "heading_level": null,
+      "markdown": "回滚需要人工执行，没有自动策略。 4.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          265.35012660000007,
+          474.0196,
+          276.000146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "回滚需要人工执行，没有自动策略。 4."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7c65cf7c-4fbf-4ece-9fcc-4567ecc2bf3a",
+      "source_block_id": "pdfplumber-p2-l43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "配置评审只检查了限流语义，没有检查缓存键基数。压",
+      "heading_level": null,
+      "markdown": "配置评审只检查了限流语义，没有检查缓存键基数。压",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          275.53812660000006,
+          292.64693780000005,
+          285.5007266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "配置评审只检查了限流语义，没有检查缓存键基数。压"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dd8571ea-b4f3-457e-9edd-dede11191b33",
+      "source_block_id": "pdfplumber-p2-l44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "测样本使用了 个租户，未覆盖生产环境的 个 5 38,000",
+      "heading_level": null,
+      "markdown": "测样本使用了 个租户，未覆盖生产环境的 个 5 38,000",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          287.4931266000001,
+          292.6566000000001,
+          298.143146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "测样本使用了 个租户，未覆盖生产环境的 个 5 38,000"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "29c2a398-dc5f-46df-887e-660f6d1ab266",
+      "source_block_id": "pdfplumber-p2-l45",
+      "order_index": 45,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "结论 租户。",
+      "heading_level": null,
+      "markdown": "结论 租户。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          298.29812660000005,
+          322.54420000000005,
+          309.4107266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "结论 租户。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a1c4f6d6-2b8a-445b-bf14-7c6ccc895d93",
+      "source_block_id": "pdfplumber-p2-l46",
+      "order_index": 46,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "代码本身没有错误，系统性风险来自配置、压测和门禁",
+      "heading_level": null,
+      "markdown": "代码本身没有错误，系统性风险来自配置、压测和门禁",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          314.2381266,
+          544.2419378,
+          324.20072659999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "代码本身没有错误，系统性风险来自配置、压测和门禁"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b1beaba7-697c-4dc7-b39a-6e2722aca921",
+      "source_block_id": "pdfplumber-p2-l47",
+      "order_index": 47,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "之间的缺口。",
+      "heading_level": null,
+      "markdown": "之间的缺口。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          326.1931266,
+          362.3946,
+          336.1557266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "之间的缺口。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d4afc5f5-a944-4c6f-843c-bfe1c84b5642",
+      "source_block_id": "pdfplumber-p2-l48",
+      "order_index": 48,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "未触发的保护",
+      "heading_level": null,
+      "markdown": "未触发的保护",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          329.56212660000006,
+          110.79960000000008,
+          339.5247266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "未触发的保护"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d6ed2d34-7382-4b28-8246-e6c7f69423ea",
+      "source_block_id": "pdfplumber-p2-l49",
+      "order_index": 49,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "缓存命中率有监控但没有发布门禁；连接池告警阈值设",
+      "heading_level": null,
+      "markdown": "缓存命中率有监控但没有发布门禁；连接池告警阈值设",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          345.5021266,
+          292.6469378000001,
+          355.4647266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "缓存命中率有监控但没有发布门禁；连接池告警阈值设"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ac593010-452f-4835-b852-80c77a7c3336",
+      "source_block_id": "pdfplumber-p2-l50",
+      "order_index": 50,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "置为90%，无法提前发现趋势。为什么没有在发布前发",
+      "heading_level": null,
+      "markdown": "置为90%，无法提前发现趋势。为什么没有在发布前发",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          357.4571266,
+          292.65986020000014,
+          368.107146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "置为90%，无法提前发现趋势。为什么没有在发布前发"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dadd992c-bcab-428e-8ac9-479216293a9f",
+      "source_block_id": "pdfplumber-p2-l51",
+      "order_index": 51,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "缓解措施 5.",
+      "heading_level": null,
+      "markdown": "缓解措施 5.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          393.6916142,
+          125.6878,
+          409.027702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "缓解措施 5."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "edda6737-74a7-4d74-843f-599962619d31",
+      "source_block_id": "pdfplumber-p2-l52",
+      "order_index": 52,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "回滚缓存键变更并清理高基数缓存项； 1.",
+      "heading_level": null,
+      "markdown": "回滚缓存键变更并清理高基数缓存项； 1.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          425.2791266,
+          245.29420000000002,
+          435.929146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "回滚缓存键变更并清理高基数缓存项； 1."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e21e73dc-1b35-40c5-b1c5-ccd610a15f59",
+      "source_block_id": "pdfplumber-p2-l53",
+      "order_index": 53,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "临时将连接池上限从320调整到480，并限制重试次数； 2.",
+      "heading_level": null,
+      "markdown": "临时将连接池上限从320调整到480，并限制重试次数； 2.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          445.2041266,
+          326.69340000000005,
+          455.854146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "临时将连接池上限从320调整到480，并限制重试次数； 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "795d4338-a29c-49de-b2d4-dadc20c1ccdb",
+      "source_block_id": "pdfplumber-p2-l54",
+      "order_index": 54,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "为受影响租户打开降级响应，返回可重试的错误码； 3.",
+      "heading_level": null,
+      "markdown": "为受影响租户打开降级响应，返回可重试的错误码； 3.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          465.1291266,
+          305.06980000000004,
+          475.779146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "为受影响租户打开降级响应，返回可重试的错误码； 3."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "50a0b91c-f462-4ab6-aab8-68dae9da41ef",
+      "source_block_id": "pdfplumber-p2-l55",
+      "order_index": 55,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "在发布频道固定附带命中率、P95和连接池利用率。 4.",
+      "heading_level": null,
+      "markdown": "在发布频道固定附带命中率、P95和连接池利用率。 4.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          485.0551266,
+          305.6398,
+          495.705146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "在发布频道固定附带命中率、P95和连接池利用率。 4."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1118bb9a-689f-4eee-a1f5-84f44932bb86",
+      "source_block_id": "pdfplumber-p2-l56",
+      "order_index": 56,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ec0942ff-3545-4ee9-aad8-53bb24cd28a2",
+      "source_block_id": "pdfplumber-p3-l57",
+      "order_index": 57,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "ReliabilityEngineering INC-2026-0714",
+      "heading_level": null,
+      "markdown": "ReliabilityEngineering INC-2026-0714",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          14.659545999999978,
+          544.2373335999999,
+          24.62214599999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "ReliabilityEngineering INC-2026-0714"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c84f6cf2-2334-464a-bde0-fdcfb0503581",
+      "source_block_id": "pdfplumber-p3-l58",
+      "order_index": 58,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "监控和证据 6.",
+      "heading_level": null,
+      "markdown": "监控和证据 6.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          50.46861420000005,
+          140.034,
+          65.80470200000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "监控和证据 6."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "da0d53ac-dc15-4bbe-b8b9-9d1b1f15205f",
+      "source_block_id": "pdfplumber-p3-l59",
+      "order_index": 59,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "指标 事故前 峰值 恢复目标",
+      "heading_level": null,
+      "markdown": "指标 事故前 峰值 恢复目标",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.001,
+          84.45512660000009,
+          447.36240000000004,
+          94.41772660000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "指标 事故前 峰值 恢复目标"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8fc68b32-de82-453b-b5d6-c26460546ed2",
+      "source_block_id": "pdfplumber-p3-l60",
+      "order_index": 60,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "P95latency 420ms 2,400ms <500ms",
+      "heading_level": null,
+      "markdown": "P95latency 420ms 2,400ms <500ms",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.001,
+          102.10454600000003,
+          448.757164,
+          112.06714599999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "P95latency 420ms 2,400ms <500ms"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "beb9d016-25f8-4081-953a-6aa336ab0fa9",
+      "source_block_id": "pdfplumber-p3-l61",
+      "order_index": 61,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Cachehitratio 91% 38% >85%",
+      "heading_level": null,
+      "markdown": "Cachehitratio 91% 38% >85%",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.000999999999976,
+          114.05954599999995,
+          436.0249612,
+          124.0221459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Cachehitratio 91% 38% >85%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7a53ee16-6a41-44e6-8637-ac8adcf9ca43",
+      "source_block_id": "pdfplumber-p3-l62",
+      "order_index": 62,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Connectionpool 62% 99% <75%",
+      "heading_level": null,
+      "markdown": "Connectionpool 62% 99% <75%",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.000999999999976,
+          126.014546,
+          436.0249612,
+          135.97714599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Connectionpool 62% 99% <75%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9d111ec0-d4e7-43c9-9cc4-1488bd9f00a8",
+      "source_block_id": "pdfplumber-p3-l63",
+      "order_index": 63,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "HTTP502ratio 0.08% 1.20% <0.10%",
+      "heading_level": null,
+      "markdown": "HTTP502ratio 0.08% 1.20% <0.10%",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          57.000999999999976,
+          137.96954600000004,
+          444.3337696,
+          147.932146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "HTTP502ratio 0.08% 1.20% <0.10%"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dd44ea13-6d09-4d9f-85a7-00dc5c3f3e49",
+      "source_block_id": "pdfplumber-p3-l64",
+      "order_index": 64,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "后续行动项 7.",
+      "heading_level": null,
+      "markdown": "后续行动项 7.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          174.5616142,
+          140.034,
+          189.89770199999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "后续行动项 7."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "58e55d7b-54ff-44f2-9d8d-17cf6060588d",
+      "source_block_id": "pdfplumber-p3-l65",
+      "order_index": 65,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "行动 负责人 截止日期 ID",
+      "heading_level": null,
+      "markdown": "行动 负责人 截止日期 ID",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.941,
+          215.63412660000006,
+          494.31840000000005,
+          226.28414599999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "行动 负责人 截止日期 ID"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7dbe0f91-3129-4b73-82a7-3ec2dff2be92",
+      "source_block_id": "pdfplumber-p3-l66",
+      "order_index": 66,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "为缓存键增加基数估算和命中率预估 A1 EdgeTeam 2026-07-28",
+      "heading_level": null,
+      "markdown": "为缓存键增加基数估算和命中率预估 A1 EdgeTeam 2026-07-28",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.941,
+          232.59612660000005,
+          505.41673640000005,
+          243.24614599999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "为缓存键增加基数估算和命中率预估 A1 EdgeTeam 2026-07-28"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1455e9d3-0e81-414a-8963-c849e7e2be6c",
+      "source_block_id": "pdfplumber-p3-l67",
+      "order_index": 67,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "压测加入长尾租户和真实比例 A2 Performance 2026-08-04",
+      "heading_level": null,
+      "markdown": "压测加入长尾租户和真实比例 A2 Performance 2026-08-04",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.94100000000003,
+          244.5511266000001,
+          505.41673640000005,
+          255.201146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "压测加入长尾租户和真实比例 A2 Performance 2026-08-04"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dfd1f9ab-b65b-4f0e-84e7-e8d0db4a9d62",
+      "source_block_id": "pdfplumber-p3-l68",
+      "order_index": 68,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "将cache_hit_ratio纳入发布门禁 A3 ReleaseEng 2026-08-11",
+      "heading_level": null,
+      "markdown": "将cache_hit_ratio纳入发布门禁 A3 ReleaseEng 2026-08-11",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.94100000000003,
+          256.5061266,
+          504.67950400000007,
+          267.1561459999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "将cache_hit_ratio纳入发布门禁 A3 ReleaseEng 2026-08-11"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4a6257d0-c98c-426e-be4f-623890dd442f",
+      "source_block_id": "pdfplumber-p3-l69",
+      "order_index": 69,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "实现连接池趋势告警和自动回滚 A4 Reliability 2026-08-18",
+      "heading_level": null,
+      "markdown": "实现连接池趋势告警和自动回滚 A4 Reliability 2026-08-18",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.94100000000009,
+          268.46112660000006,
+          505.4167364000001,
+          279.11114599999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "实现连接池趋势告警和自动回滚 A4 Reliability 2026-08-18"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5f48310f-5686-4eea-bb52-b6cd237e9c93",
+      "source_block_id": "pdfplumber-p3-l70",
+      "order_index": 70,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "更新配置评审模板与培训材料 A5 PlatformTeam 2026-08-21",
+      "heading_level": null,
+      "markdown": "更新配置评审模板与培训材料 A5 PlatformTeam 2026-08-21",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          69.94100000000009,
+          280.4171266000001,
+          505.4167364000001,
+          291.067146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "更新配置评审模板与培训材料 A5 PlatformTeam 2026-08-21"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ab0b6e84-e2de-4820-bfeb-c4c5ab4bf6c1",
+      "source_block_id": "pdfplumber-p3-l71",
+      "order_index": 71,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "复盘结论 8.",
+      "heading_level": null,
+      "markdown": "复盘结论 8.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          321.23861420000003,
+          125.6878,
+          336.574702
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "复盘结论 8."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5b09e7aa-339b-4bfe-b06d-6337fe0302a5",
+      "source_block_id": "pdfplumber-p3-l72",
+      "order_index": 72,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延",
+      "heading_level": null,
+      "markdown": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          352.8271266,
+          544.2424382,
+          362.7897266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7af78efb-f530-4586-b206-c08e9c883915",
+      "source_block_id": "pdfplumber-p3-l73",
+      "order_index": 73,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
+      "heading_level": null,
+      "markdown": "迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          364.78212659999997,
+          339.9394000000001,
+          374.7447266
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9dee1294-90d3-4825-aee9-88c616bb975d",
+      "source_block_id": "pdfplumber-p3-l74",
+      "order_index": 74,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Syntheticincidentreport. Names,identifiersandmeasurementsarefictional.",
+      "heading_level": null,
+      "markdown": "Syntheticincidentreport. Names,identifiersandmeasurementsarefictional.",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          783.782544,
+          354.8235648000001,
+          792.7489439999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "Syntheticincidentreport. Names,identifiersandmeasurementsarefictional."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3af0173b-2233-4cb8-9ff2-54f66388f2f7",
+      "source_block_id": "pdfplumber-p3-l75",
+      "order_index": 75,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          294.86699999999996,
+          812.883546,
+          300.40620559999996,
+          822.846146
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "3"
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.7,
+    "layout": 0.6,
+    "reading_order": 0.6,
+    "table": 0.5,
+    "overall": 0.6
+  },
+  "provenance": {
+    "parser_id": "pdfplumber-fallback",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "pdfplumber",
+    "version": "0.11",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "本地兜底解析（pdfplumber），表格结构语义不可靠。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "line",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "rowcol_only",
+      "reason": "pdfplumber 启发式网格：无 span/header 语义，全部按 span=1。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本地兜底解析器无 OCR 能力。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:21:54.181772Z"
+}

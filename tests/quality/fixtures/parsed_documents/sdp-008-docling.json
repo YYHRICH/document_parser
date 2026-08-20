@@ -1,0 +1,720 @@
+{
+  "document_id": "be03846c-d875-4609-8101-da629da3692c",
+  "filename": "expense_receipt_photo.jpg",
+  "file_type": "image/jpeg",
+  "source_size_bytes": 176135,
+  "source_sha256": "44d8b776d21669cd2b48fd53965def11eac5f575768bd09db5d8c8293698beb5",
+  "routing_decision": null,
+  "markdown": "## 增值税电子普通发票\n\n发票号码：INV-2026-0817-009开票日期：2026-08-17\n\n| 购买方名称：                                     | 华东智研信息技术有限公司                | 华东智研信息技术有限公司                | 纳税人识别号： 纳税人识别号：             | 91310115MA7X2K8L6Q 91310000MA1F8Q2P3N   |\n|--------------------------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------------------|\n| 销售方名称：                                     | 华东办公服务有限公司                  |                             |                             |                                         |\n| 品名                                         | 数量                          | 单价(元) 380.00                | 税率 13%                      | 金额(元) 760.00                            |\n| 会议室投影灯泡（UHP2 280W)                         | 1                           | 168.00                      | 13%                         | 168.00                                  |\n| HDMI 2.1光纤线15m                             |                             | 240.00                      | 6%                          | 240.00                                  |\n| 上门安装及调试服务 合计（不含税）： 税额： 价税合计（大写）： 价税合计（小写）： | 1                           |                             | ¥1,286.00                   |                                         |\n| ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整                | ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 | ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 | ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 | ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整             |\n\n复核：陈立开票人：王珊 收款人：周婧 备注：项目组会议室设备维护；费用归属：研发平台部/成本中心RND-042\n\n销售方发票专用章",
+  "blocks": [
+    {
+      "id": "97f95ae2-e2cd-4bdf-8cba-ab6d269cb6e7",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "增值税电子普通发票",
+      "heading_level": 1,
+      "markdown": "# 增值税电子普通发票",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          570.6058349609375,
+          305.92499796549487,
+          1035.525146484375,
+          343.09688313802076
+        ],
+        "page_width": 1654.0,
+        "page_height": 2339.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "af80aef9-dbe8-4308-a502-834bf38f27e9",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发票号码：INV-2026-0817-009开票日期：2026-08-17",
+      "heading_level": null,
+      "markdown": "发票号码：INV-2026-0817-009开票日期：2026-08-17",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          495.6375935872396,
+          380.84062703450536,
+          1119.7918294270835,
+          383.70000203450536
+        ],
+        "page_width": 1654.0,
+        "page_height": 2339.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ef4f5898-1814-4e1a-9a64-93fc1e879b16",
+      "source_block_id": "docling-TableItem-2",
+      "order_index": 2,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 购买方名称： | 华东智研信息技术有限公司 |   | 纳税人识别号： 纳税人识别号： | 91310115MA7X2K8L6Q 91310000MA1F8Q2P3N |\n| --- | --- | --- | --- | --- |\n| 销售方名称： | 华东办公服务有限公司 |   |   |   |\n| 品名 | 数量 | 单价(元) 380.00 | 税率 13% | 金额(元) 760.00 |\n| 会议室投影灯泡（UHP2 280W) | 1 | 168.00 | 13% | 168.00 |\n| HDMI 2.1光纤线15m |   | 240.00 | 6% | 240.00 |\n| 上门安装及调试服务 合计（不含税）： 税额： 价税合计（大写）： 价税合计（小写）： | 1 |   | ¥1,286.00 |   |\n| ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 |   |   |   |   |",
+      "heading_level": null,
+      "markdown": "| 购买方名称： | 华东智研信息技术有限公司 |   | 纳税人识别号： 纳税人识别号： | 91310115MA7X2K8L6Q 91310000MA1F8Q2P3N |\n| --- | --- | --- | --- | --- |\n| 销售方名称： | 华东办公服务有限公司 |   |   |   |\n| 品名 | 数量 | 单价(元) 380.00 | 税率 13% | 金额(元) 760.00 |\n| 会议室投影灯泡（UHP2 280W) | 1 | 168.00 | 13% | 168.00 |\n| HDMI 2.1光纤线15m |   | 240.00 | 6% | 240.00 |\n| 上门安装及调试服务 合计（不含税）： 税额： 价税合计（大写）： 价税合计（小写）： | 1 |   | ¥1,286.00 |   |\n| ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 |   |   |   |   |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          282.3397521972656,
+          441.1427307128906,
+          1351.4921875,
+          927.6996459960938
+        ],
+        "page_width": 1654.0,
+        "page_height": 2339.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "2286dffb-efa0-451b-8ae2-b374fc217ff1",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "复核：陈立开票人：王珊 收款人：周婧 备注：项目组会议室设备维护；费用归属：研发平台部/成本中心RND-042",
+      "heading_level": null,
+      "markdown": "复核：陈立开票人：王珊 收款人：周婧 备注：项目组会议室设备维护；费用归属：研发平台部/成本中心RND-042",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          425.31854248046875,
+          1012.7625325520835,
+          1259.8487955729165,
+          1062.515625
+        ],
+        "page_width": 1654.0,
+        "page_height": 2339.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5057a12a-f68e-4a76-b599-b4f882e369a3",
+      "source_block_id": "docling-TextItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "销售方发票专用章",
+      "heading_level": null,
+      "markdown": "销售方发票专用章",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          861.180419921875,
+          1235.7937825520835,
+          1063.4203287760415,
+          1253.5218912760417
+        ],
+        "page_width": 1654.0,
+        "page_height": 2339.0,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "ef4f5898-1814-4e1a-9a64-93fc1e879b16",
+      "html": null,
+      "markdown": "| 购买方名称： | 华东智研信息技术有限公司 |   | 纳税人识别号： 纳税人识别号： | 91310115MA7X2K8L6Q 91310000MA1F8Q2P3N |\n| --- | --- | --- | --- | --- |\n| 销售方名称： | 华东办公服务有限公司 |   |   |   |\n| 品名 | 数量 | 单价(元) 380.00 | 税率 13% | 金额(元) 760.00 |\n| 会议室投影灯泡（UHP2 280W) | 1 | 168.00 | 13% | 168.00 |\n| HDMI 2.1光纤线15m |   | 240.00 | 6% | 240.00 |\n| 上门安装及调试服务 合计（不含税）： 税额： 价税合计（大写）： 价税合计（小写）： | 1 |   | ¥1,286.00 |   |\n| ¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整 |   |   |   |   |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        282.3397521972656,
+        441.1427307128906,
+        1351.4921875,
+        927.6996459960938
+      ],
+      "num_rows": 7,
+      "num_cols": 5,
+      "cells": [
+        {
+          "text": "购买方名称：",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            289.3296356201172,
+            1837.4937337239583,
+            399.16682942708337,
+            1818.0499877929688
+          ]
+        },
+        {
+          "text": "华东智研信息技术有限公司",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            484.59576416015625,
+            1846.6437377929688,
+            720.5423177083333,
+            1835.7781168619792
+          ]
+        },
+        {
+          "text": "华东智研信息技术有限公司",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            484.59576416015625,
+            1846.6437377929688,
+            720.5423177083333,
+            1835.7781168619792
+          ]
+        },
+        {
+          "text": "纳税人识别号： 纳税人识别号：",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            858.8558349609375,
+            1866.0874837239585,
+            989.6144205729166,
+            1827.1999918619792
+          ]
+        },
+        {
+          "text": "91310115MA7X2K8L6Q 91310000MA1F8Q2P3N",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            1053.540771484375,
+            1875.809366861979,
+            1272.0528971354167,
+            1843.2124837239583
+          ]
+        },
+        {
+          "text": "销售方名称：",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            291.0730845133464,
+            1814.046875,
+            400.9102783203125,
+            1796.3187459309895
+          ]
+        },
+        {
+          "text": "华东办公服务有限公司",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            485.758056640625,
+            1823.7687377929688,
+            682.7676188151042,
+            1811.1875
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "品名",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            292.8165334065755,
+            1735.1281331380208,
+            359.64869181315106,
+            1700.2437337239583
+          ]
+        },
+        {
+          "text": "数量",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            621.1658121744792,
+            1751.7124837239583,
+            688.5791422526042,
+            1717.9718831380208
+          ]
+        },
+        {
+          "text": "单价(元) 380.00",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            771.102294921875,
+            1759.1468505859375,
+            889.0756022135416,
+            1682.515625
+          ]
+        },
+        {
+          "text": "税率 13%",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            930.337158203125,
+            1767.1531168619792,
+            1000.0751139322916,
+            1689.3781331380208
+          ]
+        },
+        {
+          "text": "金额(元) 760.00",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            1111.0745442708335,
+            1776.875,
+            1230.2101236979165,
+            1700.8156331380208
+          ]
+        },
+        {
+          "text": "会议室投影灯泡（UHP2 280W)",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            298.6280212402344,
+            1684.8031005859375,
+            650.804443359375,
+            1624.7562255859375
+          ]
+        },
+        {
+          "text": "1",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            630.4641927083333,
+            1632.1905924479167,
+            651.9667154947917,
+            1605.8843587239585
+          ]
+        },
+        {
+          "text": "168.00",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            777.4949544270834,
+            1643.6280924479167,
+            869.3165283203125,
+            1616.1781005859375
+          ]
+        },
+        {
+          "text": "13%",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            939.054443359375,
+            1652.7781168619792,
+            1003.56201171875,
+            1621.8968505859375
+          ]
+        },
+        {
+          "text": "168.00",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            1118.6295572916665,
+            1661.3562418619792,
+            1210.4510904947915,
+            1633.90625
+          ]
+        },
+        {
+          "text": "HDMI 2.1光纤线15m",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            301.5337677001953,
+            1618.4656168619792,
+            577.5796305338542,
+            1600.7374674479165
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "240.00",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            776.913818359375,
+            1610.4593505859375,
+            871.0599772135416,
+            1583.5812174479165
+          ]
+        },
+        {
+          "text": "6%",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            939.054443359375,
+            1619.0374755859375,
+            989.6144205729166,
+            1587.5843505859375
+          ]
+        },
+        {
+          "text": "240.00",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            1118.6295572916665,
+            1627.6156005859375,
+            1211.6133626302085,
+            1601.309366861979
+          ]
+        },
+        {
+          "text": "上门安装及调试服务 合计（不含税）： 税额： 价税合计（大写）： 价税合计（小写）：",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            299.20917256673175,
+            1585.296875,
+            557.820556640625,
+            1421.7406412760415
+          ]
+        },
+        {
+          "text": "1",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            632.2076416015625,
+            1600.7374674479165,
+            653.1290283203125,
+            1572.1437174479165
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥1,286.00",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            849.5574544270834,
+            1469.778116861979,
+            982.0594889322916,
+            1446.3312174479165
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 5,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            844.9082438151041,
+            1569.856241861979,
+            1105.2631022135415,
+            1485.7906087239585
+          ]
+        },
+        {
+          "text": "¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            844.9082438151041,
+            1569.856241861979,
+            1105.2631022135415,
+            1485.7906087239585
+          ]
+        },
+        {
+          "text": "¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            844.9082438151041,
+            1569.856241861979,
+            1105.2631022135415,
+            1485.7906087239585
+          ]
+        },
+        {
+          "text": "¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            844.9082438151041,
+            1569.856241861979,
+            1105.2631022135415,
+            1485.7906087239585
+          ]
+        },
+        {
+          "text": "¥1,168.00 ¥118.00 壹仟贰佰捌拾陆元整",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 5,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            844.9082438151041,
+            1569.856241861979,
+            1105.2631022135415,
+            1485.7906087239585
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:23:45.476399Z"
+}
