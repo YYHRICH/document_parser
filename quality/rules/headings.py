@@ -169,9 +169,12 @@ class QL_HDG_004_BuildTree(QualityRule):
             level = heading.heading_level
             numbered = _numbered_level(_heading_text(heading))
             if rebuild_by_numbering:
-                # 粒度可疑：编号优先；文档第一个标题作为根（level 1）
+                # 粒度可疑：编号优先；无编号但有解析器层级时保留该证据。
                 effective_level = numbered
                 source = "numbering"
+                if effective_level is None and level is not None:
+                    effective_level = level
+                    source = "parser_level_fallback"
                 if effective_level is None and not root_seen:
                     effective_level = 1  # 文档标题作为树根
                     source = "document_root"
@@ -237,7 +240,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                         affected_block_ids=[str(parent.id), str(heading.id)],
                     )
                 )
-            elif source in ("numbering", "document_root"):
+            elif source in ("numbering", "document_root", "parser_level_fallback"):
                 # 编号/文档根恢复的层级：inferred
                 # （spec：只有层级、顺序和来源证据一致才 verified）
                 state = QualityCapabilityState.INFERRED

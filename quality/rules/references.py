@@ -27,6 +27,7 @@ _EXPLANATORY = re.compile(r"引用规则|指向参考文献|分别指|指第")
 _MARKER = re.compile(r"\[(\d+(?:\s*[,，]\s*\d+|\s*[-–]\s*\d+)*)\]")
 _MAX_EXPAND = 50
 _EXPLICIT_LABEL = re.compile(r"^\s*(?:\[(\d+)\]|(\d+)[\.、)）])\s*")
+_REFERENCE_ENTRY_KINDS = (BlockKind.PARAGRAPH, BlockKind.REFERENCE, BlockKind.LIST)
 
 
 def _block_text(block, *, heading: bool = False) -> str:
@@ -61,8 +62,10 @@ class ReferenceEntry:
 
 
 def _entry_label(block, fallback: int) -> str:
-    metadata_label = block.metadata.get("reference_label")
-    if metadata_label is not None:
+    for metadata_key in ("reference_label", "marker"):
+        metadata_label = block.metadata.get(metadata_key)
+        if metadata_label is None:
+            continue
         match = re.search(r"\d+", str(metadata_label))
         if match:
             return match.group(0)
@@ -84,7 +87,7 @@ def build_reference_index(context: EvidenceContext) -> list[ReferenceEntry]:
     for block in blocks[ref_heading + 1 :]:
         if block.kind == BlockKind.HEADING:
             break
-        if block.kind not in (BlockKind.PARAGRAPH, BlockKind.REFERENCE):
+        if block.kind not in _REFERENCE_ENTRY_KINDS:
             continue
         text = _block_text(block)
         if not text or _EXPLANATORY.search(text):
@@ -185,7 +188,7 @@ class QL_REF_004_BindCitations(QualityRule):
             ))
 
         for block in body:
-            if block.kind not in (BlockKind.PARAGRAPH, BlockKind.REFERENCE):
+            if block.kind not in _REFERENCE_ENTRY_KINDS:
                 continue
             text = _block_text(block)
             if _EXPLANATORY.search(text):

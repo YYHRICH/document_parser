@@ -79,6 +79,17 @@ def _position_evidence(table_a, table_b, hint: bool) -> bool:
     return hint or (table_a.bbox is not None and table_b.bbox is not None)
 
 
+def _continuation_candidate(context: EvidenceContext, table_a, table_b, headers_a, headers_b) -> bool:
+    """Only compare adjacent tables when there is evidence they may be one table."""
+    if not headers_a or not headers_b:
+        return False
+    if _continuation_hint(context, table_a, table_b):
+        return True
+    if headers_a == headers_b:
+        return True
+    return len(set(headers_a) & set(headers_b)) >= 2
+
+
 def _column_geometry(table) -> list[tuple[float, float]] | None:
     """返回各列 header bbox 的归一化中心/宽度；缺失时返回 None。"""
     if table.bbox is None or table.bbox[2] <= table.bbox[0]:
@@ -145,14 +156,13 @@ class QL_TBL_007_CrossPageContinuation(QualityRule):
             if cols_a != cols_b:
                 continue
             exact = headers_a == headers_b
-            overlap = len(set(headers_a) & set(headers_b))
             hint = _continuation_hint(context, table_a, table_b)
             position_ok = _position_evidence(table_a, table_b, hint)
             drift = _geometry_drift(table_a, table_b)
             order_conflict = bool(context.duplicate_order_indices)
             block_a = context.block(str(table_a.block_id))
             block_b = context.block(str(table_b.block_id))
-            if not exact and overlap < 2 and not hint:
+            if not _continuation_candidate(context, table_a, table_b, headers_a, headers_b):
                 continue
             state = QualityCapabilityState.VERIFIED
             if (
@@ -218,6 +228,8 @@ class QL_TBL_008_ColumnDrift(QualityRule):
             headers_a = _normalized_headers(table_a)
             headers_b = _normalized_headers(table_b)
             if not headers_a or not headers_b:
+                continue
+            if not _continuation_candidate(context, table_a, table_b, headers_a, headers_b):
                 continue
             pairs_seen += 1
             cols_a = table_a.num_cols or len(headers_a)

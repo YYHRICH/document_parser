@@ -682,7 +682,22 @@ class BaseParserAdapter(ABC):
                 source_table_id=str(item.get("table_id") or item.get("id") or ""),
                 block_id=block.id,
             )
-            cells = self._table_cells_from_payload(raw_cells)
+            source = self._position_source(item)
+            page_number = self._page_number(item)
+            page_height = (
+                (page_sizes.get(page_number) or (None, None))[1]
+                if page_number is not None
+                else None
+            )
+            coordinate_system = self._coordinate_system(
+                source.get("coordinate_system")
+                or self._bbox_coordinate_system(source.get("bbox"))
+            )
+            cells = self._table_cells_from_payload(
+                raw_cells,
+                coordinate_system=coordinate_system,
+                page_height=page_height,
+            )
             data = item.get("data") if isinstance(item.get("data"), dict) else {}
             tables.append(
                 ParsedTable(
@@ -692,8 +707,12 @@ class BaseParserAdapter(ABC):
                     markdown=markdown or None,
                     caption=item.get("caption") if isinstance(item.get("caption"), str) else None,
                     image_path=item.get("image_path") if isinstance(item.get("image_path"), str) else None,
-                    page_number=self._page_number(item),
-                    bbox=self._bbox(self._position_source(item).get("bbox")),
+                    page_number=page_number,
+                    bbox=self._normalized_bbox(
+                        source.get("bbox"),
+                        coordinate_system=coordinate_system,
+                        page_height=page_height,
+                    ),
                     num_rows=item.get("num_rows")
                     if isinstance(item.get("num_rows"), int)
                     else data.get("num_rows")
@@ -718,7 +737,22 @@ class BaseParserAdapter(ABC):
         for item in raw_spans:
             if not isinstance(item, dict):
                 continue
-            bbox = self._bbox(item.get("bbox"))
+            source = self._position_source(item)
+            page_number = self._page_number(item)
+            page_height = (
+                (self._page_sizes(payload).get(page_number) or (None, None))[1]
+                if page_number is not None
+                else None
+            )
+            coordinate_system = self._coordinate_system(
+                source.get("coordinate_system")
+                or self._bbox_coordinate_system(source.get("bbox"))
+            )
+            bbox = self._normalized_bbox(
+                source.get("bbox"),
+                coordinate_system=coordinate_system,
+                page_height=page_height,
+            )
             text = self._item_text(item)
             if bbox is None or not text:
                 continue
@@ -729,7 +763,7 @@ class BaseParserAdapter(ABC):
                     text=text,
                     bbox=bbox,
                     confidence=confidence if isinstance(confidence, (int, float)) else None,
-                    page_number=self._page_number(item),
+                    page_number=page_number,
                     rotation_angle=item.get("rotation_angle")
                     if isinstance(item.get("rotation_angle"), (int, float))
                     else None,
@@ -875,7 +909,8 @@ class BaseParserAdapter(ABC):
             merged = {**source, **item, **anchor}
         else:
             merged = {**source, **item}
-        bbox = self._bbox(merged.get("bbox"))
+        raw_coordinate_system = merged.get("coordinate_system") or self._bbox_coordinate_system(merged.get("bbox"))
+        coordinate_system = self._coordinate_system(raw_coordinate_system)
         page_number = self._page_number(merged)
         page_width = self._number(merged.get("page_width") or merged.get("width"))
         page_height = self._number(merged.get("page_height") or merged.get("height"))
@@ -883,14 +918,21 @@ class BaseParserAdapter(ABC):
             size = (page_sizes or {}).get(page_number)
             if size is not None:
                 page_width, page_height = size
+        bbox = self._normalized_bbox(
+            merged.get("bbox"),
+            coordinate_system=coordinate_system,
+            page_height=page_height,
+        )
         return SourceAnchor(
             page_number=page_number,
             bbox=bbox,
             page_width=page_width,
             page_height=page_height,
-            coordinate_system=merged.get("coordinate_system")
-            if isinstance(merged.get("coordinate_system"), str)
-            else None,
+            coordinate_system=(
+                "top_left_absolute"
+                if coordinate_system == "bottom_left_absolute" and page_height is not None
+                else coordinate_system
+            ),
             bbox_granularity=merged.get("bbox_granularity")
             if isinstance(merged.get("bbox_granularity"), str)
             else ("block" if bbox else None),
@@ -971,6 +1013,47 @@ class BaseParserAdapter(ABC):
             return None
         return (left, top, right, bottom)
 
+    def _coordinate_system(self, value: Any) -> str | None:
+        """Return a stable coordinate-system name for locator normalization."""
+        if not isinstance(value, str):
+            return None
+        normalized = value.strip().lower().replace("-", "_").replace(" ", "_")
+        aliases = {
+            "bottomleft": "bottom_left_absolute",
+            "bottom_left": "bottom_left_absolute",
+            "bottomleft_absolute": "bottom_left_absolute",
+            "bottom_left_absolute": "bottom_left_absolute",
+            "topleft": "top_left_absolute",
+            "top_left": "top_left_absolute",
+            "top_left_absolute": "top_left_absolute",
+        }
+        return aliases.get(normalized, normalized)
+
+    def _bbox_coordinate_system(self, value: Any) -> str | None:
+        """Read a coordinate origin embedded in a native bbox object."""
+        if not isinstance(value, dict):
+            return None
+        return value.get("coordinate_system") or value.get("coord_origin")
+
+    def _normalized_bbox(
+        self,
+        value: Any,
+        *,
+        coordinate_system: str | None = None,
+        page_height: float | None = None,
+    ) -> tuple[float, float, float, float] | None:
+        """Normalize native bbox values to the contract's top-left coordinates."""
+        bbox = self._bbox(value)
+        if bbox is None:
+            return None
+        coordinate_system = self._coordinate_system(
+            coordinate_system or self._bbox_coordinate_system(value)
+        )
+        if coordinate_system != "bottom_left_absolute" or page_height is None:
+            return bbox
+        left, upper_y, right, lower_y = bbox
+        return (left, page_height - upper_y, right, page_height - lower_y)
+
     def _number(self, value: Any) -> float | None:
         if isinstance(value, (int, float)) and value > 0:
             return float(value)
@@ -986,7 +1069,13 @@ class BaseParserAdapter(ABC):
         ]
         return " | ".join(value for value in values if value)
 
-    def _table_cells_from_payload(self, raw_cells: Any) -> list[TableCell]:
+    def _table_cells_from_payload(
+        self,
+        raw_cells: Any,
+        *,
+        coordinate_system: str | None = None,
+        page_height: float | None = None,
+    ) -> list[TableCell]:
         cells: list[TableCell] = []
         if not isinstance(raw_cells, list):
             return cells
@@ -1011,6 +1100,12 @@ class BaseParserAdapter(ABC):
                 row_span = max(1, end_row - row)
             if not isinstance(col_span, int) and isinstance(end_col, int):
                 col_span = max(1, end_col - col)
+            raw_bbox = raw.get("bbox")
+            cell_coordinate_system = self._coordinate_system(
+                raw.get("coordinate_system")
+                or self._bbox_coordinate_system(raw_bbox)
+                or coordinate_system
+            )
             cells.append(
                 TableCell(
                     text=str(raw.get("text") or raw.get("value") or ""),
@@ -1020,7 +1115,11 @@ class BaseParserAdapter(ABC):
                     col_span=col_span if isinstance(col_span, int) else 1,
                     column_header=bool(raw.get("column_header", False)),
                     row_header=bool(raw.get("row_header", False)),
-                    bbox=self._bbox(raw.get("bbox")),
+                    bbox=self._normalized_bbox(
+                        raw_bbox,
+                        coordinate_system=cell_coordinate_system,
+                        page_height=page_height,
+                    ),
                 )
             )
         return cells

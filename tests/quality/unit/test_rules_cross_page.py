@@ -147,6 +147,13 @@ def test_column_drift_rule_detects_header_order_change():
     assert any(i.category == "column_drift" for i in result.issues)
 
 
+def test_column_drift_ignores_unrelated_adjacent_tables():
+    t1 = _table("t-a", 1, ["项目", "华东精工", "北辰机电", "远景自动化"], 3)
+    t2 = _table("t-b", 2, ["供应商", "技术符合", "价格", "交付", "服务", "总分"], 3)
+    result = QL_TBL_008_ColumnDrift().execute(EvidenceContext(_doc_with_tables(t1, t2)))
+    assert not any(i.category == "column_drift" for i in result.issues)
+
+
 def test_rule_id_is_stable():
     assert QL_TBL_007_CrossPageContinuation.rule_id == "QL-TBL-007"
     assert QL_TBL_008_ColumnDrift.rule_id == "QL-TBL-008"

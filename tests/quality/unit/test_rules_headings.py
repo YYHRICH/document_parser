@@ -141,6 +141,17 @@ def test_first_heading_without_h1_requires_manual_review():
     assert result.relation_candidates[0].state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
 
 
+def test_uniform_levels_keep_parser_level_for_unnumbered_heading():
+    doc = _doc(
+        _h("文档标题", 1, 0),
+        _h("1 章节", 1, 1),
+        _h("无编号章节", 1, 2),
+    )
+    result = QL_HDG_004_BuildTree().execute(EvidenceContext(doc))
+    assert not any(i.category == "heading_level_missing" for i in result.issues)
+    assert result.relation_candidates == ()
+
+
 def test_undeterminable_heading_no_relation():
     """非根标题无法确定层级 → 不创建关系 + missing issue。"""
     doc = _doc(_h("1 引言", 1, 0), _h("无层级无编号", None, 1))

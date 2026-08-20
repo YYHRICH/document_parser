@@ -9,7 +9,7 @@ import time
 from importlib.util import find_spec
 from pathlib import Path
 
-from ...core.contracts import DocumentSignals, ParseRequest, ParserNativeResult
+from ...core.contracts import DocumentSignals, ParseRequest, ParserCapability, ParserNativeResult
 from ...normalizers import ParserNormalizationBundle, make_stable_document_id
 from ..base import BaseParserAdapter
 
@@ -24,6 +24,24 @@ class DoclingParser(BaseParserAdapter):
     MODEL_VERSIONS = ["docling"]
     DEFAULT_MODEL_VERSION = "docling"
     UNAVAILABLE_REASON = "Docling 适配器骨架已创建，尚未接入实际实现。"
+
+    @property
+    def capability(self) -> ParserCapability:
+        """根据当前虚拟环境动态报告 Docling 是否已安装。"""
+
+        available = find_spec("docling") is not None
+        return ParserCapability(
+            parser_id=self.PARSER_ID,
+            provider=self.PROVIDER,
+            display_name=self.DISPLAY_NAME,
+            formats=self.NATIVE_FORMATS,
+            model_versions=self.MODEL_VERSIONS,
+            default_model_version=self.DEFAULT_MODEL_VERSION,
+            requires_network=self.REQUIRES_NETWORK,
+            requires_gpu=self.REQUIRES_GPU,
+            available=available,
+            unavailable_reason=None if available else self.UNAVAILABLE_REASON,
+        )
 
     def build_native_result(
         self,

@@ -56,6 +56,19 @@ def _p(text: str, order: int, source_id: str | None = None) -> DocumentBlock:
     )
 
 
+def _list(text: str, order: int, marker: str) -> DocumentBlock:
+    return DocumentBlock(
+        id=uuid4(),
+        source_block_id=f"list-{order}",
+        order_index=order,
+        kind=BlockKind.LIST,
+        text=text,
+        markdown=text,
+        anchor=SourceAnchor(),
+        metadata={"marker": marker},
+    )
+
+
 def _doc(*blocks: DocumentBlock) -> ParsedDocument:
     base = _load("sdp-006-mineru")
     return base.model_copy(update={"blocks": list(blocks)})
@@ -99,6 +112,28 @@ def test_reference_index_from_headings():
     index = build_reference_index(EvidenceContext(doc))
     assert [e.key for e in index] == ["1", "2"]
     assert index[0].text.startswith("Li, M.")
+
+
+def test_reference_index_accepts_docling_list_items_and_marker():
+    doc = _doc(
+        _h("References", 0),
+        _list("First paper", 1, "1."),
+        _list("Second paper", 2, "2."),
+    )
+    index = build_reference_index(EvidenceContext(doc))
+    assert [entry.key for entry in index] == ["1", "2"]
+
+
+def test_list_reference_binds_citation_by_marker():
+    doc = _doc(
+        _p("见文献 [2]。", 0),
+        _h("References", 1),
+        _list("Second paper", 2, "2."),
+    )
+    result = QL_REF_004_BindCitations().execute(EvidenceContext(doc))
+    assert not result.issues
+    assert len(result.relation_candidates) == 1
+    assert result.relation_candidates[0].evidence["target_key"] == "2"
 
 
 def test_reference_index_skips_explanatory_line():

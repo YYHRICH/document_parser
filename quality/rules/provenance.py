@@ -35,15 +35,32 @@ def _valid_sha256(value: object) -> bool:
     )
 
 
-def _valid_bbox(bbox) -> bool:
-    """bbox 必须为 4 元组且 (r>l, bottom>top)。"""
+def _coordinate_system(value: object) -> str | None:
+    if not isinstance(value, str):
+        return None
+    normalized = value.strip().lower().replace("-", "_").replace(" ", "_")
+    if normalized in {"bottomleft", "bottom_left", "bottomleft_absolute", "bottom_left_absolute"}:
+        return "bottom_left_absolute"
+    return normalized
+
+
+def _valid_bbox(bbox, coordinate_system: str | None = None) -> bool:
+    """bbox 必须为 4 元组，并按其坐标系检查垂直方向。"""
     if not isinstance(bbox, (tuple, list)) or len(bbox) != 4:
         return False
-    l, top, r, bottom = bbox
+    l, top_or_upper, r, bottom_or_lower = bbox
     try:
-        return bool(r > l and bottom > top)
+        if _coordinate_system(coordinate_system) == "bottom_left_absolute":
+            return bool(r > l and top_or_upper > bottom_or_lower)
+        return bool(r > l and bottom_or_lower > top_or_upper)
     except TypeError:
         return False
+
+
+def _bbox_requirement(coordinate_system: str | None) -> str:
+    if _coordinate_system(coordinate_system) == "bottom_left_absolute":
+        return "r>l 且 upper_y>lower_y"
+    return "r>l 且 bottom>top"
 
 
 class QL_PROV_001_SourceTraceable(QualityRule):
@@ -121,12 +138,12 @@ class QL_PROV_002_AnchorValid(QualityRule):
         issues: list[IssueDraft] = []
         for block in context.parsed.blocks:
             anchor = block.anchor
-            if anchor.bbox is not None and not _valid_bbox(anchor.bbox):
+            if anchor.bbox is not None and not _valid_bbox(anchor.bbox, anchor.coordinate_system):
                 issues.append(
                     IssueDraft(
                         severity=IssueSeverity.WARNING,
                         category="provenance",
-                        message=f"block bbox 非法: {anchor.bbox!r}（要求 r>l 且 bottom>top）。",
+                        message=f"block bbox 非法: {anchor.bbox!r}（要求 {_bbox_requirement(anchor.coordinate_system)}）。",
                         affected_block_ids=[str(block.id)],
                     )
                 )

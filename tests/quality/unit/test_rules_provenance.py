@@ -90,6 +90,17 @@ def test_prov002_invalid_bbox_warning():
     assert any(i.severity == IssueSeverity.WARNING for i in result.issues)
 
 
+def test_prov002_bottomleft_bbox_uses_native_axis_order():
+    block = _block(
+        anchor=SourceAnchor(
+            bbox=(10.0, 700.0, 100.0, 680.0),
+            coordinate_system="bottom_left_absolute",
+        )
+    )
+    result = QL_PROV_002_AnchorValid().execute(EvidenceContext(_make_doc(block)))
+    assert result.issues == ()
+
+
 def test_prov002_granularity_without_bbox_warning():
     inconsistent = _block(anchor=SourceAnchor(bbox_granularity="block"))
     doc = _make_doc(inconsistent)

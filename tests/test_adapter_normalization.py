@@ -209,6 +209,57 @@ def test_adapter_consumes_real_native_sidecars_without_fabricating_missing_field
     assert "native/debug.log" in bundle.native_files
 
 
+def test_adapter_normalizes_bottomleft_coordinates_for_blocks_tables_and_cells() -> None:
+    adapter = MinerUParser()
+    request = ParseRequest(
+        filename="bottomleft.pdf",
+        file_type="application/pdf",
+        content=b"%PDF-1.7\nfixture",
+        parser_id="mineru",
+        options={
+            "native_markdown": "Native content",
+            "native_payload": {
+                "pages": {"1": {"page_no": 1, "size": {"width": 595, "height": 842}}},
+                "blocks": [
+                    {
+                        "id": "bottomleft-block",
+                        "type": "text",
+                        "text": "Body",
+                        "page_number": 1,
+                        "bbox": {"l": 10, "t": 700, "r": 100, "b": 680, "coord_origin": "BOTTOMLEFT"},
+                    }
+                ],
+                "tables": [
+                    {
+                        "id": "bottomleft-table",
+                        "type": "table",
+                        "page_number": 1,
+                        "bbox": {"l": 20, "t": 600, "r": 300, "b": 500, "coord_origin": "BOTTOMLEFT"},
+                        "num_rows": 1,
+                        "num_cols": 1,
+                        "cells": [
+                            {
+                                "text": "A",
+                                "row": 0,
+                                "col": 0,
+                                "bbox": {"l": 25, "t": 590, "r": 80, "b": 550, "coord_origin": "BOTTOMLEFT"},
+                            }
+                        ],
+                    }
+                ],
+            },
+        },
+    )
+    signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=True)
+
+    parsed = adapter.normalize(request, signals).to_parsed_document()
+
+    assert parsed.blocks[0].anchor.bbox == (10.0, 142.0, 100.0, 162.0)
+    assert parsed.blocks[0].anchor.coordinate_system == "top_left_absolute"
+    assert parsed.tables[0].bbox == (20.0, 242.0, 300.0, 342.0)
+    assert parsed.tables[0].cells[0].bbox == (25.0, 252.0, 80.0, 292.0)
+
+
 def test_mineru_adapter_consumes_native_output_directory(tmp_path: Path) -> None:
     output_dir = tmp_path / "mineru-output"
     image_dir = output_dir / "images"

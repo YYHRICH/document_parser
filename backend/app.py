@@ -4,13 +4,17 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import os
 import sys
+import tempfile
+import zipfile
 from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.background import BackgroundTask
 
 from ..core.gateway import DocumentParserGateway
 from ..core.contracts import ParseRequest
@@ -155,6 +159,39 @@ def create_app(
             quality_package=storage.load_quality_package(parse_id),
         )
 
+    @app.get("/api/parses/{parse_id}/artifacts")
+    def list_artifacts(parse_id: str) -> dict[str, object]:
+        try:
+            files = storage.list_package_files(parse_id)
+        except FileNotFoundError as error:
+            raise HTTPException(status_code=404, detail="Parse job not found.") from error
+        return {"parse_id": parse_id, "files": files}
+
+    @app.get("/api/parses/{parse_id}/download")
+    def download_package(parse_id: str) -> FileResponse:
+        package_root = storage.package_root(parse_id)
+        if not package_root.is_dir():
+            raise HTTPException(status_code=404, detail="Parse job not found.")
+        archive_fd, archive_name = tempfile.mkstemp(
+            prefix=f"document-package-{parse_id}-", suffix=".zip"
+        )
+        os.close(archive_fd)
+        archive_path = Path(archive_name)
+        try:
+            with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                for file_path in package_root.rglob("*"):
+                    if file_path.is_file():
+                        archive.write(file_path, file_path.relative_to(package_root).as_posix())
+        except Exception:
+            archive_path.unlink(missing_ok=True)
+            raise
+        return FileResponse(
+            archive_path,
+            media_type="application/zip",
+            filename=f"document-package-{parse_id}.zip",
+            background=BackgroundTask(_remove_temp_file, archive_path),
+        )
+
     @app.get("/api/parses/{parse_id}/artifacts/{artifact_path:path}")
     def get_artifact(parse_id: str, artifact_path: str) -> FileResponse:
         try:
@@ -206,6 +243,9 @@ def create_app(
 
     return app
 
+
+def _remove_temp_file(path: Path) -> None:
+    path.unlink(missing_ok=True)
 
 def _parse_options(options_json: str | None) -> dict[str, object]:
     if not options_json:

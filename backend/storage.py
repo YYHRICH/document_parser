@@ -43,6 +43,23 @@ class ApiStorage:
         source_path.write_bytes(source_content)
         return package_root
 
+    def list_package_files(self, parse_id: str) -> list[dict[str, object]]:
+        package_root = self.package_root(parse_id)
+        if not package_root.is_dir():
+            raise FileNotFoundError(parse_id)
+        files: list[dict[str, object]] = []
+        for path in sorted(item for item in package_root.rglob("*") if item.is_file()):
+            relative_path = path.relative_to(package_root).as_posix()
+            files.append(
+                {
+                    "path": relative_path,
+                    "size_bytes": path.stat().st_size,
+                    "file_type": self.content_type_for(path),
+                    "category": _package_file_category(relative_path),
+                }
+            )
+        return files
+
     def quality_package_path(self, parse_id: str) -> Path:
         return self.package_root(parse_id) / "quality_package.json"
 
@@ -76,6 +93,19 @@ class ApiStorage:
     def content_type_for(self, path: Path) -> str:
         return mimetypes.guess_type(path.name)[0] or "application/octet-stream"
 
+
+def _package_file_category(relative_path: str) -> str:
+    if relative_path.startswith("native/"):
+        return "parser_output"
+    if relative_path.startswith("source/"):
+        return "source"
+    if relative_path.startswith("assets/"):
+        return "asset"
+    if relative_path == "parsed_document.json":
+        return "parsed_document"
+    if relative_path == "quality_package.json":
+        return "quality_package"
+    return "other"
 
 def _validate_relative_path(value: str) -> str:
     normalized = value.replace("\\", "/").strip()

@@ -1,4 +1,6 @@
+import io
 import json
+import zipfile
 import sys
 from pathlib import Path
 
@@ -73,6 +75,17 @@ def test_parse_api_creates_package_and_serves_artifact(tmp_path: Path) -> None:
     artifact_response = client.get(f"/api/parses/{parse_id}/artifacts/native/mineru_result.json")
     assert artifact_response.status_code == 200
     assert artifact_response.json()["blocks"][0]["source_block_id"] == "title-1"
+
+    artifact_list = client.get(f"/api/parses/{parse_id}/artifacts")
+    assert artifact_list.status_code == 200
+    listed_paths = {item["path"] for item in artifact_list.json()["files"]}
+    assert {"parsed_document.json", "quality_package.json", "native/mineru_result.json"} <= listed_paths
+
+    download = client.get(f"/api/parses/{parse_id}/download")
+    assert download.status_code == 200
+    assert download.headers["content-type"].startswith("application/zip")
+    with zipfile.ZipFile(io.BytesIO(download.content)) as archive:
+        assert {"parsed_document.json", "quality_package.json", "native/mineru_result.json"} <= set(archive.namelist())
 
 
 def test_parse_api_reparse_uses_stored_source(tmp_path: Path) -> None:
