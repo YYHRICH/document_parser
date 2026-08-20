@@ -344,9 +344,9 @@ tests/fixtures/images/
 
 **职责边界**：张不负责定义质量结论，也不负责将所有模型原生结果归一成最终 `ParsedDocument`。
 
-### 4.2 朱：统一接入、前后端分离与解耦负责人
+### 4.2 朱（parse-integration）：统一接入、前后端分离与解耦负责人
 
-朱负责回答“不同模型怎样被一致调用和交付”，主要交付：
+朱（parse-integration）负责回答“不同模型怎样被一致调用和交付”，主要交付：
 
 - `ParseRequest`、`ParserCapability`、`ParserNativeResult`、`ParsedDocument` 等公共协议；
 - 解析器 Adapter 接口和模型调用实现；
@@ -371,7 +371,7 @@ tests/contracts/
 tests/api/
 ```
 
-**职责边界**：朱不独立决定模型优劣，也不替叶猜测所需证据。公共输出必须同时根据张的模型原生能力和叶的输入需求设计。
+**职责边界**：朱（parse-integration）不独立决定模型优劣，也不替叶猜测所需证据。公共输出必须同时根据张的模型原生能力和叶的输入需求设计。
 
 ### 4.3 叶：质量需求、优化与准入负责人
 

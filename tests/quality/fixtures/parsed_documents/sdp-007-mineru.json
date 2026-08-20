@@ -1,0 +1,1856 @@
+{
+  "document_id": "6bdfd355-d6b2-453f-8092-d11752e227f2",
+  "filename": "technical_report_references_ambiguous.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 126101,
+  "source_sha256": "bbbaa41d1250f8cd07ea5babac9b8a4bf5d1d95b82b064e26ec7ae2e84a9bf27",
+  "routing_decision": null,
+  "markdown": "# 文档解析服务的版面恢复评估报告评估对象：parser-gateway 2.4.0 　日期：2026 年 7 月 28 日\n\n## 摘要\n\n本报告总结 parser-gateway 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自1,200 份脱敏业务文档，覆盖 6 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语义线索 [2]；本次结果也支持这一判断。\n\n## 背景\n\n知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 480 份、设备台账 360 份、技术说明书 360 份；扫描件占比分别为 18%、42%、9%。\n\n<table><tr><td>文档族</td><td>样本数平均页数扫描占比</td><td></td></tr><tr><td>采购合同</td><td>480</td><td>7.2</td></tr><tr><td>设备台账</td><td>360</td><td>3.8 42%</td></tr><tr><td>技术说明书</td><td>360</td><td>11.6 9%</td></tr></table>\n\nTable 1: 评估样本构成\n\n## Observations\n\n## 区域检测\n\n区域检测器宏平均 F1 为 0.93。页眉中出现项目编号时，约 4.1% 的样本被误判为正文首句；Zhanget al., 2024 的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是期刊扩展版。\n\n## 阅读顺序\n\n双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 2024 提出的图模型可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。\n\n## 表格与脚注\n\n表格字段 F1 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份高度相似，当前界面未提供消歧提示。\n\n## 重要结论\n\n1. 版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。\n\n2. 续页应显式继承表头并保留“续表”标记。\n\n3. 引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。\n\n## 错误样例与复核记录\n\n<table><tr><td>编号</td><td>原文片段 系统输出</td><td>复核意见</td></tr><tr><td>R-01</td><td>“表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失</td><td></td></tr><tr><td>R-02</td><td>“见 Zhang et al., 2024”绑定 Zhang 2024a</td><td>正文没有 a/b 后缀， 存在两条候选</td></tr><tr><td>R-03</td><td>页脚“资料来源：项目组整识别为参考文献 理”</td><td>属于来源说明</td></tr><tr><td>R-04</td><td>右栏脚注编号7 绑定左栏正文</td><td>先恢复栏内阅读顺 序</td></tr><tr><td>R-05</td><td>图注跨页 图注截断</td><td>保留图注并建立图- 注关系</td></tr></table>\n\n## Implementation notes\n\n线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线聚类；引用则增加候选集合字段并把 unresolved 状态传给质量层。王、陈的版面恢复研究也建议在低置信度时保留多候选 [1]，但未覆盖跨语言文献。\n\n## 待办事项\n\n<table><tr><td>优先级</td><td>工作项</td><td>负责人</td><td>截止日期</td></tr><tr><td>PO</td><td>保存引用原文和候选集合</td><td>解析服务</td><td>2026-08-21</td></tr><tr><td>P1</td><td>增加续表表头继承规则</td><td>版面算法</td><td>2026-08-28</td></tr><tr><td>P1</td><td>双栏脚注加入栏级排序特征</td><td>OCR 平台</td><td>2026-09-04</td></tr><tr><td>P2</td><td>标注界面增加作者年消歧提示</td><td>数据工具</td><td>2026-09-11</td></tr></table>\n\n## 附录：评估口径\n\n页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 F1 以单元格边界和文本归属同时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manualreview。\n\n1. 标题是否由编号、字体、前后空白和语义共同支持？\n\n2. 表格是否跨页，下一页是否有“续表”或重复列名？\n\n3. 引用字符串是否含页码、版本或 a/b 后缀？\n\n4. 多候选均合理时是否保留 unresolved？\n\n## References\n\n1. 王 伟, 陈 晨. 面 向 复 杂 版 面 的 文 档 结 构 恢 复 [J]. 中 文 信 息 学 报, 2023, 37(6):45–58.DOI:10.1000/cip.2023.3706.\n\n2. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents[J]. Information Processing Letters, 2024, 189:106–118. DOI:10.1000/ipl.2024.189106.\n\n3. Zhang, Y., Liu, H. Layout-aware reading order recovery for enterprise documents: extended evaluation[R]. arXiv:2407.01921, 2024.（与文献 [2] 作者年相同，正文未区分 a/b）\n\n4. 赵 敏, 周 海. 表 格 字 段 绑 定 的 来 源 约 束 与 安 全 降 级 [J]. 软 件 学 报, 2025, 36(8):1771–1787.DOI:10.1000/js.2025.3608.\n\n5. 赵 敏, 周 海. 脚 注 锚 点 驱 动 的 跨 页 表 格 解 析 [J]. 软 件 学 报, 2024, 35(12):2890–2904.DOI:10.1000/js.2024.3512.\n\n6. Li, Q. Graph-based document layout parsing with side-note constraints[C]//Proceedings of DocEng. 2024:88–97. DOI:10.1000/doceng.2024.88.",
+  "blocks": [
+    {
+      "id": "3a8cacd0-15a7-4e0d-bf5d-f90ea0172ec2",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "文档解析服务的版面恢复评估报告评估对象：parser-gateway 2.4.0 　日期：2026 年 7 月 28 日",
+      "heading_level": 1,
+      "markdown": "文档解析服务的版面恢复评估报告评估对象：parser-gateway 2.4.0 　日期：2026 年 7 月 28 日",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          268.0,
+          72.0,
+          727.0,
+          117.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4975d8a0-240b-4cd5-8be2-48f2d03afc94",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "摘要",
+      "heading_level": 2,
+      "markdown": "摘要",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          179.0,
+          154.0,
+          200.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9dec5730-a6ca-4448-bfc6-d899feba71c5",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本报告总结 parser-gateway 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自1,200 份脱敏业务文档，覆盖 6 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语义线索 [2]；本次结果也支持这一判断。",
+      "heading_level": null,
+      "markdown": "本报告总结 parser-gateway 在采购合同、巡检记录和知识库导出件上的版面恢复实验。数据来自1,200 份脱敏业务文档，覆盖 6 种办公软件导出格式。系统在单栏正文和规则表格上稳定，但跨页表格、脚注与图片说明混排时仍会结构漂移。已有研究指出，阅读顺序恢复必须结合版面区域与语义线索 [2]；本次结果也支持这一判断。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          218.0,
+          897.0,
+          286.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9d98ef1e-d39e-48ee-b48a-9189f569a58c",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "背景",
+      "heading_level": 2,
+      "markdown": "背景",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          313.0,
+          154.0,
+          335.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b843142d-8687-4d6e-ac95-e1306d0a6a37",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 480 份、设备台账 360 份、技术说明书 360 份；扫描件占比分别为 18%、42%、9%。",
+      "heading_level": null,
+      "markdown": "知识库团队计划将历史文档迁移到统一检索索引。仅提取纯文本会丢失标题层级、表头绑定和引用关系，导致问答系统把“适用范围”误认为“结论”。样本含合同 480 份、设备台账 360 份、技术说明书 360 份；扫描件占比分别为 18%、42%、9%。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          353.0,
+          899.0,
+          404.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fd42567c-7f67-4a61-aa91-64fc8ba04275",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 文档族 | 样本数平均页数扫描占比 |   |\n| --- | --- | --- |\n| 采购合同 | 480 | 7.2 |\n| 设备台账 | 360 | 3.8 42% |\n| 技术说明书 | 360 | 11.6 9% |",
+      "heading_level": null,
+      "markdown": "| 文档族 | 样本数平均页数扫描占比 |   |\n| --- | --- | --- |\n| 采购合同 | 480 | 7.2 |\n| 设备台账 | 360 | 3.8 42% |\n| 技术说明书 | 360 | 11.6 9% |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          280.0,
+          413.0,
+          717.0,
+          488.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [
+          "Table 1: 评估样本构成"
+        ],
+        "footnote": [],
+        "img_path": "images/c2bcf61a340275060040db0b81a8df33eaa9e005122ecb41bd31b2b96d6ce111.jpg"
+      }
+    },
+    {
+      "id": "35591948-16fb-4936-be8e-7cfa17add4ef",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "Observations",
+      "heading_level": 2,
+      "markdown": "Observations",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          560.0,
+          260.0,
+          580.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4b7d67ba-e0f0-414d-b3b9-c652cc6930ee",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "heading",
+      "native_type": null,
+      "text": "区域检测",
+      "heading_level": 2,
+      "markdown": "区域检测",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          598.0,
+          188.0,
+          617.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "888b11ac-e434-4a5b-9e6c-3cbfbb66806a",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "区域检测器宏平均 F1 为 0.93。页眉中出现项目编号时，约 4.1% 的样本被误判为正文首句；Zhanget al., 2024 的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是期刊扩展版。",
+      "heading_level": null,
+      "markdown": "区域检测器宏平均 F1 为 0.93。页眉中出现项目编号时，约 4.1% 的样本被误判为正文首句；Zhanget al., 2024 的企业文档实验也记录了这一现象，但正文没有版本后缀，无法判断其指向预印本还是期刊扩展版。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          631.0,
+          899.0,
+          681.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e35e3f08-3109-4685-8cef-9b7ce8e74d69",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "阅读顺序",
+      "heading_level": 2,
+      "markdown": "阅读顺序",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          705.0,
+          186.0,
+          724.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0537ef77-24ad-4e2d-b891-75bf3b80fe7d",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 2024 提出的图模型可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。",
+      "heading_level": null,
+      "markdown": "双栏技术说明书的阅读顺序准确率为 0.88。带侧栏提示的页面最容易跳读。Li, 2024 提出的图模型可能缓解此问题，但本实验未复现其全部特征工程，只能作为方向性参考。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          736.0,
+          897.0,
+          771.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "585596b4-4fa4-4f7a-8a9a-1629fdc3fbf9",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "表格与脚注",
+      "heading_level": 2,
+      "markdown": "表格与脚注",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          795.0,
+          206.0,
+          814.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a9439e67-4586-4c35-bea2-727c70185354",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "表格字段 F1 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份高度相似，当前界面未提供消歧提示。",
+      "heading_level": null,
+      "markdown": "表格字段 F1 为 0.86。跨页续表的第二页常缺少列名，系统会把“单位：件”绑定到上一行。赵敏等人的研究将其归因于表头传播策略 [4]，另一篇同年论文则归因于脚注锚点损失 [5]；作者、年份高度相似，当前界面未提供消歧提示。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          99.0,
+          827.0,
+          899.0,
+          878.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c571ca2f-cae0-48d9-9afc-3446d8c2f499",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组",
+      "heading_level": null,
+      "markdown": "研发效能组",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          100.0,
+          28.0,
+          198.0,
+          45.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "26bde846-d0cc-4e32-8aad-ba76295a7564",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估报告草案",
+      "heading_level": null,
+      "markdown": "评估报告草案",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          783.0,
+          28.0,
+          897.0,
+          45.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1d2dedb1-8782-4709-a869-ab28a09bad9e",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          492.0,
+          952.0,
+          504.0,
+          966.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d17d371d-c024-44fe-b720-0dc17cb48313",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "heading",
+      "native_type": null,
+      "text": "重要结论",
+      "heading_level": 2,
+      "markdown": "重要结论",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          73.0,
+          203.0,
+          93.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "74168949-20d1-409f-8248-91146b60dab9",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。",
+      "heading_level": null,
+      "markdown": "1. 版面区域与语义分类需要联合建模；只依赖字体大小会把加粗条款误标为标题。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          121.0,
+          112.0,
+          783.0,
+          129.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "89a6249b-87fb-4567-9a97-2ec85ad4e366",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 续页应显式继承表头并保留“续表”标记。",
+      "heading_level": null,
+      "markdown": "2. 续页应显式继承表头并保留“续表”标记。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          119.0,
+          140.0,
+          492.0,
+          156.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f88b55d4-bd3e-476e-b3f0-a89bf352a08f",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。",
+      "heading_level": null,
+      "markdown": "3. 引用解析必须保存原始字符串、候选集合和页码证据，目标不唯一时不能强行绑定。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          119.0,
+          166.0,
+          820.0,
+          183.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "64cd7303-38b3-443f-85ac-9733a8a0cad4",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组",
+      "heading_level": null,
+      "markdown": "研发效能组",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          100.0,
+          28.0,
+          198.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b6ed9400-348c-4fe9-af88-221f7510edb4",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估报告草案",
+      "heading_level": null,
+      "markdown": "评估报告草案",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          783.0,
+          28.0,
+          897.0,
+          45.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "579e1075-7d48-45d1-b461-a291033c9261",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          492.0,
+          952.0,
+          507.0,
+          965.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "96aea7b5-2915-44e4-81a2-e8852d94408b",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "heading",
+      "native_type": null,
+      "text": "错误样例与复核记录",
+      "heading_level": 2,
+      "markdown": "错误样例与复核记录",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          73.0,
+          324.0,
+          93.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7aea2c42-b325-46ab-a9c1-58069be26d7c",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 编号 | 原文片段 系统输出 | 复核意见 |\n| --- | --- | --- |\n| R-01 | “表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失 |   |\n| R-02 | “见 Zhang et al., 2024”绑定 Zhang 2024a | 正文没有 a/b 后缀， 存在两条候选 |\n| R-03 | 页脚“资料来源：项目组整识别为参考文献 理” | 属于来源说明 |\n| R-04 | 右栏脚注编号7 绑定左栏正文 | 先恢复栏内阅读顺 序 |\n| R-05 | 图注跨页 图注截断 | 保留图注并建立图- 注关系 |",
+      "heading_level": null,
+      "markdown": "| 编号 | 原文片段 系统输出 | 复核意见 |\n| --- | --- | --- |\n| R-01 | “表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失 |   |\n| R-02 | “见 Zhang et al., 2024”绑定 Zhang 2024a | 正文没有 a/b 后缀， 存在两条候选 |\n| R-03 | 页脚“资料来源：项目组整识别为参考文献 理” | 属于来源说明 |\n| R-04 | 右栏脚注编号7 绑定左栏正文 | 先恢复栏内阅读顺 序 |\n| R-05 | 图注跨页 图注截断 | 保留图注并建立图- 注关系 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          141.0,
+          118.0,
+          853.0,
+          316.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/95ebf678a44932c3171eb595aa1c4ace9e871f797a3a1f0f864c050b6616bcdc.jpg"
+      }
+    },
+    {
+      "id": "71d1952f-fe56-4601-a760-e05d0fadb81d",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "heading",
+      "native_type": null,
+      "text": "Implementation notes",
+      "heading_level": 2,
+      "markdown": "Implementation notes",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          349.0,
+          356.0,
+          369.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f7b28ecf-4203-443f-b91c-dbafe8a7c682",
+      "source_block_id": "mineru-content-0027",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线聚类；引用则增加候选集合字段并把 unresolved 状态传给质量层。王、陈的版面恢复研究也建议在低置信度时保留多候选 [1]，但未覆盖跨语言文献。",
+      "heading_level": null,
+      "markdown": "线上配置将标题候选阈值设为 0.72、表格候选阈值设为 0.68。建议扫描件启用倾斜校正和行基线聚类；引用则增加候选集合字段并把 unresolved 状态传给质量层。王、陈的版面恢复研究也建议在低置信度时保留多候选 [1]，但未覆盖跨语言文献。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          99.0,
+          387.0,
+          897.0,
+          439.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "941ac94e-3fea-4622-b95d-b7681ab47ba9",
+      "source_block_id": "mineru-content-0028",
+      "order_index": 27,
+      "kind": "heading",
+      "native_type": null,
+      "text": "待办事项",
+      "heading_level": 2,
+      "markdown": "待办事项",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          466.0,
+          203.0,
+          487.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "25c64c38-2d76-45de-ab9d-e0a14f4970d6",
+      "source_block_id": "mineru-content-0029",
+      "order_index": 28,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 优先级 | 工作项 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| PO | 保存引用原文和候选集合 | 解析服务 | 2026-08-21 |\n| P1 | 增加续表表头继承规则 | 版面算法 | 2026-08-28 |\n| P1 | 双栏脚注加入栏级排序特征 | OCR 平台 | 2026-09-04 |\n| P2 | 标注界面增加作者年消歧提示 | 数据工具 | 2026-09-11 |",
+      "heading_level": null,
+      "markdown": "| 优先级 | 工作项 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| PO | 保存引用原文和候选集合 | 解析服务 | 2026-08-21 |\n| P1 | 增加续表表头继承规则 | 版面算法 | 2026-08-28 |\n| P1 | 双栏脚注加入栏级排序特征 | OCR 平台 | 2026-09-04 |\n| P2 | 标注界面增加作者年消歧提示 | 数据工具 | 2026-09-11 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          504.0,
+          843.0,
+          602.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/a8e97148f294e7993a8b086a38feb6a6e82399cb64fd45c9538655d634f4b2f0.jpg"
+      }
+    },
+    {
+      "id": "20b41c99-2da1-4d1d-89fd-df92a31a9327",
+      "source_block_id": "mineru-content-0030",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组",
+      "heading_level": null,
+      "markdown": "研发效能组",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          100.0,
+          28.0,
+          198.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "25478acb-a219-4699-9bf4-9f5cdb382bb7",
+      "source_block_id": "mineru-content-0031",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估报告草案",
+      "heading_level": null,
+      "markdown": "评估报告草案",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          783.0,
+          28.0,
+          897.0,
+          45.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "660a9b97-6799-4904-ae2c-186353848a2f",
+      "source_block_id": "mineru-content-0032",
+      "order_index": 31,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          492.0,
+          952.0,
+          505.0,
+          966.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "505dd6c1-9c57-484e-a6e8-3dc2662968b6",
+      "source_block_id": "mineru-content-0033",
+      "order_index": 32,
+      "kind": "heading",
+      "native_type": null,
+      "text": "附录：评估口径",
+      "heading_level": 2,
+      "markdown": "附录：评估口径",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          100.0,
+          73.0,
+          273.0,
+          92.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c316a314-fe20-4082-a0ea-2f2ebcd807b2",
+      "source_block_id": "mineru-content-0034",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 F1 以单元格边界和文本归属同时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manualreview。",
+      "heading_level": null,
+      "markdown": "页面级阅读顺序准确率要求文本块相对顺序与金标准一致；字段级 F1 以单元格边界和文本归属同时正确为准。引用只有在作者、年份、标题和页码证据足够时才计为 verified，否则进入 manualreview。",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          99.0,
+          112.0,
+          897.0,
+          161.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "12e4cb79-b851-4f4b-88cc-79f1de4061da",
+      "source_block_id": "mineru-content-0035",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 标题是否由编号、字体、前后空白和语义共同支持？",
+      "heading_level": null,
+      "markdown": "1. 标题是否由编号、字体、前后空白和语义共同支持？",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          121.0,
+          180.0,
+          566.0,
+          196.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f68d44ba-a003-476c-90de-183b02c309d0",
+      "source_block_id": "mineru-content-0036",
+      "order_index": 35,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 表格是否跨页，下一页是否有“续表”或重复列名？",
+      "heading_level": null,
+      "markdown": "2. 表格是否跨页，下一页是否有“续表”或重复列名？",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          121.0,
+          206.0,
+          566.0,
+          223.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7c3f64ec-d54e-4862-8613-68fcbb8e7a00",
+      "source_block_id": "mineru-content-0037",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 引用字符串是否含页码、版本或 a/b 后缀？",
+      "heading_level": null,
+      "markdown": "3. 引用字符串是否含页码、版本或 a/b 后缀？",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          121.0,
+          234.0,
+          492.0,
+          249.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f61d2c4d-4216-404b-8088-b5faecac73c5",
+      "source_block_id": "mineru-content-0038",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4. 多候选均合理时是否保留 unresolved？",
+      "heading_level": null,
+      "markdown": "4. 多候选均合理时是否保留 unresolved？",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          121.0,
+          260.0,
+          458.0,
+          277.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fde8ea1d-101c-41fe-86e6-321e77124b22",
+      "source_block_id": "mineru-content-0039",
+      "order_index": 38,
+      "kind": "heading",
+      "native_type": null,
+      "text": "References",
+      "heading_level": 2,
+      "markdown": "References",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          100.0,
+          307.0,
+          236.0,
+          326.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a6f2bf8f-a286-47f9-b73b-619b9ed733a2",
+      "source_block_id": "mineru-content-0040",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          124.0,
+          344.0,
+          894.0,
+          374.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "34faa511-c78f-4402-adc7-28aed66de986",
+      "source_block_id": "mineru-content-0041",
+      "order_index": 40,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "研发效能组",
+      "heading_level": null,
+      "markdown": "研发效能组",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          100.0,
+          28.0,
+          196.0,
+          43.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "97e1b54d-e1f5-400b-a88c-b41e79fc67a5",
+      "source_block_id": "mineru-content-0042",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评估报告草案",
+      "heading_level": null,
+      "markdown": "评估报告草案",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          783.0,
+          28.0,
+          897.0,
+          45.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fbcee381-ca0c-43c9-a92a-9cd3f1bc6268",
+      "source_block_id": "mineru-content-0043",
+      "order_index": 42,
+      "kind": "page_number",
+      "native_type": null,
+      "text": "4",
+      "heading_level": null,
+      "markdown": "4",
+      "anchor": {
+        "page_number": 4,
+        "bbox": [
+          492.0,
+          952.0,
+          505.0,
+          965.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "fd42567c-7f67-4a61-aa91-64fc8ba04275",
+      "html": "<table><tr><td>文档族</td><td>样本数平均页数扫描占比</td><td></td></tr><tr><td>采购合同</td><td>480</td><td>7.2</td></tr><tr><td>设备台账</td><td>360</td><td>3.8 42%</td></tr><tr><td>技术说明书</td><td>360</td><td>11.6 9%</td></tr></table>",
+      "markdown": "| 文档族 | 样本数平均页数扫描占比 |   |\n| --- | --- | --- |\n| 采购合同 | 480 | 7.2 |\n| 设备台账 | 360 | 3.8 42% |\n| 技术说明书 | 360 | 11.6 9% |",
+      "caption": "Table 1: 评估样本构成",
+      "image_path": "images/c2bcf61a340275060040db0b81a8df33eaa9e005122ecb41bd31b2b96d6ce111.jpg",
+      "page_number": 1,
+      "bbox": [
+        280.0,
+        413.0,
+        717.0,
+        488.0
+      ],
+      "num_rows": 4,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "文档族",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "样本数平均页数扫描占比",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "采购合同",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "480",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "7.2",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "设备台账",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "360",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "3.8 42%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "技术说明书",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "360",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "11.6 9%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "7aea2c42-b325-46ab-a9c1-58069be26d7c",
+      "html": "<table><tr><td>编号</td><td>原文片段 系统输出</td><td>复核意见</td></tr><tr><td>R-01</td><td>“表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失</td><td></td></tr><tr><td>R-02</td><td>“见 Zhang et al., 2024”绑定 Zhang 2024a</td><td>正文没有 a/b 后缀， 存在两条候选</td></tr><tr><td>R-03</td><td>页脚“资料来源：项目组整识别为参考文献 理”</td><td>属于来源说明</td></tr><tr><td>R-04</td><td>右栏脚注编号7 绑定左栏正文</td><td>先恢复栏内阅读顺 序</td></tr><tr><td>R-05</td><td>图注跨页 图注截断</td><td>保留图注并建立图- 注关系</td></tr></table>",
+      "markdown": "| 编号 | 原文片段 系统输出 | 复核意见 |\n| --- | --- | --- |\n| R-01 | “表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失 |   |\n| R-02 | “见 Zhang et al., 2024”绑定 Zhang 2024a | 正文没有 a/b 后缀， 存在两条候选 |\n| R-03 | 页脚“资料来源：项目组整识别为参考文献 理” | 属于来源说明 |\n| R-04 | 右栏脚注编号7 绑定左栏正文 | 先恢复栏内阅读顺 序 |\n| R-05 | 图注跨页 图注截断 | 保留图注并建立图- 注关系 |",
+      "caption": null,
+      "image_path": "images/95ebf678a44932c3171eb595aa1c4ace9e871f797a3a1f0f864c050b6616bcdc.jpg",
+      "page_number": 3,
+      "bbox": [
+        141.0,
+        118.0,
+        853.0,
+        316.0
+      ],
+      "num_rows": 6,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "编号",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "原文片段 系统输出",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "复核意见",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-01",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "“表3（续)”位于页首，列新建表3，首行作为表头应继承上一页列名 名缺失",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-02",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "“见 Zhang et al., 2024”绑定 Zhang 2024a",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正文没有 a/b 后缀， 存在两条候选",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-03",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "页脚“资料来源：项目组整识别为参考文献 理”",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "属于来源说明",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-04",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "右栏脚注编号7 绑定左栏正文",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "先恢复栏内阅读顺 序",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-05",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "图注跨页 图注截断",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留图注并建立图- 注关系",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "25c64c38-2d76-45de-ab9d-e0a14f4970d6",
+      "html": "<table><tr><td>优先级</td><td>工作项</td><td>负责人</td><td>截止日期</td></tr><tr><td>PO</td><td>保存引用原文和候选集合</td><td>解析服务</td><td>2026-08-21</td></tr><tr><td>P1</td><td>增加续表表头继承规则</td><td>版面算法</td><td>2026-08-28</td></tr><tr><td>P1</td><td>双栏脚注加入栏级排序特征</td><td>OCR 平台</td><td>2026-09-04</td></tr><tr><td>P2</td><td>标注界面增加作者年消歧提示</td><td>数据工具</td><td>2026-09-11</td></tr></table>",
+      "markdown": "| 优先级 | 工作项 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| PO | 保存引用原文和候选集合 | 解析服务 | 2026-08-21 |\n| P1 | 增加续表表头继承规则 | 版面算法 | 2026-08-28 |\n| P1 | 双栏脚注加入栏级排序特征 | OCR 平台 | 2026-09-04 |\n| P2 | 标注界面增加作者年消歧提示 | 数据工具 | 2026-09-11 |",
+      "caption": null,
+      "image_path": "images/a8e97148f294e7993a8b086a38feb6a6e82399cb64fd45c9538655d634f4b2f0.jpg",
+      "page_number": 3,
+      "bbox": [
+        100.0,
+        504.0,
+        843.0,
+        602.0
+      ],
+      "num_rows": 5,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "优先级",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "工作项",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负责人",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "截止日期",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "PO",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保存引用原文和候选集合",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "解析服务",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P1",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "增加续表表头继承规则",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "版面算法",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-28",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P1",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "双栏脚注加入栏级排序特征",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "OCR 平台",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-09-04",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P2",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "标注界面增加作者年消歧提示",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "数据工具",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-09-11",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": false,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本次未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:22:56.260624Z"
+}

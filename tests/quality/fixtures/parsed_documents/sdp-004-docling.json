@@ -1,0 +1,2087 @@
+{
+  "document_id": "db670a6a-1a59-4d78-90fa-bd256e9c60cb",
+  "filename": "procurement_table_positive.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 70349,
+  "source_sha256": "464423a072ed18b02fcd778c69d7108eb5dbbfc8241b9ecec8f7295c1231e576",
+  "routing_decision": null,
+  "markdown": "## 生产线温控模块采购比价报告\n\n项目编号： PROC-2026-0817 采购部门：设备工程部 评估日期： 2026-08-17\n\n## 一、采购需求\n\n本次采购用于替换二号车间 AX-200 温控模块的冷却组件。需求数量为 120 套，要求额定电压 12 V 、工作温度 -20 至 70 C ，并提供至少 12 个月质保。报价有效期为 30 日。\n\n## 二、供应商报价与技术符合性\n\n| 供应商   | 型号          | 技术参数   | 技术参数     | 商务条款    | 商务条款   |\n|-------|-------------|--------|----------|---------|--------|\n|       |             | 额定电压   | 温度范围     | 含税单价（元） | 质保（月）  |\n| 华东精工  | FAN-AX200-A | 12 V   | -20-70 C | 186.00  | 18     |\n| 北辰机电  | FAN-AX200-B | 12 V   | -10-65 C | 172.00  | 12     |\n| 远景自动化 | FAN-AX200-C | 24 V   | -20-70 C | 165.00  | 24     |\n\n## 三、交付与服务比较\n\n| 项目   | 华东精工     | 北辰机电     | 远景自动化     |\n|------|----------|----------|-----------|\n| 交付周期 | 14 个工作日  | 10 个工作日  | 21 个工作日   |\n| 现场安装 | 含首次安装    | 不含       | 含远程指导     |\n| 质保响应 | 24 小时内   | 48 小时内   | 24 小时内    |\n| 备件库存 | 上海仓 80 套 | 南京仓 40 套 | 深圳仓 120 套 |\n\n## 采购比价报告 / 评审结论\n\n## 四、综合评分\n\n| 供应商   |   技术符合 (30) |   价格 (25) |   交付 (20) |   服务 (15) |   总分 (90) |\n|-------|-------------|-----------|-----------|-----------|-----------|\n| 华东精工  |          30 |        20 |        16 |        14 |        80 |\n| 北辰机电  |          24 |        25 |        18 |        10 |        77 |\n| 远景自动化 |          20 |        24 |        12 |        14 |        70 |\n\n## 五、评审意见\n\n华东精工的 FAN-AX200-A 满足电压、温度范围、交付和质保要求，综合风险最低。北辰机电单价较低但温度上限和售后响应 不满足关键要求。远景自动化的额定电压不符合设备输入规格，不能直接替换。\n\n## 六、推荐采购方案\n\n| 项目     | 推荐值         | 证据来源              |\n|--------|-------------|-------------------|\n| 推荐供应商  | 华东精工        | 技术报价单 HS-0817-A   |\n| 推荐型号   | FAN-AX200-A | 规格书第 2 页          |\n| 采购数量   | 120 套       | 设备工程部需求单 REQ-0817 |\n| 预计含税金额 | 22,320.00 元 | 单价 186.00 x 120   |\n| 质保要求   | 18 个月       | 供应商承诺函            |\n\n## 七、审批记录\n\n| 采购申请：陈琳        | 技术复核：周海        | 部门批准：王倩        |\n|----------------|----------------|----------------|\n| 日期： 2026-08-17 | 日期： 2026-08-17 | 日期： 2026-08-17 |",
+  "blocks": [
+    {
+      "id": "6fde6994-9ba8-4c86-b1fc-413e1b95618a",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "生产线温控模块采购比价报告",
+      "heading_level": 1,
+      "markdown": "# 生产线温控模块采购比价报告",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          50.29643150000004,
+          323.0035000000001,
+          71.21793149999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d1b0f742-9c93-40dd-91b0-8523da79c473",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "项目编号： PROC-2026-0817 采购部门：设备工程部 评估日期： 2026-08-17",
+      "heading_level": null,
+      "markdown": "项目编号： PROC-2026-0817 采购部门：设备工程部 评估日期： 2026-08-17",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          78.18986240000004,
+          365.9081695999999,
+          87.774944
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "41eade4d-2b73-44fc-96b0-13c3a83d8377",
+      "source_block_id": "docling-SectionHeaderItem-2",
+      "order_index": 2,
+      "kind": "heading",
+      "native_type": null,
+      "text": "一、采购需求",
+      "heading_level": 1,
+      "markdown": "# 一、采购需求",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          126.5906142,
+          137.1012,
+          140.93681419999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f8b5ea89-0ee2-47fb-8245-f038f4d4209e",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本次采购用于替换二号车间 AX-200 温控模块的冷却组件。需求数量为 120 套，要求额定电压 12 V 、工作温度 -20 至 70 C ，并提供至少 12 个月质保。报价有效期为 30 日。",
+      "heading_level": null,
+      "markdown": "本次采购用于替换二号车间 AX-200 温控模块的冷却组件。需求数量为 120 套，要求额定电压 12 V 、工作温度 -20 至 70 C ，并提供至少 12 个月质保。报价有效期为 30 日。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          154.1941266,
+          544.2502973999999,
+          176.79914599999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6766fe00-6932-466e-8b99-ab579f724699",
+      "source_block_id": "docling-SectionHeaderItem-4",
+      "order_index": 4,
+      "kind": "heading",
+      "native_type": null,
+      "text": "二、供应商报价与技术符合性",
+      "heading_level": 1,
+      "markdown": "# 二、供应商报价与技术符合性",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          198.39761420000002,
+          237.52459999999994,
+          212.74381419999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "69024be2-fb16-4536-bef9-42e367b650a6",
+      "source_block_id": "docling-TableItem-5",
+      "order_index": 5,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 供应商 | 型号 | 技术参数 |   | 商务条款 |   |\n| --- | --- | --- | --- | --- | --- |\n|   |   | 额定电压 | 温度范围 | 含税单价（元） | 质保（月） |\n| 华东精工 | FAN-AX200-A | 12 V | -20-70 C | 186.00 | 18 |\n| 北辰机电 | FAN-AX200-B | 12 V | -10-65 C | 172.00 | 12 |\n| 远景自动化 | FAN-AX200-C | 24 V | -20-70 C | 165.00 | 24 |",
+      "heading_level": null,
+      "markdown": "| 供应商 | 型号 | 技术参数 |   | 商务条款 |   |\n| --- | --- | --- | --- | --- | --- |\n|   |   | 额定电压 | 温度范围 | 含税单价（元） | 质保（月） |\n| 华东精工 | FAN-AX200-A | 12 V | -20-70 C | 186.00 | 18 |\n| 北辰机电 | FAN-AX200-B | 12 V | -10-65 C | 172.00 | 12 |\n| 远景自动化 | FAN-AX200-C | 24 V | -20-70 C | 165.00 | 24 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          50.047354420528066,
+          224.43479094309225,
+          483.5054333489357,
+          307.7422059191183
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "7ce0131a-e7b9-4a7d-ab48-8f0134bc743f",
+      "source_block_id": "docling-SectionHeaderItem-6",
+      "order_index": 6,
+      "kind": "heading",
+      "native_type": null,
+      "text": "三、交付与服务比较",
+      "heading_level": 1,
+      "markdown": "# 三、交付与服务比较",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          343.4456142,
+          180.13979999999998,
+          357.79181420000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0d25d01c-7803-45d7-b45d-e3ed7405c205",
+      "source_block_id": "docling-TableItem-7",
+      "order_index": 7,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 项目 | 华东精工 | 北辰机电 | 远景自动化 |\n| --- | --- | --- | --- |\n| 交付周期 | 14 个工作日 | 10 个工作日 | 21 个工作日 |\n| 现场安装 | 含首次安装 | 不含 | 含远程指导 |\n| 质保响应 | 24 小时内 | 48 小时内 | 24 小时内 |\n| 备件库存 | 上海仓 80 套 | 南京仓 40 套 | 深圳仓 120 套 |",
+      "heading_level": null,
+      "markdown": "| 项目 | 华东精工 | 北辰机电 | 远景自动化 |\n| --- | --- | --- | --- |\n| 交付周期 | 14 个工作日 | 10 个工作日 | 21 个工作日 |\n| 现场安装 | 含首次安装 | 不含 | 含远程指导 |\n| 质保响应 | 24 小时内 | 48 小时内 | 24 小时内 |\n| 备件库存 | 上海仓 80 套 | 南京仓 40 套 | 深圳仓 120 套 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          50.09566358392354,
+          369.74136947012215,
+          491.57929978489625,
+          453.2287536105782
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "326539b5-578c-4a24-b655-006d0d995be9",
+      "source_block_id": "docling-SectionHeaderItem-8",
+      "order_index": 8,
+      "kind": "heading",
+      "native_type": null,
+      "text": "采购比价报告 / 评审结论",
+      "heading_level": 1,
+      "markdown": "# 采购比价报告 / 评审结论",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          50.469724799999995,
+          245.2982,
+          69.63988800000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "36c7f16e-4315-41c9-8743-6c7b78fbea87",
+      "source_block_id": "docling-SectionHeaderItem-9",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "四、综合评分",
+      "heading_level": 1,
+      "markdown": "# 四、综合评分",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          103.73861420000003,
+          137.1012,
+          118.08481419999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a610757f-e255-4df9-b538-5cca17cb8011",
+      "source_block_id": "docling-TableItem-10",
+      "order_index": 10,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 供应商 | 技术符合 (30) | 价格 (25) | 交付 (20) | 服务 (15) | 总分 (90) |\n| --- | --- | --- | --- | --- | --- |\n| 华东精工 | 30 | 20 | 16 | 14 | 80 |\n| 北辰机电 | 24 | 25 | 18 | 10 | 77 |\n| 远景自动化 | 20 | 24 | 12 | 14 | 70 |",
+      "heading_level": null,
+      "markdown": "| 供应商 | 技术符合 (30) | 价格 (25) | 交付 (20) | 服务 (15) | 总分 (90) |\n| --- | --- | --- | --- | --- | --- |\n| 华东精工 | 30 | 20 | 16 | 14 | 80 |\n| 北辰机电 | 24 | 25 | 18 | 10 | 77 |\n| 远景自动化 | 20 | 24 | 12 | 14 | 70 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          49.86418185794585,
+          129.14636671517906,
+          265.0686317552163,
+          199.56630516774737
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003"
+      }
+    },
+    {
+      "id": "76223900-64f0-451a-8b44-d7c0a3565a24",
+      "source_block_id": "docling-SectionHeaderItem-11",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "五、评审意见",
+      "heading_level": 1,
+      "markdown": "# 五、评审意见",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          215.98261420000006,
+          137.1012,
+          230.3288142
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5b69b0cc-70e0-4ac8-8b08-24ed8ca56ad1",
+      "source_block_id": "docling-TextItem-12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "华东精工的 FAN-AX200-A 满足电压、温度范围、交付和质保要求，综合风险最低。北辰机电单价较低但温度上限和售后响应 不满足关键要求。远景自动化的额定电压不符合设备输入规格，不能直接替换。",
+      "heading_level": null,
+      "markdown": "华东精工的 FAN-AX200-A 满足电压、温度范围、交付和质保要求，综合风险最低。北辰机电单价较低但温度上限和售后响应 不满足关键要求。远景自动化的额定电压不符合设备输入规格，不能直接替换。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02399999999999,
+          242.25586239999996,
+          544.2492944000007,
+          262.18126240000004
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "149bdaba-64dd-4702-abb3-b69c98737005",
+      "source_block_id": "docling-SectionHeaderItem-13",
+      "order_index": 13,
+      "kind": "heading",
+      "native_type": null,
+      "text": "六、推荐采购方案",
+      "heading_level": 1,
+      "markdown": "# 六、推荐采购方案",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02399999999999,
+          282.80061420000004,
+          165.79359999999997,
+          297.1468142
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d76140cf-ba99-40ff-8b08-949d9ab79be2",
+      "source_block_id": "docling-TableItem-14",
+      "order_index": 14,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 项目 | 推荐值 | 证据来源 |\n| --- | --- | --- |\n| 推荐供应商 | 华东精工 | 技术报价单 HS-0817-A |\n| 推荐型号 | FAN-AX200-A | 规格书第 2 页 |\n| 采购数量 | 120 套 | 设备工程部需求单 REQ-0817 |\n| 预计含税金额 | 22,320.00 元 | 单价 186.00 x 120 |\n| 质保要求 | 18 个月 | 供应商承诺函 |",
+      "heading_level": null,
+      "markdown": "| 项目 | 推荐值 | 证据来源 |\n| --- | --- | --- |\n| 推荐供应商 | 华东精工 | 技术报价单 HS-0817-A |\n| 推荐型号 | FAN-AX200-A | 规格书第 2 页 |\n| 采购数量 | 120 套 | 设备工程部需求单 REQ-0817 |\n| 预计含税金额 | 22,320.00 元 | 单价 186.00 x 120 |\n| 质保要求 | 18 个月 | 供应商承诺函 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          49.777234523416254,
+          307.7468439850718,
+          456.17412533447026,
+          400.0309915052386
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004"
+      }
+    },
+    {
+      "id": "34a0bd1c-0d06-4ce7-8de5-81a0f572add0",
+      "source_block_id": "docling-SectionHeaderItem-15",
+      "order_index": 15,
+      "kind": "heading",
+      "native_type": null,
+      "text": "七、审批记录",
+      "heading_level": 1,
+      "markdown": "# 七、审批记录",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          416.7666142,
+          137.1012,
+          431.1128142
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b14d5bf3-b868-4b37-90b9-e6ed60cf46d6",
+      "source_block_id": "docling-TableItem-16",
+      "order_index": 16,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 采购申请：陈琳 | 技术复核：周海 | 部门批准：王倩 |\n| --- | --- | --- |\n| 日期： 2026-08-17 | 日期： 2026-08-17 | 日期： 2026-08-17 |",
+      "heading_level": null,
+      "markdown": "| 采购申请：陈琳 | 技术复核：周海 | 部门批准：王倩 |\n| --- | --- | --- |\n| 日期： 2026-08-17 | 日期： 2026-08-17 | 日期： 2026-08-17 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          52.50664500787134,
+          443.53333443879745,
+          429.7618898031967,
+          512.562310809212
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-005"
+      }
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "69024be2-fb16-4536-bef9-42e367b650a6",
+      "html": null,
+      "markdown": "| 供应商 | 型号 | 技术参数 |   | 商务条款 |   |\n| --- | --- | --- | --- | --- | --- |\n|   |   | 额定电压 | 温度范围 | 含税单价（元） | 质保（月） |\n| 华东精工 | FAN-AX200-A | 12 V | -20-70 C | 186.00 | 18 |\n| 北辰机电 | FAN-AX200-B | 12 V | -10-65 C | 172.00 | 12 |\n| 远景自动化 | FAN-AX200-C | 24 V | -20-70 C | 165.00 | 24 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        50.047354420528066,
+        224.43479094309225,
+        483.5054333489357,
+        307.7422059191183
+      ],
+      "num_rows": 5,
+      "num_cols": 6,
+      "cells": [
+        {
+          "text": "供应商",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            75.321,
+            613.6388880484375,
+            105.2088,
+            603.6762880484375
+          ]
+        },
+        {
+          "text": "型号",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            162.639,
+            613.6388880484375,
+            182.56419999999997,
+            603.6762880484375
+          ]
+        },
+        {
+          "text": "技术参数",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            262.716,
+            613.6388880484375,
+            302.56640000000004,
+            603.6762880484375
+          ]
+        },
+        {
+          "text": "商务条款",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 2,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            396.207,
+            613.6388880484375,
+            436.05740000000003,
+            603.6762880484375
+          ]
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "额定电压",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            229.343,
+            597.4998880484375,
+            269.1934,
+            587.5372880484375
+          ]
+        },
+        {
+          "text": "温度范围",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            296.089,
+            597.4998880484375,
+            335.93940000000003,
+            587.5372880484375
+          ]
+        },
+        {
+          "text": "含税单价（元）",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            351.579,
+            597.4998880484375,
+            419.94236120000005,
+            587.5372880484375
+          ]
+        },
+        {
+          "text": "质保（月）",
+          "start_row": 1,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            427.596,
+            597.4998880484375,
+            477.40900000000005,
+            587.5372880484375
+          ]
+        },
+        {
+          "text": "华东精工",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            70.34,
+            580.9618880484376,
+            110.19040000000001,
+            570.9992880484375
+          ]
+        },
+        {
+          "text": "FAN-AX200-A",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            141.317,
+            579.6567874484375,
+            203.88212800000002,
+            570.3118686484376
+          ]
+        },
+        {
+          "text": "12 V",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.021,
+            579.6567874484375,
+            259.5041056,
+            570.3118686484376
+          ]
+        },
+        {
+          "text": "-20-70 C",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            295.522,
+            579.6567874484375,
+            336.48821119999997,
+            570.3118686484376
+          ]
+        },
+        {
+          "text": "186.00",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            367.524,
+            579.6567874484375,
+            397.9896308,
+            570.3118686484376
+          ]
+        },
+        {
+          "text": "18",
+          "start_row": 2,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            443.965,
+            579.6567874484375,
+            455.0434112,
+            570.3118686484376
+          ]
+        },
+        {
+          "text": "北辰机电",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            70.34,
+            564.4238880484376,
+            110.19040000000001,
+            554.4612880484375
+          ]
+        },
+        {
+          "text": "FAN-AX200-B",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            141.317,
+            563.1187874484375,
+            203.88212800000002,
+            553.7738686484375
+          ]
+        },
+        {
+          "text": "12 V",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.021,
+            563.1187874484375,
+            259.5041056,
+            553.7738686484375
+          ]
+        },
+        {
+          "text": "-10-65 C",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            295.522,
+            563.1187874484375,
+            336.48821119999997,
+            553.7738686484375
+          ]
+        },
+        {
+          "text": "172.00",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            367.524,
+            563.1187874484375,
+            397.9896308,
+            553.7738686484375
+          ]
+        },
+        {
+          "text": "12",
+          "start_row": 3,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            443.965,
+            563.1187874484375,
+            455.0434112,
+            553.7738686484375
+          ]
+        },
+        {
+          "text": "远景自动化",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            65.358,
+            547.8858880484376,
+            115.171,
+            537.9232880484375
+          ]
+        },
+        {
+          "text": "FAN-AX200-C",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            141.042,
+            546.5807874484375,
+            204.15507100000002,
+            537.2358686484375
+          ]
+        },
+        {
+          "text": "24 V",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            239.021,
+            546.5807874484375,
+            259.5041056,
+            537.2358686484375
+          ]
+        },
+        {
+          "text": "-20-70 C",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            295.522,
+            546.5807874484375,
+            336.48821119999997,
+            537.2358686484375
+          ]
+        },
+        {
+          "text": "165.00",
+          "start_row": 4,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            367.524,
+            546.5807874484375,
+            397.9896308,
+            537.2358686484375
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 4,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            443.965,
+            546.5807874484375,
+            455.0434112,
+            537.2358686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "0d25d01c-7803-45d7-b45d-e3ed7405c205",
+      "html": null,
+      "markdown": "| 项目 | 华东精工 | 北辰机电 | 远景自动化 |\n| --- | --- | --- | --- |\n| 交付周期 | 14 个工作日 | 10 个工作日 | 21 个工作日 |\n| 现场安装 | 含首次安装 | 不含 | 含远程指导 |\n| 质保响应 | 24 小时内 | 48 小时内 | 24 小时内 |\n| 备件库存 | 上海仓 80 套 | 南京仓 40 套 | 深圳仓 120 套 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        50.09566358392354,
+        369.74136947012215,
+        491.57929978489625,
+        453.2287536105782
+      ],
+      "num_rows": 5,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            468.5348880484375,
+            73.3402,
+            458.5722880484375
+          ]
+        },
+        {
+          "text": "华东精工",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            148.507,
+            468.5348880484375,
+            188.35739999999998,
+            458.5722880484375
+          ]
+        },
+        {
+          "text": "北辰机电",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.442,
+            468.5348880484375,
+            303.29240000000004,
+            458.5722880484375
+          ]
+        },
+        {
+          "text": "远景自动化",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            378.376,
+            468.5348880484375,
+            428.189,
+            458.5722880484375
+          ]
+        },
+        {
+          "text": "交付周期",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            451.9968880484375,
+            93.2654,
+            442.0342880484375
+          ]
+        },
+        {
+          "text": "14 个工作日",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            148.507,
+            451.9968880484375,
+            202.2064,
+            441.34686864843746
+          ]
+        },
+        {
+          "text": "10 个工作日",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.442,
+            451.9968880484375,
+            317.14140000000003,
+            441.34686864843746
+          ]
+        },
+        {
+          "text": "21 个工作日",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            378.376,
+            451.9968880484375,
+            432.07640000000004,
+            441.34686864843746
+          ]
+        },
+        {
+          "text": "现场安装",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            435.45888804843753,
+            93.2654,
+            425.4962880484375
+          ]
+        },
+        {
+          "text": "含首次安装",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            148.507,
+            435.45888804843753,
+            198.32,
+            425.4962880484375
+          ]
+        },
+        {
+          "text": "不含",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.442,
+            435.45888804843753,
+            283.3672,
+            425.4962880484375
+          ]
+        },
+        {
+          "text": "含远程指导",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            378.376,
+            435.45888804843753,
+            428.189,
+            425.4962880484375
+          ]
+        },
+        {
+          "text": "质保响应",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            418.9208880484375,
+            93.2654,
+            408.9582880484375
+          ]
+        },
+        {
+          "text": "24 小时内",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            148.507,
+            418.9208880484375,
+            192.2438,
+            408.2708686484375
+          ]
+        },
+        {
+          "text": "48 小时内",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.442,
+            418.9208880484375,
+            307.1788,
+            408.2708686484375
+          ]
+        },
+        {
+          "text": "24 小时内",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            378.376,
+            418.9208880484375,
+            422.1138,
+            408.2708686484375
+          ]
+        },
+        {
+          "text": "备件库存",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            402.3828880484375,
+            93.2654,
+            392.4202880484375
+          ]
+        },
+        {
+          "text": "上海仓 80 套",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            148.507,
+            402.3828880484375,
+            204.9746,
+            391.7328686484375
+          ]
+        },
+        {
+          "text": "南京仓 40 套",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            263.442,
+            402.3828880484375,
+            319.9096,
+            391.7328686484375
+          ]
+        },
+        {
+          "text": "深圳仓 120 套",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            378.376,
+            402.3828880484375,
+            440.3846,
+            391.7328686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "a610757f-e255-4df9-b538-5cca17cb8011",
+      "html": null,
+      "markdown": "| 供应商 | 技术符合 (30) | 价格 (25) | 交付 (20) | 服务 (15) | 总分 (90) |\n| --- | --- | --- | --- | --- | --- |\n| 华东精工 | 30 | 20 | 16 | 14 | 80 |\n| 北辰机电 | 24 | 25 | 18 | 10 | 77 |\n| 远景自动化 | 20 | 24 | 12 | 14 | 70 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        49.86418185794585,
+        129.14636671517906,
+        265.0686317552163,
+        199.56630516774737
+      ],
+      "num_rows": 4,
+      "num_cols": 6,
+      "cells": [
+        {
+          "text": "供应商",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            700.8531522484375,
+            80.3142,
+            691.8867522484375
+          ]
+        },
+        {
+          "text": "技术符合 (30)",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            137.168,
+            711.3151522484375,
+            173.03359999999998,
+            691.2680706484375
+          ]
+        },
+        {
+          "text": "价格 (25)",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            177.417,
+            711.3151522484375,
+            195.3498,
+            691.2680706484375
+          ]
+        },
+        {
+          "text": "交付 (20)",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            199.73399999999998,
+            711.2101522484375,
+            217.6668,
+            691.2680706484375
+          ]
+        },
+        {
+          "text": "服务 (15)",
+          "start_row": 0,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            222.05,
+            711.3501522484374,
+            239.9828,
+            691.2680706484375
+          ]
+        },
+        {
+          "text": "总分 (90)",
+          "start_row": 0,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            244.366,
+            711.2801522484375,
+            262.2988,
+            691.2680706484375
+          ]
+        },
+        {
+          "text": "华东精工",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            53.415,
+            685.6601522484375,
+            89.28059999999999,
+            676.6937522484375
+          ]
+        },
+        {
+          "text": "30",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            150.114,
+            684.4855538484375,
+            160.0846368,
+            676.0750706484375
+          ]
+        },
+        {
+          "text": "20",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            181.397,
+            684.4855538484375,
+            191.3676368,
+            676.0750706484375
+          ]
+        },
+        {
+          "text": "16",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            203.713,
+            684.4855538484375,
+            213.68363680000002,
+            676.0750706484375
+          ]
+        },
+        {
+          "text": "14",
+          "start_row": 1,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            226.03,
+            684.4855538484375,
+            236.00063680000002,
+            676.0750706484375
+          ]
+        },
+        {
+          "text": "80",
+          "start_row": 1,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            248.346,
+            684.4855538484375,
+            258.3166368,
+            676.0750706484375
+          ]
+        },
+        {
+          "text": "北辰机电",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            53.415,
+            670.4671522484375,
+            89.28059999999999,
+            661.5007522484375
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            150.114,
+            669.2925538484375,
+            160.0846368,
+            660.8820706484375
+          ]
+        },
+        {
+          "text": "25",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            181.397,
+            669.2925538484375,
+            191.3676368,
+            660.8820706484375
+          ]
+        },
+        {
+          "text": "18",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            203.713,
+            669.2925538484375,
+            213.68363680000002,
+            660.8820706484375
+          ]
+        },
+        {
+          "text": "10",
+          "start_row": 2,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            226.03,
+            669.2925538484375,
+            236.00063680000002,
+            660.8820706484375
+          ]
+        },
+        {
+          "text": "77",
+          "start_row": 2,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            248.346,
+            669.2925538484375,
+            258.3166368,
+            660.8820706484375
+          ]
+        },
+        {
+          "text": "远景自动化",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": true,
+          "bbox": [
+            53.415,
+            655.2731522484374,
+            98.247,
+            646.3067522484375
+          ]
+        },
+        {
+          "text": "20",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            150.114,
+            654.0985538484375,
+            160.0846368,
+            645.6880706484375
+          ]
+        },
+        {
+          "text": "24",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            181.397,
+            654.0985538484375,
+            191.3676368,
+            645.6880706484375
+          ]
+        },
+        {
+          "text": "12",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            203.713,
+            654.0985538484375,
+            213.68363680000002,
+            645.6880706484375
+          ]
+        },
+        {
+          "text": "14",
+          "start_row": 3,
+          "start_col": 4,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            226.03,
+            654.0985538484375,
+            236.00063680000002,
+            645.6880706484375
+          ]
+        },
+        {
+          "text": "70",
+          "start_row": 3,
+          "start_col": 5,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            248.346,
+            654.0985538484375,
+            258.3166368,
+            645.6880706484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "d76140cf-ba99-40ff-8b08-949d9ab79be2",
+      "html": null,
+      "markdown": "| 项目 | 推荐值 | 证据来源 |\n| --- | --- | --- |\n| 推荐供应商 | 华东精工 | 技术报价单 HS-0817-A |\n| 推荐型号 | FAN-AX200-A | 规格书第 2 页 |\n| 采购数量 | 120 套 | 设备工程部需求单 REQ-0817 |\n| 预计含税金额 | 22,320.00 元 | 单价 186.00 x 120 |\n| 质保要求 | 18 个月 | 供应商承诺函 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        49.777234523416254,
+        307.7468439850718,
+        456.17412533447026,
+        400.0309915052386
+      ],
+      "num_rows": 6,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            530.4541522484375,
+            71.3478,
+            521.4877522484375
+          ]
+        },
+        {
+          "text": "推荐值",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            530.4541522484375,
+            203.7522,
+            521.4877522484375
+          ]
+        },
+        {
+          "text": "证据来源",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            530.4541522484375,
+            347.49660000000006,
+            521.4877522484375
+          ]
+        },
+        {
+          "text": "推荐供应商",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            515.2611522484375,
+            98.247,
+            506.2947522484375
+          ]
+        },
+        {
+          "text": "华东精工",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            515.2611522484375,
+            212.71859999999998,
+            506.2947522484375
+          ]
+        },
+        {
+          "text": "技术报价单 HS-0817-A",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            515.2611522484375,
+            403.30181439999996,
+            505.6760706484375
+          ]
+        },
+        {
+          "text": "推荐型号",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            500.0681522484375,
+            89.28059999999999,
+            491.1017522484375
+          ]
+        },
+        {
+          "text": "FAN-AX200-A",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            498.8935538484375,
+            233.16199200000003,
+            490.4830706484375
+          ]
+        },
+        {
+          "text": "规格书第 2 页",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            500.0681522484375,
+            366.43140000000005,
+            490.4830706484375
+          ]
+        },
+        {
+          "text": "采购数量",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            484.87515224843753,
+            89.28059999999999,
+            475.9087522484375
+          ]
+        },
+        {
+          "text": "120 套",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            484.87515224843753,
+            203.2704,
+            475.2900706484375
+          ]
+        },
+        {
+          "text": "设备工程部需求单 REQ-0817",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            484.87515224843753,
+            428.21027359999994,
+            475.2900706484375
+          ]
+        },
+        {
+          "text": "预计含税金额",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            469.6821522484375,
+            107.21340000000001,
+            460.71575224843747
+          ]
+        },
+        {
+          "text": "22,320.00 元",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            469.6821522484375,
+            228.1994,
+            460.09707064843747
+          ]
+        },
+        {
+          "text": "单价 186.00 x 120",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            469.6821522484375,
+            383.88875839999986,
+            460.09707064843747
+          ]
+        },
+        {
+          "text": "质保要求",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.415,
+            454.4891522484375,
+            89.28059999999999,
+            445.5227522484375
+          ]
+        },
+        {
+          "text": "18 个月",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            176.853,
+            454.4891522484375,
+            207.2508,
+            444.9040706484375
+          ]
+        },
+        {
+          "text": "供应商承诺函",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            311.631,
+            454.4891522484375,
+            365.4294000000001,
+            445.5227522484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-005",
+      "block_id": "b14d5bf3-b868-4b37-90b9-e6ed60cf46d6",
+      "html": null,
+      "markdown": "| 采购申请：陈琳 | 技术复核：周海 | 部门批准：王倩 |\n| --- | --- | --- |\n| 日期： 2026-08-17 | 日期： 2026-08-17 | 日期： 2026-08-17 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        52.50664500787134,
+        443.53333443879745,
+        429.7618898031967,
+        512.562310809212
+      ],
+      "num_rows": 2,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "采购申请：陈琳",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.016000000000005,
+            396.9431522484375,
+            115.7808,
+            387.9767522484375
+          ]
+        },
+        {
+          "text": "技术复核：周海",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            204.403,
+            396.9431522484375,
+            267.16779999999994,
+            387.9767522484375
+          ]
+        },
+        {
+          "text": "部门批准：王倩",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            355.789,
+            396.9431522484375,
+            418.55380000000014,
+            387.9767522484375
+          ]
+        },
+        {
+          "text": "日期： 2026-08-17",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            53.01599999999996,
+            339.6281522484375,
+            125.76916959999996,
+            330.0430706484375
+          ]
+        },
+        {
+          "text": "日期： 2026-08-17",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            204.40299999999996,
+            339.6281522484375,
+            277.15616960000006,
+            330.0430706484375
+          ]
+        },
+        {
+          "text": "日期： 2026-08-17",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            355.789,
+            339.6281522484375,
+            428.5431695999998,
+            330.0430706484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T18:08:53.912227Z"
+}

@@ -25,6 +25,7 @@ from .core.contracts import (
     ParsedDocument,
     ParsedTable,
     ParseRequest,
+    ParserNativeResult,
     ParserCapability,
     ParserProvenance,
     QualityCapabilityState,
@@ -40,6 +41,7 @@ from .core.contracts import (
     TableFieldBinding,
 )
 from .core.gateway import DocumentParserGateway
+from .routing import ModelRouter, RouteProfile, RoutingSettings
 
 __all__ = [
     "AppliedRepair",
@@ -60,6 +62,7 @@ __all__ = [
     "GateSummary",
     "IssueSeverity",
     "IssueStatus",
+    "ModelRouter",
     "NativeArtifact",
     "OcrSpan",
     "PackageManifest",
@@ -67,6 +70,7 @@ __all__ = [
     "ParsedDocument",
     "ParsedTable",
     "ParseRequest",
+    "ParserNativeResult",
     "ParserCapability",
     "ParserProvenance",
     "QualityCapabilityState",
@@ -75,8 +79,10 @@ __all__ = [
     "QualityReport",
     "QualityState",
     "ReparseRecommendation",
+    "RouteProfile",
     "RoutingDecision",
     "RoutingMode",
+    "RoutingSettings",
     "SourceAnchor",
     "TableCell",
     "TableFieldBinding",

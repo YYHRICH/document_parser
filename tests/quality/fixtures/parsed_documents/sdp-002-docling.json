@@ -1,0 +1,2592 @@
+{
+  "document_id": "f960e6b2-fe20-4828-8dcb-1364b051d854",
+  "filename": "incident_postmortem.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 108153,
+  "source_sha256": "057b36d0aa14f158aa9083925695ab7870b6b9c5f58359c6590a63a17c4f5735",
+  "routing_decision": null,
+  "markdown": "## API 网关延迟事故复盘\n\nAPI Gateway Latency Incident Review\n\n事故编号\n\nINC-2026-0714\n\n影响服务\n\npayments-api\n\n发生时间\n\n2026-07-14 09:12-10:03\n\n严重级别\n\nSEV-2\n\n负责人\n\nReliability Engineering\n\n当前状态\n\nClosed with follow-up\n\n## 摘要 / Executive summary\n\n2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502 。根因是限流配置发布后，边缘缓 存键包含了高基数字段，导致缓存命中率从 91% 降到 38% ，同时连接池被慢请求耗尽。回滚配置后，延迟在 11 分钟内恢复。\n\nOn14July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.\n\n## 1. 影响范围\n\n- 09:12-10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；\n- 约 1.2% 请求返回 502 ，重试请求未产生重复扣款；\n- 订单写入和对账任务没有数据丢失；\n- 受影响客户主要集中在东亚区域的高峰流量租户。\n\n## 2. 关键时间线\n\n| 时间    | 事件           | 证据与决定                    |\n|-------|--------------|--------------------------|\n| 08:45 | 配置变更提交       | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发         |\n| 09:18 | 502 开始上升     | 值班工程师建立事故频道              |\n| 09:31 | 发现缓存命中率下降    | 对比变更前后的 cache_hit_ratio  |\n| 09:42 | 回滚配置         | 限流规则恢复到 2026-07-13 版本    |\n| 10:03 | 服务恢复         | P95 回到 420 ms ，进入观察期     |\n\n## 3. 技术背景\n\n请求经过 CDN 、 边缘限流器、 API 网关和 payments-api 。 原有缓存键只包含路径和请求方法； 变更后加入 tenant\\_id ， 导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：\n\n<!-- formula-not-decoded -->\n\n在事故期间， R inflight = 185 req/s ， L p 95 = 2 . 4 s ，所需并发约为 444 ，超过连接池上限 320 。\n\n## 4. 根因分析\n\n## 直接原因\n\n高基数 tenant\\_id 被加入缓存键，缓存复用率下降；慢请 求占用连接，触发排队和超时。\n\n## 促成因素\n\n配置评审只检查了限流语义，没有检查缓存键基数。压 测样本使用了 5 个租户，未覆盖生产环境的 38,000 个 租户。\n\n## 未触发的保护\n\n缓存命中率有监控但没有发布门禁；连接池告警阈值设 置为 90% ，无法提前发现趋势。为什么没有在发布前发\n\n## 5. 缓解措施\n\n1. 回滚缓存键变更并清理高基数缓存项；\n2. 临时将连接池上限从 320 调整到 480 ，并限制重试次数；\n3. 为受影响租户打开降级响应，返回可重试的错误码；\n4. 在发布频道固定附带命中率、 P95 和连接池利用率。\n\n## 现？\n\n1. 变更模板把缓存键当作普通字符串；\n2. 评审清单没有'基数'和'复用率'字段；\n3. 预发布流量没有模拟长尾租户；\n4. 回滚需要人工执行，没有自动策略。\n\n## 结论\n\n代码本身没有错误，系统性风险来自配置、压测和门禁 之间的缺口。\n\n## 6. 监控和证据\n\n| 指标              | 事故前    | 峰值       | 恢复目标     |\n|-----------------|--------|----------|----------|\n| P95 latency     | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91%    | 38%      | > 85%    |\n| Connection pool | 62%    | 99%      | < 75%    |\n| HTTP 502 ratio  | 0.08%  | 1.20%    | < 0.10%  |\n\n## 7. 后续行动项\n\n| ID   | 行动                       | 负责人           | 截止日期       |\n|------|--------------------------|---------------|------------|\n| A1   | 为缓存键增加基数估算和命中率预估         | Edge Team     | 2026-07-28 |\n| A2   | 压测加入长尾租户和真实比例            | Performance   | 2026-08-04 |\n| A3   | 将 cache_hit_ratio 纳入发布门禁 | Release Eng   | 2026-08-11 |\n| A4   | 实现连接池趋势告警和自动回滚           | Reliability   | 2026-08-18 |\n| A5   | 更新配置评审模板与培训材料            | Platform Team | 2026-08-21 |\n\n## 8. 复盘结论\n\n本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延 迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
+  "blocks": [
+    {
+      "id": "657bb1b3-8d8a-4a23-bcc0-c0d0ffa42cbd",
+      "source_block_id": "docling-SectionHeaderItem-0",
+      "order_index": 0,
+      "kind": "heading",
+      "native_type": null,
+      "text": "API 网关延迟事故复盘",
+      "heading_level": 1,
+      "markdown": "# API 网关延迟事故复盘",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          50.17560979999996,
+          268.9924,
+          73.60573799999997
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "26ccf16e-aca9-4cf9-bf52-2e17f2bce7dc",
+      "source_block_id": "docling-TextItem-1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "API Gateway Latency Incident Review",
+      "heading_level": null,
+      "markdown": "API Gateway Latency Incident Review",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          75.51438080000003,
+          270.56318139999996,
+          87.66279399999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "37e16d09-4ff4-4f7b-a050-b217d5d379e0",
+      "source_block_id": "docling-TextItem-2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "事故编号",
+      "heading_level": null,
+      "markdown": "事故编号",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.001,
+          125.51812659999996,
+          96.8514,
+          135.48072660000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "63aae78a-a861-48f0-94f1-b6c800161d06",
+      "source_block_id": "docling-TextItem-3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "INC-2026-0714",
+      "heading_level": null,
+      "markdown": "INC-2026-0714",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          148.32600000000002,
+          126.82322720000002,
+          216.4303336,
+          136.16814599999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6cbb93f2-beaa-433a-b5bd-b4207ddf00f6",
+      "source_block_id": "docling-TextItem-4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "影响服务",
+      "heading_level": null,
+      "markdown": "影响服务",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          296.345,
+          125.51812659999996,
+          336.19540000000006,
+          135.48072660000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "65503490-961f-4736-b49c-5bed94032af2",
+      "source_block_id": "docling-TextItem-5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "payments-api",
+      "heading_level": null,
+      "markdown": "payments-api",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          387.67,
+          126.82322720000002,
+          447.46552519999995,
+          136.16814599999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "df3cae7a-6e44-4e50-a2cb-b5eede923463",
+      "source_block_id": "docling-TextItem-6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "发生时间",
+      "heading_level": null,
+      "markdown": "发生时间",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.00100000000003,
+          137.4731266,
+          96.85140000000004,
+          147.43572660000007
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e483f415-0ce1-45d9-94fe-847c5ef24e05",
+      "source_block_id": "docling-TextItem-7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2026-07-14 09:12-10:03",
+      "heading_level": null,
+      "markdown": "2026-07-14 09:12-10:03",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          148.32600000000002,
+          138.77822720000006,
+          257.4264326000001,
+          148.12314600000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d889d52e-a853-4710-9c5f-833633312a90",
+      "source_block_id": "docling-TextItem-8",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "严重级别",
+      "heading_level": null,
+      "markdown": "严重级别",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          296.345,
+          137.4731266,
+          336.19540000000006,
+          147.43572660000007
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "db2fd0fe-2873-4233-bbff-5fcaa64e4150",
+      "source_block_id": "docling-TextItem-9",
+      "order_index": 9,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "SEV-2",
+      "heading_level": null,
+      "markdown": "SEV-2",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          387.67,
+          138.77822720000006,
+          415.91397100000006,
+          148.12314600000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a1e7dced-6450-4be1-8125-50b98c1b092b",
+      "source_block_id": "docling-TextItem-10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "负责人",
+      "heading_level": null,
+      "markdown": "负责人",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          57.00100000000003,
+          149.42812660000004,
+          86.88880000000003,
+          159.3907266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "748faf34-295c-4e3e-98d4-7a2111a20608",
+      "source_block_id": "docling-TextItem-11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Reliability Engineering",
+      "heading_level": null,
+      "markdown": "Reliability Engineering",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          148.32600000000002,
+          150.7332272,
+          246.8660766000001,
+          160.07814599999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b16c26ac-7389-4d62-8287-b51fd62b5f67",
+      "source_block_id": "docling-TextItem-12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "当前状态",
+      "heading_level": null,
+      "markdown": "当前状态",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          296.345,
+          149.42812660000004,
+          336.19540000000006,
+          159.3907266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8b703ae3-8bd0-4c84-9cdd-a1a85a9d9915",
+      "source_block_id": "docling-TextItem-13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "Closed with follow-up",
+      "heading_level": null,
+      "markdown": "Closed with follow-up",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          387.67,
+          150.7332272,
+          481.77671959999986,
+          160.07814599999995
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "520de6cd-ad6b-41d6-a16b-2938e1011017",
+      "source_block_id": "docling-SectionHeaderItem-14",
+      "order_index": 14,
+      "kind": "heading",
+      "native_type": null,
+      "text": "摘要 / Executive summary",
+      "heading_level": 1,
+      "markdown": "# 摘要 / Executive summary",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          184.02461419999997,
+          226.4179976,
+          199.36070200000006
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4bd42d8c-4bdc-4e50-afea-a0fe5a5e805f",
+      "source_block_id": "docling-TextItem-15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502 。根因是限流配置发布后，边缘缓 存键包含了高基数字段，导致缓存命中率从 91% 降到 38% ，同时连接池被慢请求耗尽。回滚配置后，延迟在 11 分钟内恢复。",
+      "heading_level": null,
+      "markdown": "2026 年 7 月 14 日，支付 API 在流量高峰期间出现 P95 延迟升高和间歇性 502 。根因是限流配置发布后，边缘缓 存键包含了高基数字段，导致缓存命中率从 91% 降到 38% ，同时连接池被慢请求耗尽。回滚配置后，延迟在 11 分钟内恢复。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          215.6131266,
+          544.2544782000002,
+          249.48572660000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6f799b76-dfe9-499c-896f-cfc4fb998800",
+      "source_block_id": "docling-TextItem-16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "On14July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.",
+      "heading_level": null,
+      "markdown": "On14July 2026, the payments API experienced elevated P95 latency and intermittent 502 responses. A rate-limit configuration introduced a high-cardinality cache key, reducing cache hit rate from 91% to 38% and exhausting the connection pool under peak traffic.",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          256.76822720000007,
+          544.1826625999997,
+          290.0231460000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "6454dfe9-dde7-4e76-8525-acb48fd84510",
+      "source_block_id": "docling-SectionHeaderItem-17",
+      "order_index": 17,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1. 影响范围",
+      "heading_level": 1,
+      "markdown": "# 1. 影响范围",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.023999999999944,
+          315.60761420000006,
+          125.68779999999994,
+          330.9437020000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "228ed302-2d44-423b-bbd3-09bcdc9bcdc7",
+      "source_block_id": "docling-ListItem-18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "09:12-10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；",
+      "heading_level": null,
+      "markdown": "09:12-10:03 期间，约 8.7% 的支付预检查请求超过 2 秒；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          347.1951266,
+          332.8232,
+          357.845146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5d25549e-cbe9-4117-8c21-3fedf855c4d7",
+      "source_block_id": "docling-ListItem-19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "约 1.2% 请求返回 502 ，重试请求未产生重复扣款；",
+      "heading_level": null,
+      "markdown": "约 1.2% 请求返回 502 ，重试请求未产生重复扣款；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          367.12112659999997,
+          302.89080000000007,
+          377.771146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cbef5e13-efa9-4639-a08d-56d6e7a70b24",
+      "source_block_id": "docling-ListItem-20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "订单写入和对账任务没有数据丢失；",
+      "heading_level": null,
+      "markdown": "订单写入和对账任务没有数据丢失；",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          387.0461266,
+          235.3316,
+          397.696146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f8e1605c-8964-4e78-909e-76fb1e324e60",
+      "source_block_id": "docling-ListItem-21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "受影响客户主要集中在东亚区域的高峰流量租户。",
+      "heading_level": null,
+      "markdown": "受影响客户主要集中在东亚区域的高峰流量租户。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          67.461,
+          406.9711266,
+          295.10720000000003,
+          417.621146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "155307f6-3a15-495a-91c0-7325dc21a0f0",
+      "source_block_id": "docling-SectionHeaderItem-22",
+      "order_index": 22,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2. 关键时间线",
+      "heading_level": 1,
+      "markdown": "# 2. 关键时间线",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          51.024,
+          443.2056142,
+          140.034,
+          458.541702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b1d2c5b2-9883-4c3b-90a5-a6df23bfd861",
+      "source_block_id": "docling-TableItem-23",
+      "order_index": 23,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms ，进入观察期 |",
+      "heading_level": null,
+      "markdown": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms ，进入观察期 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          58.96244452352158,
+          480.6905895529133,
+          535.585566225723,
+          575.6148035491146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "3f2ef9cb-2a38-4f00-a072-106952b21a8f",
+      "source_block_id": "docling-SectionHeaderItem-24",
+      "order_index": 24,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3. 技术背景",
+      "heading_level": 1,
+      "markdown": "# 3. 技术背景",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          50.30061420000004,
+          125.6878,
+          65.63670200000001
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "dd06ffad-988e-4ff6-a3b9-d93bfa799d0c",
+      "source_block_id": "docling-TextItem-25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "请求经过 CDN 、 边缘限流器、 API 网关和 payments-api 。 原有缓存键只包含路径和请求方法； 变更后加入 tenant_id ， 导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
+      "heading_level": null,
+      "markdown": "请求经过 CDN 、 边缘限流器、 API 网关和 payments-api 。 原有缓存键只包含路径和请求方法； 变更后加入 tenant_id ， 导致同一资源产生大量低复用缓存项。连接池的有效并发受以下关系约束：",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          81.88812659999996,
+          551.4516000000001,
+          103.80572659999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4528bb83-c51f-44a3-919c-1ebd60f80a96",
+      "source_block_id": "docling-FormulaItem-26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "",
+      "heading_level": null,
+      "markdown": "",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          208.88100000000006,
+          117.06622719999996,
+          386.3854888,
+          132.74774524903228
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "97bd5b7f-ebcb-4345-86be-0bc9f2ad7e9d",
+      "source_block_id": "docling-TextItem-27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "在事故期间， R inflight = 185 req/s ， L p 95 = 2 . 4 s ，所需并发约为 444 ，超过连接池上限 320 。",
+      "heading_level": null,
+      "markdown": "在事故期间， R inflight = 185 req/s ， L p 95 = 2 . 4 s ，所需并发约为 444 ，超过连接池上限 320 。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          137.67912660000002,
+          462.84060000000005,
+          149.06247326743517
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8e87c774-1b98-4c4a-83d4-7da79c7dca17",
+      "source_block_id": "docling-SectionHeaderItem-28",
+      "order_index": 28,
+      "kind": "heading",
+      "native_type": null,
+      "text": "4. 根因分析",
+      "heading_level": 1,
+      "markdown": "# 4. 根因分析",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          173.91361419999998,
+          125.68780000000005,
+          189.24970199999996
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c1e31a9b-223e-42fa-ba61-d1774bc85c2d",
+      "source_block_id": "docling-SectionHeaderItem-29",
+      "order_index": 29,
+      "kind": "heading",
+      "native_type": null,
+      "text": "直接原因",
+      "heading_level": 1,
+      "markdown": "# 直接原因",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          201.5891266,
+          90.87440000000007,
+          211.55172660000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e4206792-b6db-42dd-8bee-07c8080f48c4",
+      "source_block_id": "docling-TextItem-30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "高基数 tenant_id 被加入缓存键，缓存复用率下降；慢请 求占用连接，触发排队和超时。",
+      "heading_level": null,
+      "markdown": "高基数 tenant_id 被加入缓存键，缓存复用率下降；慢请 求占用连接，触发排队和超时。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.02400000000006,
+          217.52912660000004,
+          292.6654770000001,
+          239.44672660000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "56f3c097-08d9-40c0-9e5f-49d543040cd6",
+      "source_block_id": "docling-SectionHeaderItem-31",
+      "order_index": 31,
+      "kind": "heading",
+      "native_type": null,
+      "text": "促成因素",
+      "heading_level": 1,
+      "markdown": "# 促成因素",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          259.5981266,
+          90.87440000000007,
+          269.56072660000007
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fdbb2f04-8ab6-42e8-867f-afd367434a7f",
+      "source_block_id": "docling-TextItem-32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "配置评审只检查了限流语义，没有检查缓存键基数。压 测样本使用了 5 个租户，未覆盖生产环境的 38,000 个 租户。",
+      "heading_level": null,
+      "markdown": "配置评审只检查了限流语义，没有检查缓存键基数。压 测样本使用了 5 个租户，未覆盖生产环境的 38,000 个 租户。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000065,
+          275.53812660000006,
+          292.6566000000001,
+          309.4107266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "cec96406-1f3d-4656-bb4b-9397d9b272fb",
+      "source_block_id": "docling-SectionHeaderItem-33",
+      "order_index": 33,
+      "kind": "heading",
+      "native_type": null,
+      "text": "未触发的保护",
+      "heading_level": 1,
+      "markdown": "# 未触发的保护",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          329.56212659999994,
+          110.79960000000008,
+          339.5247266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "7bb218e9-8715-4ecf-b958-30094ea1bba6",
+      "source_block_id": "docling-TextItem-34",
+      "order_index": 34,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "缓存命中率有监控但没有发布门禁；连接池告警阈值设 置为 90% ，无法提前发现趋势。为什么没有在发布前发",
+      "heading_level": null,
+      "markdown": "缓存命中率有监控但没有发布门禁；连接池告警阈值设 置为 90% ，无法提前发现趋势。为什么没有在发布前发",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024000000000086,
+          345.5021266,
+          292.65986020000014,
+          368.107146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f2dea865-fef3-4048-a35a-9b87dfd00ada",
+      "source_block_id": "docling-SectionHeaderItem-35",
+      "order_index": 35,
+      "kind": "heading",
+      "native_type": null,
+      "text": "5. 缓解措施",
+      "heading_level": 1,
+      "markdown": "# 5. 缓解措施",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          51.024,
+          393.6916142,
+          125.6878,
+          409.027702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "10b570ce-27bc-448d-975b-5bacfc62ecf8",
+      "source_block_id": "docling-ListItem-36",
+      "order_index": 36,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "回滚缓存键变更并清理高基数缓存项；",
+      "heading_level": null,
+      "markdown": "回滚缓存键变更并清理高基数缓存项；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          425.2791266,
+          245.29420000000002,
+          435.929146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5b106919-a88f-41e1-9324-d9fb0941771a",
+      "source_block_id": "docling-ListItem-37",
+      "order_index": 37,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "临时将连接池上限从 320 调整到 480 ，并限制重试次数；",
+      "heading_level": null,
+      "markdown": "临时将连接池上限从 320 调整到 480 ，并限制重试次数；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          445.2041266,
+          326.6934000000001,
+          455.854146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "57db4951-202f-47b8-8cc9-e5733f35272a",
+      "source_block_id": "docling-ListItem-38",
+      "order_index": 38,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "为受影响租户打开降级响应，返回可重试的错误码；",
+      "heading_level": null,
+      "markdown": "为受影响租户打开降级响应，返回可重试的错误码；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          465.1291266,
+          305.0698000000001,
+          475.779146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "34b645a0-c236-492c-b616-2ac895eeab02",
+      "source_block_id": "docling-ListItem-39",
+      "order_index": 39,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "在发布频道固定附带命中率、 P95 和连接池利用率。",
+      "heading_level": null,
+      "markdown": "在发布频道固定附带命中率、 P95 和连接池利用率。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          62.64,
+          485.0551266,
+          305.63980000000004,
+          495.705146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3bcb5136-b00a-4439-9d20-33a4039b271d",
+      "source_block_id": "docling-SectionHeaderItem-40",
+      "order_index": 40,
+      "kind": "heading",
+      "native_type": null,
+      "text": "现？",
+      "heading_level": 1,
+      "markdown": "# 现？",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          201.5891266,
+          322.54420000000005,
+          211.55172660000005
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "e6f8bc9e-3be2-4492-8ee1-65f61457df4c",
+      "source_block_id": "docling-ListItem-41",
+      "order_index": 41,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "变更模板把缓存键当作普通字符串；",
+      "heading_level": null,
+      "markdown": "变更模板把缓存键当作普通字符串；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          217.52912660000004,
+          474.01960000000014,
+          228.17914600000006
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fb84ff7f-4b92-4ce0-ad8a-4ca26c22c1f8",
+      "source_block_id": "docling-ListItem-42",
+      "order_index": 42,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "评审清单没有'基数'和'复用率'字段；",
+      "heading_level": null,
+      "markdown": "评审清单没有'基数'和'复用率'字段；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          233.46912659999998,
+          503.90740000000017,
+          244.119146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "767da956-46a1-4ba7-a9b1-e0d7031b83c2",
+      "source_block_id": "docling-ListItem-43",
+      "order_index": 43,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "预发布流量没有模拟长尾租户；",
+      "heading_level": null,
+      "markdown": "预发布流量没有模拟长尾租户；",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          249.4101266,
+          454.0944000000001,
+          260.06014600000003
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "11c77e4e-ffa7-4007-b046-db3d7feed093",
+      "source_block_id": "docling-ListItem-44",
+      "order_index": 44,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "回滚需要人工执行，没有自动策略。",
+      "heading_level": null,
+      "markdown": "回滚需要人工执行，没有自动策略。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          265.35012659999995,
+          474.01960000000014,
+          276.000146
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "595b1be7-37e7-40f3-ba42-bcbd05c6c12d",
+      "source_block_id": "docling-SectionHeaderItem-45",
+      "order_index": 45,
+      "kind": "heading",
+      "native_type": null,
+      "text": "结论",
+      "heading_level": 1,
+      "markdown": "# 结论",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          298.29812660000005,
+          322.54420000000005,
+          308.2607266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c0ee7440-9cac-4e36-878d-0d7347003825",
+      "source_block_id": "docling-TextItem-46",
+      "order_index": 46,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "代码本身没有错误，系统性风险来自配置、压测和门禁 之间的缺口。",
+      "heading_level": null,
+      "markdown": "代码本身没有错误，系统性风险来自配置、压测和门禁 之间的缺口。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          302.619,
+          314.2381266,
+          544.2419378,
+          336.1557266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "d0c56988-9dbf-4c9c-864e-7c8c4e10e8a4",
+      "source_block_id": "docling-SectionHeaderItem-47",
+      "order_index": 47,
+      "kind": "heading",
+      "native_type": null,
+      "text": "6. 监控和证据",
+      "heading_level": 1,
+      "markdown": "# 6. 监控和证据",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          50.46861420000005,
+          140.034,
+          65.80470200000002
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ceb175c8-9d9b-42ac-92ad-40825745411d",
+      "source_block_id": "docling-TableItem-48",
+      "order_index": 48,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
+      "heading_level": null,
+      "markdown": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          49.63472287304887,
+          80.2702751299123,
+          521.5331183259477,
+          151.65958462354467
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "6bffabe7-96dd-4978-9e81-35d48d1f3fca",
+      "source_block_id": "docling-SectionHeaderItem-49",
+      "order_index": 49,
+      "kind": "heading",
+      "native_type": null,
+      "text": "7. 后续行动项",
+      "heading_level": 1,
+      "markdown": "# 7. 后续行动项",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          174.5616142,
+          140.034,
+          189.89770199999998
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9ea5be82-28c6-4582-b24b-71f9eb55318f",
+      "source_block_id": "docling-TableItem-50",
+      "order_index": 50,
+      "kind": "table",
+      "native_type": null,
+      "text": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "heading_level": null,
+      "markdown": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          62.42672829207565,
+          211.51519886426615,
+          531.8614632735984,
+          295.05499009863684
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003"
+      }
+    },
+    {
+      "id": "898ee511-fa30-4802-9498-1d843d4082bf",
+      "source_block_id": "docling-SectionHeaderItem-51",
+      "order_index": 51,
+      "kind": "heading",
+      "native_type": null,
+      "text": "8. 复盘结论",
+      "heading_level": 1,
+      "markdown": "# 8. 复盘结论",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          321.23861420000003,
+          125.6878,
+          336.574702
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bf974b49-ff8d-4d25-9758-ab42e6100fec",
+      "source_block_id": "docling-TextItem-52",
+      "order_index": 52,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延 迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
+      "heading_level": null,
+      "markdown": "本次事故没有造成资金数据丢失，但暴露了配置变更缺少运行时证据的问题。后续复盘必须同时查看请求量、延 迟、缓存复用、资源上限和回滚路径，不能只确认配置语法正确。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          51.024,
+          352.8271266,
+          544.2424382,
+          374.7447266
+        ],
+        "page_width": 595.280029296875,
+        "page_height": 841.8900146484375,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "b1d2c5b2-9883-4c3b-90a5-a6df23bfd861",
+      "html": null,
+      "markdown": "| 时间 | 事件 | 证据与决定 |\n| --- | --- | --- |\n| 08:45 | 配置变更提交 | 将 tenant_id 加入边缘缓存键；评审通过 |\n| 09:12 | P95 超过 1.8 s | latency_p95 告警触发 |\n| 09:18 | 502 开始上升 | 值班工程师建立事故频道 |\n| 09:31 | 发现缓存命中率下降 | 对比变更前后的 cache_hit_ratio |\n| 09:42 | 回滚配置 | 限流规则恢复到 2026-07-13 版本 |\n| 10:03 | 服务恢复 | P95 回到 420 ms ，进入观察期 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        58.96244452352158,
+        480.6905895529133,
+        535.585566225723,
+        575.6148035491146
+      ],
+      "num_rows": 7,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "时间",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            65.998,
+            357.4438880484375,
+            85.92320000000001,
+            347.4812880484375
+          ]
+        },
+        {
+          "text": "事件",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            357.4438880484375,
+            174.4132,
+            347.4812880484375
+          ]
+        },
+        {
+          "text": "证据与决定",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            294.002,
+            357.4438880484375,
+            343.81500000000005,
+            347.4812880484375
+          ]
+        },
+        {
+          "text": "08:45",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.998,
+            339.1767874484375,
+            90.9244252,
+            329.8318686484374
+          ]
+        },
+        {
+          "text": "配置变更提交",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            340.4818880484375,
+            214.2636,
+            330.5192880484375
+          ]
+        },
+        {
+          "text": "将 tenant_id 加入边缘缓存键；评审通过",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.002,
+            340.4818880484375,
+            470.0462000000001,
+            329.8318686484374
+          ]
+        },
+        {
+          "text": "09:12",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.99799999999999,
+            327.22178744843745,
+            90.9244252,
+            317.8768686484375
+          ]
+        },
+        {
+          "text": "P95 超过 1.8 s",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            328.5268880484375,
+            219.2649542,
+            317.8768686484375
+          ]
+        },
+        {
+          "text": "latency_p95 告警触发",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.00199999999995,
+            328.5268880484375,
+            390.35040000000004,
+            317.8768686484375
+          ]
+        },
+        {
+          "text": "09:18",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.99799999999999,
+            315.2667874484375,
+            90.9244252,
+            305.92186864843757
+          ]
+        },
+        {
+          "text": "502 开始上升",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            316.5718880484376,
+            213.7284,
+            305.92186864843757
+          ]
+        },
+        {
+          "text": "值班工程师建立事故频道",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.00199999999995,
+            316.5718880484376,
+            403.59060000000005,
+            306.6092880484375
+          ]
+        },
+        {
+          "text": "09:31",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.99799999999999,
+            303.3117874484376,
+            90.9244252,
+            293.9668686484375
+          ]
+        },
+        {
+          "text": "发现缓存命中率下降",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            304.61688804843754,
+            244.1514,
+            294.6542880484376
+          ]
+        },
+        {
+          "text": "对比变更前后的 cache_hit_ratio",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.002,
+            304.61688804843754,
+            434.06539059999994,
+            293.9668686484375
+          ]
+        },
+        {
+          "text": "09:42",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.99799999999999,
+            291.35678744843756,
+            90.9244252,
+            282.0118686484375
+          ]
+        },
+        {
+          "text": "回滚配置",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            292.6618880484375,
+            194.33839999999998,
+            282.69928804843755
+          ]
+        },
+        {
+          "text": "限流规则恢复到 2026-07-13 版本",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.002,
+            292.6618880484375,
+            440.1632,
+            282.0118686484375
+          ]
+        },
+        {
+          "text": "10:03",
+          "start_row": 6,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            65.99799999999999,
+            279.4017874484375,
+            90.9244252,
+            270.05686864843756
+          ]
+        },
+        {
+          "text": "服务恢复",
+          "start_row": 6,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            154.488,
+            280.7068880484376,
+            194.33839999999998,
+            270.7442880484375
+          ]
+        },
+        {
+          "text": "P95 回到 420 ms ，进入观察期",
+          "start_row": 6,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            294.002,
+            280.7068880484376,
+            429.63660000000004,
+            270.05686864843756
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "ceb175c8-9d9b-42ac-92ad-40825745411d",
+      "html": null,
+      "markdown": "| 指标 | 事故前 | 峰值 | 恢复目标 |\n| --- | --- | --- | --- |\n| P95 latency | 420 ms | 2,400 ms | < 500 ms |\n| Cache hit ratio | 91% | 38% | > 85% |\n| Connection pool | 62% | 99% | < 75% |\n| HTTP 502 ratio | 0.08% | 1.20% | < 0.10% |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        49.63472287304887,
+        80.2702751299123,
+        521.5331183259477,
+        151.65958462354467
+      ],
+      "num_rows": 5,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "指标",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            57.001,
+            757.4348880484375,
+            76.9262,
+            747.4722880484375
+          ]
+        },
+        {
+          "text": "事故前",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            196.51500000000001,
+            757.4348880484375,
+            226.40280000000004,
+            747.4722880484375
+          ]
+        },
+        {
+          "text": "峰值",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            304.84900000000005,
+            757.4348880484375,
+            324.77420000000006,
+            747.4722880484375
+          ]
+        },
+        {
+          "text": "恢复目标",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            407.512,
+            757.4348880484375,
+            447.36240000000004,
+            747.4722880484375
+          ]
+        },
+        {
+          "text": "P95 latency",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            57.001,
+            739.1677874484375,
+            109.0456224,
+            729.8228686484375
+          ]
+        },
+        {
+          "text": "420 ms",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            196.51500000000001,
+            739.1677874484375,
+            229.17240280000004,
+            729.8228686484375
+          ]
+        },
+        {
+          "text": "2,400 ms",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            304.84900000000005,
+            739.1677874484375,
+            345.81521119999996,
+            729.8228686484375
+          ]
+        },
+        {
+          "text": "< 500 ms",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            407.512,
+            739.1677874484375,
+            448.75716399999993,
+            729.8228686484375
+          ]
+        },
+        {
+          "text": "Cache hit ratio",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            57.000999999999976,
+            727.2127874484376,
+            121.2199196,
+            717.8678686484375
+          ]
+        },
+        {
+          "text": "91%",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            196.515,
+            727.2127874484376,
+            216.4501626,
+            717.8678686484375
+          ]
+        },
+        {
+          "text": "38%",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            304.849,
+            727.2127874484376,
+            324.7841626,
+            717.8678686484375
+          ]
+        },
+        {
+          "text": "> 85%",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            407.512,
+            727.2127874484376,
+            436.0249612,
+            717.8678686484375
+          ]
+        },
+        {
+          "text": "Connection pool",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            57.000999999999976,
+            715.2577874484375,
+            128.980785,
+            705.9128686484376
+          ]
+        },
+        {
+          "text": "62%",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            196.515,
+            715.2577874484375,
+            216.4501626,
+            705.9128686484376
+          ]
+        },
+        {
+          "text": "99%",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            304.849,
+            715.2577874484375,
+            324.7841626,
+            705.9128686484376
+          ]
+        },
+        {
+          "text": "< 75%",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            407.512,
+            715.2577874484375,
+            436.0249612,
+            705.9128686484376
+          ]
+        },
+        {
+          "text": "HTTP 502 ratio",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            57.000999999999976,
+            703.3027874484375,
+            124.53746539999999,
+            693.9578686484375
+          ]
+        },
+        {
+          "text": "0.08%",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            196.515,
+            703.3027874484375,
+            224.758971,
+            693.9578686484375
+          ]
+        },
+        {
+          "text": "1.20%",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            304.849,
+            703.3027874484375,
+            333.092971,
+            693.9578686484375
+          ]
+        },
+        {
+          "text": "< 0.10%",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            407.512,
+            703.3027874484375,
+            444.3337696,
+            693.9578686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "9ea5be82-28c6-4582-b24b-71f9eb55318f",
+      "html": null,
+      "markdown": "| ID | 行动 | 负责人 | 截止日期 |\n| --- | --- | --- | --- |\n| A1 | 为缓存键增加基数估算和命中率预估 | Edge Team | 2026-07-28 |\n| A2 | 压测加入长尾租户和真实比例 | Performance | 2026-08-04 |\n| A3 | 将 cache_hit_ratio 纳入发布门禁 | Release Eng | 2026-08-11 |\n| A4 | 实现连接池趋势告警和自动回滚 | Reliability | 2026-08-18 |\n| A5 | 更新配置评审模板与培训材料 | Platform Team | 2026-08-21 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        62.42672829207565,
+        211.51519886426615,
+        531.8614632735984,
+        295.05499009863684
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "ID",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            69.941,
+            624.9507874484375,
+            79.9036,
+            615.6058686484374
+          ]
+        },
+        {
+          "text": "行动",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            110.243,
+            626.2558880484374,
+            130.1682,
+            616.2932880484375
+          ]
+        },
+        {
+          "text": "负责人",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            343.3,
+            626.2558880484374,
+            373.18780000000004,
+            616.2932880484375
+          ]
+        },
+        {
+          "text": "截止日期",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": [
+            454.468,
+            626.2558880484374,
+            494.31840000000005,
+            616.2932880484375
+          ]
+        },
+        {
+          "text": "A1",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.941,
+            607.9887874484375,
+            82.12525980000001,
+            598.6438686484374
+          ]
+        },
+        {
+          "text": "为缓存键增加基数估算和命中率预估",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            110.243,
+            609.2938880484375,
+            269.6446,
+            599.3312880484375
+          ]
+        },
+        {
+          "text": "Edge Team",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            343.3,
+            607.9887874484375,
+            393.70079339999995,
+            598.6438686484374
+          ]
+        },
+        {
+          "text": "2026-07-28",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            454.468,
+            607.9887874484375,
+            505.41673640000005,
+            598.6438686484374
+          ]
+        },
+        {
+          "text": "A2",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94100000000003,
+            596.0337874484375,
+            82.12525980000004,
+            586.6888686484375
+          ]
+        },
+        {
+          "text": "压测加入长尾租户和真实比例",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            110.24300000000002,
+            597.3388880484375,
+            239.75680000000003,
+            587.3762880484375
+          ]
+        },
+        {
+          "text": "Performance",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            343.3,
+            596.0337874484375,
+            400.32592239999997,
+            586.6888686484375
+          ]
+        },
+        {
+          "text": "2026-08-04",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            454.468,
+            596.0337874484375,
+            505.41673640000005,
+            586.6888686484375
+          ]
+        },
+        {
+          "text": "A3",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94100000000003,
+            584.0787874484375,
+            82.12525980000004,
+            574.7338686484375
+          ]
+        },
+        {
+          "text": "将 cache_hit_ratio 纳入发布门禁",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            110.24300000000002,
+            585.3838880484375,
+            253.08560000000008,
+            574.7338686484375
+          ]
+        },
+        {
+          "text": "Release Eng",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            343.30000000000007,
+            584.0787874484375,
+            400.3259224,
+            574.7338686484375
+          ]
+        },
+        {
+          "text": "2026-08-11",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            454.4680000000001,
+            584.0787874484375,
+            504.6795040000001,
+            574.7338686484375
+          ]
+        },
+        {
+          "text": "A4",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94100000000009,
+            572.1237874484375,
+            82.1252598000001,
+            562.7788686484374
+          ]
+        },
+        {
+          "text": "实现连接池趋势告警和自动回滚",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            110.24300000000008,
+            573.4288880484374,
+            249.7194000000001,
+            563.4662880484375
+          ]
+        },
+        {
+          "text": "Reliability",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            343.30000000000007,
+            572.1237874484375,
+            385.9200028,
+            562.7788686484374
+          ]
+        },
+        {
+          "text": "2026-08-18",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            454.4680000000001,
+            572.1237874484375,
+            505.4167364000001,
+            562.7788686484374
+          ]
+        },
+        {
+          "text": "A5",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            69.94100000000009,
+            560.1677874484375,
+            82.1252598000001,
+            550.8228686484375
+          ]
+        },
+        {
+          "text": "更新配置评审模板与培训材料",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            110.24300000000008,
+            561.4728880484375,
+            239.75680000000008,
+            551.5102880484375
+          ]
+        },
+        {
+          "text": "Platform Team",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            343.30000000000007,
+            560.1677874484375,
+            407.52888219999994,
+            550.8228686484375
+          ]
+        },
+        {
+          "text": "2026-08-21",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": [
+            454.4680000000001,
+            560.1677874484375,
+            505.4167364000001,
+            550.8228686484375
+          ]
+        }
+      ],
+      "metadata": {
+        "parser": "docling-local"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.9,
+    "reading_order": 0.85,
+    "table": 0.9,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "docling-local",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "docling",
+    "version": "2.120.2",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "文本型 PDF 未启用 OCR。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:22:26.582701Z"
+}

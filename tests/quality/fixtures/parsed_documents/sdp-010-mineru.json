@@ -1,0 +1,1100 @@
+{
+  "document_id": "d3a417ab-8acc-4e8d-8501-fde22f2aa29a",
+  "filename": "knowledge_page_long_screenshot.png",
+  "file_type": "image/png",
+  "source_size_bytes": 366335,
+  "source_sha256": "6ebc05f2cfa673fbbdcee72a637af48139ea1ca261d601ec4b60eb14583125ef",
+  "routing_decision": null,
+  "markdown": "首页/平台运维/解析服务/故障排查\n\n## 文档解析任务失败排查指南\n\n最后更新：2026-08-12维护人：文档智能平台组 已发布\n\n## 适用范围\n\n本页用于处理上传后状态停留在“解析中”、表格列错位或OCR置信度过低的问题。生产环境变更前请先确认工单和回滚窗口。\n\n## 1. 先看任务状态\n\n1. 在任务详情中记录任务ID、文件名和创建时间。\n\n2. 查看parser-gateway与'ocr-worker的相关日志。\n\n3. 若队列深度超过500，先确认是否为批量导入窗口。\n\n## 注意\n\n不要直接删除失败任务。质量层需要保留原始文件、解析版本和错误码，便于回放。\n\n## 2. 常见错误码\n\n<table><tr><td>错误码</td><td>状态</td><td>处理建议</td></tr><tr><td>P-1001</td><td>文件无法读取</td><td>确认扩展名和对象存储权 限</td></tr><tr><td>P-2014</td><td>扫描件 OCR 置信度 低</td><td>检查页面旋转，必要时人 工复核</td></tr><tr><td>T-3021</td><td>跨页表格断裂</td><td>重新运行表格结构恢复</td></tr><tr><td>R-4102</td><td>引用目标不唯一</td><td>保留 unresolved，提交质 量队列</td></tr></table>\n\n## 3. 生产复现命令\n\ncurl -X POST https://parser-gateway/v2/replay -H 'X-Request-ID: req\\_20260812\\_7f3a' -d '\"task\":\"tsk\\_91a2\",\"mode\":\"safe\"'\n\n## 4. 质量层判定\n\n解析结果同时包含status、confidence和'evidence。当表头继承失败或引用无法唯一定位时，状态应为'manual\\_review\\_required'，而不是'verified。\n\n<table><tr><td>状态</td><td>进入条件</td></tr><tr><td>verified</td><td>结构和来源证据完整</td></tr><tr><td>needs_reparse</td><td>可通过参数或版本修复</td></tr><tr><td>manual_review_required</td><td>存在多个合理解释</td></tr><tr><td>rejected</td><td>文件损坏或不在支持范围</td></tr></table>\n\n## 5. 升级路径\n\n1. L1值班同学：收集任务ID、错误码和页面截图。\n\n2. L2解析服务：检查版本、队列和对象存储。\n\n3. L3 算法同学：复核版面、表格和引用证据。\n\n4. 需要数据修复时，创建质量队列条目并关联原任务。\n\n解析服务发布流程·质量层字段字典·扫描件人工复核SOP表格回放工具",
+  "blocks": [
+    {
+      "id": "c612d320-e72f-463f-bd7d-43913f2e46df",
+      "source_block_id": "mineru-content-0001",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "首页/平台运维/解析服务/故障排查",
+      "heading_level": null,
+      "markdown": "首页/平台运维/解析服务/故障排查",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.0,
+          52.0,
+          439.0,
+          63.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "42c86084-2978-4a29-89c8-698cc07a5232",
+      "source_block_id": "mineru-content-0002",
+      "order_index": 1,
+      "kind": "heading",
+      "native_type": null,
+      "text": "文档解析任务失败排查指南",
+      "heading_level": 2,
+      "markdown": "文档解析任务失败排查指南",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.0,
+          91.0,
+          603.0,
+          109.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3a2f3c97-fcb4-4f97-8bd9-90ef0b29df44",
+      "source_block_id": "mineru-content-0003",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "最后更新：2026-08-12维护人：文档智能平台组 已发布",
+      "heading_level": null,
+      "markdown": "最后更新：2026-08-12维护人：文档智能平台组 已发布",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.0,
+          118.0,
+          678.0,
+          133.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b435fcf5-64af-436e-8e04-06fc2ddb825d",
+      "source_block_id": "mineru-content-0004",
+      "order_index": 3,
+      "kind": "heading",
+      "native_type": null,
+      "text": "适用范围",
+      "heading_level": 2,
+      "markdown": "适用范围",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          28.0,
+          161.0,
+          167.0,
+          173.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b4006c87-da77-45b1-9eab-1b79cf1166c9",
+      "source_block_id": "mineru-content-0005",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "本页用于处理上传后状态停留在“解析中”、表格列错位或OCR置信度过低的问题。生产环境变更前请先确认工单和回滚窗口。",
+      "heading_level": null,
+      "markdown": "本页用于处理上传后状态停留在“解析中”、表格列错位或OCR置信度过低的问题。生产环境变更前请先确认工单和回滚窗口。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          173.0,
+          889.0,
+          198.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bde8e3b6-70d5-4552-a961-2b4ed8e29ada",
+      "source_block_id": "mineru-content-0006",
+      "order_index": 5,
+      "kind": "heading",
+      "native_type": null,
+      "text": "1. 先看任务状态",
+      "heading_level": 2,
+      "markdown": "1. 先看任务状态",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          223.0,
+          282.0,
+          239.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fffb4133-ae13-4e34-98ba-277fb9e35bdd",
+      "source_block_id": "mineru-content-0007",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. 在任务详情中记录任务ID、文件名和创建时间。",
+      "heading_level": null,
+      "markdown": "1. 在任务详情中记录任务ID、文件名和创建时间。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          10.0,
+          255.0,
+          728.0,
+          268.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c9d1a1e6-b517-44ca-bda1-f17497865185",
+      "source_block_id": "mineru-content-0008",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. 查看parser-gateway与'ocr-worker的相关日志。",
+      "heading_level": null,
+      "markdown": "2. 查看parser-gateway与'ocr-worker的相关日志。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          10.0,
+          274.0,
+          775.0,
+          287.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "37756c13-5b09-4a0d-b816-dc043d331c99",
+      "source_block_id": "mineru-content-0009",
+      "order_index": 8,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. 若队列深度超过500，先确认是否为批量导入窗口。",
+      "heading_level": null,
+      "markdown": "3. 若队列深度超过500，先确认是否为批量导入窗口。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          10.0,
+          293.0,
+          782.0,
+          306.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "37c39e81-c3e7-4e07-9f2c-5a025de00bb1",
+      "source_block_id": "mineru-content-0010",
+      "order_index": 9,
+      "kind": "heading",
+      "native_type": null,
+      "text": "注意",
+      "heading_level": 2,
+      "markdown": "注意",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          28.0,
+          332.0,
+          103.0,
+          346.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8851e452-1ded-443b-bf17-045bf84a77f3",
+      "source_block_id": "mineru-content-0011",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "不要直接删除失败任务。质量层需要保留原始文件、解析版本和错误码，便于回放。",
+      "heading_level": null,
+      "markdown": "不要直接删除失败任务。质量层需要保留原始文件、解析版本和错误码，便于回放。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          343.0,
+          889.0,
+          369.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c1bb6d0e-baff-4f53-b2df-120449bcac15",
+      "source_block_id": "mineru-content-0012",
+      "order_index": 11,
+      "kind": "heading",
+      "native_type": null,
+      "text": "2. 常见错误码",
+      "heading_level": 2,
+      "markdown": "2. 常见错误码",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          395.0,
+          242.0,
+          410.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "bbad15f5-ffa0-4d2d-93cf-65c6e7f4f4ac",
+      "source_block_id": "mineru-content-0013",
+      "order_index": 12,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 错误码 | 状态 | 处理建议 |\n| --- | --- | --- |\n| P-1001 | 文件无法读取 | 确认扩展名和对象存储权 限 |\n| P-2014 | 扫描件 OCR 置信度 低 | 检查页面旋转，必要时人 工复核 |\n| T-3021 | 跨页表格断裂 | 重新运行表格结构恢复 |\n| R-4102 | 引用目标不唯一 | 保留 unresolved，提交质 量队列 |",
+      "heading_level": null,
+      "markdown": "| 错误码 | 状态 | 处理建议 |\n| --- | --- | --- |\n| P-1001 | 文件无法读取 | 确认扩展名和对象存储权 限 |\n| P-2014 | 扫描件 OCR 置信度 低 | 检查页面旋转，必要时人 工复核 |\n| T-3021 | 跨页表格断裂 | 重新运行表格结构恢复 |\n| R-4102 | 引用目标不唯一 | 保留 unresolved，提交质 量队列 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          417.0,
+          942.0,
+          522.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/aa8f6b9518eb15fe7e2511a6ca521975a0c21d471a1e9f901e781b7ccf38253c.jpg"
+      }
+    },
+    {
+      "id": "64d3ed74-35cd-4b34-9901-b063abc97299",
+      "source_block_id": "mineru-content-0014",
+      "order_index": 13,
+      "kind": "heading",
+      "native_type": null,
+      "text": "3. 生产复现命令",
+      "heading_level": 2,
+      "markdown": "3. 生产复现命令",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          541.0,
+          278.0,
+          557.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "609f9d6c-b7a8-41fa-9f0f-9fac80427dfd",
+      "source_block_id": "mineru-content-0015",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "curl -X POST https://parser-gateway/v2/replay -H 'X-Request-ID: req\\_20260812\\_7f3a' -d '\"task\":\"tsk\\_91a2\",\"mode\":\"safe\"'",
+      "heading_level": null,
+      "markdown": "curl -X POST https://parser-gateway/v2/replay -H 'X-Request-ID: req\\_20260812\\_7f3a' -d '\"task\":\"tsk\\_91a2\",\"mode\":\"safe\"'",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          25.0,
+          574.0,
+          578.0,
+          600.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "82aa523c-0e07-48b7-a173-398e0d4f9fee",
+      "source_block_id": "mineru-content-0016",
+      "order_index": 15,
+      "kind": "heading",
+      "native_type": null,
+      "text": "4. 质量层判定",
+      "heading_level": 2,
+      "markdown": "4. 质量层判定",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          627.0,
+          242.0,
+          642.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ea2d079b-27a1-4244-a9bd-d2af19799e5e",
+      "source_block_id": "mineru-content-0017",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "解析结果同时包含status、confidence和'evidence。当表头继承失败或引用无法唯一定位时，状态应为'manual\\_review\\_required'，而不是'verified。",
+      "heading_level": null,
+      "markdown": "解析结果同时包含status、confidence和'evidence。当表头继承失败或引用无法唯一定位时，状态应为'manual\\_review\\_required'，而不是'verified。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          647.0,
+          1000.0,
+          673.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c40df88a-e8ae-46d3-850f-41840e3ec842",
+      "source_block_id": "mineru-content-0018",
+      "order_index": 17,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 状态 | 进入条件 |\n| --- | --- |\n| verified | 结构和来源证据完整 |\n| needs_reparse | 可通过参数或版本修复 |\n| manual_review_required | 存在多个合理解释 |\n| rejected | 文件损坏或不在支持范围 |",
+      "heading_level": null,
+      "markdown": "| 状态 | 进入条件 |\n| --- | --- |\n| verified | 结构和来源证据完整 |\n| needs_reparse | 可通过参数或版本修复 |\n| manual_review_required | 存在多个合理解释 |\n| rejected | 文件损坏或不在支持范围 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          678.0,
+          889.0,
+          744.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002",
+        "caption": [],
+        "footnote": [],
+        "img_path": "images/68210c00402796cff6b672fba15fbf8aca81665aad49ab1e6859cb08c45f15ac.jpg"
+      }
+    },
+    {
+      "id": "f244831d-1985-4ba6-bc8d-2c4dcbdb0b9e",
+      "source_block_id": "mineru-content-0019",
+      "order_index": 18,
+      "kind": "heading",
+      "native_type": null,
+      "text": "5. 升级路径",
+      "heading_level": 2,
+      "markdown": "5. 升级路径",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          0.0,
+          762.0,
+          203.0,
+          778.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3a2225ea-a2ed-49ae-afaa-c32a7a852fe9",
+      "source_block_id": "mineru-content-0020",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1. L1值班同学：收集任务ID、错误码和页面截图。",
+      "heading_level": null,
+      "markdown": "1. L1值班同学：收集任务ID、错误码和页面截图。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          14.0,
+          789.0,
+          675.0,
+          801.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0dbe6a4c-b7e7-46b9-8c77-62e2707fec3b",
+      "source_block_id": "mineru-content-0021",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2. L2解析服务：检查版本、队列和对象存储。",
+      "heading_level": null,
+      "markdown": "2. L2解析服务：检查版本、队列和对象存储。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          14.0,
+          806.0,
+          610.0,
+          817.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "8498ba0b-b676-46af-8904-d4f644b3ffb7",
+      "source_block_id": "mineru-content-0022",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3. L3 算法同学：复核版面、表格和引用证据。",
+      "heading_level": null,
+      "markdown": "3. L3 算法同学：复核版面、表格和引用证据。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          14.0,
+          821.0,
+          607.0,
+          833.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "07834b0d-cb96-4f40-a32d-7463770ad8a9",
+      "source_block_id": "mineru-content-0023",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "4. 需要数据修复时，创建质量队列条目并关联原任务。",
+      "heading_level": null,
+      "markdown": "4. 需要数据修复时，创建质量队列条目并关联原任务。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          14.0,
+          837.0,
+          710.0,
+          849.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fc44b8bd-7f09-4d50-a9b8-c5cb8b7122fa",
+      "source_block_id": "mineru-content-0024",
+      "order_index": 23,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "解析服务发布流程·质量层字段字典·扫描件人工复核SOP表格回放工具",
+      "heading_level": null,
+      "markdown": "解析服务发布流程·质量层字段字典·扫描件人工复核SOP表格回放工具",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          25.0,
+          890.0,
+          889.0,
+          918.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f5ae8978-c52d-4592-9839-ed4f7e09a8df",
+      "source_block_id": "mineru-content-0025",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "LLMwiki 内部知识库",
+      "heading_level": null,
+      "markdown": "LLMwiki 内部知识库",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          292.0,
+          19.0,
+          671.0,
+          34.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    },
+    {
+      "id": "4593889e-08ae-47c8-83a5-f83b9e6c7c75",
+      "source_block_id": "mineru-content-0026",
+      "order_index": 25,
+      "kind": "footer",
+      "native_type": null,
+      "text": "页面截图为合成内部资料；示例任务ID和域名均不可用于生产。",
+      "heading_level": null,
+      "markdown": "页面截图为合成内部资料；示例任务ID和域名均不可用于生产。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          53.0,
+          945.0,
+          692.0,
+          956.0
+        ],
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": "block",
+        "provenance_status": null,
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "bbad15f5-ffa0-4d2d-93cf-65c6e7f4f4ac",
+      "html": "<table><tr><td>错误码</td><td>状态</td><td>处理建议</td></tr><tr><td>P-1001</td><td>文件无法读取</td><td>确认扩展名和对象存储权 限</td></tr><tr><td>P-2014</td><td>扫描件 OCR 置信度 低</td><td>检查页面旋转，必要时人 工复核</td></tr><tr><td>T-3021</td><td>跨页表格断裂</td><td>重新运行表格结构恢复</td></tr><tr><td>R-4102</td><td>引用目标不唯一</td><td>保留 unresolved，提交质 量队列</td></tr></table>",
+      "markdown": "| 错误码 | 状态 | 处理建议 |\n| --- | --- | --- |\n| P-1001 | 文件无法读取 | 确认扩展名和对象存储权 限 |\n| P-2014 | 扫描件 OCR 置信度 低 | 检查页面旋转，必要时人 工复核 |\n| T-3021 | 跨页表格断裂 | 重新运行表格结构恢复 |\n| R-4102 | 引用目标不唯一 | 保留 unresolved，提交质 量队列 |",
+      "caption": null,
+      "image_path": "images/aa8f6b9518eb15fe7e2511a6ca521975a0c21d471a1e9f901e781b7ccf38253c.jpg",
+      "page_number": 1,
+      "bbox": [
+        0.0,
+        417.0,
+        942.0,
+        522.0
+      ],
+      "num_rows": 5,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "错误码",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "状态",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "处理建议",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P-1001",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "文件无法读取",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "确认扩展名和对象存储权 限",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "P-2014",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "扫描件 OCR 置信度 低",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "检查页面旋转，必要时人 工复核",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "T-3021",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "跨页表格断裂",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "重新运行表格结构恢复",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "R-4102",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "引用目标不唯一",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "保留 unresolved，提交质 量队列",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "c40df88a-e8ae-46d3-850f-41840e3ec842",
+      "html": "<table><tr><td>状态</td><td>进入条件</td></tr><tr><td>verified</td><td>结构和来源证据完整</td></tr><tr><td>needs_reparse</td><td>可通过参数或版本修复</td></tr><tr><td>manual_review_required</td><td>存在多个合理解释</td></tr><tr><td>rejected</td><td>文件损坏或不在支持范围</td></tr></table>",
+      "markdown": "| 状态 | 进入条件 |\n| --- | --- |\n| verified | 结构和来源证据完整 |\n| needs_reparse | 可通过参数或版本修复 |\n| manual_review_required | 存在多个合理解释 |\n| rejected | 文件损坏或不在支持范围 |",
+      "caption": null,
+      "image_path": "images/68210c00402796cff6b672fba15fbf8aca81665aad49ab1e6859cb08c45f15ac.jpg",
+      "page_number": 1,
+      "bbox": [
+        0.0,
+        678.0,
+        889.0,
+        744.0
+      ],
+      "num_rows": 5,
+      "num_cols": 2,
+      "cells": [
+        {
+          "text": "状态",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "进入条件",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "verified",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "结构和来源证据完整",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "needs_reparse",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "可通过参数或版本修复",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "manual_review_required",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "存在多个合理解释",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "rejected",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "文件损坏或不在支持范围",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "mineru-cloud",
+        "source": "table_body_html"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.9,
+    "layout": 0.8,
+    "reading_order": 0.8,
+    "table": 0.7,
+    "overall": 0.8
+  },
+  "provenance": {
+    "parser_id": "mineru-cloud",
+    "requested_parser_id": "mineru",
+    "routing_mode": "auto",
+    "model": "pipeline",
+    "version": "v4",
+    "parameters": {
+      "is_ocr": true,
+      "model_version": "pipeline",
+      "enable_formula": true,
+      "enable_table": true
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "block",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "available",
+      "granularity": "cell_with_span",
+      "reason": null,
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "available",
+      "granularity": null,
+      "reason": null,
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:23:30.420951Z"
+}

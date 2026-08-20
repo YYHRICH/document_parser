@@ -180,6 +180,26 @@ class RoutingDecision(BaseModel):
         return self
 
 
+class ParserNativeResult(BaseModel):
+    """单个解析器返回的原生结果和产物清单。"""
+
+    document_id: UUID
+    parser_id: str
+    parser_version: str
+    filename: str
+    file_type: str
+    source_size_bytes: int | None = Field(default=None, ge=0)
+    source_sha256: str | None = None
+    options: dict[str, Any] = Field(default_factory=dict)
+    markdown: str | None = None
+    html: str | None = None
+    payload: dict[str, Any] = Field(default_factory=dict)
+    native_artifacts: list["NativeArtifact"] = Field(default_factory=list)
+    native_files: dict[str, bytes] = Field(default_factory=dict)
+    warnings: list[str] = Field(default_factory=list)
+    capabilities: dict[str, "EvidenceCapability"] = Field(default_factory=dict)
+
+
 class NativeArtifact(BaseModel):
     """解析器原生产物的安全文件引用，不把大型 JSON/二进制塞入公共结果。"""
 

@@ -1,0 +1,2141 @@
+{
+  "document_id": "63ea77b5-b173-442e-86a8-93046f24305f",
+  "filename": "equipment_work_order_scan.pdf",
+  "file_type": "application/pdf",
+  "source_size_bytes": 79579,
+  "source_sha256": "01087a2d9cb160abd86ec4aa73313e19985823beccdd3fd487bcc99e044db5d5",
+  "routing_decision": null,
+  "markdown": "维修工单 设备维护中心\n\n设备维修工单\n\n华东制造中心 资产维护系统 /\n\n一、故障描述\n\n设备在夜班运行期间出现间歇性过热告警，控制面板在 和 两次进入保护模式。 04:10 04:26\n\n现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。\n\n二、现场初检\n\n1\n\n| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间 / B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |\n\n| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15–35 C | 正常 |\n| 输入电压 | 23.8 V | 22–26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |\n\n维修工单 设备维护中心\n\n设备维修工单 检查记录 /\n\n三、诊断过程\n\n断开主电源并等待 秒，确认直流母线电压降至 V； 1. 90 0\n\n拆下右侧风扇护罩，检查叶片、轴承和排风通道； 2.\n\n使用 测量输入端、控制端和热敏电阻阻值； 3. FLUKE-87V\n\n读取控制器日志，确认 与风扇低速状态同时出现； 4. THR-07\n\n将备用风扇接入测试端口，观察温度曲线 分钟。 5. 15\n\n四、测量记录\n\n五、处理措施\n\n原风扇型号 的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘 FAN-AX200-12V\n\n后重新固定护罩，恢复控制器参数并执行满载测试。\n\n2\n\n| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |\n\n维修工单 设备维护中心\n\n设备维修工单 验收与签字 /\n\n六、更换零件\n\n七、验收结果\n\n八、结论\n\n故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在 2026-09-01\n\n前将同批次模块纳入预防性巡检。\n\n维修负责人：周海 生产确认：李明 复核：王倩\n\n日期：2026-08-17 日期：2026-08-17 日期：2026-08-17\n\n3\n\n| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |\n\n| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+  "blocks": [
+    {
+      "id": "83c58029-025d-47dd-b879-c4b3a7cd454a",
+      "source_block_id": "pdfplumber-p1-l0",
+      "order_index": 0,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单 设备维护中心",
+      "heading_level": null,
+      "markdown": "维修工单 设备维护中心",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          19.673483199999964,
+          538.5831999999999,
+          31.628683199999955
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "维修工单 设备维护中心"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "50e7d862-834b-4263-a403-7193f92343a3",
+      "source_block_id": "pdfplumber-p1-l1",
+      "order_index": 1,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维修工单",
+      "heading_level": null,
+      "markdown": "设备维修工单",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          56.01660980000008,
+          188.19979999999998,
+          77.93440980000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "设备维修工单"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "00b7005c-d734-47fc-bf1a-e525903c0234",
+      "source_block_id": "pdfplumber-p1-l2",
+      "order_index": 2,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "华东制造中心 资产维护系统 /",
+      "heading_level": null,
+      "markdown": "华东制造中心 资产维护系统 /",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          88.42208310000001,
+          196.6946,
+          100.08391100000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "华东制造中心 资产维护系统 /"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "5bb942ff-46b5-4a8a-a724-b5a2a59c1946",
+      "source_block_id": "pdfplumber-p1-l3",
+      "order_index": 3,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "一、故障描述",
+      "heading_level": null,
+      "markdown": "一、故障描述",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          263.8759714,
+          159.98539999999997,
+          281.09137139999996
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "一、故障描述"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "95868bd1-fbde-4317-9719-a43888d904c2",
+      "source_block_id": "pdfplumber-p1-l4",
+      "order_index": 4,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备在夜班运行期间出现间歇性过热告警，控制面板在 和 两次进入保护模式。 04:10 04:26",
+      "heading_level": null,
+      "markdown": "设备在夜班运行期间出现间歇性过热告警，控制面板在 和 两次进入保护模式。 04:10 04:26",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.693,
+          297.0994832,
+          546.097408,
+          309.879592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "设备在夜班运行期间出现间歇性过热告警，控制面板在 和 两次进入保护模式。 04:10 04:26"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2d380a88-1b6f-45f2-b41a-6e167d121a85",
+      "source_block_id": "pdfplumber-p1-l5",
+      "order_index": 5,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。",
+      "heading_level": null,
+      "markdown": "现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.692999999999984,
+          311.5454831999999,
+          379.48339999999985,
+          323.5006831999999
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "现场未发现外壳破损或液体泄漏，生产线已切换到备用模块。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c4d07a5d-204f-413a-b514-241d0a30d06f",
+      "source_block_id": "pdfplumber-p1-l6",
+      "order_index": 6,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "二、现场初检",
+      "heading_level": null,
+      "markdown": "二、现场初检",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.692999999999984,
+          350.64297139999996,
+          159.98539999999997,
+          367.8583714
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "二、现场初检"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1a388855-53b5-4332-9c23-749c49b03072",
+      "source_block_id": "pdfplumber-p1-l7",
+      "order_index": 7,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "1",
+      "heading_level": null,
+      "markdown": "1",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          294.313,
+          805.640392,
+          300.96009119999997,
+          817.595592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "1"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "119e06d2-b46c-4d35-bd5d-c5a490823b13",
+      "source_block_id": "pdfplumber-p1-t1",
+      "order_index": 8,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间 / B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "heading_level": null,
+      "markdown": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间 / B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.922615384615376,
+          127.44183333333332,
+          516.5978333333334,
+          201.82900000000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "table",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-001"
+      }
+    },
+    {
+      "id": "4e0ce432-7085-4f6b-9074-f7e09874c33c",
+      "source_block_id": "pdfplumber-p1-t2",
+      "order_index": 9,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15–35 C | 正常 |\n| 输入电压 | 23.8 V | 22–26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "heading_level": null,
+      "markdown": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15–35 C | 正常 |\n| 输入电压 | 23.8 V | 22–26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "anchor": {
+        "page_number": 1,
+        "bbox": [
+          56.922615384615376,
+          382.8592,
+          493.9254285714286,
+          471.766
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "table",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-002"
+      }
+    },
+    {
+      "id": "e24c5ff6-5f3d-4980-8a86-06b9257c4f53",
+      "source_block_id": "pdfplumber-p2-l10",
+      "order_index": 10,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单 设备维护中心",
+      "heading_level": null,
+      "markdown": "维修工单 设备维护中心",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.693,
+          19.673483199999964,
+          538.5831999999999,
+          31.628683199999955
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "维修工单 设备维护中心"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "ab7a6a4a-34af-4534-b9a7-c738f0b873b8",
+      "source_block_id": "pdfplumber-p2-l11",
+      "order_index": 11,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维修工单 检查记录 /",
+      "heading_level": null,
+      "markdown": "设备维修工单 检查记录 /",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.693,
+          56.13872479999998,
+          250.9672,
+          75.30888800000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "设备维修工单 检查记录 /"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c34be691-27ed-4963-8f8b-77e65402dc28",
+      "source_block_id": "pdfplumber-p2-l12",
+      "order_index": 12,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "三、诊断过程",
+      "heading_level": null,
+      "markdown": "三、诊断过程",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.692999999999984,
+          123.04797140000005,
+          159.98539999999997,
+          140.26337139999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "三、诊断过程"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b36e9f87-6bb8-427a-a4b9-d4317a2df3d8",
+      "source_block_id": "pdfplumber-p2-l13",
+      "order_index": 13,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "断开主电源并等待 秒，确认直流母线电压降至 V； 1. 90 0",
+      "heading_level": null,
+      "markdown": "断开主电源并等待 秒，确认直流母线电压降至 V； 1. 90 0",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.633,
+          156.27148320000003,
+          378.8462,
+          169.05159200000003
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "断开主电源并等待 秒，确认直流母线电压降至 V； 1. 90 0"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "fad5d98b-23c7-4a4b-9a3a-b9fb76dc89e8",
+      "source_block_id": "pdfplumber-p2-l14",
+      "order_index": 14,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "拆下右侧风扇护罩，检查叶片、轴承和排风通道； 2.",
+      "heading_level": null,
+      "markdown": "拆下右侧风扇护罩，检查叶片、轴承和排风通道； 2.",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.633,
+          180.67948319999994,
+          349.5953999999999,
+          193.45959199999993
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "拆下右侧风扇护罩，检查叶片、轴承和排风通道； 2."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "2e76ae67-e141-43d9-945f-9fdc158f1d2d",
+      "source_block_id": "pdfplumber-p2-l15",
+      "order_index": 15,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "使用 测量输入端、控制端和热敏电阻阻值； 3. FLUKE-87V",
+      "heading_level": null,
+      "markdown": "使用 测量输入端、控制端和热敏电阻阻值； 3. FLUKE-87V",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.633,
+          205.08848320000004,
+          384.1584,
+          217.86859200000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "使用 测量输入端、控制端和热敏电阻阻值； 3. FLUKE-87V"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "0dc1264a-99d4-4e38-9ed2-079cd21d73c2",
+      "source_block_id": "pdfplumber-p2-l16",
+      "order_index": 16,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "读取控制器日志，确认 与风扇低速状态同时出现； 4. THR-07",
+      "heading_level": null,
+      "markdown": "读取控制器日志，确认 与风扇低速状态同时出现； 4. THR-07",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.633,
+          229.49648319999994,
+          398.0874,
+          242.27659199999994
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "读取控制器日志，确认 与风扇低速状态同时出现； 4. THR-07"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "76b528cf-6343-48e9-8f49-addc90e61a99",
+      "source_block_id": "pdfplumber-p2-l17",
+      "order_index": 17,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "将备用风扇接入测试端口，观察温度曲线 分钟。 5. 15",
+      "heading_level": null,
+      "markdown": "将备用风扇接入测试端口，观察温度曲线 分钟。 5. 15",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          70.633,
+          253.90548320000005,
+          357.5806,
+          266.68559200000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "将备用风扇接入测试端口，观察温度曲线 分钟。 5. 15"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "72580200-322c-4c49-a232-7021add25e96",
+      "source_block_id": "pdfplumber-p2-l18",
+      "order_index": 18,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "四、测量记录",
+      "heading_level": null,
+      "markdown": "四、测量记录",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.69300000000001,
+          293.0019714000001,
+          159.9854,
+          310.21737140000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "四、测量记录"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "46227497-9b7d-47f3-a1d1-5da3ca63a31b",
+      "source_block_id": "pdfplumber-p2-l19",
+      "order_index": 19,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "五、处理措施",
+      "heading_level": null,
+      "markdown": "五、处理措施",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.693,
+          436.5549714,
+          159.98539999999997,
+          453.77037140000004
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "五、处理措施"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "1c6dd989-e993-475b-895d-14abd253604c",
+      "source_block_id": "pdfplumber-p2-l20",
+      "order_index": 20,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "原风扇型号 的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘 FAN-AX200-12V",
+      "heading_level": null,
+      "markdown": "原风扇型号 的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘 FAN-AX200-12V",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.693,
+          469.7784832,
+          538.5749007999998,
+          482.558592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "原风扇型号 的轴承阻力明显升高，已更换为同规格备件。清理排风口积尘 FAN-AX200-12V"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "b90e9003-6843-4369-918a-7b2a6f65fa3c",
+      "source_block_id": "pdfplumber-p2-l21",
+      "order_index": 21,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "后重新固定护罩，恢复控制器参数并执行满载测试。",
+      "heading_level": null,
+      "markdown": "后重新固定护罩，恢复控制器参数并执行满载测试。",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.692999999999984,
+          484.2244832,
+          331.6625999999999,
+          496.17968320000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "后重新固定护罩，恢复控制器参数并执行满载测试。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9d13a052-b0c2-4f07-825e-2d727e568c8c",
+      "source_block_id": "pdfplumber-p2-l22",
+      "order_index": 22,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "2",
+      "heading_level": null,
+      "markdown": "2",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          294.313,
+          805.640392,
+          300.96009119999997,
+          817.595592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "2"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "50840210-182c-4c35-bb76-4c510f10ac14",
+      "source_block_id": "pdfplumber-p2-t3",
+      "order_index": 23,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "heading_level": null,
+      "markdown": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "anchor": {
+        "page_number": 2,
+        "bbox": [
+          56.920428571428566,
+          325.2192,
+          491.0905714285714,
+          414.126
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "table",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-003"
+      }
+    },
+    {
+      "id": "587365f0-4767-4024-867d-c16eb80c5320",
+      "source_block_id": "pdfplumber-p3-l24",
+      "order_index": 24,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修工单 设备维护中心",
+      "heading_level": null,
+      "markdown": "维修工单 设备维护中心",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.693,
+          19.673483199999964,
+          538.5831999999999,
+          31.628683199999955
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "维修工单 设备维护中心"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "468013c0-1172-4000-a4b2-45a6b7fd0cfb",
+      "source_block_id": "pdfplumber-p3-l25",
+      "order_index": 25,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "设备维修工单 验收与签字 /",
+      "heading_level": null,
+      "markdown": "设备维修工单 验收与签字 /",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.693,
+          56.13872479999998,
+          268.9,
+          75.30888800000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "设备维修工单 验收与签字 /"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "01fe3487-0f61-46b6-8289-abd9d2dee3d0",
+      "source_block_id": "pdfplumber-p3-l26",
+      "order_index": 26,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "六、更换零件",
+      "heading_level": null,
+      "markdown": "六、更换零件",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.692999999999984,
+          123.04797140000005,
+          159.98539999999997,
+          140.26337139999998
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "六、更换零件"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "9bc51d79-fdb5-4640-9ab7-d93feec4bd1d",
+      "source_block_id": "pdfplumber-p3-l27",
+      "order_index": 27,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "七、验收结果",
+      "heading_level": null,
+      "markdown": "七、验收结果",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.693,
+          221.93397140000002,
+          159.98539999999997,
+          239.14937139999995
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "七、验收结果"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "35643c25-942a-4408-aae0-bd5fc99f8996",
+      "source_block_id": "pdfplumber-p3-l28",
+      "order_index": 28,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "八、结论",
+      "heading_level": null,
+      "markdown": "八、结论",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.693,
+          350.44097139999997,
+          125.5546,
+          367.6563714
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "八、结论"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "c3ff09ea-7299-4fcb-b0e1-ca394edd2e2c",
+      "source_block_id": "pdfplumber-p3-l29",
+      "order_index": 29,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在 2026-09-01",
+      "heading_level": null,
+      "markdown": "故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在 2026-09-01",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.693,
+          383.6634832,
+          538.5678928,
+          396.44359199999997
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "故障原因为冷却风扇轴承磨损导致转速不足。更换风扇后设备恢复正常，建议在 2026-09-01"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a19c9345-8e9a-447c-88bc-aa97dc92c26f",
+      "source_block_id": "pdfplumber-p3-l30",
+      "order_index": 30,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "前将同批次模块纳入预防性巡检。",
+      "heading_level": null,
+      "markdown": "前将同批次模块纳入预防性巡检。",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.692999999999984,
+          398.1094832,
+          236.02099999999996,
+          410.06468320000005
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "前将同批次模块纳入预防性巡检。"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "44df29c7-c2af-4a4c-b2b5-2992aef00fbb",
+      "source_block_id": "pdfplumber-p3-l31",
+      "order_index": 31,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "维修负责人：周海 生产确认：李明 复核：王倩",
+      "heading_level": null,
+      "markdown": "维修负责人：周海 生产确认：李明 复核：王倩",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          58.68499999999999,
+          433.2024832,
+          409.896,
+          445.15768320000006
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "维修负责人：周海 生产确认：李明 复核：王倩"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "3d78afba-be6e-4bb9-9434-2100780b2bac",
+      "source_block_id": "pdfplumber-p3-l32",
+      "order_index": 32,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "日期：2026-08-17 日期：2026-08-17 日期：2026-08-17",
+      "heading_level": null,
+      "markdown": "日期：2026-08-17 日期：2026-08-17 日期：2026-08-17",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          58.685,
+          481.6644832,
+          447.1248928,
+          494.444592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "日期：2026-08-17 日期：2026-08-17 日期：2026-08-17"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "61b6ff51-752a-4b19-8136-c2c5d92f7e88",
+      "source_block_id": "pdfplumber-p3-l33",
+      "order_index": 33,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": "3",
+      "heading_level": null,
+      "markdown": "3",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          294.313,
+          805.640392,
+          300.96009119999997,
+          817.595592
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "line",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": "3"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a3c4ab93-d6a4-4ed5-ace3-2c42ce4e8d32",
+      "source_block_id": "pdfplumber-p3-t4",
+      "order_index": 34,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "heading_level": null,
+      "markdown": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.931799999999996,
+          155.33300000000003,
+          482.5655,
+          199.70600000000002
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "table",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-004"
+      }
+    },
+    {
+      "id": "ea9b2283-75a9-4b90-a576-366800a810ca",
+      "source_block_id": "pdfplumber-p3-t5",
+      "order_index": 35,
+      "kind": "table",
+      "native_type": null,
+      "text": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "heading_level": null,
+      "markdown": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "anchor": {
+        "page_number": 3,
+        "bbox": [
+          56.931799999999996,
+          254.14125,
+          472.52883333333335,
+          328.2130000000001
+        ],
+        "page_width": 595.28,
+        "page_height": 841.89,
+        "coordinate_system": "top_left_absolute",
+        "bbox_granularity": "table",
+        "provenance_status": "verified",
+        "section_path": [],
+        "table_cell": null,
+        "original_text": null
+      },
+      "metadata": {
+        "table_id": "table-005"
+      }
+    }
+  ],
+  "assets": [],
+  "tables": [
+    {
+      "table_id": "table-001",
+      "block_id": "119e06d2-b46c-4d35-bd5d-c5a490823b13",
+      "html": null,
+      "markdown": "| 字段 | 内容 | 字段 | 内容 |\n| --- | --- | --- | --- |\n| 工单编号 | WO-2026-0817-042 | 工单状态 | 已完成 |\n| 资产编号 | SYNTH-042 | 设备型号 | AX-200 温控模块 |\n| 所属区域 | 二号车间 / B-12 | 报修时间 | 2026-08-17 08:35 |\n| 报修人 | 李明 | 维修负责人 | 周海 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        56.922615384615376,
+        127.44183333333332,
+        516.5978333333334,
+        201.82900000000006
+      ],
+      "num_rows": 5,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "字段",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "内容",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "字段",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "内容",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "工单编号",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "WO-2026-0817-042",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "工单状态",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "已完成",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "资产编号",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SYNTH-042",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "设备型号",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "AX-200 温控模块",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "所属区域",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "二号车间 / B-12",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报修时间",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "2026-08-17 08:35",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报修人",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "李明",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "维修负责人",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "周海",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "pdfplumber-fallback"
+      }
+    },
+    {
+      "table_id": "table-002",
+      "block_id": "4e0ce432-7085-4f6b-9074-f7e09874c33c",
+      "html": null,
+      "markdown": "| 检查项目 | 读数 | 标准范围 | 结论 |\n| --- | --- | --- | --- |\n| 环境温度 | 28.4 C | 15–35 C | 正常 |\n| 输入电压 | 23.8 V | 22–26 V | 正常 |\n| 模块温度 | 76.2 C | < 70 C | 异常 |\n| 风扇转速 | 1,120 rpm | > 1,500 rpm | 异常 |\n| 报警代码 | THR-07 | 无 | 已记录 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 1,
+      "bbox": [
+        56.922615384615376,
+        382.8592,
+        493.9254285714286,
+        471.766
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "检查项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "读数",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "标准范围",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "结论",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "环境温度",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "28.4 C",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "15–35 C",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正常",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "输入电压",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "23.8 V",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "22–26 V",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "正常",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "模块温度",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "76.2 C",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "< 70 C",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "异常",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "风扇转速",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,120 rpm",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "> 1,500 rpm",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "异常",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "报警代码",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "THR-07",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "无",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "已记录",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "pdfplumber-fallback"
+      }
+    },
+    {
+      "table_id": "table-003",
+      "block_id": "50840210-182c-4c35-bb76-4c510f10ac14",
+      "html": null,
+      "markdown": "| 时间 | 模块温度 | 风扇转速 | 备注 |\n| --- | --- | --- | --- |\n| 09:02 | 75.8 C | 1,105 rpm | 原风扇，持续报警 |\n| 09:08 | 54.1 C | 1,860 rpm | 接入备用风扇 |\n| 09:16 | 55.0 C | 1,842 rpm | 负载 60% |\n| 09:24 | 61.7 C | 1,805 rpm | 负载 85% |\n| 09:31 | 63.2 C | 1,792 rpm | 无报警 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 2,
+      "bbox": [
+        56.920428571428566,
+        325.2192,
+        491.0905714285714,
+        414.126
+      ],
+      "num_rows": 6,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "时间",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "模块温度",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "风扇转速",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "备注",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:02",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "75.8 C",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,105 rpm",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "原风扇，持续报警",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:08",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "54.1 C",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,860 rpm",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "接入备用风扇",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:16",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "55.0 C",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,842 rpm",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负载 60%",
+          "start_row": 3,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:24",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "61.7 C",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,805 rpm",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "负载 85%",
+          "start_row": 4,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "09:31",
+          "start_row": 5,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "63.2 C",
+          "start_row": 5,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1,792 rpm",
+          "start_row": 5,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "无报警",
+          "start_row": 5,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "pdfplumber-fallback"
+      }
+    },
+    {
+      "table_id": "table-004",
+      "block_id": "a3c4ab93-d6a4-4ed5-ace3-2c42ce4e8d32",
+      "html": null,
+      "markdown": "| 零件名称 | 规格/型号 | 数量 | 追踪编号 |\n| --- | --- | --- | --- |\n| 冷却风扇 | FAN-AX200-12V | 1 | SP-2026-0817-11 |\n| 固定螺钉 | M4 x 12 不锈钢 | 4 | SP-2026-0817-12 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        56.931799999999996,
+        155.33300000000003,
+        482.5655,
+        199.70600000000002
+      ],
+      "num_rows": 3,
+      "num_cols": 4,
+      "cells": [
+        {
+          "text": "零件名称",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "规格/型号",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "数量",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "追踪编号",
+          "start_row": 0,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "冷却风扇",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "FAN-AX200-12V",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "1",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SP-2026-0817-11",
+          "start_row": 1,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "固定螺钉",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "M4 x 12 不锈钢",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "4",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "SP-2026-0817-12",
+          "start_row": 2,
+          "start_col": 3,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "pdfplumber-fallback"
+      }
+    },
+    {
+      "table_id": "table-005",
+      "block_id": "ea9b2283-75a9-4b90-a576-366800a810ca",
+      "html": null,
+      "markdown": "| 验收项目 | 结果 | 状态 |\n| --- | --- | --- |\n| 空载运行 10 分钟 | 温度 49.6 C，无报警 | 通过 |\n| 额定负载运行 30 分钟 | 温度 63.2 C，转速 1,792 rpm | 通过 |\n| 断电恢复测试 | 参数保持，日志无新增错误 | 通过 |\n| 外观与防护 | 护罩闭合，接地线牢固 | 通过 |",
+      "caption": null,
+      "image_path": null,
+      "page_number": 3,
+      "bbox": [
+        56.931799999999996,
+        254.14125,
+        472.52883333333335,
+        328.2130000000001
+      ],
+      "num_rows": 5,
+      "num_cols": 3,
+      "cells": [
+        {
+          "text": "验收项目",
+          "start_row": 0,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "结果",
+          "start_row": 0,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "状态",
+          "start_row": 0,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": true,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "空载运行 10 分钟",
+          "start_row": 1,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度 49.6 C，无报警",
+          "start_row": 1,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 1,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "额定负载运行 30 分钟",
+          "start_row": 2,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "温度 63.2 C，转速 1,792 rpm",
+          "start_row": 2,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 2,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "断电恢复测试",
+          "start_row": 3,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "参数保持，日志无新增错误",
+          "start_row": 3,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 3,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "外观与防护",
+          "start_row": 4,
+          "start_col": 0,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "护罩闭合，接地线牢固",
+          "start_row": 4,
+          "start_col": 1,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        },
+        {
+          "text": "通过",
+          "start_row": 4,
+          "start_col": 2,
+          "row_span": 1,
+          "col_span": 1,
+          "column_header": false,
+          "row_header": false,
+          "bbox": null
+        }
+      ],
+      "metadata": {
+        "parser": "pdfplumber-fallback"
+      }
+    }
+  ],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 0.7,
+    "layout": 0.6,
+    "reading_order": 0.6,
+    "table": 0.5,
+    "overall": 0.6
+  },
+  "provenance": {
+    "parser_id": "pdfplumber-fallback",
+    "requested_parser_id": null,
+    "routing_mode": "auto",
+    "model": "pdfplumber",
+    "version": "0.11",
+    "parameters": {},
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 0,
+    "parse_duration_ms": 0,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [
+    "本地兜底解析（pdfplumber），表格结构语义不可靠。"
+  ],
+  "native_artifacts": [],
+  "capabilities": {
+    "page_bbox": {
+      "state": "available",
+      "granularity": "line",
+      "reason": null,
+      "evidence": {}
+    },
+    "table_cells": {
+      "state": "partial",
+      "granularity": "rowcol_only",
+      "reason": "pdfplumber 启发式网格：无 span/header 语义，全部按 span=1。",
+      "evidence": {}
+    },
+    "ocr_confidence": {
+      "state": "unavailable",
+      "granularity": null,
+      "reason": "本地兜底解析器无 OCR 能力。",
+      "evidence": {}
+    }
+  },
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-17T16:21:54.278523Z"
+}
