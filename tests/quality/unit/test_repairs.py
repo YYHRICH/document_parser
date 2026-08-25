@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from document_parser.core.contracts import ParsedDocument
+from document_parser.domain.model.contracts import ParsedDocument
 
-from quality import run_quality
-from quality.repairs.registry import WHITELIST_REPAIRS, apply_repairs, replay_repair, rollback_repair
-from quality.repairs.whitelist import (
+from document_parser.app.use_cases import run_quality
+from document_parser.domain.quality.repairs.registry import WHITELIST_REPAIRS, apply_repairs, replay_repair, rollback_repair
+from document_parser.domain.quality.repairs.whitelist import (
     QL_RPR_001_TrailingWhitespace,
     QL_RPR_002_TableSeparator,
 )

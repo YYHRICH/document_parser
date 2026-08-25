@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT.parent))
 
-from document_parser.backend import create_app  # noqa: E402
+from document_parser.trigger.http.app import create_app  # noqa: E402
 
 
 def test_backend_serves_frontend_shell_and_parser_list(tmp_path: Path) -> None:

@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     ParsedDocument,
     QualityCapabilityState,
 )
 
-from quality import run_quality
+from document_parser.app.use_cases import run_quality
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 

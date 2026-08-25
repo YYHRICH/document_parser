@@ -11,8 +11,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT.parent))
 
-from document_parser.core import load_document_package, write_document_package  # noqa: E402
-from document_parser.core.contracts import ParsedDocument  # noqa: E402
+from document_parser.infra.packaging.document_package import load_document_package, write_document_package  # noqa: E402
+from document_parser.domain.model.contracts import ParsedDocument  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

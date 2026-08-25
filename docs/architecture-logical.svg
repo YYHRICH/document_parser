@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 880" font-family="Microsoft YaHei, PingFang SC, Segoe UI, sans-serif">
+  <defs>
+    <marker id="b1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#475569"/></marker>
+    <marker id="b2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b45309"/></marker>
+  </defs>
+  <rect width="1120" height="880" fill="#f8fafc"/>
+  <text x="30" y="42" font-size="26" font-weight="bold" fill="#0f172a">文档解析平台 · 逻辑架构图</text>
+  <text x="30" y="68" font-size="14" fill="#64748b">容器与核心流程视角：一套核心处理链路，Web / 命令行 / 消息多入口复用（不涉及任何代码字段）</text>
+
+  <!-- 入口容器 -->
+  <text x="30" y="112" font-size="16" font-weight="bold" fill="#334155">入口（接入渠道）</text>
+  <rect x="30" y="126" width="240" height="96" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="50" y="156" font-size="15" font-weight="bold" fill="#075985">Web 门户</text>
+  <text x="50" y="180" font-size="12.5" fill="#0c4a6e">浏览器页面 · 上传 / 预览 / 报告</text>
+  <rect x="290" y="126" width="240" height="96" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="310" y="156" font-size="15" font-weight="bold" fill="#075985">对外接口服务</text>
+  <text x="310" y="180" font-size="12.5" fill="#0c4a6e">HTTP API · 鉴权 / 参数校验</text>
+  <rect x="550" y="126" width="240" height="96" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="570" y="156" font-size="15" font-weight="bold" fill="#075985">命令行工具</text>
+  <text x="570" y="180" font-size="12.5" fill="#0c4a6e">脚本 / 批量 / 调试</text>
+  <rect x="810" y="126" width="240" height="96" rx="10" fill="#e0f2fe" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="830" y="156" font-size="15" font-weight="bold" fill="#64748b">消息消费者</text>
+  <text x="830" y="180" font-size="12.5" fill="#94a3b8">异步任务 / 事件驱动（规划中）</text>
+
+  <!-- 箭头 入口->核心 -->
+  <line x1="150" y1="222" x2="460" y2="262" stroke="#475569" stroke-width="2.5" marker-end="url(#b1)"/>
+  <line x1="670" y1="222" x2="660" y2="262" stroke="#475569" stroke-width="2.5" marker-end="url(#b1)"/>
+  <line x1="930" y1="222" x2="700" y2="262" stroke="#475569" stroke-width="2.5" marker-end="url(#b1)" stroke-dasharray="6,4"/>
+
+  <!-- 核心处理 -->
+  <rect x="30" y="268" width="1060" height="310" rx="16" fill="#fffbeb" stroke="#d97706" stroke-width="3"/>
+  <text x="55" y="302" font-size="18" font-weight="bold" fill="#78350f">核心处理链路：文档解析与质量管控</text>
+  <text x="55" y="326" font-size="12.5" fill="#92400e">一个文档从接入到入库的完整业务流水线，四个入口共用</text>
+
+  <rect x="55" y="348" width="186" height="120" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="75" y="378" font-size="15" font-weight="bold" fill="#b45309">① 文档接入</text>
+  <text x="75" y="402" font-size="12.5" fill="#334155">鉴权 / 格式校验</text>
+  <text x="75" y="424" font-size="12.5" fill="#334155">大小与安全约束</text>
+
+  <rect x="257" y="348" width="186" height="120" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="277" y="378" font-size="15" font-weight="bold" fill="#b45309">② 智能路由</text>
+  <text x="277" y="402" font-size="12.5" fill="#334155">识别文档类型</text>
+  <text x="277" y="424" font-size="12.5" fill="#334155">选择解析方案</text>
+
+  <rect x="459" y="348" width="186" height="120" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="479" y="378" font-size="15" font-weight="bold" fill="#b45309">③ 解析执行</text>
+  <text x="479" y="402" font-size="12.5" fill="#334155">多引擎协同解析</text>
+  <text x="479" y="424" font-size="12.5" fill="#334155">失败自动降级</text>
+
+  <rect x="661" y="348" width="186" height="120" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="681" y="378" font-size="15" font-weight="bold" fill="#b45309">④ 质量检查</text>
+  <text x="681" y="402" font-size="12.5" fill="#334155">规则门禁 / 状态判定</text>
+  <text x="681" y="424" font-size="12.5" fill="#334155">白名单自动修复</text>
+
+  <rect x="863" y="348" width="186" height="120" rx="10" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="883" y="378" font-size="15" font-weight="bold" fill="#b45309">⑤ 结果归档</text>
+  <text x="883" y="402" font-size="12.5" fill="#334155">结构化结果 + 证据</text>
+  <text x="883" y="424" font-size="12.5" fill="#334155">质量报告落盘</text>
+
+  <line x1="241" y1="408" x2="255" y2="408" stroke="#b45309" stroke-width="2.5" marker-end="url(#b2)"/>
+  <line x1="443" y1="408" x2="457" y2="408" stroke="#b45309" stroke-width="2.5" marker-end="url(#b2)"/>
+  <line x1="645" y1="408" x2="659" y2="408" stroke="#b45309" stroke-width="2.5" marker-end="url(#b2)"/>
+  <line x1="847" y1="408" x2="861" y2="408" stroke="#b45309" stroke-width="2.5" marker-end="url(#b2)"/>
+
+  <!-- 数据层 -->
+  <text x="30" y="620" font-size="16" font-weight="bold" fill="#334155">数据与外部依赖</text>
+  <rect x="30" y="636" width="320" height="100" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="50" y="666" font-size="15" font-weight="bold" fill="#5b21b6">文档与结果存储</text>
+  <text x="50" y="692" font-size="12.5" fill="#4c1d95">原文 / 结构化结果 / 原生产物</text>
+  <rect x="370" y="636" width="320" height="100" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="390" y="666" font-size="15" font-weight="bold" fill="#5b21b6">质量报告库</text>
+  <text x="390" y="692" font-size="12.5" fill="#4c1d95">检查证据 / 修复记录 / 门禁结论</text>
+  <rect x="710" y="636" width="380" height="100" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="730" y="666" font-size="15" font-weight="bold" fill="#5b21b6">外部依赖</text>
+  <text x="730" y="692" font-size="12.5" fill="#4c1d95">解析引擎（文本/PDF/Office/图片）</text>
+  <text x="730" y="714" font-size="12.5" fill="#4c1d95">大模型质量顾问（规划）· 消息队列（规划）</text>
+
+  <!-- 箭头 核心->数据/外部 -->
+  <path d="M760 468 L760 520 L190 520 L190 634" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#b1)"/>
+  <path d="M800 468 L800 636" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#b1)"/>
+  <path d="M550 468 L550 520 L900 520 L900 634" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#b1)"/>
+  <text x="420" y="512" font-size="12" fill="#475569">结果与报告入库</text>
+
+  <!-- 底部：对外输出 -->
+  <rect x="300" y="780" width="520" height="72" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="320" y="808" font-size="15" font-weight="bold" fill="#14532d">对外交付</text>
+  <text x="320" y="832" font-size="12.5" fill="#166534">向知识库 / 搜索 / 业务系统推送高质量结构化结果</text>
+  <line x1="550" y1="736" x2="550" y2="778" stroke="#475569" stroke-width="2.5" marker-end="url(#b1)"/>
+</svg>

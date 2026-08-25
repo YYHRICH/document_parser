@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 1000" font-family="Microsoft YaHei, PingFang SC, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="dashArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#0f766e"/>
+    </marker>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1d4ed8"/>
+    </marker>
+  </defs>
+  <rect width="1020" height="1000" fill="#f8fafc"/>
+
+  <!-- 标题 -->
+  <text x="30" y="40" font-size="26" font-weight="bold" fill="#0f172a">文档解析平台 · DDD 分层架构</text>
+  <text x="30" y="66" font-size="15" fill="#64748b">Ports &amp; Adapters + 用例驱动 · 目标：松耦合 / 可拆分 / 可复用</text>
+
+  <!-- 右列：前端与契约 -->
+  <rect x="700" y="100" width="290" height="92" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="720" y="128" font-size="16" font-weight="bold" fill="#075985">frontend · Web 前端</text>
+  <text x="720" y="152" font-size="12.5" fill="#0c4a6e">原生 HTML/JS 单页</text>
+  <text x="720" y="172" font-size="12.5" fill="#0c4a6e">消费 OpenAPI 契约（api-types.ts 自动生成）</text>
+
+  <line x1="845" y1="192" x2="845" y2="222" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#blueArrow)"/>
+  <line x1="845" y1="222" x2="845" y2="192" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <rect x="700" y="222" width="290" height="128" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="720" y="250" font-size="16" font-weight="bold" fill="#3730a3">api · 对外契约层</text>
+  <text x="720" y="274" font-size="12.5" fill="#312e81">DTO：ParseJobResponse</text>
+  <text x="720" y="293" font-size="12.5" fill="#312e81">ParserListResponse / QualityPackageResponse</text>
+  <text x="720" y="316" font-size="12.5" fill="#312e81">↔ trigger 使用 · 供外部消费者复用</text>
+
+  <!-- 主列四层 -->
+  <!-- trigger -->
+  <rect x="30" y="100" width="640" height="172" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="48" y="128" font-size="17" font-weight="bold" fill="#1e3a8a">trigger · 触发层（薄入口，不写业务）</text>
+  <rect x="48" y="142" width="196" height="112" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="62" y="170" font-size="14" font-weight="bold" fill="#1e40af">HTTP 服务</text>
+  <text x="62" y="192" font-size="12" fill="#334155">FastAPI + uvicorn</text>
+  <text x="62" y="210" font-size="12" fill="#334155">路由 / 参数转换 / 响应封装</text>
+  <text x="62" y="232" font-size="12" fill="#334155">托管 frontend 静态资源</text>
+  <rect x="256" y="142" width="196" height="112" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="270" y="170" font-size="14" font-weight="bold" fill="#1e40af">CLI 命令行</text>
+  <text x="270" y="192" font-size="12" fill="#334155">python -m trigger.cli.main</text>
+  <text x="270" y="210" font-size="12" fill="#334155">参数解析后调同一套用例</text>
+  <text x="270" y="232" font-size="12" fill="#334155">适合脚本 / 批量 / 调试</text>
+  <rect x="464" y="142" width="196" height="112" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="478" y="170" font-size="14" font-weight="bold" fill="#64748b">MQ 消息队列（规划中）</text>
+  <text x="478" y="192" font-size="12" fill="#94a3b8">RabbitMQ / Kafka / SQS</text>
+  <text x="478" y="210" font-size="12" fill="#94a3b8">复用同一用例，零业务改动</text>
+  <text x="478" y="232" font-size="12" fill="#94a3b8">trigger/mq 已占位</text>
+
+  <line x1="350" y1="272" x2="350" y2="298" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="366" y="290" font-size="11.5" fill="#475569">调用用例</text>
+
+  <!-- app -->
+  <rect x="30" y="300" width="640" height="152" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+  <text x="48" y="328" font-size="17" font-weight="bold" fill="#134e4a">app · 应用层（用例编排）</text>
+  <rect x="48" y="342" width="300" height="92" rx="8" fill="#ffffff" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="62" y="370" font-size="14" font-weight="bold" fill="#0f766e">用例 Use Cases</text>
+  <text x="62" y="392" font-size="12" fill="#334155">ParseDocumentUseCase</text>
+  <text x="62" y="410" font-size="12" fill="#334155">Reparse / RunQuality</text>
+  <rect x="360" y="342" width="292" height="92" rx="8" fill="#ffffff" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="374" y="370" font-size="14" font-weight="bold" fill="#0f766e">编排 + 组合根</text>
+  <text x="374" y="392" font-size="12" fill="#334155">DocumentParsePipeline（路由+fallback+转换）</text>
+  <text x="374" y="410" font-size="12" fill="#334155">bootstrap.py（依赖注入装配）</text>
+
+  <line x1="350" y1="452" x2="350" y2="478" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="366" y="470" font-size="11.5" fill="#475569">依赖领域</text>
+
+  <!-- domain -->
+  <rect x="30" y="480" width="640" height="172" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="48" y="508" font-size="17" font-weight="bold" fill="#78350f">domain · 领域核心（业务语义，框架无关）</text>
+  <rect x="48" y="522" width="196" height="112" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="62" y="550" font-size="14" font-weight="bold" fill="#b45309">领域模型</text>
+  <text x="62" y="572" font-size="12" fill="#334155">ParsedDocument</text>
+  <text x="62" y="590" font-size="12" fill="#334155">ParseRequest / QualityPackage</text>
+  <rect x="256" y="522" width="196" height="112" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="270" y="550" font-size="14" font-weight="bold" fill="#b45309">领域服务</text>
+  <text x="270" y="572" font-size="12" fill="#334155">routing 路由决策</text>
+  <text x="270" y="590" font-size="12" fill="#334155">normalization 归一化</text>
+  <text x="270" y="612" font-size="12" fill="#334155">quality 质量规则/门禁</text>
+  <rect x="464" y="522" width="196" height="112" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="478" y="550" font-size="14" font-weight="bold" fill="#b45309">端口接口 Ports</text>
+  <text x="478" y="572" font-size="12" fill="#334155">ParserPort</text>
+  <text x="478" y="590" font-size="12" fill="#334155">ConverterPort / StoragePort</text>
+  <text x="478" y="612" font-size="12" fill="#334155">EventPublisherPort（占位）</text>
+
+  <line x1="350" y1="652" x2="350" y2="676" stroke="#0f766e" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#dashArrow)"/>
+  <text x="366" y="670" font-size="11.5" fill="#0f766e">实现端口</text>
+
+  <!-- infra -->
+  <rect x="30" y="680" width="640" height="172" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="48" y="708" font-size="17" font-weight="bold" fill="#4c1d95">infra · 基础设施（可替换实现）</text>
+  <rect x="48" y="722" width="300" height="112" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="62" y="750" font-size="14" font-weight="bold" fill="#6d28d9">解析器适配器</text>
+  <text x="62" y="772" font-size="12" fill="#334155">MarkItDown / Docling / MinerU</text>
+  <text x="62" y="790" font-size="12" fill="#334155">OCR / AnyDoc</text>
+  <text x="62" y="812" font-size="12" fill="#334155">实现 ParserPort，可独立替换</text>
+  <rect x="360" y="722" width="292" height="112" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="374" y="750" font-size="14" font-weight="bold" fill="#6d28d9">存储 / 转换 / 打包 / LLM</text>
+  <text x="374" y="772" font-size="12" fill="#334155">ApiStorage（本地磁盘，可换 S3）</text>
+  <text x="374" y="790" font-size="12" fill="#334155">LegacyOfficeConverter 格式转换</text>
+  <text x="374" y="812" font-size="12" fill="#334155">quality_packaging / llm（M6）</text>
+
+  <!-- api 与 domain 依赖标注 -->
+  <path d="M700 278 L672 278 L672 566" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#blueArrow)"/>
+  <text x="672" y="440" font-size="11" fill="#4338ca" transform="rotate(-90 686 440)">api 依赖 domain 领域值</text>
+
+  <!-- 底部状态条 -->
+  <rect x="30" y="880" width="960" height="100" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="48" y="906" font-size="14" font-weight="bold" fill="#0f172a">当前状态与可拆分性</text>
+  <text x="48" y="930" font-size="12.5" fill="#334155">当前部署：单仓库单进程（uvicorn 启动 trigger/http，托管 frontend） · 237 项自动化测试通过 · 依赖方向受检</text>
+  <text x="48" y="952" font-size="12.5" fill="#334155">可拆分：HTTP / CLI / MQ 各自独立进程 · 解析器可拆 worker · 存储可换 S3/MinIO · 质量层可拆独立服务</text>
+  <text x="48" y="972" font-size="12.5" fill="#334155">依赖铁律：trigger → app → domain ← infra（单向无环，由 scripts/check_dependencies.py 强制校验）</text>
+</svg>

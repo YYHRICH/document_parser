@@ -14,7 +14,7 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     DocumentBlock,
     IssueSeverity,
@@ -23,9 +23,9 @@ from document_parser.core.contracts import (
     SourceAnchor,
 )
 
-from quality import run_quality
-from quality.config import QualityConfig
-from quality.packaging.hashing import sha256_bytes, sha256_text, stable_json_bytes
+from document_parser.app.use_cases import run_quality
+from document_parser.domain.quality.config import QualityConfig
+from document_parser.domain.quality.hashing import sha256_bytes, sha256_text, stable_json_bytes
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
@@ -161,7 +161,7 @@ def test_reparse_scenario_via_verdict_injection():
     doc = _load("sdp-004-mineru")
     # 直接构造带 reparse 能力的报告路径：使用 pipeline 级 API 无法注入，
     # 契约层约束已由 test_gate_evaluator 覆盖；此处验证契约不接受无建议的 reparse。
-    from document_parser.core.contracts import (
+    from document_parser.domain.model.contracts import (
         GateSummary,
         QualityReport,
     )
@@ -184,7 +184,7 @@ def test_stable_canonical_block_ids():
         assert block.block_id
         assert block.source_locator.source_block_id
         # block_id 可复算
-        from quality.ids import block_id as make_block_id
+        from document_parser.domain.quality.ids import block_id as make_block_id
 
         doc_key = doc.source_sha256 or str(doc.document_id)
         source_block = next(

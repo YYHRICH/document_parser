@@ -1,6 +1,6 @@
 """稳定 ID 单元测试：确定性、区分度、跨调用稳定。"""
 
-from quality.ids import binding_id, block_id, issue_id, relation_id, stable_id
+from document_parser.domain.quality.ids import binding_id, block_id, issue_id, relation_id, stable_id
 
 DOC_KEY = "sha256-abc"
 

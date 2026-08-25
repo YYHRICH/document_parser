@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import uuid4
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     DocumentBlock,
     IssueSeverity,
@@ -14,8 +14,8 @@ from document_parser.core.contracts import (
     SourceAnchor,
 )
 
-from quality.evidence.context import EvidenceContext
-from quality.rules.references import (
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.rules.references import (
     QL_REF_001_ReferenceIndex,
     QL_REF_004_BindCitations,
     build_reference_index,

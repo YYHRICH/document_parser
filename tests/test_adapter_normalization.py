@@ -8,7 +8,7 @@ from uuid import UUID
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT.parent))
 
-from document_parser.core.contracts import (  # noqa: E402
+from document_parser.domain.model.contracts import (  # noqa: E402
     BlockKind,
     DocumentBlock,
     DocumentSignals,
@@ -17,14 +17,14 @@ from document_parser.core.contracts import (  # noqa: E402
     RoutingDecision,
     RoutingMode,
 )
-from document_parser.normalizers import (  # noqa: E402
+from document_parser.domain.normalization import (  # noqa: E402
     ParserNormalizationBundle,
     unavailable_capability,
 )
-from document_parser.parsers.base import BaseParserAdapter  # noqa: E402
-from document_parser.parsers.docling import DoclingParser  # noqa: E402
-from document_parser.parsers.mineru import MinerUParser  # noqa: E402
-from document_parser.parsers.ocr import OcrParser  # noqa: E402
+from document_parser.infra.parsers.base import BaseParserAdapter  # noqa: E402
+from document_parser.infra.parsers.docling import DoclingParser  # noqa: E402
+from document_parser.infra.parsers.mineru import MinerUParser  # noqa: E402
+from document_parser.infra.parsers.ocr import OcrParser  # noqa: E402
 
 
 class MarkdownOnlyAdapter(BaseParserAdapter):

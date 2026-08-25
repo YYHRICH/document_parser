@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     IssueSeverity,
     QualityCapabilityState,
     QualityState,
     ReparseRecommendation,
 )
 
-from quality.config import GateConfig
-from quality.gates.capabilities import CapabilityVerdict
-from quality.gates.evaluator import GateEvaluator
-from quality.models_internal import IssueDraft
+from document_parser.domain.quality.config import GateConfig
+from document_parser.domain.quality.gates.capabilities import CapabilityVerdict
+from document_parser.domain.quality.gates.evaluator import GateEvaluator
+from document_parser.domain.quality.models_internal import IssueDraft
 
 
 def _issue(severity: IssueSeverity, message: str = "issue") -> IssueDraft:

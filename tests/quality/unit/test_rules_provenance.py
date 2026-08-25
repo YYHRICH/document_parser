@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import uuid4
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     DocumentBlock,
     EvidenceAvailability,
@@ -17,8 +17,8 @@ from document_parser.core.contracts import (
     SourceAnchor,
 )
 
-from quality.evidence.context import EvidenceContext
-from quality.rules.provenance import (
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.rules.provenance import (
     QL_PROV_001_SourceTraceable,
     QL_PROV_002_AnchorValid,
     QL_PROV_003_ArtifactsValid,

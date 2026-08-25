@@ -4,14 +4,15 @@ from pathlib import Path
 
 import pytest
 
-from document_parser.core.contracts import ParsedDocument
-from quality import run_quality, write_quality_package
-from quality.packaging.artifacts import (
+from document_parser.domain.model.contracts import ParsedDocument
+from document_parser.app.use_cases import run_quality
+from document_parser.infra.quality_packaging import write_quality_package
+from document_parser.infra.quality_packaging.artifacts import (
     MANIFEST_NAME,
     build_package_artifacts,
     verify_package_files,
 )
-from quality.packaging.writer import verify_package_directory
+from document_parser.infra.quality_packaging.writer import verify_package_directory
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 

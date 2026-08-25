@@ -5,15 +5,15 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import uuid4
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     ParsedDocument,
     ParsedTable,
     QualityCapabilityState,
     TableCell,
 )
 
-from quality.evidence.context import EvidenceContext
-from quality.rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
@@ -51,7 +51,7 @@ def _table(table_id: str, page: int, headers: list[str], rows: int) -> ParsedTab
 def _doc_with_tables(*tables: ParsedTable) -> ParsedDocument:
     doc = _load("sdp-005-mineru")
     # 同步生成 table blocks
-    from document_parser.core.contracts import BlockKind, DocumentBlock, SourceAnchor
+    from document_parser.domain.model.contracts import BlockKind, DocumentBlock, SourceAnchor
 
     blocks = list(doc.blocks)
     for t in tables:

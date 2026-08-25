@@ -1,0 +1,145 @@
+import sys
+from pathlib import Path
+from uuid import UUID
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT.parent))
+
+from document_parser import DocumentParsePipeline, ParseRequest  # noqa: E402
+from document_parser.domain.model.contracts import DocumentSignals, RoutingDecision, RoutingMode  # noqa: E402
+from document_parser.domain.normalization import ParserNormalizationBundle  # noqa: E402
+from document_parser.domain.routing.ids import MARKITDOWN_ID  # noqa: E402
+from document_parser.infra.parsers.base import BaseParserAdapter  # noqa: E402
+from document_parser.infra.parsers.registry import build_parser_registry, get_parser  # noqa: E402
+
+
+class EmptyFallbackAdapter(BaseParserAdapter):
+    PARSER_ID = "fake-empty"
+    DISPLAY_NAME = "Fake Empty"
+    NATIVE_FORMATS = {".md"}
+
+    def normalize(self, request, signals):
+        return ParserNormalizationBundle.from_minimal_markdown(
+            document_id=UUID("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"),
+            filename=request.filename,
+            file_type=request.file_type,
+            markdown="",
+            parser_id=self.PARSER_ID,
+            parser_version="test",
+            warnings=["fake parser returned no normalized content"],
+        )
+
+
+def build_pipeline(**overrides):
+    return DocumentParsePipeline(
+        parsers=build_parser_registry(),
+        converters=(),
+        default_parser_id=MARKITDOWN_ID,
+        **overrides,
+    )
+
+
+def test_pipeline_lists_registered_parsers() -> None:
+    pipeline = build_pipeline()
+
+    parser_ids = {capability.parser_id for capability in pipeline.list_parsers()}
+
+    assert {"microsoft.markitdown", "docling", "mineru", "ocr"}.issubset(parser_ids)
+
+
+def test_pipeline_can_dispatch_to_docling_adapter() -> None:
+    pipeline = build_pipeline()
+    request = ParseRequest(
+        filename="sample.md",
+        file_type="text/markdown",
+        content=b"# Title\n\nBody.",
+        parser_id="docling",
+        options={},
+    )
+
+    parsed = pipeline.parse(request)
+
+    assert parsed.provenance.parser_id == "docling"
+    assert parsed.routing_decision is not None
+    assert parsed.routing_decision.selected_parser_id == "docling"
+    assert parsed.markdown == "# Title\n\nBody."
+    assert parsed.blocks[0].kind.value == "heading"
+
+
+def test_parser_registry_resolves_known_adapters() -> None:
+    registry = build_parser_registry()
+
+    assert set(registry) == {"microsoft.markitdown", "anydoc", "docling", "mineru", "ocr"}
+    assert get_parser("docling", registry).PARSER_ID == "docling"
+
+
+def test_pipeline_consumes_external_routing_decision() -> None:
+    class FakeRouter:
+        def route_request(self, request: ParseRequest) -> RoutingDecision:
+            signals = DocumentSignals(
+                extension=".md",
+                size_bytes=len(request.content),
+                has_text_layer=True,
+            )
+            return RoutingDecision(
+                mode=RoutingMode.AUTO,
+                selected_parser_id="docling",
+                reason="test route",
+                signals=signals,
+                parser_options={"route_profile": "quality_first", "allow_cloud": True},
+            )
+
+    pipeline = build_pipeline(router=FakeRouter())
+    request = ParseRequest(
+        filename="sample.md",
+        file_type="text/markdown",
+        content=b"# Title\n\nBody.",
+        parser_id=None,
+        options={},
+    )
+
+    parsed = pipeline.parse(request)
+
+    assert parsed.provenance.parser_id == "docling"
+    assert parsed.provenance.routing_mode == RoutingMode.AUTO
+    assert parsed.provenance.requested_parser_id is None
+    assert parsed.provenance.parameters["route_profile"] == "quality_first"
+
+
+def test_pipeline_executes_automatic_fallback_when_selected_parser_returns_empty() -> None:
+    class FakeRouter:
+        def route_request(self, request: ParseRequest) -> RoutingDecision:
+            signals = DocumentSignals(
+                extension=".md",
+                size_bytes=len(request.content),
+                has_text_layer=True,
+            )
+            return RoutingDecision(
+                mode=RoutingMode.AUTO,
+                selected_parser_id="fake-empty",
+                reason="test route",
+                signals=signals,
+                parser_options={"route_profile": "quality_first", "allow_cloud": True},
+                fallback_parser_ids=["docling"],
+                allow_automatic_fallback=True,
+            )
+
+    pipeline = build_pipeline(router=FakeRouter())
+    pipeline.parsers["fake-empty"] = EmptyFallbackAdapter()
+    request = ParseRequest(
+        filename="sample.md",
+        file_type="text/markdown",
+        content=b"# Title\n\nBody.",
+        parser_id=None,
+        options={},
+    )
+
+    parsed = pipeline.parse(request)
+
+    assert parsed.provenance.parser_id == "docling"
+    assert parsed.routing_decision is not None
+    assert parsed.routing_decision.selected_parser_id == "docling"
+    assert parsed.provenance.parameters["routing_initial_parser_id"] == "fake-empty"
+    assert parsed.provenance.fallback_history[0].parser_id == "fake-empty"
+    assert parsed.markdown == "# Title\n\nBody."

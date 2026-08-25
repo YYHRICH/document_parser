@@ -4,13 +4,13 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     CanonicalSourceLocator,
     IssueSeverity,
     QualityCapabilityState,
 )
 
-from quality.models_internal import (
+from document_parser.domain.quality.models_internal import (
     BindingCandidate,
     CapabilityObservation,
     EvidenceRef,

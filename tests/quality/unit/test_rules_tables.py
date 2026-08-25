@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import uuid4
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     DocumentBlock,
     ParsedDocument,
@@ -15,8 +15,8 @@ from document_parser.core.contracts import (
     TableCell,
 )
 
-from quality.evidence.context import EvidenceContext
-from quality.rules.tables import (
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.rules.tables import (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
     analyze_grid,

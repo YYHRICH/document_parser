@@ -57,13 +57,13 @@ quality_package = run_quality(parsed_document)
 ## 关键目录
 
 ```text
-core/          公共契约、Gateway、文档包读写
-routing/       张的模型路由
-parsers/       朱的各解析器 Adapter
-normalizers/   统一归一化辅助层
-backend/       FastAPI 后端
+api/           对外传输契约（DTO）
+app/           应用层用例编排（组合根 + 用例）
+trigger/       触发层：http（FastAPI）/ cli 共用同一套用例
+domain/        核心领域：模型、路由、归一化、质量、端口
+infra/         基础设施：解析器适配器 / 存储 / 转换 / 打包 / LLM
 frontend/      MVP Web
-quality/       叶的质量层
+
 tests/         契约、Adapter、API、routing、quality 测试
 docs/          分工、配置、质量层和统一文档包说明
 specs/         产品与工程规格
@@ -75,7 +75,7 @@ specs/         产品与工程规格
 .\.venv\Scripts\python.exe -m pytest
 .\.venv\Scripts\python.exe -m pytest tests\api -q
 .\.venv\Scripts\python.exe -m pytest tests\quality -q
-.\.venv\Scripts\python.exe -m uvicorn --app-dir C:\Users\zes\Desktop document_parser.backend.app:app --host 127.0.0.1 --port 8010
+.\.venv\Scripts\python.exe -m uvicorn --app-dir C:\Users\zes\Desktop document_parser.trigger.http.app:app --host 127.0.0.1 --port 8010
 ```
 
 ## 安全约束

@@ -9,15 +9,15 @@ from pathlib import Path
 
 import pytest
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     EvidenceAvailability,
     ParsedDocument,
 )
 
-from quality.evidence.availability import AvailabilityResolver
-from quality.evidence.context import EvidenceContext
-from quality.evidence.requirements import EvidenceRequirement
+from document_parser.domain.quality.evidence.availability import AvailabilityResolver
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.evidence.requirements import EvidenceRequirement
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 

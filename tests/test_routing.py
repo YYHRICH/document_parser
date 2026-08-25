@@ -6,11 +6,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT.parent))
 
 from document_parser import DocumentSignals  # noqa: E402
-from document_parser.routing import ModelRouter  # noqa: E402
+from document_parser.app.bootstrap import build_router  # noqa: E402
 
 
 def test_router_prefers_mineru_for_pdf() -> None:
-    router = ModelRouter.from_environment(mineru_api_token="token")
+    router = build_router(mineru_api_token="token")
     decision = router.route(
         DocumentSignals(
             extension=".pdf",
@@ -27,7 +27,7 @@ def test_router_prefers_mineru_for_pdf() -> None:
 
 def test_router_skips_mineru_for_pdf_without_cloud_token(monkeypatch) -> None:
     monkeypatch.delenv("MINERU_API_TOKEN", raising=False)
-    router = ModelRouter.from_environment(mineru_api_token=None)
+    router = build_router(mineru_api_token=None)
     decision = router.route(
         DocumentSignals(
             extension=".pdf",
@@ -42,7 +42,7 @@ def test_router_skips_mineru_for_pdf_without_cloud_token(monkeypatch) -> None:
 
 
 def test_router_uses_markitdown_for_plain_text() -> None:
-    router = ModelRouter.from_environment()
+    router = build_router()
     decision = router.route(
         DocumentSignals(
             extension=".md",

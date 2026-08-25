@@ -4,20 +4,20 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from document_parser.core.contracts import QualityCapabilityState
+from document_parser.domain.model.contracts import QualityCapabilityState
 
-from quality.evidence.context import EvidenceContext
-from quality.gates.capabilities import (
+from document_parser.domain.quality.evidence.context import EvidenceContext
+from document_parser.domain.quality.gates.capabilities import (
     CapabilityMatrixBuilder,
     STANDARD_CAPABILITIES,
 )
-from quality.models_internal import CapabilityObservation, EvidenceRef
+from document_parser.domain.quality.models_internal import CapabilityObservation, EvidenceRef
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
 
 def _load(sample: str):
-    from document_parser.core.contracts import ParsedDocument
+    from document_parser.domain.model.contracts import ParsedDocument
 
     return ParsedDocument.model_validate_json(
         (FIXTURES / f"{sample}.json").read_text(encoding="utf-8")

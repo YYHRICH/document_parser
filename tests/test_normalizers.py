@@ -5,14 +5,14 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT.parent))
 
-from document_parser.normalizers import (  # noqa: E402
+from document_parser.domain.normalization import (  # noqa: E402
     ParserNormalizationBundle,
     make_stable_block_id,
     make_stable_document_id,
     make_stable_table_id,
     stable_uuid,
 )
-from document_parser.core.contracts import (  # noqa: E402
+from document_parser.domain.model.contracts import (  # noqa: E402
     BlockKind,
     DocumentBlock,
     EvidenceAvailability,
@@ -25,7 +25,7 @@ from document_parser.core.contracts import (  # noqa: E402
     RoutingDecision,
     DocumentSignals,
 )
-from document_parser.parsers.docling import DoclingParser  # noqa: E402
+from document_parser.infra.parsers.docling import DoclingParser  # noqa: E402
 
 
 def test_stable_uuid_is_deterministic() -> None:

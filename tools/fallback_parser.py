@@ -19,7 +19,7 @@ from uuid import uuid4
 
 import pdfplumber
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     BlockKind,
     DocumentBlock,
     EvidenceAvailability,

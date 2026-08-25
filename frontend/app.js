@@ -1,4 +1,23 @@
-const state = { parsers: [], lastResponse: null, lastQuality: null };
+// @ts-check
+/**
+ * API 契约类型由 scripts/gen_frontend_types.py 从后端 OpenAPI 自动生成
+ * （frontend/api-types.ts）；后端 DTO 变更后重新生成即可让编辑器标出失配。
+ * 重新生成：.venv\Scripts\python.exe scripts\gen_frontend_types.py
+ * @typedef {import('./api-types.ts').ParseJobResponse} ParseJobResponse
+ * @typedef {import('./api-types.ts').ParserListResponse} ParserListResponse
+ * @typedef {import('./api-types.ts').QualityPackageResponse} QualityPackageResponse
+ * @typedef {import('./api-types.ts').QualityPackage} QualityPackage
+ * @typedef {import('./api-types.ts').ParserCapability} ParserCapability
+ * @typedef {{ path: string, size_bytes: number, file_type: string, category?: string }} PackageFileEntry
+ */
+const state = {
+  /** @type {ParserCapability[]} */
+  parsers: [],
+  /** @type {ParseJobResponse | null} */
+  lastResponse: null,
+  /** @type {QualityPackage | null} */
+  lastQuality: null,
+};
 const $ = (id) => document.getElementById(id);
 const PARSER_LABELS = { "microsoft.markitdown": "通用文档解析", docling: "Docling 结构化解析", mineru: "MinerU 版面解析", ocr: "OCR 图片识别", anydoc: "AnyDoc Office 解析" };
 const PARSER_HINTS = { "microsoft.markitdown": "适合 Word、Markdown、PDF 和常见办公文档。", docling: "适合需要结构化内容、表格和版面信息的文档。", mineru: "适合 PDF 和图片；当前环境可能需要云端 Token 或本地模型。", ocr: "适合扫描件和图片；需要本机 OCR 能力。", anydoc: "适合 Office 文件；需要单独安装 AnyDoc。" };
@@ -35,7 +54,7 @@ async function loadPackageFiles(parseId, fallbackArtifacts = []) {
   }
 }
 
-function renderArtifactLinks(parseId, artifacts) {
+/** @param {string} parseId @param {PackageFileEntry[]} artifacts */\nfunction renderArtifactLinks(parseId, artifacts) {
   const target = $("artifactsOutput");
   const downloadAll = $("downloadAllButton");
   target.innerHTML = "";
@@ -54,7 +73,7 @@ function renderArtifactLinks(parseId, artifacts) {
 function renderWarnings(warnings) { const panel = $("warningsPanel"), target = $("warningList"); target.innerHTML = ""; const visible = [...new Set((warnings || []).filter(Boolean))]; panel.hidden = visible.length === 0; for (const warning of visible) { const item = document.createElement("li"); item.textContent = warning; target.appendChild(item); } }
 function qualityStateLabel(state) { return QUALITY_LABELS[state] || state || "未生成"; }
 
-function renderQualityPackage(packagePayload) {
+/** @param {QualityPackage} packagePayload */\nfunction renderQualityPackage(packagePayload) {
   state.lastQuality = packagePayload; const report = packagePayload?.quality_report || {}, stateName = report.state || "unknown", stateElement = $("qualityState"); stateElement.textContent = qualityStateLabel(stateName); stateElement.className = `quality-state ${stateName}`;
   const issues = report.issues || []; $("issueCount").textContent = `${issues.length} 项`; $("qualitySummary").textContent = issues.length ? `${issues.length} 条检查结果，${(report.applied_repairs || []).length} 项已自动整理` : "未发现需要关注的问题";
   const target = $("qualityIssues"); target.innerHTML = "";
@@ -63,7 +82,7 @@ function renderQualityPackage(packagePayload) {
 }
 async function loadQualityPackage(parseId) { try { const response = await fetch(`/api/parses/${encodeURIComponent(parseId)}/quality-package`), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || `质量包读取失败：${response.status}`); renderQualityPackage(payload.quality_package); $("qualityMeta").textContent = `任务目录：${payload.package_path}`; } catch (error) { $("qualityState").textContent = "未生成"; $("qualityState").className = "quality-state"; $("qualitySummary").textContent = error.message; $("qualityIssues").innerHTML = '<p class="empty-state">暂时无法读取质量检查结果。</p>'; $("qualityMeta").textContent = error.message; } }
 
-function renderResponse(payload) {
+/** @param {ParseJobResponse} payload */\nfunction renderResponse(payload) {
   state.lastResponse = payload; const doc = payload.document || {}, provenance = doc.provenance || {}, routing = doc.routing_decision || {}, parseId = payload.parse_id || "", parserId = provenance.parser_id || routing.selected_parser_id || "", blocks = doc.blocks || [], tables = doc.tables || [], assets = doc.assets || [];
   $("resultSection").hidden = false; $("reparseId").value = parseId; $("resultSourceName").textContent = `${doc.filename || "文档"} · 任务编号 ${parseId}`; $("resultParser").textContent = parserLabel(parserId); $("resultRoute").textContent = routing.reason || (provenance.routing_mode === "manual" ? "手动指定" : "自动选择"); $("resultBlocks").textContent = blocks.length; $("resultTables").textContent = tables.length; $("resultAssets").textContent = `${tables.length} 张表格 · ${assets.length} 个附件`; $("markdownOutput").textContent = doc.markdown || "解析器没有返回可预览的正文内容。";
   $("routingOutput").textContent = JSON.stringify(routing, null, 2); $("documentOutput").textContent = JSON.stringify({ filename: doc.filename, file_type: doc.file_type, provenance, confidence: doc.confidence, capabilities: doc.capabilities, warnings: doc.warnings, blocks: blocks.length, tables: tables.length, assets: assets.length }, null, 2); loadPackageFiles(parseId, doc.native_artifacts || []); renderWarnings(doc.warnings || []); loadQualityPackage(parseId); $("resultSection").scrollIntoView({ behavior: "smooth", block: "start" });

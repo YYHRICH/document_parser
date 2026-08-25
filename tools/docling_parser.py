@@ -35,7 +35,7 @@ from docling.document_converter import DocumentConverter  # noqa: E402
 import hashlib
 import docling  # noqa: E402
 
-from document_parser.core.contracts import (  # noqa: E402
+from document_parser.domain.model.contracts import (  # noqa: E402
     BlockKind,
     DocumentBlock,
     EvidenceAvailability,

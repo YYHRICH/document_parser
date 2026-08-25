@@ -1,6 +1,6 @@
 """文档解析模块公开入口。当前实现固定为 Microsoft MarkItDown。"""
 
-from .core.contracts import (
+from .domain.model.contracts import (
     AppliedRepair,
     AssetKind,
     BlockKind,
@@ -40,8 +40,8 @@ from .core.contracts import (
     TableCell,
     TableFieldBinding,
 )
-from .core.gateway import DocumentParserGateway
-from .routing import ModelRouter, RouteProfile, RoutingSettings
+from .app.orchestration import DocumentParsePipeline
+from .domain.routing import ModelRouter, RouteProfile, RoutingSettings
 
 __all__ = [
     "AppliedRepair",
@@ -54,7 +54,7 @@ __all__ = [
     "CapabilityAssessment",
     "DocumentAsset",
     "DocumentBlock",
-    "DocumentParserGateway",
+    "DocumentParsePipeline",
     "DocumentSignals",
     "EvidenceAvailability",
     "EvidenceCapability",

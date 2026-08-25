@@ -25,7 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT.parent))
 
-from document_parser.core.contracts import ParsedDocument  # noqa: E402
+from document_parser.domain.model.contracts import ParsedDocument  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = REPO_ROOT / "datasets" / "shared-dev-v1" / "manifest.jsonl"

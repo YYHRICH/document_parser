@@ -13,7 +13,7 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     EvidenceAvailability,
     EvidenceCapability,
     GateSummary,

@@ -15,7 +15,7 @@ set "PORT=8010"
 set "URL=http://%HOST%:%PORT%/"
 
 echo Starting Document Parser frontend at %URL%
-start "Document Parser API" "%ComSpec%" /k ""%~dp0.venv\Scripts\python.exe" -m uvicorn document_parser.backend.main:app --app-dir "%~dp0.." --host %HOST% --port %PORT%"
+start "Document Parser API" "%ComSpec%" /k ""%~dp0.venv\Scripts\python.exe" -m uvicorn document_parser.trigger.http.main:app --app-dir "%~dp0.." --host %HOST% --port %PORT%"
 
 timeout /t 3 /nobreak >nul
 start "" "%URL%"

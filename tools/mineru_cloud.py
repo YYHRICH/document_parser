@@ -25,7 +25,7 @@ from uuid import uuid4
 
 import requests
 
-from document_parser.core.contracts import (
+from document_parser.domain.model.contracts import (
     DocumentBlock,
     ParsedDocument,
     ParsedTable,
