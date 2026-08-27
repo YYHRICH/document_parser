@@ -54,9 +54,12 @@ def test_run_quality_on_real_fixtures(sample):
     assert package.document_id == doc.document_id
     assert package.canonical_document.document_id == doc.document_id
     assert package.quality_report.document_id == doc.document_id
-    # M4：白名单修复后 markdown 无行尾空白；无修复时 no-op（D-07）
+    # M4：非语义尾随空白已清理；Markdown 硬换行（两个及以上空格）
+    # 与制表符保留，避免改变正文或代码语义。
     assert all(
         line == line.rstrip()
+        or line.endswith("  ")
+        or line.endswith("\t")
         for line in package.optimized_markdown.splitlines()
     )
     assert package.canonical_document.blocks
@@ -86,18 +89,12 @@ def test_run_quality_is_deterministic():
     )
 
 
-def test_mineru_flat_heading_levels_degrade():
-    """MinerU 把文档标题与章节全标为 level2 → 树能力降级，状态不可能是 pass。
-
-    这是真实数据驱动的行为：层级粒度证据不可靠时绝不 verified 放行。
-    """
+def test_mineru_missing_heading_parents_remain_manual():
+    """缺少真实父标题仍需人工复核，不能被 inferred 策略误放行。"""
     doc = _load("sdp-004-mineru")
     package = run_quality(doc)
-    assert package.quality_report.state != QualityState.PASS
-    assert package.quality_report.state in (
-        QualityState.PASS_WITH_WARNINGS,
-        QualityState.MANUAL_REVIEW_REQUIRED,
-    )
+    assert package.quality_report.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert any(issue.category == "heading_parent_missing" for issue in package.quality_report.issues)
 
 
 def test_fallback_document_state_is_legal():
@@ -108,7 +105,7 @@ def test_fallback_document_state_is_legal():
     """
     doc = _load("sdp-006-fallback")
     package = run_quality(doc)
-    assert package.quality_report.state in QualityState
+    assert isinstance(package.quality_report.state, QualityState)
     assert package.quality_report.state.value in {
         "pass",
         "pass_with_warnings",
@@ -202,9 +199,23 @@ def test_stable_canonical_block_ids():
 
 def test_pipeline_canonical_uses_repaired_block_markdown():
     doc = _load("sdp-004-mineru")
-    block = doc.blocks[0].model_copy(update={"markdown": doc.blocks[0].markdown.rstrip() + "  "})
-    repaired_doc = doc.model_copy(update={"blocks": [block, *doc.blocks[1:] ], "markdown": doc.markdown.rstrip() + "  "})
+    block = doc.blocks[0].model_copy(update={"markdown": doc.blocks[0].markdown.rstrip() + " "})
+    repaired_doc = doc.model_copy(update={"blocks": [block, *doc.blocks[1:] ], "markdown": doc.markdown.rstrip() + " "})
     package = run_quality(repaired_doc)
     assert package.canonical_document.blocks[0].content == block.markdown.rstrip()
     assert package.quality_report.applied_repairs
     assert package.quality_report.applied_repairs[0].affected_block_ids == [str(block.id)]
+
+
+def test_quality_only_auto_converts_span_free_html_tables():
+    doc = _load("sdp-001-mineru")
+    package = run_quality(doc)
+
+    assert "<table" in doc.markdown.lower()
+    assert "<table" in package.optimized_markdown.lower()
+    assert any(repair.rule_id == "QL-RPR-003" for repair in package.quality_report.applied_repairs)
+    table_blocks = [
+        block for block in package.canonical_document.blocks if block.kind == "table"
+    ]
+    assert table_blocks
+    assert any(block.content.lstrip().startswith("|") for block in table_blocks)

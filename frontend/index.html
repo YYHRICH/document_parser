@@ -1,60 +1,133 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>文档解析工作台</title>
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
-  <body>
-    <main class="shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="eyebrow">知识中心 · 文档解析工作台</span>
-          <h1>让文档变得可读、可用、可追溯</h1>
-          <p>上传文件，选择解析方式，查看内容和质量结论。</p>
-        </div>
-        <div class="status" id="appStatus"><span class="status-dot"></span><span>准备就绪</span></div>
-      </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>上传文件｜文档处理中心</title>
+  <link rel="stylesheet" href="./workbench.css">
+</head>
+<body data-page="upload">
+  <main class="workbench-shell">
+    <header class="workbench-topbar">
+      <a class="workbench-brand" href="/" aria-label="文档处理中心首页">
+        <span class="brand-mark" aria-hidden="true"><span data-icon="files"></span></span>
+        <span><strong>文档处理中心</strong><small>上传文件</small></span>
+      </a>
+    </header>
 
-      <section class="panel upload-panel">
-        <div class="section-heading"><div><span class="step">01</span><div><h2>上传文档</h2><p>支持 PDF、Word、Markdown、图片等常见格式。</p></div></div></div>
-        <form id="parseForm" class="upload-form">
-          <label class="dropzone" id="fileDropzone" for="fileInput">
-            <input id="fileInput" name="file" type="file" required />
-            <span class="upload-icon">↑</span><strong id="fileName">点击选择文件</strong><small id="fileHint">也可以把文件拖到这里</small>
-          </label>
-          <div class="parse-controls">
-            <label class="field"><span>解析方式</span><select id="parserSelect" name="parser_id"></select><small id="parserHint">推荐使用自动选择，系统会根据文件类型安排解析方式。</small></label>
-            <details class="advanced-options"><summary>高级设置</summary><div class="advanced-grid">
-              <label class="field"><span>选择偏好</span><select id="routeProfile"><option value="local_first">优先本机处理</option><option value="quality_first">优先质量效果</option></select></label>
-              <label class="check-field"><input id="allowCloud" type="checkbox" checked /><span><strong>允许云端解析</strong><small>本机能力不足时可使用云端模型</small></span></label>
-              <label class="check-field"><input id="libreofficeAvailable" type="checkbox" /><span><strong>本机已安装 LibreOffice</strong><small>仅影响旧版 Office 文件转换</small></span></label>
-            </div></details>
-            <button id="parseButton" class="primary-button" type="submit"><span>开始解析</span><span class="button-arrow">→</span></button>
+    <section class="page-heading" aria-labelledby="pageTitle">
+      <span class="eyebrow">文档处理</span>
+      <h1 id="pageTitle">上传文件</h1>
+      <p>选择一份或多份文件。处理完成后，您可以逐份查看文档内容和处理记录。</p>
+    </section>
+
+    <form id="taskUploadForm" class="upload-layout" novalidate>
+      <section class="workbench-card upload-card" aria-labelledby="uploadTitle">
+        <div class="card-section">
+          <div class="section-heading">
+            <div>
+              <h2 id="uploadTitle">选择文件</h2>
+              <p>可拖放文件到下方区域，或从电脑中选择文件。</p>
+            </div>
+            <span id="selectedFileBadge" class="count-badge">0 份文件</span>
           </div>
-        </form>
+
+          <div id="fileDropzone" class="file-dropzone">
+            <div class="dropzone-content">
+              <span class="dropzone-icon" aria-hidden="true"><span data-icon="file-up"></span></span>
+              <h3>拖放文件到这里</h3>
+              <p>也可以从电脑中选择一个或多个文件</p>
+              <button id="chooseFiles" class="button button-primary" type="button">
+                <span data-icon="file-up" aria-hidden="true"></span>
+                <span>选择文件</span>
+              </button>
+              <p class="dropzone-note">文件类型和大小将在提交时进行校验。</p>
+            </div>
+            <input id="fileInput" name="files" type="file" multiple>
+          </div>
+        </div>
+
+        <div class="card-section file-queue-section" aria-labelledby="queueTitle">
+          <div class="section-heading section-heading-compact">
+            <div>
+              <h2 id="queueTitle">文件列表</h2>
+              <p id="fileQueueSummary" role="status" aria-live="polite">尚未选择文件</p>
+            </div>
+            <button id="clearFiles" class="button button-quiet button-danger" type="button" hidden>
+              <span data-icon="trash-2" aria-hidden="true"></span>
+              <span>清空</span>
+            </button>
+          </div>
+          <div id="fileQueue" class="upload-file-list" aria-live="polite"></div>
+          <p id="fileQueueEmpty" class="file-queue-empty">选择文件后，会在这里显示已选文件。</p>
+        </div>
       </section>
 
-      <section class="result-section" id="resultSection" hidden>
-        <div class="result-heading"><div><span class="step">02</span><div><h2>解析结果</h2><p id="resultSourceName">等待上传文档</p></div></div><button class="text-button" id="copyParseId" type="button">复制任务编号</button></div>
-        <div class="summary-grid">
-          <article class="summary-card quality-summary-card"><span class="card-label">质量结论</span><strong id="qualityState" class="quality-state">等待检查</strong><span id="qualitySummary" class="card-note">解析完成后显示</span></article>
-          <article class="summary-card"><span class="card-label">解析方式</span><strong id="resultParser">—</strong><span id="resultRoute" class="card-note">—</span></article>
-          <article class="summary-card"><span class="card-label">识别内容</span><strong id="resultBlocks">—</strong><span class="card-note">个内容区块</span></article>
-          <article class="summary-card"><span class="card-label">附加信息</span><strong id="resultTables">—</strong><span id="resultAssets" class="card-note">张表格 · 0 个附件</span></article>
-        </div>
-        <div class="content-grid">
-          <section class="panel content-panel preview-panel"><div class="panel-heading"><div><span class="panel-kicker">内容预览</span><h3>整理后的文档内容</h3></div><span class="small-badge">Markdown</span></div><article id="markdownOutput" class="markdown-preview">暂无内容</article></section>
-          <section class="panel content-panel quality-panel"><div class="panel-heading"><div><span class="panel-kicker">质量检查</span><h3>需要关注的地方</h3></div><span class="small-badge" id="issueCount">0 项</span></div><div id="qualityIssues" class="issue-list"><p class="empty-state">质量检查结果加载中…</p></div><div id="repairSummary" class="repair-summary" hidden></div></section>
-        </div>
-        <section class="panel artifacts-panel"><div class="panel-heading"><div><span class="panel-kicker">文件产物</span><h3>可下载的解析文件</h3></div><div class="artifact-actions"><span class="small-badge" id="artifactCount">0 个文件</span><a id="downloadAllButton" class="download-all-button" href="#" hidden>下载全部 ZIP</a></div></div><div id="artifactsOutput" class="artifact-list"></div></section>
-        <section class="panel warnings-panel" id="warningsPanel" hidden><div class="panel-heading"><div><span class="panel-kicker">提示</span><h3>解析过程中的提醒</h3></div></div><ul id="warningList" class="warning-list"></ul></section>
-        <details class="technical-details"><summary>查看技术详情</summary><div class="technical-grid"><div><h4>路由信息</h4><pre id="routingOutput" class="technical-block"></pre></div><div><h4>文档字段</h4><pre id="documentOutput" class="technical-block"></pre></div><div><h4>质量包原始数据</h4><pre id="qualityOutput" class="technical-block"></pre></div></div><p id="qualityMeta" class="technical-meta"></p></details>
-        <section class="panel reparse-panel"><div class="result-heading compact-heading"><div><span class="step">03</span><div><h2>需要换一种方式？</h2><p>保留原始任务，使用另一种解析方式重新处理。</p></div></div></div><form id="reparseForm" class="reparse-form"><input id="reparseId" type="hidden" /><label class="field"><span>重新解析方式</span><select id="reparseParser"></select></label><button id="reparseButton" class="secondary-button" type="submit">重新解析 <span>→</span></button></form></section>
-      </section>
-      <footer class="footer">文档内容只在当前解析任务中处理。技术字段仅供排查问题时查看。</footer>
-    </main>
-    <script src="/static/app.js"></script>
-  </body>
+      <aside class="upload-side" aria-label="处理说明与提交操作">
+        <section class="workbench-card side-card">
+          <h2>处理说明</h2>
+          <div class="side-item">
+            <strong>分别处理</strong>
+            <p>每份文件都会独立处理，并在处理中心显示各自的状态。</p>
+          </div>
+          <div class="side-item">
+            <strong>逐份查看</strong>
+            <p>处理完成后，可以单独查看文档内容和处理记录。</p>
+          </div>
+          <div class="side-note">
+            <span data-icon="info" aria-hidden="true"></span>
+            <span>提交后可在处理中心继续查看状态。</span>
+          </div>
+        </section>
+
+        <section class="workbench-card parser-card" aria-labelledby="parserTitle">
+          <div class="parser-card-heading">
+            <span class="parser-card-icon" aria-hidden="true"><span data-icon="scan-text"></span></span>
+            <div>
+              <h2 id="parserTitle">解析模型</h2>
+              <p>可自动选择，或为本批文件指定同一个模型。</p>
+            </div>
+          </div>
+          <label class="parser-field" for="parserSelect">
+            <span class="parser-field-label">处理方式</span>
+            <select id="parserSelect" name="parser_id" aria-describedby="parserHint">
+              <option value="">自动选择（推荐）</option>
+            </select>
+          </label>
+          <p id="parserHint" class="parser-hint" role="status">正在加载可用解析模型；也可以直接使用自动选择。</p>
+          <div class="cloud-option">
+            <label class="cloud-toggle" for="allowCloud">
+              <input id="allowCloud" type="checkbox" aria-describedby="cloudHint">
+              <span>
+                <strong>启用云端解析</strong>
+                <small>允许使用需要联网的解析模型，例如 MinerU。</small>
+              </span>
+            </label>
+            <p id="cloudHint" class="cloud-hint" role="status">正在读取云端解析权限。</p>
+          </div>
+        </section>
+
+        <section class="workbench-card submit-card" aria-labelledby="submitTitle">
+          <h2 id="submitTitle">开始处理</h2>
+          <p>确认文件后开始提交。</p>
+          <dl class="selection-summary">
+            <div><dt>已选文件</dt><dd id="selectedFileCount">0 份</dd></div>
+            <div><dt>文件总大小</dt><dd id="selectedFileSize">—</dd></div>
+          </dl>
+          <button id="startTask" class="button button-submit" type="submit" disabled>
+            <span data-icon="files" aria-hidden="true"></span>
+            <span id="startTaskLabel">请选择文件</span>
+          </button>
+          <p id="uploadStatus" class="submit-status" role="status" aria-live="polite">选择文件后即可开始处理。</p>
+        </section>
+      </aside>
+    </form>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./api-config.js"></script>
+  <script type="module" src="./assets/lucide-icons.js"></script>
+  <script type="module" src="./workbench.js"></script>
+</body>
 </html>

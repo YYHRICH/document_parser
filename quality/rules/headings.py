@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     BlockKind,
     IssueSeverity,
     QualityCapabilityState,
@@ -157,7 +157,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                 IssueDraft(
                     severity=IssueSeverity.INFO,
                     category="heading_level_granularity_suspect",
-                    message="解析器标题层级粒度可疑（同层级含多级编号），改用编号模式恢复层级。",
+                    message="解析器标题层级已根据明确编号模式自动恢复，无需人工复核。",
                     affected_block_ids=[str(h.id) for h in headings],
                 )
             )

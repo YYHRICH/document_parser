@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文档处理中心｜流程样例</title>
+  <style>
+    :root{--ink:#19243a;--muted:#65738a;--line:#e1e7f0;--paper:#fff;--canvas:#f4f7fb;--blue:#2864e8;--blue-dark:#194bc2;--blue-soft:#edf3ff;--green:#147760;--green-soft:#e5f7f0;--shadow:0 16px 45px rgba(29,49,82,.1)}
+    *{box-sizing:border-box}body{min-width:320px;margin:0;background:radial-gradient(circle at 6% 0,#e4edff 0,transparent 31rem),radial-gradient(circle at 100% 5%,#e9f8f3 0,transparent 25rem),var(--canvas);color:var(--ink);font:15px/1.55 Inter,"Segoe UI","Microsoft YaHei",sans-serif}a:focus-visible{outline:3px solid #9db9ff;outline-offset:3px}.shell{max-width:1160px;margin:auto;padding:54px 24px 66px}.brand{display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none}.brand-mark{display:grid;width:38px;height:38px;place-items:center;border-radius:12px;background:linear-gradient(135deg,#2d66ed,#1949bf);color:#fff;box-shadow:0 8px 19px rgba(40,95,233,.26)}.lucide-icon{display:block;width:1em;height:1em}.brand-mark .lucide-icon{width:21px;height:21px}.brand strong{display:block;font-size:16px}.brand span{display:block;color:var(--muted);font-size:12px}.hero{max-width:810px;margin-top:44px}.eyebrow{color:var(--blue);font-size:11px;font-weight:850;letter-spacing:.12em}.hero h1{margin:9px 0 13px;font-size:clamp(34px,5.2vw,56px);letter-spacing:-.052em;line-height:1.08}.hero p{margin:0;color:var(--muted);font-size:16px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:0 16px;border:1px solid #c4d4f5;border-radius:11px;background:#fff;color:var(--blue);font-size:14px;font-weight:850;text-decoration:none;transition:.16s}.button:hover{border-color:var(--blue);background:#f6f9ff}.button.primary{border-color:var(--blue);background:var(--blue);color:#fff;box-shadow:0 9px 18px rgba(40,95,233,.23)}.button.primary:hover{border-color:var(--blue-dark);background:var(--blue-dark)}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}.step{position:relative;min-height:255px;padding:23px;border:1px solid var(--line);border-radius:19px;background:rgba(255,255,255,.95);box-shadow:var(--shadow)}.step-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.number{display:grid;width:40px;height:40px;place-items:center;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-weight:900}.step-icon{display:grid;width:38px;height:38px;place-items:center;border-radius:11px;background:#f0f8f5;color:var(--green)}.step-icon .lucide-icon{width:20px;height:20px}.step h2{margin:18px 0 7px;font-size:20px;letter-spacing:-.025em}.step p{margin:0;color:var(--muted);font-size:13px}.step ul{margin:17px 0 0;padding-left:18px;color:#48566c;font-size:13px}.step li+li{margin-top:7px}.note{display:flex;gap:11px;margin-top:22px;padding:15px 16px;border-radius:14px;background:var(--green-soft);color:#356c5b;font-size:13px}.note b{color:var(--green)}@media(max-width:850px){.shell{padding:35px 18px 50px}.hero{margin-top:35px}.flow{grid-template-columns:1fr}.step{min-height:auto}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="brand" href="04-batch-upload.html" aria-label="进入文档处理中心"><span class="brand-mark"><span data-icon="files"></span></span><span><strong>文档处理中心</strong><span>流程样例</span></span></a>
+    <section class="hero">
+      <span class="eyebrow">文档处理流程</span>
+      <h1>上传文件，查看处理情况，并逐份确认修改。</h1>
+      <p>一份或多份文件都使用同一套流程。每份文档单独处理、单独查看，并在准备就绪后下载结果。</p>
+      <div class="actions"><a class="button primary" href="04-batch-upload.html">开始上传文件</a><a class="button" href="04-batch-upload.html?demo=1">体验示例任务</a></div>
+    </section>
+    <section class="flow" aria-label="使用流程">
+      <article class="step"><div class="step-top"><span class="number">01</span><span class="step-icon" data-icon="file-up"></span></div><h2>上传文件</h2><p>选择一份或多份文件，确认每份文件是否可处理。</p><ul><li>拖放或选择文件</li><li>自动识别处理方式</li><li>单独显示格式状态</li></ul></article>
+      <article class="step"><div class="step-top"><span class="number">02</span><span class="step-icon" data-icon="list-checks"></span></div><h2>处理中心</h2><p>按文件查看处理中、待确认和可下载的结果。</p><ul><li>状态一目了然</li><li>继续处理待确认内容</li><li>按当前可用范围下载</li></ul></article>
+      <article class="step"><div class="step-top"><span class="number">03</span><span class="step-icon" data-icon="scan-text"></span></div><h2>文档详情</h2><p>查看优化后内容和每一项修改的具体位置。</p><ul><li>连续阅读文档</li><li>定位对应修订</li><li>确认或重新处理</li></ul></article>
+    </section>
+    <aside class="note"><b>体验提示：</b><span>点击“体验示例任务”后，选择“开始处理 5 份文件”，即可依次进入处理中心和文档详情。</span></aside>
+  </main>
+  <script src="assets/lucide-icons.js"></script>
+  <script>window.MockIcons && window.MockIcons.mount(document);</script>
+</body>
+</html>

@@ -80,11 +80,35 @@ def test_write_document_package_materializes_assets_and_source(tmp_path: Path) -
     )
 
     assert (package_root / "parsed_document.json").is_file()
+    assert (package_root / "document.md").read_text(encoding="utf-8") == document.markdown
     assert (package_root / "assets" / "images" / "figure-1.png").is_file()
     assert (package_root / "source" / "original.pdf").is_file()
     assert (package_root / "native" / "images" / "table-001.jpg").is_file()
     loaded = load_document_package(package_root)
     assert loaded.assets[0].path == "images/figure-1.png"
+
+
+
+def test_document_package_rejects_rendered_markdown_drift(tmp_path: Path) -> None:
+    document = ParsedDocument.model_validate(load_parsed_payload())
+    package_root = tmp_path / "document_package"
+    # The fixture declares native sidecars, so materialize them before testing
+    # the independent rendered-Markdown integrity check.
+    write_document_package(
+        document,
+        package_root,
+        native_files={
+            "native/content_list.json": b"{}",
+            "native/full.md": b"# full",
+            "native/images/table-001.jpg": b"image",
+        },
+    )
+    (package_root / "document.md").write_text("tampered", encoding="utf-8")
+
+    with pytest.raises(DocumentPackageValidationError) as error:
+        load_document_package(package_root)
+
+    assert "document.md" in str(error.value)
 
 
 def test_write_document_package_rejects_unsafe_native_file_paths(tmp_path: Path) -> None:

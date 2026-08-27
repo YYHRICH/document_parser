@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>可信任务进度 · 文档处理</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #68738a;
+      --line: #e4e9f2;
+      --canvas: #f4f7fb;
+      --panel: #ffffff;
+      --navy: #1f3b68;
+      --blue: #3d78d8;
+      --blue-soft: #eaf2ff;
+      --green: #247a5d;
+      --green-soft: #e8f7f0;
+      --amber: #9a6516;
+      --amber-soft: #fff6df;
+      --red: #b34349;
+      --red-soft: #fff0f1;
+      --shadow: 0 14px 42px rgba(30, 56, 94, .08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--canvas); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 4% 0%, rgba(159, 194, 247, .38), transparent 28rem),
+        radial-gradient(circle at 97% 8%, rgba(196, 226, 216, .34), transparent 24rem),
+        var(--canvas);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible { outline: 3px solid rgba(61, 120, 216, .32); outline-offset: 2px; }
+
+    .shell { width: min(1440px, calc(100% - 40px)); margin: 0 auto; padding: 26px 0 56px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: white; background: var(--navy); font-weight: 800; letter-spacing: -.08em; box-shadow: 0 8px 20px rgba(31, 59, 104, .2); }
+    .brand strong { display: block; font-size: 14px; letter-spacing: .02em; }
+    .brand span { display: block; color: var(--muted); font-size: 12px; }
+    .top-actions { display: flex; align-items: center; gap: 9px; }
+
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: 10px; color: #35415a; background: #fff; font-weight: 650; transition: .16s ease; }
+    .button:hover { transform: translateY(-1px); border-color: #c9d5e8; box-shadow: 0 5px 13px rgba(23, 32, 51, .07); }
+    .button.primary { color: white; border-color: var(--navy); background: var(--navy); }
+    .button.primary:hover { background: #183156; }
+    .button.danger { color: var(--red); border-color: #f1c9cc; background: #fff; }
+    .button.ghost { color: var(--muted); background: transparent; }
+    .button svg { width: 16px; height: 16px; }
+
+    .task-hero, .stage-card, .card, .repair-card { border: 1px solid rgba(223, 230, 241, .92); border-radius: var(--radius); background: rgba(255,255,255,.94); box-shadow: var(--shadow); }
+    .task-hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr); gap: 28px; padding: 27px 30px; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .pulse { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4f91ec; box-shadow: 0 0 0 0 rgba(79,145,236,.5); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(79,145,236,0); } 100% { box-shadow: 0 0 0 0 rgba(79,145,236,0); } }
+    h1 { margin: 0; font-size: clamp(22px, 3vw, 31px); letter-spacing: -.035em; line-height: 1.2; }
+    .task-caption { margin: 9px 0 17px; color: var(--muted); max-width: 680px; }
+    .task-facts { display: flex; flex-wrap: wrap; gap: 9px 19px; color: #536078; font-size: 12px; }
+    .task-facts span { display: inline-flex; align-items: center; gap: 6px; }
+    .task-facts b { color: #283650; font-weight: 700; }
+    .hero-status { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; border-left: 1px solid var(--line); padding-left: 28px; }
+    .status-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; color: var(--amber); background: var(--amber-soft); font-size: 12px; font-weight: 800; }
+    .status-chip i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .hero-status strong { margin-top: 13px; font-size: 16px; }
+    .hero-status p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+    .stage-card { margin-top: 18px; padding: 23px 25px 20px; overflow: hidden; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .section-head h2 { margin: 0; font-size: 16px; letter-spacing: -.01em; }
+    .section-head p { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+    .honesty-note { max-width: 330px; padding: 8px 10px; border: 1px solid #d7e5fb; border-radius: 10px; color: #416795; background: #f4f8ff; font-size: 12px; }
+
+    .stages { display: grid; grid-template-columns: repeat(5, minmax(135px, 1fr)); gap: 0; margin-top: 25px; }
+    .stage { position: relative; min-height: 139px; padding: 0 18px 0 0; }
+    .stage:not(:last-child)::after { content: ""; position: absolute; top: 15px; left: 31px; right: 0; height: 2px; background: #dce3ed; }
+    .stage.done:not(:last-child)::after { background: #91cfb8; }
+    .stage-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 32px; height: 32px; margin-bottom: 11px; border: 2px solid #cfd8e6; border-radius: 50%; color: #8b97a9; background: #fff; font-size: 14px; font-weight: 900; }
+    .stage.done .stage-dot { border-color: var(--green); color: white; background: var(--green); }
+    .stage.current .stage-dot { border-color: #4f88df; color: white; background: #4f88df; box-shadow: 0 0 0 6px var(--blue-soft); }
+    .stage.pending .stage-dot { background: #f7f9fc; }
+    .stage-name { margin: 0 0 3px; color: #2d3951; font-size: 13px; font-weight: 800; }
+    .stage-meta { margin: 0; color: var(--muted); font-size: 12px; }
+    .stage.current .stage-name { color: #24599f; }
+    .stage-detail { display: inline-flex; margin-top: 8px; padding: 4px 7px; border-radius: 7px; color: #4c617f; background: #f5f8fc; font-size: 11px; font-weight: 700; }
+    .stage.current .stage-detail { color: #25654f; background: var(--green-soft); }
+
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.23fr) minmax(280px, .77fr); gap: 18px; margin-top: 18px; }
+    .card { padding: 22px; }
+    .activity-summary { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; padding: 17px; margin-top: 17px; border: 1px solid #dfe8f5; border-radius: 14px; background: linear-gradient(120deg, #f8fbff, #f2f8f6); }
+    .activity-label { color: #61708b; font-size: 12px; font-weight: 750; }
+    .activity-main { margin-top: 2px; font-size: 17px; font-weight: 820; letter-spacing: -.02em; }
+    .activity-sub { margin: 5px 0 0; color: #52627b; font-size: 12px; }
+    .duration { display: flex; flex-direction: column; align-items: flex-end; min-width: 90px; }
+    .duration span { color: var(--muted); font-size: 11px; }
+    .duration strong { color: #2f455f; font-size: 18px; font-variant-numeric: tabular-nums; }
+    .indeterminate { display: flex; gap: 10px; align-items: flex-start; margin-top: 13px; padding: 11px 12px; border-left: 3px solid #e1a846; border-radius: 0 10px 10px 0; color: #725a2a; background: var(--amber-soft); font-size: 12px; }
+    .indeterminate b { color: #8e6014; white-space: nowrap; }
+
+    .timeline { margin: 20px 0 0; padding: 0; list-style: none; }
+    .timeline li { position: relative; display: grid; grid-template-columns: 78px 16px minmax(0,1fr); gap: 9px; min-height: 49px; }
+    .timeline li::after { content: ""; position: absolute; top: 19px; left: 85px; width: 1px; height: calc(100% - 3px); background: #dde4ee; }
+    .timeline li:last-child::after { display: none; }
+    .timeline time { padding-top: 1px; color: #8290a4; font-size: 11px; font-variant-numeric: tabular-nums; }
+    .event-dot { position: relative; z-index: 1; width: 10px; height: 10px; margin-top: 4px; border-radius: 50%; background: #9bb0cc; box-shadow: 0 0 0 4px #f6f9fd; }
+    .event-dot.ok { background: var(--green); }
+    .event-dot.live { background: #4e8be0; animation: pulse 1.8s infinite; }
+    .event-title { color: #324158; font-size: 12px; font-weight: 760; }
+    .event-text { margin-top: 1px; color: var(--muted); font-size: 12px; }
+
+    .task-actions { display: grid; gap: 11px; margin-top: 18px; }
+    .task-actions .button { width: 100%; justify-content: flex-start; }
+    .task-actions .button.primary { justify-content: center; }
+    .safe-copy { margin-top: 18px; padding: 13px; border: 1px solid #e6ebf2; border-radius: 12px; color: #66758c; background: #fbfcfe; font-size: 12px; }
+    .safe-copy b { display: block; margin-bottom: 4px; color: #41516a; }
+    .event-source { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+    .event-source span { padding: 4px 7px; border-radius: 6px; color: #5f718b; background: #f1f5fa; font-size: 11px; }
+
+    .repair-card { margin-top: 18px; padding: 22px; }
+    .repair-top { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
+    .repair-stat { display: flex; flex-wrap: wrap; gap: 7px; }
+    .repair-stat span { padding: 5px 8px; border-radius: 7px; font-size: 11px; font-weight: 800; }
+    .repair-stat .fixed { color: #21664d; background: var(--green-soft); }
+    .repair-stat .review { color: #94611a; background: var(--amber-soft); }
+    .repair-stat .unchanged { color: #65738a; background: #f0f3f7; }
+    .repair-tools { display: flex; gap: 8px; margin-top: 16px; }
+    .repair-tools .button { min-height: 32px; font-size: 12px; }
+    .repair-list { display: grid; gap: 11px; margin-top: 14px; }
+    .repair-item { border: 1px solid #e2e8f1; border-radius: 14px; overflow: hidden; background: #fff; }
+    .repair-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: start; padding: 15px 16px; }
+    .repair-title { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; color: #2a3b55; font-size: 13px; font-weight: 820; }
+    .location { color: #718098; font-size: 11px; font-weight: 650; }
+    .rule { margin-top: 4px; color: #748198; font: 11px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .repair-state { padding: 4px 7px; border-radius: 6px; color: #237254; background: var(--green-soft); font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .repair-state.review { color: #986515; background: var(--amber-soft); }
+    .diff { display: none; grid-template-columns: 1fr 1fr; gap: 1px; border-top: 1px solid #e6ebf2; background: #e6ebf2; }
+    .repair-item.open .diff { display: grid; }
+    .diff-pane { min-width: 0; padding: 12px 15px 15px; background: #fff; }
+    .diff-pane small { display: block; margin-bottom: 7px; color: #718098; font-size: 10px; font-weight: 800; letter-spacing: .04em; }
+    .diff-pane code { display: block; overflow: auto; color: #495972; font: 11px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; }
+    .before code { color: #a45157; }
+    .after code { color: #267257; }
+    .repair-item.review-item { border-color: #efdfbd; }
+    .repair-item.review-item .repair-row { background: #fffdf8; }
+    .repair-list.only-fixed .review-item { display: none; }
+
+    .drawer { position: fixed; z-index: 20; top: 0; right: 0; display: flex; flex-direction: column; width: min(490px, 100%); height: 100vh; padding: 24px; transform: translateX(105%); border-left: 1px solid #dbe4f0; background: #fff; box-shadow: -18px 0 50px rgba(24,44,75,.16); transition: transform .22s ease; }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .drawer h2 { margin: 0; font-size: 17px; }
+    .event-log { overflow: auto; margin: 19px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .event-log li { padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .event-log time { display: block; color: #8593a7; font-size: 11px; }
+    .event-log b { display: block; margin-top: 2px; font-size: 12px; }
+    .event-log span { color: #6f7d91; font-size: 12px; }
+    .toast { position: fixed; z-index: 30; right: 24px; bottom: 22px; max-width: min(420px, calc(100% - 40px)); padding: 11px 14px; transform: translateY(30px); border: 1px solid #cce7dc; border-radius: 10px; color: #275f4d; opacity: 0; background: #f1fbf5; box-shadow: var(--shadow); transition: .22s ease; font-size: 12px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 980px) {
+      .task-hero, .workspace { grid-template-columns: 1fr; }
+      .hero-status { min-height: 92px; border-top: 1px solid var(--line); border-left: 0; padding: 20px 0 0; }
+      .stages { grid-template-columns: repeat(5, minmax(155px, 1fr)); overflow-x: auto; padding-bottom: 8px; }
+      .stage { min-width: 155px; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 24px, 1440px); padding-top: 14px; }
+      .topbar { align-items: flex-start; }
+      .top-actions { flex-wrap: wrap; justify-content: flex-end; }
+      .top-actions .button.ghost { display: none; }
+      .task-hero, .stage-card, .card, .repair-card { border-radius: 15px; }
+      .task-hero { padding: 22px 19px; }
+      .stage-card, .card, .repair-card { padding: 18px; }
+      .section-head, .repair-top { align-items: flex-start; flex-direction: column; }
+      .honesty-note { max-width: none; }
+      .activity-summary { grid-template-columns: 1fr; }
+      .duration { align-items: flex-start; }
+      .timeline li { grid-template-columns: 66px 16px minmax(0,1fr); }
+      .timeline li::after { left: 73px; }
+      .diff { grid-template-columns: 1fr; }
+      .repair-tools { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand" aria-label="文档处理平台">
+        <div class="brand-mark">DP</div>
+        <div><strong>文档处理中心</strong><span>任务详情</span></div>
+      </div>
+      <div class="top-actions">
+        <button class="button ghost" type="button" id="showEvents">查看任务事件</button>
+        <button class="button" type="button" id="backgroundTask">后台继续处理</button>
+        <button class="button primary" type="button" id="openRepairs">查看修订记录</button>
+      </div>
+    </header>
+
+    <section class="task-hero" aria-labelledby="task-title">
+      <div>
+        <div class="eyebrow"><span class="pulse" aria-hidden="true"></span>任务正在运行</div>
+        <h1 id="task-title">年度审计报告（PDF）</h1>
+        <p class="task-caption">任务编号：DP-20260826-0148　解析方式：MinerU（本地）　当前步骤：修复</p>
+        <div class="task-facts">
+          <span>开始于 <b>10:24:18</b></span>
+          <span>已耗时 <b data-elapsed>04:36</b></span>
+          <span>尝试 <b>第 1 次</b></span>
+          <span>更新于 <b>刚刚</b></span>
+        </div>
+      </div>
+      <div class="hero-status">
+        <div class="status-chip"><i aria-hidden="true"></i>修复阶段进行中</div>
+        <strong>已自动修复 12 项</strong>
+        <p>另有 4 项需要人工确认；产物尚未发布。</p>
+      </div>
+    </section>
+
+    <section class="stage-card" aria-labelledby="stage-title">
+      <div class="section-head">
+        <div><h2 id="stage-title">处理链路</h2><p>查看各处理步骤的状态和耗时。</p></div>
+        <div class="honesty-note">正在核对跨页表格结构 · 已耗时 <span data-elapsed>04:36</span></div>
+      </div>
+      <div class="stages" aria-label="五阶段处理状态">
+        <article class="stage done">
+          <div class="stage-dot" aria-label="解析已完成">✓</div>
+          <p class="stage-name">解析</p><p class="stage-meta">124 / 124 页</p><span class="stage-detail">完成 · 02:18</span>
+        </article>
+        <article class="stage done">
+          <div class="stage-dot" aria-label="归一化已完成">✓</div>
+          <p class="stage-name">归一化</p><p class="stage-meta">1,948 / 1,948 内容块</p><span class="stage-detail">完成 · 00:38</span>
+        </article>
+        <article class="stage done">
+          <div class="stage-dot" aria-label="质量检查已完成">✓</div>
+          <p class="stage-name">质量检查</p><p class="stage-meta">31 / 31 项规则</p><span class="stage-detail">完成 · 01:02</span>
+        </article>
+        <article class="stage current">
+          <div class="stage-dot" aria-label="修复正在进行">↻</div>
+          <p class="stage-name">修复</p><p class="stage-meta">已自动修复 12 项</p><span class="stage-detail">当前阶段 · <span data-elapsed>04:36</span></span>
+        </article>
+        <article class="stage pending">
+          <div class="stage-dot" aria-label="发布等待中">5</div>
+          <p class="stage-name">发布</p><p class="stage-meta">待发布</p><span class="stage-detail">尚未开始</span>
+        </article>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="card" aria-labelledby="live-title">
+        <div class="section-head"><div><h2 id="live-title">当前处理</h2><p>查看关键处理节点和当前状态。</p></div></div>
+        <div class="activity-summary">
+          <div><div class="activity-label">已完成处理</div><div class="activity-main">已自动修复 12 项文档问题</div><p class="activity-sub">包括 8 个 HTML 表格转 Markdown、3 处空白结构清理与 1 个标题层级修正。</p></div>
+          <div class="duration"><span>修复阶段已耗时</span><strong data-elapsed>04:36</strong></div>
+        </div>
+        <div class="indeterminate"><b>当前处理</b><span>正在核对第 9 个跨页表格的表头与合并单元格关系。</span></div>
+        <ol class="timeline" aria-label="最近任务事件">
+          <li><time>10:28:46</time><span class="event-dot ok" aria-hidden="true"></span><div><div class="event-title">质量检查完成</div><div class="event-text">已完成 31 项检查，发现 18 个需关注项目。</div></div></li>
+          <li><time>10:29:13</time><span class="event-dot ok" aria-hidden="true"></span><div><div class="event-title">表格结构修复已写入</div><div class="event-text">第 7 页“营业收入构成”已从 HTML 表格转为 Markdown 表格。</div></div></li>
+          <li><time>10:30:04</time><span class="event-dot live" aria-hidden="true"></span><div><div class="event-title">正在核对跨页表格</div><div class="event-text">需要确认表头是否应继承至下一页；结果会进入人工复核或自动修复记录。</div></div></li>
+        </ol>
+      </section>
+
+      <aside class="card" aria-labelledby="actions-title">
+        <div class="section-head"><div><h2 id="actions-title">任务操作</h2><p>可在后台继续处理，或查看处理记录。</p></div></div>
+        <div class="task-actions">
+          <button class="button primary" type="button" id="backgroundTaskSecond">在后台继续处理</button>
+          <button class="button" type="button" id="showEventsSecond">查看处理记录</button>
+          <button class="button" type="button" id="openRepairsSecond">查看已完成修订</button>
+          <button class="button danger" type="button" id="cancelTask">取消当前任务</button>
+        </div>
+        
+        <div class="event-source"><span>事件序号 148</span><span>最近心跳 10:30:04</span><span>本地执行</span></div>
+      </aside>
+    </div>
+
+    <section class="repair-card" id="repairs" aria-labelledby="repair-title">
+      <div class="repair-top">
+        <div><h2 id="repair-title">修订记录</h2><p>查看自动修复、待确认项及对应处理依据。</p></div>
+        <div class="repair-stat" aria-label="修订汇总"><span class="fixed">已自动修复 12</span><span class="review">待人工确认 4</span><span class="unchanged">保留未改 2</span></div>
+      </div>
+      <div class="repair-tools">
+        <button class="button" type="button" id="filterChanges">仅看已修复</button>
+        <button class="button" type="button" id="toggleDiff">展开全部改前改后</button>
+      </div>
+      <div class="repair-list" id="repairList">
+        <article class="repair-item">
+          <div class="repair-row"><div><div class="repair-title">HTML 表格转换为 Markdown <span class="location">第 7 页 · 表格“营业收入构成”</span></div><div class="rule">处理方式：表格格式转换 · 已完成结构校验</div></div><span class="repair-state">已自动修复</span></div>
+          <div class="diff"><div class="diff-pane before"><small>修改前（摘要）</small><code>&lt;table&gt;&lt;tr&gt;&lt;th&gt;项目&lt;/th&gt;…</code></div><div class="diff-pane after"><small>修改后（摘要）</small><code>| 项目 | 本期 | 上期 |
+| --- | ---: | ---: |</code></div></div>
+        </article>
+        <article class="repair-item">
+          <div class="repair-row"><div><div class="repair-title">冗余空白段落清理 <span class="location">第 12 页 · 3 个相邻内容块</span></div><div class="rule">处理方式：清理多余空白 · 内容保持不变</div></div><span class="repair-state">已自动修复</span></div>
+          <div class="diff"><div class="diff-pane before"><small>修改前（摘要）</small><code>结论
+
+
+
+附注</code></div><div class="diff-pane after"><small>修改后（摘要）</small><code>结论
+
+附注</code></div></div>
+        </article>
+        <article class="repair-item review-item">
+          <div class="repair-row"><div><div class="repair-title">跨页表格表头继承 <span class="location">第 33–34 页 · 表格“现金流量”</span></div><div class="rule">处理方式：跨页表格检查 · 需人工确认</div></div><span class="repair-state review">待人工确认</span></div>
+          <div class="diff"><div class="diff-pane before"><small>检测到的情况</small><code>下一页首行与前页表头相似，但列数存在差异。</code></div><div class="diff-pane after"><small>系统动作</small><code>保持原文不变；发布前需要人工复核。</code></div></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <aside class="drawer" id="eventDrawer" aria-label="处理记录" aria-hidden="true">
+    <div class="drawer-head"><h2>处理记录</h2><button class="button" type="button" id="closeEvents">关闭</button></div>
+    <p class="task-caption">记录任务处理过程和状态变化。</p>
+    <ol class="event-log">
+      <li><time>10:24:18 · 事件 #132</time><b>任务已创建</b><span>PDF 输入已接收，开始本地解析。</span></li>
+      <li><time>10:26:36 · 事件 #139</time><b>解析阶段通过</b><span>已生成结构化中间结果。</span></li>
+      <li><time>10:27:14 · 事件 #142</time><b>归一化阶段通过</b><span>内容块与表格表示已统一。</span></li>
+      <li><time>10:28:46 · 事件 #146</time><b>质量检查完成</b><span>发现可修复问题和需人工复核项。</span></li>
+      <li><time>10:30:04 · 事件 #148</time><b>修复阶段仍在运行</b><span>正在核对跨页表格结构。</span></li>
+    </ol>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const elapsedNodes = document.querySelectorAll('[data-elapsed]');
+      let elapsed = 4 * 60 + 36;
+      const format = (seconds) => {
+        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+      };
+      window.setInterval(() => {
+        elapsed += 1;
+        elapsedNodes.forEach((node) => { node.textContent = format(elapsed); });
+      }, 1000);
+
+      const drawer = document.getElementById('eventDrawer');
+      const openDrawer = () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); document.getElementById('closeEvents').focus(); };
+      const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); };
+      document.getElementById('showEvents').addEventListener('click', openDrawer);
+      document.getElementById('showEventsSecond').addEventListener('click', openDrawer);
+      document.getElementById('closeEvents').addEventListener('click', closeDrawer);
+
+      const repairs = document.getElementById('repairs');
+      const openRepairs = () => repairs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('openRepairs').addEventListener('click', openRepairs);
+      document.getElementById('openRepairsSecond').addEventListener('click', openRepairs);
+
+      const list = document.getElementById('repairList');
+      let fixedOnly = false;
+      document.getElementById('filterChanges').addEventListener('click', (event) => {
+        fixedOnly = !fixedOnly;
+        list.classList.toggle('only-fixed', fixedOnly);
+        event.currentTarget.textContent = fixedOnly ? '显示全部修订' : '仅看已修复';
+      });
+      let expanded = false;
+      document.getElementById('toggleDiff').addEventListener('click', (event) => {
+        expanded = !expanded;
+        document.querySelectorAll('.repair-item').forEach((item) => item.classList.toggle('open', expanded));
+        event.currentTarget.textContent = expanded ? '收起全部改前改后' : '展开全部改前改后';
+      });
+      document.querySelectorAll('.repair-row').forEach((row) => {
+        row.tabIndex = 0;
+        row.setAttribute('role', 'button');
+        row.setAttribute('aria-label', '展开或收起修订详情');
+        const toggle = () => row.parentElement.classList.toggle('open');
+        row.addEventListener('click', toggle);
+        row.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); } });
+      });
+
+      const toast = document.getElementById('toast');
+      let toastTimer;
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove('show'), 3200);
+      };
+      const background = () => showToast('任务已后台继续处理；离开此页后仍会继续，并可从任务列表恢复。');
+      document.getElementById('backgroundTask').addEventListener('click', background);
+      document.getElementById('backgroundTaskSecond').addEventListener('click', background);
+      document.getElementById('cancelTask').addEventListener('click', () => showToast('这是静态样例：真实产品中此处应先二次确认，并保留已产生的修订与事件。'));
+    })();
+  </script>
+</body>
+</html>

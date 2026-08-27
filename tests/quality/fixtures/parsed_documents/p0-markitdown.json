@@ -1,0 +1,119 @@
+{
+  "document_id": "4820a1f0-5e49-407b-9495-3e4a82f9ec9f",
+  "filename": "p0-markitdown.md",
+  "file_type": "text/markdown",
+  "source_size_bytes": null,
+  "source_sha256": null,
+  "routing_decision": null,
+  "markdown": "# P0 MarkItDown baseline\n\nThis fixture is produced by the installed MarkItDown adapter.\n\n| field | value |\n| --- | --- |\n| parser | markitdown |\n",
+  "blocks": [
+    {
+      "id": "f6e5eea7-8fdf-40df-9f2d-08d6b8488f36",
+      "source_block_id": null,
+      "order_index": null,
+      "kind": "heading",
+      "native_type": null,
+      "text": null,
+      "heading_level": null,
+      "markdown": "# P0 MarkItDown baseline",
+      "anchor": {
+        "page_number": null,
+        "bbox": null,
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": null,
+        "provenance_status": null,
+        "section_path": [
+          "P0 MarkItDown baseline"
+        ],
+        "table_cell": null,
+        "original_text": "P0 MarkItDown baseline"
+      },
+      "metadata": {}
+    },
+    {
+      "id": "a748102f-e54d-401b-a5d6-1aa66b30660e",
+      "source_block_id": null,
+      "order_index": null,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": null,
+      "heading_level": null,
+      "markdown": "This fixture is produced by the installed MarkItDown adapter.",
+      "anchor": {
+        "page_number": null,
+        "bbox": null,
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": null,
+        "provenance_status": null,
+        "section_path": [
+          "P0 MarkItDown baseline"
+        ],
+        "table_cell": null,
+        "original_text": "This fixture is produced by the installed MarkItDown adapter."
+      },
+      "metadata": {}
+    },
+    {
+      "id": "f43934fd-52aa-4d45-aa47-57a3e4dfb99b",
+      "source_block_id": null,
+      "order_index": null,
+      "kind": "paragraph",
+      "native_type": null,
+      "text": null,
+      "heading_level": null,
+      "markdown": "| field | value |\n| --- | --- |\n| parser | markitdown |",
+      "anchor": {
+        "page_number": null,
+        "bbox": null,
+        "page_width": null,
+        "page_height": null,
+        "coordinate_system": null,
+        "bbox_granularity": null,
+        "provenance_status": null,
+        "section_path": [
+          "P0 MarkItDown baseline"
+        ],
+        "table_cell": null,
+        "original_text": "| field | value |\n| --- | --- |\n| parser | markitdown |"
+      },
+      "metadata": {}
+    }
+  ],
+  "assets": [],
+  "tables": [],
+  "ocr_spans": [],
+  "confidence": {
+    "text": 1.0,
+    "layout": 1.0,
+    "reading_order": 1.0,
+    "table": 1.0,
+    "overall": 0.9
+  },
+  "provenance": {
+    "parser_id": "microsoft.markitdown",
+    "requested_parser_id": null,
+    "routing_mode": null,
+    "model": "markitdown",
+    "version": "0.1.7",
+    "parameters": {
+      "plugins_enabled": false,
+      "source_extension": ".md"
+    },
+    "format_conversion_duration_ms": 0,
+    "markitdown_duration_ms": 1744,
+    "parse_duration_ms": 1744,
+    "peak_memory_mb": null,
+    "fallback_history": []
+  },
+  "warnings": [],
+  "native_artifacts": [],
+  "capabilities": {},
+  "alternatives": [],
+  "schema_name": "ParsedDocument",
+  "schema_version": "2.2",
+  "created_at": "2026-08-25T10:37:23.308333Z"
+}

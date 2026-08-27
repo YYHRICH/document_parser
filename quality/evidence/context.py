@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     BlockKind,
     DocumentBlock,
     ParsedDocument,
@@ -17,7 +17,13 @@ from document_parser.core.contracts import (
 )
 
 from quality.evidence.availability import AvailabilityResolver, RequirementCheck
+from quality.evidence.negotiation import (
+    CapabilityDeclaration,
+    QualityEvidenceNegotiator,
+    RuleEvidenceNegotiation,
+)
 from quality.evidence.requirements import EvidenceRequirement
+from quality.representations import QualityInputAdapter, RepresentationInventory
 
 
 class EvidenceContext:
@@ -44,9 +50,20 @@ class EvidenceContext:
             str(t.block_id): t for t in parsed.tables
         }
         self._duplicate_block_ids = tuple(sorted(set(duplicate_block_ids)))
-        self._availability = AvailabilityResolver(
-            capabilities=parsed.capabilities,
-            table_count=len(parsed.tables),
+        self.representations: RepresentationInventory = (
+            QualityInputAdapter.from_parsed_document(parsed)
+        )
+        self.capability_declaration = CapabilityDeclaration.from_parsed_document(
+            parsed,
+            representation_states={
+                "table_cells": self.representations.table_cells_status,
+                "ocr_spans": self.representations.ocr_spans_status,
+            },
+        )
+        self._availability = self.capability_declaration.build_resolver()
+        self._negotiator = QualityEvidenceNegotiator(
+            self.capability_declaration,
+            resolver=self._availability,
         )
 
     # ---------- 查询 ----------
@@ -82,6 +99,14 @@ class EvidenceContext:
         """返回 (执行模式, 原因)：allowed / limited / blocked / not_applicable。"""
         return self._availability.summary(requirements)
 
+    def negotiate_rule(
+        self,
+        rule_id: str,
+        requirements: tuple[EvidenceRequirement, ...],
+    ) -> RuleEvidenceNegotiation:
+        """Return the auditable requirement/capability decision for one rule."""
+        return self._negotiator.negotiate(rule_id, requirements)
+
     def capability_state(self, name: str):
         """ParsedDocument.capabilities 中某项能力的原始状态。"""
         capability = self.parsed.capabilities.get(name)
@@ -109,9 +134,27 @@ class EvidenceContext:
         """没有 page_number 的块（来源定位缺失）。"""
         return [b for b in self.parsed.blocks if b.anchor.page_number is None]
 
+    @staticmethod
+    def _participates_in_reading_order(block: DocumentBlock) -> bool:
+        """Return whether a block belongs to the document reading stream.
+
+        Parser headers/footers/page-number blocks are layout artifacts. They can
+        legitimately reuse an order index from a content block and must not
+        make headings, citations, or table relations look ambiguous.
+        """
+        return block.kind not in {
+            BlockKind.HEADER,
+            BlockKind.FOOTER,
+            BlockKind.PAGE_NUMBER,
+        }
+
     @property
     def order_indices(self) -> list[int]:
-        return [b.order_index for b in self.parsed.blocks if b.order_index is not None]
+        return [
+            b.order_index
+            for b in self.parsed.blocks
+            if b.order_index is not None and self._participates_in_reading_order(b)
+        ]
 
     @property
     def duplicate_order_indices(self) -> list[int]:

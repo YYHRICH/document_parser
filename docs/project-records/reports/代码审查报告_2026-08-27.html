@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>document_parser 代码审查报告(2026-08-27)</title>
+<style>
+  :root { --bg:#f5f7fa; --card:#fff; --ink:#1a2333; --muted:#667085; --line:#e4e8ef; --blue:#2563eb; --blue-bg:#eff4ff; --green:#16a34a; --green-bg:#ecfdf3; --amber:#d97706; --amber-bg:#fffbeb; --red:#dc2626; --red-bg:#fef2f2; --purple:#7c3aed; --purple-bg:#f5f3ff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; padding:32px 16px; }
+  .wrap { max-width:1120px; margin:0 auto; }
+  header { background:linear-gradient(135deg,#7f1d1d 0%,#991b1b 100%); color:#fff; border-radius:16px; padding:32px 36px; margin-bottom:24px; }
+  header h1 { font-size:25px; font-weight:700; margin-bottom:8px; }
+  header p { color:#fecaca; font-size:14.5px; }
+  .badge-row { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; }
+  .badge { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25); color:#fee2e2; font-size:12px; padding:4px 12px; border-radius:999px; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:24px; }
+  .metric { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .metric .num { font-size:26px; font-weight:800; }
+  .metric .num.red { color:var(--red); } .metric .num.amber { color:var(--amber); } .metric .num.blue { color:var(--blue); } .metric .num.green { color:var(--green); }
+  .metric .lbl { font-size:13px; color:var(--muted); margin-top:2px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 28px; margin-bottom:24px; }
+  .panel h2 { font-size:18px; font-weight:700; margin-bottom:14px; }
+  .panel h3 { font-size:15px; font-weight:700; margin:18px 0 8px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0 6px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:#f8fafc; font-weight:600; color:#475569; white-space:nowrap; }
+  tr:last-child td { border-bottom:none; }
+  .tag { display:inline-block; font-size:11.5px; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+  .tag.p0 { background:var(--red-bg); color:var(--red); } .tag.p1 { background:var(--amber-bg); color:var(--amber); } .tag.p2 { background:var(--blue-bg); color:var(--blue); }
+  .tag.hi { background:var(--red-bg); color:var(--red); } .tag.mid { background:var(--amber-bg); color:var(--amber); } .tag.low { background:#f1f5f9; color:#475569; }
+  .warn { background:var(--red-bg); border:1px solid #fecaca; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#991b1b; margin:12px 0; }
+  .note { background:var(--amber-bg); border:1px solid #fde68a; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#92400e; margin:12px 0; }
+  .ok { background:var(--green-bg); border:1px solid #bbf7d0; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#166534; margin:12px 0; }
+  code { background:#f1f5f9; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:12px; font-family:Consolas,monospace; }
+  footer { text-align:center; color:var(--muted); font-size:12.5px; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>document_parser 代码审查报告</h1>
+  <p>不看文档,直接审代码:4 组独立审查(backend / 解析器与路由 / 质量层 / 核心编排与前端)+ 汇总复核(去重、校准、优先级编排)。审查日期:2026-08-27。</p>
+  <div class="badge-row">
+    <span class="badge">覆盖:python 全部业务模块 + 前端 JS/HTML</span>
+    <span class="badge">只审查未改任何代码</span>
+    <span class="badge">实测验证:20+ 项针对性复现</span>
+  </div>
+</header>
+
+<div class="metrics">
+  <div class="metric"><div class="num red">2</div><div class="lbl">P0 可直接利用(其中 1 个已被复查降级,见 P0-2)</div></div>
+  <div class="metric"><div class="num amber">5</div><div class="lbl">P1 高危(1-2 周内)</div></div>
+  <div class="metric"><div class="num blue">49</div><div class="lbl">合并后主条目(原始 60 条)</div></div>
+  <div class="metric"><div class="num green">≥14</div><div class="lbl">实测复现(非仅静态判断)</div></div>
+</div>
+
+<div class="panel">
+  <h2>0. 一句话结论</h2>
+  <p>这套代码的工程质量明显高于一般内部项目、防御纵深到位。复查更正(2026-08-27):原 P0-2(任意目录读取)经攻击链逐环核验,<b>HTTP 入口存在黑名单拦截(`native_output_dir` 被拒),当前不可直接利用</b>,降级为"深层防御缺口";真正可直接利用的是 <b>P0-3(存储型 XSS,全链实锤)</b>——在无鉴权(用户确认 P0-1 暂缓)的当前阶段,任何能触达服务的人都能上传夹带恶意 HTML 的产物并诱导运营者触发,脚本在 API 同源执行后可读取全部文档。另有 5 个 P1(质量层 2 个崩溃 + 1 个静默改错、.doc 请求必失败、rowspan DoS)建议一个月内修复。其余问题按路线图排期即可,<b>不需要返工式重构</b>。</p>
+</div>
+
+<div class="panel">
+  <h2>1. P0 高危(发布前必须处理)</h2>
+
+  <h3><span class="tag p0">P0-1</span> 全 API 匿名访问 + parse_id/task_id 即访问凭据(IDOR)</h3>
+  <table>
+    <tr><th>维度</th><th>内容</th></tr>
+    <tr><td>位置</td><td>backend/app.py 全部路由(310-762)、backend/task_endpoints.py(68-350)、backend/tasks.py:151(scope 恒为 None)</td></tr>
+    <tr><td>问题</td><td>无任何鉴权中间件;知道 parse_id 即可读完整解析文档、原文 PDF、质量报告、事件、谱系,可驱动 reparse 消耗资源;三组独立佐证(backend 静态、前端 401 语义缺失、覆写钩子无鉴权)</td></tr>
+    <tr><td>修复</td><td>发布前置加反向代理层 BasicAuth/mTLS;P0 落地 <code>ProcessingTask.scope</code> 并写入索引,<code>load_job/load_task</code> 按 scope 过滤;<code>/api/metrics</code> 限内部网段</td></tr>
+  </table>
+
+  <h3><span class="tag p0">P0-2</span> 请求 options 可任意目录读取(跨组证据链已闭合)</h3>
+  <table>
+    <tr><th>维度</th><th>内容</th></tr>
+    <tr><td>位置</td><td>parsers/base.py:426,621-626(任意 <code>native_output_dir</code> 被 rglob+read_bytes) + anydoc.py / docling.py:122 / ocr.py:171(未拒绝该键) + composition/gateway.py:318-334(<code>{**request.options}</code> 原样透传)</td></tr>
+    <tr><td>问题</td><td><b>⚠️ 2026-08-27 复查更正:当前经 HTTP 不可直接利用。</b>入口 <code>_validate_public_options</code>(backend/app.py:84-96,855-871)的黑名单已含 <code>native_output_dir</code>,5 个建任务/重解析端点全部拦截(命中 400)。但下游链路全部实锤:MinerU 有防护、anydoc/docling/ocr 适配器无拒绝、base.py 对 <code>native_output_dir</code> 执行 rglob+read_bytes、gateway 透传 options——一旦黑名单被裁剪、或有人绕过 HTTP 直接调 storage/gateway,任意目录读取立即复活。属<b>纵深防御缺口</b>,建议保留黑名单并补回归测试</td></tr>
+    <tr><td>修复</td><td><code>reject_sensitive_request_options</code> 上提到 base 层统一执行;<code>_native_path</code> 拒绝 <code>..</code> 段;落盘前 <code>resolve().is_relative_to(safe_root)</code>;gateway options 按 parser_id 分组下发</td></tr>
+  </table>
+
+  <h3><span class="tag p0">P0-3</span> 解析产物同源内联渲染 → 存储型 XSS</h3>
+  <table>
+    <tr><th>维度</th><th>内容</th></tr>
+    <tr><td>位置</td><td>backend/app.py:716-726(<code>get_artifact</code> FileResponse 无 Content-Disposition) + storage.py:1094-1107</td></tr>
+    <tr><td>问题</td><td>native/*.html、assets/*.svg 被浏览器内联执行(上传内容攻击者可控);受害者打开 URL 即在 API 同源执行脚本,可 fetch 任意 parse 文档;即便无 html 工件,revision.json 等元数据也可内联读取</td></tr>
+    <tr><td>修复</td><td>一律 <code>Content-Disposition: attachment</code> 或仅 text/plain 内联;全局 <code>X-Content-Type-Options: nosniff</code> + 严格 CSP;前端页面同步补 CSP meta</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>2. P1 高危(1-2 周内)</h2>
+  <table>
+    <tr><th>#</th><th>问题</th><th>影响</th><th>位置</th></tr>
+    <tr><td><span class="tag p1">P1-1</span></td><td><b>QL-RPR-003 自动修复改错目标</b>(已实测)</td><td>HTML 损坏但 markdown 有效时,未经任何等价性校验静默替换原内容,内容被销毁且审计日志虚假宣称"结构一致"——与"只改确定目标"的核心承诺冲突</td><td>quality/representations/tables.py:303-313;repairs/table_proposals.py:134-149</td></tr>
+    <tr><td><span class="tag p1">P1-2</span></td><td><b>缺 source_block_id 流水线崩溃</b>(已实测)</td><td>任一"网格合法、block 无 source_block_id"的正常输入即 ValidationError,整条质量流水线中断(该字段是可选字段,触发常见)</td><td>quality/rules/tables.py:351</td></tr>
+    <tr><td><span class="tag p1">P1-3</span></td><td><b>多表同缺陷 issue_id 重复崩溃</b>(已实测)</td><td>≥2 张同缺陷消息的表格 → 稳定 ID 校验抛 ValueError,多表文档无法出报告</td><td>quality/rules/tables.py:60-190;pipeline.py:337-345</td></tr>
+    <tr><td><span class="tag p1">P1-4</span></td><td><b>.doc/.ppt/.xls 请求必失败</b>(已实测)</td><td>libreoffice 可用 + anydoc 缺失时,路由放行 markitdown 但执行器必抛 unsupported,fallbacks 空,100% 失败</td><td>routing/policy.py:92-96;router.py:285-293</td></tr>
+    <tr><td><span class="tag p1">P1-5</span></td><td><b>rowspan/colspan 无上限 DoS</b>(已实测)</td><td>巨 span 全量迭代 + 数 GB 内存,单次调用拖死 worker(1e6→1.37s,1e9→分钟级);与质量层 num_rows 无上限同族,批量修</td><td>parsers/mineru.py:1122-1135;quality M4</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>3. 分层问题全表(去重后分类视图)</h2>
+  <h3>backend 层(安全与 API)</h3>
+  <table>
+    <tr><th>严重度</th><th>问题</th></tr>
+    <tr><td><span class="tag hi">高</span></td><td>匿名访问+IDOR(P0-1)、产物内联 XSS(P0-3)</td></tr>
+    <tr><td><span class="tag mid">中</span></td><td>任务创建非事务→孤儿/幽灵 job;每次读取全量 SHA256 重验(性能 DoS 面);幂等全库扫描+全局创建锁串行化+锁超时 500;zip 预算预检可绕过(SFX/EOCD/嵌套);幂等重放 created 标志丢失(多进程下重复 submit);options 黑名单不完整且与 lineage 不一致;质量包覆写钩子无鉴权+delivery 门禁恒真</td></tr>
+    <tr><td><span class="tag low">低</span></td><td>幂等冲突 409 被吞成"暂不受理";崩溃窗口孤儿目录无回收;JobConflictError 未映射;validate_parse_id 字符集过宽;下载无速率限制;恢复逻辑语义耦合</td></tr>
+  </table>
+  <h3>解析器与路由层</h3>
+  <table>
+    <tr><th>严重度</th><th>问题</th></tr>
+    <tr><td><span class="tag hi">高</span></td><td>任意目录读取(P0-2)、rowspan DoS(P1-5)、.doc 必失败(P1-4)</td></tr>
+    <tr><td><span class="tag mid">中</span></td><td>_routing_decision 可经 options 伪造路由审计;anydoc_args 任意 CLI 参数注入(--output/--submit/--api-key);docling/ocr options 未脱敏;错误分类按第三方文本 keyword(误判 retryable+敏感文本进异常链);anydoc/docling 空输出误报成功;超时无上限;docling 无执行超时且 requires_network 声明不实;markitdown 空输出 capability 自相矛盾</td></tr>
+    <tr><td><span class="tag low">低</span></td><td>无效 route_profile 抛裸 ValueError;请求可覆盖服务器 libreoffice_available;占位结果成功传播残留;ReparseSignal.message 未净化;MinerU 下载不查 zip 魔数;markitdown 固定 300s 超时不可配</td></tr>
+  </table>
+  <h3>质量层</h3>
+  <table>
+    <tr><th>严重度</th><th>问题</th></tr>
+    <tr><td><span class="tag hi">高</span></td><td>QL-RPR-003 改错目标(P1-1)、缺 source_block_id 崩溃(P1-2)、issue_id 重复崩溃(P1-3)</td></tr>
+    <tr><td><span class="tag mid">中</span></td><td>证据被阻塞的跳过规则 rule_id 记为 "draft"(归属失真);能力矩阵无法区分"规则未实现"与"证据被阻塞"→ 适用能力误放行;修复目标只防围栏代码,未防 HTML 注释/pre/code 块;num_rows/num_cols 无上限(与 P1-5 同族)</td></tr>
+    <tr><td><span class="tag low">低</span></td><td>critical_false_pass 恒 False 死标志;引用展开全角逗号/倒序区间/链接误判漏报;"2024年度报告"被当编号标题;plan() 不捕获规则 apply 异常;并发写 TOCTOU+无目录 fsync;重复 table_id 静默覆盖;跨页续表"表头相同+相邻页"即 VERIFIED 偏激进</td></tr>
+  </table>
+  <h3>核心编排与前端</h3>
+  <table>
+    <tr><th>严重度</th><th>问题</th></tr>
+    <tr><td><span class="tag mid">中</span></td><td>document-detail.js decodeURIComponent 未捕获 URIError(畸形 URL 整页崩溃,已实测);上传幂等键失败后不重置(改队列重试复用旧键);queue.shutdown 不取消待跑任务(重启被阻塞、双跑窗口);parser_options 无差别注入每个 fallback 尝试(自动降级可能整体失效)</td></tr>
+    <tr><td><span class="tag low">低</span></td><td>上传页缺客户端空文件/大小/扩展名预检(与页面文案矛盾);401 未区分文案;详情页重试无幂等键;icon() 用 innerHTML(当前无注入面,防御性);assets 写入缺 _ensure_inside;无扩展名源文件落盘失配;fallback except Exception 过宽;parse_file 默认 parser_id 导致永远 MANUAL(休眠陷阱);正则脱敏覆盖键不全;app.js+style.css 为死代码且 /static 暴露 mockups 目录</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>4. 修复路线图</h2>
+  <table>
+    <tr><th>批次</th><th>内容</th><th>依赖</th></tr>
+    <tr><td><span class="tag p0">P0 发布前</span></td><td>① P0-3:入口黑名单补 sidecar 键(native_html/native_files/native_payload/native_markdown)+ 产物下载强制 attachment + nosniff + CSP ② 鉴权(反代 BasicAuth/mTLS + scope 落地,用户确认暂缓可按产品节奏排)③ options 统一净化(base 层拒绝 native_output_dir + _native_path 防越界 + gateway 按 parser 分组,作为纵深修复)</td><td>P0-3 目前是唯一可直接利用面;P0-1 是多数资源面问题的前置</td></tr>
+    <tr><td><span class="tag p1">P1 1-2 周</span></td><td>质量层 3 条(REVIEW_UNUSABLE_HTML 提前 / source_block_id 兜底 / issue 带 table 维度)+ .doc 路由能力单一数据源 + rowspan/colspan/num_rows 上限批量修</td><td>无</td></tr>
+    <tr><td><span class="tag p2">P2 按月批次</span></td><td>全量重验缓存、幂等索引落盘、zip 预算收严、created 透传、任务创建事务化、CLI 注入防护(anydoc_args)、docling 子进程化+网络声明、前端幂等键/URIError/预检、死代码清理</td><td>P0-1</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>5. 覆盖盲区(本次未审,建议补)</h2>
+  <table>
+    <tr><th>优先级</th><th>盲区</th></tr>
+    <tr><td>1</td><td>部署形态配置(Dockerfile/nginx/反代/uvicorn worker 数)——直接决定 P0-1 修复落点</td></tr>
+    <tr><td>2</td><td>scripts/、tools/、benchmarks/ 目录;tests/ 自身质量;pyproject 依赖声明</td></tr>
+    <tr><td>3</td><td>端到端 HTTP 集成面(TestClient 集成 + fallback 选项注入组合测试);common/ 其余模块</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>6. 亮点(值得保持)</h2>
+  <div class="ok">
+    <b>防御纵深到位:</b>manifest 双保险(发布+读取双向差集+TOCTOU 快照)、哈希修复链(proposal→policy→executor→verifier→rollback 实测无绕过点)、CAS+原子写+Windows 文件锁(带 reaper/PID 存活校验)、路径穿越防护闭环(19 组探针全过)、MinerU 云端安全(URL 白名单/重定向剥 token/allow_cloud 收紧语义)、url_security.py 质量高、前端状态防串(generation + AbortController 全链路)、渲染全 textContent 无 XSS、稳定 ID fail-loud 校验、确定性实测(两次运行逐字节一致)、DTO 白名单投影与错误文案映射零泄露。
+  </div>
+</div>
+
+<footer>document_parser 代码审查报告 · 2026-08-27 · 4 组独立审查 + 汇总复核 · 只审查未改动代码 · 详细证据链见 .cluster/code-review/ 下 4 份 subagent 报告与 review.md</footer>
+</div>
+</body>
+</html>

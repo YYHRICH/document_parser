@@ -102,12 +102,12 @@ class AnyDocParser(BaseParserAdapter):
                 check=False,
             )
             if completed.returncode != 0:
-                message = (completed.stderr or completed.stdout).strip()
-                return self._build_placeholder_native_result(
-                    request,
-                    signals,
-                    parser_version=parser_version,
-                    warnings=[f"AnyDoc CLI failed with exit code {completed.returncode}: {message}"],
+                # stderr/stdout are untrusted backend diagnostics and can contain
+                # paths or credentials.  The safe typed error still lets Gateway
+                # advance to the configured fallback parser.
+                raise self.execution_error(
+                    failure_kind="parser",
+                    safe_message="AnyDoc CLI execution failed.",
                 )
             native_result = self._build_native_result_from_output_dir(
                 request,
@@ -115,6 +115,11 @@ class AnyDocParser(BaseParserAdapter):
                 output_dir,
                 parser_version=parser_version,
             )
+            if not native_result.native_files:
+                raise self.execution_error(
+                    failure_kind="parser",
+                    safe_message="AnyDoc CLI completed without native output.",
+                )
         return self._augment_anydoc_result(
             native_result,
             warning=f"AnyDoc CLI run completed in {int((time.perf_counter() - started) * 1000)} ms.",
@@ -125,9 +130,9 @@ class AnyDocParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        native_result = self.build_native_result(request, signals)
-        bundle = self.normalize_native_result(native_result, request, signals)
-        return bundle
+        """Execute through the plugin port before standalone normalization."""
+
+        return super().normalize(request, signals)
 
     def _augment_anydoc_result(self, native_result: ParserNativeResult, *, warning: str) -> ParserNativeResult:
         return native_result.model_copy(update={"warnings": [*native_result.warnings, warning]})

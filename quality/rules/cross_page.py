@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from document_parser.core.contracts import IssueSeverity, QualityCapabilityState
+from quality.contracts import IssueSeverity, QualityCapabilityState
 
 from quality.evidence.context import EvidenceContext
 from quality.evidence.requirements import EvidenceRequirement
@@ -64,13 +64,34 @@ def _adjacent_pairs(context: EvidenceContext):
 
 
 def _continuation_hint(context: EvidenceContext, table_a, table_b) -> bool:
-    values = [table_a.caption or "", table_b.caption or ""]
-    values.extend(str(v) for t in (table_a, table_b) for v in t.metadata.values())
+    """Read continuation signals from table-level evidence only.
+
+    Scanning flattened table body text is unsafe: an ordinary cell may mention
+    “跨页” as business content and turn two unrelated adjacent tables into a
+    false continuation pair. Header cells, captions, and explicit metadata are
+    structural evidence and remain safe to inspect.
+    """
+    values: list[str] = [table_a.caption or "", table_b.caption or ""]
     for table in (table_a, table_b):
+        values.extend(
+            str(value)
+            for key, value in table.metadata.items()
+            if any(token in str(key).lower() for token in ("caption", "title", "continu", "续", "标题"))
+        )
+        analysis = analyze_grid(table)
+        if analysis.valid:
+            values.extend(
+                cell.text
+                for cell in table.cells
+                if cell.column_header
+            )
         block = context.block(str(table.block_id))
         if block:
-            values.extend([block.text or "", block.markdown or ""])
-        values.extend(c.text for c in table.cells[:60])
+            values.extend(
+                str(value)
+                for key, value in block.metadata.items()
+                if any(token in str(key).lower() for token in ("caption", "title", "continu", "续", "标题"))
+            )
     return bool(_CONTINUATION_HINT.search(" ".join(values)))
 
 

@@ -8,7 +8,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-from document_parser.core.contracts import QualityPackage
+from quality.contracts import QualityPackage
 
 from quality.packaging.artifacts import (
     build_package_artifacts,

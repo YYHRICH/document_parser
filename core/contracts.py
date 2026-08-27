@@ -368,12 +368,20 @@ class ParsedTable(BaseModel):
 
 
 class FallbackAttempt(BaseModel):
-    """路由 fallback 中一次实际失败或跳过的尝试。"""
+    """One actual fallback attempt, with portable audit metadata."""
 
+    attempt_id: str = Field(default_factory=lambda: uuid4().hex)
     parser_id: str
     status: str
     reason: str
     duration_ms: int = Field(default=0, ge=0)
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
+    parser_version: str | None = None
+    parameters_fingerprint: str | None = None
+    failure_kind: str | None = None
+    retryable: bool | None = None
+    metrics: dict[str, int | float] = Field(default_factory=dict)
 
 
 class ParseConfidence(BaseModel):

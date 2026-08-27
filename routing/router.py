@@ -20,8 +20,19 @@ from .errors import (
     ReparseRejectedError,
     UnsupportedFormatError,
 )
-from .policy import CSV_FORMATS, IMAGE_FORMATS, LEGACY_OFFICE_FORMATS, TEXT_FORMATS, RoutePlan, WEB_FORMATS, build_route_plan
-from .registry import ANYDOC_ID, DOCLING_ID, MARKITDOWN_ID, MINERU_ID, OCR_ID, CapabilityRegistry
+from .policy import (
+    CSV_FORMATS,
+    IMAGE_FORMATS,
+    LEGACY_OFFICE_FORMATS,
+    TEXT_FORMATS,
+    RoutePlan,
+    WEB_FORMATS,
+    build_route_plan,
+    cloud_parser_forbidden_reason,
+    resolve_cloud_permission,
+)
+from .identifiers import ANYDOC_ID, DOCLING_ID, MARKITDOWN_ID, MINERU_ID, OCR_ID
+from .registry import CapabilityRegistry
 
 
 class ModelRouter:
@@ -37,9 +48,25 @@ class ModelRouter:
         self._inspector = SimpleSourceInspector()
 
     @classmethod
-    def from_environment(cls, **overrides: Any) -> "ModelRouter":
+    def from_environment(
+        cls,
+        capabilities: Iterable[ParserCapability] | CapabilityRegistry,
+        **overrides: Any,
+    ) -> "ModelRouter":
+        """Create a router from server settings and an injected capability snapshot.
+
+        The caller that knows concrete parser implementations is responsible for
+        collecting their public capabilities.  Routing itself never constructs or
+        imports adapters.
+        """
+
         settings = RoutingSettings.from_environment(**overrides)
-        return cls(CapabilityRegistry.from_settings(settings), settings)
+        registry = (
+            capabilities
+            if isinstance(capabilities, CapabilityRegistry)
+            else CapabilityRegistry.from_snapshot(capabilities)
+        )
+        return cls(registry, settings)
 
     def route(
         self,
@@ -54,7 +81,10 @@ class ModelRouter:
             update={"extension": _normalize_extension(signals.extension)}
         )
         selected_profile = RouteProfile(profile or self.settings.profile)
-        cloud_allowed = self.settings.allow_cloud if allow_cloud is None else allow_cloud
+        cloud_allowed = resolve_cloud_permission(
+            server_allow_cloud=self.settings.allow_cloud,
+            requested_allow_cloud=allow_cloud,
+        )
         libreoffice = (
             self.settings.libreoffice_available
             if libreoffice_available is None
@@ -143,6 +173,11 @@ class ModelRouter:
         available: list[ParserCapability] = []
         unavailable_reasons: dict[str, str] = {}
         for parser_id in plan.candidate_parser_ids:
+            if not self.registry.contains(parser_id):
+                unavailable_reasons[parser_id] = (
+                    "Parser is not present in the injected capability snapshot."
+                )
+                continue
             capability = self.registry.get(parser_id)
             reason = self._unavailable_reason(
                 capability,
@@ -197,10 +232,12 @@ class ModelRouter:
         libreoffice_available: bool,
     ) -> RoutingDecision:
         capability = self.registry.get(requested_parser_id)
-        if capability.requires_network and not allow_cloud:
-            raise CloudParserForbiddenError(
-                f"allow_cloud=false forbids cloud parser {requested_parser_id}."
-            )
+        cloud_reason = cloud_parser_forbidden_reason(
+            capability,
+            allow_cloud=allow_cloud,
+        )
+        if cloud_reason is not None:
+            raise CloudParserForbiddenError(f"{cloud_reason} Parser: {requested_parser_id}.")
         if not self._supports_extension(capability, signals.extension, requested_parser_id):
             raise UnsupportedFormatError(
                 f"Parser {requested_parser_id} does not support {signals.extension}."
@@ -236,8 +273,9 @@ class ModelRouter:
         *,
         allow_cloud: bool,
     ) -> str | None:
-        if capability.requires_network and not allow_cloud:
-            return "allow_cloud=false forbids cloud parsing."
+        cloud_reason = cloud_parser_forbidden_reason(capability, allow_cloud=allow_cloud)
+        if cloud_reason is not None:
+            return cloud_reason
         if not self._supports_extension(capability, extension, capability.parser_id):
             return f"Parser does not support {extension}."
         if not capability.available:
@@ -295,7 +333,6 @@ class ModelRouter:
             return {
                 **common,
                 "api_mode": "precise",
-                "api_base_url": self.settings.mineru_api_base_url,
                 "model_version": "vlm",
                 "is_ocr": needs_ocr,
                 "enable_table": True,
@@ -319,7 +356,10 @@ class ModelRouter:
                 "ocr_engine": "rapidocr",
                 "ocr_mode": "full_page" if needs_ocr else "default",
             }
-        raise AssertionError(f"No parser options template defined for {parser_id}.")
+        # A plugin may declare a parser ID that this policy does not need to
+        # special-case.  It still receives the safe, parser-neutral routing
+        # options and can validate its own public options at execution time.
+        return common
 
 
 def _normalize_extension(extension: str) -> str:

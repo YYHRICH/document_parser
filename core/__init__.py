@@ -1,4 +1,4 @@
-"""文档解析内部协议、格式转换抽象与网关。"""
+"""文档解析共享协议、格式转换抽象与完整性校验。"""
 
 from .converter import ConversionResult, DocumentConverter, LegacyOfficeConverter
 from .document_package import (

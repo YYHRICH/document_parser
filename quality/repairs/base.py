@@ -12,7 +12,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 
-from document_parser.core.contracts import AppliedRepair
+from quality.contracts import AppliedRepair
 
 from quality.models_internal import EvidenceRef
 

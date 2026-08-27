@@ -84,14 +84,10 @@ class DoclingParser(BaseParserAdapter):
                 payload = document.export_to_dict() if hasattr(document, "export_to_dict") else {}
                 html = document.export_to_html() if hasattr(document, "export_to_html") else None
         except Exception as error:  # pragma: no cover - depends on runtime Docling backend
-            return self._build_placeholder_native_result(
-                request,
-                signals,
-                parser_version=parser_version,
-                warnings=[
-                    f"Docling local invocation failed and fell back to placeholder output: {error}",
-                ],
-            )
+            # A backend was actually selected and invoked.  Returning a skeletal
+            # success here would suppress Gateway fallback and create a false
+            # parse revision, so preserve the raw cause only through chaining.
+            raise self.diagnose(error, request=request, signals=signals) from error
 
         native_files: dict[str, bytes] = {
             "native/docling_document.json": json.dumps(
@@ -137,10 +133,6 @@ class DoclingParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """返回统一占位包；真实 Docling JSON 映射会在这里接入。"""
+        """Execute through the plugin port before standalone normalization."""
 
-        return self.normalize_native_result(
-            self.build_native_result(request, signals),
-            request,
-            signals,
-        )
+        return super().normalize(request, signals)

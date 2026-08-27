@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>处理中心｜文档处理中心</title>
+  <link rel="stylesheet" href="./workbench.css">
+</head>
+<body data-page="task-center">
+  <main class="workbench-shell">
+    <header class="workbench-topbar">
+      <a class="workbench-brand" href="/" aria-label="返回上传文件">
+        <span class="brand-mark" aria-hidden="true"><span data-icon="files"></span></span>
+        <span><strong>文档处理中心</strong><small>处理中心</small></span>
+      </a>
+      <div class="topbar-actions">
+        <a class="button button-quiet topbar-upload" href="/">
+          <span data-icon="file-up" aria-hidden="true"></span>
+          <span>上传文件</span>
+        </a>
+        <button id="refreshTask" class="button button-quiet" type="button">
+          <span data-icon="refresh-cw" aria-hidden="true"></span>
+          <span>刷新状态</span>
+        </button>
+        <div id="downloadWrap" class="download-wrap">
+          <button id="downloadButton" class="button button-primary download-button" type="button" aria-expanded="false" aria-controls="downloadMenu">
+            <span data-icon="download" aria-hidden="true"></span>
+            <span>下载</span>
+            <span class="download-chevron" data-icon="chevron-down" aria-hidden="true"></span>
+          </button>
+          <div id="downloadMenu" class="download-menu" role="menu" aria-label="选择下载内容" hidden>
+            <button type="button" role="menuitem" data-download="original">
+              <span class="package-icon" data-icon="file-archive" aria-hidden="true"></span>
+              <span><strong>原始解析压缩包</strong><small id="originalDownloadScope">当前没有可下载的文件。</small></span>
+            </button>
+            <button type="button" role="menuitem" data-download="optimized">
+              <span class="package-icon" data-icon="file-output" aria-hidden="true"></span>
+              <span><strong>优化后文档压缩包</strong><small id="optimizedDownloadScope">当前没有可下载的文件。</small></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-heading task-page-heading" aria-labelledby="taskTitle">
+      <span class="eyebrow">文档处理</span>
+      <h1 id="taskTitle">处理中心</h1>
+      <p id="taskIntro">正在读取文件状态。</p>
+    </section>
+
+    <section id="rejectedNotice" class="task-notice" hidden aria-live="polite">
+      <span data-icon="circle-alert" aria-hidden="true"></span>
+      <p id="rejectedNoticeText"></p>
+    </section>
+
+    <section id="taskLoading" class="page-state page-state-loading" aria-live="polite">
+      <span class="state-icon state-icon-loading" data-icon="loader-circle" aria-hidden="true"></span>
+      <div><h2>正在读取处理状态</h2><p>请稍候。</p></div>
+    </section>
+
+    <section id="taskError" class="page-state" hidden aria-live="polite">
+      <span class="state-icon state-icon-error" data-icon="circle-alert" aria-hidden="true"></span>
+      <div>
+        <h2 id="taskErrorTitle">暂时无法读取处理状态</h2>
+        <p id="taskErrorCopy">请稍后重试。</p>
+        <div class="state-actions"><button id="retryLoadTask" class="button button-primary" type="button">重新读取</button><a class="button button-quiet" href="/">返回上传文件</a></div>
+      </div>
+    </section>
+
+    <section id="taskContent" hidden>
+      <section class="workbench-card task-summary-card" aria-labelledby="summaryTitle">
+        <header class="section-heading task-summary-heading">
+          <div>
+            <h2 id="summaryTitle">文件状态</h2>
+            <p id="summaryCopy">点击状态可查看对应文件。</p>
+          </div>
+          <button id="showAllFiles" class="button button-quiet button-small" type="button" hidden>显示全部文件</button>
+        </header>
+        <div id="statusSummary" class="status-summary" aria-label="按状态查看文件"></div>
+      </section>
+
+      <section class="workbench-card task-files-card" aria-labelledby="taskFilesTitle">
+        <header class="section-heading task-files-heading">
+          <div>
+            <h2 id="taskFilesTitle">文件列表</h2>
+            <p id="taskFilesCopy">每份文件都可以单独查看和继续处理。</p>
+          </div>
+          <span id="taskFileCount" class="count-badge">0 份文件</span>
+        </header>
+        <div id="taskFileList" class="task-file-list" aria-live="polite"></div>
+        <div id="taskFilesEmpty" class="list-empty" hidden>
+          <span data-icon="files" aria-hidden="true"></span>
+          <p>当前筛选下没有文件。</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./api-config.js"></script>
+  <script type="module" src="./assets/lucide-icons.js"></script>
+  <script type="module" src="./workbench.js"></script>
+</body>
+</html>

@@ -17,6 +17,15 @@ def stable_id(key: str) -> str:
     return str(uuid5(QUALITY_NAMESPACE, key))
 
 
+def is_stable_id(value: str) -> bool:
+    """Return whether *value* is a canonical UUIDv5 quality-layer ID."""
+    try:
+        parsed = UUID(value)
+    except (TypeError, ValueError, AttributeError):
+        return False
+    return parsed.version == 5
+
+
 def binding_id(
     document_key: str,
     table_id: str,

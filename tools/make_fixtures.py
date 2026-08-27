@@ -6,7 +6,7 @@
 
 解析器：
     fallback  -> tools/fallback_parser.py（pdfplumber，本地，无需网络）
-    mineru    -> tools/mineru_cloud.py（MinerU 云 API，需 MINERU_API_KEY）
+    mineru    -> parsers/mineru/cloud_client.py（MinerU 云 API，需 MINERU_API_KEY）
 
 输出：tests/fixtures/parsed_documents/{sample_id}-{parser}.json
 """
@@ -122,7 +122,7 @@ def main() -> None:
         entry = manifest[sample_id]
         source = resolve_source(sample_id, manifest)
         if args.parser == "mineru":
-            from tools.mineru_cloud import parse_pdf as mineru_parse
+            from document_parser.parsers.mineru.cloud_client import parse_pdf as mineru_parse
 
             parsed = mineru_parse(
                 source,

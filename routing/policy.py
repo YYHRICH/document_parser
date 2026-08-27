@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from ..core.contracts import DocumentSignals
+from ..core.contracts import DocumentSignals, ParserCapability
 from .config import RouteProfile
-from .registry import ANYDOC_ID, DOCLING_ID, MARKITDOWN_ID, MINERU_ID, OCR_ID
+from .errors import InvalidRoutingOptionError
+from .identifiers import ANYDOC_ID, DOCLING_ID, MARKITDOWN_ID, MINERU_ID, OCR_ID
 
 
 IMAGE_FORMATS = {".bmp", ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp"}
@@ -15,6 +16,56 @@ TEXT_FORMATS = {".md", ".markdown", ".txt"}
 CSV_FORMATS = {".csv"}
 WEB_FORMATS = {".html", ".htm", ".adoc", ".asciidoc", ".eml", ".epub"}
 LEGACY_OFFICE_FORMATS = {".doc", ".ppt", ".xls"}
+
+
+def resolve_cloud_permission(
+    *,
+    server_allow_cloud: bool,
+    requested_allow_cloud: object | None,
+) -> bool:
+    """Resolve an untrusted cloud preference without allowing policy escalation.
+
+    A request may opt out of cloud execution, but it can never turn cloud execution
+    back on after the server policy has disabled it.  String values are parsed
+    explicitly because API form and JSON clients do not always preserve booleans.
+    """
+
+    server_value = _optional_boolean(server_allow_cloud, option_name="server_allow_cloud")
+    if server_value is None:
+        raise InvalidRoutingOptionError("server_allow_cloud must be a boolean.")
+    requested_value = _optional_boolean(
+        requested_allow_cloud,
+        option_name="allow_cloud",
+    )
+    return server_value and requested_value is not False
+
+
+def cloud_parser_forbidden_reason(
+    capability: ParserCapability,
+    *,
+    allow_cloud: bool,
+) -> str | None:
+    """Return the reusable policy reason for a disallowed network parser."""
+
+    if capability.requires_network and not allow_cloud:
+        return "allow_cloud=false forbids cloud parsing."
+    return None
+
+
+def _optional_boolean(value: object | None, *, option_name: str) -> bool | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) and value in {0, 1}:
+        return bool(value)
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"1", "true", "yes", "on"}:
+            return True
+        if normalized in {"0", "false", "no", "off"}:
+            return False
+    raise InvalidRoutingOptionError(f"{option_name} must be a boolean.")
 
 
 @dataclass(frozen=True)

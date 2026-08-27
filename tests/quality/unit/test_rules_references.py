@@ -113,6 +113,16 @@ def test_reference_index_from_headings():
     assert [e.key for e in index] == ["1", "2"]
     assert index[0].text.startswith("Li, M.")
 
+def test_reference_index_accepts_numbered_reference_heading():
+    doc = _doc(
+        _h("正文", 0),
+        _p("正文内容 [1]。", 1),
+        _h("8 参考文献", 2),
+        _list("Document Parser Team. 统一文档包规范", 3, "1."),
+    )
+    index = build_reference_index(EvidenceContext(doc))
+    assert [e.key for e in index] == ["1"]
+
 
 def test_reference_index_accepts_docling_list_items_and_marker():
     doc = _doc(

@@ -1,6 +1,8 @@
 import sys
 import json
 import zipfile
+
+import pytest
 from pathlib import Path
 from uuid import UUID
 
@@ -23,8 +25,12 @@ from document_parser.normalizers import (  # noqa: E402
 )
 from document_parser.parsers.base import BaseParserAdapter  # noqa: E402
 from document_parser.parsers.docling import DoclingParser  # noqa: E402
-from document_parser.parsers.mineru import MinerUParser  # noqa: E402
+from document_parser.parsers.mineru import (  # noqa: E402
+    MinerUParser,
+    MinerURequestOptionError,
+)
 from document_parser.parsers.ocr import OcrParser  # noqa: E402
+from document_parser.parsers.ports import ParserExecutionError  # noqa: E402
 
 
 class MarkdownOnlyAdapter(BaseParserAdapter):
@@ -91,7 +97,7 @@ def test_unimplemented_adapters_return_valid_missing_evidence_bundle() -> None:
     )
     signals = DocumentSignals(extension=".md", size_bytes=len(request.content), has_text_layer=True)
 
-    for adapter in (DoclingParser(), MinerUParser(), OcrParser()):
+    for adapter in (DoclingParser(), MinerUParser()):
         parsed = adapter.parse(request, signals)
 
         assert parsed.filename == "notes.md"
@@ -116,7 +122,7 @@ def test_unimplemented_adapters_return_valid_missing_evidence_bundle() -> None:
         assert parsed.warnings
 
 
-def test_unimplemented_adapter_does_not_fabricate_binary_outputs() -> None:
+def test_docling_backend_failure_is_typed_instead_of_placeholder_success(monkeypatch) -> None:
     adapter = DoclingParser()
     request = ParseRequest(
         filename="paper.pdf",
@@ -127,21 +133,48 @@ def test_unimplemented_adapter_does_not_fabricate_binary_outputs() -> None:
     )
     signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=None)
 
-    first = adapter.parse(request, signals)
-    second = adapter.parse(request, signals)
+    def backend_failure(*_args, **_kwargs):
+        raise RuntimeError("backend token=super-secret failed")
 
-    assert first.document_id == second.document_id
-    assert first.markdown == ""
-    assert first.blocks == []
-    assert first.tables == []
-    assert first.assets == []
-    assert first.ocr_spans == []
-    assert first.confidence.overall == 0.0
-    assert first.routing_decision is not None
-    assert first.routing_decision.mode == RoutingMode.MANUAL
-    assert first.routing_decision.allow_automatic_fallback is False
-    assert first.capabilities["text_content"].state == EvidenceAvailability.UNAVAILABLE
-    assert first.capabilities["native_artifacts"].reason
+    # Probe the real execution branch deterministically even in an environment
+    # where Docling is absent; a backend attempt must never become a placeholder.
+    monkeypatch.setattr(
+        "document_parser.parsers.docling.docling.find_spec",
+        lambda _name: object(),
+    )
+    monkeypatch.setattr(adapter, "_build_with_docling", backend_failure)
+
+    with pytest.raises(ParserExecutionError) as captured:
+        adapter.normalize(request, signals)
+
+    error = captured.value
+    assert error.parser_id == "docling"
+    assert error.failure_kind == "parser"
+    assert error.retryable is False
+    assert error.safe_message == "Docling 解析器 execution failed."
+    assert "super-secret" not in str(error)
+    assert isinstance(error.__cause__, RuntimeError)
+
+
+def test_ocr_unsupported_input_is_typed_instead_of_placeholder_success() -> None:
+    adapter = OcrParser()
+    request = ParseRequest(
+        filename="paper.pdf",
+        file_type="application/pdf",
+        content=b"%PDF-1.7\nfixture",
+        parser_id="ocr",
+        options={},
+    )
+    signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=False)
+
+    with pytest.raises(ParserExecutionError) as captured:
+        adapter.normalize(request, signals)
+
+    error = captured.value
+    assert error.parser_id == "ocr"
+    assert error.failure_kind == "unsupported"
+    assert error.retryable is False
+    assert "placeholder" not in error.safe_message.lower()
 
 
 def test_adapter_consumes_real_native_sidecars_without_fabricating_missing_fields() -> None:
@@ -260,7 +293,7 @@ def test_adapter_normalizes_bottomleft_coordinates_for_blocks_tables_and_cells()
     assert parsed.tables[0].cells[0].bbox == (25.0, 252.0, 80.0, 292.0)
 
 
-def test_mineru_adapter_consumes_native_output_directory(tmp_path: Path) -> None:
+def test_mineru_adapter_normalizes_internal_output_directory(tmp_path: Path) -> None:
     output_dir = tmp_path / "mineru-output"
     image_dir = output_dir / "images"
     image_dir.mkdir(parents=True)
@@ -297,11 +330,15 @@ def test_mineru_adapter_consumes_native_output_directory(tmp_path: Path) -> None
         file_type="application/pdf",
         content=b"%PDF-1.7\nfixture",
         parser_id="mineru",
-        options={"native_output_dir": str(output_dir)},
+        options={},
     )
     signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=True)
 
-    bundle = adapter.normalize(request, signals)
+    native_result = adapter._with_mineru_payload(
+        adapter._build_native_result_from_output_dir(request, signals, output_dir),
+        warning="MinerU internal output directory was loaded.",
+    )
+    bundle = adapter._normalize_mineru_native_result(native_result, request, signals)
     parsed = bundle.to_parsed_document()
 
     assert parsed.markdown.startswith("# MinerU Title")
@@ -315,8 +352,24 @@ def test_mineru_adapter_consumes_native_output_directory(tmp_path: Path) -> None
     assert "native/mineru_result.json" in bundle.native_files
 
 
+def test_mineru_adapter_rejects_request_native_output_directory(tmp_path: Path) -> None:
+    adapter = MinerUParser()
+    request = ParseRequest(
+        filename="paper.pdf",
+        file_type="application/pdf",
+        content=b"%PDF-1.7\nfixture",
+        parser_id="mineru",
+        options={"native_output_dir": str(tmp_path)},
+    )
+    signals = DocumentSignals(extension=".pdf", size_bytes=len(request.content), has_text_layer=True)
+
+    with pytest.raises(MinerURequestOptionError, match="native_output_dir"):
+        adapter.normalize(request, signals)
+
+
 def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setenv("MINERU_API_TOKEN", "test-token")
+    monkeypatch.setenv("DOCUMENT_PARSER_ALLOW_CLOUD", "true")
 
     adapter = MinerUParser()
     request = ParseRequest(
@@ -335,8 +388,8 @@ def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> N
         assert headers["Authorization"] == "Bearer test-token"
         return {
             "task_id": "task-1",
-            "status_url": "https://mineru.example/tasks/task-1",
-            "result_url": "https://mineru.example/tasks/task-1/result",
+            "status_url": "https://mineru.net/api/v4/tasks/task-1",
+            "result_url": "https://mineru.net/api/v4/tasks/task-1/result",
         }
 
     def fake_wait(*, httpx, task_info, headers, timeout_seconds):

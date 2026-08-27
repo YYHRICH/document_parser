@@ -17,7 +17,7 @@ class GateConfig:
 
     # D-08：未修复的 info issue 是否阻塞 pass
     info_blocks_pass: bool = False
-    # D-03：状态为 unavailable 且能力不适用时，是否计入 blocker
+    # D-03：True 时 unavailable 仅在能力适用时阻塞；False 时所有 unavailable 都阻塞。
     unavailable_blocks_when_applicable_only: bool = True
     # 未解决 warning issue 是否触发 pass_with_warnings
     warnings_trigger_pass_with_warnings: bool = True
@@ -30,7 +30,5 @@ class QualityConfig:
     """质量层整体配置。"""
 
     gate: GateConfig = field(default_factory=GateConfig)
-    # LLM 顾问开关（MVP-B；默认关闭，见 spec §9.1）
-    llm_enabled: bool = False
-    # 稳定 ID 命名空间校验开关
+    # 校验输出的公共 ID 为稳定 UUIDv5、唯一且与可复算输入键一致。
     enforce_stable_ids: bool = True

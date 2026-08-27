@@ -1,0 +1,34 @@
+{
+  "document_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "parser_id": "fixture-adapter",
+  "parser_version": "1.0",
+  "filename": "fixture.md",
+  "file_type": "text/markdown",
+  "source_size_bytes": 31,
+  "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "options": {
+    "source": "offline-fixture"
+  },
+  "markdown": "# Fixture Title\n\nFixture body.",
+  "payload": {
+    "blocks": [
+      {
+        "id": "fixture-heading",
+        "type": "title",
+        "text": "Fixture Title",
+        "order_index": 0,
+        "page_number": 1
+      },
+      {
+        "id": "fixture-body",
+        "type": "text",
+        "text": "Fixture body.",
+        "order_index": 1,
+        "page_number": 1
+      }
+    ]
+  },
+  "warnings": [
+    "offline fixture"
+  ]
+}

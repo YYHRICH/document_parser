@@ -10,6 +10,7 @@ import hashlib
 import json
 import mimetypes
 from abc import ABC
+from enum import Enum
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any
@@ -34,13 +35,22 @@ from ..core.contracts import (
     TableCell,
 )
 from ..normalizers import (
+    NormalizationContext,
     ParserNormalizationBundle,
+    normalize_native_result as normalize_with_normalizer,
     make_stable_table_id,
     make_stable_block_id,
     make_stable_document_id,
     unavailable_capability,
     partial_capability,
     available_capability,
+)
+from .ports import (
+    ParserBoundaryError,
+    ParserExecutionError,
+    ParserFailureKind,
+    ParserProbeResult,
+    diagnose_parser_exception,
 )
 
 
@@ -75,14 +85,138 @@ class BaseParserAdapter(ABC):
             unavailable_reason=self.UNAVAILABLE_REASON,
         )
 
+    def probe(
+        self,
+        request: ParseRequest | None = None,
+        signals: DocumentSignals | None = None,
+    ) -> ParserProbeResult:
+        """Expose format/runtime capability without invoking a backend.
+
+        The returned value is a plain public snapshot.  Routing may consume it,
+        but this adapter does not import routing and does not need a route plan
+        to be probed or used independently.
+        """
+
+        capability = self.capability.model_copy(deep=True)
+        extension = self._probe_extension(request=request, signals=signals)
+        supported = extension is None or extension in capability.formats
+        if not supported:
+            reason = f"{self.DISPLAY_NAME} does not support {extension}."
+        elif not capability.available:
+            reason = capability.unavailable_reason or self.UNAVAILABLE_REASON
+        else:
+            reason = None
+        return ParserProbeResult(
+            capability=capability,
+            supported=supported,
+            executable=bool(supported and capability.available),
+            reason=reason,
+        )
+
+    def capability_snapshot(self) -> ParserCapability:
+        """Return the immutable-at-boundary capability input for routing."""
+
+        return self.probe().capability.model_copy(deep=True)
+
+    def execute(
+        self,
+        request: ParseRequest,
+        signals: DocumentSignals,
+    ) -> ParserNativeResult:
+        """Run native parsing and expose only parser-native evidence.
+
+        The legacy ``build_native_result`` hook remains supported for existing
+        adapters.  This public port centralizes the conversion of unexpected
+        backend exceptions into a safe, typed error that Gateway fallback and
+        orchestration can classify without importing a concrete parser.
+        """
+
+        try:
+            native_result = self.build_native_result(request, signals)
+        except (ParserBoundaryError, ParserExecutionError):
+            raise
+        except Exception as error:
+            diagnosed = self.diagnose(error, request=request, signals=signals)
+            raise diagnosed from error
+        if not isinstance(native_result, ParserNativeResult):
+            error = TypeError(
+                "build_native_result must return ParserNativeResult, "
+                f"got {type(native_result).__name__}."
+            )
+            diagnosed = self.execution_error(
+                failure_kind=ParserFailureKind.NORMALIZATION,
+                safe_message=f"{self.DISPLAY_NAME} returned an invalid native result.",
+            )
+            raise diagnosed from error
+        return native_result
+
+    def diagnose(
+        self,
+        error: Exception,
+        *,
+        request: ParseRequest | None = None,
+        signals: DocumentSignals | None = None,
+    ) -> ParserExecutionError:
+        """Map an implementation exception to a portable, safe failure.
+
+        ``request`` and ``signals`` are accepted so individual adapters can
+        override this port with richer classification without a dependency on
+        Gateway or orchestration.  The shared mapper intentionally excludes raw
+        backend text from ``safe_message``.
+        """
+
+        del request, signals
+        return diagnose_parser_exception(
+            error,
+            parser_id=self.PARSER_ID,
+            display_name=self.DISPLAY_NAME,
+        )
+
+    def execution_error(
+        self,
+        *,
+        failure_kind: ParserFailureKind | Enum | str = ParserFailureKind.PARSER,
+        retryable: bool = False,
+        safe_message: str,
+    ) -> ParserExecutionError:
+        """Construct a safe execution error for an adapter-specific failure."""
+
+        return ParserExecutionError(
+            parser_id=self.PARSER_ID,
+            failure_kind=failure_kind,
+            retryable=retryable,
+            safe_message=safe_message,
+        )
+
+    @staticmethod
+    def _probe_extension(
+        *,
+        request: ParseRequest | None,
+        signals: DocumentSignals | None,
+    ) -> str | None:
+        if signals is not None and signals.extension:
+            extension = signals.extension
+        elif request is not None:
+            extension = Path(request.filename).suffix
+        else:
+            return None
+        normalized = str(extension).strip().lower()
+        if not normalized:
+            return None
+        return normalized if normalized.startswith(".") else f".{normalized}"
+
     def normalize(
         self,
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """把解析器原始输出翻译成统一中间包。"""
+        """Execute native parsing, then cross the standalone normalization port."""
 
-        raise NotImplementedError(self.UNAVAILABLE_REASON)
+        return self.normalize_native_result(
+            self.execute(request, signals),
+            request,
+            signals,
+        )
 
     def build_native_result(
         self,
@@ -99,10 +233,23 @@ class BaseParserAdapter(ABC):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """把原生结果翻译成统一中间包。"""
+        """Legacy adapter bridge to the standalone normalization boundary."""
+
+        return normalize_with_normalizer(
+            native_result,
+            normalizer=self,
+            context=NormalizationContext.from_parse_request(request, signals),
+        )
+
+    def normalize_native(
+        self,
+        native_result: ParserNativeResult,
+        context: NormalizationContext,
+    ) -> ParserNormalizationBundle:
+        """Normalize a native result using only the public context contract."""
 
         markdown = native_result.markdown or ""
-        routing_decision = self._routing_decision(request, signals)
+        routing_decision = self._routing_decision_from_context(context)
         blocks = self._blocks_from_payload(native_result.document_id, native_result.payload)
         if not blocks:
             blocks = self._blocks_from_markdown(native_result.document_id, markdown)
@@ -113,7 +260,11 @@ class BaseParserAdapter(ABC):
         )
         if table_blocks:
             blocks.extend(table_blocks)
-            blocks.sort(key=lambda block: block.order_index if block.order_index is not None else 10**9)
+            blocks.sort(
+                key=lambda block: (
+                    block.order_index if block.order_index is not None else 10**9
+                )
+            )
         ocr_spans = self._ocr_spans_from_payload(native_result.payload)
         capabilities = self._default_capabilities(
             missing_reason=f"{self.DISPLAY_NAME}原生结果未提供对应证据。",
@@ -143,7 +294,7 @@ class BaseParserAdapter(ABC):
             parser_id=native_result.parser_id,
             parser_version=native_result.parser_version,
             parser_parameters={
-                **self._public_options(request.options),
+                **self._public_options(context.parser_options),
                 **self._public_options(native_result.options),
             },
             routing_decision=routing_decision,
@@ -155,9 +306,17 @@ class BaseParserAdapter(ABC):
             confidence=ParseConfidence(
                 text=1.0 if markdown else 0.0,
                 layout=0.7 if any(block.anchor.bbox for block in blocks) else 0.0,
-                reading_order=0.8 if any(block.order_index is not None for block in blocks) else 0.0,
-                table=1.0 if tables and all(table.cells for table in tables) else (0.4 if tables else 0.0),
-                overall=0.4 if blocks or tables or ocr_spans else (0.2 if markdown else 0.0),
+                reading_order=(
+                    0.8 if any(block.order_index is not None for block in blocks) else 0.0
+                ),
+                table=(
+                    1.0
+                    if tables and all(table.cells for table in tables)
+                    else (0.4 if tables else 0.0)
+                ),
+                overall=(
+                    0.4 if blocks or tables or ocr_spans else (0.2 if markdown else 0.0)
+                ),
             ),
             capabilities=capabilities,
             warnings=warnings,
@@ -166,12 +325,16 @@ class BaseParserAdapter(ABC):
         )
         provenance_updates: dict[str, Any] = {}
         if routing_decision is not None:
-            provenance_updates["requested_parser_id"] = routing_decision.requested_parser_id
+            provenance_updates["requested_parser_id"] = (
+                routing_decision.requested_parser_id
+            )
             provenance_updates["routing_mode"] = routing_decision.mode
         if provenance_updates:
             bundle = bundle.model_copy(
                 update={
-                    "provenance": bundle.provenance.model_copy(update=provenance_updates)
+                    "provenance": bundle.provenance.model_copy(
+                        update=provenance_updates
+                    )
                 }
             )
         return bundle
@@ -1274,21 +1437,27 @@ class BaseParserAdapter(ABC):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> RoutingDecision:
-        """为尚未接入路由层的 adapter 调用保留统一路由记录。"""
+        """Compatibility bridge for callers still providing request and signals."""
 
-        internal = request.options.get("_routing_decision")
-        if isinstance(internal, RoutingDecision):
-            return internal
-        if isinstance(internal, dict):
-            return RoutingDecision.model_validate(internal)
+        return self._routing_decision_from_context(
+            NormalizationContext.from_parse_request(request, signals)
+        )
 
-        manual = request.parser_id == self.PARSER_ID
+    def _routing_decision_from_context(
+        self,
+        context: NormalizationContext,
+    ) -> RoutingDecision:
+        """Create an adapter-local audit record without importing routing code."""
+
+        if context.routing_decision is not None:
+            return context.routing_decision
+        manual = context.requested_parser_id == self.PARSER_ID
         return RoutingDecision(
             mode=RoutingMode.MANUAL if manual else RoutingMode.AUTO,
-            requested_parser_id=request.parser_id,
+            requested_parser_id=context.requested_parser_id,
             selected_parser_id=self.PARSER_ID,
             reason="adapter skeleton normalization",
-            signals=signals,
-            parser_options=self._public_options(request.options),
+            signals=context.signals,
+            parser_options=self._public_options(context.parser_options),
             allow_automatic_fallback=not manual,
         )

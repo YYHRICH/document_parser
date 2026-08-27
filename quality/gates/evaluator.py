@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     GateSummary,
     IssueSeverity,
     IssueStatus,
@@ -81,6 +81,14 @@ class GateEvaluator:
     def __init__(self, config: GateConfig | None = None) -> None:
         self._config = config or GateConfig()
 
+    def _is_capability_blocker(self, verdict: CapabilityVerdict) -> bool:
+        """Apply D-03 to an unavailable capability without rewriting the matrix."""
+        if verdict.state != QualityCapabilityState.UNAVAILABLE:
+            return verdict.blocking
+        if not verdict.blocking:
+            return False
+        return verdict.applicable or not self._config.unavailable_blocks_when_applicable_only
+
     def decide(
         self,
         issues: list[IssueDraft],
@@ -90,17 +98,18 @@ class GateEvaluator:
         """由未解决 issue + 能力判定推导最终状态。"""
         blocking_reasons: list[str] = []
 
-        # 1. 能力阻塞项（blocking=True 且非 verified/unavailable）
+        # 1. 能力阻塞项（unavailable 的适用性由 GateConfig 决定）
         capability_blockers = [
             verdict
             for verdict in capability_verdicts.values()
-            if verdict.blocking
+            if self._is_capability_blocker(verdict)
             and verdict.state
             in {
                 QualityCapabilityState.REJECTED,
                 QualityCapabilityState.REPARSE_REQUIRED,
                 QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
                 QualityCapabilityState.INFERRED,
+                QualityCapabilityState.UNAVAILABLE,
             }
         ]
         rejected_caps = [
@@ -117,7 +126,7 @@ class GateEvaluator:
             if v.state
             in {
                 QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
-                QualityCapabilityState.INFERRED,
+                QualityCapabilityState.UNAVAILABLE,
             }
         ]
 

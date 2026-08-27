@@ -127,5 +127,5 @@ def test_verified_capability_without_evidence_is_downgraded():
     )["content_complete"]
 
     assert verdict.state == QualityCapabilityState.INFERRED
-    assert verdict.blocking
+    assert not verdict.blocking
     assert "downgrade_reason" in verdict.evidence

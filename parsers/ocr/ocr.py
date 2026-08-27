@@ -8,7 +8,12 @@ import time
 from importlib.util import find_spec
 from typing import Any
 
-from ...core.contracts import DocumentSignals, ParseRequest, ParserNativeResult
+from ...core.contracts import (
+    DocumentSignals,
+    ParseRequest,
+    ParserCapability,
+    ParserNativeResult,
+)
 from ...normalizers import ParserNormalizationBundle, make_stable_document_id
 from ..base import BaseParserAdapter
 
@@ -19,22 +24,55 @@ class OcrParser(BaseParserAdapter):
     PARSER_ID = "ocr"
     PROVIDER = "document_parser"
     DISPLAY_NAME = "OCR 解析器"
-    NATIVE_FORMATS = {".pdf", ".jpg", ".jpeg", ".png"}
+    NATIVE_FORMATS = {".jpg", ".jpeg", ".png"}
     MODEL_VERSIONS = ["ocr"]
     DEFAULT_MODEL_VERSION = "ocr"
-    UNAVAILABLE_REASON = "OCR 适配器骨架已创建，尚未接入实际实现。"
+    UNAVAILABLE_REASON = "RapidOCR is not installed in the current environment."
+
+    @property
+    def capability(self) -> ParserCapability:
+        """Report runtime availability without creating an OCR engine."""
+
+        available = find_spec("rapidocr") is not None
+        return ParserCapability(
+            parser_id=self.PARSER_ID,
+            provider=self.PROVIDER,
+            display_name=self.DISPLAY_NAME,
+            formats=self.NATIVE_FORMATS,
+            model_versions=self.MODEL_VERSIONS,
+            default_model_version=self.DEFAULT_MODEL_VERSION,
+            requires_network=self.REQUIRES_NETWORK,
+            requires_gpu=self.REQUIRES_GPU,
+            available=available,
+            unavailable_reason=None if available else self.UNAVAILABLE_REASON,
+        )
 
     def build_native_result(
         self,
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNativeResult:
+        # Native sidecars are an offline import path and remain valid even if the
+        # local OCR runtime is not installed or the original input was a PDF.
         sidecar_result = self._build_native_result_from_options(request, signals)
         if sidecar_result is not None:
             return sidecar_result
-        if signals.extension in {".jpg", ".jpeg", ".png"} and find_spec("rapidocr") is not None:
+        if signals.extension not in self.NATIVE_FORMATS:
+            raise self.execution_error(
+                failure_kind="unsupported",
+                safe_message="OCR direct execution does not support this input.",
+            )
+        if find_spec("rapidocr") is None:
+            raise self.execution_error(
+                failure_kind="unavailable",
+                safe_message="OCR backend is unavailable in this environment.",
+            )
+        try:
             return self._build_with_rapidocr(request, signals)
-        return self._build_placeholder_native_result(request, signals)
+        except Exception as error:
+            # A selected OCR backend must fail visibly so Gateway can try its
+            # fallback chain; a placeholder would create a false success.
+            raise self.diagnose(error, request=request, signals=signals) from error
 
     def _build_with_rapidocr(
         self,
@@ -160,10 +198,6 @@ class OcrParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """返回统一占位包；真实 OCR spans 和置信度映射会在这里接入。"""
+        """Execute through the plugin port before standalone normalization."""
 
-        return self.normalize_native_result(
-            self.build_native_result(request, signals),
-            request,
-            signals,
-        )
+        return super().normalize(request, signals)

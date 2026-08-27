@@ -57,6 +57,10 @@ def write_document_package(
     (package_root / "native").mkdir(parents=True, exist_ok=True)
 
     _write_text(package_root / "parsed_document.json", document.model_dump_json(indent=2))
+    # Markdown is a readable projection of ParsedDocument, never an independent
+    # source of truth.  Keeping it in the package makes the protocol inspectable
+    # while integrity validation catches accidental divergence.
+    _write_text(package_root / "document.md", document.markdown)
 
     for asset in document.assets:
         asset_path = package_root / "assets" / asset.path
@@ -142,6 +146,13 @@ def validate_parsed_document_integrity(
             )
 
     if package_root is not None:
+        rendered_markdown_path = package_root / "document.md"
+        # Older persisted packages did not contain the projection.  They remain
+        # readable for migration, while every newly written package must contain it.
+        if rendered_markdown_path.is_file():
+            rendered_markdown = rendered_markdown_path.read_text(encoding="utf-8")
+            if rendered_markdown != document.markdown:
+                errors.append("document.md 与 ParsedDocument.markdown 不一致")
         for artifact in document.native_artifacts:
             _check_sidecar_exists(
                 errors,

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文档详情｜文档处理中心</title>
+  <link rel="stylesheet" href="./document-detail.css">
+</head>
+<body>
+  <main class="detail-app">
+    <header class="detail-topbar">
+      <div class="detail-topbar__title">
+        <a id="backToTask" class="back-link" href="/"><span data-icon="arrow-left" aria-hidden="true"></span><span>返回处理中心</span></a>
+        <nav class="breadcrumbs" aria-label="当前位置">
+          <span>处理中心</span><span aria-hidden="true">/</span><strong id="breadcrumbName">文档详情</strong><span aria-hidden="true">/</span><span>当前版本</span>
+        </nav>
+        <div class="title-row">
+          <h1 id="documentName">文档详情</h1>
+          <span id="versionLabel" class="version-badge" hidden></span>
+        </div>
+      </div>
+      <div id="headerActions" class="header-actions" aria-label="文档操作"></div>
+    </header>
+
+    <section id="loadingState" class="page-state page-state--loading" aria-live="polite">
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <div><h2>正在读取文档</h2><p>请稍候。</p></div>
+    </section>
+
+    <section id="emptyState" class="page-state" hidden aria-live="polite"></section>
+
+    <section id="detailView" hidden>
+      <section id="detailSummary" class="detail-summary" aria-live="polite">
+        <div class="detail-summary__main">
+          <span id="statusIcon" class="status-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong id="statusTitle">处理完成</strong>
+            <p id="statusDescription"></p>
+          </div>
+        </div>
+        <div id="detailMetrics" class="detail-metrics" aria-label="文档概况"></div>
+      </section>
+
+      <section id="statusPanel" class="status-panel" hidden aria-live="polite"></section>
+
+      <section id="workbench" class="detail-workbench" aria-label="文档内容与修改记录">
+        <article class="preview-card">
+          <header class="preview-card__header">
+            <div>
+              <span class="eyebrow">文档内容</span>
+              <h2 id="previewTitle">优化后内容</h2>
+            </div>
+            <div class="view-switch" role="tablist" aria-label="内容版本">
+              <button class="view-switch__button is-active" id="optimizedViewButton" type="button" role="tab" aria-selected="true" data-view="optimized">优化后内容</button>
+              <button class="view-switch__button" id="originalViewButton" type="button" role="tab" aria-selected="false" data-view="original">原始解析</button>
+            </div>
+          </header>
+          <p id="previewStatus" class="preview-status" role="status" aria-live="polite">正在读取内容。</p>
+          <div id="previewScroll" class="preview-scroll" tabindex="0">
+            <article id="previewContent" class="markdown-content" aria-describedby="previewStatus"></article>
+          </div>
+        </article>
+
+        <aside class="revision-card" aria-label="修改记录">
+          <header class="revision-card__header">
+            <span class="eyebrow">处理记录</span>
+            <h2>修改记录</h2>
+            <p id="revisionSummary">正在读取记录。</p>
+          </header>
+          <div id="revisionFilters" class="revision-filters" aria-label="修改记录筛选"></div>
+          <div id="revisionList" class="revision-list"></div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./api-config.js"></script>
+  <script type="module" src="./assets/lucide-icons.js"></script>
+  <script type="module" src="./document-detail.js"></script>
+</body>
+</html>

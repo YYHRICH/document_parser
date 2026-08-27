@@ -153,6 +153,18 @@ def test_column_drift_ignores_unrelated_adjacent_tables():
     result = QL_TBL_008_ColumnDrift().execute(EvidenceContext(_doc_with_tables(t1, t2)))
     assert not any(i.category == "column_drift" for i in result.issues)
 
+def test_table_body_text_does_not_create_continuation_hint():
+    t1 = _table("t-a", 1, ["测试面", "PDF证据", "质量行为", "状态"], 3)
+    t1 = t1.model_copy(update={
+        "cells": [
+            cell.model_copy(update={"text": "跨页关系仅是业务描述"}) if cell.start_row == 1 and cell.start_col == 0 else cell
+            for cell in t1.cells
+        ]
+    })
+    t2 = _table("t-b", 2, ["字段", "测试值"], 3)
+    result = QL_TBL_007_CrossPageContinuation().execute(EvidenceContext(_doc_with_tables(t1, t2)))
+    assert result.relation_candidates == ()
+
 
 def test_rule_id_is_stable():
     assert QL_TBL_007_CrossPageContinuation.rule_id == "QL-TBL-007"

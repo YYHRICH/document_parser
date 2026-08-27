@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from uuid import UUID
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     CanonicalBlock,
     CanonicalDocument,
     CanonicalRelation,

@@ -85,6 +85,14 @@ def test_cont002_clean_order_verified():
         == QualityCapabilityState.VERIFIED
     )
 
+def test_cont002_layout_blocks_do_not_conflict_with_content_order():
+    doc = _load("sdp-004-mineru")
+    footer = doc.blocks[0].model_copy(update={"id": uuid4(), "kind": BlockKind.FOOTER})
+    result = QL_CONT_002_OrderIndex().execute(
+        EvidenceContext(doc.model_copy(update={"blocks": [*doc.blocks, footer]}))
+    )
+    assert result.issues == ()
+
 
 def test_cont002_duplicate_order_index_warning():
     doc = _load("sdp-004-mineru")

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     CapabilityAssessment,
     QualityCapabilityState,
 )
@@ -128,7 +128,15 @@ class CapabilityMatrixBuilder:
                 verdicts[name] = CapabilityVerdict(
                     name=name,
                     state=state,
-                    blocking=state != QualityCapabilityState.VERIFIED,
+                    # inferred means a deterministic, evidence-backed fallback
+                    # was used. It remains visible in the matrix but is not an
+                    # automatic human-review blocker; only unresolved ambiguity
+                    # (manual/reparse/rejected) blocks the Gate.
+                    blocking=state in {
+                        QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
+                        QualityCapabilityState.REPARSE_REQUIRED,
+                        QualityCapabilityState.REJECTED,
+                    },
                     evidence=evidence,
                     evidence_refs=evidence_refs,
                 )
@@ -166,7 +174,13 @@ class CapabilityMatrixBuilder:
                 verdicts[name] = CapabilityVerdict(
                     name=name,
                     state=state,
-                    blocking=False,
+                    # Non-standard observations are diagnostic only. As above,
+                    # inferred is not synonymous with manual review.
+                    blocking=state in {
+                        QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
+                        QualityCapabilityState.REPARSE_REQUIRED,
+                        QualityCapabilityState.REJECTED,
+                    },
                     evidence=evidence,
                     evidence_refs=evidence_refs,
                 )

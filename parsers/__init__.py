@@ -1,22 +1,51 @@
-"""内置解析器。
+"""Public parser-plugin boundary.
 
-当前生产链路只注册 MarkItDown；Docling、MinerU、OCR 先保留骨架入口，后续逐步接入。
+Concrete adapters stay lazy so importing a port, a typed execution error, or a
+capability snapshot does not initialize third-party parser SDKs.  The registry
+is the explicit composition-root entry point that constructs built-in plugins.
 """
 
-from .docling import DoclingParser
-from .anydoc import AnyDocParser
-from .markitdown import MarkItDownParser
-from .mineru import MinerUParser
-from .ocr import OcrParser
-from .registry import build_parser_registry, get_parser, iter_parser_capabilities
+from __future__ import annotations
 
-__all__ = [
-    "AnyDocParser",
-    "DoclingParser",
-    "MarkItDownParser",
-    "MinerUParser",
-    "OcrParser",
-    "build_parser_registry",
-    "get_parser",
-    "iter_parser_capabilities",
-]
+from importlib import import_module
+from typing import Any
+
+
+_LAZY_EXPORTS: dict[str, tuple[str, str]] = {
+    "AnyDocParser": (".anydoc", "AnyDocParser"),
+    "DoclingParser": (".docling", "DoclingParser"),
+    "MarkItDownParser": (".markitdown", "MarkItDownParser"),
+    "MinerUParser": (".mineru", "MinerUParser"),
+    "OcrParser": (".ocr", "OcrParser"),
+    "ParserBoundaryError": (".ports", "ParserBoundaryError"),
+    "ParserDiagnosePort": (".ports", "ParserDiagnosePort"),
+    "ParserExecutePort": (".ports", "ParserExecutePort"),
+    "ParserExecutionError": (".ports", "ParserExecutionError"),
+    "ParserFailureKind": (".ports", "ParserFailureKind"),
+    "ParserNormalizePort": (".ports", "ParserNormalizePort"),
+    "ParserPluginPort": (".ports", "ParserPluginPort"),
+    "ParserProbePort": (".ports", "ParserProbePort"),
+    "ParserProbeResult": (".ports", "ParserProbeResult"),
+    "ParserRegistry": (".registry", "ParserRegistry"),
+    "build_capability_snapshot": (".registry", "build_capability_snapshot"),
+    "build_parser_registry": (".registry", "build_parser_registry"),
+    "get_parser": (".registry", "get_parser"),
+    "iter_parser_capabilities": (".registry", "iter_parser_capabilities"),
+}
+
+
+def __getattr__(name: str) -> Any:
+    try:
+        module_name, attribute_name = _LAZY_EXPORTS[name]
+    except KeyError as error:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}") from error
+    value = getattr(import_module(module_name, __name__), attribute_name)
+    globals()[name] = value
+    return value
+
+
+def __dir__() -> list[str]:
+    return sorted(set(globals()) | set(_LAZY_EXPORTS))
+
+
+__all__ = sorted(_LAZY_EXPORTS)

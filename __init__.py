@@ -1,4 +1,4 @@
-"""文档解析模块公开入口。当前实现固定为 Microsoft MarkItDown。"""
+"""Parser-agnostic public contracts and lazy composition conveniences."""
 
 from .core.contracts import (
     AppliedRepair,
@@ -40,8 +40,32 @@ from .core.contracts import (
     TableCell,
     TableFieldBinding,
 )
-from .core.gateway import DocumentParserGateway
-from .routing import ModelRouter, RouteProfile, RoutingSettings
+from importlib import import_module
+from typing import Any
+
+# Gateway and routing are composition-layer conveniences.  Keeping them lazy means
+# importing the shared contracts, normalizer, or quality library does not initialize
+# parser registries, cloud configuration, or the web/backend stack.
+_LAZY_EXPORTS: dict[str, tuple[str, str]] = {
+    "DocumentParserGateway": (".composition.gateway", "DocumentParserGateway"),
+    "ModelRouter": (".routing", "ModelRouter"),
+    "RouteProfile": (".routing", "RouteProfile"),
+    "RoutingSettings": (".routing", "RoutingSettings"),
+}
+
+
+def __getattr__(name: str) -> Any:
+    try:
+        module_name, attribute_name = _LAZY_EXPORTS[name]
+    except KeyError as error:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}") from error
+    value = getattr(import_module(module_name, __name__), attribute_name)
+    globals()[name] = value
+    return value
+
+
+def __dir__() -> list[str]:
+    return sorted(set(globals()) | set(_LAZY_EXPORTS))
 
 __all__ = [
     "AppliedRepair",

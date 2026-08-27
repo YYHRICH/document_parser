@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     CanonicalSourceLocator,
     IssueSeverity,
     QualityCapabilityState,
@@ -33,7 +33,7 @@ EvidenceObjectType = Literal[
 class EvidenceRef:
     """结构化证据引用：指向 ParsedDocument 中的真实字段。
 
-    ``value_sha256`` 用于检测 LLM/缓存引用的证据是否已变化（LLM 层使用）。
+    ``value_sha256`` 用于检测缓存或重复运行时引用的证据是否已变化。
     """
 
     object_type: EvidenceObjectType
@@ -49,6 +49,8 @@ class IssueDraft:
     severity: IssueSeverity
     category: str
     message: str
+    # 在规则调度时填入，确保公共 issue ID 可区分规则来源。
+    rule_id: str = field(default="", kw_only=True)
     affected_block_ids: list[str] = field(default_factory=list)
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
     evidence: dict[str, Any] = field(default_factory=dict)
@@ -88,13 +90,40 @@ class BindingCandidate:
 
 @dataclass(frozen=True)
 class RepairProposal:
-    """白名单修复提案（规则提出，repairs 层校验后应用）。"""
+    """A deterministic repair candidate with an exact hash-guarded target.
+
+    Rule code may create a proposal, but only RepairPolicy can authorize it and
+    only RepairExecutor can mutate an internal working representation.
+    """
 
     rule_id: str
     description: str
     affected_block_ids: list[str] = field(default_factory=list)
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
     replayable: bool = True
+    # Imported only at type-check time to avoid a models_internal <-
+    # representations import cycle.  Runtime values are RepresentationTarget.
+    target: "RepresentationTarget | None" = None
+    expected_content_sha256: str | None = None
+    expected_after_sha256: str | None = None
+    parameters: dict[str, Any] = field(default_factory=dict)
+    safety: Literal["auto_safe", "review_required", "forbidden"] = "forbidden"
+
+    def __post_init__(self) -> None:
+        hashes = (self.expected_content_sha256, self.expected_after_sha256)
+        if self.target is None and any(value is not None for value in hashes):
+            raise ValueError("repair proposal hash preconditions require a target")
+        if self.target is not None and any(value is None for value in hashes):
+            raise ValueError("exact repair target requires before and after hashes")
+        for digest in hashes:
+            if digest is None:
+                continue
+            if len(digest) != 64 or any(
+                character not in "0123456789abcdef" for character in digest.lower()
+            ):
+                raise ValueError("repair proposal hashes must be SHA-256 digests")
+        if self.safety not in {"auto_safe", "review_required", "forbidden"}:
+            raise ValueError("unsupported repair proposal safety")
 
 
 @dataclass(frozen=True)

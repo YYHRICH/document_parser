@@ -1,0 +1,387 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage[a4paper,margin=22mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array,booktabs,longtable,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{blue}{HTML}{1D4ED8}
+\definecolor{pale}{HTML}{EFF6FF}
+\definecolor{line}{HTML}{CBD5E1}
+\definecolor{warn}{HTML}{92400E}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  pdftitle={质量层端到端验收样本},
+  pdfauthor={Document Parser Test Suite}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{ink}质量层端到端验收样本}
+\fancyhead[R]{\small\color{ink}QL-DEMO-2026-08}
+\fancyfoot[C]{\small\color{ink}仅用于解析、归一化与质量层测试 - \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+\newcommand{\testtag}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\risk}[1]{\textcolor{warn}{\textbf{#1}}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\title{\textbf{质量层端到端验收样本}}
+\author{Document Parser Test Suite}
+\date{2026-08-27}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+  \colorbox{pale}{\parbox{0.92\textwidth}{
+    \textbf{使用说明：}本 PDF 是故意设计的综合测试输入，不是业务报告。
+    请通过 MinerU、Docling 或其他解析器上传后，查看 QualityPackage、质量状态、
+    applied repairs、canonical relations、table bindings 和 provenance。
+  }}
+\end{center}
+
+\vspace{4mm}
+\section{测试目标与验收矩阵}
+
+本文件的源身份为 \testtag{QL-DEMO-2026-08}，版本为 \testtag{v1.0}。
+文档包含正文、编号标题、表格、跨页续表、公式、图示、脚注、数字引用、
+页眉页脚和明确的来源元数据，用于观察解析器输出是否保留真实证据，
+以及质量层是否只对安全目标执行确定性修复。
+
+\begin{table}[htbp]
+\centering
+\caption{质量层验收矩阵}
+\small
+\begin{tabularx}{\textwidth}{C{0.18\textwidth} Y Y C{0.18\textwidth}}
+\toprule
+测试面 & PDF 中的可观察证据 & 期望的质量层行为 & 期望状态 \\
+\midrule
+完整性 & 标题、段落、列表、表格和参考文献均有内容 & 生成稳定 block 序列，不伪造缺失内容 & verified 或 inferred \\
+标题树 & 1 / 1.1 / 1.1.1 编号层级，另含跳级小节 & 编号与解析器层级冲突时标记 inferred & 可审计 \\
+表格修复 & 一个无合并单元格表，一个含 colspan/rowspan 的表 & 安全表可转 Markdown；复杂表保留证据并人工复核 & auto-safe / review \\
+跨页关系 & 长表在页间继续，续页重复表头 & 建立 table continuation，不把两页误合成一个表 & verified / review \\
+引用绑定 & 正文出现 [1]、[2,3]、[4-5]，末尾有显式编号条目 & 建立 citation relation，缺失编号不得静默补齐 & verified / review \\
+来源追溯 & 文档 ID、页码语义、图表标题、脚注和来源表 & 保留 provenance、anchor、artifact 证据 & 可追溯 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{文档身份与运行上下文}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} Y}
+\toprule
+字段 & 测试值 \\
+\midrule
+Document ID & QL-DEMO-2026-08 \\
+业务主题 & 解析质量层综合验收与设备运行风险评估 \\
+源文件版本 & TeX source revision 1.0; generated on 2026-08-27 \\
+声明的解析器 & requested=auto; actual parser must be recorded by provenance \\
+允许的自动修复 & 仅允许确定性、可回滚、前置哈希匹配的修复 \\
+禁止的推断 & 不猜测 page bbox、cell bbox、缺失文字、列值和参考文献内容 \\
+\bottomrule
+\end{tabularx}
+
+本段包含一个脚注\footnote{脚注是正文语义的一部分；如果解析器不能恢复脚注，
+应在 capabilities 或 quality report 中声明证据缺失，而不是把它拼进正文。}。
+脚注后继续一段普通文字，检查脚注是否被错误地当成标题或独立业务段落。
+
+\subsection{验收步骤}
+
+\begin{enumerate}[leftmargin=2em]
+  \item 上传本 PDF，确认前端展示真实解析器、路由决策和云端使用状态。
+  \item 打开质量详情，确认 optimized markdown 与原始 markdown 可比较。
+  \item 展开修复审计，确认每条 applied repair 有 rule id、目标、前置哈希和复检结果。
+  \item 展开 canonical document，确认标题父子关系、表格字段绑定和引用关系均有证据。
+  \item 下载质量包，确认 manifest、report、canonical 和原生产物路径可互相校验。
+\end{enumerate}
+
+\section{标题树、段落与内容完整性}
+
+本文档的标题层级采用显式编号，同时保留较长标题和英文 token，便于比较
+解析器的 heading\_level、section\_path、reading order 和 stable id。
+
+\subsection{一级标题下的正常二级标题}
+
+该小节用于建立稳定父节点。正文包含一个跨句号的段落：质量层应该保留
+段落边界、原始文字和来源 block，不应因为句号或换行重新切碎成无依据的 block。
+
+\subsubsection{三级标题与公式证据}
+
+风险评分定义如下，公式本身是文档中的结构证据，不要求质量层擅自将其改写为普通段落：
+
+\begin{equation}
+  R = 0.35C + 0.25T + 0.20P + 0.20S,
+  \qquad 0 \leq R \leq 1.00.
+  \label{eq:risk-score}
+\end{equation}
+
+其中 $C$ 表示内容完整度，$T$ 表示表格结构可信度，$P$ 表示来源可追溯性，
+$S$ 表示结构关系稳定度。式~\eqref{eq:risk-score} 的引用用于测试公式编号和交叉引用。
+
+\setcounter{subsection}{2}
+\subsection{故意跳级的小节}
+
+这里从 2.1.1 跳到 2.3，目的是让质量报告能够展示标题编号与解析器层级的差异。
+这不是让质量层猜一个虚构的 2.2；正确行为是保留实际顺序，必要时将关系标记为
+\risk{inferred} 或 \risk{manual\_review\_required}。
+
+\subsection{重复语义标题}
+
+\subsubsection{重复语义标题}
+
+两个相近标题用于观察 stable id 是否依赖内容字符串。即使标题文本相同，
+它们也必须由不同的 block identity、order index 和 source block id 区分。
+
+\section{表格表示与确定性修复}
+
+\subsection{无合并单元格的安全表}
+
+下面的表格设计为规则完整、列数稳定、没有 rowspan 或 colspan 的候选。
+如果解析器产生 HTML table 而 Markdown 表示缺失或不一致，质量层应记录
+\testtag{QL-RPR-003} 的精确目标转换；修复后必须重新运行受影响规则并得到 no-op。
+
+\begin{table}[htbp]
+\centering
+\caption{安全转换候选 - 设备运行指标}
+\small
+\begin{tabularx}{\textwidth}{C{0.18\textwidth} C{0.18\textwidth} C{0.18\textwidth} Y}
+\toprule
+指标 & 基线 & 当前值 & 证据说明 \\
+\midrule
+温度上限 & 70 C & 68 C & 传感器 T-17，采样窗口 10 min \\
+振动 RMS & 4.0 mm/s & 3.2 mm/s & 设备 V-04，轴承侧 \\
+电流峰值 & 12.0 A & 11.4 A & 回路 I-02，启动阶段 \\
+告警延迟 & 5 s & 4 s & 控制器 L-09，版本 2.4 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{含合并表头的人工复核表}
+
+本表故意使用多级表头和合并单元格。它不是安全的无损 Markdown 转换目标。
+质量层应保留 HTML、cells、原始表格 block 和候选转换结果，并将有损转换降级，
+不能用一个简单管道表覆盖原始结构。
+
+\begin{table}[htbp]
+\centering
+\caption{人工复核候选 - 多级表头与合并单元格}
+\scriptsize
+\begin{tabular}{p{0.18\textwidth} p{0.17\textwidth} p{0.17\textwidth} p{0.17\textwidth} p{0.17\textwidth}}
+\toprule
+\multirow{2}{*}{供应商} & \multirow{2}{*}{型号} & \multicolumn{2}{c}{技术参数} & \multirow{2}{*}{商务条款} \\
+\cmidrule(lr){3-4}
+ &  & 额定电压 & 工作温度 & 质保与交付 \\
+\midrule
+华东精工 & AX-200-A & 12 V & -20 C 至 70 C & 18 个月 / 14 日 \\
+北辰机电 & AX-200-B & 12 V & -10 C 至 65 C & 12 个月 / 10 日 \\
+远景自动化 & AX-200-C & 24 V & -20 C 至 70 C & 24 个月 / 21 日 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{表格字段绑定语义}
+
+\begin{table}[htbp]
+\centering
+\caption{字段绑定验收样本}
+\small
+\begin{tabularx}{\textwidth}{C{0.20\textwidth} C{0.20\textwidth} C{0.20\textwidth} Y}
+\toprule
+字段路径 & 行键 & 单元格事实 & 绑定要求 \\
+\midrule
+设备/电气/额定电压 & AX-200-A & 12 V & 必须能回到 table id、row、column 和来源 block \\
+设备/热工/工作温度 & AX-200-A & -20 C 至 70 C & 不得把区间拆成两个无来源数字 \\
+商务/质保/月数 & AX-200-A & 18 & 保留原始单位和 cell 位置 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{跨页续表与列漂移检测}
+
+下面的长表会自然跨越页面，并在续页重复表头。表格标题显式包含
+\testtag{continued}，方便质量层识别 continuation hint。两页的列顺序应完全一致；
+如果解析器给出的列 bbox 或 header path 漂移，质量层应输出 \testtag{QL-TBL-008}
+并要求人工复核，而不是静默重排数据。
+
+\begin{longtable}{C{0.09\textwidth} p{0.23\textwidth} p{0.22\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.10\textwidth}}
+\caption{跨页设备巡检记录 - continued}\label{tab:cross-page}\\
+\toprule
+序号 & 设备与位置 & 观测项目 & 基线 & 实测 & 结论 \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{\tablename\ \thetable{} -- continued from previous page}\\
+\toprule
+序号 & 设备与位置 & 观测项目 & 基线 & 实测 & 结论 \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{续下页}\\
+\endfoot
+\bottomrule
+\endlastfoot
+01 & A 区 01 号泵 & 入口压力 & 0.80 MPa & 0.78 MPa & 正常 \\
+02 & A 区 02 号泵 & 出口压力 & 1.20 MPa & 1.17 MPa & 正常 \\
+03 & A 区 03 号泵 & 轴承温度 & 65 C & 62 C & 正常 \\
+04 & A 区 04 号泵 & 振动 RMS & 4.0 mm/s & 3.6 mm/s & 正常 \\
+05 & B 区 01 号风机 & 入口风速 & 8.0 m/s & 7.5 m/s & 观察 \\
+06 & B 区 02 号风机 & 电机电流 & 12.0 A & 11.8 A & 正常 \\
+07 & B 区 03 号风机 & 轴承温度 & 70 C & 71 C & 复核 \\
+08 & B 区 04 号风机 & 皮带张力 & 420 N & 405 N & 观察 \\
+09 & C 区 01 号压缩机 & 排气温度 & 88 C & 86 C & 正常 \\
+10 & C 区 02 号压缩机 & 油压 & 0.35 MPa & 0.34 MPa & 正常 \\
+11 & C 区 03 号压缩机 & 运行小时 & 8000 h & 8120 h & 维护 \\
+12 & C 区 04 号压缩机 & 泄漏等级 & L0 & L0 & 正常 \\
+13 & D 区 01 号冷却塔 & 回水温度 & 32 C & 31 C & 正常 \\
+14 & D 区 02 号冷却塔 & 补水流量 & 12 L/min & 11 L/min & 正常 \\
+15 & D 区 03 号冷却塔 & 风叶状态 & 完好 & 完好 & 正常 \\
+16 & D 区 04 号冷却塔 & 水质电导率 & 1200 uS/cm & 1320 uS/cm & 观察 \\
+17 & E 区 01 号换热器 & 一次侧压差 & 0.08 MPa & 0.09 MPa & 正常 \\
+18 & E 区 02 号换热器 & 二次侧压差 & 0.06 MPa & 0.10 MPa & 复核 \\
+19 & E 区 03 号换热器 & 进水温度 & 18 C & 19 C & 正常 \\
+20 & E 区 04 号换热器 & 出水温度 & 28 C & 29 C & 正常 \\
+21 & F 区 01 号阀组 & 阀位反馈 & 100\% & 98\% & 正常 \\
+22 & F 区 02 号阀组 & 执行时间 & 2.0 s & 2.2 s & 观察 \\
+23 & F 区 03 号阀组 & 密封状态 & 完好 & 完好 & 正常 \\
+24 & F 区 04 号阀组 & 线圈电阻 & 42 Ohm & 41 Ohm & 正常 \\
+25 & G 区 01 号控制柜 & 柜内温度 & 35 C & 37 C & 观察 \\
+26 & G 区 02 号控制柜 & 直流母线 & 24 V & 24 V & 正常 \\
+27 & G 区 03 号控制柜 & 通讯丢包率 & 0.1\% & 0.2\% & 正常 \\
+28 & G 区 04 号控制柜 & 时间同步偏差 & 50 ms & 61 ms & 复核 \\
+29 & H 区 01 号传感器 & 温度漂移 & 1.0 C & 0.8 C & 正常 \\
+30 & H 区 02 号传感器 & 湿度漂移 & 3.0\%RH & 2.7\%RH & 正常 \\
+31 & H 区 03 号传感器 & 信号强度 & -70 dBm & -68 dBm & 正常 \\
+32 & H 区 04 号传感器 & 电池电量 & 80\% & 76\% & 观察 \\
+33 & I 区 01 号仪表 & 校准偏差 & 0.5\% & 0.4\% & 正常 \\
+34 & I 区 02 号仪表 & 采样周期 & 1 s & 1 s & 正常 \\
+35 & I 区 03 号仪表 & 通道状态 & 16/16 & 16/16 & 正常 \\
+36 & I 区 04 号仪表 & 校准日期 & 2026-08-01 & 2026-08-01 & 正常 \\
+37 & J 区 01 号安全联锁 & 响应时间 & 100 ms & 97 ms & 正常 \\
+38 & J 区 02 号安全联锁 & 旁路状态 & 禁止 & 禁止 & 正常 \\
+39 & J 区 03 号安全联锁 & 测试结果 & 通过 & 通过 & 正常 \\
+40 & J 区 04 号安全联锁 & 复位次数 & 0 & 1 & 复核 \\
+\end{longtable}
+
+\section{图示、来源与原生产物证据}
+
+\begin{figure}[htbp]
+\centering
+\fbox{\begin{minipage}{0.78\textwidth}
+\centering
+\vspace{5mm}
+\textbf{源文档}\quad $\longrightarrow$ \quad \textbf{解析结果}
+
+\vspace{3mm}
+\fbox{\parbox{0.25\textwidth}{\centering blocks\\tables\\assets}}
+\quad $\longrightarrow$ \quad
+\fbox{\parbox{0.25\textwidth}{\centering rules\\gates\\package}}
+\vspace{5mm}
+\end{minipage}}
+\caption{解析证据进入质量层的关系示意}
+\label{fig:evidence-flow}
+\end{figure}
+
+图~\ref{fig:evidence-flow} 不是业务数据，而是一个可识别的图示和 caption。
+若解析器不能提供图像 bytes、bbox 或 asset hash，质量层应保留图示文本并声明
+对应能力不可用。不得根据图示位置猜测文档页码或 block 坐标。
+
+\subsection{来源字段}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} Y Y}
+\toprule
+证据对象 & 测试值 & 质量约束 \\
+\midrule
+source block & section-5-figure-001 & 必须能回溯到原始 block \\
+asset role & figure / caption & 不得把 caption 当作正文标题 \\
+page semantic & 由 PDF 页码决定 & page number 从 1 开始；未知则声明 unknown \\
+artifact & original PDF bytes & native artifact 需要安全路径和 SHA-256 \\
+\bottomrule
+\end{tabularx}
+
+\section{数字引用与参考文献绑定}
+
+本文引用统一使用数字 marker。内容完整性规则应保留正文顺序；引用规则应把
+[1] 绑定到参考文献 1，把 [2,3] 展开成两个关系，把 [4-5] 展开为 4 和 5。
+如果某个 marker 在索引中不存在，只能产生 warning 或人工复核，不能生成虚假的参考条目。
+
+不同来源的解析实现可能将整段参考文献识别为 paragraph、list 或 reference；
+质量层应基于真实 block 和显式标签恢复索引，而不能依赖某一个 parser id。
+
+\subsection{引用场景}
+
+设备的温度上限取自规范 [1]，采样方法参考 [2,3]，异常分级参考 [4-5]。
+本段故意同时包含单引用、逗号范围和短横线范围，用于核验 marker offset、
+normalized labels、candidate ids 和 relation evidence。
+
+\subsection{引用不变量}
+
+\begin{itemize}[leftmargin=2em]
+  \item 参考文献顺序不能因分页、页眉或脚注而改变。
+  \item `[2,3]` 只能产生两个独立的 reference\_of 关系，不能合并成一条未知关系。
+  \item `[4-5]` 的展开必须可审计；如果范围过大或格式不合法，应停止推断。
+  \item 引用关系的 stable id 应由文档身份、源 block 和 marker 位置稳定生成。
+\end{itemize}
+
+\section{质量结论展示位}
+
+这一节用于前端展示质量层最终输出，不要求解析器真的读出本节中的“结论”。
+上传后请以服务端生成的 QualityPackage 为准，比较本节的预期和实际结果：
+
+\begin{table}[htbp]
+\centering
+\caption{前端应展示的质量层输出}
+\small
+\begin{tabularx}{\textwidth}{C{0.24\textwidth} Y C{0.20\textwidth}}
+\toprule
+输出 & 应展示的关键信息 & 验收标准 \\
+\midrule
+quality state & verified / inferred / manual review / rejected & 状态由 Gate 汇总，不能由前端自行判断 \\
+issues & rule id、severity、message、affected block & 每个问题可定位 \\
+applied repairs & rule、target、before/after hash、policy、verification & 可回放且复检 no-op \\
+canonical document & blocks、relations、table bindings & stable id 不漂移 \\
+package manifest & 文件列表、大小、sha256、可下载范围 & manifest 与实际 ZIP 一致 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{预期的安全降级}
+
+如果真实解析器没有提供 cell bbox、OCR spans 或可靠图片资产，质量层应显示
+缺失原因和 capability state。\risk{缺证据不是失败本身；伪造证据才是失败。}
+对于含合并单元格的表格，预期是保留原始 HTML/cells 并进入人工复核；对于安全平面表，
+预期可以看到确定性 Markdown 修复及其审计记录。
+
+\section{参考文献}
+
+\begin{enumerate}[leftmargin=2.4em]
+  \item[1] Document Parser Team. \textit{统一文档包与来源证据规范}. Internal specification, 2026.
+  \item[2] Quality Layer Working Group. \textit{表格表示选择与字段绑定规则}. Engineering note, 2026.
+  \item[3] Quality Layer Working Group. \textit{跨页续表与列漂移检测说明}. Engineering note, 2026.
+  \item[4] Safety Review Board. \textit{设备运行风险分级指南}. Revision 4, 2025.
+  \item[5] Operations Team. \textit{工业设备巡检采样手册}. Revision 2, 2026.
+\end{enumerate}
+
+\section*{附录 A - 测试后核对清单}
+
+\begin{itemize}[leftmargin=2em]
+  \item 是否能看到真实 parser id、requested parser id、routing mode 和 fallback history？
+  \item 是否能看到安全表的 QL-RPR-003 repair，以及 before/after hash 和 no-op verification？
+  \item 是否能看到复杂表的 manual review，而不是被错误拍平成普通表？
+  \item 是否能看到跨页 table continuation 和 column drift 的证据？
+  \item 是否能看到参考文献绑定、stable relation id 和 citation marker offset？
+  \item 是否能下载并重新校验 manifest、canonical、quality report 与原始 artifact？
+\end{itemize}
+
+\end{document}

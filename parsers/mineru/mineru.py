@@ -6,7 +6,6 @@ import hashlib
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -32,6 +31,22 @@ from ...normalizers import (
     unavailable_capability,
 )
 from ..base import BaseParserAdapter
+from ..ports import ParserExecutionError
+from ...common.url_security import same_url_origin
+from .security import (
+    MinerUConfigurationError,
+    MinerUSecurityError,
+    MinerUServiceConfig,
+    MinerUUntrustedUrlError,
+    reject_sensitive_request_options,
+)
+
+
+_REDIRECT_STATUS_CODES = frozenset({301, 302, 303, 307, 308})
+
+
+class _MinerULegacyApiRequired(RuntimeError):
+    """The deployed MinerU endpoint uses the v4 batch workflow."""
 
 
 class MinerUParser(BaseParserAdapter):
@@ -46,8 +61,8 @@ class MinerUParser(BaseParserAdapter):
     REQUIRES_NETWORK = True
     REQUIRES_GPU = False
     UNAVAILABLE_REASON = (
-        "MinerU adapter is present, but no cloud token or local MinerU runtime is available. "
-        "Pass options.native_output_dir to normalize an existing MinerU output directory."
+        "MinerU adapter is present, but no server-side cloud token or local "
+        "MinerU runtime is available."
     )
 
     @property
@@ -55,7 +70,7 @@ class MinerUParser(BaseParserAdapter):
         dependency_available = (
             self._has_cloud_token()
             or find_spec("magic_pdf") is not None
-            or find_spec("mineru") is not None
+            or find_spec("mineru.cli.client") is not None
         )
         return ParserCapability(
             parser_id=self.PARSER_ID,
@@ -75,6 +90,7 @@ class MinerUParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNativeResult:
+        reject_sensitive_request_options(request.options)
         sidecar_result = self._build_native_result_from_options(request, signals)
         if sidecar_result is not None:
             return self._with_mineru_payload(
@@ -93,7 +109,7 @@ class MinerUParser(BaseParserAdapter):
             )
         if find_spec("magic_pdf") is not None:
             return self._build_with_magic_pdf(request, signals)
-        if find_spec("mineru") is not None or shutil.which("mineru") is not None:
+        if find_spec("mineru.cli.client") is not None:
             return self._build_with_mineru_cli(request, signals)
         return self._build_placeholder_native_result(
             request,
@@ -104,7 +120,10 @@ class MinerUParser(BaseParserAdapter):
     def _should_use_cloud_path(self, request: ParseRequest) -> bool:
         if request.options.get("mineru_force_local") is True:
             return False
-        if self._has_cloud_token() or bool(request.options.get("mineru_api_token")):
+        service_config = self._service_config()
+        if not service_config.allow_cloud or _is_explicit_false(request.options.get("allow_cloud")):
+            return False
+        if service_config.api_token:
             return True
         return request.options.get("api_mode") in {"precise", "cloud"}
 
@@ -112,18 +131,16 @@ class MinerUParser(BaseParserAdapter):
         token = os.getenv("MINERU_API_TOKEN")
         return bool(token and token.strip())
 
+    def _service_config(self) -> MinerUServiceConfig:
+        return MinerUServiceConfig.from_environment()
+
     def _resolved_mineru_api_base_url(self, request: ParseRequest) -> str:
-        raw = request.options.get("mineru_api_base_url") or os.getenv(
-            "MINERU_API_BASE_URL", "https://mineru.net/api/v4"
-        )
-        return str(raw).rstrip("/")
+        del request
+        return self._service_config().api_base_url
 
     def _resolved_mineru_api_token(self, request: ParseRequest) -> str | None:
-        value = request.options.get("mineru_api_token") or os.getenv("MINERU_API_TOKEN")
-        if isinstance(value, str):
-            token = value.strip()
-            return token or None
-        return None
+        del request
+        return self._service_config().api_token
 
     def _build_with_mineru_cloud(
         self,
@@ -137,60 +154,65 @@ class MinerUParser(BaseParserAdapter):
 
         started = time.perf_counter()
         parser_version = self._installed_version("mineru", self.DEFAULT_MODEL_VERSION)
-        base_url = self._resolved_mineru_api_base_url(request)
-        token = self._resolved_mineru_api_token(request)
+        service_config = self._service_config()
+        base_url = service_config.api_base_url
+        token = service_config.api_token
         try:
             api_client = import_module("mineru.cli.api_client")
             httpx = import_module("httpx")
         except Exception as error:
-            return self._build_placeholder_native_result(
-                request,
-                signals,
-                parser_version=parser_version,
-                warnings=[f"MinerU cloud client could not be loaded: {error}"],
-            )
+            raise self._execution_error_from_exception(
+                phase="cloud client initialization",
+                error=error,
+                default_kind="unavailable",
+                default_retryable=False,
+            ) from error
 
         with tempfile.TemporaryDirectory(prefix="mineru-cloud-run-") as temporary:
             work_dir = Path(temporary)
             source_path = work_dir / f"source{signals.extension or Path(request.filename).suffix}"
             output_dir = work_dir / "output"
             source_path.write_bytes(request.content)
-
-            route_options = self._mineru_route_options(request, signals)
-            form_data = api_client.build_parse_request_form_data(
-                lang_list=[route_options["lang"]],
-                backend=route_options["backend"],
-                parse_method=route_options["method"],
-                formula_enable=route_options["formula_enable"],
-                table_enable=route_options["table_enable"],
-                server_url=route_options["server_url"],
-                start_page_id=route_options["start_page_id"],
-                end_page_id=route_options["end_page_id"],
-                effort=route_options["effort"],
-                image_analysis=route_options["image_analysis"],
-                return_md=True,
-                return_middle_json=True,
-                return_model_output=True,
-                return_content_list=True,
-                return_images=True,
-                response_format_zip=True,
-                return_original_file=True,
-                client_side_output_generation=False,
-            )
-            headers = {
-                "Accept": "application/json",
-                "User-Agent": "document_parser/parse-integration",
-            }
-            if token:
-                headers["Authorization"] = f"Bearer {token}"
-
             try:
+                route_options = self._mineru_route_options(
+                    request, signals, service_config=service_config
+                )
+                form_data = api_client.build_parse_request_form_data(
+                    lang_list=[route_options["lang"]],
+                    backend=route_options["backend"],
+                    parse_method=route_options["method"],
+                    formula_enable=route_options["formula_enable"],
+                    table_enable=route_options["table_enable"],
+                    server_url=route_options["server_url"],
+                    start_page_id=route_options["start_page_id"],
+                    end_page_id=route_options["end_page_id"],
+                    effort=route_options["effort"],
+                    image_analysis=route_options["image_analysis"],
+                    return_md=True,
+                    return_middle_json=True,
+                    return_model_output=True,
+                    return_content_list=True,
+                    return_images=True,
+                    response_format_zip=True,
+                    return_original_file=True,
+                    client_side_output_generation=False,
+                )
+                headers = {
+                    "Accept": "application/json",
+                    "User-Agent": "document_parser/parse-integration",
+                }
+                if token:
+                    headers["Authorization"] = f"Bearer {token}"
                 task_info = self._submit_mineru_task(
                     httpx=httpx,
                     base_url=base_url,
                     source_path=source_path,
                     form_data=form_data,
                     headers=headers,
+                )
+                task_info = self._validated_task_info(
+                    task_info,
+                    service_config=service_config,
                 )
                 self._wait_for_mineru_task(
                     httpx=httpx,
@@ -214,13 +236,37 @@ class MinerUParser(BaseParserAdapter):
                     output_dir,
                     parser_version=parser_version,
                 )
-            except Exception as error:
-                return self._build_placeholder_native_result(
+                self._require_real_mineru_output(
+                    native_result,
+                    execution_name="cloud task",
+                )
+            except _MinerULegacyApiRequired:
+                # MinerU's current public v4 service exposes the batch upload
+                # workflow, while some deployments still answer the older
+                # /tasks endpoint with 405.  Reuse the repository's verified
+                # v4 compatibility client and convert its result into the
+                # same native contract used by the modern adapter.
+                native_result = self._build_native_result_from_legacy_cloud(
                     request,
                     signals,
-                    parser_version=parser_version,
-                    warnings=[f"MinerU cloud task failed: {error}"],
+                    source_path,
+                    service_config=service_config,
                 )
+                self._require_real_mineru_output(
+                    native_result,
+                    execution_name="cloud batch task",
+                )
+            except MinerUSecurityError:
+                # Security policy failures already have safe, actionable types and
+                # must not be downgraded into a placeholder result.
+                raise
+            except ParserExecutionError:
+                raise
+            except Exception as error:
+                raise self._execution_error_from_exception(
+                    phase="cloud task",
+                    error=error,
+                ) from error
 
         return self._with_mineru_payload(
             native_result,
@@ -230,20 +276,161 @@ class MinerUParser(BaseParserAdapter):
             ),
         )
 
+    def _build_native_result_from_legacy_cloud(
+        self,
+        request: ParseRequest,
+        signals: DocumentSignals,
+        source_path: Path,
+        *,
+        service_config: MinerUServiceConfig,
+    ) -> ParserNativeResult:
+        """Run the verified v4 batch client and adapt its document result.
+
+        The compatibility client owns the upload-url, polling and signed-zip
+        details.  This method only translates its already parsed result into
+        ``ParserNativeResult`` so the normal quality and storage pipeline remains
+        unchanged.
+        """
+
+        try:
+            from .cloud_client import parse_pdf
+        except Exception as error:
+            raise self._execution_error_from_exception(
+                phase="cloud batch client initialization",
+                error=error,
+                default_kind="unavailable",
+                default_retryable=False,
+            ) from error
+
+        try:
+            parsed = parse_pdf(
+                source_path,
+                api_key=service_config.api_token,
+                is_ocr=signals.extension in {".jpg", ".jpeg", ".png"}
+                or signals.has_text_layer is False,
+                model_version="pipeline",
+                enable_formula=bool(request.options.get("enable_formula", True)),
+                enable_table=bool(request.options.get("enable_table", True)),
+                work_dir=source_path.parent / "mineru-batch-output",
+            )
+        except Exception as error:
+            raise self._execution_error_from_exception(
+                phase="cloud batch task",
+                error=error,
+            ) from error
+
+        source_sha256 = hashlib.sha256(request.content).hexdigest()
+        content_items = [
+            {
+                **block.model_dump(mode="json"),
+                "id": block.source_block_id or f"mineru-{index:04d}",
+                "type": (
+                    "title"
+                    if block.heading_level
+                    else "text"
+                ),
+                "text_level": block.heading_level,
+                "text": block.text or block.markdown,
+                "bbox": list(block.anchor.bbox) if block.anchor.bbox else None,
+                "page_idx": (
+                    block.anchor.page_number - 1
+                    if block.anchor.page_number is not None
+                    else None
+                ),
+            }
+            for index, block in enumerate(parsed.blocks)
+            if block.kind.value != "table"
+        ]
+        table_items = [
+            {
+                **table.model_dump(mode="json"),
+                # The compatibility client exposes table image names but not
+                # asset objects.  Keep the image in native_files below, while
+                # leaving the public table reference unset until it is linked
+                # as a first-class package asset.
+                "image_path": None,
+            }
+            for table in parsed.tables
+        ]
+        payload = {
+            "content_list": content_items,
+            "tables": table_items,
+        }
+        native_files: dict[str, bytes] = {
+            "native/full.md": parsed.markdown.encode("utf-8"),
+            "native/content_list.json": json.dumps(
+                content_items,
+                ensure_ascii=False,
+                indent=2,
+            ).encode("utf-8"),
+        }
+        extracted_root = source_path.parent / "mineru-batch-output" / "mineru_output"
+        if extracted_root.is_dir():
+            for file_path in extracted_root.rglob("*"):
+                if file_path.is_file():
+                    relative = file_path.relative_to(extracted_root).as_posix()
+                    native_files[f"native/{relative}"] = file_path.read_bytes()
+        artifacts = [
+            self._native_artifact(
+                path=path,
+                content=content,
+                artifact_type=self._artifact_type_for_path(path),
+                required_for_quality=path.endswith(".json"),
+            )
+            for path, content in native_files.items()
+        ]
+
+        return ParserNativeResult(
+            document_id=make_stable_document_id(
+                source_sha256=source_sha256,
+                parser_id=self.PARSER_ID,
+                parser_version="v4",
+            ),
+            parser_id=self.PARSER_ID,
+            parser_version="v4",
+            filename=request.filename,
+            file_type=request.file_type,
+            source_size_bytes=len(request.content),
+            source_sha256=source_sha256,
+            options=self._public_options(request.options),
+            markdown=parsed.markdown,
+            payload=payload,
+            native_artifacts=artifacts,
+            native_files=native_files,
+            warnings=list(parsed.warnings),
+            capabilities=self._default_capabilities(
+                missing_reason="MinerU cloud batch output did not provide this evidence.",
+                text_available=bool(parsed.markdown.strip()),
+            ),
+        )
+
     def _mineru_route_options(
         self,
         request: ParseRequest,
         signals: DocumentSignals,
+        *,
+        service_config: MinerUServiceConfig | None = None,
     ) -> dict[str, Any]:
         options = request.options
-        needs_ocr = signals.extension in {".jpg", ".jpeg", ".png"} or signals.has_text_layer is False
-        backend = str(options.get("mineru_backend") or options.get("backend") or "pipeline")
-        method = str(options.get("mineru_parse_method") or options.get("parse_method") or ("ocr" if needs_ocr else "auto"))
+        config = service_config or self._service_config()
+        needs_ocr = (
+            signals.extension in {".jpg", ".jpeg", ".png"}
+            or signals.has_text_layer is False
+        )
+        backend = str(
+            options.get("mineru_backend") or options.get("backend") or "pipeline"
+        )
+        method = str(
+            options.get("mineru_parse_method")
+            or options.get("parse_method")
+            or ("ocr" if needs_ocr else "auto")
+        )
         effort = str(options.get("mineru_effort") or options.get("effort") or "medium")
-        lang = str(options.get("language") or options.get("mineru_language") or _mineru_language(signals.language_hint))
-        server_url = options.get("mineru_server_url") or options.get("server_url")
-        if not isinstance(server_url, str):
-            server_url = None
+        lang = str(
+            options.get("language")
+            or options.get("mineru_language")
+            or _mineru_language(signals.language_hint)
+        )
 
         def as_bool(value: Any, default: bool) -> bool:
             if value is None:
@@ -268,20 +455,12 @@ class MinerUParser(BaseParserAdapter):
             except (TypeError, ValueError):
                 return default
 
-        def as_float(value: Any, default: float) -> float:
-            if value is None:
-                return default
-            try:
-                return float(value)
-            except (TypeError, ValueError):
-                return default
-
         return {
             "backend": backend,
             "method": method,
             "effort": effort,
             "lang": lang,
-            "server_url": server_url,
+            "server_url": None,
             "formula_enable": as_bool(options.get("enable_formula"), True),
             "table_enable": as_bool(options.get("enable_table"), True),
             "image_analysis": as_bool(options.get("image_analysis"), True),
@@ -289,10 +468,33 @@ class MinerUParser(BaseParserAdapter):
             "end_page_id": as_int(options.get("end_page_id"), 99999)
             if options.get("end_page_id") is not None
             else None,
-            "timeout_seconds": as_float(options.get("mineru_timeout_seconds"), 900.0),
-            "download_timeout_seconds": as_float(
-                options.get("mineru_download_timeout_seconds"),
-                600.0,
+            "timeout_seconds": config.task_timeout_seconds,
+            "download_timeout_seconds": config.download_timeout_seconds,
+        }
+
+    def _validated_task_info(
+        self,
+        task_info: dict[str, Any],
+        *,
+        service_config: MinerUServiceConfig,
+    ) -> dict[str, str]:
+        task_id = task_info.get("task_id")
+        status_url = task_info.get("status_url")
+        result_url = task_info.get("result_url")
+        if not all(
+            isinstance(value, str) and value
+            for value in (task_id, status_url, result_url)
+        ):
+            raise RuntimeError("MinerU API returned an invalid task payload")
+        return {
+            "task_id": task_id,
+            "status_url": service_config.validate_callback_url(
+                status_url,
+                kind="status",
+            ),
+            "result_url": service_config.validate_callback_url(
+                result_url,
+                kind="result",
             ),
         }
 
@@ -305,34 +507,43 @@ class MinerUParser(BaseParserAdapter):
         form_data: dict[str, str | list[str]],
         headers: dict[str, str],
     ) -> dict[str, str]:
-        task_url = f"{base_url}/tasks"
+        service_config = self._service_config()
+        if base_url != service_config.api_base_url:
+            raise MinerUConfigurationError(
+                "MinerU task submission must use the configured server API base URL."
+            )
+        task_url = service_config.validate_callback_url(
+            f"{base_url}/tasks",
+            kind="task submission",
+        )
         mime_type = (
             "application/pdf"
             if source_path.suffix.lower() == ".pdf"
             else "application/octet-stream"
         )
-        with httpx.Client(timeout=60.0, follow_redirects=True, headers=headers) as client:
+        with httpx.Client(timeout=60.0, follow_redirects=False) as client:
             with source_path.open("rb") as handle:
                 response = client.post(
                     task_url,
                     data=form_data,
                     files=[("files", (source_path.name, handle, mime_type))],
+                    headers=headers,
                 )
+        self._reject_submission_redirect(
+            response,
+            current_url=task_url,
+            service_config=service_config,
+        )
+        if response.status_code == 405:
+            raise _MinerULegacyApiRequired()
         if response.status_code != 202:
             raise RuntimeError(
                 f"MinerU task submission failed: {response.status_code} {response.text.strip()}"
             )
         payload = response.json()
-        task_id = payload.get("task_id")
-        status_url = payload.get("status_url")
-        result_url = payload.get("result_url")
-        if not all(isinstance(value, str) and value for value in (task_id, status_url, result_url)):
+        if not isinstance(payload, dict):
             raise RuntimeError("MinerU API returned an invalid task payload")
-        return {
-            "task_id": task_id,
-            "status_url": status_url,
-            "result_url": result_url,
-        }
+        return self._validated_task_info(payload, service_config=service_config)
 
     def _wait_for_mineru_task(
         self,
@@ -342,13 +553,22 @@ class MinerUParser(BaseParserAdapter):
         headers: dict[str, str],
         timeout_seconds: float,
     ) -> None:
+        service_config = self._service_config()
+        task_info = self._validated_task_info(task_info, service_config=service_config)
         deadline = time.perf_counter() + timeout_seconds
-        with httpx.Client(timeout=30.0, follow_redirects=True, headers=headers) as client:
+        with httpx.Client(timeout=30.0, follow_redirects=False) as client:
             while time.perf_counter() < deadline:
-                response = client.get(task_info["status_url"])
+                response = self._get_with_trusted_redirects(
+                    client,
+                    url=task_info["status_url"],
+                    headers=headers,
+                    service_config=service_config,
+                    kind="status",
+                )
                 if response.status_code != 200:
                     raise RuntimeError(
-                        f"MinerU task status query failed: {response.status_code} {response.text.strip()}"
+                        "MinerU task status query failed: "
+                        f"{response.status_code} {response.text.strip()}"
                     )
                 payload = response.json()
                 status = payload.get("status")
@@ -358,7 +578,8 @@ class MinerUParser(BaseParserAdapter):
                 if status == "completed":
                     return
                 raise RuntimeError(
-                    f"MinerU task {task_info['task_id']} failed: {json.dumps(payload, ensure_ascii=False)}"
+                    f"MinerU task {task_info['task_id']} failed: "
+                    f"{json.dumps(payload, ensure_ascii=False)}"
                 )
         raise RuntimeError(f"Timed out waiting for MinerU task {task_info['task_id']}")
 
@@ -370,26 +591,120 @@ class MinerUParser(BaseParserAdapter):
         headers: dict[str, str],
         timeout_seconds: float,
     ) -> Path:
+        service_config = self._service_config()
+        task_info = self._validated_task_info(task_info, service_config=service_config)
         result_fd, result_file = tempfile.mkstemp(suffix=".zip", prefix="mineru_result_")
         os.close(result_fd)
         result_path = Path(result_file)
+        original_url = task_info["result_url"]
+        current_url = original_url
         try:
-            with httpx.Client(timeout=timeout_seconds, follow_redirects=True, headers=headers) as client:
-                with client.stream("GET", task_info["result_url"]) as response:
-                    if response.status_code != 200:
-                        raise RuntimeError(
-                            f"MinerU result download failed: {response.status_code} {response.text.strip()}"
-                        )
-                    content_type = response.headers.get("content-type", "")
-                    if "application/zip" not in content_type:
-                        raise RuntimeError(f"MinerU result was not a zip archive: {content_type or 'unknown'}")
-                    with result_path.open("wb") as handle:
-                        for chunk in response.iter_bytes():
-                            handle.write(chunk)
+            with httpx.Client(timeout=timeout_seconds, follow_redirects=False) as client:
+                for redirect_count in range(service_config.max_redirects + 1):
+                    with client.stream(
+                        "GET",
+                        current_url,
+                        headers=self._headers_for_url(
+                            headers,
+                            original_url=original_url,
+                            current_url=current_url,
+                        ),
+                    ) as response:
+                        if response.status_code in _REDIRECT_STATUS_CODES:
+                            if redirect_count >= service_config.max_redirects:
+                                raise MinerUUntrustedUrlError(
+                                    "MinerU result download exceeded the trusted redirect limit."
+                                )
+                            current_url = service_config.resolve_redirect_url(
+                                current_url,
+                                response.headers.get("location", ""),
+                            )
+                            continue
+                        if response.status_code != 200:
+                            raise RuntimeError(
+                                "MinerU result download failed: "
+                                f"{response.status_code} {response.text.strip()}"
+                            )
+                        content_type = response.headers.get("content-type", "").lower()
+                        if "application/zip" not in content_type:
+                            raise RuntimeError(
+                                f"MinerU result was not a zip archive: {content_type or 'unknown'}"
+                            )
+                        with result_path.open("wb") as handle:
+                            for chunk in response.iter_bytes():
+                                handle.write(chunk)
+                        return result_path
+            raise MinerUUntrustedUrlError(
+                "MinerU result download exceeded the trusted redirect limit."
+            )
         except Exception:
             result_path.unlink(missing_ok=True)
             raise
-        return result_path
+
+    def _reject_submission_redirect(
+        self,
+        response: Any,
+        *,
+        current_url: str,
+        service_config: MinerUServiceConfig,
+    ) -> None:
+        if response.status_code not in _REDIRECT_STATUS_CODES:
+            return
+        target = service_config.resolve_redirect_url(
+            current_url,
+            response.headers.get("location", ""),
+        )
+        raise MinerUUntrustedUrlError(
+            "MinerU task submission redirects are not accepted after validation: "
+            f"{target}"
+        )
+
+    def _get_with_trusted_redirects(
+        self,
+        client: Any,
+        *,
+        url: str,
+        headers: dict[str, str],
+        service_config: MinerUServiceConfig,
+        kind: str,
+    ) -> Any:
+        original_url = service_config.validate_callback_url(url, kind=kind)
+        current_url = original_url
+        for redirect_count in range(service_config.max_redirects + 1):
+            response = client.get(
+                current_url,
+                headers=self._headers_for_url(
+                    headers,
+                    original_url=original_url,
+                    current_url=current_url,
+                ),
+            )
+            if response.status_code not in _REDIRECT_STATUS_CODES:
+                return response
+            if redirect_count >= service_config.max_redirects:
+                raise MinerUUntrustedUrlError(
+                    f"MinerU {kind} request exceeded the trusted redirect limit."
+                )
+            current_url = service_config.resolve_redirect_url(
+                current_url,
+                response.headers.get("location", ""),
+            )
+            close = getattr(response, "close", None)
+            if callable(close):
+                close()
+        raise AssertionError("Trusted redirect loop must either return or raise.")
+
+    @staticmethod
+    def _headers_for_url(
+        headers: dict[str, str],
+        *,
+        original_url: str,
+        current_url: str,
+    ) -> dict[str, str]:
+        request_headers = dict(headers)
+        if not same_url_origin(original_url, current_url):
+            request_headers.pop("Authorization", None)
+        return request_headers
 
     def _build_with_mineru_cli(
         self,
@@ -400,48 +715,61 @@ class MinerUParser(BaseParserAdapter):
 
         started = time.perf_counter()
         parser_version = self._installed_version("mineru", self.DEFAULT_MODEL_VERSION)
-        with tempfile.TemporaryDirectory(prefix="mineru-cli-run-") as temporary:
-            work_dir = Path(temporary)
-            source_path = work_dir / f"source{signals.extension or Path(request.filename).suffix}"
-            output_dir = work_dir / "output"
-            source_path.write_bytes(request.content)
-            command = [
-                sys.executable,
-                "-m",
-                "mineru.cli.client",
-                "-p",
-                str(source_path),
-                "-o",
-                str(output_dir),
-                "-b",
-                str(request.options.get("mineru_backend", "pipeline")),
-            ]
-            completed = subprocess.run(
-                command,
-                stdin=subprocess.DEVNULL,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                timeout=int(request.options.get("mineru_timeout_seconds", 900)),
-                creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0,
-                check=False,
-            )
-            if completed.returncode != 0:
-                message = (completed.stderr or completed.stdout).strip()
-                return self._build_placeholder_native_result(
+        try:
+            with tempfile.TemporaryDirectory(prefix="mineru-cli-run-") as temporary:
+                work_dir = Path(temporary)
+                source_path = work_dir / f"source{signals.extension or Path(request.filename).suffix}"
+                output_dir = work_dir / "output"
+                source_path.write_bytes(request.content)
+                command = [
+                    sys.executable,
+                    "-m",
+                    "mineru.cli.client",
+                    "-p",
+                    str(source_path),
+                    "-o",
+                    str(output_dir),
+                    "-b",
+                    str(request.options.get("mineru_backend", "pipeline")),
+                ]
+                completed = subprocess.run(
+                    command,
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=int(request.options.get("mineru_timeout_seconds", 900)),
+                    creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0,
+                    check=False,
+                )
+                if completed.returncode != 0:
+                    raise self.execution_error(
+                        failure_kind="parser",
+                        retryable=False,
+                        safe_message=(
+                            "MinerU CLI exited with a non-zero status "
+                            f"({completed.returncode})."
+                        ),
+                    )
+                native_result = self._build_native_result_from_output_dir(
                     request,
                     signals,
+                    output_dir,
                     parser_version=parser_version,
-                    warnings=[f"MinerU CLI failed with exit code {completed.returncode}: {message}"],
                 )
-            native_result = self._build_native_result_from_output_dir(
-                request,
-                signals,
-                output_dir,
-                parser_version=parser_version,
-            )
+                self._require_real_mineru_output(
+                    native_result,
+                    execution_name="CLI",
+                )
+        except ParserExecutionError:
+            raise
+        except Exception as error:
+            raise self._execution_error_from_exception(
+                phase="CLI execution",
+                error=error,
+            ) from error
         return self._with_mineru_payload(
             native_result,
             warning=f"MinerU CLI run completed in {int((time.perf_counter() - started) * 1000)} ms.",
@@ -452,7 +780,22 @@ class MinerUParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        native_result = self.build_native_result(request, signals)
+        """Execute through the plugin port, then add MinerU-specific evidence."""
+
+        native_result = self.execute(request, signals)
+        try:
+            return self._normalize_mineru_native_result(native_result, request, signals)
+        except ParserExecutionError:
+            raise
+        except Exception as error:
+            raise self.diagnose(error, request=request, signals=signals) from error
+
+    def _normalize_mineru_native_result(
+        self,
+        native_result: ParserNativeResult,
+        request: ParseRequest,
+        signals: DocumentSignals,
+    ) -> ParserNormalizationBundle:
         bundle = self.normalize_native_result(native_result, request, signals)
         assets = self._assets_from_native_files(native_result, bundle)
         capabilities = dict(bundle.capabilities)
@@ -494,16 +837,30 @@ class MinerUParser(BaseParserAdapter):
             )
 
         started = time.perf_counter()
-        with tempfile.TemporaryDirectory(prefix="mineru-run-") as temporary:
-            output_dir = Path(temporary) / "output"
-            output_dir.mkdir(parents=True, exist_ok=True)
-            self._run_magic_pdf_pipeline(request.content, output_dir)
-            native_result = self._build_native_result_from_output_dir(
-                request,
-                signals,
-                output_dir,
-                parser_version=self._installed_version("magic-pdf", self.DEFAULT_MODEL_VERSION),
-            )
+        try:
+            with tempfile.TemporaryDirectory(prefix="mineru-run-") as temporary:
+                output_dir = Path(temporary) / "output"
+                output_dir.mkdir(parents=True, exist_ok=True)
+                self._run_magic_pdf_pipeline(request.content, output_dir)
+                native_result = self._build_native_result_from_output_dir(
+                    request,
+                    signals,
+                    output_dir,
+                    parser_version=self._installed_version(
+                        "magic-pdf", self.DEFAULT_MODEL_VERSION
+                    ),
+                )
+                self._require_real_mineru_output(
+                    native_result,
+                    execution_name="local magic-pdf",
+                )
+        except ParserExecutionError:
+            raise
+        except Exception as error:
+            raise self._execution_error_from_exception(
+                phase="local magic-pdf execution",
+                error=error,
+            ) from error
         return self._with_mineru_payload(
             native_result,
             warning=f"MinerU local magic-pdf run completed in {int((time.perf_counter() - started) * 1000)} ms.",
@@ -532,6 +889,103 @@ class MinerUParser(BaseParserAdapter):
         pipe_result.dump_md(markdown_writer, "full.md", image_dir_name)
         pipe_result.dump_content_list(markdown_writer, "content_list.json", image_dir_name)
         pipe_result.dump_middle_json(markdown_writer, "middle.json")
+
+    def _require_real_mineru_output(
+        self,
+        native_result: ParserNativeResult,
+        *,
+        execution_name: str,
+    ) -> None:
+        """Reject a zero-exit runtime that emitted no actual parser content."""
+
+        native_files = native_result.native_files
+        has_markdown = bool(
+            isinstance(native_result.markdown, str) and native_result.markdown.strip()
+        ) and any(
+            Path(file_path).suffix.lower() in {".md", ".markdown"}
+            and self._nonempty_native_content(content)
+            for file_path, content in native_files.items()
+        )
+        has_structured_output = any(
+            self._is_mineru_structured_sidecar(file_path, content)
+            for file_path, content in native_files.items()
+        )
+        if has_markdown and has_structured_output:
+            return
+        raise self.execution_error(
+            failure_kind="parser",
+            retryable=False,
+            safe_message=(
+                f"MinerU {execution_name} completed without required Markdown "
+                "and structured parser sidecars."
+            ),
+        )
+
+    @staticmethod
+    def _nonempty_native_content(value: Any) -> bool:
+        if isinstance(value, bytes):
+            return bool(value.strip())
+        if isinstance(value, str):
+            return bool(value.strip())
+        return bool(value)
+
+    @classmethod
+    def _is_mineru_structured_sidecar(cls, file_path: str, content: Any) -> bool:
+        """Accept expected parse content, not generic JSON diagnostics."""
+
+        name = Path(file_path).name.lower()
+        is_content_list = "content_list" in name and name.endswith(".json")
+        is_middle = name == "middle.json" or name.endswith("_middle.json")
+        if not (is_content_list or is_middle) or not cls._nonempty_native_content(content):
+            return False
+        try:
+            raw = content.decode("utf-8") if isinstance(content, bytes) else str(content)
+            payload = json.loads(raw)
+        except (TypeError, UnicodeDecodeError, json.JSONDecodeError):
+            return False
+        if is_content_list:
+            return isinstance(payload, list) and bool(payload)
+        return (
+            isinstance(payload, dict)
+            and isinstance(payload.get("pdf_info"), list)
+            and bool(payload["pdf_info"])
+        )
+
+    def _execution_error_from_exception(
+        self,
+        *,
+        phase: str,
+        error: Exception,
+        default_kind: str = "parser",
+        default_retryable: bool = False,
+    ) -> ParserExecutionError:
+        """Convert third-party runtime details to a bounded, portable error."""
+
+        detail = f"{type(error).__name__} {error}".lower()
+        if isinstance(error, (TimeoutError, subprocess.TimeoutExpired)) or "timeout" in detail:
+            return self.execution_error(
+                failure_kind="transient",
+                retryable=True,
+                safe_message=f"MinerU {phase} timed out (transient timeout).",
+            )
+        if any(marker in detail for marker in ("connection", "temporar", "rate limit")):
+            return self.execution_error(
+                failure_kind="transient",
+                retryable=True,
+                safe_message=f"MinerU {phase} encountered a transient connection failure.",
+            )
+        if any(marker in detail for marker in ("not installed", "modulenotfound", "no module named")):
+            return self.execution_error(
+                failure_kind="unavailable",
+                retryable=False,
+                safe_message=f"MinerU {phase} dependency is unavailable.",
+            )
+        return self.execution_error(
+            failure_kind=default_kind,
+            retryable=default_retryable,
+            safe_message=f"MinerU {phase} failed.",
+        )
+
 
     def _with_mineru_payload(
         self,
@@ -849,6 +1303,16 @@ def _parse_html_table_cells(html: str) -> list[dict[str, Any]]:
     parser = _HtmlTableParser()
     parser.feed(html)
     return parser.cells
+
+
+def _is_explicit_false(value: object) -> bool:
+    if value is False:
+        return True
+    if isinstance(value, int) and not isinstance(value, bool):
+        return value == 0
+    if isinstance(value, str):
+        return value.strip().lower() in {"0", "false", "no", "off"}
+    return False
 
 
 def _positive_int(value: str | None, *, default: int) -> int:

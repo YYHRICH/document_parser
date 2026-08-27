@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
 
-from document_parser.core.contracts import PackageManifest, QualityPackage
+from quality.contracts import PackageManifest, QualityPackage
 
 from quality.packaging.hashing import markdown_bytes, sha256_bytes, stable_json_bytes
 
@@ -14,6 +14,12 @@ OPTIMIZED_NAME = "optimized.md"
 CANONICAL_NAME = "canonical_document.json"
 REPORT_NAME = "quality_report.json"
 MANIFEST_NAME = "package_manifest.json"
+QUALITY_PACKAGE_ARTIFACTS: tuple[str, ...] = (
+    OPTIMIZED_NAME,
+    CANONICAL_NAME,
+    REPORT_NAME,
+    MANIFEST_NAME,
+)
 
 
 @dataclass(frozen=True)

@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from document_parser.core.contracts import EvidenceAvailability
+from quality.contracts import EvidenceAvailability
 
 from quality.evidence.requirements import EvidenceKind, EvidenceRequirement
 
@@ -32,7 +32,7 @@ CAPABILITY_MAP: dict[EvidenceKind, str | None] = {
 }
 
 # 依赖"文档中存在表格"才适用的证据
-_TABLE_SCOPED = {"table_cells", "table_bbox"}
+_TABLE_SCOPED = {"tables", "table_cells", "table_bbox"}
 
 
 @dataclass(frozen=True)
@@ -76,10 +76,18 @@ class AvailabilityResolver:
         self,
         capabilities: dict[str, object] | None,
         table_count: int,
+        *,
+        representation_states: dict[
+            EvidenceKind,
+            tuple[EvidenceAvailability, str | None],
+        ] | None = None,
     ) -> None:
-        # capabilities: {name: EvidenceCapability}，可能为空 dict
+        # capabilities: {name: EvidenceCapability}，可能为空 dict。
+        # P2 起，table_cells / ocr_spans 还由实际表示对象交叉校验，
+        # 防止 capability 声明可用但对象不存在时被错误放行。
         self._capabilities = capabilities or {}
         self._table_count = table_count
+        self._representation_states = representation_states or {}
 
     def check(self, requirement: EvidenceRequirement) -> RequirementCheck:
         """判定单条需求的可用性。"""
@@ -90,6 +98,16 @@ class AvailabilityResolver:
                 state=EvidenceAvailability.UNAVAILABLE,
                 applicable=False,
                 reason="文档不包含表格（D-03：不适用）。",
+            )
+
+        representation_state = self._representation_states.get(requirement.kind)
+        if representation_state is not None:
+            state, reason = representation_state
+            return RequirementCheck(
+                requirement=requirement,
+                state=state,
+                applicable=True,
+                reason=reason,
             )
 
         capability_name = CAPABILITY_MAP.get(requirement.kind)

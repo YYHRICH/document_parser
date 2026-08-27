@@ -4,6 +4,13 @@
 ``ParsedDocument`` 和统一文档包。
 """
 
+from .api import (
+    NativeResultNormalizer,
+    NormalizationContext,
+    NormalizationFacade,
+    normalize_native_result,
+    normalize_to_parsed_document,
+)
 from .bundle import (
     available_capability,
     failed_capability,
@@ -18,7 +25,12 @@ from .bundle import (
 )
 
 __all__ = [
+    "NativeResultNormalizer",
+    "NormalizationContext",
+    "NormalizationFacade",
     "NORMALIZATION_NAMESPACE",
+    "normalize_native_result",
+    "normalize_to_parsed_document",
     "ParserNormalizationBundle",
     "available_capability",
     "failed_capability",

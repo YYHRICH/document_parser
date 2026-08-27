@@ -19,6 +19,10 @@ class CloudParserForbiddenError(RoutingError):
     """Raised when cloud parsing is blocked by settings."""
 
 
+class InvalidRoutingOptionError(RoutingError):
+    """Raised when an untrusted routing preference has an invalid value."""
+
+
 class UnsupportedFormatError(RoutingError):
     """Raised when the requested parser cannot handle the file type."""
 

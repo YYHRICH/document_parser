@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P0-2 / P0-3 高危问题详解</title>
+<style>
+  :root { --bg:#f5f7fa; --card:#fff; --ink:#1a2333; --muted:#667085; --line:#e4e8ef; --blue:#2563eb; --blue-bg:#eff4ff; --green:#16a34a; --green-bg:#ecfdf3; --amber:#d97706; --amber-bg:#fffbeb; --red:#dc2626; --red-bg:#fef2f2; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.75; padding:32px 16px; }
+  .wrap { max-width:960px; margin:0 auto; }
+  header { background:linear-gradient(135deg,#1e293b,#334155); color:#fff; border-radius:16px; padding:28px 32px; margin-bottom:24px; }
+  header h1 { font-size:23px; font-weight:700; margin-bottom:6px; }
+  header p { color:#cbd5e1; font-size:14px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 28px; margin-bottom:24px; }
+  .panel h2 { font-size:17px; font-weight:700; margin-bottom:12px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0; }
+  th,td { text-align:left; padding:8px 11px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:#f8fafc; font-weight:600; color:#475569; white-space:nowrap; }
+  tr:last-child td { border-bottom:none; }
+  .tag { display:inline-block; font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; white-space:nowrap; }
+  .tag.todo { background:var(--red-bg); color:var(--red); }
+  .tag.hold { background:var(--amber-bg); color:var(--amber); }
+  .tag.ok { background:var(--green-bg); color:var(--green); }
+  .chain { background:#f8fafc; border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-family:Consolas,monospace; font-size:12.5px; white-space:pre-wrap; margin:10px 0; color:#334155; }
+  .warn { background:var(--amber-bg); border:1px solid #fde68a; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#92400e; margin:12px 0; }
+  .bad { background:var(--red-bg); border:1px solid #fecaca; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#991b1b; margin:12px 0; }
+  .good { background:var(--green-bg); border:1px solid #bbf7d0; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#166534; margin:12px 0; }
+  code { background:#f1f5f9; border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:12px; font-family:Consolas,monospace; }
+  footer { text-align:center; color:var(--muted); font-size:12.5px; margin-top:24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>P0-2 / P0-3 高危问题详解</h1>
+  <p>通俗解释 + 逐环攻击链(基于真实代码核验,2026-08-27)。当前阶段:P0-1(鉴权)用户确认暂缓,产品设计期。</p>
+</header>
+
+<div class="panel">
+  <h2>先给结论</h2>
+  <table>
+    <tr><th>问题</th><th>一句话</th><th>当前状态</th></tr>
+    <tr><td><b>P0-2 任意目录读取</b></td><td>请求参数理论上能被用来当"文件路径",让服务器去读它磁盘上任意目录的文件</td><td><span class="tag ok">已复查降级</span> HTTP 入口有拦截,当前不可直接利用;深层防御缺口,建议保留拦截+补测试</td></tr>
+    <tr><td><b>P0-3 存储型 XSS</b></td><td>上传的文件可以夹带"恶意网页",系统会原样保存并允许浏览器直接打开它,恶意代码就在你们网站域名下运行</td><td><span class="tag todo">可直接利用</span> 全链实锤,成本极低的修复,建议现在就做</td></tr>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>P0-2 是什么意思</h2>
+  <p><b>背景</b>:上传文件时,客户端可以附带一组"解析选项"(options)。其中一个选项叫 <code>native_output_dir</code>,本意是给受信工具用的"原生解析结果输出目录"。</p>
+  <p><b>问题</b>:解析器代码拿到这个选项后,会把它当目录,然后 <b>递归读取该目录下所有文件并打包进解析结果</b>。如果攻击者能控制这个值,理论上可以传 <code>C:\Windows\system32</code> 之类,把服务器上的文件读回来。</p>
+  <div class="chain">请求 options: { "native_output_dir": "C:\Users\secret" }
+    → anydoc/docling/ocr 适配器直接采信(无任何拒绝,mineru 有拒绝)
+    → base.py: rglob("*") 递归枚举 + read_bytes() 逐个读文件
+    → 全部内容塞进 native_files → 落盘进文档包 → 通过产物列表/下载暴露给请求方</div>
+  <div class="warn"><b>复查更正(重要)</b>:原审查没看到入口处还有一道拦截——后端在 HTTP 入口就把 <code>native_output_dir</code> 列入黑名单拒绝(命中返回 400),5 个建任务/重解析端点全部走这道校验。所以<b>当前通过正常 HTTP 请求无法利用</b>。风险降级为:防御只有这一道,下游每条链路(适配器无拒绝、递归读文件)都是实锤;将来任何人改动黑名单、或新增不走这道校验的入口、或被脚本直接调用底层接口,漏洞立即复活。</div>
+  <div class="good"><b>建议</b>:保留入口黑名单别删,加一条回归测试锁住;把适配器层也补上同样的拒绝(纵深),成本半小时。</div>
+</div>
+
+<div class="panel">
+  <h2>P0-3 是什么意思</h2>
+  <p><b>背景</b>:系统支持"离线 sidecar"——调用方可以预先提供解析结果(native 文件),方便没有安装解析器时也能把已有结果入库。调用方式是在 options 里传 <code>native_html</code> / <code>native_files</code> / <code>native_markdown</code> / <code>native_payload</code> 这四个键。</p>
+  <p><b>问题</b>:这四个键<b>不在任何入口黑名单里</b>,适配器拿到就直接采信、无条件按成功处理;上传者给什么内容就原样落盘成 <code>native/document.html</code> 等文件。而产物查看接口用"浏览器内联打开"的方式服务这些文件(不是强制下载)——<b>恶意 HTML/JS 就在你们网站自己的域名下执行</b>。由于当前没有登录(P0-1 暂缓),脚本可以偷偷读取服务器上<b>所有</b>解析过的文档。</p>
+  <div class="chain">攻击者:上传任意文件(哪怕 1KB 的 txt)+ options 里塞 native_html="&lt;script&gt;fetch('/api/parses/…')&lt;/script&gt;"
+    + parser_id=docling(不要求本机真的装了 docling)
+    → sidecar 非空 → "解析成功",恶意 HTML 落盘 native/document.html
+    → 产物清单把该文件显示为"HTML 文档预览"链接
+    → 运营者/任何人在浏览器打开 /api/parses/{id}/artifacts/native/document.html
+    → JS 在 API 同源执行 → 可读取所有任务的文档、原件、下载包</div>
+  <div class="bad"><b>为什么现在值得处理</b>:① 门槛极低——一个 HTTP 请求,不需要任何解析器真实可用;② 前端还主动把这类文件渲染成"预览"链接,等于帮攻击者递链接;③ 没有登录意味着脚本能读到全部文档,而不是只有自己的。</div>
+  <div class="good"><b>修复成本极低(建议现在就做)</b>:
+    <br>① 入口黑名单补 4 个键:<code>native_html</code> / <code>native_files</code> / <code>native_payload</code> / <code>native_markdown</code>(与 native_output_dir 同款,已有现成机制,加几行);
+    <br>② 产物下载接口强制 <code>Content-Disposition: attachment</code>(或只允许纯文本内联),加 <code>X-Content-Type-Options: nosniff</code>;
+    <br>③ 可选:前端不再把 html/svg 类产物展示为可点击预览。
+    <br>①②合计约半小时改动,产品设计期做掉,后续鉴权上线前的空窗就安全了。</div>
+</div>
+
+<div class="panel">
+  <h2>修复优先级建议(产品设计期视角)</h2>
+  <table>
+    <tr><th>事项</th><th>建议</th><th>理由</th></tr>
+    <tr><td>P0-3 入口黑名单 + attachment</td><td><span class="tag todo">现在做(半小时)</span></td><td>当前唯一可直接利用的洞,改动极小、无产品决策影响</td></tr>
+    <tr><td>P0-2 黑名单回归测试 + 适配器层加固</td><td><span class="tag todo">排入本迭代</span></td><td>纵深防御,防止未来改动复活漏洞</td></tr>
+    <tr><td>P0-1 鉴权/RBAC</td><td><span class="tag hold">按产品节奏</span></td><td>用户确认暂缓;但注意它也是 P0-3 危害的放大器——鉴权上线前,P0-3 的脚本能读到全部文档</td></tr>
+    <tr><td>P1 质量层 3 条 + .doc 路由 + DoS 上限</td><td><span class="tag hold">1-2 周内</span></td><td>功能正确性/稳定性问题,不影响当前产品设计决策</td></tr>
+  </table>
+</div>
+
+<footer>P0-2/P0-3 详解 · 2026-08-27 · 基于攻击链逐环代码核验(含对原审查结论的复查更正)</footer>
+</div>
+</body>
+</html>

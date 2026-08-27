@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import re
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     BlockKind,
     CanonicalSourceLocator,
     IssueSeverity,

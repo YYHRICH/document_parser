@@ -113,10 +113,12 @@ def test_manual_capability_forces_manual_review():
     assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
 
 
-def test_inferred_capability_forces_manual_review():
+def test_inferred_capability_is_not_a_human_review_blocker():
+    """有证据的降级恢复保留 inferred，但不等同于人工复核。"""
     verdicts = {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.INFERRED)}
     decision = GateEvaluator().decide([], verdicts)
-    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.state == QualityState.PASS
+    assert decision.summary.manual_review_issue_count == 0
 
 
 def test_unavailable_capability_not_blocking_d03():
@@ -130,6 +132,40 @@ def test_unavailable_capability_not_blocking_d03():
     }
     decision = GateEvaluator().decide([], verdicts)
     assert decision.state == QualityState.PASS
+
+
+def test_applicable_unavailable_capability_blocks_by_default():
+    verdicts = {
+        "reference_index_built": CapabilityVerdict(
+            name="reference_index_built",
+            state=QualityCapabilityState.UNAVAILABLE,
+            applicable=True,
+            blocking=True,
+        )
+    }
+
+    decision = GateEvaluator().decide([], verdicts)
+
+    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.summary.capability_blockers == ["reference_index_built"]
+
+
+def test_non_applicable_unavailable_capability_blocks_when_configured():
+    verdicts = {
+        "table_grid_reliable": CapabilityVerdict(
+            name="table_grid_reliable",
+            state=QualityCapabilityState.UNAVAILABLE,
+            applicable=False,
+            blocking=True,
+        )
+    }
+
+    decision = GateEvaluator(
+        GateConfig(unavailable_blocks_when_applicable_only=False)
+    ).decide([], verdicts)
+
+    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.summary.capability_blockers == ["table_grid_reliable"]
 
 
 def test_reparse_with_recommendation():

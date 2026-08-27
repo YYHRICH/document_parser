@@ -5,7 +5,7 @@
 
 from __future__ import annotations
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     BlockKind,
     IssueSeverity,
     QualityCapabilityState,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from document_parser.core.contracts import (
+from quality.contracts import (
     BlockKind,
     IssueSeverity,
     QualityCapabilityState,
@@ -23,6 +23,10 @@ from quality.models_internal import (
 from quality.rules.base import QualityRule
 
 _REF_HEADING = re.compile(r"^(?:参考文献|references?|bibliography|文献)$", re.IGNORECASE)
+_HEADING_NUMBER_PREFIX = re.compile(
+    r"^\s*(?:(?:\d+(?:\.\d+)*)|(?:第?[一二三四五六七八九十百]+[章节部分篇]?))"
+    r"\s*[、.．:：-]?\s*"
+)
 _EXPLANATORY = re.compile(r"引用规则|指向参考文献|分别指|指第")
 _MARKER = re.compile(r"\[(\d+(?:\s*[,，]\s*\d+|\s*[-–]\s*\d+)*)\]")
 _MAX_EXPAND = 50
@@ -42,9 +46,18 @@ def _text_field(block) -> str:
     return "text" if block.text is not None else "markdown"
 
 
+def _is_reference_heading(block) -> bool:
+    if block.kind != BlockKind.HEADING:
+        return False
+    text = _block_text(block, heading=True)
+    if _REF_HEADING.fullmatch(text):
+        return True
+    return bool(_REF_HEADING.fullmatch(_HEADING_NUMBER_PREFIX.sub("", text, count=1)))
+
+
 def _reference_heading_index(blocks) -> int | None:
     for i, block in enumerate(blocks):
-        if block.kind == BlockKind.HEADING and _REF_HEADING.match(_block_text(block, heading=True)):
+        if _is_reference_heading(block):
             return i
     return None
 
@@ -209,6 +222,8 @@ class QL_REF_004_BindCitations(QualityRule):
                     "marker": marker,
                     "marker_offset": offset,
                     "normalized_labels": [str(n) for n in expanded],
+                    "missing_labels": missing,
+                    "ambiguous_labels": ambiguous,
                     "candidate_ids": [e.block_id for n in expanded for e in by_key.get(str(n), [])],
                 }
                 if missing:
