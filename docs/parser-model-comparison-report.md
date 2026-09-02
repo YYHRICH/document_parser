@@ -9,7 +9,7 @@
 
 核心结果如下：
 
-- 数据集包含 224 份逻辑文档；四种模型共保存 777 个可回放的 Markdown 输出单元。
+- 当前四模型解析结果对应 224 条源文件记录；四种模型共保存 777 个可回放的 Markdown 输出单元。原始全量目录另有 210 条属于其他数据类别，当前结果集没有对应输出。
 - 756 个输出单元非空，21 个为空；质量回放没有发生脚本错误。
 - 172 个输出单元被质量层改写，产生 1,450 次白名单修复操作。
 - 1,309 个 MinerU HTML 表格被转换为 Markdown；另外 2 个表格因无法安全定位正文表格块而拒绝替换。
@@ -60,6 +60,56 @@ res_minerU/
 | 合计 | 777 | 756 | 21 | 100% |
 
 本报告中的“输出单元”是模型结果目录中实际被扫描到的一个 Markdown 交付单元，不代表源文件数量，也不代表最终 Wiki 文档数量。
+
+### 1.4 原始源文件与四模型结果的逐文件对齐
+
+为了判断“同一个文件四个模型谁能解析、谁不能解析”，本轮另外读取了原始目录 `S:\桌面\zyjt_sx\data\全量数据源文件`，并以“数据集类别 + 原始文件名”作为主键，与 `dataset/res_*` 下的模型结果进行对齐。该审计不重新调用解析器，也不修改任何输入文件。
+
+原始全量目录共有 434 条文件记录：
+
+| 范围 | 文件夹 | 文件数 | 本轮处理方式 |
+|---|---|---:|---|
+| 四模型结果覆盖的类别 | 图文回答、 多文档多段知识、 文档单点知识、 模糊回答 | 224 | 纳入四模型逐文件能力比较 |
+| 其他源数据类别 | 单表查询、多表查询、无关=全部 | 210 | 仅记录为范围外，不计入模型成功/失败率 |
+
+因此，四模型能力统计的分母是 224，而不是原始目录的 434。210 条范围外文件不是某一个模型的解析失败；它们在当前四个模型结果目录中都没有对应输出。完整的 434 行矩阵，以及 82 条存在模型差异的逐文件清单，见 [source-model-capability-matrix.md](source-model-capability-matrix.md)。
+
+在 224 条已对齐源文件中，`成功` 的定义是“该模型存在非空 Markdown”；`空输出` 是解析状态成功但 Markdown 为空；`失败` 是解析状态为错误。统计如下：
+
+| 模型 | 已对齐源文件 | 成功（非空） | 空输出 | 失败 | 非空成功率 |
+|---|---:|---:|---:|---:|---:|
+| AnyDoc | 224 | 191 | 0 | 33 | 85.27% |
+| Docling | 224 | 174 | 1 | 49 | 77.68% |
+| MarkItDown | 224 | 167 | 20 | 37 | 74.55% |
+| MinerU | 224 | 224 | 0 | 0 | 100.00% |
+
+同一个源文件的四模型状态组合如下：
+
+| AnyDoc | Docling | MarkItDown | MinerU | 文件数 | 占 224 条 |
+|---|---|---|---|---:|---:|
+| 成功 | 成功 | 成功 | 成功 | 142 | 63.39% |
+| 成功 | 失败 | 失败 | 成功 | 36 | 16.07% |
+| 失败 | 成功 | 空输出 | 成功 | 19 | 8.48% |
+| 成功 | 失败 | 成功 | 成功 | 13 | 5.80% |
+| 失败 | 成功 | 成功 | 成功 | 12 | 5.36% |
+| 失败 | 成功 | 失败 | 成功 | 1 | 0.45% |
+| 失败 | 空输出 | 空输出 | 成功 | 1 | 0.45% |
+| 合计 |  |  |  | 224 | 100.00% |
+
+结论是：142/224（63.39%）的源文件四模型均能产出非空 Markdown；82/224（36.61%）存在至少一个模型失败或空输出。82 条差异中 MinerU 均有非空结果，但这只说明输出可用性最高，不等同于字符级、表格级或语义级准确率最高。
+
+按文件格式看，差异主要集中在 PDF 和旧 Office 格式：
+
+| 格式 | 文件数 | AnyDoc | Docling | MarkItDown | MinerU |
+|---|---:|---|---|---|---|
+| .doc | 34 | 34 成功 | 34 失败 | 34 失败 | 34 成功 |
+| .docx | 49 | 49 成功 | 49 成功 | 49 成功 | 49 成功 |
+| .pdf | 125 | 92 成功、33 失败 | 124 成功、1 空输出 | 104 成功、20 空输出、1 失败 | 125 成功 |
+| .ppt | 2 | 2 成功 | 2 失败 | 2 失败 | 2 成功 |
+| .xls | 13 | 13 成功 | 13 失败 | 13 成功 | 13 成功 |
+| .xlsx | 1 | 1 成功 | 1 成功 | 1 成功 | 1 成功 |
+
+失败原因的可解释归因如下：AnyDoc 的 33 个失败包括 23 个 `unsupported` 和 10 个 `malformed`；Docling 的 49 个失败全部落在 `.doc`、`.xls`、`.ppt`；MarkItDown 的 37 个失败包括 34 个 `.doc`、2 个 `.ppt` 和 1 个 PDF，另有 20 个 PDF 状态成功但内容为空。完整文件名、模型状态和失败原因已写入逐文件矩阵，不用汇总数字替代具体记录。
 
 ### 1.3 回放口径和限制
 
@@ -482,11 +532,24 @@ cd S:\Agent_study\wiki\document_parser
 .\.venv\Scripts\python.exe tools\replay_quality_on_dataset.py --results-root S:\桌面\zyjt_sx\data\dataset --output-dir artifacts\dataset-quality-replay-20260902
 ~~~
 
+源文件—模型逐文件对齐审计：
+
+~~~powershell
+cd S:\Agent_study\wiki\document_parser
+.\.venv\Scripts\python.exe tools\audit_source_output_fidelity.py --source-root S:\桌面\zyjt_sx\data\全量数据源文件 --results-root S:\桌面\zyjt_sx\data\dataset --output-dir artifacts\source-output-fidelity-20260902
+.\.venv\Scripts\python.exe tools\build_source_model_capability_matrix.py --source-root S:\桌面\zyjt_sx\data\全量数据源文件 --audit-jsonl artifacts\source-output-fidelity-20260902\document_metrics.jsonl --markdown-output docs\source-model-capability-matrix.md --jsonl-output artifacts\source-output-fidelity-20260902\source_model_capability_matrix.jsonl --csv-output artifacts\source-output-fidelity-20260902\source_model_capability_matrix.csv
+~~~
+
 本轮使用的证据文件：
 
 - artifacts/dataset-quality-replay-20260902/summary.json
 - artifacts/dataset-quality-replay-20260902/report.md
 - artifacts/dataset-quality-replay-20260902/document_quality_records.jsonl
+- artifacts/source-output-fidelity-20260902/document_metrics.jsonl
+- artifacts/source-output-fidelity-20260902/summary.json
+- artifacts/source-output-fidelity-20260902/source_model_capability_matrix.jsonl
+- artifacts/source-output-fidelity-20260902/source_model_capability_matrix.csv
+- docs/source-model-capability-matrix.md
 - artifacts/quality-demo-mineru-童装/quality_package/optimized.md
 - artifacts/quality-demo-mineru-童装/quality_package/quality_package.json
 
