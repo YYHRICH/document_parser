@@ -11,7 +11,7 @@
 | M2 标题树与数字引用 | ✅ 完成 | QL-HDG 树算法 + 层级粒度检测、QL-REF 参考索引 + 唯一性绑定 |
 | M3 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
 | M4 白名单修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
-| M5 四件套落盘 | ✅ 完成 | 确定性序列化、manifest 校验、原子化写入和篡改检测 |
+| M5 双文件落盘 | ✅ 完成 | optimized.md + quality_package.json，原子化写入和结构校验 |
 | M6 单文档质量修复 Agent | ⬜ 待办 | Agno 运行时、Adapter、修复循环和审核输出 |
 | M7 联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
 
@@ -38,8 +38,8 @@ ParsedDocument 2.2
   → EvidenceContext（索引 + 能力判定）
   → 15 条规则（CONT/PROV/HDG/REF/TBL/RPR）
   → 能力矩阵（6 项标准能力 + 观测项）
-  → Gate 五态决策（唯一裁判）
-  → QualityPackage 1.0（含可复算 SHA-256 绑定，四件套内存版）
+  → Gate 自动决策（唯一裁判）
+  → optimized.md + quality_package.json
 ```
 
 规则清单：
@@ -78,9 +78,8 @@ from quality import run_quality
 
 doc = ParsedDocument.model_validate_json(open("fixture.json", encoding="utf-8").read())
 pkg = run_quality(doc)
-print(pkg.quality_report.state)          # pass / pass_with_warnings / manual_review_required / ...
+print(pkg.quality_report.state)          # pass / pass_with_warnings / reparse_required / rejected
 print(pkg.canonical_document.table_bindings)
-print(pkg.package_manifest.artifacts)    # 三个核心产物 SHA-256
 ```
 
 ```powershell
@@ -95,7 +94,7 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 ## 五、关键决策（详见 docs/quality-decisions.md）
 
 - D-01：sdp-004 标注以采购版为准（annotations 为事实源）
-- D-02：sdp-005 Gate 状态 = manual_review_required
+- D-02：不产生人工复核状态；证据不足以 inferred + warning、reparse_required 或 rejected 表达
 - D-03：能力不适用（无表格）不阻塞
 - D-07：canonical content 默认保留输入，白名单修复才变
 - D-08：info 不阻塞 pass

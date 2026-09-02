@@ -458,7 +458,6 @@ class QualityState(StrEnum):
 
     PASS = "pass"
     PASS_WITH_WARNINGS = "pass_with_warnings"
-    MANUAL_REVIEW_REQUIRED = "manual_review_required"
     REPARSE_REQUIRED = "reparse_required"
     REJECTED = "rejected"
 
@@ -580,7 +579,6 @@ class GateSummary(BaseModel):
     """将 issues 和能力阻断项汇总为最终准入依据。"""
 
     critical_issue_count: int = Field(default=0, ge=0)
-    manual_review_issue_count: int = Field(default=0, ge=0)
     warning_or_info_issue_count: int = Field(default=0, ge=0)
     reparse_issue_count: int = Field(default=0, ge=0)
     capability_blockers: list[str] = Field(default_factory=list)
@@ -602,18 +600,16 @@ class QualityReport(BaseModel):
     contract_version: str = "1.0"
     document_id: UUID
     state: QualityState
-    artifacts: dict[str, str]
     issues: list[QualityIssue] = Field(default_factory=list)
+    # 修复前诊断存在、复检后消失的问题；不参与 Gate 阻塞统计，但保留给
+    # 审核台和 Wiki 评测层追踪修复闭环。
+    resolved_issues: list[QualityIssue] = Field(default_factory=list)
     applied_repairs: list[AppliedRepair] = Field(default_factory=list)
+    rejected_repairs: list[dict[str, Any]] = Field(default_factory=list)
     capability_matrix: dict[str, CapabilityAssessment]
     gate_summary: GateSummary
     metrics: dict[str, Any] = Field(default_factory=dict)
     reparse_recommendation: ReparseRecommendation | None = None
-
-    @field_validator("artifacts")
-    @classmethod
-    def validate_artifact_hashes(cls, value: dict[str, str]) -> dict[str, str]:
-        return {key: _validate_sha256(digest) for key, digest in value.items()}
 
     @model_validator(mode="after")
     def validate_reparse_recommendation(self) -> "QualityReport":
@@ -630,28 +626,13 @@ class QualityReport(BaseModel):
         return self
 
 
-class PackageManifest(BaseModel):
-    """四件套的契约版本和 SHA-256 绑定。"""
-
-    contract_version: str = "1.0"
-    artifacts: dict[str, str]
-
-    @field_validator("artifacts")
-    @classmethod
-    def validate_manifest_hashes(cls, value: dict[str, str]) -> dict[str, str]:
-        required = {
-            "optimized.md",
-            "canonical_document.json",
-            "quality_report.json",
-        }
-        missing = required - set(value)
-        if missing:
-            raise ValueError(f"package manifest 缺少核心产物：{sorted(missing)}")
-        return {key: _validate_sha256(digest) for key, digest in value.items()}
-
-
 class QualityPackage(BaseModel):
-    """质量层交给朱的统一返回协议，对应最终四件套。"""
+    """质量层交给 Wiki 的统一返回协议。
+
+    物理交付只包含两个文件：``optimized.md`` 和 ``quality_package.json``。
+    ``optimized_markdown`` 保留在内存/API 返回中，落盘时单独写入 Markdown，
+    以避免在 JSON 中重复保存正文。
+    """
 
     schema_name: str = "QualityPackage"
     schema_version: str = "1.0"
@@ -659,7 +640,6 @@ class QualityPackage(BaseModel):
     optimized_markdown: str
     canonical_document: CanonicalDocument
     quality_report: QualityReport
-    package_manifest: PackageManifest
 
     @model_validator(mode="after")
     def validate_document_identity(self) -> "QualityPackage":

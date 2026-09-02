@@ -25,7 +25,6 @@ from document_parser.domain.model.contracts import (
 
 from document_parser.app.use_cases import run_quality
 from document_parser.domain.quality.config import QualityConfig
-from document_parser.domain.quality.hashing import sha256_bytes, sha256_text, stable_json_bytes
 
 FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "quality" / "fixtures" / "parsed_documents"
 
@@ -60,18 +59,10 @@ def test_run_quality_on_real_fixtures(sample):
         for line in package.optimized_markdown.splitlines()
     )
     assert package.canonical_document.blocks
-    # 哈希可复算
-    assert package.package_manifest.artifacts["optimized.md"] == sha256_text(package.optimized_markdown)
-    assert (
-        package.package_manifest.artifacts["canonical_document.json"]
-        == sha256_bytes(stable_json_bytes(package.canonical_document))
-    )
-    assert (
-        package.package_manifest.artifacts["quality_report.json"]
-        == sha256_bytes(stable_json_bytes(package.quality_report))
-    )
-    # report 的 artifacts 不含自身哈希（D-04）
-    assert "quality_report.json" not in package.quality_report.artifacts
+    # 质量报告不再携带产物哈希或 manifest。
+    report_payload = package.quality_report.model_dump_json()
+    assert "sha256" not in report_payload
+    assert "artifacts" not in package.quality_report.model_fields_set
 
 
 def test_run_quality_is_deterministic():
@@ -80,10 +71,7 @@ def test_run_quality_is_deterministic():
     second = run_quality(doc)
     assert first.canonical_document.model_dump_json() == second.canonical_document.model_dump_json()
     assert first.quality_report.state == second.quality_report.state
-    assert (
-        first.package_manifest.artifacts
-        == second.package_manifest.artifacts
-    )
+    assert first.quality_report.model_dump_json() == second.quality_report.model_dump_json()
 
 
 def test_mineru_flat_heading_levels_degrade():
@@ -96,7 +84,7 @@ def test_mineru_flat_heading_levels_degrade():
     assert package.quality_report.state != QualityState.PASS
     assert package.quality_report.state in (
         QualityState.PASS_WITH_WARNINGS,
-        QualityState.MANUAL_REVIEW_REQUIRED,
+        QualityState.REJECTED,
     )
 
 
@@ -112,7 +100,6 @@ def test_fallback_document_state_is_legal():
     assert package.quality_report.state.value in {
         "pass",
         "pass_with_warnings",
-        "manual_review_required",
         "reparse_required",
         "rejected",
     }
@@ -146,7 +133,7 @@ def test_duplicate_source_ids_do_not_collide_in_canonical_blocks():
 
     ids = [block.block_id for block in package.canonical_document.blocks]
     assert len(ids) == len(set(ids))
-    assert package.quality_report.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert package.quality_report.state == QualityState.PASS_WITH_WARNINGS
 
 
 def test_no_verified_content_without_evidence():
@@ -170,7 +157,6 @@ def test_reparse_scenario_via_verdict_injection():
         QualityReport(
             document_id=doc.document_id,
             state=QualityState.REPARSE_REQUIRED,
-            artifacts={"optimized.md": "a" * 64},
             capability_matrix={},
             gate_summary=GateSummary(),
         )
@@ -208,3 +194,16 @@ def test_pipeline_canonical_uses_repaired_block_markdown():
     assert package.canonical_document.blocks[0].content == block.markdown.rstrip()
     assert package.quality_report.applied_repairs
     assert package.quality_report.applied_repairs[0].affected_block_ids == [str(block.id)]
+
+
+def test_pipeline_records_resolved_html_table_issues():
+    doc = _load("sdp-003-mineru")
+    package = run_quality(doc)
+    assert package.quality_report.metrics["repaired_table_count"] == len(doc.tables)
+    assert package.quality_report.resolved_issues
+    assert any(
+        issue.status.value == "repaired"
+        and issue.category in {"table_representation", "table_structure"}
+        for issue in package.quality_report.resolved_issues
+    )
+    assert "<table" not in package.optimized_markdown.lower()

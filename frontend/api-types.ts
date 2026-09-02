@@ -135,7 +135,6 @@ export type FallbackAttempt = {
 // 将 issues 和能力阻断项汇总为最终准入依据。
 export type GateSummary = {
   critical_issue_count?: number;
-  manual_review_issue_count?: number;
   warning_or_info_issue_count?: number;
   reparse_issue_count?: number;
   capability_blockers?: string[];
@@ -149,7 +148,7 @@ export type HTTPValidationError = {
 
 export type IssueSeverity = "critical", "warning", "info";
 
-export type IssueStatus = "unfixed", "repaired", "manual_review_required", "reparse_required", "rejected";
+export type IssueStatus = "unfixed", "repaired", "reparse_required", "rejected";
 
 // 解析器原生产物的安全文件引用，不把大型 JSON/二进制塞入公共结果。
 export type NativeArtifact = {
@@ -173,11 +172,6 @@ export type OcrSpan = {
   rotation_angle?: number | null;
 };
 
-// 四件套的契约版本和 SHA-256 绑定。
-export type PackageManifest = {
-  contract_version?: string;
-  artifacts: Record<string, string>;
-};
 
 // 文本、布局、阅读顺序和表格的质量分。
 export type ParseConfidence = {
@@ -278,7 +272,7 @@ export type ParserProvenance = {
 };
 
 // Canonical 中某项能力或关系的证据状态。
-export type QualityCapabilityState = "verified", "inferred", "manual_review_required", "reparse_required", "rejected", "unavailable";
+export type QualityCapabilityState = "verified", "inferred", "reparse_required", "rejected", "unavailable";
 
 // 一条可定位、可跟踪、可复核的质量问题。
 export type QualityIssue = {
@@ -291,7 +285,7 @@ export type QualityIssue = {
   evidence?: Record<string, unknown>;
 };
 
-// 质量层交给朱的统一返回协议，对应最终四件套。
+// 质量层交给 Wiki 的统一返回协议；物理落盘为 optimized.md + quality_package.json。
 export type QualityPackage = {
   schema_name?: string;
   schema_version?: string;
@@ -299,7 +293,6 @@ export type QualityPackage = {
   optimized_markdown: string;
   canonical_document: CanonicalDocument;
   quality_report: QualityReport;
-  package_manifest: PackageManifest;
 };
 
 export type QualityPackageResponse = {
@@ -313,9 +306,10 @@ export type QualityReport = {
   contract_version?: string;
   document_id: string;
   state: QualityState;
-  artifacts: Record<string, string>;
   issues?: QualityIssue[];
+  resolved_issues?: QualityIssue[];
   applied_repairs?: AppliedRepair[];
+  rejected_repairs?: Record<string, unknown>[];
   capability_matrix: Record<string, CapabilityAssessment>;
   gate_summary: GateSummary;
   metrics?: Record<string, unknown>;
@@ -323,7 +317,7 @@ export type QualityReport = {
 };
 
 // 整篇文档的最终准入状态。
-export type QualityState = "pass", "pass_with_warnings", "manual_review_required", "reparse_required", "rejected";
+export type QualityState = "pass", "pass_with_warnings", "reparse_required", "rejected";
 
 // 质量层返回给路由层的重新解析建议。
 export type ReparseRecommendation = {

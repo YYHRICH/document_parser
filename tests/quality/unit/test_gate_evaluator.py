@@ -1,6 +1,8 @@
-"""Gate 决策器单元测试：五态推导、优先级、D-08/D-03 配置。"""
+"""Gate 决策器单元测试：自动状态推导、优先级、D-08/D-03 配置。"""
 
 from __future__ import annotations
+
+import pytest
 
 from document_parser.domain.model.contracts import (
     IssueSeverity,
@@ -55,7 +57,7 @@ def test_info_policy_preserves_all_gate_states():
     assert evaluator.decide(
         info,
         {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.MANUAL_REVIEW_REQUIRED)},
-    ).state == QualityState.MANUAL_REVIEW_REQUIRED
+    ).state == QualityState.PASS_WITH_WARNINGS
     assert evaluator.decide(
         info,
         {"content_complete": _cap("content_complete", QualityCapabilityState.REPARSE_REQUIRED)},
@@ -69,14 +71,10 @@ def test_critical_issue_rejects():
     assert decision.summary.critical_issue_count == 1
 
 
-def test_critical_issue_min_state_is_honored():
-    evaluator = GateEvaluator(
-        GateConfig(critical_issue_min_state="manual_review_required")
-    )
-    decision = evaluator.decide([_issue(IssueSeverity.CRITICAL)], {})
-
-    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
-    assert decision.summary.manual_review_issue_count == 1
+def test_manual_critical_issue_target_is_not_supported():
+    evaluator = GateEvaluator(GateConfig(critical_issue_min_state="manual_review_required"))
+    with pytest.raises(ValueError, match="reparse_required 或 rejected"):
+        evaluator.decide([_issue(IssueSeverity.CRITICAL)], {})
 
 
 def test_critical_issue_can_require_reparse_with_recommendation():
@@ -95,28 +93,16 @@ def test_critical_issue_can_require_reparse_with_recommendation():
     assert decision.summary.reparse_issue_count == 1
 
 
-def test_manual_capability_summary_count_is_populated():
-    verdicts = {
-        "heading_tree_reliable": _cap(
-            "heading_tree_reliable",
-            QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
-        )
-    }
-    decision = GateEvaluator().decide([], verdicts)
-
-    assert decision.summary.manual_review_issue_count == 1
-
-
-def test_manual_capability_forces_manual_review():
+def test_manual_capability_becomes_warning_without_manual_queue():
     verdicts = {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.MANUAL_REVIEW_REQUIRED)}
     decision = GateEvaluator().decide([], verdicts)
-    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.state == QualityState.PASS_WITH_WARNINGS
 
 
-def test_inferred_capability_forces_manual_review():
+def test_inferred_capability_becomes_warning_without_manual_queue():
     verdicts = {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.INFERRED)}
     decision = GateEvaluator().decide([], verdicts)
-    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.state == QualityState.PASS_WITH_WARNINGS
 
 
 def test_unavailable_capability_not_blocking_d03():
@@ -142,11 +128,11 @@ def test_reparse_with_recommendation():
     assert decision.state == QualityState.REPARSE_REQUIRED
 
 
-def test_reparse_without_recommendation_degrades_to_manual():
-    """契约要求 reparse_required 必须带建议；无建议时不能假装 reparse。"""
+def test_reparse_without_recommendation_is_rejected():
+    """没有自动重解析建议时直接拒绝，不产生人工复核队列。"""
     verdicts = {"content_complete": _cap("content_complete", QualityCapabilityState.REPARSE_REQUIRED)}
     decision = GateEvaluator().decide([], verdicts)
-    assert decision.state == QualityState.MANUAL_REVIEW_REQUIRED
+    assert decision.state == QualityState.REJECTED
 
 
 def test_rejected_capability_wins_over_manual():
@@ -167,4 +153,4 @@ def test_blocking_reasons_recorded():
     verdicts = {"heading_tree_reliable": _cap("heading_tree_reliable", QualityCapabilityState.MANUAL_REVIEW_REQUIRED)}
     decision = GateEvaluator().decide([], verdicts)
     assert any("heading_tree_reliable" in r for r in decision.blocking_reasons)
-    assert decision.summary.capability_blockers == ["heading_tree_reliable"]
+    assert decision.summary.capability_blockers == []

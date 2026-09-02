@@ -62,6 +62,12 @@ def test_parse_api_creates_package_and_serves_artifact(tmp_path: Path) -> None:
     assert body["native_artifact_count"] >= 1
     assert (tmp_path / parse_id / "parsed_document.json").is_file()
     assert (tmp_path / parse_id / "quality_package.json").is_file()
+    assert (tmp_path / parse_id / "optimized.md").is_file()
+    quality_json = json.loads((tmp_path / parse_id / "quality_package.json").read_text(encoding="utf-8"))
+    assert "optimized_markdown" not in quality_json
+    assert "package_manifest" not in quality_json
+    assert "sha256" not in json.dumps(quality_json, ensure_ascii=False)
+    assert "manual_review_required" not in json.dumps(quality_json, ensure_ascii=False)
     assert (tmp_path / parse_id / "native" / "mineru_result.json").is_file()
 
     read_response = client.get(f"/api/parses/{parse_id}")
@@ -79,13 +85,13 @@ def test_parse_api_creates_package_and_serves_artifact(tmp_path: Path) -> None:
     artifact_list = client.get(f"/api/parses/{parse_id}/artifacts")
     assert artifact_list.status_code == 200
     listed_paths = {item["path"] for item in artifact_list.json()["files"]}
-    assert {"parsed_document.json", "quality_package.json", "native/mineru_result.json"} <= listed_paths
+    assert {"parsed_document.json", "quality_package.json", "optimized.md", "native/mineru_result.json"} <= listed_paths
 
     download = client.get(f"/api/parses/{parse_id}/download")
     assert download.status_code == 200
     assert download.headers["content-type"].startswith("application/zip")
     with zipfile.ZipFile(io.BytesIO(download.content)) as archive:
-        assert {"parsed_document.json", "quality_package.json", "native/mineru_result.json"} <= set(archive.namelist())
+        assert {"parsed_document.json", "quality_package.json", "optimized.md", "native/mineru_result.json"} <= set(archive.namelist())
 
 
 def test_parse_api_reparse_uses_stored_source(tmp_path: Path) -> None:

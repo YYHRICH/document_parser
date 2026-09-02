@@ -48,7 +48,6 @@ class RepairOutcome:
                         "object_type": ref.object_type,
                         "object_id": ref.object_id,
                         "field_path": ref.field_path,
-                        **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                     }
                     for ref in self.evidence_refs
                 ],

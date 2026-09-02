@@ -130,7 +130,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                 IssueDraft(
                     severity=IssueSeverity.WARNING,
                     category="reading_order_conflict",
-                    message=("标题存在重复 order_index，阅读顺序不确定，关系降级为人工复核。"),
+            message=("标题存在重复 order_index，阅读顺序不确定，关系降级为 inferred。"),
                     affected_block_ids=[str(h.id) for h in headings],
                 )
             )
@@ -199,7 +199,7 @@ class QL_HDG_004_BuildTree(QualityRule):
                 stack.pop()
             if not stack:
                 # 只有 H1（或编号恢复的一级标题）可作为无父根。
-                # 开头直接 H2/H3 没有可验证父节点，必须人工复核；不创建虚拟 H1。
+                # 开头直接 H2/H3 没有可验证父节点，保留 inferred；不创建虚拟 H1。
                 if not root_seen:
                     root_seen = True
                     if effective_level > 1:
@@ -283,8 +283,7 @@ class QL_HDG_004_BuildTree(QualityRule):
             )
             stack.append((heading, effective_level))
 
-        # 能力观测：存在孤立标题（层级证据冲突）→ 整树 manual_review_required
-        # （spec §5.4：开头直接 H2/H3 且无父节点 → manual_review_required）
+        # 能力观测：存在孤立标题（层级证据冲突）→ 整树 inferred。
         has_orphan = any(i.category == "heading_parent_missing" for i in issues)
         if candidates or has_orphan or order_conflict:
             verified_count = sum(

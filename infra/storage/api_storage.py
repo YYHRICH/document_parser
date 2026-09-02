@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import mimetypes
 import os
 import tempfile
@@ -59,19 +60,36 @@ class ApiStorage:
     def quality_package_path(self, parse_id: str) -> Path:
         return self.package_root(parse_id) / "quality_package.json"
 
+    def optimized_markdown_path(self, parse_id: str) -> Path:
+        return self.package_root(parse_id) / "optimized.md"
+
     def write_quality_package(self, parse_id: str, quality_package: QualityPackage) -> Path:
         package_path = self.quality_package_path(parse_id)
+        markdown_path = self.optimized_markdown_path(parse_id)
         package_path.parent.mkdir(parents=True, exist_ok=True)
-        package_path.write_text(quality_package.model_dump_json(indent=2), encoding="utf-8")
+        # 正文是独立 Markdown 文件；JSON 只保存结构化文档和质量结果，避免重复。
+        payload = quality_package.model_dump(
+            mode="json", exclude={"optimized_markdown"}
+        )
+        package_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        markdown_path.write_text(quality_package.optimized_markdown, encoding="utf-8")
         return package_path
 
     def load_quality_package(self, parse_id: str) -> QualityPackage:
-        return QualityPackage.model_validate_json(
+        payload = json.loads(
             self.quality_package_path(parse_id).read_text(encoding="utf-8")
         )
+        payload["optimized_markdown"] = self.optimized_markdown_path(
+            parse_id
+        ).read_text(encoding="utf-8")
+        return QualityPackage.model_validate(payload)
 
     def has_quality_package(self, parse_id: str) -> bool:
-        return self.quality_package_path(parse_id).is_file()
+        return self.quality_package_path(parse_id).is_file() and self.optimized_markdown_path(
+            parse_id
+        ).is_file()
 
     def load_document(self, parse_id: str) -> ParsedDocument:
         return load_document_package(self.package_root(parse_id))
@@ -118,6 +136,8 @@ def _package_file_category(relative_path: str) -> str:
         return "parsed_document"
     if relative_path == "quality_package.json":
         return "quality_package"
+    if relative_path == "optimized.md":
+        return "quality_markdown"
     return "other"
 
 

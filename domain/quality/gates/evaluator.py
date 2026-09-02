@@ -1,7 +1,6 @@
 """Gate 决策器：质量层唯一的最终状态判定者（spec §8）。
 
-优先级：rejected > reparse_required > manual_review_required
-        > pass_with_warnings > pass
+优先级：rejected > reparse_required > pass_with_warnings > pass
 
 规则模块只产观测，不得自行指定最终状态。
 """
@@ -27,7 +26,6 @@ from ..models_internal import IssueDraft
 _INFO_STATE_TRANSITIONS = {
     QualityState.PASS: QualityState.PASS_WITH_WARNINGS,
     QualityState.PASS_WITH_WARNINGS: QualityState.PASS_WITH_WARNINGS,
-    QualityState.MANUAL_REVIEW_REQUIRED: QualityState.MANUAL_REVIEW_REQUIRED,
     QualityState.REPARSE_REQUIRED: QualityState.REPARSE_REQUIRED,
     QualityState.REJECTED: QualityState.REJECTED,
 }
@@ -51,17 +49,14 @@ def _critical_target_state(config: GateConfig) -> QualityState:
         state = QualityState(config.critical_issue_min_state)
     except ValueError as exc:
         raise ValueError(
-            "critical_issue_min_state 必须是 manual_review_required、"
-            "reparse_required 或 rejected。"
+            "critical_issue_min_state 必须是 reparse_required 或 rejected。"
         ) from exc
     if state not in {
-        QualityState.MANUAL_REVIEW_REQUIRED,
         QualityState.REPARSE_REQUIRED,
         QualityState.REJECTED,
     }:
         raise ValueError(
-            "critical_issue_min_state 必须是 manual_review_required、"
-            "reparse_required 或 rejected。"
+            "critical_issue_min_state 必须是 reparse_required 或 rejected。"
         )
     return state
 
@@ -90,7 +85,7 @@ class GateEvaluator:
         """由未解决 issue + 能力判定推导最终状态。"""
         blocking_reasons: list[str] = []
 
-        # 1. 能力阻塞项（blocking=True 且非 verified/unavailable）
+        # 1. 能力阻塞项（只有 rejected/reparse 会阻断自动交付）
         capability_blockers = [
             verdict
             for verdict in capability_verdicts.values()
@@ -99,8 +94,6 @@ class GateEvaluator:
             in {
                 QualityCapabilityState.REJECTED,
                 QualityCapabilityState.REPARSE_REQUIRED,
-                QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
-                QualityCapabilityState.INFERRED,
             }
         ]
         rejected_caps = [
@@ -111,13 +104,13 @@ class GateEvaluator:
             for v in capability_blockers
             if v.state == QualityCapabilityState.REPARSE_REQUIRED
         ]
-        manual_caps = [
+        uncertain_caps = [
             v
-            for v in capability_blockers
+            for v in capability_verdicts.values()
             if v.state
             in {
-                QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
                 QualityCapabilityState.INFERRED,
+                QualityCapabilityState.MANUAL_REVIEW_REQUIRED,
             }
         ]
 
@@ -138,10 +131,6 @@ class GateEvaluator:
         critical_requires_reparse = (
             critical_issues and critical_target == QualityState.REPARSE_REQUIRED
         )
-        critical_requires_manual = (
-            critical_issues and critical_target == QualityState.MANUAL_REVIEW_REQUIRED
-        )
-
         if rejected_caps or critical_requires_rejected:
             blocking_reasons.extend(
                 f"capability {v.name} rejected" for v in rejected_caps
@@ -162,22 +151,14 @@ class GateEvaluator:
                 )
                 state = QualityState.REPARSE_REQUIRED
             else:
-                # 契约要求 reparse_required 必须带建议；无合法建议时
-                # 不能假装 reparse：降级为人工复核
+                # 没有可执行的自动重解析建议时直接拒绝，不产生人工队列。
                 blocking_reasons.append("reparse required but no valid recommendation")
-                state = QualityState.MANUAL_REVIEW_REQUIRED
-        elif manual_caps or critical_requires_manual:
-            blocking_reasons.extend(
-                f"capability {v.name} = {v.state.value}" for v in manual_caps
-            )
-            blocking_reasons.extend(
-                f"critical issue requires manual review: {i.message}"
-                for i in critical_issues
-                if critical_requires_manual
-            )
-            state = QualityState.MANUAL_REVIEW_REQUIRED
-        elif warning_issues:
+                state = QualityState.REJECTED
+        elif warning_issues or uncertain_caps:
             blocking_reasons.extend(f"warning issue: {i.message}" for i in warning_issues)
+            blocking_reasons.extend(
+                f"capability {v.name} = inferred" for v in uncertain_caps
+            )
             state = (
                 QualityState.PASS_WITH_WARNINGS
                 if self._config.warnings_trigger_pass_with_warnings
@@ -193,16 +174,12 @@ class GateEvaluator:
             enabled=self._config.info_blocks_pass,
         )
 
-        manual_review_issue_count = len(manual_caps)
-        if state == QualityState.MANUAL_REVIEW_REQUIRED:
-            manual_review_issue_count += len(critical_issues)
         reparse_issue_count = len(reparse_caps)
         if state == QualityState.REPARSE_REQUIRED and critical_requires_reparse:
             reparse_issue_count += len(critical_issues)
 
         summary = GateSummary(
             critical_issue_count=len(critical_issues),
-            manual_review_issue_count=manual_review_issue_count,
             warning_or_info_issue_count=len(warning_issues) + len(info_issues),
             reparse_issue_count=reparse_issue_count,
             capability_blockers=[v.name for v in capability_blockers],

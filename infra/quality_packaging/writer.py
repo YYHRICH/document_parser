@@ -1,4 +1,4 @@
-"""M5 四件套安全写入与目录校验。"""
+"""质量层双文件安全写入与目录校验。"""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ def write_package_directory(
     *,
     replace_existing: bool = False,
 ) -> Path:
-    """原子写入四件套；默认拒绝覆盖已有目标目录。"""
+    """原子写入两个质量产物；默认拒绝覆盖已有目标目录。"""
     output_dir = Path(output_dir)
     parent = output_dir.parent
     parent.mkdir(parents=True, exist_ok=True)
@@ -68,5 +68,5 @@ def write_package_directory(
 
 
 def verify_package_directory(directory: Path) -> None:
-    """读取并校验已落盘的四件套；篡改/缺失时抛出 ValueError。"""
+    """读取并校验已落盘的双文件质量包。"""
     read_package_files(Path(directory))

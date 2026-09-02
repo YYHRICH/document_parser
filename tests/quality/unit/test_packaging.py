@@ -1,4 +1,4 @@
-"""M5 四件套序列化、原子写入和篡改校验。"""
+"""双文件质量包序列化、原子写入和结构校验。"""
 
 from pathlib import Path
 
@@ -8,7 +8,8 @@ from document_parser.domain.model.contracts import ParsedDocument
 from document_parser.app.use_cases import run_quality
 from document_parser.infra.quality_packaging import write_quality_package
 from document_parser.infra.quality_packaging.artifacts import (
-    MANIFEST_NAME,
+    OPTIMIZED_NAME,
+    QUALITY_NAME,
     build_package_artifacts,
     verify_package_files,
 )
@@ -22,26 +23,30 @@ def _package():
     return run_quality(doc)
 
 
-def test_build_artifacts_matches_manifest():
+def test_build_artifacts_contains_only_markdown_and_json():
     package = _package()
     artifacts = build_package_artifacts(package)
-    assert set(artifacts.files) == {"optimized.md", "canonical_document.json", "quality_report.json", MANIFEST_NAME}
-    assert artifacts.manifest.artifacts == package.package_manifest.artifacts
+    assert set(artifacts.files) == {OPTIMIZED_NAME, QUALITY_NAME}
     verify_package_files(artifacts.files)
+
+    quality_json = artifacts.files[QUALITY_NAME].decode("utf-8")
+    assert "optimized_markdown" not in quality_json
+    assert "package_manifest" not in quality_json
+    assert "sha256" not in quality_json
 
 
 def test_write_and_verify_package(tmp_path):
     output = write_quality_package(_package(), tmp_path / "package")
     assert output.is_dir()
-    assert {p.name for p in output.iterdir()} == {"optimized.md", "canonical_document.json", "quality_report.json", MANIFEST_NAME}
+    assert {p.name for p in output.iterdir()} == {OPTIMIZED_NAME, QUALITY_NAME}
     verify_package_directory(output)
 
 
-def test_tampered_package_is_rejected(tmp_path):
+def test_quality_json_tampering_is_detected_as_invalid_json(tmp_path):
     output = write_quality_package(_package(), tmp_path / "package")
-    target = output / "optimized.md"
-    target.write_bytes(target.read_bytes() + b"tamper")
-    with pytest.raises(ValueError, match="manifest"):
+    target = output / QUALITY_NAME
+    target.write_text("{}", encoding="utf-8")
+    with pytest.raises(ValueError, match="quality_package"):
         verify_package_directory(output)
 
 

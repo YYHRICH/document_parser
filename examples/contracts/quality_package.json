@@ -127,10 +127,6 @@
     "contract_version": "1.0",
     "document_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
     "state": "pass_with_warnings",
-    "artifacts": {
-      "input_parsed_document.json": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "optimized.md": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-    },
     "issues": [
       {
         "issue_id": "citation-inferred-001",
@@ -162,7 +158,6 @@
     },
     "gate_summary": {
       "critical_issue_count": 0,
-      "manual_review_issue_count": 0,
       "warning_or_info_issue_count": 1,
       "reparse_issue_count": 0,
       "capability_blockers": [],
@@ -177,13 +172,5 @@
       "inferred_citation_relation_count": 1
     },
     "reparse_recommendation": null
-  },
-  "package_manifest": {
-    "contract_version": "1.0",
-    "artifacts": {
-      "optimized.md": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-      "canonical_document.json": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "quality_report.json": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-    }
   }
 }

@@ -82,7 +82,6 @@ def _evidence_payload(refs: tuple[EvidenceRef, ...]) -> dict:
                 "object_type": ref.object_type,
                 "object_id": ref.object_id,
                 "field_path": ref.field_path,
-                "value_sha256": ref.value_sha256,
             }
             for ref in refs
         ]
@@ -176,10 +175,22 @@ class CapabilityMatrixBuilder:
         self, verdicts: dict[str, CapabilityVerdict]
     ) -> dict[str, CapabilityAssessment]:
         """投影为公共契约的 CapabilityAssessment（state + evidence）。"""
+        def public_evidence(verdict: CapabilityVerdict) -> dict:
+            evidence = dict(verdict.evidence)
+            if evidence.get("rule_observations") == QualityCapabilityState.MANUAL_REVIEW_REQUIRED.value:
+                evidence["rule_observations"] = QualityCapabilityState.INFERRED.value
+            return evidence
+
         return {
             name: CapabilityAssessment(
-                state=verdict.state,
-                evidence=dict(verdict.evidence),
+                # 不把人工队列状态交给 Wiki；证据不足统一标记为 inferred，
+                # 最终准入由 Gate 以 warning/reparse/rejected 表达。
+                state=(
+                    QualityCapabilityState.INFERRED
+                    if verdict.state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                    else verdict.state
+                ),
+                evidence=public_evidence(verdict),
             )
             for name, verdict in verdicts.items()
         }

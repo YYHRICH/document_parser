@@ -1,10 +1,12 @@
 # 单文档质量修复 Agent 实现规格与开发计划
 
 > 分支：`feature/quality-layer`
-> 状态：Draft v0.2
+> 状态：Draft
 > 当前输入：解析器输出经 Adapter 转换后的统一质量文档视图
-> 适用输出：`optimized.md`、`canonical_document.json`、`quality_report.json` 和 `package_manifest.json`
-> 目标：让 LLM 主动检查并修复单个文档包的格式/结构问题，由确定性验证器定义合格状态、反馈修复结果并最终生成可审计产物。
+> 适用输出：`optimized.md` 和 `quality_package.json`
+> 目标：检查并修复单个文档的格式/结构问题，输出 Wiki 可直接消费的 Markdown 和结构化 JSON。
+
+> 当前交付约束：质量层不输出产物哈希、manifest 或人工复核状态。无法安全自动判断的结果以 warning、reparse_required 或 rejected 表达。
 
 ---
 
@@ -19,12 +21,11 @@
 - 任意当前阶段解析器结果都能通过 Adapter 进入同一个 `DocumentPackageView`；上游统一层完成后只替换 Adapter；
 - 单文档 Agent 能够在有问题时迭代检查和修复，无需预先枚举所有坏样例；
 - 修复候选符合统一文档 Schema，block/table/cell ID、来源定位和事实内容不会被无证据改写；
-- 修复后重新生成 `optimized.md`、`canonical_document.json` 和 `quality_report.json`，三者内容一致；
-- `quality_report.json` 能逐对象标记 `auto_usable`、`manual_review_required` 或 `rejected`；
+- 修复后生成 `optimized.md` 和包含 canonical document、quality report 的 `quality_package.json`；
+- `quality_package.json` 能逐对象保留 `verified`、`inferred`、`reparse_required` 或 `rejected` 结论；
 - 通过确定性验证和规则重跑后才接受修复，LLM 不能自行宣布通过；
-- 修复失败、无改善、超预算或内容不变量破坏时，保留原版本并回滚或转人工复核；
-- LLM 关闭、超时、非法输出或不可用时，确定性检查和三件套生成仍可运行；
-- 相同输入、相同配置和相同缓存结果重复运行时，最终业务产物和 manifest 哈希稳定；
+- 修复失败、无改善、超预算或内容不变量破坏时，保留原版本并返回 rejected 或 reparse_required；
+- LLM 关闭、超时、非法输出或不可用时，确定性检查和双文件生成仍可运行；
 - 既有契约、Golden、no-op、拒绝和原子落盘测试持续通过。
 
 ### 1.2 非目标
@@ -46,11 +47,11 @@
 | ID | 待确认事项 | 建议决策 | 未确认时的处理 |
 | --- | --- | --- | --- |
 | D-01 | sdp-004 两份 column_path 标注冲突 | `annotations/quality/golden.jsonl` 作为人工事实源，`expected/...` 由其生成；采购字段版本更符合文件名，但仍需数据负责人确认 | 将 sdp-004 标记为冲突，CI 一致性测试失败并给出差异，不静默任选 |
-| D-02 | sdp-005 期望写为 `mixed`，但 Gate 无此枚举 | `mixed` 仅描述内部 binding 状态；最终 Gate 明确选 `manual_review_required` 或 `reparse_required` | 默认按 `manual_review_required` 开发；若已有确定的重解析策略再改为 `reparse_required` |
+| D-02 | sdp-005 期望写为 `mixed`，但 Gate 无此枚举 | `mixed` 仅描述内部 binding 状态；最终 Gate 选 `pass_with_warnings`、`reparse_required` 或 `rejected` | 以自动判定为准，不产生人工复核状态 |
 | D-03 | capability 无 `not_applicable` | 后续公共契约增加 `not_applicable` | 当前使用 `unavailable` + evidence=`not applicable`，并由 Gate 的 applicability 判断其是否阻塞 |
-| D-04 | `quality_report.artifacts` 是否包含自身哈希 | 不包含自身；自身哈希只放在 manifest | 禁止实现递归自哈希 |
+| D-04 | 质量结果是否保存产物哈希 | 不保存哈希或 manifest | 仅输出两个质量产物 |
 | D-05 | LLM metrics 不在已列出的 QualityPackage 1.0 字段中 | 由契约负责人确认后再增加；否则只做内部日志/测试计数 | 不私自向公共 JSON 增加字段 |
-| D-06 | `reparse_recommendation.parser_id` 的允许值 | 由路由分支提供 parser catalog 和静态建议映射 | 无合法 parser_id 时不能构造伪推荐；保持人工复核并报告配置缺口 |
+| D-06 | `reparse_recommendation.parser_id` 的允许值 | 由路由分支提供 parser catalog 和静态建议映射 | 无合法 parser_id 时直接 rejected，不产生人工复核队列 |
 | D-07 | canonical block content 的规范化规则 | 默认保留输入 `markdown`，只允许白名单修复产生变化 | 未确认的格式优化全部 no-op |
 | D-08 | 只有未修复 info issue 时应为 pass 还是 pass_with_warnings | 建议 info 不阻塞 pass，warning 才触发 pass_with_warnings；以产品展示约定为准 | 在 Gate 配置中显式固定，禁止不同规则自行解释 |
 | D-10 | LLM 在质量层中的角色 | 单文档正式修复 Agent：LLM 主动检查、输出修复候选并根据验证反馈继续修复；默认可关闭 | 关闭时运行确定性检查/审核路径，不假装完成 LLM 修复 |

@@ -180,7 +180,7 @@ class QL_TBL_007_CrossPageContinuation(QualityRule):
                     severity=IssueSeverity.WARNING,
                     category="cross_page_table",
                     message=(
-                        f"跨页续表需要人工复核: {table_a.table_id}(p{table_a.page_number}) → "
+                        f"跨页续表证据不足，关系降级为 inferred: {table_a.table_id}(p{table_a.page_number}) → "
                         f"{table_b.table_id}(p{table_b.page_number})。"
                     ),
                     affected_block_ids=[str(table_a.block_id), str(table_b.block_id)],

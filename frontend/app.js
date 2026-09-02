@@ -21,7 +21,7 @@ const state = {
 const $ = (id) => document.getElementById(id);
 const PARSER_LABELS = { "microsoft.markitdown": "通用文档解析", docling: "Docling 结构化解析", mineru: "MinerU 版面解析", ocr: "OCR 图片识别", anydoc: "AnyDoc Office 解析" };
 const PARSER_HINTS = { "microsoft.markitdown": "适合 Word、Markdown、PDF 和常见办公文档。", docling: "适合需要结构化内容、表格和版面信息的文档。", mineru: "适合 PDF 和图片；当前环境可能需要云端 Token 或本地模型。", ocr: "适合扫描件和图片；需要本机 OCR 能力。", anydoc: "适合 Office 文件；需要单独安装 AnyDoc。" };
-const QUALITY_LABELS = { pass: "质量通过", pass_with_warnings: "通过，但有提醒", manual_review_required: "建议人工复核", reparse_required: "建议重新解析", rejected: "未通过" };
+const QUALITY_LABELS = { pass: "质量通过", pass_with_warnings: "通过，但有提醒", reparse_required: "建议自动重新解析", rejected: "未通过" };
 const SEVERITY_LABELS = { critical: "严重问题", error: "错误", warning: "提醒", info: "信息" };
 
 function setStatus(text, kind = "") { const status = $("appStatus"); status.className = `status ${kind}`.trim(); status.querySelector("span:last-child").textContent = text; }

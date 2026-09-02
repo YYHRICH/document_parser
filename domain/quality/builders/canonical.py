@@ -19,7 +19,7 @@ from document_parser.domain.model.contracts import (
 from ..evidence.context import EvidenceContext
 from ..ids import binding_id, block_id, relation_id
 
-QUALITY_PIPELINE_VERSION = "quality-mvp-0.1.0"
+QUALITY_PIPELINE_VERSION = "quality-structured-repair"
 
 
 def _document_key(parsed) -> str:
@@ -88,7 +88,11 @@ def build_canonical_document(
                 relation_type=candidate.relation_type,
                 from_id=from_id,
                 to_id=to_id,
-                status=candidate.state,
+                status=(
+                    QualityCapabilityState.INFERRED
+                    if candidate.state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                    else candidate.state
+                ),
                 evidence={
                     **candidate.evidence,
                     "refs": [
@@ -96,7 +100,6 @@ def build_canonical_document(
                             "object_type": ref.object_type,
                             "object_id": ref.object_id,
                             "field_path": ref.field_path,
-                            **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                         }
                         for ref in candidate.evidence_refs
                     ],
@@ -133,7 +136,6 @@ def build_canonical_document(
                             "object_type": ref.object_type,
                             "object_id": ref.object_id,
                             "field_path": ref.field_path,
-                            **({"value_sha256": ref.value_sha256} if ref.value_sha256 else {}),
                         }
                         for ref in candidate.evidence_refs
                     ],

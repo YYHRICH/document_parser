@@ -3,8 +3,7 @@
 对应 spec §8.3 Gate 不变量与验收清单「契约」部分：
 - reparse_required 必须带合法 recommendation；
 - critical_false_pass=true 时禁止 pass / pass_with_warnings；
-- manifest 三个核心哈希齐全；
-- QualityPackage 三处 document_id 一致；
+- QualityPackage 的 canonical/report document_id 一致；
 - 非 available 的 EvidenceCapability 必须带 reason。
 """
 
@@ -17,7 +16,6 @@ from document_parser.domain.model.contracts import (
     EvidenceAvailability,
     EvidenceCapability,
     GateSummary,
-    PackageManifest,
     QualityCapabilityState,
     QualityReport,
     QualityState,
@@ -33,16 +31,11 @@ def _base_report(state: QualityState, **kwargs) -> QualityReport:
         contract_version="1.0",
         document_id=DOC_ID,
         state=state,
-        artifacts={"optimized.md": "a" * 64},
         capability_matrix={},
         gate_summary=GateSummary(),
     )
     defaults.update(kwargs)
     return QualityReport(**defaults)
-
-
-def _fake_sha256(digest: str = "a") -> str:
-    return digest * 64
 
 
 def test_reparse_required_must_have_recommendation():
@@ -81,11 +74,7 @@ def test_critical_false_pass_forbids_pass_states(state):
 
 
 def test_critical_false_pass_allows_blocking_states():
-    for state in (
-        QualityState.MANUAL_REVIEW_REQUIRED,
-        QualityState.REPARSE_REQUIRED,
-        QualityState.REJECTED,
-    ):
+    for state in (QualityState.REPARSE_REQUIRED, QualityState.REJECTED):
         kwargs = {}
         if state == QualityState.REPARSE_REQUIRED:
             kwargs["reparse_recommendation"] = ReparseRecommendation(
@@ -97,41 +86,6 @@ def test_critical_false_pass_allows_blocking_states():
             **kwargs,
         )
         assert report.gate_summary.critical_false_pass is True
-
-
-def test_package_manifest_requires_core_artifacts():
-    with pytest.raises(ValidationError):
-        PackageManifest(artifacts={"optimized.md": _fake_sha256()})
-
-
-def test_package_manifest_valid_with_three_core_hashes():
-    manifest = PackageManifest(
-        artifacts={
-            "optimized.md": _fake_sha256("a"),
-            "canonical_document.json": _fake_sha256("b"),
-            "quality_report.json": _fake_sha256("c"),
-        }
-    )
-    assert len(manifest.artifacts) == 3
-
-
-def test_manifest_rejects_invalid_sha256():
-    with pytest.raises(ValidationError):
-        PackageManifest(
-            artifacts={
-                "optimized.md": "not-a-sha",
-                "canonical_document.json": _fake_sha256("b"),
-                "quality_report.json": _fake_sha256("c"),
-            }
-        )
-
-
-def test_quality_report_artifacts_hash_normalized():
-    report = _base_report(
-        QualityState.PASS,
-        artifacts={"optimized.md": _fake_sha256("A").upper()},
-    )
-    assert report.artifacts["optimized.md"] == _fake_sha256("a")
 
 
 def test_unavailable_capability_requires_reason():

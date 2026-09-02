@@ -171,7 +171,7 @@ class QL_CONT_003_KindContent(QualityRule):
                     severity=IssueSeverity.WARNING,
                     category="heading_structure",
                     message=f"{len(headings_without_level)} 个 heading 缺少 heading_level，"
-                    "标题树只能 inferred/人工复核。",
+                    "标题树只能保留 inferred 状态。",
                     affected_block_ids=[str(b.id) for b in headings_without_level],
                 )
             )

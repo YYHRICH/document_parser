@@ -3,7 +3,7 @@
 契约决策映射：
 - D-08：info 不阻塞 pass，仅 warning 及以上未修复触发 pass_with_warnings；
 - D-03：不适用能力不得成为 blocker（applicability 独立计算）；
-- D-04：quality_report.artifacts 不自哈希。
+- 质量 JSON 不保存产物哈希或清单。
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ class GateConfig:
     unavailable_blocks_when_applicable_only: bool = True
     # 未解决 warning issue 是否触发 pass_with_warnings
     warnings_trigger_pass_with_warnings: bool = True
-    # 未解决 critical issue 的最低状态（manual/reparse/rejected 之一）
+    # 未解决 critical issue 的最低状态（reparse_required 或 rejected）
     critical_issue_min_state: str = "rejected"
 
 

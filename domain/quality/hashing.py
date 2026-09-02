@@ -1,11 +1,6 @@
-"""稳定哈希：四件套的 SHA-256 绑定（spec §10.3，M1 内存版，M5 加落盘）。
+"""质量层内部稳定哈希工具。
 
-哈希顺序：
-1. optimized.md 字节；
-2. canonical_document.json 字节；
-3. quality_report.json 字节（其 artifacts 含 1/2 的哈希）；
-4. package_manifest 记录 1/2/3 的哈希。
-quality_report 与 manifest 不哈希自身（D-04）。
+哈希只用于稳定 ID 和内部证据引用，不进入 Wiki 交付 JSON。
 """
 
 from __future__ import annotations

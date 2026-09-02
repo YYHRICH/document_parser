@@ -183,7 +183,7 @@ class QL_REF_004_BindCitations(QualityRule):
             issues.append(IssueDraft(
                 severity=IssueSeverity.WARNING,
                 category="reading_order_conflict",
-                message="存在重复 order_index，引用绑定顺序不确定，关系降级为人工复核。",
+                message="存在重复 order_index，引用绑定顺序不确定，关系降级为 inferred。",
                 affected_block_ids=[],
             ))
 
