@@ -1,6 +1,7 @@
 # 四模型真实数据集质量审查与自动修复报告
 
 > 本报告记录当前质量层对四种解析器保存结果的全量回放，以及一份使用 MinerU 原生证据完成的正式双文件质量包演示。所有统计均来自项目内的回放产物和质量流水线输出，不使用人工猜测或未记录的数字。
+> 本次全量重跑产物位于 `artifacts/dataset-quality-replay-20260902/`，回放日期为 2026-09-02。
 
 ## 摘要
 
@@ -213,6 +214,28 @@ res_minerU/
 
 MinerU 本轮记录 2,611 个已消失问题实例，其中 table_representation 1,309 个、table_structure 1,302 个。一个 HTML 表格修复可以同时消除多个结构诊断，因此 resolved_issues 数量不等于 HTML 表格数量。AnyDoc、Docling 和 MarkItDown 虽然发生了格式改写，但本次回放的 issue fingerprint 没有形成对应 resolved_issues，这属于统计口径限制，不代表改写没有发生。
 
+### 4.5 优化前后的定量差异
+
+回放记录同时保存了输入 Markdown 和优化后 Markdown 的字符数。字符数变化只衡量表示层变化，不能当作内容正确率；尤其 HTML 表格转 Markdown 会删除标签和样式属性，因此字符数下降并不表示数据被删除。
+
+| 模型 | 优化前字符数 | 优化后字符数 | 字符差异 | 发生改写的单元 | 改写比例 |
+|---|---:|---:|---:|---:|---:|
+| AnyDoc | 4,288,100 | 4,288,156 | +56 | 3/191 | 1.57% |
+| Docling | 5,805,029 | 5,804,610 | -419 | 30/175 | 17.14% |
+| MarkItDown | 59,566,474 | 59,566,362 | -112 | 6/187 | 3.21% |
+| MinerU | 5,728,445 | 4,503,530 | -1,224,915 | 133/224 | 59.38% |
+| 合计 | 75,388,048 | 74,162,658 | -1,225,390 | 172/777 | 22.14% |
+
+三类修复的最小变换如下。示例是规则定义层面的表示差异，不是从数据集中摘录的业务内容：
+
+| 修复类型 | 优化前 | 优化后 | 解决的问题 |
+|---|---|---|---|
+| QL-RPR-001 行尾空白清理 | `内容··\\n` | `内容\\n` | 删除 Markdown 行尾空格/制表符噪声，不改变正文字符 |
+| QL-RPR-002 表格分隔行规范化 | 表头为 3 列、分隔线只有 2 列 | 补齐为 3 列合法分隔线 | 让下游 Markdown 解析器正确识别管道表格 |
+| QL-RPR-003 HTML 表格转 Markdown | `<table>...</table>` | `|列1|列2|` 等管道表格 | 消除 HTML 表示障碍，便于 Wiki 展示、切块和文本召回 |
+
+QL-RPR-003 还会同步更新 ParsedTable、table block 和文档根 Markdown；如果三者无法唯一对齐，则不修改原文并记录拒绝原因。
+
 ## 5. 不同模型分别修复了什么
 
 ### 5.1 AnyDoc
@@ -259,6 +282,17 @@ MinerU 的 1,309 个 HTML 表格修复是本轮最重要的质量收益。转换
 
 结论：MinerU 适合当前数据中的扫描 PDF、图文报告和复杂表格，但交付 Wiki 前必须经过表格表示转换、资产完整性检查、标题树检查和分片完整性检查。
 
+### 5.5 基于全量结果的后处理策略调整
+
+本轮结果支持将后处理策略明确为“证据驱动的最小修复”，而不是对所有 Markdown 做统一重写：
+
+1. 固定执行顺序为：修复前诊断 → 白名单修复 → 结构同步 → 修复后复检 → 质量门判定。这样可以区分“实际改写”“问题消失”和“仍需处理”，避免用修复次数冒充质量提升。
+2. QL-RPR-001 和 QL-RPR-002 只处理 Markdown 表示噪声；不借助语言模型改写句子、数字、公式、标题或缺失值。
+3. QL-RPR-003 只在 HTML 表格、ParsedTable 和 table block 具有唯一证据链时执行；替换定位失败就 rejected，保留原文，不猜测位置。
+4. 质量层不补救空 Markdown、OCR 乱码、缺失图片、跨页续表和阅读顺序错误。这些问题需要路由层重新解析或统一层补齐 page/bbox/assets/source-map 后再处理。
+5. 模型差异用于路由和评测，不写入质量规则分支。当前数据只说明不同模型触发的修复类型不同，不意味着质量层应该为某个模型复制一套私有逻辑。
+6. 全量回放继续采用只读 Markdown-only 模式；正式 Wiki 交付仍由真实 ParsedDocument 生成，且只输出 optimized.md 和 quality_package.json。
+
 ## 6. JSON 绑定和 Wiki 交付验证
 
 ### 6.1 全量回放的 JSON 记录
@@ -266,7 +300,7 @@ MinerU 的 1,309 个 HTML 表格修复是本轮最重要的质量收益。转换
 全量回放保存了以下三个实验产物：
 
 ~~~text
-artifacts/dataset-quality-replay-current/
+artifacts/dataset-quality-replay-20260902/
 ├── summary.json
 ├── report.md
 └── document_quality_records.jsonl
@@ -445,14 +479,14 @@ Wiki 只读取两个质量文件：
 
 ~~~powershell
 cd S:\Agent_study\wiki\document_parser
-.\.venv\Scripts\python.exe tools\replay_quality_on_dataset.py --results-root S:\桌面\zyjt_sx\data\dataset --output-dir artifacts\dataset-quality-replay-current
+.\.venv\Scripts\python.exe tools\replay_quality_on_dataset.py --results-root S:\桌面\zyjt_sx\data\dataset --output-dir artifacts\dataset-quality-replay-20260902
 ~~~
 
 本轮使用的证据文件：
 
-- artifacts/dataset-quality-replay-current/summary.json
-- artifacts/dataset-quality-replay-current/report.md
-- artifacts/dataset-quality-replay-current/document_quality_records.jsonl
+- artifacts/dataset-quality-replay-20260902/summary.json
+- artifacts/dataset-quality-replay-20260902/report.md
+- artifacts/dataset-quality-replay-20260902/document_quality_records.jsonl
 - artifacts/quality-demo-mineru-童装/quality_package/optimized.md
 - artifacts/quality-demo-mineru-童装/quality_package/quality_package.json
 
