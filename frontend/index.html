@@ -36,8 +36,31 @@
         </form>
       </section>
 
+      <section class="panel lifecycle-panel">
+        <div class="section-heading"><div><span class="step">02</span><div><h2>文件夹生命周期</h2><p>把文件放入指定目录，一次扫描即可识别新增、修改和删除，并写入可追溯记录。</p></div></div><button id="scanLifecycleButton" class="secondary-button" type="button">扫描文件夹</button></div>
+        <div class="lifecycle-path"><span>监控目录</span><code id="lifecycleRawRoot">正在读取…</code></div>
+        <form id="lifecycleUploadForm" class="lifecycle-actions">
+          <label class="field"><span>演示文件（同名再次上传即模拟修改）</span><input id="lifecycleFileInput" type="file" accept=".md,.txt,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.png,.jpg,.jpeg,.webp" required /></label>
+          <button id="lifecycleUploadButton" class="secondary-button" type="submit">放入监控目录</button>
+        </form>
+        <div class="lifecycle-summary" id="lifecycleSummary">尚未扫描</div>
+        <div class="lifecycle-grid"><div><h3>本次变化</h3><div id="lifecycleEvents" class="lifecycle-list"><p class="empty-state">点击“扫描文件夹”查看变化。</p></div></div><div><h3>当前文档</h3><div id="lifecycleSources" class="lifecycle-list"><p class="empty-state">暂无生命周期记录。</p></div></div></div>
+        <details class="technical-details"><summary>查看生命周期落盘位置</summary><pre id="lifecycleTechnical" class="technical-block"></pre></details>
+      </section>
+
+      <section class="panel downstream-panel">
+        <div class="section-heading"><div><span class="step">03</span><div><h2>多模态与 Wiki 串联</h2><p>ParsedDocument 自动交给多模态组，同时将质量门通过的结果发布到 Wiki。</p></div></div><span id="downstreamState" class="small-badge">等待交付</span></div>
+        <div class="delivery-flow"><span>统一解析结果</span><b>→</b><span>多模态待增强包</span><b>｜</b><span>质量门</span><b>→</b><span>Wiki raw/</span></div>
+        <div class="lifecycle-summary" id="multimodalSummary">尚无多模态交付记录</div>
+        <div class="lifecycle-path"><span>多模态交换目录</span><code id="multimodalRoot">扫描生命周期后显示</code></div>
+        <div class="lifecycle-summary" id="downstreamSummary">尚无下游交付记录</div>
+        <div class="lifecycle-path"><span>下游监听目录</span><code id="downstreamRoot">扫描生命周期后显示</code></div>
+        <div id="downstreamSources" class="lifecycle-list downstream-list"><p class="empty-state">在上方放入文件并扫描，即可看到实际交付结果。</p></div>
+        <details class="technical-details"><summary>查看下游数据契约与交付记录</summary><pre id="downstreamTechnical" class="technical-block"></pre></details>
+      </section>
+
       <section class="result-section" id="resultSection" hidden>
-        <div class="result-heading"><div><span class="step">02</span><div><h2>解析结果</h2><p id="resultSourceName">等待上传文档</p></div></div><button class="text-button" id="copyParseId" type="button">复制任务编号</button></div>
+        <div class="result-heading"><div><span class="step">04</span><div><h2>解析结果</h2><p id="resultSourceName">等待上传文档</p></div></div><button class="text-button" id="copyParseId" type="button">复制任务编号</button></div>
         <div class="summary-grid">
           <article class="summary-card quality-summary-card"><span class="card-label">质量结论</span><strong id="qualityState" class="quality-state">等待检查</strong><span id="qualitySummary" class="card-note">解析完成后显示</span></article>
           <article class="summary-card"><span class="card-label">解析方式</span><strong id="resultParser">—</strong><span id="resultRoute" class="card-note">—</span></article>
@@ -51,7 +74,7 @@
         <section class="panel artifacts-panel"><div class="panel-heading"><div><span class="panel-kicker">文件产物</span><h3>可下载的解析文件</h3></div><div class="artifact-actions"><span class="small-badge" id="artifactCount">0 个文件</span><a id="downloadAllButton" class="download-all-button" href="#" hidden>下载全部 ZIP</a></div></div><div id="artifactsOutput" class="artifact-list"></div></section>
         <section class="panel warnings-panel" id="warningsPanel" hidden><div class="panel-heading"><div><span class="panel-kicker">提示</span><h3>解析过程中的提醒</h3></div></div><ul id="warningList" class="warning-list"></ul></section>
         <details class="technical-details"><summary>查看技术详情</summary><div class="technical-grid"><div><h4>路由信息</h4><pre id="routingOutput" class="technical-block"></pre></div><div><h4>文档字段</h4><pre id="documentOutput" class="technical-block"></pre></div><div><h4>质量包原始数据</h4><pre id="qualityOutput" class="technical-block"></pre></div></div><p id="qualityMeta" class="technical-meta"></p></details>
-        <section class="panel reparse-panel"><div class="result-heading compact-heading"><div><span class="step">03</span><div><h2>需要换一种方式？</h2><p>保留原始任务，使用另一种解析方式重新处理。</p></div></div></div><form id="reparseForm" class="reparse-form"><input id="reparseId" type="hidden" /><label class="field"><span>重新解析方式</span><select id="reparseParser"></select></label><button id="reparseButton" class="secondary-button" type="submit">重新解析 <span>→</span></button></form></section>
+        <section class="panel reparse-panel"><div class="result-heading compact-heading"><div><span class="step">05</span><div><h2>需要换一种方式？</h2><p>保留原始任务，使用另一种解析方式重新处理。</p></div></div></div><form id="reparseForm" class="reparse-form"><input id="reparseId" type="hidden" /><label class="field"><span>重新解析方式</span><select id="reparseParser"></select></label><button id="reparseButton" class="secondary-button" type="submit">重新解析 <span>→</span></button></form></section>
       </section>
       <footer class="footer">文档内容只在当前解析任务中处理。技术字段仅供排查问题时查看。</footer>
     </main>

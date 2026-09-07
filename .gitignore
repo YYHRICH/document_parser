@@ -1,5 +1,12 @@
 # Historical source materials and local handoff files
 8.14/
+allin6/
+artifacts/
+llmwiki/
+docs/_chrome_profile/
+.chrome_tmp_profile/
+.clip.png
+~$*
 
 # Python caches and test artifacts
 __pycache__/

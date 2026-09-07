@@ -13,10 +13,13 @@ from typing import Any
 from ..domain.ports import StoragePort
 from ..domain.routing import CapabilityRegistry, ModelRouter, RoutingSettings
 from ..infra.converter import LegacyOfficeConverter
+from ..infra.delivery import MmwikiLifecycleDeliveryAdapter, MobileworkDeliveryAdapter
+from ..infra.lifecycle import FileSystemSourceFolder, JsonSourceLifecycleRepository
 from ..infra.parsers.markitdown import MarkItDownParser
 from ..infra.parsers.registry import build_capabilities, build_parser_registry
 from ..infra.storage import ApiStorage
 from .orchestration import DocumentParsePipeline
+from .source_lifecycle import SourceLifecycleService
 from .use_cases import ParseDocumentUseCase, ReparseDocumentUseCase, RunQualityUseCase
 
 
@@ -66,6 +69,30 @@ def build_application(
         run_quality=run_quality,
         storage=resolved_storage,
         parser=resolved_parser,
+    )
+
+
+def build_source_lifecycle(
+    *,
+    raw_root: Path | str,
+    state_root: Path | str,
+    storage_root: Path | str,
+    mobilework_root: Path | str | None = None,
+    mmwiki_root: Path | str | None = None,
+    parser: DocumentParsePipeline | None = None,
+    storage: StoragePort | None = None,
+) -> SourceLifecycleService:
+    """Compose folder lifecycle adapters without leaking infra into triggers/app."""
+
+    raw_path = Path(raw_root)
+    state_path = Path(state_root)
+    application = build_application(storage_root=storage_root, parser=parser, storage=storage)
+    return SourceLifecycleService(
+        application.parse_document,
+        sources=FileSystemSourceFolder(raw_path, excluded_roots=(state_path,)),
+        repository=JsonSourceLifecycleRepository(state_path),
+        delivery=MobileworkDeliveryAdapter(Path(mobilework_root)) if mobilework_root else None,
+        multimodal_delivery=MmwikiLifecycleDeliveryAdapter(Path(mmwiki_root)) if mmwiki_root else None,
     )
 
 
