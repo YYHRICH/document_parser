@@ -291,7 +291,8 @@ class ModelRouter:
         if parser_id == MINERU_ID:
             return {
                 **common,
-                "api_mode": "precise",
+                "api_mode": "precise" if self.settings.mineru_api_token is not None else "local",
+                "mineru_force_local": self.settings.mineru_api_token is None,
                 "api_base_url": self.settings.mineru_api_base_url,
                 "model_version": "vlm",
                 "is_ocr": needs_ocr,

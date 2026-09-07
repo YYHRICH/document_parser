@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5f8ff"/><stop offset="1" stop-color="#eef7f4"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.13"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#45607c"/></marker>
+    <style>
+      .title{font:700 34px 'Microsoft YaHei',sans-serif;fill:#17324d}.sub{font:18px 'Microsoft YaHei',sans-serif;fill:#526a80}
+      .lane{font:700 22px 'Microsoft YaHei',sans-serif;fill:white}.h{font:700 20px 'Microsoft YaHei',sans-serif;fill:#17324d}.t{font:16px 'Microsoft YaHei',sans-serif;fill:#334e68}.small{font:14px 'Microsoft YaHei',sans-serif;fill:#486581}
+      .box{rx:16;filter:url(#shadow);stroke-width:2}.line{stroke:#45607c;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1600" height="1080" fill="url(#bg)"/>
+  <text x="60" y="58" class="title">LLM Wiki 文档解析平台：DDD 松耦合架构与下游串联｜朱恩铄</text>
+  <text x="60" y="91" class="sub">核心价值：入口可替换、模型可扩展、质量可治理、交付可追溯；每层只通过稳定契约协作</text>
+
+  <rect x="45" y="125" width="1510" height="125" rx="20" fill="#3d6b99"/>
+  <text x="70" y="160" class="lane">① 用户与触发入口</text>
+  <rect x="85" y="178" width="270" height="52" class="box" fill="#fff" stroke="#b8cce0"/><text x="220" y="210" text-anchor="middle" class="h">网页上传与结果展示</text>
+  <rect x="415" y="178" width="270" height="52" class="box" fill="#fff" stroke="#b8cce0"/><text x="550" y="210" text-anchor="middle" class="h">命令行与批量任务</text>
+  <rect x="745" y="178" width="330" height="52" class="box" fill="#fff" stroke="#b8cce0"/><text x="910" y="210" text-anchor="middle" class="h">指定文件夹变化触发</text>
+  <rect x="1135" y="178" width="330" height="52" class="box" fill="#fff" stroke="#b8cce0"/><text x="1300" y="210" text-anchor="middle" class="h">标准接口与下游调用</text>
+
+  <path d="M220 250V287" class="line"/><path d="M550 250V287" class="line"/><path d="M910 250V287" class="line"/><path d="M1300 250V287" class="line"/>
+  <rect x="45" y="290" width="1510" height="150" rx="20" fill="#e8f0fb" stroke="#86a8cc" stroke-width="2"/>
+  <text x="70" y="326" class="h">② 应用编排层：只组织业务流程，不绑定任何具体工具</text>
+  <rect x="85" y="350" width="300" height="65" class="box" fill="#fff" stroke="#7aa2cf"/><text x="235" y="378" text-anchor="middle" class="h">解析与重新解析</text><text x="235" y="400" text-anchor="middle" class="small">统一流程、统一任务结果</text>
+  <rect x="455" y="350" width="300" height="65" class="box" fill="#fff" stroke="#7aa2cf"/><text x="605" y="378" text-anchor="middle" class="h">模型路由编排</text><text x="605" y="400" text-anchor="middle" class="small">按格式和能力选择工具</text>
+  <rect x="825" y="350" width="300" height="65" class="box" fill="#fff" stroke="#7aa2cf"/><text x="975" y="378" text-anchor="middle" class="h">质量检查编排</text><text x="975" y="400" text-anchor="middle" class="small">诊断、修复、复检、准入</text>
+  <rect x="1195" y="350" width="300" height="65" class="box" fill="#fff" stroke="#7aa2cf"/><text x="1345" y="378" text-anchor="middle" class="h">生命周期与发布</text><text x="1345" y="400" text-anchor="middle" class="small">新增、修改、移动、删除</text>
+
+  <path d="M790 440V478" class="line"/>
+  <rect x="45" y="480" width="1510" height="205" rx="20" fill="#e8f7f1" stroke="#64a98c" stroke-width="3"/>
+  <text x="70" y="517" class="h">③ 领域核心层｜稳定业务规则，不认识网页、磁盘、云服务和具体解析器</text>
+  <rect x="80" y="545" width="335" height="110" class="box" fill="#fff" stroke="#56a282"/><text x="247" y="577" text-anchor="middle" class="h">统一文档标准</text><text x="247" y="604" text-anchor="middle" class="t">正文、内容块、图片、表格</text><text x="247" y="630" text-anchor="middle" class="t">页码、坐标、来源证据</text>
+  <rect x="455" y="545" width="335" height="110" class="box" fill="#fff" stroke="#56a282"/><text x="622" y="577" text-anchor="middle" class="h">能力路由规则</text><text x="622" y="604" text-anchor="middle" class="t">文档特征 → 最合适工具</text><text x="622" y="630" text-anchor="middle" class="t">失败可降级，不锁定单模型</text>
+  <rect x="830" y="545" width="335" height="110" class="box" fill="#fff" stroke="#56a282"/><text x="997" y="577" text-anchor="middle" class="h">质量治理规则</text><text x="997" y="604" text-anchor="middle" class="t">安全修复、证据检查</text><text x="997" y="630" text-anchor="middle" class="t">通过 / 警告 / 拒绝</text>
+  <rect x="1205" y="545" width="310" height="110" class="box" fill="#fff" stroke="#56a282"/><text x="1360" y="577" text-anchor="middle" class="h">稳定身份与事件</text><text x="1360" y="604" text-anchor="middle" class="t">来源编号、解析版本</text><text x="1360" y="630" text-anchor="middle" class="t">变化记录、失败重试</text>
+
+  <path d="M790 727V689" class="line"/>
+  <text x="820" y="714" class="small">依赖倒置：基础设施实现领域定义的接口</text>
+  <rect x="45" y="730" width="1510" height="175" rx="20" fill="#fff4e5" stroke="#d99a42" stroke-width="2"/>
+  <text x="70" y="766" class="h">④ 可插拔适配层｜工具变化不影响领域核心</text>
+  <rect x="80" y="792" width="210" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="185" y="824" text-anchor="middle" class="h">Docling</text><text x="185" y="850" text-anchor="middle" class="small">通用、新版 Office</text>
+  <rect x="320" y="792" width="210" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="425" y="824" text-anchor="middle" class="h">AnyDoc</text><text x="425" y="850" text-anchor="middle" class="small">快速、旧版 Office</text>
+  <rect x="560" y="792" width="210" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="665" y="824" text-anchor="middle" class="h">MinerU</text><text x="665" y="850" text-anchor="middle" class="small">复杂 PDF、图文增强</text>
+  <rect x="800" y="792" width="210" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="905" y="824" text-anchor="middle" class="h">MarkItDown</text><text x="905" y="850" text-anchor="middle" class="small">长尾格式补充</text>
+  <rect x="1040" y="792" width="210" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="1145" y="824" text-anchor="middle" class="h">Firecrawl</text><text x="1145" y="850" text-anchor="middle" class="small">网页抓取与结构化</text>
+  <rect x="1280" y="792" width="235" height="80" class="box" fill="#fff" stroke="#d5a052"/><text x="1397" y="824" text-anchor="middle" class="h">存储与下游适配器</text><text x="1397" y="850" text-anchor="middle" class="small">文件、接口、Wiki</text>
+
+  <path d="M1397 905V944" class="line"/>
+  <rect x="45" y="945" width="1510" height="95" rx="20" fill="#4b3f72"/>
+  <text x="70" y="980" class="lane">⑤ 下游 Wiki 串联</text>
+  <text x="85" y="1015" class="lane">质量通过的正文 + 图片资源 + 质量报告</text>
+  <text x="585" y="1015" class="lane">→ 知识构建与更新</text>
+  <text x="940" y="1015" class="lane">→ 检索、图谱、问答与引用</text>
+  <text x="60" y="1068" class="small">事实依据：当前 app / domain / infra / trigger 分层、组合根、生命周期与下游适配器代码，以及自动化测试结果。</text>
+</svg>

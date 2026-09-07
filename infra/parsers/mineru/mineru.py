@@ -53,12 +53,13 @@ class MinerUParser(BaseParserAdapter):
 
     @property
     def capability(self) -> ParserCapability:
-        dependency_available = (
-            self._has_cloud_token()
+        local_runtime_available = (
+            find_spec("mineru") is not None
             or find_spec("magic_pdf") is not None
             or shutil.which("mineru") is not None
             or shutil.which("mineru.cmd") is not None
         )
+        dependency_available = self._has_cloud_token() or local_runtime_available
         return ParserCapability(
             parser_id=self.PARSER_ID,
             provider=self.PROVIDER,
@@ -66,7 +67,7 @@ class MinerUParser(BaseParserAdapter):
             formats=self.NATIVE_FORMATS,
             model_versions=self.MODEL_VERSIONS,
             default_model_version=self.DEFAULT_MODEL_VERSION,
-            requires_network=self.REQUIRES_NETWORK,
+            requires_network=not local_runtime_available,
             requires_gpu=self.REQUIRES_GPU,
             available=dependency_available,
             unavailable_reason=None if dependency_available else self.UNAVAILABLE_REASON,

@@ -12,11 +12,9 @@
   </defs>
   <rect width="1020" height="1000" fill="#f8fafc"/>
 
-  <!-- 标题 -->
   <text x="30" y="40" font-size="26" font-weight="bold" fill="#0f172a">文档解析平台 · DDD 分层架构</text>
   <text x="30" y="66" font-size="15" fill="#64748b">Ports &amp; Adapters + 用例驱动 · 目标：松耦合 / 可拆分 / 可复用</text>
 
-  <!-- 右列：前端与契约 -->
   <rect x="700" y="100" width="290" height="92" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
   <text x="720" y="128" font-size="16" font-weight="bold" fill="#075985">frontend · Web 前端</text>
   <text x="720" y="152" font-size="12.5" fill="#0c4a6e">原生 HTML/JS 单页</text>
@@ -31,8 +29,6 @@
   <text x="720" y="293" font-size="12.5" fill="#312e81">ParserListResponse / QualityPackageResponse</text>
   <text x="720" y="316" font-size="12.5" fill="#312e81">↔ trigger 使用 · 供外部消费者复用</text>
 
-  <!-- 主列四层 -->
-  <!-- trigger -->
   <rect x="30" y="100" width="640" height="172" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
   <text x="48" y="128" font-size="17" font-weight="bold" fill="#1e3a8a">trigger · 触发层（薄入口，不写业务）</text>
   <rect x="48" y="142" width="196" height="112" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
@@ -54,7 +50,6 @@
   <line x1="350" y1="272" x2="350" y2="298" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
   <text x="366" y="290" font-size="11.5" fill="#475569">调用用例</text>
 
-  <!-- app -->
   <rect x="30" y="300" width="640" height="152" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
   <text x="48" y="328" font-size="17" font-weight="bold" fill="#134e4a">app · 应用层（用例编排）</text>
   <rect x="48" y="342" width="300" height="92" rx="8" fill="#ffffff" stroke="#14b8a6" stroke-width="1.5"/>
@@ -69,7 +64,6 @@
   <line x1="350" y1="452" x2="350" y2="478" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
   <text x="366" y="470" font-size="11.5" fill="#475569">依赖领域</text>
 
-  <!-- domain -->
   <rect x="30" y="480" width="640" height="172" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
   <text x="48" y="508" font-size="17" font-weight="bold" fill="#78350f">domain · 领域核心（业务语义，框架无关）</text>
   <rect x="48" y="522" width="196" height="112" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
@@ -90,7 +84,6 @@
   <line x1="350" y1="652" x2="350" y2="676" stroke="#0f766e" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#dashArrow)"/>
   <text x="366" y="670" font-size="11.5" fill="#0f766e">实现端口</text>
 
-  <!-- infra -->
   <rect x="30" y="680" width="640" height="172" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
   <text x="48" y="708" font-size="17" font-weight="bold" fill="#4c1d95">infra · 基础设施（可替换实现）</text>
   <rect x="48" y="722" width="300" height="112" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
@@ -104,11 +97,9 @@
   <text x="374" y="790" font-size="12" fill="#334155">LegacyOfficeConverter 格式转换</text>
   <text x="374" y="812" font-size="12" fill="#334155">quality_packaging / llm（M6）</text>
 
-  <!-- api 与 domain 依赖标注 -->
   <path d="M700 278 L672 278 L672 566" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#blueArrow)"/>
   <text x="672" y="440" font-size="11" fill="#4338ca" transform="rotate(-90 686 440)">api 依赖 domain 领域值</text>
 
-  <!-- 底部状态条 -->
   <rect x="30" y="880" width="960" height="100" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
   <text x="48" y="906" font-size="14" font-weight="bold" fill="#0f172a">当前状态与可拆分性</text>
   <text x="48" y="930" font-size="12.5" fill="#334155">当前部署：单仓库单进程（uvicorn 启动 trigger/http，托管 frontend） · 237 项自动化测试通过 · 依赖方向受检</text>
