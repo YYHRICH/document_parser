@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f9ff"/><stop offset="1" stop-color="#eef9f4"/></linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.14"/></filter>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#526d82"/></marker>
+    <style>.title{font:700 34px 'Microsoft YaHei';fill:#17324d}.sub{font:18px 'Microsoft YaHei';fill:#526d82}.h{font:700 20px 'Microsoft YaHei';fill:#17324d}.t{font:16px 'Microsoft YaHei';fill:#334e68}.white{font:700 20px 'Microsoft YaHei';fill:white}.box{rx:16;filter:url(#s);stroke-width:2}.line{stroke:#526d82;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg2)"/>
+  <text x="55" y="58" class="title">文档解析路由：从“MinerU 全处理”到“按能力全覆盖”｜张云雅</text>
+  <text x="55" y="92" class="sub">先识别文件类型与证据需求，再选择最合适的解析工具；失败时按能力顺序降级</text>
+  <rect x="480" y="120" width="640" height="90" class="box" fill="#3d6b99" stroke="#315a82"/><text x="800" y="153" text-anchor="middle" class="white">allin6 数据集：共 224 份</text><text x="800" y="187" text-anchor="middle" class="white">PDF 125　｜　新版 Office 50　｜　旧版 Office 49</text>
+  <path d="M800 210V245" class="line"/><polygon points="800,235 1035,310 800,385 565,310" fill="#fff" stroke="#5a82a8" stroke-width="3" filter="url(#s)"/><text x="800" y="302" text-anchor="middle" class="h">判断文件类型、扫描特征</text><text x="800" y="330" text-anchor="middle" class="t">是否需要 OCR、图片、复杂版面和表格证据</text>
+  <path d="M565 310H270V425" class="line"/><text x="360" y="294" class="t">复杂 PDF / 扫描件</text><path d="M800 385V425" class="line"/><text x="820" y="410" class="t">DOCX / XLSX</text><path d="M1035 310H1330V425" class="line"/><text x="1110" y="294" class="t">DOC / XLS / PPT</text>
+  <rect x="90" y="430" width="360" height="150" class="box" fill="#fff2e1" stroke="#d99536"/><text x="270" y="468" text-anchor="middle" class="h">MinerU：复杂 PDF 主路径</text><text x="270" y="500" text-anchor="middle" class="t">OCR、图片、复杂版面、表格证据更强</text><text x="270" y="530" text-anchor="middle" class="t">本批 PDF：125 份</text><text x="270" y="558" text-anchor="middle" class="t">失败降级：Docling</text>
+  <rect x="620" y="430" width="360" height="150" class="box" fill="#e9f3ff" stroke="#6797c8"/><text x="800" y="468" text-anchor="middle" class="h">Docling：新版 Office 主路径</text><text x="800" y="500" text-anchor="middle" class="t">结构化输出和版面来源证据较完整</text><text x="800" y="530" text-anchor="middle" class="t">本批新版 Office：50 份</text><text x="800" y="558" text-anchor="middle" class="t">失败降级：AnyDoc / MarkItDown</text>
+  <rect x="1150" y="430" width="360" height="150" class="box" fill="#e9f8ef" stroke="#59a377"/><text x="1330" y="468" text-anchor="middle" class="h">AnyDoc：旧版 Office 快速路径</text><text x="1330" y="500" text-anchor="middle" class="t">部署轻、转换快、兼容旧格式</text><text x="1330" y="530" text-anchor="middle" class="t">本批旧版 Office：49 份</text><text x="1330" y="558" text-anchor="middle" class="t">复杂图文不作为主路径</text>
+  <path d="M270 580V645H790" class="line"/><path d="M800 580V645" class="line"/><path d="M1330 580V645H810" class="line"/>
+  <rect x="570" y="650" width="460" height="100" class="box" fill="#4b3f72" stroke="#3d335d"/><text x="800" y="690" text-anchor="middle" class="white">统一输出 + 质量门</text><text x="800" y="720" text-anchor="middle" class="white">正文、图片、表格、来源证据 → 修复、复检、准入</text>
+  <rect x="70" y="800" width="450" height="120" rx="18" fill="#edf1f5" stroke="#8796a5" stroke-width="2"/><text x="295" y="840" text-anchor="middle" class="h">原方案：MinerU 全部处理</text><text x="295" y="872" text-anchor="middle" class="t">覆盖 224/224｜约 7701 秒</text><text x="295" y="899" text-anchor="middle" class="t">覆盖强，但 Office 也承担高成本解析</text>
+  <text x="800" y="870" text-anchor="middle" class="title">→</text>
+  <rect x="1080" y="800" width="450" height="120" rx="18" fill="#e4f6eb" stroke="#4d9b6d" stroke-width="3"/><text x="1305" y="840" text-anchor="middle" class="h">当前方案：质量优先路由</text><text x="1305" y="872" text-anchor="middle" class="t">覆盖 224/224｜约 5129 秒</text><text x="1305" y="899" text-anchor="middle" class="t">本批总时间减少约 33.4%</text>
+  <text x="55" y="960" class="sub">事实依据：解析工具比较路由层、实测数据集情况（224 份）；硬件和调用管线不同，时间不代表跨环境固定倍率。</text>
+</svg>

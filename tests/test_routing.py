@@ -27,6 +27,12 @@ def test_router_prefers_mineru_for_pdf() -> None:
 
 def test_router_skips_mineru_for_pdf_without_cloud_token(monkeypatch) -> None:
     monkeypatch.delenv("MINERU_API_TOKEN", raising=False)
+    monkeypatch.setattr(
+        "document_parser.infra.parsers.mineru.mineru.find_spec", lambda _name: None
+    )
+    monkeypatch.setattr(
+        "document_parser.infra.parsers.mineru.mineru.shutil.which", lambda _name: None
+    )
     router = build_router(mineru_api_token=None)
     decision = router.route(
         DocumentSignals(
@@ -39,6 +45,28 @@ def test_router_skips_mineru_for_pdf_without_cloud_token(monkeypatch) -> None:
 
     assert decision.selected_parser_id == "docling"
     assert "mineru" in decision.unavailable_reasons
+
+
+def test_router_uses_installed_local_mineru_without_cloud_token(monkeypatch) -> None:
+    monkeypatch.delenv("MINERU_API_TOKEN", raising=False)
+    monkeypatch.setattr(
+        "document_parser.infra.parsers.mineru.mineru.find_spec",
+        lambda name: object() if name == "mineru" else None,
+    )
+    router = build_router(mineru_api_token=None)
+
+    decision = router.route(
+        DocumentSignals(
+            extension=".pdf",
+            size_bytes=1024,
+            has_text_layer=True,
+            language_hint="zh",
+        )
+    )
+
+    assert decision.selected_parser_id == "mineru"
+    assert decision.parser_options["api_mode"] == "local"
+    assert decision.parser_options["mineru_force_local"] is True
 
 
 def test_router_uses_markitdown_for_plain_text() -> None:

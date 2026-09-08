@@ -141,6 +141,33 @@ def validate_parsed_document_integrity(
                 owner=f"资源 {asset.path}",
             )
 
+    item_ids = {block.source_block_id for block in document.blocks if block.source_block_id}
+    asset_id_values = [asset.asset_id for asset in document.assets if asset.asset_id]
+    asset_ids = set(asset_id_values)
+    chunk_ids = {chunk.chunk_id for chunk in document.retrieval_chunks}
+    duplicate_asset_ids = _duplicates(asset_id_values)
+    duplicate_chunk_ids = _duplicates([chunk.chunk_id for chunk in document.retrieval_chunks])
+    if duplicate_asset_ids:
+        errors.append(f"assets[].asset_id 存在重复：{duplicate_asset_ids}")
+    if duplicate_chunk_ids:
+        errors.append(f"retrieval_chunks[].chunk_id 存在重复：{duplicate_chunk_ids}")
+    for chunk in document.retrieval_chunks:
+        for item_id in [*chunk.item_ids, *chunk.context_item_ids]:
+            if item_id not in item_ids:
+                errors.append(f"Chunk {chunk.chunk_id} 引用了不存在的 item：{item_id}")
+        for asset_id in chunk.asset_ids:
+            if asset_id not in asset_ids:
+                errors.append(f"Chunk {chunk.chunk_id} 引用了不存在的 asset：{asset_id}")
+    for evidence in document.visual_evidence:
+        if evidence.asset_id not in asset_ids:
+            errors.append(f"视觉证据 {evidence.id} 引用了不存在的 asset：{evidence.asset_id}")
+        for item_id in evidence.parent_item_ids:
+            if item_id not in item_ids:
+                errors.append(f"视觉证据 {evidence.id} 引用了不存在的 item：{item_id}")
+        for chunk_id in evidence.parent_chunk_ids:
+            if chunk_id not in chunk_ids:
+                errors.append(f"视觉证据 {evidence.id} 引用了不存在的 chunk：{chunk_id}")
+
     if package_root is not None:
         for artifact in document.native_artifacts:
             _check_sidecar_exists(

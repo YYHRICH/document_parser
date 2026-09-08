@@ -18,6 +18,7 @@ class ParseApplicationResult:
     parse_id: str
     package_root: Path
     document: ParsedDocument
+    quality_package: QualityPackage
     native_files: dict[str, bytes]
 
 
@@ -58,11 +59,13 @@ class ParseDocumentUseCase:
             source_content=source_content,
             native_files=result.native_files,
         )
-        self._storage.write_quality_package(parse_id, self._quality.execute(result.document))
+        quality_package = self._quality.execute(result.document)
+        self._storage.write_quality_package(parse_id, quality_package)
         return ParseApplicationResult(
             parse_id=parse_id,
             package_root=package_root,
             document=result.document,
+            quality_package=quality_package,
             native_files=result.native_files,
         )
 

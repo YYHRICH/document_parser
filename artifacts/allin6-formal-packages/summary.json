@@ -1,0 +1,10 @@
+{
+  "schema_name": "FormalDatasetPackageSummary",
+  "schema_version": "1.0",
+  "source_count": 224,
+  "package_count": 224,
+  "asset_count": 8471,
+  "rejected_count": 0,
+  "dangling_asset_reference_count": 0,
+  "import_scope": "saved_parser_outputs_without_fabricated_native_evidence"
+}

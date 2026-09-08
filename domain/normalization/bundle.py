@@ -16,9 +16,11 @@ from ..model.contracts import (
     OcrSpan,
     ParsedDocument,
     ParsedTable,
+    RetrievalChunk,
     ParseConfidence,
     ParserProvenance,
     RoutingDecision,
+    VisualEvidence,
 )
 
 
@@ -157,6 +159,8 @@ class ParserNormalizationBundle(BaseModel):
     assets: list[DocumentAsset] = Field(default_factory=list)
     tables: list[ParsedTable] = Field(default_factory=list)
     ocr_spans: list[OcrSpan] = Field(default_factory=list)
+    retrieval_chunks: list[RetrievalChunk] = Field(default_factory=list)
+    visual_evidence: list[VisualEvidence] = Field(default_factory=list)
     confidence: ParseConfidence
     provenance: ParserProvenance
     warnings: list[str] = Field(default_factory=list)
@@ -188,6 +192,8 @@ class ParserNormalizationBundle(BaseModel):
         assets: list[DocumentAsset] | None = None,
         tables: list[ParsedTable] | None = None,
         ocr_spans: list[OcrSpan] | None = None,
+        retrieval_chunks: list[RetrievalChunk] | None = None,
+        visual_evidence: list[VisualEvidence] | None = None,
         alternatives: list[dict[str, Any]] | None = None,
     ) -> "ParserNormalizationBundle":
         """为只返回 Markdown 或部分结构的解析器构造最小统一包。"""
@@ -204,6 +210,8 @@ class ParserNormalizationBundle(BaseModel):
             assets=assets or [],
             tables=tables or [],
             ocr_spans=ocr_spans or [],
+            retrieval_chunks=retrieval_chunks or [],
+            visual_evidence=visual_evidence or [],
             confidence=confidence or ParseConfidence(),
             provenance=ParserProvenance(
                 parser_id=parser_id,
@@ -236,6 +244,8 @@ class ParserNormalizationBundle(BaseModel):
             assets=parsed_document.assets,
             tables=parsed_document.tables,
             ocr_spans=parsed_document.ocr_spans,
+            retrieval_chunks=parsed_document.retrieval_chunks,
+            visual_evidence=parsed_document.visual_evidence,
             confidence=parsed_document.confidence,
             provenance=parsed_document.provenance,
             warnings=parsed_document.warnings,
@@ -269,6 +279,8 @@ class ParserNormalizationBundle(BaseModel):
             assets=self.assets,
             tables=self.tables,
             ocr_spans=self.ocr_spans,
+            retrieval_chunks=self.retrieval_chunks,
+            visual_evidence=self.visual_evidence,
             confidence=self.confidence,
             provenance=self.provenance,
             warnings=self.warnings,

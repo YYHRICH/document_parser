@@ -19,12 +19,23 @@ from ...api.dto import (
 from ...domain.model.contracts import ParseRequest, QualityPackage
 
 
-def build_router(*, application: object) -> APIRouter:
+def build_router(
+    *,
+    application: object,
+    lifecycle: object | None = None,
+    lifecycle_repository: object | None = None,
+    lifecycle_raw_root: Path | None = None,
+    lifecycle_state_root: Path | None = None,
+) -> APIRouter:
     router = APIRouter()
 
     parse_document = getattr(application, "parse_document")
     reparse_document = getattr(application, "reparse_document")
     storage = getattr(application, "storage")
+
+    def _require_lifecycle() -> None:
+        if lifecycle is None or lifecycle_repository is None or lifecycle_raw_root is None or lifecycle_state_root is None:
+            raise HTTPException(status_code=503, detail="Lifecycle workspace is not configured.")
 
     @router.get("/api/health")
     def health() -> dict[str, str]:
@@ -33,6 +44,61 @@ def build_router(*, application: object) -> APIRouter:
     @router.get("/api/parsers", response_model=ParserListResponse)
     def list_parsers() -> ParserListResponse:
         return ParserListResponse(parsers=parse_document.list_parsers())
+
+    @router.get("/api/lifecycle")
+    def lifecycle_status() -> dict[str, object]:
+        _require_lifecycle()
+        manifest = lifecycle_repository.load()
+        return {
+            "raw_root": str(lifecycle_raw_root.resolve()),
+            "state_root": str(lifecycle_state_root.resolve()),
+            "manifest": manifest.model_dump(mode="json"),
+            "delivery": lifecycle.delivery_status(),
+            "multimodal_delivery": lifecycle.multimodal_delivery_status(),
+        }
+
+    @router.get("/api/downstream")
+    def downstream_status() -> dict[str, object]:
+        _require_lifecycle()
+        return lifecycle.delivery_status()
+
+    @router.post("/api/lifecycle/scan")
+    def lifecycle_scan() -> dict[str, object]:
+        _require_lifecycle()
+        events = lifecycle.scan(
+            parser_id="microsoft.markitdown",
+            options={"allow_cloud": False, "route_profile": "local_first"},
+        )
+        manifest = lifecycle_repository.load()
+        return {
+            "events": [event.as_dict() for event in events],
+            "manifest": manifest.model_dump(mode="json"),
+            "delivery": lifecycle.delivery_status(),
+            "multimodal_delivery": lifecycle.multimodal_delivery_status(),
+        }
+
+    @router.post("/api/lifecycle/sources")
+    async def lifecycle_put_source(file: UploadFile = File()) -> dict[str, object]:
+        _require_lifecycle()
+        filename = Path(file.filename or "demo.md").name
+        if filename in {"", ".", ".."}:
+            raise HTTPException(status_code=400, detail="Invalid filename.")
+        content = await file.read()
+        if not content:
+            raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+        target = lifecycle_raw_root / filename
+        target.write_bytes(content)
+        return {"path": filename, "size_bytes": len(content)}
+
+    @router.delete("/api/lifecycle/sources/{filename}")
+    def lifecycle_delete_source(filename: str) -> dict[str, object]:
+        _require_lifecycle()
+        safe_name = Path(filename).name
+        target = lifecycle_raw_root / safe_name
+        if safe_name != filename or not target.is_file():
+            raise HTTPException(status_code=404, detail="Managed source not found.")
+        target.unlink()
+        return {"path": safe_name, "deleted": True}
 
     @router.post("/api/parses", response_model=ParseJobResponse)
     async def create_parse(

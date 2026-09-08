@@ -92,6 +92,25 @@ class EvidenceAvailability(StrEnum):
     FAILED = "failed"
 
 
+class VisualEvidenceKind(StrEnum):
+    IMAGE_CAPTION = "image_caption"
+    IMAGE_OCR = "image_ocr"
+
+
+class VisualEvidenceStatus(StrEnum):
+    READY = "ready"
+    SKIPPED = "skipped"
+    AMBIGUOUS = "ambiguous"
+    ERROR = "error"
+    MISSING = "missing"
+
+
+class VisualClaimProvenance(StrEnum):
+    EXTRACTED = "extracted"
+    INFERRED = "inferred"
+    AMBIGUOUS = "ambiguous"
+
+
 class ParseRequest(BaseModel):
     """提交给文档解析服务的统一请求。"""
 
@@ -240,12 +259,15 @@ class SourceAnchor(BaseModel):
 
     # 页码从 1 开始；无分页格式可以为空。
     page_number: int | None = Field(default=None, ge=1)
+    page_end: int | None = Field(default=None, ge=1)
     # 原页面坐标框：(左、上、右、下)。
     bbox: tuple[float, float, float, float] | None = None
     # 坐标解释所需的页面大小和坐标系，避免不同解析器 bbox 含义混淆。
     page_width: float | None = Field(default=None, gt=0)
     page_height: float | None = Field(default=None, gt=0)
     coordinate_system: str | None = None
+    origin: str | None = None
+    page_unit: str | None = None
     bbox_granularity: str | None = None
     provenance_status: str | None = None
     # 块所在的多级标题路径。
@@ -254,6 +276,24 @@ class SourceAnchor(BaseModel):
     table_cell: str | None = None
     # 解析前对应的原始文本，便于追溯。
     original_text: str | None = None
+
+    @model_validator(mode="after")
+    def validate_bbox_semantics(self) -> "SourceAnchor":
+        """阻止归一化坐标被误当成页面物理坐标。"""
+
+        if self.bbox is None:
+            return self
+        if self.coordinate_system == "normalized_1000":
+            left, top, right, bottom = self.bbox
+            if any(value < 0 or value > 1000 for value in self.bbox):
+                raise ValueError("normalized_1000 bbox 的每个坐标必须位于 0 到 1000。")
+            if left > right or top > bottom:
+                raise ValueError(
+                    "normalized_1000 bbox 必须满足 left<=right 且 top<=bottom。"
+                )
+            if self.origin not in {None, "top_left"}:
+                raise ValueError("normalized_1000 bbox 的原点必须为 top_left。")
+        return self
 
 
 class DocumentBlock(BaseModel):
@@ -290,6 +330,8 @@ class DocumentAsset(BaseModel):
         val_json_bytes="base64",
     )
 
+    # 跨 items/chunks/visual evidence 使用的稳定资源 ID。
+    asset_id: str | None = None
     # Markdown 使用的相对路径，例如 images/figure-1.png。
     path: str
     # 图片或其他附件；新增类型应保持向后兼容。
@@ -330,6 +372,66 @@ class OcrSpan(BaseModel):
     confidence: float | None = Field(default=None, ge=0, le=1)
     page_number: int | None = Field(default=None, ge=1)
     rotation_angle: float | None = None
+
+
+class RetrievalChunk(BaseModel):
+    """杨多模态层产出的可检索单元及其证据关联。"""
+
+    chunk_id: str
+    item_ids: list[str] = Field(default_factory=list)
+    text: str
+    breadcrumb: str | None = None
+    modalities: list[str] = Field(default_factory=list)
+    asset_ids: list[str] = Field(default_factory=list)
+    page_refs: list[int] = Field(default_factory=list)
+    context_item_ids: list[str] = Field(default_factory=list)
+    searchable: bool = True
+    needs_review: bool = False
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class VisualClaim(BaseModel):
+    statement: str
+    provenance: VisualClaimProvenance
+
+
+class VisualEvidenceProvenance(BaseModel):
+    source: str
+    model: str
+    model_version: str | None = None
+    prompt_version: str | None = None
+    task: str | None = None
+
+
+class VisualEvidence(BaseModel):
+    """一张图片的 Caption 或 OCR 结果槽位。"""
+
+    id: str
+    kind: VisualEvidenceKind
+    text: str = ""
+    asset_id: str
+    parent_item_ids: list[str] = Field(default_factory=list)
+    parent_chunk_ids: list[str] = Field(default_factory=list)
+    page_refs: list[int] = Field(default_factory=list)
+    status: VisualEvidenceStatus
+    searchable: bool = False
+    provenance: VisualEvidenceProvenance | None = None
+    claims: list[VisualClaim] = Field(default_factory=list)
+    reason: str | None = None
+    error: str | None = None
+
+    @model_validator(mode="after")
+    def validate_status_semantics(self) -> "VisualEvidence":
+        if self.status == VisualEvidenceStatus.READY:
+            if not self.provenance:
+                raise ValueError("ready visual evidence 必须提供 provenance。")
+        elif self.searchable:
+            raise ValueError("非 ready visual evidence 必须 searchable=false。")
+        if self.status in {VisualEvidenceStatus.SKIPPED, VisualEvidenceStatus.AMBIGUOUS, VisualEvidenceStatus.MISSING} and not self.reason:
+            raise ValueError(f"{self.status.value} visual evidence 必须提供 reason。")
+        if self.status == VisualEvidenceStatus.ERROR and not self.error:
+            raise ValueError("error visual evidence 必须提供 error。")
+        return self
 
 
 class TableCell(BaseModel):
@@ -434,6 +536,8 @@ class ParsedDocument(BaseModel):
     assets: list[DocumentAsset] = Field(default_factory=list)
     tables: list[ParsedTable] = Field(default_factory=list)
     ocr_spans: list[OcrSpan] = Field(default_factory=list)
+    retrieval_chunks: list[RetrievalChunk] = Field(default_factory=list)
+    visual_evidence: list[VisualEvidence] = Field(default_factory=list)
     # 质量评价和执行来源。
     confidence: ParseConfidence
     provenance: ParserProvenance

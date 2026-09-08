@@ -54,7 +54,8 @@ async function loadPackageFiles(parseId, fallbackArtifacts = []) {
   }
 }
 
-/** @param {string} parseId @param {PackageFileEntry[]} artifacts */\nfunction renderArtifactLinks(parseId, artifacts) {
+/** @param {string} parseId @param {PackageFileEntry[]} artifacts */
+function renderArtifactLinks(parseId, artifacts) {
   const target = $("artifactsOutput");
   const downloadAll = $("downloadAllButton");
   target.innerHTML = "";
@@ -73,7 +74,8 @@ async function loadPackageFiles(parseId, fallbackArtifacts = []) {
 function renderWarnings(warnings) { const panel = $("warningsPanel"), target = $("warningList"); target.innerHTML = ""; const visible = [...new Set((warnings || []).filter(Boolean))]; panel.hidden = visible.length === 0; for (const warning of visible) { const item = document.createElement("li"); item.textContent = warning; target.appendChild(item); } }
 function qualityStateLabel(state) { return QUALITY_LABELS[state] || state || "未生成"; }
 
-/** @param {QualityPackage} packagePayload */\nfunction renderQualityPackage(packagePayload) {
+/** @param {QualityPackage} packagePayload */
+function renderQualityPackage(packagePayload) {
   state.lastQuality = packagePayload; const report = packagePayload?.quality_report || {}, stateName = report.state || "unknown", stateElement = $("qualityState"); stateElement.textContent = qualityStateLabel(stateName); stateElement.className = `quality-state ${stateName}`;
   const issues = report.issues || []; $("issueCount").textContent = `${issues.length} 项`; $("qualitySummary").textContent = issues.length ? `${issues.length} 条检查结果，${(report.applied_repairs || []).length} 项已自动整理` : "未发现需要关注的问题";
   const target = $("qualityIssues"); target.innerHTML = "";
@@ -82,7 +84,8 @@ function qualityStateLabel(state) { return QUALITY_LABELS[state] || state || "�
 }
 async function loadQualityPackage(parseId) { try { const response = await fetch(`/api/parses/${encodeURIComponent(parseId)}/quality-package`), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || `质量包读取失败：${response.status}`); renderQualityPackage(payload.quality_package); $("qualityMeta").textContent = `任务目录：${payload.package_path}`; } catch (error) { $("qualityState").textContent = "未生成"; $("qualityState").className = "quality-state"; $("qualitySummary").textContent = error.message; $("qualityIssues").innerHTML = '<p class="empty-state">暂时无法读取质量检查结果。</p>'; $("qualityMeta").textContent = error.message; } }
 
-/** @param {ParseJobResponse} payload */\nfunction renderResponse(payload) {
+/** @param {ParseJobResponse} payload */
+function renderResponse(payload) {
   state.lastResponse = payload; const doc = payload.document || {}, provenance = doc.provenance || {}, routing = doc.routing_decision || {}, parseId = payload.parse_id || "", parserId = provenance.parser_id || routing.selected_parser_id || "", blocks = doc.blocks || [], tables = doc.tables || [], assets = doc.assets || [];
   $("resultSection").hidden = false; $("reparseId").value = parseId; $("resultSourceName").textContent = `${doc.filename || "文档"} · 任务编号 ${parseId}`; $("resultParser").textContent = parserLabel(parserId); $("resultRoute").textContent = routing.reason || (provenance.routing_mode === "manual" ? "手动指定" : "自动选择"); $("resultBlocks").textContent = blocks.length; $("resultTables").textContent = tables.length; $("resultAssets").textContent = `${tables.length} 张表格 · ${assets.length} 个附件`; $("markdownOutput").textContent = doc.markdown || "解析器没有返回可预览的正文内容。";
   $("routingOutput").textContent = JSON.stringify(routing, null, 2); $("documentOutput").textContent = JSON.stringify({ filename: doc.filename, file_type: doc.file_type, provenance, confidence: doc.confidence, capabilities: doc.capabilities, warnings: doc.warnings, blocks: blocks.length, tables: tables.length, assets: assets.length }, null, 2); loadPackageFiles(parseId, doc.native_artifacts || []); renderWarnings(doc.warnings || []); loadQualityPackage(parseId); $("resultSection").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -95,4 +98,37 @@ async function submitReparse(event) { event.preventDefault(); const parseId = $(
 function bindFilePicker() { const input = $("fileInput"), dropzone = $("fileDropzone"); input.addEventListener("change", updateSelectedFile); for (const eventName of ["dragenter", "dragover"]) dropzone.addEventListener(eventName, (event) => { event.preventDefault(); dropzone.classList.add("dragover"); }); for (const eventName of ["dragleave", "drop"]) dropzone.addEventListener(eventName, (event) => { event.preventDefault(); dropzone.classList.remove("dragover"); }); dropzone.addEventListener("drop", (event) => { if (event.dataTransfer.files.length) { input.files = event.dataTransfer.files; updateSelectedFile(); } }); }
 async function copyParseId() { const value = $("reparseId").value; if (!value) return; try { await navigator.clipboard.writeText(value); setStatus("任务编号已复制"); } catch { setStatus("任务编号：" + value); } }
 
-document.addEventListener("DOMContentLoaded", async () => { bindFilePicker(); $("parserSelect").addEventListener("change", updateParserHint); $("parseForm").addEventListener("submit", submitParse); $("reparseForm").addEventListener("submit", submitReparse); $("copyParseId").addEventListener("click", copyParseId); try { await loadParsers(); setStatus("准备就绪"); } catch (error) { setStatus(error.message, "error"); } });
+const LIFECYCLE_LABELS = { added: "新增", modified: "修改", moved: "移动", deleted: "删除", unchanged: "未变化", retry: "重试" };
+function renderLifecycle(payload, events = []) {
+  const manifest = payload.manifest || {}, sources = Object.values(manifest.sources || {});
+  if (payload.raw_root) $("lifecycleRawRoot").textContent = payload.raw_root;
+  $("lifecycleTechnical").textContent = JSON.stringify({ state_root: payload.state_root, manifest }, null, 2);
+  const eventTarget = $("lifecycleEvents"); eventTarget.innerHTML = "";
+  if (!events.length) eventTarget.innerHTML = '<p class="empty-state">本次没有文件变化。</p>';
+  for (const event of events) { const row = document.createElement("div"); row.className = "lifecycle-item"; row.innerHTML = `<span class="lifecycle-kind">${LIFECYCLE_LABELS[event.kind] || event.kind}</span><code></code><span>${event.error ? "处理失败" : (event.quality_state || "已记录")}</span>`; row.querySelector("code").textContent = event.path; eventTarget.appendChild(row); }
+  const sourceTarget = $("lifecycleSources"); sourceTarget.innerHTML = "";
+  const active = sources.filter((source) => source.state !== "deleted");
+  if (!active.length) sourceTarget.innerHTML = '<p class="empty-state">监控目录中暂无文档。</p>';
+  for (const source of active) { const row = document.createElement("div"); row.className = "lifecycle-item"; const badge = document.createElement("span"); badge.className = "lifecycle-kind"; badge.textContent = source.state === "active" ? "生效" : "失败"; const path = document.createElement("code"); path.textContent = source.path; const remove = document.createElement("button"); remove.type = "button"; remove.className = "lifecycle-delete"; remove.textContent = "删除并扫描"; remove.addEventListener("click", () => deleteLifecycleSource(source.path)); row.append(badge, path, remove); sourceTarget.appendChild(row); }
+  const counts = events.reduce((result, event) => { result[event.kind] = (result[event.kind] || 0) + 1; return result; }, {});
+  $("lifecycleSummary").textContent = events.length ? `扫描完成：${Object.entries(counts).map(([kind, count]) => `${LIFECYCLE_LABELS[kind] || kind} ${count}`).join(" · ")}；当前 ${active.length} 份有效文档` : `当前 ${active.length} 份有效文档，等待下一次扫描`;
+  renderDownstream(payload.delivery || {}, payload.multimodal_delivery || {});
+}
+function renderDownstream(delivery, multimodal = {}) {
+  const sources = delivery.sources || [], active = sources.filter((item) => item.state === "active");
+  $("downstreamState").textContent = delivery.configured ? "适配器已连接" : "未配置";
+  $("downstreamSummary").textContent = delivery.configured ? `已向 Wiki 发布 ${delivery.active_count || 0} 份，已撤回 ${delivery.deleted_count || 0} 份；只有质量通过结果可进入此目录` : "下游适配器尚未配置";
+  $("downstreamRoot").textContent = delivery.watched_sources_root || "未配置";
+  $("multimodalSummary").textContent = multimodal.configured ? `已生成 ${multimodal.ready_count || 0} 个待增强包，已撤回 ${multimodal.withdrawn_count || 0} 个 Source` : "多模态适配器尚未配置";
+  $("multimodalRoot").textContent = multimodal.root || "未配置";
+  $("downstreamTechnical").textContent = JSON.stringify({ contracts: { multimodal: "ParsedDocument 2.2 → mmwiki-0.1 compatibility package", markdown: "raw/sources/{原文件名}.md", assets: "raw/assets/{source_id}/", quality: "raw/metadata/{source_id}/quality_package.json", accepted_quality_states: ["pass", "pass_with_warnings"] }, multimodal, delivery }, null, 2);
+  const target = $("downstreamSources"); target.innerHTML = "";
+  if (!active.length) target.innerHTML = '<p class="empty-state">暂无已发布文档；质量未通过的结果不会覆盖下游。</p>';
+  for (const item of active) { const row = document.createElement("div"); row.className = "lifecycle-item"; const badge = document.createElement("span"); badge.className = "lifecycle-kind"; badge.textContent = "已发布"; const path = document.createElement("code"); path.textContent = item.source_path || item.parser_source_id; const quality = document.createElement("span"); quality.textContent = qualityStateLabel(item.quality_state); row.append(badge, path, quality); target.appendChild(row); }
+}
+async function loadLifecycle() { const response = await fetch("/api/lifecycle"), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || "生命周期状态加载失败"); renderLifecycle(payload); }
+async function scanLifecycle() { setBusy("scanLifecycleButton", true, "扫描中…"); setStatus("正在扫描监控目录…", "busy"); try { const response = await fetch("/api/lifecycle/scan", { method: "POST" }), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || "扫描失败"); renderLifecycle(payload, payload.events || []); setStatus("生命周期扫描完成"); } catch (error) { setStatus(error.message, "error"); } finally { setBusy("scanLifecycleButton", false); } }
+async function uploadLifecycleSource(event) { event.preventDefault(); const file = $("lifecycleFileInput").files[0]; if (!file) return; setBusy("lifecycleUploadButton", true, "放入中…"); try { const body = new FormData(); body.set("file", file); const response = await fetch("/api/lifecycle/sources", { method: "POST", body }), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || "文件写入失败"); await scanLifecycle(); } catch (error) { setStatus(error.message, "error"); } finally { setBusy("lifecycleUploadButton", false); } }
+async function deleteLifecycleSource(path) { try { const response = await fetch(`/api/lifecycle/sources/${encodeURIComponent(path)}`, { method: "DELETE" }), payload = await response.json(); if (!response.ok) throw new Error(payload.detail || "删除失败"); await scanLifecycle(); } catch (error) { setStatus(error.message, "error"); } }
+
+document.addEventListener("DOMContentLoaded", async () => { bindFilePicker(); $("parserSelect").addEventListener("change", updateParserHint); $("parseForm").addEventListener("submit", submitParse); $("reparseForm").addEventListener("submit", submitReparse); $("copyParseId").addEventListener("click", copyParseId); $("scanLifecycleButton").addEventListener("click", scanLifecycle); $("lifecycleUploadForm").addEventListener("submit", uploadLifecycleSource); try { await Promise.all([loadParsers(), loadLifecycle()]); setStatus("准备就绪"); } catch (error) { setStatus(error.message, "error"); } });

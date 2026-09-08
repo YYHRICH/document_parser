@@ -145,3 +145,50 @@ def test_parse_api_rejects_unsafe_artifact_path(tmp_path: Path) -> None:
     response = client.get("/api/parses/not-real/artifacts/../secret.txt")
 
     assert response.status_code in {400, 404}
+
+
+def test_lifecycle_http_demo_tracks_add_modify_and_delete(tmp_path: Path) -> None:
+    client = TestClient(create_app(storage_root=tmp_path))
+
+    initial = client.get("/api/lifecycle")
+    assert initial.status_code == 200
+    assert initial.json()["manifest"]["sources"] == {}
+
+    uploaded = client.post(
+        "/api/lifecycle/sources",
+        files={"file": ("demo.md", b"# version one", "text/markdown")},
+    )
+    assert uploaded.status_code == 200
+    added = client.post("/api/lifecycle/scan")
+    assert added.status_code == 200
+    assert [event["kind"] for event in added.json()["events"]] == ["added"]
+    source_id = added.json()["events"][0]["source_id"]
+    assert added.json()["delivery"]["active_count"] == 1
+    assert added.json()["delivery"]["sources"][0]["source_path"] == "raw/sources/demo.md"
+    assert added.json()["multimodal_delivery"]["ready_count"] == 1
+    assert added.json()["events"][0]["multimodal_state"] == "ready_for_enrichment"
+    multimodal_package = Path(added.json()["events"][0]["multimodal_package_path"])
+    assert (multimodal_package / "manifest.json").is_file()
+
+    client.post(
+        "/api/lifecycle/sources",
+        files={"file": ("demo.md", b"# version two", "text/markdown")},
+    )
+    modified = client.post("/api/lifecycle/scan")
+    assert [event["kind"] for event in modified.json()["events"]] == ["modified"]
+    assert modified.json()["events"][0]["source_id"] == source_id
+
+    raw_root = Path(initial.json()["raw_root"])
+    (raw_root / "demo.md").rename(raw_root / "演示重命名.md")
+    moved = client.post("/api/lifecycle/scan")
+    assert moved.json()["events"][0]["kind"] == "moved"
+    assert moved.json()["events"][0]["source_id"] == source_id
+    assert moved.json()["delivery"]["sources"][0]["source_path"] == "raw/sources/演示重命名.md"
+
+    removed = client.delete("/api/lifecycle/sources/演示重命名.md")
+    assert removed.status_code == 200
+    deleted = client.post("/api/lifecycle/scan")
+    assert [event["kind"] for event in deleted.json()["events"]] == ["deleted"]
+    assert deleted.json()["events"][0]["source_id"] == source_id
+    assert deleted.json()["delivery"]["active_count"] == 0
+    assert deleted.json()["delivery"]["deleted_count"] == 1

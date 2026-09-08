@@ -19,6 +19,7 @@ from .model.contracts import (
     QualityPackage,
 )
 from .normalization import ParserNormalizationBundle
+from .lifecycle import LifecycleEvent, SourceManifest, SourceSnapshot
 
 
 @dataclass(frozen=True)
@@ -95,3 +96,64 @@ class StoragePort(Protocol):
     def load_document(self, parse_id: str) -> ParsedDocument: ...
 
     def load_quality_package(self, parse_id: str) -> QualityPackage: ...
+
+
+class SourceFolderPort(Protocol):
+    """Read-only view of a folder containing lifecycle-managed source files."""
+
+    def snapshot(self) -> list[SourceSnapshot]: ...
+
+    def read_bytes(self, relative_path: str) -> bytes: ...
+
+
+class SourceLifecycleRepositoryPort(Protocol):
+    """Persistence boundary for the parser-owned lifecycle manifest and events."""
+
+    def load(self) -> SourceManifest: ...
+
+    def save(self, manifest: SourceManifest) -> None: ...
+
+    def append_events(self, events: list[LifecycleEvent]) -> None: ...
+
+
+@dataclass(frozen=True)
+class DeliveryResult:
+    source_id: str
+    parse_id: str | None
+    state: str
+    source_path: str | None = None
+
+
+class WikiDeliveryPort(Protocol):
+    """Publish quality-approved documents without exposing a specific downstream."""
+
+    def publish(
+        self,
+        *,
+        source_id: str,
+        parse_id: str,
+        document: ParsedDocument,
+        quality_package: QualityPackage,
+    ) -> dict[str, object]: ...
+
+    def withdraw(self, source_id: str, *, reason: str = "source_deleted") -> dict[str, object]: ...
+
+    def relocate(self, source_id: str, *, filename: str) -> dict[str, object]: ...
+
+    def status(self) -> dict[str, object]: ...
+
+
+class MultimodalDeliveryPort(Protocol):
+    """Publish ParsedDocument for downstream multimodal enrichment."""
+
+    def publish(
+        self, *, source_id: str, parse_id: str, document: ParsedDocument
+    ) -> dict[str, object]: ...
+
+    def withdraw(
+        self, source_id: str, *, reason: str = "source_deleted"
+    ) -> dict[str, object]: ...
+
+    def relocate(self, source_id: str, *, filename: str) -> dict[str, object]: ...
+
+    def status(self) -> dict[str, object]: ...
