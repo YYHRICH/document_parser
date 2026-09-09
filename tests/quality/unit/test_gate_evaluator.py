@@ -129,7 +129,7 @@ def test_reparse_with_recommendation():
 
 
 def test_reparse_without_recommendation_is_rejected():
-    """没有自动重解析建议时直接拒绝，不产生人工复核队列。"""
+    """没有自动重解析建议时直接拒绝，并保留问题状态供下游复核。"""
     verdicts = {"content_complete": _cap("content_complete", QualityCapabilityState.REPARSE_REQUIRED)}
     decision = GateEvaluator().decide([], verdicts)
     assert decision.state == QualityState.REJECTED

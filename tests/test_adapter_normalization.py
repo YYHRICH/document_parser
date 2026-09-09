@@ -315,6 +315,28 @@ def test_mineru_adapter_consumes_native_output_directory(tmp_path: Path) -> None
     assert "native/mineru_result.json" in bundle.native_files
 
 
+def test_mineru_canonical_payload_deduplicates_table_views() -> None:
+    adapter = MinerUParser()
+    table = {
+        "id": "table-001",
+        "type": "table",
+        "table_body": "<table><tr><th>A</th><td>B</td></tr></table>",
+    }
+
+    canonical = adapter._canonical_mineru_payload(
+        {
+            "items": [table],
+            "tables": [{**table, "table_caption": ["Merged metadata"]}],
+        },
+        native_files={},
+    )
+
+    assert len(canonical["tables"]) == 1
+    assert len(canonical["blocks"]) == 1
+    assert canonical["tables"][0]["id"] == "table-001"
+    assert canonical["tables"][0]["table_caption"] == ["Merged metadata"]
+
+
 def test_mineru_adapter_uses_cloud_task_output(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setenv("MINERU_API_TOKEN", "test-token")
 

@@ -3,8 +3,8 @@
 维护约束：
 1. 业务模块只应依赖这里的模型和顶层公开入口，不能依赖具体解析器返回格式。
 2. 新解析器必须把私有结果转换为 ``ParsedDocument``，不能把第三方对象向外泄漏。
-3. 修改字段含义或枚举值会影响所有调用方；不兼容变更必须提升
-   ``ParsedDocument.schema_version``。
+3. 修改字段含义或枚举值会影响所有调用方；本项目只维护当前唯一契约，修改时必须
+   同步更新调用方、示例、文档和测试，不保留并行版本。
 """
 
 from datetime import UTC, datetime
@@ -111,6 +111,21 @@ class VisualClaimProvenance(StrEnum):
     AMBIGUOUS = "ambiguous"
 
 
+class TableSlotKind(StrEnum):
+    """逻辑网格槽位类型；合并覆盖位不是新的源单元格。"""
+
+    ORIGIN = "origin"
+    COVERED = "covered"
+
+
+class TableViewScope(StrEnum):
+    """表格输出覆盖的是全量行、可见行还是未知视图。"""
+
+    ALL_ROWS = "all_rows"
+    VISIBLE_ROWS = "visible_rows"
+    UNKNOWN = "unknown"
+
+
 class ParseRequest(BaseModel):
     """提交给文档解析服务的统一请求。"""
 
@@ -169,7 +184,6 @@ class RoutingDecision(BaseModel):
     """张云雅路由层交给统一接入层的稳定决策协议。"""
 
     schema_name: str = "RoutingDecision"
-    schema_version: str = "1.0"
     mode: RoutingMode
     requested_parser_id: str | None = None
     selected_parser_id: str
@@ -274,6 +288,12 @@ class SourceAnchor(BaseModel):
     section_path: list[str] = Field(default_factory=list)
     # 表格单元格坐标，例如 B3。
     table_cell: str | None = None
+    # 结构化容器定位；Excel 使用 sheet/cell/range，PDF 继续使用 page/bbox。
+    container: str | None = None
+    container_name: str | None = None
+    cell_ref: str | None = None
+    range_ref: str | None = None
+    source_object_id: str | None = None
     # 解析前对应的原始文本，便于追溯。
     original_text: str | None = None
 
@@ -437,14 +457,39 @@ class VisualEvidence(BaseModel):
 class TableCell(BaseModel):
     """解析器提供的物理表格网格单元。"""
 
+    cell_id: str | None = None
     text: str
+    raw_value: Any | None = None
+    display_value: str | None = None
+    normalized_value: str | None = None
+    value_type: str | None = None
+    formula: str | None = None
     start_row: int = Field(ge=0)
     start_col: int = Field(ge=0)
     row_span: int = Field(default=1, ge=1)
     col_span: int = Field(default=1, ge=1)
     column_header: bool = False
     row_header: bool = False
+    roles: list[str] = Field(default_factory=list)
+    visible: bool | None = None
     bbox: tuple[float, float, float, float] | None = None
+    source_anchor: SourceAnchor | None = None
+
+
+class TableGridSlot(BaseModel):
+    """逻辑网格中的原始单元格或合并覆盖位置。"""
+
+    kind: TableSlotKind
+    cell_id: str | None = None
+    origin_cell_id: str | None = None
+
+    @model_validator(mode="after")
+    def validate_slot_reference(self) -> "TableGridSlot":
+        if self.kind == TableSlotKind.ORIGIN and not self.cell_id:
+            raise ValueError("origin 槽位必须引用 cell_id。")
+        if self.kind == TableSlotKind.COVERED and not self.origin_cell_id:
+            raise ValueError("covered 槽位必须引用 origin_cell_id。")
+        return self
 
 
 class ParsedTable(BaseModel):
@@ -460,7 +505,22 @@ class ParsedTable(BaseModel):
     bbox: tuple[float, float, float, float] | None = None
     num_rows: int | None = Field(default=None, ge=0)
     num_cols: int | None = Field(default=None, ge=0)
+    table_kind: str = "data"
+    source_container: str | None = None
+    source_container_name: str | None = None
+    source_range: str | None = None
+    header_rows: int | None = Field(default=None, ge=0)
+    row_header_columns: list[int] = Field(default_factory=list)
+    view_scope: TableViewScope = TableViewScope.UNKNOWN
+    source_has_filter: bool | None = None
+    source_row_count: int | None = Field(default=None, ge=0)
+    emitted_row_count: int | None = Field(default=None, ge=0)
+    hidden_row_count: int | None = Field(default=None, ge=0)
     cells: list[TableCell] = Field(default_factory=list)
+    grid: list[list[TableGridSlot]] = Field(default_factory=list)
+    parent_table_id: str | None = None
+    parent_cell_id: str | None = None
+    nesting_depth: int = Field(default=0, ge=0)
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("image_path")
@@ -546,9 +606,8 @@ class ParsedDocument(BaseModel):
     capabilities: dict[str, EvidenceCapability] = Field(default_factory=dict)
     # 可选候选结果，为后续多模型复核保留。
     alternatives: list[dict[str, Any]] = Field(default_factory=list)
-    # 协议名称和版本用于跨模块兼容判断。
+    # 协议名称用于跨模块识别；项目只维护当前唯一结构。
     schema_name: str = "ParsedDocument"
-    schema_version: str = "2.2"
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     @field_validator("source_sha256")
@@ -598,6 +657,11 @@ class CanonicalSourceLocator(BaseModel):
     page_number: int | None = Field(default=None, ge=1)
     bbox: tuple[float, float, float, float] | None = None
     bbox_granularity: str | None = None
+    container: str | None = None
+    container_name: str | None = None
+    cell_ref: str | None = None
+    range_ref: str | None = None
+    table_cell: str | None = None
     provenance_status: QualityCapabilityState
 
 
@@ -612,6 +676,33 @@ class CanonicalBlock(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
+class CanonicalTable(BaseModel):
+    """质量层确认后的规范表格；Markdown 只是它的派生表示。"""
+
+    table_id: str
+    block_id: str
+    table_kind: str = "data"
+    source_locator: CanonicalSourceLocator
+    num_rows: int = Field(ge=0)
+    num_cols: int = Field(ge=0)
+    header_rows: int | None = Field(default=None, ge=0)
+    header_row_indices: list[int] = Field(default_factory=list)
+    title_row_indices: list[int] = Field(default_factory=list)
+    header_state: QualityCapabilityState = QualityCapabilityState.UNAVAILABLE
+    row_header_columns: list[int] = Field(default_factory=list)
+    view_scope: TableViewScope = TableViewScope.UNKNOWN
+    source_has_filter: bool | None = None
+    source_row_count: int | None = Field(default=None, ge=0)
+    emitted_row_count: int | None = Field(default=None, ge=0)
+    hidden_row_count: int | None = Field(default=None, ge=0)
+    cells: list[TableCell] = Field(default_factory=list)
+    grid: list[list[TableGridSlot]] = Field(default_factory=list)
+    parent_table_id: str | None = None
+    parent_cell_id: str | None = None
+    nesting_depth: int = Field(default=0, ge=0)
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
 class TableFieldBinding(BaseModel):
     """行键、完整列路径和值之间的可回溯表格绑定。"""
 
@@ -619,7 +710,11 @@ class TableFieldBinding(BaseModel):
     table_id: str
     block_id: str
     row_key: str
+    row_path: list[str] = Field(default_factory=list)
     column_path: list[str] = Field(min_length=1)
+    row_cell_ids: list[str] = Field(default_factory=list)
+    column_cell_ids: list[str] = Field(default_factory=list)
+    value_cell_id: str | None = None
     value: str
     source_locator: CanonicalSourceLocator
     status: QualityCapabilityState
@@ -641,9 +736,9 @@ class CanonicalDocument(BaseModel):
     """带顺序、表格绑定、关系和来源的质量层文档图。"""
 
     schema_name: str = "CanonicalDocument"
-    schema_version: str = "1.0"
     document_id: UUID
     blocks: list[CanonicalBlock]
+    tables: list[CanonicalTable] = Field(default_factory=list)
     table_bindings: list[TableFieldBinding] = Field(default_factory=list)
     relations: list[CanonicalRelation] = Field(default_factory=list)
     metadata: dict[str, Any] = Field(default_factory=dict)
@@ -653,6 +748,7 @@ class QualityIssue(BaseModel):
     """一条可定位、可跟踪、可复核的质量问题。"""
 
     issue_id: str
+    rule_id: str = Field(pattern=r"^QL-[A-Z]+-\d{3}$")
     severity: IssueSeverity
     category: str
     status: IssueStatus
@@ -733,13 +829,13 @@ class QualityReport(BaseModel):
 class QualityPackage(BaseModel):
     """质量层交给 Wiki 的统一返回协议。
 
-    物理交付只包含两个文件：``optimized.md`` 和 ``quality_package.json``。
-    ``optimized_markdown`` 保留在内存/API 返回中，落盘时单独写入 Markdown，
-    以避免在 JSON 中重复保存正文。
+    物理交付固定包含 ``optimized.md``、``structure.json`` 和
+    ``quality_issues.json``。大表追加 ``table_index.sqlite3``，避免在
+    JSON 中展开海量单元格和字段绑定。``optimized_markdown`` 保留在
+    内存/API 返回中，落盘时单独写入 Markdown。
     """
 
     schema_name: str = "QualityPackage"
-    schema_version: str = "1.0"
     document_id: UUID
     optimized_markdown: str
     canonical_document: CanonicalDocument

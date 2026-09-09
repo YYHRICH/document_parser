@@ -130,13 +130,12 @@ def main() -> None:
             fallback_cases.append({"source_id": source_id, "source_key": key, "selected_model": selected["model"], "rejected_models": rejected_models})
         delivery = {
             "schema_name": "DatasetDeliveryRecord",
-            "schema_version": "1.0",
             "source_id": source_id,
             "source_key": key,
             "selected_parser_id": selected["model"],
             "selected_markdown": f"documents/{source_id}/selected.md",
             "selected_sha256": hashlib.sha256(selected_markdown).hexdigest(),
-            "selection_policy": "quality_then_multimodal_then_model_priority_v1",
+            "selection_policy": "quality_then_multimodal_then_model_priority",
             "quality_scope": "markdown_only_replay",
             "quality_state": selected.get("quality_state", "replay_error"),
             "asset_count": selected["asset_count"],
@@ -152,7 +151,6 @@ def main() -> None:
 
     summary = {
         "schema_name": "DatasetDeliverySummary",
-        "schema_version": "1.0",
         "source_count": len(manifest),
         "selected_models": dict(sorted(selected_models.items())),
         "selected_rejected_count": sum(item["quality_state"] == "rejected" for item in manifest),

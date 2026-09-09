@@ -1,4 +1,4 @@
-"""将领域 ``ParsedDocument 2.2`` 发布为杨组可直接加载的 mmwiki-0.1 包。
+"""将领域 ``ParsedDocument`` 发布为杨组可直接加载的 mmwiki-0.1 包。
 
 这是反腐层（ACL）：领域层不知道 mmwiki，外部协议的目录、字段和兼容规则
 全部收敛在基础设施层。
@@ -23,7 +23,7 @@ class MmwikiDeliveryError(ValueError):
 
 
 class MmwikiPackageAdapter:
-    """出站适配器：ParsedDocument 2.2 → mmwiki-0.1 文件包。"""
+    """出站适配器：ParsedDocument → mmwiki-0.1 文件包。"""
 
     _KIND = {
         BlockKind.HEADING: "title",
@@ -138,7 +138,7 @@ class MmwikiPackageAdapter:
             "parser": {
                 "name": document.provenance.parser_id,
                 "version": document.provenance.version,
-                "source_schema": f"{document.schema_name}-{document.schema_version}",
+                "source_schema": document.schema_name,
             },
             "artifacts": {
                 "items": "items.jsonl",

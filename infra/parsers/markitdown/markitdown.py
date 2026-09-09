@@ -18,6 +18,8 @@ from pathlib import Path
 
 from ....domain.model.contracts import (
     DocumentSignals,
+    EvidenceAvailability,
+    EvidenceCapability,
     ParseConfidence,
     ParsedDocument,
     ParseRequest,
@@ -25,7 +27,7 @@ from ....domain.model.contracts import (
     ParserProvenance,
 )
 from ....domain.routing.ids import MARKITDOWN_ID
-from .block_builder import blocks_from_markdown
+from ..markdown_normalization import blocks_and_tables_from_markdown
 
 
 class MarkItDownParser:
@@ -94,17 +96,34 @@ class MarkItDownParser:
         markitdown_duration_ms = int((time.perf_counter() - started) * 1000)
 
         # 第三层标准化：无论源格式是什么，下游都获得同一种块结构。
-        blocks = blocks_from_markdown(markdown)
+        blocks, tables = blocks_and_tables_from_markdown(markdown)
         return ParsedDocument(
             filename=request.filename,
             file_type=request.file_type,
             # 完整正文供 Wiki 构建直接使用，blocks 供结构化检索与溯源。
             markdown=markdown,
             blocks=blocks,
+            tables=tables,
             # MarkItDown convert_stream 当前不返回可独立保存的图片二进制。
             assets=[],
             # 该分数只标记是否产出有效内容，不表达调用方的解析质量偏好。
             confidence=ParseConfidence(overall=0.9 if blocks else 0.0),
+            capabilities={
+                "table_cells": EvidenceCapability(
+                    state=(
+                        EvidenceAvailability.PARTIAL
+                        if tables
+                        else EvidenceAvailability.UNAVAILABLE
+                    ),
+                    granularity="markdown_cell" if tables else None,
+                    reason=(
+                        "表格网格由 MarkItDown 的 Markdown 管道表格派生；不包含合并关系或源文件单元格坐标。"
+                        if tables
+                        else "MarkItDown 输出中未发现标准 Markdown 管道表格。"
+                    ),
+                    evidence={"table_count": len(tables)},
+                )
+            },
             provenance=ParserProvenance(
                 parser_id=self.PARSER_ID,
                 model="markitdown",

@@ -12,7 +12,7 @@ from html.parser import HTMLParser
 import re
 from typing import Any
 
-from document_parser.domain.model.contracts import TableCell
+from document_parser.domain.model.contracts import ParsedTable, TableCell, TableSlotKind
 
 
 class HtmlTableParseError(ValueError):
@@ -136,6 +136,39 @@ def _normalize_cell_text(parts: list[str]) -> str:
 
 def _escape_markdown(value: str) -> str:
     return value.replace("|", r"\|").replace("\r", "").replace("\n", "<br>")
+
+
+def render_anchor_copy_table(table: ParsedTable) -> str:
+    """从规范逻辑网格生成合并锚点填充式 Markdown。
+
+    covered 槽位只复制 origin 的显示文本用于阅读，不创建新的源单元格。
+    """
+
+    if not table.grid:
+        return ""
+    cells = {cell.cell_id: cell for cell in table.cells if cell.cell_id}
+    width = max((len(row) for row in table.grid), default=0)
+    if width == 0:
+        return ""
+    lines: list[str] = []
+    for row_index, row in enumerate(table.grid):
+        values: list[str] = []
+        for col_index in range(width):
+            if col_index >= len(row):
+                values.append("")
+                continue
+            slot = row[col_index]
+            cell_id = (
+                slot.cell_id
+                if slot.kind == TableSlotKind.ORIGIN
+                else slot.origin_cell_id
+            )
+            cell = cells.get(cell_id or "")
+            values.append(_escape_markdown(cell.text if cell is not None else ""))
+        lines.append("| " + " | ".join(values) + " |")
+        if row_index == 0:
+            lines.append("| " + " | ".join("---" for _ in range(width)) + " |")
+    return "\n".join(lines)
 
 
 def _grid_from_rows(rows: list[list[_RawCell]]) -> tuple[list[TableCell], list[list[int | None]], int, int, bool]:

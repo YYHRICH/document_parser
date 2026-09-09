@@ -12,6 +12,15 @@ from uuid import uuid4
 
 from ..packaging.document_package import load_document_package, write_document_package
 from ...domain.model.contracts import ParsedDocument, QualityPackage
+from ...domain.quality.table_storage import TABLE_INDEX_NAME
+from ..quality_packaging.artifacts import (
+    ISSUES_NAME,
+    OPTIMIZED_NAME,
+    STRUCTURE_NAME,
+    build_issues_payload,
+    build_structure_payload,
+)
+from ..quality_packaging.table_index import verify_table_index, write_table_index
 
 
 class ApiStorage:
@@ -57,38 +66,76 @@ class ApiStorage:
             for path in sorted(item for item in package_root.rglob("*") if item.is_file())
         ]
 
-    def quality_package_path(self, parse_id: str) -> Path:
-        return self.package_root(parse_id) / "quality_package.json"
+    def structure_path(self, parse_id: str) -> Path:
+        return self.package_root(parse_id) / STRUCTURE_NAME
+
+    def quality_issues_path(self, parse_id: str) -> Path:
+        return self.package_root(parse_id) / ISSUES_NAME
 
     def optimized_markdown_path(self, parse_id: str) -> Path:
-        return self.package_root(parse_id) / "optimized.md"
+        return self.package_root(parse_id) / OPTIMIZED_NAME
 
     def write_quality_package(self, parse_id: str, quality_package: QualityPackage) -> Path:
-        package_path = self.quality_package_path(parse_id)
+        structure_path = self.structure_path(parse_id)
+        issues_path = self.quality_issues_path(parse_id)
         markdown_path = self.optimized_markdown_path(parse_id)
-        package_path.parent.mkdir(parents=True, exist_ok=True)
-        # 正文是独立 Markdown 文件；JSON 只保存结构化文档和质量结果，避免重复。
-        payload = quality_package.model_dump(
-            mode="json", exclude={"optimized_markdown"}
+        structure_path.parent.mkdir(parents=True, exist_ok=True)
+        table_index = write_table_index(
+            quality_package,
+            structure_path.parent / TABLE_INDEX_NAME,
         )
-        package_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+        structure_payload = build_structure_payload(
+            quality_package,
+            table_index=table_index,
+        )
+        issues_payload = build_issues_payload(quality_package)
+        structure_path.write_text(
+            json.dumps(structure_payload, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        issues_path.write_text(
+            json.dumps(issues_payload, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         markdown_path.write_text(quality_package.optimized_markdown, encoding="utf-8")
-        return package_path
+        return structure_path
 
     def load_quality_package(self, parse_id: str) -> QualityPackage:
-        payload = json.loads(
-            self.quality_package_path(parse_id).read_text(encoding="utf-8")
-        )
+        structure = json.loads(self.structure_path(parse_id).read_text(encoding="utf-8"))
+        issues = json.loads(self.quality_issues_path(parse_id).read_text(encoding="utf-8"))
+        if structure.get("table_index"):
+            verify_table_index(
+                self.package_root(parse_id) / TABLE_INDEX_NAME,
+                str(structure["document_id"]),
+            )
+        payload = {
+            "schema_name": "QualityPackage",
+            "document_id": structure["document_id"],
+            "canonical_document": structure["canonical_document"],
+            "quality_report": issues["quality_report"],
+        }
         payload["optimized_markdown"] = self.optimized_markdown_path(
             parse_id
         ).read_text(encoding="utf-8")
         return QualityPackage.model_validate(payload)
 
     def has_quality_package(self, parse_id: str) -> bool:
-        return self.quality_package_path(parse_id).is_file() and self.optimized_markdown_path(
-            parse_id
+        base_files_exist = all(
+            path.is_file()
+            for path in (
+                self.structure_path(parse_id),
+                self.quality_issues_path(parse_id),
+                self.optimized_markdown_path(parse_id),
+            )
+        )
+        if not base_files_exist:
+            return False
+        try:
+            structure = json.loads(
+                self.structure_path(parse_id).read_text(encoding="utf-8")
+            )
+        except (OSError, ValueError):
+            return False
+        return not structure.get("table_index") or (
+            self.package_root(parse_id) / TABLE_INDEX_NAME
         ).is_file()
 
     def load_document(self, parse_id: str) -> ParsedDocument:
@@ -134,10 +181,14 @@ def _package_file_category(relative_path: str) -> str:
         return "asset"
     if relative_path == "parsed_document.json":
         return "parsed_document"
-    if relative_path == "quality_package.json":
-        return "quality_package"
+    if relative_path == "structure.json":
+        return "document_structure"
+    if relative_path == "quality_issues.json":
+        return "quality_issues"
     if relative_path == "optimized.md":
         return "quality_markdown"
+    if relative_path == TABLE_INDEX_NAME:
+        return "table_index"
     return "other"
 
 

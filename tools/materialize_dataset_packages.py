@@ -23,11 +23,13 @@ from document_parser.domain.normalization.bundle import (
     unavailable_capability,
 )
 from document_parser.domain.quality.pipeline import run_pipeline
+from document_parser.domain.quality.table_storage import TABLE_INDEX_NAME
 from document_parser.infra.packaging.document_package import (
     validate_parsed_document_integrity,
     write_document_package,
 )
 from document_parser.infra.quality_packaging.artifacts import build_package_artifacts
+from document_parser.infra.quality_packaging.table_index import write_table_index
 from tools.replay_quality_on_dataset import _stable_blocks_and_tables
 
 
@@ -137,7 +139,11 @@ def materialize_one(record: dict, *, results_root: Path, output_root: Path) -> d
     parse_id = f"parse_{output_sha[:16]}"
     package_root = output_root / "documents" / record["source_id"]
     write_document_package(document, package_root)
-    for name, content in build_package_artifacts(quality).files.items():
+    table_index = write_table_index(quality, package_root / TABLE_INDEX_NAME)
+    for name, content in build_package_artifacts(
+        quality,
+        table_index=table_index,
+    ).files.items():
         (package_root / name).write_bytes(content)
     validate_parsed_document_integrity(document, package_root=package_root)
     package_record = {
@@ -165,7 +171,6 @@ def main() -> None:
             handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
     summary = {
         "schema_name": "FormalDatasetPackageSummary",
-        "schema_version": "1.0",
         "source_count": len(materialized),
         "package_count": len(materialized),
         "asset_count": sum(record["asset_count"] for record in materialized),

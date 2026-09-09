@@ -4,11 +4,23 @@ from __future__ import annotations
 
 import re
 
-from document_parser.domain.model.contracts import BlockKind, IssueSeverity
+from document_parser.domain.model.contracts import (
+    BlockKind,
+    IssueSeverity,
+    IssueStatus,
+    QualityCapabilityState,
+)
 
 from ..evidence.context import EvidenceContext
 from ..evidence.requirements import EvidenceRequirement
-from ..models_internal import EvidenceRef, IssueDraft, RepairProposal, RuleResult
+from ..models_internal import (
+    CapabilityObservation,
+    EvidenceRef,
+    IssueDraft,
+    RepairProposal,
+    RuleResult,
+)
+from ..renderers.table_markdown import render_anchor_copy_table
 from ..repairs.table_html import table_needs_html_conversion
 from .base import QualityRule
 
@@ -189,32 +201,154 @@ class QL_TBL_009_HtmlTableRepresentation(QualityRule):
     def execute(self, context: EvidenceContext) -> RuleResult:
         issues: list[IssueDraft] = []
         proposals: list[RepairProposal] = []
+        evidence_refs: list[EvidenceRef] = []
+        representation_valid = True
         for table in context.parsed.tables:
             block = context.block(str(table.block_id))
-            document_contains_html = bool(table.html and table.html in context.parsed.markdown)
-            if not table_needs_html_conversion(table) and not document_contains_html:
-                continue
-            issues.append(
-                IssueDraft(
-                    severity=IssueSeverity.WARNING,
-                    category="table_representation",
-                    message=f"table {table.table_id} 的 Markdown 表示仍是 HTML 或为空。",
-                    affected_block_ids=[str(table.block_id)],
-                    evidence_refs=[
-                        EvidenceRef(object_type="table", object_id=table.table_id, field_path="html"),
-                        EvidenceRef(object_type="table", object_id=table.table_id, field_path="markdown"),
-                    ],
-                )
+            evidence_refs.extend(
+                [
+                    EvidenceRef(
+                        object_type="table",
+                        object_id=table.table_id,
+                        field_path="markdown",
+                    ),
+                    EvidenceRef(
+                        object_type="table",
+                        object_id=table.table_id,
+                        field_path="grid" if table.grid else "cells",
+                    ),
+                ]
             )
-            if block is not None and block.kind == BlockKind.TABLE:
-                proposals.append(
-                    RepairProposal(
-                        rule_id="QL-RPR-003",
-                        description=f"将 table {table.table_id} 的 HTML 转为 Markdown。",
+            document_contains_html = bool(table.html and table.html in context.parsed.markdown)
+            if table_needs_html_conversion(table) or document_contains_html:
+                representation_valid = False
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_representation",
+                        message=f"table {table.table_id} 的 Markdown 表示仍是 HTML 或为空。",
                         affected_block_ids=[str(table.block_id)],
                         evidence_refs=[
-                            EvidenceRef(object_type="table", object_id=table.table_id, field_path="html")
+                            EvidenceRef(object_type="table", object_id=table.table_id, field_path="html"),
+                            EvidenceRef(object_type="table", object_id=table.table_id, field_path="markdown"),
                         ],
                     )
                 )
-        return RuleResult(issues=tuple(issues), repair_proposals=tuple(proposals))
+                if block is not None and block.kind == BlockKind.TABLE:
+                    proposals.append(
+                        RepairProposal(
+                            rule_id="QL-RPR-003",
+                            description=f"将 table {table.table_id} 的 HTML 转为 Markdown。",
+                            affected_block_ids=[str(table.block_id)],
+                            evidence_refs=[
+                                EvidenceRef(object_type="table", object_id=table.table_id, field_path="html")
+                            ],
+                        )
+                    )
+                continue
+
+            if block is None or block.kind != BlockKind.TABLE:
+                representation_valid = False
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_representation",
+                        status=IssueStatus.MANUAL_REVIEW_REQUIRED,
+                        message=f"table {table.table_id} 没有唯一对应的表格 block。",
+                        affected_block_ids=[str(table.block_id)],
+                    )
+                )
+                continue
+
+            table_markdown = (table.markdown or "").strip()
+            block_markdown = block.markdown.strip()
+            if table_markdown != block_markdown:
+                representation_valid = False
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_representation",
+                        status=IssueStatus.MANUAL_REVIEW_REQUIRED,
+                        message=f"table {table.table_id} 的 table.markdown 与表格 block 不一致。",
+                        affected_block_ids=[str(table.block_id)],
+                    )
+                )
+            if block_markdown and block_markdown not in context.parsed.markdown:
+                representation_valid = False
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_representation",
+                        status=IssueStatus.MANUAL_REVIEW_REQUIRED,
+                        message=f"table {table.table_id} 的表格 block 未出现在文档 Markdown 中。",
+                        affected_block_ids=[str(table.block_id)],
+                    )
+                )
+
+            if table.metadata.get("markdown_rendering") == "anchor_copy" and table.grid:
+                expected = render_anchor_copy_table(table).strip()
+                if expected != table_markdown:
+                    representation_valid = False
+                    issues.append(
+                        IssueDraft(
+                            severity=IssueSeverity.WARNING,
+                            category="table_representation",
+                            status=IssueStatus.MANUAL_REVIEW_REQUIRED,
+                            message=f"table {table.table_id} 的 anchor-copy Markdown 与逻辑网格不一致。",
+                            affected_block_ids=[str(table.block_id)],
+                            evidence_refs=[
+                                EvidenceRef(
+                                    object_type="table",
+                                    object_id=table.table_id,
+                                    field_path="grid",
+                                )
+                            ],
+                        )
+                    )
+
+            mismatched_source_cells = [
+                cell
+                for cell in table.cells
+                if cell.value_type == "string"
+                and isinstance(cell.raw_value, str)
+                and "\n" in cell.raw_value.replace("\r\n", "\n").replace("\r", "\n")
+                and cell.raw_value.replace("\r\n", "\n").replace("\r", "\n").strip()
+                != cell.text.replace("\r\n", "\n").replace("\r", "\n").strip()
+            ]
+            if mismatched_source_cells:
+                representation_valid = False
+                issues.append(
+                    IssueDraft(
+                        severity=IssueSeverity.WARNING,
+                        category="table_representation",
+                        status=IssueStatus.MANUAL_REVIEW_REQUIRED,
+                        message=(
+                            f"table {table.table_id} 有 {len(mismatched_source_cells)} 个"
+                            "源单元格换行与结构文本不一致。"
+                        ),
+                        affected_block_ids=[str(table.block_id)],
+                        evidence={
+                            "table_id": table.table_id,
+                            "cell_ids": [
+                                cell.cell_id for cell in mismatched_source_cells[:50]
+                            ],
+                        },
+                    )
+                )
+
+        observations = (
+            CapabilityObservation(
+                capability_name="table_representation_reliable",
+                observed_state=(
+                    QualityCapabilityState.VERIFIED
+                    if representation_valid
+                    else QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+                ),
+                evidence_refs=evidence_refs,
+            ),
+        ) if context.parsed.tables else ()
+        return RuleResult(
+            issues=tuple(issues),
+            repair_proposals=tuple(proposals),
+            capability_observations=observations,
+        )

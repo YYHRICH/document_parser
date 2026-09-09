@@ -40,7 +40,7 @@ def test_routing_decision_fixed_example() -> None:
 def test_parsed_document_fixed_example() -> None:
     document = ParsedDocument.model_validate(load_example("parsed_document.json"))
 
-    assert document.schema_version == "2.2"
+    assert document.schema_name == "ParsedDocument"
     assert document.provenance.parser_id == "mineru"
     assert document.routing_decision is not None
     assert document.routing_decision.selected_parser_id == document.provenance.parser_id
@@ -75,17 +75,17 @@ def test_fixed_examples_form_one_handoff_chain() -> None:
     assert package.optimized_markdown == parsed.markdown
 
 
-def test_existing_parsed_document_callers_remain_compatible() -> None:
+def test_parsed_document_optional_evidence_has_empty_defaults() -> None:
     document = ParsedDocument(
-        filename="legacy.txt",
+        filename="plain.txt",
         file_type="text/plain",
-        markdown="legacy content",
+        markdown="plain content",
         blocks=[],
         confidence=ParseConfidence(),
         provenance=ParserProvenance(parser_id="markitdown"),
     )
 
-    assert document.schema_version == "2.2"
+    assert document.schema_name == "ParsedDocument"
     assert document.tables == []
     assert document.native_artifacts == []
     assert document.capabilities == {}

@@ -46,7 +46,7 @@ def test_document_package_loads_when_sidecars_exist(tmp_path: Path) -> None:
 
     document = load_document_package(package_root)
 
-    assert document.schema_version == "2.2"
+    assert document.schema_name == "ParsedDocument"
     assert document.tables[0].table_id == "table-001"
 
 

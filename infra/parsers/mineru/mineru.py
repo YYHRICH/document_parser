@@ -621,6 +621,7 @@ class MinerUParser(BaseParserAdapter):
             return payload
         blocks: list[dict[str, Any]] = []
         normalized_tables: list[dict[str, Any]] = []
+        table_positions: dict[str, tuple[int, int]] = {}
         for index, raw in enumerate(items):
             if not isinstance(raw, dict):
                 continue
@@ -647,6 +648,10 @@ class MinerUParser(BaseParserAdapter):
                 normalized["image_path"] = f"assets/{asset_path}"
             if kind == "table":
                 self._populate_table_fields(normalized, item)
+                table_positions[source_block_id] = (
+                    len(blocks),
+                    len(normalized_tables),
+                )
                 normalized_tables.append(normalized)
             elif kind == "image" and asset_path:
                 caption = text or "MinerU image"
@@ -671,6 +676,21 @@ class MinerUParser(BaseParserAdapter):
             if text:
                 normalized["text"] = text
             self._populate_table_fields(normalized, table)
+            existing_position = table_positions.get(source_block_id)
+            if existing_position is not None:
+                block_index, table_index = existing_position
+                # Canonical MinerU sidecars may expose the same table through
+                # both content_list/items and tables. Merge the richer explicit
+                # table entry into the existing object so normalization remains
+                # idempotent and table IDs stay unique.
+                merged = {**blocks[block_index], **normalized}
+                blocks[block_index] = merged
+                normalized_tables[table_index] = merged
+                continue
+            table_positions[source_block_id] = (
+                len(blocks),
+                len(normalized_tables),
+            )
             blocks.append(normalized)
             normalized_tables.append(normalized)
         return {

@@ -122,6 +122,10 @@ def test_missing_required_evidence_does_not_pass():
         issue.category == "evidence_availability"
         for issue in package.quality_report.issues
     )
+    assert all(
+        issue.rule_id.startswith("QL-")
+        for issue in package.quality_report.issues
+    )
 
 
 def test_duplicate_source_ids_do_not_collide_in_canonical_blocks():
@@ -204,6 +208,7 @@ def test_pipeline_records_resolved_html_table_issues():
     assert any(
         issue.status.value == "repaired"
         and issue.category in {"table_representation", "table_structure"}
+        and issue.rule_id.startswith("QL-")
         for issue in package.quality_report.resolved_issues
     )
     assert "<table" not in package.optimized_markdown.lower()

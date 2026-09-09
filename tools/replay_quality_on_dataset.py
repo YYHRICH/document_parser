@@ -30,7 +30,7 @@ from document_parser.domain.normalization.bundle import (
     stable_uuid,
 )
 from document_parser.domain.quality.pipeline import run_pipeline
-from document_parser.infra.parsers.markitdown.block_builder import blocks_from_markdown
+from document_parser.infra.parsers.markdown_normalization import blocks_from_markdown
 
 
 MODEL_DIRS = {

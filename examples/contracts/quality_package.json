@@ -1,11 +1,9 @@
 {
   "schema_name": "quality_package",
-  "schema_version": "1.0",
   "document_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
   "optimized_markdown": "# 示例论文\n\n## 1.1 背景\n\n已有方法见文献 [1]。\n\n| Dataset | Train 10% |\n|---|---:|\n| TN3K | 259 |\n\n[1] Example Reference.",
   "canonical_document": {
     "schema_name": "canonical_document",
-    "schema_version": "1.0",
     "document_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
     "blocks": [
       {
@@ -130,6 +128,7 @@
     "issues": [
       {
         "issue_id": "citation-inferred-001",
+        "rule_id": "QL-REF-004",
         "severity": "info",
         "category": "citation_binding",
         "status": "unfixed",

@@ -7,6 +7,8 @@ sys.path.insert(0, str(PROJECT_ROOT.parent))
 
 from document_parser import DocumentSignals  # noqa: E402
 from document_parser.app.bootstrap import build_router  # noqa: E402
+from document_parser.domain.routing.config import RouteProfile  # noqa: E402
+from document_parser.domain.routing.policy import build_route_plan  # noqa: E402
 
 
 def test_router_prefers_mineru_for_pdf() -> None:
@@ -81,3 +83,15 @@ def test_router_uses_markitdown_for_plain_text() -> None:
 
     assert decision.selected_parser_id == "microsoft.markitdown"
     assert decision.parser_options["preserve_original"] is True
+
+
+def test_route_plan_prefers_anydoc_for_excel_regardless_of_libreoffice() -> None:
+    for extension in (".xls", ".xlsx"):
+        for libreoffice_available in (False, True):
+            plan = build_route_plan(
+                DocumentSignals(extension=extension, size_bytes=128),
+                profile=RouteProfile.LOCAL_FIRST,
+                libreoffice_available=libreoffice_available,
+            )
+
+            assert plan.candidate_parser_ids == ["anydoc", "microsoft.markitdown"]

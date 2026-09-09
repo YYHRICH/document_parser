@@ -1,4 +1,4 @@
-"""双文件质量包序列化、原子写入和结构校验。"""
+"""三文件质量包序列化、原子写入和结构校验。"""
 
 from pathlib import Path
 
@@ -8,8 +8,9 @@ from document_parser.domain.model.contracts import ParsedDocument
 from document_parser.app.use_cases import run_quality
 from document_parser.infra.quality_packaging import write_quality_package
 from document_parser.infra.quality_packaging.artifacts import (
+    ISSUES_NAME,
     OPTIMIZED_NAME,
-    QUALITY_NAME,
+    STRUCTURE_NAME,
     build_package_artifacts,
     verify_package_files,
 )
@@ -23,30 +24,35 @@ def _package():
     return run_quality(doc)
 
 
-def test_build_artifacts_contains_only_markdown_and_json():
+def test_build_artifacts_contains_markdown_structure_and_issue_json():
     package = _package()
     artifacts = build_package_artifacts(package)
-    assert set(artifacts.files) == {OPTIMIZED_NAME, QUALITY_NAME}
+    assert set(artifacts.files) == {OPTIMIZED_NAME, STRUCTURE_NAME, ISSUES_NAME}
     verify_package_files(artifacts.files)
 
-    quality_json = artifacts.files[QUALITY_NAME].decode("utf-8")
-    assert "optimized_markdown" not in quality_json
-    assert "package_manifest" not in quality_json
-    assert "sha256" not in quality_json
+    structure_json = artifacts.files[STRUCTURE_NAME].decode("utf-8")
+    issues_json = artifacts.files[ISSUES_NAME].decode("utf-8")
+    assert "optimized_markdown" not in structure_json
+    assert "optimized_markdown" not in issues_json
+    assert "quality_report" not in structure_json
+    assert "canonical_document" not in issues_json
+    assert "package_manifest" not in structure_json + issues_json
+    assert '"review_summary"' in issues_json
+    assert '"review_items"' in issues_json
 
 
 def test_write_and_verify_package(tmp_path):
     output = write_quality_package(_package(), tmp_path / "package")
     assert output.is_dir()
-    assert {p.name for p in output.iterdir()} == {OPTIMIZED_NAME, QUALITY_NAME}
+    assert {p.name for p in output.iterdir()} == {OPTIMIZED_NAME, STRUCTURE_NAME, ISSUES_NAME}
     verify_package_directory(output)
 
 
 def test_quality_json_tampering_is_detected_as_invalid_json(tmp_path):
     output = write_quality_package(_package(), tmp_path / "package")
-    target = output / QUALITY_NAME
+    target = output / ISSUES_NAME
     target.write_text("{}", encoding="utf-8")
-    with pytest.raises(ValueError, match="quality_package"):
+    with pytest.raises(ValueError, match="质量层三文件"):
         verify_package_directory(output)
 
 

@@ -114,7 +114,7 @@ class GateEvaluator:
             }
         ]
 
-        # 2. 未解决 issue 统计（IssueDraft 无 status：规则产出的 issue 默认未解决）
+        # 2. 当前问题统计；显式问题状态优先于严重级别。
         critical_issues = [
             i for i in issues if i.severity == IssueSeverity.CRITICAL
         ]
@@ -122,6 +122,13 @@ class GateEvaluator:
             i for i in issues if i.severity == IssueSeverity.WARNING
         ]
         info_issues = [i for i in issues if i.severity == IssueSeverity.INFO]
+        rejected_status_issues = [i for i in issues if i.status == IssueStatus.REJECTED]
+        reparse_status_issues = [
+            i for i in issues if i.status == IssueStatus.REPARSE_REQUIRED
+        ]
+        manual_status_issues = [
+            i for i in issues if i.status == IssueStatus.MANUAL_REVIEW_REQUIRED
+        ]
 
         # 3. 按优先级决策
         critical_target = _critical_target_state(self._config)
@@ -131,15 +138,18 @@ class GateEvaluator:
         critical_requires_reparse = (
             critical_issues and critical_target == QualityState.REPARSE_REQUIRED
         )
-        if rejected_caps or critical_requires_rejected:
+        if rejected_caps or rejected_status_issues or critical_requires_rejected:
             blocking_reasons.extend(
                 f"capability {v.name} rejected" for v in rejected_caps
+            )
+            blocking_reasons.extend(
+                f"issue rejected: {i.message}" for i in rejected_status_issues
             )
             blocking_reasons.extend(
                 f"critical issue: {i.message}" for i in critical_issues
             )
             state = QualityState.REJECTED
-        elif reparse_caps or critical_requires_reparse:
+        elif reparse_caps or reparse_status_issues or critical_requires_reparse:
             if reparse_recommendation is not None:
                 blocking_reasons.extend(
                     f"capability {v.name} reparse_required" for v in reparse_caps
@@ -149,12 +159,16 @@ class GateEvaluator:
                     for i in critical_issues
                     if critical_requires_reparse
                 )
+                blocking_reasons.extend(
+                    f"issue requires reparse: {i.message}"
+                    for i in reparse_status_issues
+                )
                 state = QualityState.REPARSE_REQUIRED
             else:
                 # 没有可执行的自动重解析建议时直接拒绝，不产生人工队列。
                 blocking_reasons.append("reparse required but no valid recommendation")
                 state = QualityState.REJECTED
-        elif warning_issues or uncertain_caps:
+        elif warning_issues or manual_status_issues or uncertain_caps:
             blocking_reasons.extend(f"warning issue: {i.message}" for i in warning_issues)
             blocking_reasons.extend(
                 f"capability {v.name} = inferred" for v in uncertain_caps
@@ -174,7 +188,7 @@ class GateEvaluator:
             enabled=self._config.info_blocks_pass,
         )
 
-        reparse_issue_count = len(reparse_caps)
+        reparse_issue_count = len(reparse_caps) + len(reparse_status_issues)
         if state == QualityState.REPARSE_REQUIRED and critical_requires_reparse:
             reparse_issue_count += len(critical_issues)
 

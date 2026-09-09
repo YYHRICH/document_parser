@@ -30,7 +30,5 @@ class QualityConfig:
     """质量层整体配置。"""
 
     gate: GateConfig = field(default_factory=GateConfig)
-    # LLM 顾问开关（MVP-B；默认关闭，见 spec §9.1）
-    llm_enabled: bool = False
     # 稳定 ID 命名空间校验开关
     enforce_stable_ids: bool = True

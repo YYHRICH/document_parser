@@ -13,6 +13,7 @@ from typing import Any, Literal
 from document_parser.domain.model.contracts import (
     CanonicalSourceLocator,
     IssueSeverity,
+    IssueStatus,
     QualityCapabilityState,
 )
 
@@ -49,6 +50,8 @@ class IssueDraft:
     severity: IssueSeverity
     category: str
     message: str
+    rule_id: str = ""
+    status: IssueStatus = IssueStatus.UNFIXED
     affected_block_ids: list[str] = field(default_factory=list)
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
     evidence: dict[str, Any] = field(default_factory=dict)
@@ -80,7 +83,10 @@ class BindingCandidate:
     column_path: list[str]
     value: str
     source_locator: CanonicalSourceLocator
-    # D-09：单元格身份 = "r{row}c{col}" 坐标组合（朱提供 cell_id 后替换）
+    row_path: list[str] = field(default_factory=list)
+    row_cell_ids: list[str] = field(default_factory=list)
+    column_cell_ids: list[str] = field(default_factory=list)
+    value_cell_id: str | None = None
     cell_key: str = ""
     evidence_refs: list[EvidenceRef] = field(default_factory=list)
     evidence: dict[str, Any] = field(default_factory=dict)

@@ -11,6 +11,7 @@ from .ids import ANYDOC_ID, DOCLING_ID, MARKITDOWN_ID, MINERU_ID, OCR_ID
 
 IMAGE_FORMATS = {".bmp", ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp"}
 OFFICE_FORMATS = {".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx"}
+EXCEL_FORMATS = {".xls", ".xlsx"}
 TEXT_FORMATS = {".md", ".markdown", ".txt"}
 CSV_FORMATS = {".csv"}
 WEB_FORMATS = {".html", ".htm", ".adoc", ".asciidoc", ".eml", ".epub"}
@@ -37,6 +38,11 @@ def build_route_plan(
         return RoutePlan(
             [MARKITDOWN_ID, DOCLING_ID, ANYDOC_ID],
             "CSV 保留原文并优先生成检索文本。",
+        )
+    if ext in EXCEL_FORMATS:
+        return RoutePlan(
+            [ANYDOC_ID, MARKITDOWN_ID],
+            "Excel 表格优先走 AnyDoc 结构通道，MarkItDown 作为正文回退。",
         )
     if ext in LEGACY_OFFICE_FORMATS:
         if libreoffice_available:

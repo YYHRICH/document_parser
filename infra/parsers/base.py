@@ -1,7 +1,7 @@
-"""解析器适配器的共享骨架。
+"""解析器适配器的共享归一化基础设施。
 
-这里先统一三类新解析器的公共形状，后续再逐步接入真实实现。
-当前阶段提供稳定 ID、能力描述和“缺失证据显式声明”的占位归一化结果。
+统一解析器能力描述、原生结果映射、稳定 ID 和缺失证据声明；当真实解析器
+不可用时提供不伪造内容的受控降级结果。
 """
 
 from __future__ import annotations
@@ -32,6 +32,9 @@ from ...domain.model.contracts import (
     RoutingMode,
     SourceAnchor,
     TableCell,
+    TableGridSlot,
+    TableSlotKind,
+    TableViewScope,
 )
 from ...domain.normalization import (
     ParserNormalizationBundle,
@@ -45,7 +48,7 @@ from ...domain.normalization import (
 
 
 class BaseParserAdapter(ABC):
-    """新解析器适配器的最小公共外壳。"""
+    """解析器适配器的公共协议和归一化实现。"""
 
     PARSER_ID: str = "unimplemented"
     PROVIDER: str = "document_parser"
@@ -60,7 +63,7 @@ class BaseParserAdapter(ABC):
 
     @property
     def capability(self) -> ParserCapability:
-        """返回静态能力描述，便于先把注册表和 UI 骨架搭起来。"""
+        """返回解析器静态能力与当前可用状态。"""
 
         return ParserCapability(
             parser_id=self.PARSER_ID,
@@ -184,11 +187,11 @@ class BaseParserAdapter(ABC):
         parser_version: str | None = None,
         warnings: list[str] | None = None,
     ) -> ParserNormalizationBundle:
-        """生成可校验的占位结果，并明确标出真实解析器尚未产出的证据。
+        """生成可校验的降级结果，并明确标出本次解析未产出的证据。
 
-        这个方法只用于 adapter 骨架阶段。它不会从 PDF、图片或 Office 二进制中猜造
-        文本、表格、bbox 或 OCR 结果；只有原始输入本身就是可直接读取的文本时，才把
-        该文本作为 markdown 透传。
+        这个方法用于解析器尚未接入、依赖不可用或调用失败的场景。它不会从 PDF、
+        图片或 Office 二进制中猜造文本、表格、bbox 或 OCR 结果；只有原始输入本身
+        就是可直接读取的文本时，才把该文本作为 markdown 透传。
         """
         return self.normalize_native_result(
             self._build_placeholder_native_result(
@@ -209,7 +212,7 @@ class BaseParserAdapter(ABC):
         parser_version: str | None = None,
         warnings: list[str] | None = None,
     ) -> ParserNativeResult:
-        """生成骨架阶段可复用的原生结果占位对象。"""
+        """生成解析器不可用时可复用的原生降级对象。"""
 
         version = parser_version or self.DEFAULT_MODEL_VERSION or "adapter-skeleton"
         source_sha256 = hashlib.sha256(request.content).hexdigest()
@@ -220,7 +223,7 @@ class BaseParserAdapter(ABC):
         )
         markdown = self._decode_direct_text(request, signals)
         generated_warnings = [
-            f"{self.DISPLAY_NAME}当前只返回 adapter 骨架原生结果；"
+            f"{self.DISPLAY_NAME}本次未产生可用原生结果；"
             "缺失字段已通过 capabilities 标记，不会伪造解析证据。",
         ]
         if not markdown:
@@ -242,7 +245,7 @@ class BaseParserAdapter(ABC):
             payload={},
             warnings=generated_warnings,
             capabilities=self._default_capabilities(
-                missing_reason=f"{self.DISPLAY_NAME}真实实现尚未接入，未产生该类原始证据。",
+                missing_reason=f"{self.DISPLAY_NAME}本次未产生该类原始证据。",
                 text_available=bool(markdown),
             ),
         )
@@ -695,10 +698,16 @@ class BaseParserAdapter(ABC):
             )
             cells = self._table_cells_from_payload(
                 raw_cells,
+                table_id=table_id,
                 coordinate_system=coordinate_system,
                 page_height=page_height,
             )
             data = item.get("data") if isinstance(item.get("data"), dict) else {}
+            grid = self._table_grid_from_payload(item.get("grid"), cells=cells)
+            metadata = {
+                "native_source": self.PARSER_ID,
+                **(item.get("metadata") if isinstance(item.get("metadata"), dict) else {}),
+            }
             tables.append(
                 ParsedTable(
                     table_id=table_id,
@@ -723,8 +732,49 @@ class BaseParserAdapter(ABC):
                     else data.get("num_cols")
                     if isinstance(data.get("num_cols"), int)
                     else None,
+                    table_kind=str(item.get("table_kind") or data.get("kind") or "data"),
+                    source_container=item.get("source_container")
+                    if isinstance(item.get("source_container"), str)
+                    else None,
+                    source_container_name=item.get("source_container_name")
+                    if isinstance(item.get("source_container_name"), str)
+                    else None,
+                    source_range=item.get("source_range")
+                    if isinstance(item.get("source_range"), str)
+                    else None,
+                    header_rows=item.get("header_rows")
+                    if isinstance(item.get("header_rows"), int)
+                    else None,
+                    row_header_columns=[
+                        value
+                        for value in item.get("row_header_columns", [])
+                        if isinstance(value, int) and value >= 0
+                    ],
+                    view_scope=self._table_view_scope(item.get("view_scope")),
+                    source_has_filter=item.get("source_has_filter")
+                    if isinstance(item.get("source_has_filter"), bool)
+                    else None,
+                    source_row_count=item.get("source_row_count")
+                    if isinstance(item.get("source_row_count"), int)
+                    else None,
+                    emitted_row_count=item.get("emitted_row_count")
+                    if isinstance(item.get("emitted_row_count"), int)
+                    else None,
+                    hidden_row_count=item.get("hidden_row_count")
+                    if isinstance(item.get("hidden_row_count"), int)
+                    else None,
                     cells=cells,
-                    metadata={"native_source": self.PARSER_ID},
+                    grid=grid,
+                    parent_table_id=item.get("parent_table_id")
+                    if isinstance(item.get("parent_table_id"), str)
+                    else None,
+                    parent_cell_id=item.get("parent_cell_id")
+                    if isinstance(item.get("parent_cell_id"), str)
+                    else None,
+                    nesting_depth=item.get("nesting_depth")
+                    if isinstance(item.get("nesting_depth"), int)
+                    else 0,
+                    metadata=metadata,
                 )
             )
         return tables, created_blocks
@@ -943,6 +993,25 @@ class BaseParserAdapter(ABC):
             if isinstance(merged.get("section_path"), list)
             else section_path.copy(),
             table_cell=merged.get("table_cell") if isinstance(merged.get("table_cell"), str) else None,
+            container=merged.get("container")
+            if isinstance(merged.get("container"), str)
+            else merged.get("source_container")
+            if isinstance(merged.get("source_container"), str)
+            else None,
+            container_name=merged.get("container_name")
+            if isinstance(merged.get("container_name"), str)
+            else merged.get("source_container_name")
+            if isinstance(merged.get("source_container_name"), str)
+            else None,
+            cell_ref=merged.get("cell_ref") if isinstance(merged.get("cell_ref"), str) else None,
+            range_ref=merged.get("range_ref")
+            if isinstance(merged.get("range_ref"), str)
+            else merged.get("source_range")
+            if isinstance(merged.get("source_range"), str)
+            else None,
+            source_object_id=merged.get("source_object_id")
+            if isinstance(merged.get("source_object_id"), str)
+            else None,
             original_text=merged.get("original_text")
             if isinstance(merged.get("original_text"), str)
             else self._item_text(item) or None,
@@ -1073,6 +1142,7 @@ class BaseParserAdapter(ABC):
         self,
         raw_cells: Any,
         *,
+        table_id: str = "table",
         coordinate_system: str | None = None,
         page_height: float | None = None,
     ) -> list[TableCell]:
@@ -1106,23 +1176,103 @@ class BaseParserAdapter(ABC):
                 or self._bbox_coordinate_system(raw_bbox)
                 or coordinate_system
             )
+            # raw_value 只能来自解析器或源文件预检的明确证据，不能用显示文本回填。
+            raw_value = raw.get("raw_value") if "raw_value" in raw else None
+            display_value = raw.get("display_value")
+            if not isinstance(display_value, str):
+                display_source = (
+                    raw.get("text")
+                    if raw.get("text") is not None
+                    else raw.get("value")
+                    if raw.get("value") is not None
+                    else raw_value
+                    if raw_value is not None
+                    else ""
+                )
+                display_value = str(display_source)
+            source_anchor = raw.get("source_anchor")
+            if isinstance(source_anchor, dict):
+                cell_anchor = self._anchor_from_item(
+                    source_anchor,
+                    section_path=[],
+                    page_sizes={},
+                )
+            else:
+                cell_anchor = None
             cells.append(
                 TableCell(
-                    text=str(raw.get("text") or raw.get("value") or ""),
+                    cell_id=str(raw.get("cell_id") or f"{table_id}:r{row}c{col}"),
+                    text=display_value,
+                    raw_value=raw_value,
+                    display_value=display_value,
+                    normalized_value=raw.get("normalized_value")
+                    if isinstance(raw.get("normalized_value"), str)
+                    else None,
+                    value_type=raw.get("value_type")
+                    if isinstance(raw.get("value_type"), str)
+                    else None,
+                    formula=raw.get("formula") if isinstance(raw.get("formula"), str) else None,
                     start_row=row,
                     start_col=col,
                     row_span=row_span if isinstance(row_span, int) else 1,
                     col_span=col_span if isinstance(col_span, int) else 1,
                     column_header=bool(raw.get("column_header", False)),
                     row_header=bool(raw.get("row_header", False)),
+                    roles=[str(role) for role in raw.get("roles", [])]
+                    if isinstance(raw.get("roles"), list)
+                    else [],
+                    visible=raw.get("visible") if isinstance(raw.get("visible"), bool) else None,
                     bbox=self._normalized_bbox(
                         raw_bbox,
                         coordinate_system=cell_coordinate_system,
                         page_height=page_height,
                     ),
+                    source_anchor=cell_anchor,
                 )
             )
         return cells
+
+    def _table_grid_from_payload(
+        self,
+        raw_grid: Any,
+        *,
+        cells: list[TableCell],
+    ) -> list[list[TableGridSlot]]:
+        if not isinstance(raw_grid, list):
+            return []
+        known = {cell.cell_id for cell in cells if cell.cell_id}
+        grid: list[list[TableGridSlot]] = []
+        for raw_row in raw_grid:
+            if not isinstance(raw_row, list):
+                continue
+            row: list[TableGridSlot] = []
+            for raw_slot in raw_row:
+                if not isinstance(raw_slot, dict):
+                    continue
+                kind = str(raw_slot.get("kind") or "")
+                if kind == TableSlotKind.ORIGIN.value:
+                    cell_id = raw_slot.get("cell_id")
+                    if isinstance(cell_id, str) and cell_id in known:
+                        row.append(TableGridSlot(kind=TableSlotKind.ORIGIN, cell_id=cell_id))
+                elif kind == TableSlotKind.COVERED.value:
+                    origin_cell_id = raw_slot.get("origin_cell_id")
+                    if isinstance(origin_cell_id, str) and origin_cell_id in known:
+                        row.append(
+                            TableGridSlot(
+                                kind=TableSlotKind.COVERED,
+                                origin_cell_id=origin_cell_id,
+                            )
+                        )
+            grid.append(row)
+        return grid
+
+    def _table_view_scope(self, raw_scope: Any) -> TableViewScope:
+        """把解析器的开放字符串安全收敛为统一枚举。"""
+
+        try:
+            return TableViewScope(str(raw_scope or TableViewScope.UNKNOWN.value))
+        except ValueError:
+            return TableViewScope.UNKNOWN
 
     def _raw_table_cells(self, item: dict[str, Any]) -> list[Any]:
         cells = item.get("cells")

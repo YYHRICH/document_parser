@@ -45,17 +45,17 @@ def main() -> None:
     assert decision.fallback_parser_ids == ["docling", "ocr"]
     assert decision.signals.scanned_page_ratio == 0.15
     assert decision.parser_options["table"] is True
-    record(checks, "routing_decision.json validates as RoutingDecision 1.0")
+    record(checks, "routing_decision.json validates as RoutingDecision")
 
     document = ParsedDocument.model_validate(load_example("parsed_document.json"))
-    assert document.schema_version == "2.2"
+    assert document.schema_name == "ParsedDocument"
     assert document.provenance.parser_id == "mineru"
     assert document.routing_decision is not None
     assert document.routing_decision.selected_parser_id == document.provenance.parser_id
     assert document.tables[0].cells[3].text == "259"
     assert document.native_artifacts[0].required_for_quality is True
     assert document.capabilities["table_cells"].state.value == "available"
-    record(checks, "parsed_document.json validates as ParsedDocument 2.2")
+    record(checks, "parsed_document.json validates as ParsedDocument")
 
     package = QualityPackage.model_validate(load_example("quality_package.json"))
     assert package.quality_report.state.value == "pass_with_warnings"
@@ -66,7 +66,7 @@ def main() -> None:
     assert {"parent_child", "reference_of"}.issubset(relation_types)
     assert package.document_id == package.canonical_document.document_id
     assert package.document_id == package.quality_report.document_id
-    record(checks, "quality_package.json validates as QualityPackage 1.0")
+    record(checks, "quality_package.json validates as QualityPackage")
 
     parsed_source_ids = {block.source_block_id for block in document.blocks}
     canonical_source_ids = {

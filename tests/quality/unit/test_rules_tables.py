@@ -13,12 +13,16 @@ from document_parser.domain.model.contracts import (
     QualityCapabilityState,
     SourceAnchor,
     TableCell,
+    TableGridSlot,
+    TableSlotKind,
+    TableViewScope,
 )
 
 from document_parser.domain.quality.evidence.context import EvidenceContext
 from document_parser.domain.quality.rules.tables import (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
+    QL_TBL_010_TableEvidenceIntegrity,
     analyze_grid,
 )
 
@@ -114,6 +118,7 @@ def test_grid_analysis_overlap_conflict():
     analysis = analyze_grid(t)
     assert not analysis.valid
     assert any("占位冲突" in i.message for i in analysis.issues)
+    assert any(i.rule_id == "QL-TBL-002" for i in analysis.issues)
 
 
 def test_grid_analysis_cell_beyond_declared_size():
@@ -130,6 +135,7 @@ def test_grid_analysis_cell_beyond_declared_size():
     analysis = analyze_grid(t)
     assert not analysis.valid
     assert any("越过声明尺寸" in i.message for i in analysis.issues)
+    assert any(i.rule_id == "QL-TBL-001" for i in analysis.issues)
 
 
 def test_column_path_multilevel_not_flattened():
@@ -242,7 +248,12 @@ def test_duplicate_row_key_is_manual_not_verified():
     result = QL_TBL_006_BuildBindings().execute(EvidenceContext(_doc_with_table(table)))
     assert result.binding_candidates
     assert all(b.source_locator.provenance_status == QualityCapabilityState.MANUAL_REVIEW_REQUIRED for b in result.binding_candidates)
-    assert any(i.category == "table_field_binding" for i in result.issues)
+    assert any(
+        i.category == "table_field_binding"
+        and i.status.value == "manual_review_required"
+        for i in result.issues
+    )
+    assert result.capability_observations[0].observed_state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
 
 
 def test_cell_bbox_is_preserved():
@@ -263,3 +274,99 @@ def test_no_table_produces_no_table_observation():
 def test_rule_ids_are_stable():
     assert QL_TBL_004_ColumnPath.rule_id == "QL-TBL-004"
     assert QL_TBL_006_BuildBindings.rule_id == "QL-TBL-006"
+
+
+def test_native_grid_and_view_scope_are_verified() -> None:
+    table = _table(
+        "t1",
+        [
+            _cell("表头", 0, 0, col_hdr=True, col_span=2),
+            _cell("华北", 1, 0),
+            _cell("1", 1, 1),
+        ],
+        rows=2,
+        cols=2,
+    ).model_copy(
+        update={
+            "source_container": "sheet",
+            "source_container_name": "Sheet1",
+            "view_scope": TableViewScope.VISIBLE_ROWS,
+            "source_has_filter": True,
+            "source_row_count": 10,
+            "emitted_row_count": 2,
+            "hidden_row_count": 8,
+        }
+    )
+    cells = [
+        cell.model_copy(update={"cell_id": f"t1:r{cell.start_row}c{cell.start_col}"})
+        for cell in table.cells
+    ]
+    slots = [[None for _ in range(2)] for _ in range(2)]
+    for cell in cells:
+        for row in range(cell.start_row, cell.start_row + cell.row_span):
+            for col in range(cell.start_col, cell.start_col + cell.col_span):
+                slots[row][col] = (
+                    TableGridSlot(kind=TableSlotKind.ORIGIN, cell_id=cell.cell_id)
+                    if (row, col) == (cell.start_row, cell.start_col)
+                    else TableGridSlot(kind=TableSlotKind.COVERED, origin_cell_id=cell.cell_id)
+                )
+    table = table.model_copy(update={"cells": cells, "grid": slots})
+
+    analysis = analyze_grid(table)
+    result = QL_TBL_010_TableEvidenceIntegrity().execute(EvidenceContext(_doc_with_table(table)))
+
+    assert analysis.valid
+    assert all(observation.observed_state == QualityCapabilityState.VERIFIED for observation in result.capability_observations)
+
+
+def test_pseudo_nested_merged_cell_is_reported_without_inventing_child_table() -> None:
+    table = _table(
+        "pseudo",
+        [
+            _cell("标题", 0, 0, col_hdr=True, col_span=2),
+            _cell("档位\t比例\n1档\t5%\n2档\t8%", 1, 0, col_span=2),
+        ],
+        rows=2,
+        cols=2,
+    )
+    result = QL_TBL_010_TableEvidenceIntegrity().execute(EvidenceContext(_doc_with_table(table)))
+
+    assert any(issue.category == "table_pseudo_nested" for issue in result.issues)
+    assert table.parent_table_id is None
+
+
+def test_merged_row_header_is_inherited_by_covered_data_rows() -> None:
+    table = _table(
+        "merged-row-header",
+        [
+            _cell("地区", 0, 0, col_hdr=True, row_span=2),
+            _cell("指标", 0, 1, col_hdr=True, col_span=2),
+            _cell("收入", 1, 1, col_hdr=True),
+            _cell("成本", 1, 2, col_hdr=True),
+            _cell("华北", 2, 0, row_span=2),
+            _cell("10", 2, 1),
+            _cell("6", 2, 2),
+            _cell("12", 3, 1),
+            _cell("7", 3, 2),
+        ],
+        rows=4,
+        cols=3,
+    ).model_copy(update={"header_rows": 2})
+
+    result = QL_TBL_006_BuildBindings().execute(EvidenceContext(_doc_with_table(table)))
+    values = [binding for binding in result.binding_candidates if binding.value in {"10", "6", "12", "7"}]
+
+    assert len(values) == 4
+    assert {binding.row_key for binding in values} == {"华北"}
+    assert all(binding.row_path == ["华北"] for binding in values)
+    assert all(
+        binding.source_locator.provenance_status
+        == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
+        for binding in values
+    )
+    assert any(
+        issue.category == "table_field_binding"
+        and issue.status.value == "manual_review_required"
+        for issue in result.issues
+    )
+    assert not any(binding.value == "华北" for binding in result.binding_candidates)

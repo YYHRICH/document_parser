@@ -64,10 +64,10 @@ app/use_cases.py::run_quality()  ← 应用层质量入口（HTTP/CLI 都走它�
 ```text
 原始文件
   → 某解析器适配器（infra/parsers）       ← 这里做“解析器专属优化”
-  → ParsedDocument 2.2（统一契约）
+  → ParsedDocument（统一契约）
   → EvidenceContext（domain/quality）     ← 从这里开始“统一质量判定”
   → rules → capability matrix → gate
-  → QualityPackage 1.0（报告 / 修复 / canonical / manifest）
+  → QualityPackage（报告 / 修复 / canonical）
 ```
 
 **关键机制（你要复用而不是绕开它）：**
@@ -218,7 +218,7 @@ class QL_XXX_001_YourRule(QualityRule):
 - [ ] 我把某个解析器的阈值写死在规则里？→ 放 `QualityConfig`。
 - [ ] 我为了让规则“跑得通”而把缺失证据标成 available？→ 必须如实声明。
 - [ ] 我新增了规则但没加测试、没注册进 pipeline？→ 补上。
-- [ ] 我改了 `ParsedDocument` 契约但没升 `schema_version`？→ 契约变更必须走版本化。
+- [ ] 我改了 `ParsedDocument` 契约但没同步 Adapter、API、示例和测试？→ 项目只维护当前唯一契约，必须一次改全。
 
 ---
 

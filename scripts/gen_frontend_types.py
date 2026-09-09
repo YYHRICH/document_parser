@@ -93,7 +93,7 @@ def generate() -> str:
         component = components[name]
         description = component.get("description")
         if description:
-            lines.extend(f"// {line}" for line in description.splitlines())
+            lines.extend(f"// {line}" if line else "//" for line in description.splitlines())
         lines.append(f"export type {name} = {_ts_type(component)};")
         lines.append("")
     return "\n".join(lines)

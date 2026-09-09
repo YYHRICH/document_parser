@@ -1,4 +1,4 @@
-"""本地兜底解析器（开发期使用）：pdfplumber → ParsedDocument 2.2。
+"""本地兜底解析器（开发期使用）：pdfplumber → ParsedDocument。
 
 无网络 / 无 MinerU API key 时用于生成 ParsedDocument fixtures。
 能力边界：

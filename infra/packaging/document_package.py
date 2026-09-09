@@ -94,8 +94,6 @@ def validate_parsed_document_integrity(
 
     if document.schema_name != "ParsedDocument":
         errors.append(f"schema_name 必须是 ParsedDocument，当前为 {document.schema_name}")
-    if document.schema_version != "2.2":
-        errors.append(f"schema_version 必须是 2.2，当前为 {document.schema_version}")
 
     block_ids = [str(block.id) for block in document.blocks]
     duplicate_block_ids = _duplicates(block_ids)

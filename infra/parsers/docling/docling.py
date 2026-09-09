@@ -13,6 +13,93 @@ from ....domain.model.contracts import DocumentSignals, ParseRequest, ParserCapa
 from ....domain.normalization import ParserNormalizationBundle, make_stable_document_id
 from ....domain.routing.ids import DOCLING_ID
 from ..base import BaseParserAdapter
+from ..markdown_normalization import blocks_and_tables_from_markdown
+
+
+def _table_coordinate_text(table) -> dict[tuple[int, int], str]:
+    """Return origin-cell text by coordinate for a conservative table match."""
+
+    return {
+        (cell.start_row, cell.start_col): " ".join(cell.text.split())
+        for cell in table.cells
+    }
+
+
+def _align_docling_table_markdown(
+    bundle: ParserNormalizationBundle,
+) -> ParserNormalizationBundle:
+    """Bind Docling native table structure to its own pipe-table rendering.
+
+    Docling structured JSON sometimes serializes table markdown as one
+    flattened line even though export_to_markdown contains a valid pipe
+    table. Alignment is allowed only when table count, dimensions, and every
+    origin-cell value match. Native cells, spans, anchors, and grids remain the
+    authoritative structure.
+    """
+
+    if not bundle.tables or not bundle.markdown:
+        return bundle
+    _, rendered_tables = blocks_and_tables_from_markdown(bundle.markdown)
+    if len(rendered_tables) != len(bundle.tables):
+        return bundle.model_copy(
+            update={
+                "warnings": [
+                    *bundle.warnings,
+                    "Docling table rendering was not aligned: structured and Markdown table counts differ.",
+                ]
+            }
+        )
+
+    updated_tables = []
+    block_markdown: dict[str, str] = {}
+    aligned = 0
+    for native, rendered in zip(bundle.tables, rendered_tables, strict=True):
+        dimensions_match = (
+            native.num_rows == rendered.num_rows
+            and native.num_cols == rendered.num_cols
+        )
+        values_match = _table_coordinate_text(native) == _table_coordinate_text(rendered)
+        if not dimensions_match or not values_match:
+            updated_tables.append(native)
+            continue
+        metadata = {
+            **native.metadata,
+            "markdown_rendering": "docling_export_pipe",
+            "markdown_rendering_aligned": True,
+        }
+        updated = native.model_copy(
+            update={"markdown": rendered.markdown, "metadata": metadata}
+        )
+        updated_tables.append(updated)
+        block_markdown[str(native.block_id)] = rendered.markdown
+        aligned += 1
+
+    if not aligned:
+        return bundle.model_copy(
+            update={
+                "warnings": [
+                    *bundle.warnings,
+                    "Docling table rendering was not aligned: cell evidence did not match.",
+                ]
+            }
+        )
+    updated_blocks = [
+        block.model_copy(update={"markdown": block_markdown[str(block.id)]})
+        if str(block.id) in block_markdown
+        else block
+        for block in bundle.blocks
+    ]
+    warning = (
+        f"Aligned {aligned}/{len(bundle.tables)} Docling table renderings "
+        "after exact dimension and cell-value checks."
+    )
+    return bundle.model_copy(
+        update={
+            "tables": updated_tables,
+            "blocks": updated_blocks,
+            "warnings": [*bundle.warnings, warning],
+        }
+    )
 
 
 class DoclingParser(BaseParserAdapter):
@@ -138,10 +225,11 @@ class DoclingParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """返回统一占位包；真实 Docling JSON 映射会在这里接入。"""
+        """调用 Docling 或读取 sidecar，并归一化为统一文档包。"""
 
-        return self.normalize_native_result(
+        bundle = self.normalize_native_result(
             self.build_native_result(request, signals),
             request,
             signals,
         )
+        return _align_docling_table_markdown(bundle)

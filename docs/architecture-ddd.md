@@ -1,11 +1,10 @@
 # Document Parser 架构设计（DDD 分层 · 面向松耦合 / 可拆分 / 可复用）
 
-> 状态：迁移进行中（阶段 0-4 完成；`core/` 已清空，`quality/` 已拆分，CLI 入口已接入，`DocumentParserGateway` 已拆为 `app/orchestration.py::DocumentParsePipeline`，`backend/` 兼容 shim 已移除，前端契约已收敛（OpenAPI → `frontend/api-types.ts`），MQ 触发层已占位待开发）
+> 状态：DDD 分层重构已完成并投入当前主链；HTTP、CLI、解析、统一、质量和交付均使用现有分层。MQ 仅为后续可选入口，不属于当前运行要求。
 > 适用范围：`document_parser` 单仓库（Python 3.11 + FastAPI）
 > 目标：**松耦合、可拆分、可复用**
 >
-> 已完成：`contracts` → `domain/model/`，`inspector` → `domain/service/`，`normalizers` → `domain/normalization/`，`routing` → `domain/routing/`（并解除对解析器实例的反向依赖），`parsers` → `infra/parsers/`，`gateway` → `app/orchestration.py`（编排上移，适配器直接实现 `ParserPort`），`backend/schemas`、`backend/storage` 已并入 `api/dto.py` 与 `infra/storage/`。
-> 剩余：MQ consumer / `EventPublisherPort` 实现（阶段 4 余项）、阶段 5 可选独立部署。
+> 当前边界：`domain` 保存领域模型和规则，`app` 编排用例，`infra` 实现解析器、存储和质量包，`trigger` 提供 HTTP/CLI 入口，`frontend` 只通过 API 使用后端。
 
 ---
 
@@ -77,7 +76,7 @@ trigger → app → domain ← infra
 
 | 当前路径 | 归属 | 目标路径 | 说明 |
 | --- | --- | --- | --- |
-| `core/contracts.py` ✅ | 领域模型 | `domain/model/contracts.py` | 稳定协议，schema_version 兼容 |
+| `core/contracts.py` ✅ | 领域模型 | `domain/model/contracts.py` | 当前唯一领域协议，不保留并行版本 |
 | `core/inspector.py` ✅ | 领域服务 | `domain/service/source_inspector.py` | 源信号提取是纯领域逻辑 |
 | `routing/` ✅ | 领域服务 | `domain/routing/` | 路由决策、策略、能力注册表 |
 | `normalizers/` ✅ | 领域助手/防腐层 | `domain/normalization/` | 纯逻辑，只依赖 contracts |
@@ -92,7 +91,6 @@ trigger → app → domain ← infra
 | `core/converter.py` ✅ | 基础设施 | `infra/converter.py` | 老 Office 格式转换，实现 `ConverterPort` |
 | `backend/storage.py` ✅ | 基础设施 | `infra/storage/api_storage.py` | 文件持久化，实现 `StoragePort` |
 | `quality/packaging/writer.py` ✅ | 基础设施 | `infra/quality_packaging/` | 产物落盘 |
-| `quality/llm/` ✅ | 基础设施 | `infra/llm/` | LLM 顾问（M6） |
 | `core/document_package.py` ✅ | 基础设施 | `infra/packaging/` | 包读写（校验逻辑可留 domain） |
 | `tools/`、`scripts/` | 开发工具 | `scripts/` | 保留，作为开发/验证脚本 |
 | `frontend/` | 独立消费者 | `frontend/`（不动） | 只通过 `api` 契约与后端交互 |

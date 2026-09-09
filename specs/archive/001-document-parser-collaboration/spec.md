@@ -6,7 +6,7 @@
 **最近更新**：2026-08-16
 **状态**：MVP Baseline（职责、分支和三方接口已冻结，技术选型项待评审）
 **现有基线**：当前 GitHub `main` 分支中的 Python `document_parser` 代码
-**执行分工**：`docs/开发分工.md`
+**执行分工**：`docs/archive/project-history/开发分工.md`
 **联调协议**：`examples/contracts/README.md`
 
 ## 1. 背景与目标
@@ -42,7 +42,7 @@
 | `core/inspector.py`                   | 根据文件名和内容大小产生基础信号                                                         | 扩展文档/图片路由信号；不得把具体模型选择硬编码在预检器中                   |
 | `core/converter.py`                   | 将`.doc/.ppt` 转为 `.docx/.pptx`                                                     | 继续复用；新增路由不能破坏旧 Office 转换和临时文件清理                      |
 | `parsers/markitdown/markitdown.py`    | 在受控子进程中调用 Microsoft MarkItDown                                                  | 作为第一个真实 Adapter 保留，并用于多 Adapter 协议回归                      |
-| `parsers/markitdown/block_builder.py` | 将 Markdown 简单切成标题和段落                                                           | 保持当前行为兼容；更丰富结构由统一归一化或质量层增量实现                    |
+| `infra/parsers/markdown_normalization.py` | 将 Markdown 切分为标题、段落和表格，并生成统一结构                                   | 作为解析器共享的 Markdown 归一化入口；复杂结构由统一层保留、质量层复核      |
 
 ### 1.3 当前仓库状态
 
@@ -402,7 +402,7 @@ tests/fixtures/parsed_documents/
 ### 4.4 可执行任务与责任规则
 
 具体任务编号、交付物、完成标准、三次强制联调和 Git 分支建议统一维护在
-`docs/开发分工.md`。本 Spec 决定“必须交付什么”，分工文件决定“由谁以什么顺序完成”。
+`docs/archive/project-history/开发分工.md`。本 Spec 决定“必须交付什么”，分工文件决定“由谁以什么顺序完成”。
 
 责任规则如下：
 

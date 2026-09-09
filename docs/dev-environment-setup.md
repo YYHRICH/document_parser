@@ -110,4 +110,4 @@ python -c "from document_parser.core.contracts import ParsedDocument; from quali
 - 提交：小步勤提交、`feat(quality):` 风格、**默认不 push**
 - 红线：不伪造证据、no-op 合法、verified 必须有证据、LLM 建议最高 inferred
 - 决策记录：docs/quality-decisions.md（D-01~D-16）
-- 进展报告：docs/quality-layer-progress.md
+- 历史进展记录：docs/archive/project-history/quality-layer-progress.md

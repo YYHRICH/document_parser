@@ -1,4 +1,4 @@
-"""本地 docling 解析器（开发期第三路径）：docling 2.x → ParsedDocument 2.2。
+"""本地 docling 解析器（开发期第三路径）：docling → ParsedDocument。
 
 运行前提（本机已验证）：
 1. 必须用英文路径 junction 的解释器运行，否则 docling_parse 的 C++ 层

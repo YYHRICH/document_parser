@@ -2,8 +2,8 @@
 
 > 本文是写给中间统一输入输出层开发者的实施需求，不是质量层的抽象字段清单。<br>
 > 你的输入：Docling、MinerU、Fallback/OCR 等不同解析器的原始结果。<br>
-> 你的输出：质量优化 Agent 可以直接消费的一份统一文档包。<br>
-> 当前统一协议：`ParsedDocument 2.2`。
+> 你的输出：质量层可以直接消费的一份统一文档包。<br>
+> 当前统一协议：`ParsedDocument`。项目只维护这一套结构，不保留并行版本。
 
 ## 1. 你要解决的问题
 
@@ -15,7 +15,7 @@
 - 有的只有 pdfplumber 文本、词坐标或 OCR 结果；
 - 同一个概念在不同解析器里可能叫不同名字，甚至完全缺失。
 
-质量 Agent 不应该为每个解析器写一套逻辑。中间统一层必须把这些结果转换成同一种结构，并把“解析器没有提供的证据”明确标出来。
+质量层不应该为每个解析器写一套逻辑。中间统一层必须把这些结果转换成同一种结构，并把“解析器没有提供的证据”明确标出来。
 
 目标链路是：
 
@@ -26,7 +26,7 @@
   → 对应 Parser Adapter
   → 统一字段/ID/坐标/资源归一化
   → 统一文档包
-  → 质量优化 Agent
+  → 确定性质量检查与修复
 ```
 
 质量层只接收最后的统一文档包，不比较多个解析器，也不读取 Docling/MinerU 的私有对象。
@@ -56,14 +56,14 @@ document_package/
 这是质量层唯一必须读取的主文件，必须可以通过：
 
 ```python
-from document_parser.core.contracts import ParsedDocument
+from document_parser.domain.model.contracts import ParsedDocument
 
 parsed = ParsedDocument.model_validate_json(
     open("parsed_document.json", encoding="utf-8").read()
 )
 ```
 
-它必须是 `ParsedDocument 2.2`，不能是某个解析器的原始 JSON，也不能只是 Markdown。
+它必须能由当前 `ParsedDocument` 模型直接校验，不能是某个解析器的原始 JSON，也不能只是 Markdown。
 
 #### `assets/` 中被引用的资源
 
@@ -97,9 +97,9 @@ parsed = ParsedDocument.model_validate_json(
 - `docling.Document`、MinerU 私有对象等 Python 对象；
 - 每个解析器各自不同的 Markdown/JSON 结构；
 - 只有页图、没有结构 JSON 的目录；
-- 质量层最终生成的 `optimized.md`、`canonical_document.json`、`quality_report.json`。
+- 质量层最终生成的 `optimized.md`、`structure.json`、`quality_issues.json`。
 
-这三个质量产物由质量层在 Agent 修复完成后生成，不由统一层预先生成。
+这三个质量产物由质量层在确定性检查和修复完成后生成，不由统一层预先生成。
 
 ## 3. Adapter 必须如何实现
 
@@ -107,7 +107,7 @@ parsed = ParsedDocument.model_validate_json(
 
 ```text
 Docling 原始结果  ─┐
-MinerU 原始结果   ─┼─> Parser Adapter ─> ParsedDocument 2.2
+MinerU 原始结果   ─┼─> Parser Adapter ─> ParsedDocument
 Fallback 原始结果 ─┘
 ```
 
@@ -136,7 +136,6 @@ Adapter 负责填充：
 
 ```text
 schema_name = ParsedDocument
-schema_version = 2.2
 document_id
 filename
 file_type
@@ -297,14 +296,14 @@ MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
 - 没有表格网格时不要从纯文本猜造 cells；
 - 扫描件提供 OCR spans 和 confidence；
 - 对缺少 page/bbox/source 的字段声明 capability；
-- Fallback 结果允许进入质量层，但质量 Agent 必须据证据降级，而不是假装和 Docling/MinerU 一样完整。
+- Fallback 结果允许进入质量层，但质量层必须据证据降级，而不是假装和 Docling/MinerU 一样完整。
 
 ### 4.4 新解析器 Adapter
 
-新增解析器不需要修改质量 Agent。只需：
+新增解析器不需要修改质量规则。只需：
 
 1. 实现同样的 Adapter 接口；
-2. 输出同一版本的 `ParsedDocument`；
+2. 输出当前唯一的 `ParsedDocument`；
 3. 增加至少一个固定 fixture；
 4. 通过统一契约校验和质量层回归；
 5. 在 `provenance.parser_id/version` 中标明实际来源。
@@ -350,7 +349,7 @@ MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
 - 图片 block、caption block、asset path、page/bbox；
 - 如果解析器已经提供关系候选，可以放入 metadata/native artifact，但不能丢掉端点证据。
 
-关系目标不唯一时，统一层不应替质量 Agent 选择第一个候选。
+关系目标不唯一时，统一层不应替质量层选择第一个候选。
 
 ## 6. 必须遵守的“不造证据”规则
 
@@ -365,16 +364,15 @@ MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
 | 表格是否续页不明 | 分页保留、声明不确定 | 强行合并表格 |
 | 解析器字段冲突 | 保留冲突信息并降级 | 静默选一个不说明 |
 
-质量 Agent 的自动修复能力依赖证据真实性。缺失证据会导致 manual/reparse，这是正常的安全结果，不是统一层失败。
+质量层的自动修复能力依赖证据真实性。缺失证据会导致人工复核或重新解析，这是正常的安全结果，不是统一层失败。
 
 ## 7. 推荐的主 JSON 形状
 
-下面只是最小结构示例；实际字段必须由 `ParsedDocument 2.2` 校验：
+下面只是最小结构示例；实际字段必须由当前 `ParsedDocument` 校验：
 
 ```json
 {
   "schema_name": "ParsedDocument",
-  "schema_version": "2.2",
   "document_id": "11111111-1111-4111-8111-111111111111",
   "filename": "example.pdf",
   "file_type": "application/pdf",
@@ -457,7 +455,7 @@ MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
 ### 8.1 JSON 和引用完整性
 
 - [ ] `ParsedDocument.model_validate_json()` 通过；
-- [ ] `schema_name/schema_version` 正确；
+- [ ] `schema_name` 正确；
 - [ ] blocks/tables/assets/ocr_spans 字段存在，缺失能力使用空数组；
 - [ ] 所有 block ID 唯一；
 - [ ] 所有 table ID 唯一；
@@ -491,43 +489,39 @@ MinerU 可能同时产生 Markdown、HTML、图片和原生结构 JSON：
 
 同一 fixture 应记录 parser_id/version，便于不同 Adapter 回归。
 
-## 9. 交给质量 Agent 后会发生什么
+## 9. 交给质量层后会发生什么
 
 质量层调用：
 
 ```python
-from quality import run_quality_repair
+from document_parser.app.use_cases import run_quality
 
-package = run_quality_repair(
-    parsed_document,
-    agent_factory=agent_factory,
-)
+package = run_quality(parsed_document)
 ```
 
-质量 Agent 会：
+质量层会：
 
-1. 读取全文 `DocumentIndex`；
-2. 按需读取页面、邻页、表格、资源和引用证据；
-3. 输出最小结构化 Patch；
-4. 验证事实词元、ID、页码、bbox、provenance 和 scope；
-5. 通过后提交 revision，失败则保留原 revision 并转人工；
-6. 生成 `optimized.md`、`canonical_document.json`、`quality_report.json` 和 `package_manifest.json`。
+1. 从 `ParsedDocument` 建立证据上下文；
+2. 执行完整性、来源、标题、引用和表格规则；
+3. 应用有明确证据的确定性白名单修复；
+4. 在修复后文档上重新检查并构建能力矩阵；
+5. 构建规范文档图和质量门结论；
+6. 生成 `optimized.md`、`structure.json` 和 `quality_issues.json`。
 
-统一层不需要预先生成这四个质量产物。
+统一层不需要预先生成这三个质量产物。
 
-## 10. 版本和变更流程
+## 10. 契约变更流程
 
 以下变更必须先和质量层确认：
 
 - 修改 `ParsedDocument` 公共字段、枚举或字段含义；
-- 修改 `schema_version`；
 - 修改 document/block/table/asset ID 规则；
 - 删除 blocks、tables、assets、anchor、provenance 或 capabilities；
 - 改变资源路径或 asset 引用语义；
 - 把真实缺失证据改成默认 available；
 - 把多个解析器结果合并成一个没有来源区分的对象。
 
-推荐提交顺序：
+本项目直接修改唯一契约，不增加并行模型或兼容转换器。推荐提交顺序：
 
 1. 先提交统一层 Adapter 的固定 JSON fixture；
 2. 通过 `ParsedDocument` 契约测试；
@@ -539,8 +533,8 @@ package = run_quality_repair(
 
 如果只记住五句话：
 
-1. **不同解析器可以有不同 Adapter，但交给质量层的只能是同一种 `ParsedDocument 2.2`。**
+1. **不同解析器可以有不同 Adapter，但交给质量层的只能是当前唯一的 `ParsedDocument`。**
 2. **不能只输出 Markdown；blocks、tables、assets、anchors 和 provenance 都是质量修复证据。**
 3. **解析器没有提供的证据必须声明缺失，不能用默认值或模型常识补齐。**
 4. **所有资源路径、对象 ID 和关系端点必须可回溯、可校验、不能悬空。**
-5. **统一层交付结构化文档包，质量层再负责 Agent 修复和最终质量产物。**
+5. **统一层交付结构化文档包，质量层再负责确定性检查、白名单修复和最终质量产物。**

@@ -73,9 +73,9 @@
   <text x="58" y="532" font-size="16" font-weight="bold" fill="#78350f">domain · 领域核心（业务语义 · 框架无关 · 只依赖标准库 + pydantic）</text>
   <rect x="58" y="546" width="292" height="118" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
   <text x="74" y="572" font-size="14" font-weight="bold" fill="#b45309">model · 领域模型</text>
-  <text x="74" y="594" font-size="12" fill="#334155">ParsedDocument 2.2 / ParseRequest</text>
+  <text x="74" y="594" font-size="12" fill="#334155">ParsedDocument / ParseRequest</text>
   <text x="74" y="612" font-size="12" fill="#334155">RoutingDecision / QualityPackage</text>
-  <text x="74" y="630" font-size="12" fill="#334155">稳定契约 schema_version</text>
+  <text x="74" y="630" font-size="12" fill="#334155">当前唯一稳定契约</text>
   <rect x="364" y="546" width="292" height="118" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
   <text x="380" y="572" font-size="14" font-weight="bold" fill="#b45309">service · 领域服务</text>
   <text x="380" y="594" font-size="12" fill="#334155">SimpleSourceInspector</text>
@@ -131,7 +131,7 @@
   <text x="770" y="960" font-size="12" fill="#334155">document_package</text>
   <text x="770" y="978" font-size="12" fill="#334155">读写 + 完整性校验</text>
   <text x="770" y="996" font-size="12" fill="#334155">quality_packaging</text>
-  <text x="770" y="1014" font-size="12" fill="#334155">质量包四件套落盘</text>
+  <text x="770" y="1014" font-size="12" fill="#334155">Wiki 三文件质量包落盘</text>
   <rect x="58" y="1044" width="460" height="118" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5"/>
   <text x="74" y="1070" font-size="14" font-weight="bold" fill="#6d28d9">parsers/registry.py · 解析器注册表</text>
   <text x="74" y="1092" font-size="12" fill="#334155">build_parser_registry → dict[parser_id, ParserPort]</text>

@@ -91,20 +91,13 @@ class ReparseDocumentUseCase:
         )
 
 
-class QualityPipelineNotImplemented(NotImplementedError):
-    """质量流水线功能尚未实现。"""
-
-
 def run_quality(
     parsed_document: ParsedDocument,
     *,
     config: QualityConfig | None = None,
-    llm_advisor: object | None = None,
 ) -> QualityPackage:
     """应用层质量入口：对 ParsedDocument 执行质量流水线，返回 QualityPackage。"""
 
-    if llm_advisor is not None:
-        raise QualityPipelineNotImplemented("LLM 顾问层将在 MVP-B（M6）实现。")
     return run_pipeline(parsed_document, config=config)
 
 

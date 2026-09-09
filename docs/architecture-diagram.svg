@@ -95,7 +95,7 @@
   <text x="374" y="750" font-size="14" font-weight="bold" fill="#6d28d9">存储 / 转换 / 打包 / LLM</text>
   <text x="374" y="772" font-size="12" fill="#334155">ApiStorage（本地磁盘，可换 S3）</text>
   <text x="374" y="790" font-size="12" fill="#334155">LegacyOfficeConverter 格式转换</text>
-  <text x="374" y="812" font-size="12" fill="#334155">quality_packaging / llm（M6）</text>
+  <text x="374" y="812" font-size="12" fill="#334155">quality_packaging</text>
 
   <path d="M700 278 L672 278 L672 566" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#blueArrow)"/>
   <text x="672" y="440" font-size="11" fill="#4338ca" transform="rotate(-90 686 440)">api 依赖 domain 领域值</text>

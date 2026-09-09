@@ -237,7 +237,7 @@ class OcrParser(BaseParserAdapter):
         request: ParseRequest,
         signals: DocumentSignals,
     ) -> ParserNormalizationBundle:
-        """返回统一占位包；真实 OCR spans 和置信度映射会在这里接入。"""
+        """调用 RapidOCR 或读取 sidecar，并归一化 OCR 文本与位置。"""
 
         return self.normalize_native_result(
             self.build_native_result(request, signals),

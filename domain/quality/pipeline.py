@@ -1,12 +1,12 @@
 """质量流水线：EvidenceContext → 规则 → 能力矩阵 → Gate → QualityPackage。
 
-M1 覆盖：完整性规则 + 来源规则 + 能力矩阵 + Gate + 最小 canonical。
-表格/标题/引用能力在本里程碑如实标注"规则未实现"且不阻塞（对应能力
-在 M2/M3 落地后接入）。
+当前规则覆盖完整性、来源、标题、引用、表格网格、字段绑定、视图语义、
+跨页诊断与确定性修复；解析器私有结构不会进入领域规则。
 """
 
 from __future__ import annotations
 
+from dataclasses import replace
 from uuid import uuid4
 
 from document_parser.domain.model.contracts import (
@@ -31,6 +31,7 @@ from .repairs.registry import (
     WHITELIST_REPAIRS,
     apply_document_repairs,
 )
+from .table_storage import uses_external_table_index
 from .rules.base import QualityRule
 from .rules.completeness import (
     QL_CONT_001_BlocksExist,
@@ -54,6 +55,7 @@ from .rules.references import (
 from .rules.tables import (
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
+    QL_TBL_010_TableEvidenceIntegrity,
 )
 from .rules.cross_page import QL_TBL_007_CrossPageContinuation, QL_TBL_008_ColumnDrift
 from .rules.safety import (
@@ -65,7 +67,7 @@ from .rules.safety import (
     QL_TBL_009_HtmlTableRepresentation,
 )
 
-# 注册的规则集合（M1 完整性/来源 + M2 标题/引用 + M3 表格）
+# 注册的完整性、来源、标题、引用和表格规则集合。
 QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_CONT_001_BlocksExist,
     QL_CONT_002_OrderIndex,
@@ -84,6 +86,7 @@ QUALITY_RULES: tuple[type[QualityRule], ...] = (
     QL_REF_004_BindCitations,
     QL_TBL_004_ColumnPath,
     QL_TBL_006_BuildBindings,
+    QL_TBL_010_TableEvidenceIntegrity,
     QL_TBL_003_EmptyTableStructure,
     QL_TBL_009_HtmlTableRepresentation,
     QL_TBL_007_CrossPageContinuation,
@@ -118,6 +121,7 @@ def _execute_rules(context: EvidenceContext, rules: tuple[type[QualityRule], ...
                     severity=IssueSeverity.WARNING,
                     category="evidence_availability",
                     message=f"{rule.rule_id} 因所需证据不可用而跳过：{reasons}。",
+                    rule_id=rule.rule_id,
                     evidence_refs=[
                         EvidenceRef(
                             object_type="capability",
@@ -130,17 +134,37 @@ def _execute_rules(context: EvidenceContext, rules: tuple[type[QualityRule], ...
             )
             continue
         result: RuleResult = rule.execute(context)
-        issue_drafts.extend(result.issues)
+        issue_drafts.extend(
+            replace(draft, rule_id=draft.rule_id or rule.rule_id)
+            for draft in result.issues
+        )
         observations.extend(result.capability_observations)
         relation_candidates.extend(result.relation_candidates)
         binding_candidates.extend(result.binding_candidates)
     return issue_drafts, observations, relation_candidates, binding_candidates
 
 
-def _issue_fingerprint(draft: IssueDraft) -> tuple[str, str]:
+def _issue_fingerprint(draft: IssueDraft) -> tuple[str, str, str]:
     """用于修复前后对账的稳定问题指纹。"""
 
-    return draft.category, draft.message
+    return draft.rule_id, draft.category, draft.message
+
+
+def _deduplicate_issue_drafts(drafts: list[IssueDraft]) -> list[IssueDraft]:
+    """同一规则事实只交付一次，避免多个表格分析入口重复计数。"""
+
+    unique: dict[tuple, IssueDraft] = {}
+    for draft in drafts:
+        key = (
+            draft.rule_id,
+            draft.category,
+            draft.status,
+            draft.severity,
+            draft.message,
+            tuple(sorted(draft.affected_block_ids)),
+        )
+        unique.setdefault(key, draft)
+    return list(unique.values())
 
 
 def _repair_block_ids(parsed_document: ParsedDocument) -> dict[str, list[str]]:
@@ -181,6 +205,7 @@ def run_pipeline(
     # 1. 先诊断原始证据，再应用结构化安全修复。
     initial_context = EvidenceContext(parsed_document)
     initial_issue_drafts, _, _, _ = _execute_rules(initial_context, rules)
+    initial_issue_drafts = _deduplicate_issue_drafts(initial_issue_drafts)
     repair_result = apply_document_repairs(
         parsed_document,
         document_key=doc_key,
@@ -196,6 +221,7 @@ def run_pipeline(
             IssueDraft(
                 severity=IssueSeverity.WARNING,
                 category="repair_rejected",
+                rule_id=str(rejected.get("rule_id") or "QL-RPR-003"),
                 message=(
                     f"{rejected.get('rule_id', 'repair')} 未应用于 "
                     f"{rejected.get('table_id', 'document')}: {rejected.get('reason', '未知原因')}"
@@ -203,6 +229,7 @@ def run_pipeline(
                 evidence={"rejected_repair": rejected},
             )
         )
+    issue_drafts = _deduplicate_issue_drafts(issue_drafts)
 
     # 2. 能力矩阵
     matrix_builder = CapabilityMatrixBuilder(config)
@@ -215,7 +242,7 @@ def run_pipeline(
         binding_candidates=tuple(binding_candidates),
     )
 
-    # 4. Gate 决策（M1 无 reparse 来源，无 recommendation）
+    # 4. Gate 决策；无合法重解析建议时不伪造 recommendation。
     # 契约要求 reparse_required 必须带 recommendation；无合法建议时
     # evaluator 将结果安全降级为 rejected。
     evaluator = GateEvaluator(config.gate)
@@ -227,13 +254,14 @@ def run_pipeline(
         QualityIssue(
             issue_id=issue_id(
                 doc_key,
-                "draft",
+                draft.rule_id,
                 draft.affected_block_ids,
-                draft.message[:32],
+                f"{draft.status.value}:{draft.message[:32]}",
             ),
+            rule_id=draft.rule_id,
             severity=draft.severity,
             category=draft.category,
-            status=IssueStatus.UNFIXED,
+            status=draft.status,
             message=draft.message,
             affected_block_ids=list(draft.affected_block_ids),
             evidence={
@@ -254,10 +282,11 @@ def run_pipeline(
         QualityIssue(
             issue_id=issue_id(
                 doc_key,
-                "resolved",
+                draft.rule_id,
                 draft.affected_block_ids,
-                draft.message[:32],
+                f"repaired:{draft.message[:32]}",
             ),
+            rule_id=draft.rule_id,
             severity=draft.severity,
             category=draft.category,
             status=IssueStatus.REPAIRED,
@@ -289,23 +318,70 @@ def run_pipeline(
             "source_block_count": len(parsed_document.blocks),
             "canonical_block_count": len(canonical.blocks),
             "table_count": len(parsed_document.tables),
+            "canonical_table_count": len(canonical.tables),
+            "table_cell_count": sum(len(table.cells) for table in parsed_document.tables),
+            "merged_cell_anchor_count": sum(
+                1
+                for table in parsed_document.tables
+                for cell in table.cells
+                if cell.row_span > 1 or cell.col_span > 1
+            ),
+            "table_with_explicit_grid_count": sum(
+                1 for table in parsed_document.tables if table.grid
+            ),
+            "table_with_known_view_scope_count": sum(
+                1
+                for table in parsed_document.tables
+                if table.view_scope.value != "unknown"
+            ),
+            "visible_rows_table_count": sum(
+                1
+                for table in parsed_document.tables
+                if table.view_scope.value == "visible_rows"
+            ),
+            "nested_table_count": sum(
+                1 for table in parsed_document.tables if table.parent_table_id is not None
+            ),
             "binding_count": len(canonical.table_bindings),
+            "indexed_table_count": sum(
+                uses_external_table_index(table) for table in parsed_document.tables
+            ),
+            "binding_storage": (
+                "sqlite"
+                if any(
+                    uses_external_table_index(table)
+                    for table in parsed_document.tables
+                )
+                else "inline_json"
+            ),
             "relation_count": len(canonical.relations),
             "repair_count": len(repair_result.applied),
             "issue_count": len(issues),
             "initial_issue_count": len(initial_issue_drafts),
-            "unfixed_issue_count": len(issues),
+            "unfixed_issue_count": sum(
+                issue.status == IssueStatus.UNFIXED for issue in issues
+            ),
+            "manual_review_required_issue_count": sum(
+                issue.status == IssueStatus.MANUAL_REVIEW_REQUIRED for issue in issues
+            ),
+            "reparse_required_issue_count": sum(
+                issue.status == IssueStatus.REPARSE_REQUIRED for issue in issues
+            ),
+            "rejected_issue_count": sum(
+                issue.status == IssueStatus.REJECTED for issue in issues
+            ),
             "resolved_issue_count": len(resolved_issues),
             "rejected_repair_count": len(repair_result.rejected),
             "repaired_table_count": sum(
-                1 for repair in repair_result.applied if repair.rule_id == "QL-RPR-003"
+                1
+                for repair in repair_result.applied
+                if repair.rule_id in {"QL-RPR-003", "QL-RPR-004"}
             ),
         },
         reparse_recommendation=None,
     )
     return QualityPackage(
         schema_name="QualityPackage",
-        schema_version="1.0",
         document_id=parsed_document.document_id,
         optimized_markdown=optimized_markdown,
         canonical_document=canonical,

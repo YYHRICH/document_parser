@@ -4,8 +4,8 @@
 
 ## 1. 职责边界
 
-- 朱恩铄负责原始文件登记、解析路由、多模型执行、统一为 `ParsedDocument 2.2`、版本与生命周期记录。
-- 叶曜华负责读取 `ParsedDocument`，执行质量诊断、安全修复和 Gate，输出 `QualityPackage 1.0`。
+- 朱恩铄负责原始文件登记、解析路由、多模型执行、统一为 `ParsedDocument`、修订与生命周期记录。
+- 叶曜华负责读取 `ParsedDocument`，执行质量诊断、安全修复和 Gate，输出 `QualityPackage`。
 - 杨欣川与朱恩铄共同确认图片、OCR、表格、bbox 等多模态证据能被统一契约无损表达。
 - 姚丞韬只消费通过 Gate 的 `optimized.md`、`quality_package.json` 与 `assets/`，不依赖解析器私有目录。
 

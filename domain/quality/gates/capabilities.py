@@ -16,11 +16,14 @@ from document_parser.domain.model.contracts import (
 from ..evidence.context import EvidenceContext
 from ..models_internal import CapabilityObservation, EvidenceRef
 
-# 六项标准能力（spec §7.2）
+# 标准能力（spec §7.2）
 STANDARD_CAPABILITIES = (
     "content_complete",
     "heading_tree_reliable",
     "table_grid_reliable",
+    "table_structure_reliable",
+    "table_view_scope_reliable",
+    "table_representation_reliable",
     "table_field_binding_reliable",
     "provenance_reliable",
     "non_table_relation_reliable",
@@ -29,6 +32,9 @@ STANDARD_CAPABILITIES = (
 # 表格相关能力：无表格文档中不适用（D-03）
 _TABLE_CAPABILITIES = {
     "table_grid_reliable",
+    "table_structure_reliable",
+    "table_view_scope_reliable",
+    "table_representation_reliable",
     "table_field_binding_reliable",
 }
 
@@ -177,19 +183,12 @@ class CapabilityMatrixBuilder:
         """投影为公共契约的 CapabilityAssessment（state + evidence）。"""
         def public_evidence(verdict: CapabilityVerdict) -> dict:
             evidence = dict(verdict.evidence)
-            if evidence.get("rule_observations") == QualityCapabilityState.MANUAL_REVIEW_REQUIRED.value:
-                evidence["rule_observations"] = QualityCapabilityState.INFERRED.value
+            # 人工复核状态是下游需要消费的正式结论，不能再静默降级为 inferred。
             return evidence
 
         return {
             name: CapabilityAssessment(
-                # 不把人工队列状态交给 Wiki；证据不足统一标记为 inferred，
-                # 最终准入由 Gate 以 warning/reparse/rejected 表达。
-                state=(
-                    QualityCapabilityState.INFERRED
-                    if verdict.state == QualityCapabilityState.MANUAL_REVIEW_REQUIRED
-                    else verdict.state
-                ),
+                state=verdict.state,
                 evidence=public_evidence(verdict),
             )
             for name, verdict in verdicts.items()

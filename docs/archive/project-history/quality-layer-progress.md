@@ -11,8 +11,7 @@
 | M2 标题树与数字引用 | ✅ 完成 | QL-HDG 树算法 + 层级粒度检测、QL-REF 参考索引 + 唯一性绑定 |
 | M3 表格网格与字段绑定 | ✅ 完成 | QL-TBL 网格/多级 column_path/row_key/跨页续表与列漂移（QL-TBL-007/008） |
 | M4 白名单修复 | ✅ 完成 | QL-RPR 行尾空白/表格分隔行、幂等、no-op 合法 |
-| M5 双文件落盘 | ✅ 完成 | optimized.md + quality_package.json，原子化写入和结构校验 |
-| M6 单文档质量修复 Agent | ⬜ 待办 | Agno 运行时、Adapter、修复循环和审核输出 |
+| M5 三文件落盘 | ✅ 完成 | optimized.md + structure.json + quality_issues.json，原子化写入和结构校验 |
 | M7 联调交付 | ⬜ 待办 | 朱真实 fixtures、张 parser catalog、golden 验收 |
 
 测试状态：**199 passed + 1 xfailed**（xfailed 为 golden 标注冲突显式登记，D-16）
@@ -39,7 +38,7 @@ ParsedDocument 2.2
   → 15 条规则（CONT/PROV/HDG/REF/TBL/RPR）
   → 能力矩阵（6 项标准能力 + 观测项）
   → Gate 自动决策（唯一裁判）
-  → optimized.md + quality_package.json
+  → optimized.md + structure.json + quality_issues.json
 ```
 
 规则清单：
@@ -57,7 +56,7 @@ ParsedDocument 2.2
 
 - 不伪造证据：数字/公式/表头/标题/bbox/来源一律来自 ParsedDocument
 - no-op 合法：无修复时不改原文，不产生虚假 applied_repairs
-- `verified` 必须有证据；LLM 建议最高 `inferred`（M6）
+- `verified` 必须有可定位证据；缺少证据时只能降级或进入人工复核
 - 粒度可疑（解析器标题全平）→ 编号重建 → 降级，绝不假装 verified
 
 ## 三、真实数据表现（MinerU 云 API / docling）
@@ -94,12 +93,11 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 ## 五、关键决策（详见 docs/quality-decisions.md）
 
 - D-01：sdp-004 标注以采购版为准（annotations 为事实源）
-- D-02：不产生人工复核状态；证据不足以 inferred + warning、reparse_required 或 rejected 表达
+- D-02：对象级允许 manual_review_required；证据不足以 uncertain 或 reparse_required 表达
 - D-03：能力不适用（无表格）不阻塞
 - D-07：canonical content 默认保留输入，白名单修复才变
 - D-08：info 不阻塞 pass
 - D-09：cell 身份 = (table_id, 行, 列) 临时方案，等朱 cell_id
-- D-10：确定性规则作为基础和降级路径，M6 接入可关闭的单文档质量修复 Agent
 - D-12：fixtures 用真实解析 + 合成
 - D-16：4 个 golden 样本两份标注均漂移，已登记 KNOWN_CONFLICTS 待数据负责人
 
@@ -114,5 +112,5 @@ TORCH_COMPILE_DISABLE=1 C:/dp_venv_link/Scripts/python.exe -m tools.make_fixture
 
 ## 七、下一步
 
-1. **M6**：Agno 单文档质量修复 Agent（Fake Agent、候选验证、revision 和审核输出）
-2. **M7**：接入朱真实 ParsedDocument、与张确认 reparse catalog、golden 验收
+1. 接入朱真实 ParsedDocument、与张确认 reparse catalog、完成 golden 验收
+2. 继续补充复杂表格、嵌套表格和工作表视图的确定性质量规则

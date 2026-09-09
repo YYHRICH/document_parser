@@ -1,6 +1,6 @@
 """MinerU 云 API 解析适配器（开发期自建，等朱的正式 Adapter 到位后替换）。
 
-把 MinerU 云 API 的输出转换为公共 ``ParsedDocument 2.2``。
+把 MinerU 云 API 的输出转换为公共 ``ParsedDocument``。
 
 使用流程（官方 v4 API）：
 1. POST /file-urls/batch 获取签名上传 URL；

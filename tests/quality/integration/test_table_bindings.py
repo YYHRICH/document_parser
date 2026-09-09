@@ -90,8 +90,26 @@ def test_binding_ids_stable_and_distinct():
 
 
 def test_binding_endpoints_resolve():
-    """binding 的 block_id 必须能在 canonical blocks 中解析。"""
+    """binding 的 block、table 和 cell 引用都必须能在 canonical 中解析。"""
     pkg = run_quality(_load("sdp-004-docling"))
     block_ids = {b.block_id for b in pkg.canonical_document.blocks}
+    tables = {table.table_id: table for table in pkg.canonical_document.tables}
     for b in pkg.canonical_document.table_bindings:
         assert b.block_id in block_ids, f"binding {b.binding_id} 的 block 悬挂"
+        assert b.table_id in tables, f"binding {b.binding_id} 的 table 悬挂"
+        cell_ids = {cell.cell_id for cell in tables[b.table_id].cells}
+        assert b.value_cell_id in cell_ids
+        assert set(b.row_cell_ids).issubset(cell_ids)
+        assert set(b.column_cell_ids).issubset(cell_ids)
+
+
+def test_canonical_table_grid_references_resolve():
+    pkg = run_quality(_load("sdp-004-docling"))
+    assert pkg.canonical_document.tables
+    for table in pkg.canonical_document.tables:
+        cell_ids = {cell.cell_id for cell in table.cells}
+        assert cell_ids
+        for row in table.grid:
+            for slot in row:
+                target = slot.cell_id if slot.kind.value == "origin" else slot.origin_cell_id
+                assert target in cell_ids

@@ -82,7 +82,7 @@ def _document() -> ParsedDocument:
 def test_parsed_document_is_accepted_by_real_mmwiki_loader(tmp_path: Path):
     target = tmp_path / "package"
     result = MmwikiPackageAdapter().publish(_document(), target)
-    assert result["manifest"]["parser"]["source_schema"] == "ParsedDocument-2.2"
+    assert result["manifest"]["parser"]["source_schema"] == "ParsedDocument"
 
     downstream = Path(__file__).resolve().parents[3] / "multimodal-llm-wiki"
     if not downstream.is_dir():

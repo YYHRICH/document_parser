@@ -25,6 +25,10 @@ export type Body_create_parse_api_parses_post = {
   native_output_dir?: string | null;
 };
 
+export type Body_lifecycle_put_source_api_lifecycle_sources_post = {
+  file: string;
+};
+
 // 质量层稳定文档节点。
 export type CanonicalBlock = {
   block_id: string;
@@ -38,9 +42,9 @@ export type CanonicalBlock = {
 // 带顺序、表格绑定、关系和来源的质量层文档图。
 export type CanonicalDocument = {
   schema_name?: string;
-  schema_version?: string;
   document_id: string;
   blocks: CanonicalBlock[];
+  tables?: CanonicalTable[];
   table_bindings?: TableFieldBinding[];
   relations?: CanonicalRelation[];
   metadata?: Record<string, unknown>;
@@ -62,7 +66,38 @@ export type CanonicalSourceLocator = {
   page_number?: number | null;
   bbox?: unknown[] | null;
   bbox_granularity?: string | null;
+  container?: string | null;
+  container_name?: string | null;
+  cell_ref?: string | null;
+  range_ref?: string | null;
+  table_cell?: string | null;
   provenance_status: QualityCapabilityState;
+};
+
+// 质量层确认后的规范表格；Markdown 只是它的派生表示。
+export type CanonicalTable = {
+  table_id: string;
+  block_id: string;
+  table_kind?: string;
+  source_locator: CanonicalSourceLocator;
+  num_rows: number;
+  num_cols: number;
+  header_rows?: number | null;
+  header_row_indices?: number[];
+  title_row_indices?: number[];
+  header_state?: QualityCapabilityState;
+  row_header_columns?: number[];
+  view_scope?: TableViewScope;
+  source_has_filter?: boolean | null;
+  source_row_count?: number | null;
+  emitted_row_count?: number | null;
+  hidden_row_count?: number | null;
+  cells?: TableCell[];
+  grid?: TableGridSlot[][];
+  parent_table_id?: string | null;
+  parent_cell_id?: string | null;
+  nesting_depth?: number;
+  metadata?: Record<string, unknown>;
 };
 
 // 质量层对单项能力的结论与数量证据。
@@ -72,11 +107,12 @@ export type CapabilityAssessment = {
 };
 
 // Markdown 引用的统一二进制资源。
-// 
+//
 // ``path`` 是相对于输出目录的 POSIX 路径，Markdown 可直接用它作为链接；
 // ``content`` 在 Python 调用中保持 bytes，在 JSON 中自动编码为 URL-safe
 // Base64。业务方可以统一遍历 assets 保存文件。
 export type DocumentAsset = {
+  asset_id?: string | null;
   path: string;
   kind: AssetKind;
   file_type: string;
@@ -148,7 +184,7 @@ export type HTTPValidationError = {
 
 export type IssueSeverity = "critical", "warning", "info";
 
-export type IssueStatus = "unfixed", "repaired", "reparse_required", "rejected";
+export type IssueStatus = "unfixed", "repaired", "manual_review_required", "reparse_required", "rejected";
 
 // 解析器原生产物的安全文件引用，不把大型 JSON/二进制塞入公共结果。
 export type NativeArtifact = {
@@ -171,7 +207,6 @@ export type OcrSpan = {
   page_number?: number | null;
   rotation_angle?: number | null;
 };
-
 
 // 文本、布局、阅读顺序和表格的质量分。
 export type ParseConfidence = {
@@ -196,7 +231,7 @@ export type ParseRecordResponse = {
 };
 
 // 所有解析方式必须输出的稳定文档协议。
-// 
+//
 // 外层调用统一读取 ``markdown``；需要结构化检索时读取 ``blocks``；需要保存
 // 图片时遍历 ``assets``。这三个字段在所有解析器结果中始终存在。
 export type ParsedDocument = {
@@ -211,6 +246,8 @@ export type ParsedDocument = {
   assets?: DocumentAsset[];
   tables?: ParsedTable[];
   ocr_spans?: OcrSpan[];
+  retrieval_chunks?: RetrievalChunk[];
+  visual_evidence?: VisualEvidence[];
   confidence: ParseConfidence;
   provenance: ParserProvenance;
   warnings?: string[];
@@ -218,7 +255,6 @@ export type ParsedDocument = {
   capabilities?: Record<string, EvidenceCapability>;
   alternatives?: Record<string, unknown>[];
   schema_name?: string;
-  schema_version?: string;
   created_at?: string;
 };
 
@@ -234,7 +270,22 @@ export type ParsedTable = {
   bbox?: unknown[] | null;
   num_rows?: number | null;
   num_cols?: number | null;
+  table_kind?: string;
+  source_container?: string | null;
+  source_container_name?: string | null;
+  source_range?: string | null;
+  header_rows?: number | null;
+  row_header_columns?: number[];
+  view_scope?: TableViewScope;
+  source_has_filter?: boolean | null;
+  source_row_count?: number | null;
+  emitted_row_count?: number | null;
+  hidden_row_count?: number | null;
   cells?: TableCell[];
+  grid?: TableGridSlot[][];
+  parent_table_id?: string | null;
+  parent_cell_id?: string | null;
+  nesting_depth?: number;
   metadata?: Record<string, unknown>;
 };
 
@@ -272,11 +323,12 @@ export type ParserProvenance = {
 };
 
 // Canonical 中某项能力或关系的证据状态。
-export type QualityCapabilityState = "verified", "inferred", "reparse_required", "rejected", "unavailable";
+export type QualityCapabilityState = "verified", "inferred", "manual_review_required", "reparse_required", "rejected", "unavailable";
 
 // 一条可定位、可跟踪、可复核的质量问题。
 export type QualityIssue = {
   issue_id: string;
+  rule_id: string;
   severity: IssueSeverity;
   category: string;
   status: IssueStatus;
@@ -285,10 +337,14 @@ export type QualityIssue = {
   evidence?: Record<string, unknown>;
 };
 
-// 质量层交给 Wiki 的统一返回协议；物理落盘为 optimized.md + quality_package.json。
+// 质量层交给 Wiki 的统一返回协议。
+//
+// 物理交付固定包含 ``optimized.md``、``structure.json`` 和
+// ``quality_issues.json``。大表追加 ``table_index.sqlite3``，避免在
+// JSON 中展开海量单元格和字段绑定。``optimized_markdown`` 保留在
+// 内存/API 返回中，落盘时单独写入 Markdown。
 export type QualityPackage = {
   schema_name?: string;
-  schema_version?: string;
   document_id: string;
   optimized_markdown: string;
   canonical_document: CanonicalDocument;
@@ -331,10 +387,24 @@ export type ReparseRequest = {
   options?: Record<string, unknown>;
 };
 
+// 杨多模态层产出的可检索单元及其证据关联。
+export type RetrievalChunk = {
+  chunk_id: string;
+  item_ids?: string[];
+  text: string;
+  breadcrumb?: string | null;
+  modalities?: string[];
+  asset_ids?: string[];
+  page_refs?: number[];
+  context_item_ids?: string[];
+  searchable?: boolean;
+  needs_review?: boolean;
+  metadata?: Record<string, unknown>;
+};
+
 // 张云雅路由层交给统一接入层的稳定决策协议。
 export type RoutingDecision = {
   schema_name?: string;
-  schema_version?: string;
   mode: RoutingMode;
   requested_parser_id?: string | null;
   selected_parser_id: string;
@@ -353,27 +423,44 @@ export type RoutingMode = "auto", "manual";
 // 文档块到原文的定位信息。
 export type SourceAnchor = {
   page_number?: number | null;
+  page_end?: number | null;
   bbox?: unknown[] | null;
   page_width?: number | null;
   page_height?: number | null;
   coordinate_system?: string | null;
+  origin?: string | null;
+  page_unit?: string | null;
   bbox_granularity?: string | null;
   provenance_status?: string | null;
   section_path?: string[];
   table_cell?: string | null;
+  container?: string | null;
+  container_name?: string | null;
+  cell_ref?: string | null;
+  range_ref?: string | null;
+  source_object_id?: string | null;
   original_text?: string | null;
 };
 
 // 解析器提供的物理表格网格单元。
 export type TableCell = {
+  cell_id?: string | null;
   text: string;
+  raw_value?: unknown | null;
+  display_value?: string | null;
+  normalized_value?: string | null;
+  value_type?: string | null;
+  formula?: string | null;
   start_row: number;
   start_col: number;
   row_span?: number;
   col_span?: number;
   column_header?: boolean;
   row_header?: boolean;
+  roles?: string[];
+  visible?: boolean | null;
   bbox?: unknown[] | null;
+  source_anchor?: SourceAnchor | null;
 };
 
 // 行键、完整列路径和值之间的可回溯表格绑定。
@@ -382,12 +469,29 @@ export type TableFieldBinding = {
   table_id: string;
   block_id: string;
   row_key: string;
+  row_path?: string[];
   column_path: string[];
+  row_cell_ids?: string[];
+  column_cell_ids?: string[];
+  value_cell_id?: string | null;
   value: string;
   source_locator: CanonicalSourceLocator;
   status: QualityCapabilityState;
   evidence?: Record<string, unknown>;
 };
+
+// 逻辑网格中的原始单元格或合并覆盖位置。
+export type TableGridSlot = {
+  kind: TableSlotKind;
+  cell_id?: string | null;
+  origin_cell_id?: string | null;
+};
+
+// 逻辑网格槽位类型；合并覆盖位不是新的源单元格。
+export type TableSlotKind = "origin", "covered";
+
+// 表格输出覆盖的是全量行、可见行还是未知视图。
+export type TableViewScope = "all_rows", "visible_rows", "unknown";
 
 export type ValidationError = {
   loc: string | number[];
@@ -396,3 +500,39 @@ export type ValidationError = {
   input?: unknown;
   ctx?: Record<string, unknown>;
 };
+
+export type VisualClaim = {
+  statement: string;
+  provenance: VisualClaimProvenance;
+};
+
+export type VisualClaimProvenance = "extracted", "inferred", "ambiguous";
+
+// 一张图片的 Caption 或 OCR 结果槽位。
+export type VisualEvidence = {
+  id: string;
+  kind: VisualEvidenceKind;
+  text?: string;
+  asset_id: string;
+  parent_item_ids?: string[];
+  parent_chunk_ids?: string[];
+  page_refs?: number[];
+  status: VisualEvidenceStatus;
+  searchable?: boolean;
+  provenance?: VisualEvidenceProvenance | null;
+  claims?: VisualClaim[];
+  reason?: string | null;
+  error?: string | null;
+};
+
+export type VisualEvidenceKind = "image_caption", "image_ocr";
+
+export type VisualEvidenceProvenance = {
+  source: string;
+  model: string;
+  model_version?: string | null;
+  prompt_version?: string | null;
+  task?: string | null;
+};
+
+export type VisualEvidenceStatus = "ready", "skipped", "ambiguous", "error", "missing";

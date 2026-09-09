@@ -37,6 +37,7 @@ dist/
 # IDE and operating-system files
 .vscode/
 .idea/
+.workbuddy/
 .DS_Store
 Thumbs.db
 
